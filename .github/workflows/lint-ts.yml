@@ -1,6 +1,3 @@
-# 🔗 Links:
-# Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/workflows/lint-ts.yml
-
 # ✍️ Description:
 # This action is used to run eslint checks
 # Runs on pull requests and pushes to  the main/master branches
@@ -21,7 +18,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  
+
 jobs:
   lint:
     name: Lint TS (eslint, prettier)
