@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { type ReactElement } from 'react';
 import type { PressableProps, View } from 'react-native';
-import { ActivityIndicator, Pressable, Text } from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import type { VariantProps } from 'tailwind-variants';
 import { tv } from 'tailwind-variants';
 
@@ -144,3 +149,30 @@ export const Button = React.forwardRef<View, Props>(
     );
   }
 );
+
+interface IRoundedButton {
+  icon: ReactElement;
+  label: string;
+  onPress: () => void;
+  className?: string;
+  textClassName?: string;
+}
+export const RoundedButton = ({
+  icon,
+  label,
+  onPress,
+  className,
+  textClassName,
+}: IRoundedButton) => {
+  return (
+    <TouchableOpacity
+      className={`bg-primary-100 h-[100px] w-[120px] items-center justify-center gap-3 rounded-2xl dark:bg-black ${className}`}
+      onPress={onPress}
+    >
+      {icon}
+      <Text className={`font-semibold-nunito text-center ${textClassName}`}>
+        {label}
+      </Text>
+    </TouchableOpacity>
+  );
+};

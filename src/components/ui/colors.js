@@ -1,6 +1,14 @@
 module.exports = {
   white: '#ffffff',
   black: '#000000',
+  darkGray: '#10152C',
+  lightGray: '#D3D3D3',
+  muzli: '#F1EEFB',
+  primaryPurple: '#A935F8',
+  lightSkyBlue: '#7CD0FC',
+  transparent: 'transparent',
+  blackEerie: '#18181B',
+  blackBeauty: '#27272A',
   charcoal: {
     50: '#F2F2F2',
     100: '#E5E5E5',
@@ -28,16 +36,43 @@ module.exports = {
     900: '#171717',
   },
   primary: {
-    50: '#FFE2CC',
-    100: '#FFC499',
-    200: '#FFA766',
-    300: '#FF984C',
-    400: '#FF8933',
-    500: '#FF7B1A',
-    600: '#FF6C00',
-    700: '#E56100',
-    800: '#CC5600',
-    900: '#B24C00',
+    base: '#2c54c9',
+    50: '#ebf0ff',
+    100: '#d6e0ff',
+    200: '#b8cbff',
+    300: '#9ab6ff',
+    400: '#7ca1ff',
+    500: '#6a90f4',
+    600: '#5d82e8',
+    700: '#5377dc',
+    800: '#4f72d9', // Your specified 900 level
+    900: '#4568c9', // Slightly darker for true 900 if needed
+    // 900: '#2c54c9', // Very dark purple
+  },
+  secondary: {
+    base: '#7CD0FC',
+    50: '#E3F8FF', // Very light blue
+    100: '#C8F0FF', // Lighter blue
+    200: '#B9EEFF', // Soft blue (Base)
+    300: '#91E2FF', // Light-medium blue
+    400: '#69D5FF', // Medium blue
+    500: '#40C9FF', // Main secondary color
+    600: '#1BADF5', // Darker blue
+    700: '#1589C7', // Dark blue
+    800: '#106598', // Very dark blue
+    900: '#0A416A', // Darkest blue
+  },
+  tertiary: {
+    50: '#FFF0FF', // Very light pink
+    100: '#FFE1FF', // Lighter pink
+    200: '#FDCAFF', // Soft pink (Base)
+    300: '#F7A6F9', // Light-medium pink
+    400: '#F283F4', // Medium pink
+    500: '#EC5FEE', // Main tertiary color
+    600: '#D543D7', // Darker pink
+    700: '#B435B5', // Dark pink
+    800: '#922993', // Very dark pink
+    900: '#711D70', // Darkest pink
   },
   success: {
     50: '#F0FDF4',

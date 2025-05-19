@@ -1,8 +1,16 @@
 // Import  global CSS file
 import '../../global.css';
 
+import {
+  NunitoSans_300Light,
+  NunitoSans_400Regular,
+  NunitoSans_600SemiBold,
+  NunitoSans_700Bold,
+  NunitoSans_800ExtraBold,
+} from '@expo-google-fonts/nunito-sans';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React from 'react';
@@ -12,8 +20,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { APIProvider } from '@/api';
-import { hydrateAuth, loadSelectedTheme } from '@/lib';
-import { useThemeConfig } from '@/lib/use-theme-config';
+import { hydrateAuth, loadSelectedTheme } from '@/core';
+import { useThemeConfig } from '@/core/use-theme-config';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -32,6 +40,15 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
+  const [fontsLoaded] = useFonts({
+    'Font-Regular': NunitoSans_400Regular,
+    'Font-SemiBold': NunitoSans_600SemiBold,
+    'Font-Light': NunitoSans_300Light,
+    'Font-Bold': NunitoSans_700Bold,
+    'Font-Medium': NunitoSans_400Regular,
+    'Font-Extra-Bold': NunitoSans_800ExtraBold,
+  });
+
   return (
     <Providers>
       <Stack>
