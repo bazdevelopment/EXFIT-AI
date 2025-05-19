@@ -1,12 +1,12 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable react/no-unstable-nested-components */
-import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
+import { Redirect, SplashScreen, Tabs } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useCallback, useEffect } from 'react';
 
 import CustomHeader from '@/components/cusom-header';
 import { TabBarIcon } from '@/components/tab-bar-icon';
-import { colors, Pressable, SafeAreaView, Text } from '@/components/ui';
+import { colors, SafeAreaView } from '@/components/ui';
 import { DEVICE_TYPE, useAuth, useIsFirstTime } from '@/core';
 import { useCrashlytics } from '@/core/hooks/use-crashlytics';
 import { useHaptic } from '@/core/hooks/use-haptics';
@@ -51,7 +51,7 @@ export default function TabLayout() {
         screenOptions={{
           tabBarStyle: bottomTabBarStyles.tabBarContainer,
           tabBarLabelStyle: bottomTabBarStyles.tabBarLabel,
-          tabBarInactiveTintColor: isDark ? colors.white : colors.charcoal[700],
+          tabBarInactiveTintColor: colors.white,
           tabBarActiveTintColor: colors.primary[900],
         }}
       >
@@ -81,11 +81,10 @@ export default function TabLayout() {
                 <TabBarIcon
                   icon={tab.icon(color, focused)}
                   focused={focused}
-                  textClassName={`text-sm w-full ${focused ? 'font-bold-nunito text-primary-900 dark:text-primary-900' : 'font-medium-nunito'} `}
+                  textClassName={`text-sm text-center w-full ${focused ? 'font-bold-nunito text-primary-900 dark:text-primary-900' : 'font-medium-nunito'} `}
                   title={tab.title}
                 />
               ),
-
               tabBarTestID: tab.tabBarTestID,
             }}
           />
@@ -94,13 +93,3 @@ export default function TabLayout() {
     </SafeAreaView>
   );
 }
-
-const CreateNewPostLink = () => {
-  return (
-    <Link href="/feed/add-post" asChild>
-      <Pressable>
-        <Text className="px-3 text-primary-300">Create</Text>
-      </Pressable>
-    </Link>
-  );
-};
