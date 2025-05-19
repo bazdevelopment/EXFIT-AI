@@ -14,7 +14,7 @@ export const tabScreens: ITabsNavigationScreen[] = [
     title: translate('home.tab'),
     tabBarTestID: 'home-tab',
     icon: (color: string, focused: boolean) => (
-      <FeedIcon color={color} focused={focused} />
+      <FeedIcon color={color} focused={focused} width={24} height={24} />
     ),
     header: false,
   },
