@@ -1,5 +1,4 @@
 /* eslint-disable max-lines-per-function */
-/* eslint-disable react/no-unstable-nested-components */
 import { Redirect, SplashScreen, Tabs } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useCallback, useEffect } from 'react';
@@ -37,14 +36,14 @@ export default function TabLayout() {
   }, [hideSplash, status]);
 
   if (isFirstTime) {
-    return <Redirect href="/onboarding" />;
+    return <Redirect href="/welcome" />;
   }
-  if (status === 'signOut') {
-    return <Redirect href="/login" />;
-  }
+  // if (status === 'signOut') {
+  //   return <Redirect href="/login" />;
+  // }
   return (
     <SafeAreaView
-      className="flex-1"
+      className="flex-1 bg-black"
       edges={DEVICE_TYPE.ANDROID ? ['bottom'] : []}
     >
       <Tabs
