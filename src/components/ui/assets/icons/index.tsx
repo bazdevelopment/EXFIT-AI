@@ -1,6 +1,8 @@
 export * from './activity';
 export * from './arrow-left';
 export * from './arrow-right';
+export * from './arrow-right-rouned';
+export * from './back-rouded-icon';
 export * from './bell';
 export * from './bot-icon';
 export * from './calendar';
@@ -36,6 +38,7 @@ export * from './rate';
 export * from './report';
 export * from './resize-icon';
 export * from './retry-icon';
+export * from './scan';
 export * from './settings';
 export * from './settings-wheel';
 export * from './share';

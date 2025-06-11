@@ -5,7 +5,13 @@ import Svg, { Path } from 'react-native-svg';
 
 import { isRTL } from '@/core';
 
-export const ArrowRight = ({ fill = '#CCC', style, ...props }: SvgProps) => (
+import colors from '../../colors';
+
+export const ArrowRight = ({
+  fill = colors.white,
+  style,
+  ...props
+}: SvgProps) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={25}

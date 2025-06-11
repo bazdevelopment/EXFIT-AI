@@ -48,13 +48,48 @@ export default function RootLayout() {
     'Font-Medium': NunitoSans_400Regular,
     'Font-Extra-Bold': NunitoSans_800ExtraBold,
   });
-
+  if (!fontsLoaded) return null;
   return (
     <Providers>
       <Stack>
         <Stack.Screen name="(app)" options={{ headerShown: false }} />
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="onboarding-first"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
+        <Stack.Screen
+          name="onboarding-second"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
+        <Stack.Screen
+          name="welcome"
+          options={{
+            headerShown: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
+        <Stack.Screen
+          name="anonymous-login"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
       </Stack>
     </Providers>
   );
