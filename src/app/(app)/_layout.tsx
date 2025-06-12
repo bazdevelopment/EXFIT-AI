@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { Redirect, SplashScreen, Tabs } from 'expo-router';
+import { SplashScreen, Tabs } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useCallback, useEffect } from 'react';
 
@@ -35,9 +35,9 @@ export default function TabLayout() {
     }
   }, [hideSplash, status]);
 
-  if (isFirstTime) {
-    return <Redirect href="/welcome" />;
-  }
+  // if (isFirstTime) {
+  //   return <Redirect href="/welcome" />;
+  // }
   // if (status === 'signOut') {
   //   return <Redirect href="/login" />;
   // }

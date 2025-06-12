@@ -33,8 +33,8 @@ const Greeting: React.FC<GreetingProps> = ({
       {/* Conditionally render the avatar if avatarUri is provided */}
       {avatarUri && (
         <Image
-          source={{ uri: avatarUri }}
-          className="mr-4 size-20 rounded-full" // Tailwind classes for styling the avatar
+          source={avatarUri}
+          className="mr-4 size-16 rounded-full" // Tailwind classes for styling the avatar
           accessibilityLabel="User Avatar"
           onError={(e) =>
             console.error('Failed to load avatar image:', e.nativeEvent.error)
@@ -48,8 +48,33 @@ const Greeting: React.FC<GreetingProps> = ({
           {mainMessage},
         </Text>
         {/* User name/caption */}
-        <Text className="text-[20px] font-bold text-white">{userName}</Text>
+        <Text className="text-[20px] font-bold text-white">{userName}!</Text>
+        <View className="mt-1 flex-row items-center">
+          <Text className="">🔥</Text>
+          <Text className="ml-1 font-bold-nunito text-white">100</Text>
+        </View>
       </View>
+      {/* <View>
+        <LinearGradient
+          colors={['#3195FD', '#8B5CF6']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          className="w-3/5 flex-row items-center justify-center rounded-full p-2"
+          style={{
+            // width: '90%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            borderRadius: 100,
+            paddingVertical: 5,
+            paddingHorizontal: 15,
+            alignSelf: 'flex-start',
+            marginLeft: 20,
+          }}
+        >
+          <Text className="text-2xl">🔥</Text>
+          <Text className="ml-3 font-semibold text-white">100</Text>
+        </LinearGradient>
+      </View> */}
     </View>
   );
 };
