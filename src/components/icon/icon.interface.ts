@@ -8,4 +8,9 @@ export interface IIcon {
   iconContainerStyle?: string;
   disabled?: boolean;
   onPress?: () => void;
+  showBadge?: boolean;
+  badgeClassName?: string;
+  badgeSize?: number;
+  badgeColor?: string;
+  badgeCount?: number;
 }

@@ -29,6 +29,7 @@ export * from './logout';
 export * from './mail';
 export * from './membership';
 export * from './moon';
+export * from './notification';
 export * from './notification-bell';
 export * from './paperclip';
 export * from './phone';
