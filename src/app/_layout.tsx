@@ -90,6 +90,15 @@ export default function RootLayout() {
             animationDuration: 500,
           }}
         />
+        <Stack.Screen
+          name="excuse-buster"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
       </Stack>
     </Providers>
   );

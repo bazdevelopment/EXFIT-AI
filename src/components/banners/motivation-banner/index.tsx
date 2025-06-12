@@ -29,7 +29,7 @@ const MotivationBanner = ({
               withGradientBackground
               className="h-[30px] rounded-xl"
               textClassName="text-white font-bold-nunito"
-              onPress={() => router.navigate('/onboarding-first')}
+              onPress={() => router.navigate('/excuse-buster')}
             />
           </View>
         </View>
