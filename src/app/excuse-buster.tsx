@@ -73,8 +73,11 @@ const ExcuseBusterScreen: React.FC = () => {
       allExcuses.push(customExcuse.trim());
     }
     console.log('allExcuses', allExcuses);
+
     if (allExcuses.length === 0) {
       alert('Please select at least one excuse or enter a custom one!');
+      router.navigate('/chat-screen');
+
       return;
     }
 

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 // Import  global CSS file
 import '../../global.css';
 
@@ -92,6 +93,15 @@ export default function RootLayout() {
         />
         <Stack.Screen
           name="excuse-buster"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
+        <Stack.Screen
+          name="chat-screen"
           options={{
             headerShown: false,
             gestureEnabled: false,

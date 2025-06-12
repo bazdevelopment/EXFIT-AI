@@ -3,8 +3,6 @@ import Svg, { Path } from 'react-native-svg';
 
 import { type ISvgProps } from '@/types/svg-types';
 
-import colors from '../../colors';
-
 export const SoundOn = (props: ISvgProps) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +13,7 @@ export const SoundOn = (props: ISvgProps) => (
     {...props}
   >
     <Path
-      stroke={colors.primary[900]}
+      stroke={props.color}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2.3}

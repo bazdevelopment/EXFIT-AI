@@ -40,6 +40,7 @@ export * from './report';
 export * from './resize-icon';
 export * from './retry-icon';
 export * from './scan';
+export * from './send-icon';
 export * from './settings';
 export * from './settings-wheel';
 export * from './share';

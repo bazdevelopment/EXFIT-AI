@@ -3,22 +3,20 @@ import Svg, { Path } from 'react-native-svg';
 
 import { type ISvgProps } from '@/types/svg-types';
 
-import colors from '../../colors';
-
-export const BackRoundedIcon = (props: ISvgProps) => (
+export const SendIcon = (props: ISvgProps) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
     height={24}
+    viewBox="0 0 24 24"
     fill="none"
     {...props}
   >
     <Path
-      stroke="white"
-      fill={colors.charcoal[800]}
+      stroke="#fff"
+      strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={2}
-      d="m17 3-6.335 2.715a2.433 2.433 0 0 0-1.066.887 9.732 9.732 0 0 0 0 10.796c.262.393.632.701 1.066.887L17 21"
+      d="M20 1 1 8l9.104 3.938M20 1l-6.333 21-3.563-10.063M20 1l-9.896 10.938"
     />
   </Svg>
 );
