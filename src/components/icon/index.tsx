@@ -32,6 +32,7 @@ const Icon = ({
     <Wrapper
       onPress={onPress}
       className={`flex flex-col items-center ${containerStyle}`}
+      activeOpacity={0.8}
       disabled={disabled}
     >
       <View className={iconContainerStyle}>

@@ -135,7 +135,7 @@ export const useTextToSpeech = ({
         if (!matchedVoice) {
           // Look for voices that contain the language code
           const languageVoices = voices.filter((voice) =>
-            voice.language.toLowerCase().startsWith(language.toLowerCase()),
+            voice.language.toLowerCase().startsWith(language.toLowerCase())
           );
 
           if (languageVoices.length > 0) {
@@ -143,7 +143,7 @@ export const useTextToSpeech = ({
           } else {
             // Last resort: find any voice that might work (partial match)
             const partialMatch = voices.find((voice) =>
-              voice.language.toLowerCase().includes(language.toLowerCase()),
+              voice.language.toLowerCase().includes(language.toLowerCase())
             );
 
             if (partialMatch) {
@@ -181,7 +181,7 @@ export const useTextToSpeech = ({
 
   const speak = async (
     text: string,
-    options?: SpeechOptions,
+    options?: SpeechOptions
   ): Promise<void> => {
     try {
       // Stop any ongoing speech
