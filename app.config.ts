@@ -90,6 +90,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     '@react-native-firebase/crashlytics',
     ['app-icon-badge', appIconBadgeConfig],
     ['react-native-edge-to-edge'],
+    [
+      'expo-camera',
+      {
+        cameraPermission:
+          'Allow $(PRODUCT_NAME) to access your camera to capture images for AI analysis',
+      },
+    ],
   ],
   extra: {
     ...ClientEnv,
