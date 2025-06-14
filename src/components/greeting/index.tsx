@@ -29,7 +29,7 @@ const Greeting: React.FC<GreetingProps> = ({
   const mainMessage = showGreeting ? getDynamicGreeting() : 'Welcome';
 
   return (
-    <View className="flex-row items-center bg-black p-4">
+    <View className="flex-row items-center p-4">
       {/* Conditionally render the avatar if avatarUri is provided */}
       {avatarUri && (
         <Image
@@ -54,27 +54,6 @@ const Greeting: React.FC<GreetingProps> = ({
           <Text className="ml-1 font-bold-nunito text-white">100</Text>
         </View>
       </View>
-      {/* <View>
-        <LinearGradient
-          colors={['#3195FD', '#8B5CF6']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          className="w-3/5 flex-row items-center justify-center rounded-full p-2"
-          style={{
-            // width: '90%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            borderRadius: 100,
-            paddingVertical: 5,
-            paddingHorizontal: 15,
-            alignSelf: 'flex-start',
-            marginLeft: 20,
-          }}
-        >
-          <Text className="text-2xl">🔥</Text>
-          <Text className="ml-3 font-semibold text-white">100</Text>
-        </LinearGradient>
-      </View> */}
     </View>
   );
 };

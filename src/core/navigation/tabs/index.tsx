@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { colors } from '@/components/ui';
 import { Feed as FeedIcon, Settings } from '@/components/ui/assets/icons';
 import ActivityIcon from '@/components/ui/assets/icons/activity';
 import ProgressIcon from '@/components/ui/assets/icons/progress';
@@ -27,7 +28,7 @@ export const tabScreens: ITabsNavigationScreen[] = [
     icon: (color: string, focused: boolean) => (
       <ActivityIcon color={color} focused={focused} width={24} height={24} />
     ),
-    header: true,
+    header: false,
   },
   {
     id: 3,
@@ -35,9 +36,9 @@ export const tabScreens: ITabsNavigationScreen[] = [
     title: 'Scan',
     tabBarTestID: 'scan-tab',
     icon: (color: string, focused: boolean) => (
-      <ScanIcon color={color} focused={focused} />
+      <ScanIcon color={colors.white} focused={focused} width={30} height={30} />
     ),
-    header: true,
+    header: false,
   },
   {
     id: 4,
@@ -47,7 +48,7 @@ export const tabScreens: ITabsNavigationScreen[] = [
     icon: (color: string, focused: boolean) => (
       <ProgressIcon color={color} focused={focused} width={24} height={24} />
     ),
-    header: true,
+    header: false,
   },
 
   {
@@ -58,6 +59,6 @@ export const tabScreens: ITabsNavigationScreen[] = [
     icon: (color: string, focused: boolean) => (
       <Settings color={color} focused={focused} />
     ),
-    header: true,
+    header: false,
   },
 ];

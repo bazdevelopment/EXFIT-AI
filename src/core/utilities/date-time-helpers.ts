@@ -20,7 +20,7 @@ export const getWeekNumber = (weekOffset: number, locale: string): number => {
 export const getDaysOfWeek = (
   weekNumber: number,
   year: number,
-  locale: string,
+  locale: string
 ): IDayOfWeek[] => {
   // Explicitly calculate a date from the given year and week
   const baseDate = dayjs(`${year}-01-01`) // Start with January 1st of the given year
@@ -56,7 +56,7 @@ export const getDaysOfWeek = (
  */
 export const getYearFromWeekOffset = (
   weekOffset: number,
-  locale: string,
+  locale: string
 ): number => {
   const date = dayjs().locale(locale).add(weekOffset, 'weeks');
   return date.isoWeekYear();
@@ -66,7 +66,7 @@ export const getYearFromWeekOffset = (
  * Utility function used to create a basic structure by mapping all the days from a week
  */
 export const getSegmentedDays = (
-  weekDates: IDayOfWeek[],
+  weekDates: IDayOfWeek[]
 ): ISegmentedControlOption[] => {
   const mappedDays = weekDates.map((day, index) => {
     const [dayName, { day: dayNumber, month }] = Object.entries(day)[0];
@@ -85,7 +85,7 @@ export const getSegmentedDays = (
 export const getCurrentMonth = (
   year: number,
   weekNumber: number,
-  locale: string,
+  locale: string
 ): string => {
   const currentDate = dayjs().locale(locale).year(year).week(weekNumber);
   return currentDate.format('MMMM');
@@ -98,7 +98,7 @@ export const getCurrentMonth = (
 export const getWeekInterval = (
   year: number,
   weekNumber: number,
-  locale: string,
+  locale: string
 ): string => {
   // Explicitly calculate a date from the given year and week
   const baseDate = dayjs(`${year}-01-01`) // Start with January 1st of the given year
@@ -125,7 +125,7 @@ export const getCurrentDay = (format: string, locale: string): string =>
 export const getStartAndEndWeek = (
   year: number,
   weekNumber: number,
-  locale: string,
+  locale: string
 ): { startOfWeek: string; endOfWeek: string; locale: string } => {
   // Explicitly calculate a date from the given year and week
   const baseDate = dayjs(`${year}-01-01`) // Start with January 1st of the given year
