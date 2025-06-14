@@ -13,7 +13,6 @@ import {
   Image,
   Keyboard,
   KeyboardAvoidingView,
-  SafeAreaView,
   TextInput,
   TouchableOpacity,
   View,
@@ -27,6 +26,7 @@ import AttachmentPreview from '@/components/attachment-preview';
 import BounceLoader from '@/components/bounce-loader';
 import Branding from '@/components/branding';
 import Icon from '@/components/icon';
+import ScreenWrapper from '@/components/screen-wrapper';
 import Toast from '@/components/toast';
 import { colors, Text } from '@/components/ui';
 import {
@@ -447,7 +447,7 @@ const ChatScreen = () => {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-black">
+    <ScreenWrapper>
       {DEVICE_TYPE.IOS && (
         <Toaster autoWiggleOnUpdate="toast-change" pauseWhenPageIsHidden />
       )}
@@ -456,9 +456,9 @@ const ChatScreen = () => {
         className="flex-1"
         keyboardVerticalOffset={DEVICE_TYPE.ANDROID ? 40 : 0}
       >
-        <View className="flex-1 bg-black">
+        <View className="flex-1">
           {/* Header */}
-          <View className="flex-row items-center justify-between bg-black px-4 py-3">
+          <View className="flex-row items-center justify-between px-4 py-3">
             <Icon
               size={24}
               containerStyle="rounded-2xl bg-charcoal-800 p-3"
@@ -543,7 +543,7 @@ const ChatScreen = () => {
           </View>
         </View>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 };
 

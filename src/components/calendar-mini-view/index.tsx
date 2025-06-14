@@ -2,7 +2,7 @@ import { TouchableOpacity, View } from 'react-native';
 
 import { Text } from '../ui';
 
-const CalendarMiniView = () => {
+const CalendarMiniView = ({ showYear, showMonth, containerClassName }) => {
   const year = '2025';
   const month = 'June';
   const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -19,14 +19,20 @@ const CalendarMiniView = () => {
   ];
 
   return (
-    <View className="w-full max-w-md rounded-lg bg-black p-6">
+    <View className={`w-full rounded-lg ${containerClassName}`}>
       {/* 1. Header: Year and Month */}
-      <View className="mb-6 flex-row items-center justify-between">
-        <Text className="text-3xl font-bold text-white">{year}</Text>
-        <TouchableOpacity className="flex-row items-center">
-          <Text className="text-bold mr-1 text-xl text-white">{month}</Text>
-          {/* <Feather name="chevron-down" size={24} color="white" /> */}
-        </TouchableOpacity>
+      <View
+        className={`flex-row items-center justify-between ${(showYear || showMonth) && 'mb-6'}`}
+      >
+        {showYear && (
+          <Text className="text-3xl font-bold text-white">{year}</Text>
+        )}
+        {showMonth && (
+          <TouchableOpacity className="flex-row items-center">
+            <Text className="text-bold mr-1 text-xl text-white">{month}</Text>
+            {/* <Feather name="chevron-down" size={24} color="white" /> */}
+          </TouchableOpacity>
+        )}
       </View>
 
       {/* 2. Days of the Week */}

@@ -11,7 +11,7 @@ const MotivationBanner = ({
 }) => {
   return (
     <View
-      className={`relative w-[90%] self-center overflow-hidden rounded-3xl bg-[#1C1C1E] shadow-lg ${containerClassName} `}
+      className={`relative w-[90%] self-center overflow-hidden rounded-3xl bg-[#141426] shadow-lg ${containerClassName} `}
     >
       <View className="p-6">
         <View className="">

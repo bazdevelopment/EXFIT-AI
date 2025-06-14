@@ -3,7 +3,6 @@ import { useScrollToTop } from '@react-navigation/native';
 import { router } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useRef } from 'react';
-import { SafeAreaView } from 'react-native';
 import { Toaster } from 'sonner-native';
 
 import { useUploadPrivacyPolicy } from '@/api/privacy-policy/privacy-policy.hooks';
@@ -16,6 +15,7 @@ import { useUploadTermsOfService } from '@/api/terms-of-service/terms-of-service
 import { useUpdateUser, useUser } from '@/api/user/user.hooks';
 import { logout } from '@/api/user/user.requests';
 import CustomAlert from '@/components/custom-alert';
+import ScreenWrapper from '@/components/screen-wrapper';
 import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
@@ -99,8 +99,8 @@ export default function Settings() {
   };
 
   return (
-    <SafeAreaView className="flex-1">
-      <View className="flex-1 bg-white dark:bg-blackEerie">
+    <ScreenWrapper>
+      <View className="flex-1">
         {DEVICE_TYPE.IOS && (
           <Toaster autoWiggleOnUpdate="toast-change" pauseWhenPageIsHidden />
         )}
@@ -238,6 +238,6 @@ export default function Settings() {
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 }

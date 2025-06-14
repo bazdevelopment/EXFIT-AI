@@ -30,7 +30,7 @@ export const useWeekNavigation = () => {
   const weekDates: IDayOfWeek[] = getDaysOfWeek(
     weekNumber,
     currentYear,
-    language,
+    language
   );
   const currentMonth = getCurrentMonth(currentYear, weekNumber, language);
   const segmentedDays = getSegmentedDays(weekDates);
@@ -40,10 +40,10 @@ export const useWeekNavigation = () => {
   const { startOfWeek, endOfWeek } = getStartAndEndWeek(
     currentYear,
     weekNumber,
-    language,
+    language
   );
   const initialDayFocused = segmentedDays.find(
-    (day) => day.title === currentDay,
+    (day) => day.title === currentDay
   );
 
   const changeWeekOffset = (iconPosition: TPositions) => {

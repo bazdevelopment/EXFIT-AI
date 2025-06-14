@@ -1,13 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
 
+import ScreenWrapper from '@/components/screen-wrapper';
 import { Text } from '@/components/ui';
 
 const Progress = () => {
   return (
-    <View>
+    <ScreenWrapper>
       <Text>Progress</Text>
-    </View>
+    </ScreenWrapper>
   );
 };
 
