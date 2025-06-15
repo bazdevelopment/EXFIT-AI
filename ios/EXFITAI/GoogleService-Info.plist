@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>519749271097-l9jio2808h4uh2mltl0fi5jscd872tcn.apps.googleusercontent.com</string>
+	<string>447041935659-1i3qtgggc1t7vimovd6ttft744crigvt.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.519749271097-l9jio2808h4uh2mltl0fi5jscd872tcn</string>
+	<string>com.googleusercontent.apps.447041935659-1i3qtgggc1t7vimovd6ttft744crigvt</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>447041935659-pjto0qpnnffc3g910jh1hfo5v2g73i27.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDNjpdLQ6qxqsgb7LiLEQ8fSE3PJczgtZI</string>
+	<string>AIzaSyDxlmJkAOYRGhYJV-gIVVVPBbiz9GLYN_Y</string>
 	<key>GCM_SENDER_ID</key>
-	<string>519749271097</string>
+	<string>447041935659</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.microscanai.development</string>
+	<string>com.exfit.development</string>
 	<key>PROJECT_ID</key>
-	<string>microscan-ai-dev</string>
+	<string>exfit-ai-dev-9d0fe</string>
 	<key>STORAGE_BUCKET</key>
-	<string>microscan-ai-dev.firebasestorage.app</string>
+	<string>exfit-ai-dev-9d0fe.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:519749271097:ios:86cfde5074c014e72bd7e8</string>
+	<string>1:447041935659:ios:746020b8bba83c1c748d6e</string>
 </dict>
 </plist>

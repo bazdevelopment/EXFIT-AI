@@ -27,8 +27,9 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="exfit-ai"/>
-        <data android:scheme="com.exfitai.development"/>
+        <data android:scheme="com.exfit.development"/>
         <data android:scheme="exp+exfit-ai"/>
+        <data android:scheme="com.exfit"/>
       </intent-filter>
     </activity>
   </application>

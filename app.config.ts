@@ -25,7 +25,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: Env.NAME,
   description: `${Env.NAME} Mobile App`,
-  owner: Env.EXPO_ACCOUNT_OWNER,
+  owner: 'bazdevelopment',
   scheme: Env.SCHEME,
   slug: 'exfit-ai',
   version: Env.VERSION.toString(),

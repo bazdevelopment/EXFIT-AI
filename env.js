@@ -29,16 +29,16 @@ require('dotenv').config({
  * Such as: bundle id, package name, app name.
  *
  * You can add them to the .env file but we think it's better to keep them here as as we use prefix to generate this values based on the APP_ENV
- * for example: if the APP_ENV is staging, the bundle id will be com.exfitai.staging
+ * for example: if the APP_ENV is staging, the bundle id will be com.exfit.staging
  */
 
 // TODO: Replace these values with your own
 
-const BUNDLE_ID = 'com.exfitai'; // ios bundle id
-const PACKAGE = 'com.exfitai'; // android package name
+const BUNDLE_ID = 'com.exfit'; // ios bundle id
+const PACKAGE = 'com.exfit'; // android package name
 const NAME = 'EXFIT AI'; // app name
 const EXPO_ACCOUNT_OWNER = 'expo-owner'; // expo account owner
-const EAS_PROJECT_ID = 'c3e1075b-6fe7-4686-aa49-35b46a229044'; // eas project id
+const EAS_PROJECT_ID = '046ea923-4016-472c-b536-fa609079f25f'; // eas project id
 const SCHEME = 'exfit-ai'; // app scheme
 
 /**
