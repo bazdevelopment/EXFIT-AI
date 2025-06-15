@@ -56,6 +56,7 @@
     "@react-native-firebase/remote-config": "^22.2.0",
     "@react-native-firebase/storage": "^22.2.0",
     "@shopify/flash-list": "1.7.1",
+    "@shopify/react-native-skia": "1.5.0",
     "@tanstack/react-query": "^5.52.1",
     "app-icon-badge": "^0.1.2",
     "axios": "^1.7.5",
@@ -92,6 +93,7 @@
     "react-native-edge-to-edge": "^1.1.2",
     "react-native-flash-message": "^0.4.2",
     "react-native-gesture-handler": "~2.20.2",
+    "react-native-gifted-charts": "^1.4.61",
     "react-native-keyboard-controller": "^1.13.2",
     "react-native-markdown-display": "^7.0.2",
     "react-native-mmkv": "~3.1.0",
@@ -105,6 +107,7 @@
     "react-query-kit": "^3.3.0",
     "sonner-native": "0.17.0",
     "tailwind-variants": "^0.2.1",
+    "victory-native": "^41.17.4",
     "zod": "^3.23.8",
     "zustand": "^4.5.5"
   },

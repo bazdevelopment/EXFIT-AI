@@ -119,7 +119,7 @@ const ExcuseBusterScreen: React.FC = () => {
 
           {/* Subtitle */}
           <Text className="mb-8 text-center font-semibold-nunito text-lg text-white">
-            What's holding you back today, Marian?
+            What's holding you back today, Marian? (Max. 3 reasons)
           </Text>
 
           {/* Excuse Buttons Grid */}
