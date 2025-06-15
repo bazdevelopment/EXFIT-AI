@@ -25,9 +25,7 @@ export const ShareItem = () => {
   const modal = useModal();
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const appLink = DEVICE_TYPE.IOS
-    ? 'https://apps.apple.com/us/app/microscan-ai-microscopy/id6744826886'
-    : 'https://play.google.com/store/apps/details?id=com.microscanai';
+  const appLink = DEVICE_TYPE.IOS ? '' : '';
 
   const iconColor = isDark ? colors.neutral[50] : colors.black;
 
@@ -51,11 +49,11 @@ export const ShareItem = () => {
           backgroundColor: isDark ? colors.blackBeauty : colors.white,
         }}
       >
-        <ScrollView className="dark:bg-blackEerie flex-1 bg-gray-50">
+        <ScrollView className="flex-1 bg-gray-50 dark:bg-blackEerie">
           <View className="p-6">
             {/* Header Section */}
             <View className="mb-8 mt-4 items-center">
-              <Text className="font-bold-nunito mb-2 text-center text-3xl text-gray-800">
+              <Text className="mb-2 text-center font-bold-nunito text-3xl text-gray-800">
                 {translate('rootLayout.screens.share.heading')}
               </Text>
               <Text className="mx-10 mt-2 text-center text-base text-gray-600">
@@ -75,7 +73,7 @@ export const ShareItem = () => {
                 backgroundColor={isDark ? colors.blackBeauty : colors.white}
                 logoBackgroundColor="transparent"
               />
-              <Text className="font-bold-nunito mt-10 text-center text-gray-700">
+              <Text className="mt-10 text-center font-bold-nunito text-gray-700">
                 {translate('rootLayout.screens.share.scanMessage')}
               </Text>
               <Text className="mt-2 text-center text-sm text-gray-600">
@@ -99,7 +97,7 @@ export const ShareItem = () => {
                     title: translate('rootLayout.screens.share.heading'),
                   })
                 }
-                className="dark:bg-blackBeauty border-4 border-gray-300 bg-slate-100 dark:border-gray-500"
+                className="border-4 border-gray-300 bg-slate-100 dark:border-gray-500 dark:bg-blackBeauty"
                 textClassName="text-sm dark:text-white"
               />
 
@@ -119,7 +117,7 @@ export const ShareItem = () => {
                       : `${copiedText ? translate('general.copyText.copied') : translate('general.copyText.copy')}`
                 }
                 onPress={() => copyToClipboard(appLink)}
-                className="dark:bg-blackBeauty border-4 border-gray-300 bg-slate-100 dark:border-gray-500"
+                className="border-4 border-gray-300 bg-slate-100 dark:border-gray-500 dark:bg-blackBeauty"
                 textClassName="text-sm dark:text-white"
               />
             </View>
