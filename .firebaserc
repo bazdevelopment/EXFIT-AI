@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "dev": "exfit-ai-dev-9d0fe",
+    "prod": "exfit-ai-prod"
+  }
+}
