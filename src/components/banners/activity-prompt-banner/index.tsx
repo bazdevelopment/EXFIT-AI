@@ -32,7 +32,7 @@ const ActivityPromptBanner = ({
             {/* Middle Content */}
             <View className="mt-1">
               <Text className="te font-bold-nunito text-lg text-white">
-                Have you done any fitness activities today?
+                Did you move you body today?
               </Text>
             </View>
 
@@ -50,10 +50,10 @@ const ActivityPromptBanner = ({
           {/* Right Column: Contains the image */}
           <View className="w-2/5">
             <Image
-              source={require('../../../components/ui/assets/images/male-female.png')}
-              className="size-36 rounded-2xl "
+              source={require('../../../components/ui/assets/images/couple-trainingg.png')}
+              className="size-32 rounded-2xl "
               style={{
-                resizeMode: 'cover',
+                resizeMode: 'contain',
                 marginLeft: -5,
               }}
             />
