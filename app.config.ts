@@ -52,7 +52,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     googleServicesFile: ClientEnv.GOOGLE_SERVICES_JSON_PATH,
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#000000',
     },
     package: Env.PACKAGE,
   },
@@ -64,7 +64,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-splash-screen',
       {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#000000',
         image: './assets/splash-icon.png',
         imageWidth: 150,
       },

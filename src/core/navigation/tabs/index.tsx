@@ -1,8 +1,11 @@
 import React from 'react';
 
 import { colors } from '@/components/ui';
-import { Feed as FeedIcon, Settings } from '@/components/ui/assets/icons';
-import ActivityIcon from '@/components/ui/assets/icons/activity';
+import {
+  CalendarIcon,
+  Feed as FeedIcon,
+  Settings,
+} from '@/components/ui/assets/icons';
 import ProgressIcon from '@/components/ui/assets/icons/progress';
 import ScanIcon from '@/components/ui/assets/icons/scan';
 import { translate } from '@/core/i18n';
@@ -26,7 +29,7 @@ export const tabScreens: ITabsNavigationScreen[] = [
     title: translate('activity.tab'),
     tabBarTestID: 'activity-tab',
     icon: (color: string, focused: boolean) => (
-      <ActivityIcon color={color} focused={focused} width={24} height={24} />
+      <CalendarIcon color={color} focused={focused} width={24} height={24} />
     ),
     header: false,
   },
