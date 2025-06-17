@@ -1,22 +1,15 @@
 // NativeWind is used implicitly for styling by applying className
 import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { SafeAreaView, ScrollView, StatusBar, Text, View } from 'react-native';
 
+import { useUser } from '@/api/user/user.hooks';
 import { type IOnboardingCollectedData } from '@/app/onboarding-second';
 import Greeting from '@/components/greeting';
+import Icon from '@/components/icon';
 import SelectableButton from '@/components/selectable-button';
-import { Button } from '@/components/ui';
-import {
-  ArrowRightRounded,
-  BackRoundedIcon,
-} from '@/components/ui/assets/icons';
+import { Button, colors } from '@/components/ui';
+import { ArrowLeft, ArrowRight } from '@/components/ui/assets/icons';
+import { useSelectedLanguage } from '@/core/i18n';
 
 import { type IFitnessGoalScreen } from './fitness-goal-screen.interface';
 
@@ -30,7 +23,8 @@ const FitnessGoalScreen = ({
   isSubmitOnboardingLoading,
 }: IFitnessGoalScreen) => {
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
-
+  const { language } = useSelectedLanguage();
+  const { data: userInfo } = useUser(language);
   // Array of fitness goals to display
   const fitnessGoals = [
     { id: 'gym_machines', icon: '🏋️', text: 'Learn Gym Machines' },
@@ -60,16 +54,17 @@ const FitnessGoalScreen = ({
       <StatusBar barStyle="light-content" />
       <ScrollView className="flex-1">
         {/* Header Section */}
-        <View className="mt-4 flex-row items-center justify-between p-4">
+        <View className="flex-row items-center justify-between px-4">
           <View className="flex-row items-center">
-            <TouchableOpacity
-              className="size-10 items-center justify-center rounded-full bg-gray-800"
+            <Icon
+              icon={<ArrowLeft />}
+              iconContainerStyle="items-center p-3 justify-center rounded-2xl bg-gray-800"
+              size={24}
+              color={colors.white}
               onPress={goToPreviousScreen}
-            >
-              <BackRoundedIcon />
-            </TouchableOpacity>
+            />
 
-            <Greeting userName="Marian" showGreeting={false} />
+            <Greeting userName={userInfo.userName} showGreeting={false} />
           </View>
           <View className="rounded-full bg-[#172554] px-3 py-1">
             <Text className="text-sm font-medium text-[#3195FD]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
@@ -101,7 +96,7 @@ const FitnessGoalScreen = ({
       <View className="bg-black px-4 py-6">
         <Button
           label="Continue"
-          icon={<ArrowRightRounded />}
+          icon={<ArrowRight color={colors.white} />}
           withGradientBackground
           disabled={selectedGoals.length === 0}
           className=""

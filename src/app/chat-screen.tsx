@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Ionicons } from '@expo/vector-icons';
 import { FlashList } from '@shopify/flash-list';
@@ -29,7 +30,7 @@ import ScreenWrapper from '@/components/screen-wrapper';
 import Toast from '@/components/toast';
 import { colors, Text } from '@/components/ui';
 import {
-  BackRoundedIcon,
+  ArrowLeft,
   SendIcon,
   SoundOn,
   StopIcon,
@@ -465,8 +466,9 @@ const ChatScreen = () => {
                 stopSpeaking();
                 router.back();
               }}
-              icon={<BackRoundedIcon color={colors.white} />}
+              icon={<ArrowLeft color={colors.white} />}
             />
+
             <View className="item-center mr-6 justify-center">
               <Text className="ml-2 font-bold-nunito text-2xl text-white">
                 Aria

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
+import { colors } from '../ui';
 import { type IIcon } from './icon.interface';
 
 const Icon = ({
   icon,
   size = 24,
-  color = 'black',
+  color = colors.white,
   label,
   labelStyle = '',
   containerStyle = '',
@@ -25,7 +26,7 @@ const Icon = ({
   const clonedIcon = React.cloneElement(icon, {
     width: size,
     height: size,
-    fill: color,
+    color: color,
   });
 
   return (

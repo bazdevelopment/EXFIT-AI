@@ -1,22 +1,23 @@
-import analytics from '@react-native-firebase/analytics';
-import firebaseApp from '@react-native-firebase/app';
-import auth, { type FirebaseAuthTypes } from '@react-native-firebase/auth';
-import crashlytics from '@react-native-firebase/crashlytics';
-import firestore from '@react-native-firebase/firestore';
+import { getAnalytics } from '@react-native-firebase/analytics';
+import { getApp } from '@react-native-firebase/app';
+import { type FirebaseAuthTypes, getAuth } from '@react-native-firebase/auth';
+import { getCrashlytics } from '@react-native-firebase/crashlytics';
+import { getFirestore } from '@react-native-firebase/firestore';
 import {
   firebase,
   type FirebaseFunctionsTypes,
 } from '@react-native-firebase/functions';
-import storage from '@react-native-firebase/storage';
+import { getStorage } from '@react-native-firebase/storage';
 
 // Initialize Firebase (no need for config if you're using default options from GoogleService-Info.plist and google-services.json)
 
 // Get instances of the services
-const firebaseAuth: FirebaseAuthTypes.Module = auth();
-const firebaseFirestore = firestore();
-const firebaseStorage = storage();
-const firebaseCrashlytics = crashlytics();
-const firebaseAnalytics = analytics();
+const firebaseApp = getApp();
+const firebaseAuth: FirebaseAuthTypes.Module = getAuth();
+const firebaseFirestore = getFirestore();
+const firebaseStorage = getStorage();
+const firebaseCrashlytics = getCrashlytics();
+const firebaseAnalytics = getAnalytics();
 
 const getCloudFunctionInstance = (
   isEmulatorEnabled: boolean = false

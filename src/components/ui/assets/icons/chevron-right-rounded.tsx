@@ -2,6 +2,8 @@ import { Path, Rect, Svg } from 'react-native-svg';
 
 import { type ISvgProps } from '@/types/svg-types';
 
+import colors from '../../colors';
+
 export const ChevronRightRounded = (props: ISvgProps) => (
   <Svg xmlns="http://www.w3.org/2000/svg" width={33} height={33} fill="none">
     <Rect
@@ -13,10 +15,10 @@ export const ChevronRightRounded = (props: ISvgProps) => (
       rx={15.5}
     />
     <Path
-      stroke={props.fill || '#000'}
+      stroke={props.color || colors.white}
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.5}
+      strokeWidth={2}
       d="m13.1 10.924 5.834 5.834L13.1 22.59"
     />
   </Svg>

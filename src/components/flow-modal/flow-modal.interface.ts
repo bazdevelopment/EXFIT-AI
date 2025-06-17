@@ -1,7 +1,6 @@
 import { type ReactNode } from 'react';
 
-import { type IOnboardingCollectedData } from '@/app/onboarding';
-import { type ICollectedData } from '@/core/flows/upload-file-flow/upload-file-flow.interface';
+import { type IOnboardingCollectedData } from '@/app/onboarding-first';
 
 export interface IFlowModal {
   onSubmitCollectedData: (data: object) => void;

@@ -66,7 +66,7 @@ const WeekBlock = ({
         className={`mb-4 flex-row items-center justify-between ${className}`}
       >
         <Icon
-          icon={<ChevronLeftRounded />}
+          icon={<ChevronLeftRounded color={colors.white} />}
           onPress={() => changeWeekOffset('left')}
           color={colors.white}
         />
