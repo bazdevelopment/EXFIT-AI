@@ -36,13 +36,17 @@ interface IValidateAuthCode {
 export const useCreateAnonymousAccount = (
   onSuccessHandler: (userId: string) => void
 ) =>
-  createMutation<Response, { language: string; username: string }, AxiosError>({
+  createMutation<
+    Response,
+    { language: string; username: string; actualUserId: string },
+    AxiosError
+  >({
     mutationFn: (variables) => createAnonymousAccount(variables),
     onSuccess: (data) => {
       onSuccessHandler(data.user.uid);
+      wait(2000).then(() => router.navigate('/(app)'));
       Toast.success(data.message);
       //add a small delay to display the toast message
-      wait(2000).then(() => router.navigate('/(tabs)'));
     },
     onError: (error) => {
       Toast.error(error.message || translate('alerts.anonymousSignInError'));

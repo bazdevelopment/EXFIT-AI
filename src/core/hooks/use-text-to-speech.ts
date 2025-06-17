@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import * as Speech from 'expo-speech';
 import { useEffect, useState } from 'react';
 

@@ -17,4 +17,5 @@ export interface IFlow {
   onSkip: () => void;
   resetFlow: () => void;
   onPending: boolean;
+  isSubmitOnboardingLoading: boolean;
 }

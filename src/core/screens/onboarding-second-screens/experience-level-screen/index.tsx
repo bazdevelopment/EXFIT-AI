@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 // NativeWind is used implicitly for styling by applying className
 import React, { useState } from 'react';
 import {
@@ -25,6 +24,8 @@ const ExperienceLevelScreen = ({
   currentScreenIndex,
   goToPreviousScreen,
   onFinish,
+  onSkip,
+  isSubmitOnboardingLoading,
 }: IExperienceLevelScreen) => {
   // State for single selection of experience level
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
@@ -59,7 +60,7 @@ const ExperienceLevelScreen = ({
           </View>
 
           <View className="rounded-full bg-[#172554] px-3 py-1">
-            <Text className="text-sm font-medium text-[#2563EB]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
+            <Text className="text-sm font-medium text-[#3195FD]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
           </View>
         </View>
 
@@ -89,6 +90,7 @@ const ExperienceLevelScreen = ({
         <Button
           label="Continue"
           icon={<ArrowRightRounded />}
+          loading={isSubmitOnboardingLoading}
           withGradientBackground
           disabled={!selectedLevel}
           className=""
@@ -103,7 +105,7 @@ const ExperienceLevelScreen = ({
           variant="default"
           className="mt-4 h-[55px] justify-center rounded-3xl bg-[#042140]"
           textClassName="font-semibold-nunito text-lg text-center color-[#3195FD]"
-          onPress={() => {}}
+          onPress={onSkip}
         />
       </View>
     </SafeAreaView>

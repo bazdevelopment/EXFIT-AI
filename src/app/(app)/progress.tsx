@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import React from 'react';
 import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { BarChart, PieChartPro } from 'react-native-gifted-charts';

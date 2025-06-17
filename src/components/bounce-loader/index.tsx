@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { Animated, View } from 'react-native';
 
 import { useBouncingMessage } from '@/core/hooks/use-bouncing-message';

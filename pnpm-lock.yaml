@@ -201,7 +201,7 @@ importers:
         specifier: ^3.3.0
         version: 3.3.0(@tanstack/react-query@5.52.1(react@18.3.1))
       sonner-native:
-        specifier: 0.17.0
+        specifier: ^0.17.0
         version: 0.17.0(tcdxquchhfbh4k4cx3dktwsiwq)
       tailwind-variants:
         specifier: ^0.2.1

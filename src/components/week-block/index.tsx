@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { useColorScheme } from 'nativewind';
 import React, { useEffect } from 'react';
 import { View } from 'react-native';

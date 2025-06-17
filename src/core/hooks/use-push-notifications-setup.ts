@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import * as Notifications from 'expo-notifications';
 import { useCallback, useState } from 'react';
 import { Linking, Platform } from 'react-native';

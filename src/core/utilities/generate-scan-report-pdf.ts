@@ -1,5 +1,3 @@
-/* eslint-disable max-lines-per-function */
-
 import { Image, Platform } from 'react-native';
 
 import { translate } from '../i18n';

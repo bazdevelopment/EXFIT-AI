@@ -1,9 +1,9 @@
-/* eslint-disable max-lines-per-function */
 import { LinearGradient } from 'expo-linear-gradient';
-import { Link, router } from 'expo-router';
+import { Link } from 'expo-router';
+import { firebaseAuth } from 'firebase/config';
 import { useColorScheme } from 'nativewind';
 import React, { useState } from 'react';
-import { ImageBackground, View } from 'react-native';
+import { ImageBackground, Keyboard, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardStickyView } from 'react-native-keyboard-controller';
 
@@ -28,7 +28,7 @@ export default function AnonymousLogin() {
     setUserId(userId);
   };
 
-  const { mutate: onCreateAnonymousAccount, isPending: isLoginPending } =
+  const { mutateAsync: onCreateAnonymousAccount, isPending: isLoginPending } =
     useCreateAnonymousAccount(onSuccessHandler);
 
   const handleUpdateEmail = (text: string) => setUsername(text);
@@ -130,17 +130,16 @@ export default function AnonymousLogin() {
                       className="w-full"
                       textClassName="text-lg text-center text-white dark:text-white"
                       iconPosition="left"
-                      onPress={() => {
-                        router.navigate('/onboarding-second');
-                        // onCreateAnonymousAccount({
-                        //   username,
-                        //   language,
-                        //   // submit the stored user id, otherwise check for firebase uid
-                        //   //do not rely only on firebaseAuth.currentUser?.uid,because if the user logs out it will become undefined, but the storedUserId will still be populated
-                        //   actualUserId:
-                        //     storedUserId || firebaseAuth.currentUser?.uid,
-                        // });
-                        // Keyboard.dismiss();
+                      onPress={async () => {
+                        await onCreateAnonymousAccount({
+                          username,
+                          language,
+                          // submit the stored user id, otherwise check for firebase uid
+                          //do not rely only on firebaseAuth.currentUser?.uid,because if the user logs out it will become undefined, but the storedUserId will still be populated
+                          actualUserId: (storedUserId ||
+                            firebaseAuth.currentUser?.uid) as string,
+                        });
+                        Keyboard.dismiss();
                       }}
                       disabled={!username}
                       loading={isLoginPending}

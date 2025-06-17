@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { useColorScheme } from 'nativewind';
 import React from 'react';
 import QRCode from 'react-native-qrcode-svg';

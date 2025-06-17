@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { type ReactElement } from 'react';
 import type { PressableProps } from 'react-native';

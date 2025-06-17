@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import CustomAlert from '@/components/custom-alert';
 import Toast from '@/components/toast';
 import { IMAGE_SIZE_LIMIT_MB, VIDEO_SIZE_LIMIT_MB } from '@/constants/limits';
@@ -7,7 +6,7 @@ import { translate } from '../i18n';
 
 export const checkFileSize = (
   fileSize: number,
-  type: 'image' | 'video' | undefined,
+  type: 'image' | 'video' | undefined
 ): { isLimitReached: boolean | undefined } => {
   let isLimitReached;
 
@@ -33,7 +32,7 @@ export const checkFileSize = (
       {
         position: 'middle', // Place the alert in the middle of the screen
         duration: Infinity, // Keep the alert visible until dismissed
-      },
+      }
     );
 
     isLimitReached = true;
@@ -61,7 +60,7 @@ export const checkFileSize = (
       {
         position: 'middle', // Place the alert in the middle of the screen
         duration: Infinity, // Keep the alert visible until dismissed
-      },
+      }
     );
 
     isLimitReached = true;

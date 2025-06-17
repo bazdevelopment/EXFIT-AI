@@ -1,5 +1,7 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { View } from 'react-native';
+
+import { Image, Text } from '../ui';
 
 // Define the props for the Greeting component
 interface GreetingProps {
@@ -36,9 +38,7 @@ const Greeting: React.FC<GreetingProps> = ({
           source={avatarUri}
           className="mr-4 size-16 rounded-full" // Tailwind classes for styling the avatar
           accessibilityLabel="User Avatar"
-          onError={(e) =>
-            console.error('Failed to load avatar image:', e.nativeEvent.error)
-          }
+          onError={() => console.error('Failed to load avatar image:')}
         />
       )}
 

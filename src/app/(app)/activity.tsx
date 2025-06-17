@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { mockInterpretationRecord } from '__mocks__/dashboard-reports';
 import { useScrollToTop } from '@react-navigation/native';
 import { FlashList } from '@shopify/flash-list';

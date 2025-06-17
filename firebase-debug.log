@@ -1,0 +1,322 @@
+[debug] [2025-06-16T10:19:46.752Z] ----------------------------------------------------------------------
+[debug] [2025-06-16T10:19:46.753Z] Command:       /Users/mbaziluc/.nvm/versions/node/v18.15.0/bin/node /Users/mbaziluc/Library/pnpm/global/5/node_modules/firebase-tools/lib/bin/firebase.js deploy --only functions:getHelloWorld
+[debug] [2025-06-16T10:19:46.753Z] CLI Version:   13.22.1
+[debug] [2025-06-16T10:19:46.753Z] Platform:      darwin
+[debug] [2025-06-16T10:19:46.754Z] Node Version:  v18.15.0
+[debug] [2025-06-16T10:19:46.754Z] Time:          Mon Jun 16 2025 13:19:46 GMT+0300 (Eastern European Summer Time)
+[debug] [2025-06-16T10:19:46.755Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-06-16T10:19:46.792Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-06-16T10:19:46.792Z] > authorizing via signed-in user (bazilucm@gmail.com)
+[debug] [2025-06-16T10:19:46.792Z] [iam] checking project exfit-ai-dev-9d0fe for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-06-16T10:19:46.793Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:46.793Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:46.793Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/exfit-ai-dev-9d0fe:testIamPermissions [none]
+[debug] [2025-06-16T10:19:46.793Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/exfit-ai-dev-9d0fe:testIamPermissions x-goog-quota-user=projects/exfit-ai-dev-9d0fe
+[debug] [2025-06-16T10:19:46.793Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/exfit-ai-dev-9d0fe:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-06-16T10:19:47.712Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/exfit-ai-dev-9d0fe:testIamPermissions 200
+[debug] [2025-06-16T10:19:47.713Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/exfit-ai-dev-9d0fe:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-06-16T10:19:47.713Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:47.713Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:47.713Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/serviceAccounts/exfit-ai-dev-9d0fe@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-06-16T10:19:47.713Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/serviceAccounts/exfit-ai-dev-9d0fe@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-06-16T10:19:48.596Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/serviceAccounts/exfit-ai-dev-9d0fe@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-06-16T10:19:48.596Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/serviceAccounts/exfit-ai-dev-9d0fe@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'exfit-ai-dev-9d0fe'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] ✔  functions: Finished running predeploy script. 
+[debug] [2025-06-16T10:19:56.026Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:56.027Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:56.027Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe [none]
+[debug] [2025-06-16T10:19:56.471Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe 200
+[debug] [2025-06-16T10:19:56.471Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe {"projectId":"exfit-ai-dev-9d0fe","projectNumber":"447041935659","displayName":"EXFIT AI DEV","name":"projects/exfit-ai-dev-9d0fe","resources":{"hostingSite":"exfit-ai-dev-9d0fe"},"state":"ACTIVE","etag":"1_2491dead-3232-49a1-a43f-d7f6e8b72ce4"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2025-06-16T10:19:56.472Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:56.472Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:56.472Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:56.472Z] Checked if tokens are valid: true, expires at: 1750072398994
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2025-06-16T10:19:56.472Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:56.472Z] Checked if tokens are valid: true, expires at: 1750072398994
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-06-16T10:19:56.472Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:56.472Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:56.472Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-06-16T10:19:56.472Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/exfit-ai-dev-9d0fe
+[debug] [2025-06-16T10:19:56.473Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-06-16T10:19:56.473Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/exfit-ai-dev-9d0fe
+[debug] [2025-06-16T10:19:56.473Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/cloudbuild.googleapis.com [none]
+[debug] [2025-06-16T10:19:56.473Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/cloudbuild.googleapis.com x-goog-quota-user=projects/exfit-ai-dev-9d0fe
+[debug] [2025-06-16T10:19:56.474Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/artifactregistry.googleapis.com [none]
+[debug] [2025-06-16T10:19:56.474Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/artifactregistry.googleapis.com x-goog-quota-user=projects/exfit-ai-dev-9d0fe
+[debug] [2025-06-16T10:19:57.497Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/runtimeconfig.googleapis.com 200
+[debug] [2025-06-16T10:19:57.497Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-06-16T10:19:57.498Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/artifactregistry.googleapis.com 200
+[debug] [2025-06-16T10:19:57.498Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2025-06-16T10:19:57.499Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/cloudfunctions.googleapis.com 200
+[debug] [2025-06-16T10:19:57.499Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2025-06-16T10:19:57.502Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/cloudbuild.googleapis.com 200
+[debug] [2025-06-16T10:19:57.502Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2025-06-16T10:19:57.502Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:57.502Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:57.502Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe/adminSdkConfig [none]
+[debug] [2025-06-16T10:19:58.044Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe/adminSdkConfig 200
+[debug] [2025-06-16T10:19:58.045Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe/adminSdkConfig {"projectId":"exfit-ai-dev-9d0fe","storageBucket":"exfit-ai-dev-9d0fe.firebasestorage.app"}
+[debug] [2025-06-16T10:19:58.045Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:58.045Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:58.046Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe/configs [none]
+[debug] [2025-06-16T10:19:58.368Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe/configs 200
+[debug] [2025-06-16T10:19:58.368Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe/configs {}
+[debug] [2025-06-16T10:19:58.371Z] Validating nodejs source
+[warn] ⚠  functions: Runtime Node.js 18 was deprecated on 2025-04-30 and will be decommissioned on 2025-10-31, after which you will not be able to deploy without upgrading. Consider upgrading now to avoid disruption. See https://cloud.google.com/functions/docs/runtime-support for full details on the lifecycle policy 
+[debug] [2025-06-16T10:19:58.794Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "dayjs": "^1.11.13",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.1.0",
+    "typescript": "^4.9.0"
+  },
+  "private": true
+}
+[debug] [2025-06-16T10:19:58.794Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2025-06-16T10:19:58.794Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-06-16T10:19:58.798Z] Found firebase-functions binary at '/Users/mbaziluc/Documents/exfit-ai/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8780
+
+[debug] [2025-06-16T10:19:59.071Z] Got response from /__/functions.yaml {"endpoints":{"getHelloWorld":{"platform":"gcfv1","labels":{},"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"region":["us-central1"],"callableTrigger":{},"entryPoint":"getHelloWorld"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2025-06-16T10:19:59.082Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:59.082Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:19:59.083Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/firebaseextensions.googleapis.com [none]
+[debug] [2025-06-16T10:19:59.083Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/firebaseextensions.googleapis.com x-goog-quota-user=projects/exfit-ai-dev-9d0fe
+[debug] [2025-06-16T10:20:00.174Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/firebaseextensions.googleapis.com 200
+[debug] [2025-06-16T10:20:00.175Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/services/firebaseextensions.googleapis.com [omitted]
+[info] ✔  extensions: required API firebaseextensions.googleapis.com is enabled 
+[debug] [2025-06-16T10:20:00.175Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-06-16T10:20:00.175Z] > authorizing via signed-in user (bazilucm@gmail.com)
+[debug] [2025-06-16T10:20:00.176Z] [iam] checking project exfit-ai-dev-9d0fe for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2025-06-16T10:20:00.176Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:00.176Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:00.176Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/exfit-ai-dev-9d0fe:testIamPermissions [none]
+[debug] [2025-06-16T10:20:00.176Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/exfit-ai-dev-9d0fe:testIamPermissions x-goog-quota-user=projects/exfit-ai-dev-9d0fe
+[debug] [2025-06-16T10:20:00.176Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/exfit-ai-dev-9d0fe:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-06-16T10:20:00.985Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/exfit-ai-dev-9d0fe:testIamPermissions 200
+[debug] [2025-06-16T10:20:00.986Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/exfit-ai-dev-9d0fe:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-06-16T10:20:00.986Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:00.987Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:00.987Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/exfit-ai-dev-9d0fe/instances pageSize=100&pageToken=
+[debug] [2025-06-16T10:20:02.312Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/exfit-ai-dev-9d0fe/instances 200
+[debug] [2025-06-16T10:20:02.312Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/exfit-ai-dev-9d0fe/instances {}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged /Users/mbaziluc/Documents/exfit-ai/functions (168.72 KB) for uploading 
+[debug] [2025-06-16T10:20:02.352Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:02.352Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:02.352Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/-/functions [none]
+[debug] [2025-06-16T10:20:03.132Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/-/functions 200
+[debug] [2025-06-16T10:20:03.132Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/-/functions {}
+[debug] [2025-06-16T10:20:03.133Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:03.133Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:03.133Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/exfit-ai-dev-9d0fe/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2025-06-16T10:20:04.228Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/exfit-ai-dev-9d0fe/locations/-/functions 200
+[debug] [2025-06-16T10:20:04.228Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/exfit-ai-dev-9d0fe/locations/-/functions {}
+[debug] [2025-06-16T10:20:04.229Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:04.229Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:04.229Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe [none]
+[debug] [2025-06-16T10:20:04.621Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe 200
+[debug] [2025-06-16T10:20:04.622Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/exfit-ai-dev-9d0fe {"projectId":"exfit-ai-dev-9d0fe","projectNumber":"447041935659","displayName":"EXFIT AI DEV","name":"projects/exfit-ai-dev-9d0fe","resources":{"hostingSite":"exfit-ai-dev-9d0fe"},"state":"ACTIVE","etag":"1_2491dead-3232-49a1-a43f-d7f6e8b72ce4"}
+[debug] [2025-06-16T10:20:04.623Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:04.623Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:04.623Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/billingInfo [none]
+[debug] [2025-06-16T10:20:04.937Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/billingInfo 200
+[debug] [2025-06-16T10:20:04.938Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/billingInfo {"name":"projects/exfit-ai-dev-9d0fe/billingInfo","projectId":"exfit-ai-dev-9d0fe","billingAccountName":"billingAccounts/016C29-CCFAAE-F694C2","billingEnabled":true}
+[debug] [2025-06-16T10:20:04.939Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:04.939Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:04.940Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2025-06-16T10:20:04.940Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/us-central1/functions:generateUploadUrl {}
+[debug] [2025-06-16T10:20:05.701Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2025-06-16T10:20:05.701Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip?GoogleAccessId=service-447041935659@gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D"}
+[debug] [2025-06-16T10:20:05.703Z] >>> [apiv2][query] PUT https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip GoogleAccessId=service-447041935659%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D
+[debug] [2025-06-16T10:20:05.703Z] >>> [apiv2][body] PUT https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip [stream]
+[debug] [2025-06-16T10:20:06.507Z] <<< [apiv2][status] PUT https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip 200
+[debug] [2025-06-16T10:20:06.507Z] <<< [apiv2][body] PUT https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip [omitted]
+[info] ✔  functions: functions folder uploaded successfully 
+[info] i  functions: creating Node.js 18 (1st Gen) function getHelloWorld(us-central1)... 
+[debug] [2025-06-16T10:20:06.510Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:06.510Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:06.510Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/us-central1/functions [none]
+[debug] [2025-06-16T10:20:06.510Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/us-central1/functions {"name":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","sourceUploadUrl":"https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip?GoogleAccessId=service-447041935659@gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D","entryPoint":"getHelloWorld","runtime":"nodejs18","dockerRegistry":"ARTIFACT_REGISTRY","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"3c66f242679f9038d7d62fcdcbd5244a8c27c2f9"},"httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"minInstances":null,"maxInstances":null,"ingressSettings":null,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"exfit-ai-dev-9d0fe\",\"storageBucket\":\"exfit-ai-dev-9d0fe.firebasestorage.app\"}","GCLOUD_PROJECT":"exfit-ai-dev-9d0fe","EVENTARC_CLOUD_EVENT_SOURCE":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld"},"serviceAccountEmail":null,"availableMemoryMb":null,"timeout":null,"vpcConnector":null,"vpcConnectorEgressSettings":null,"buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}}
+[debug] [2025-06-16T10:20:07.303Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/us-central1/functions 200
+[debug] [2025-06-16T10:20:07.303Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/exfit-ai-dev-9d0fe/locations/us-central1/functions {"name":"operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","updateTime":"2025-06-16T10:20:07.306329200Z"}}
+[debug] [2025-06-16T10:20:07.304Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:07.304Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:07.304Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ [none]
+[debug] [2025-06-16T10:20:07.606Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ 200
+[debug] [2025-06-16T10:20:07.606Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ {"name":"operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","updateTime":"2025-06-16T10:20:07.306329200Z"}}
+[debug] [2025-06-16T10:20:08.108Z] [create-default-us-central1-getHelloWorld] Retrying task index 0
+[debug] [2025-06-16T10:20:08.109Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:08.109Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:08.110Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ [none]
+[debug] [2025-06-16T10:20:08.464Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ 200
+[debug] [2025-06-16T10:20:08.464Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ {"name":"operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","type":"CREATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"entryPoint":"getHelloWorld","updateTime":"1970-01-01T00:00:00Z","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"3c66f242679f9038d7d62fcdcbd5244a8c27c2f9"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip?GoogleAccessId=service-447041935659@gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"exfit-ai-dev-9d0fe\",\"storageBucket\":\"exfit-ai-dev-9d0fe.firebasestorage.app\"}","GCLOUD_PROJECT":"exfit-ai-dev-9d0fe","EVENTARC_CLOUD_EVENT_SOURCE":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld"},"runtime":"nodejs18","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRegistry":"ARTIFACT_REGISTRY"},"versionId":"1","updateTime":"2025-06-16T10:20:07.306329200Z"}}
+[debug] [2025-06-16T10:20:09.466Z] [create-default-us-central1-getHelloWorld] Retrying task index 0
+[debug] [2025-06-16T10:20:09.468Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:09.468Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:09.468Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ [none]
+[debug] [2025-06-16T10:20:09.889Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ 200
+[debug] [2025-06-16T10:20:09.889Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ {"name":"operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","type":"CREATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"entryPoint":"getHelloWorld","updateTime":"1970-01-01T00:00:00Z","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"3c66f242679f9038d7d62fcdcbd5244a8c27c2f9"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip?GoogleAccessId=service-447041935659@gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"exfit-ai-dev-9d0fe\",\"storageBucket\":\"exfit-ai-dev-9d0fe.firebasestorage.app\"}","GCLOUD_PROJECT":"exfit-ai-dev-9d0fe","EVENTARC_CLOUD_EVENT_SOURCE":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld"},"runtime":"nodejs18","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRegistry":"ARTIFACT_REGISTRY"},"versionId":"1","updateTime":"2025-06-16T10:20:07.306329200Z"}}
+[debug] [2025-06-16T10:20:11.890Z] [create-default-us-central1-getHelloWorld] Retrying task index 0
+[debug] [2025-06-16T10:20:11.892Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:11.892Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:11.892Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ [none]
+[debug] [2025-06-16T10:20:12.215Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ 200
+[debug] [2025-06-16T10:20:12.216Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ {"name":"operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","type":"CREATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"entryPoint":"getHelloWorld","updateTime":"1970-01-01T00:00:00Z","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"3c66f242679f9038d7d62fcdcbd5244a8c27c2f9"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip?GoogleAccessId=service-447041935659@gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"exfit-ai-dev-9d0fe\",\"storageBucket\":\"exfit-ai-dev-9d0fe.firebasestorage.app\"}","GCLOUD_PROJECT":"exfit-ai-dev-9d0fe","EVENTARC_CLOUD_EVENT_SOURCE":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld"},"runtime":"nodejs18","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRegistry":"ARTIFACT_REGISTRY"},"versionId":"1","updateTime":"2025-06-16T10:20:07.306329200Z"}}
+[debug] [2025-06-16T10:20:16.217Z] [create-default-us-central1-getHelloWorld] Retrying task index 0
+[debug] [2025-06-16T10:20:16.218Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:16.218Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:16.218Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ [none]
+[debug] [2025-06-16T10:20:16.506Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ 200
+[debug] [2025-06-16T10:20:16.507Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ {"name":"operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","type":"CREATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"entryPoint":"getHelloWorld","updateTime":"1970-01-01T00:00:00Z","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"3c66f242679f9038d7d62fcdcbd5244a8c27c2f9"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip?GoogleAccessId=service-447041935659@gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"exfit-ai-dev-9d0fe\",\"storageBucket\":\"exfit-ai-dev-9d0fe.firebasestorage.app\"}","GCLOUD_PROJECT":"exfit-ai-dev-9d0fe","EVENTARC_CLOUD_EVENT_SOURCE":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld"},"runtime":"nodejs18","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRegistry":"ARTIFACT_REGISTRY"},"versionId":"1","updateTime":"2025-06-16T10:20:07.306329200Z"}}
+[debug] [2025-06-16T10:20:24.508Z] [create-default-us-central1-getHelloWorld] Retrying task index 0
+[debug] [2025-06-16T10:20:24.510Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:24.510Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:24.510Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ [none]
+[debug] [2025-06-16T10:20:24.827Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ 200
+[debug] [2025-06-16T10:20:24.827Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ {"name":"operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","type":"CREATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"entryPoint":"getHelloWorld","updateTime":"1970-01-01T00:00:00Z","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"3c66f242679f9038d7d62fcdcbd5244a8c27c2f9"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip?GoogleAccessId=service-447041935659@gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"exfit-ai-dev-9d0fe\",\"storageBucket\":\"exfit-ai-dev-9d0fe.firebasestorage.app\"}","GCLOUD_PROJECT":"exfit-ai-dev-9d0fe","EVENTARC_CLOUD_EVENT_SOURCE":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld"},"runtime":"nodejs18","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRegistry":"ARTIFACT_REGISTRY"},"versionId":"1","updateTime":"2025-06-16T10:20:07.306329200Z","buildId":"74ad69e8-01bb-47d5-91e8-6e7194913616","buildName":"projects/447041935659/locations/us-central1/builds/74ad69e8-01bb-47d5-91e8-6e7194913616"}}
+[debug] [2025-06-16T10:20:34.829Z] [create-default-us-central1-getHelloWorld] Retrying task index 0
+[debug] [2025-06-16T10:20:34.830Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:34.831Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:34.831Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ [none]
+[debug] [2025-06-16T10:20:35.099Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ 200
+[debug] [2025-06-16T10:20:35.100Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ {"name":"operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","type":"CREATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"entryPoint":"getHelloWorld","updateTime":"1970-01-01T00:00:00Z","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"3c66f242679f9038d7d62fcdcbd5244a8c27c2f9"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip?GoogleAccessId=service-447041935659@gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"exfit-ai-dev-9d0fe\",\"storageBucket\":\"exfit-ai-dev-9d0fe.firebasestorage.app\"}","GCLOUD_PROJECT":"exfit-ai-dev-9d0fe","EVENTARC_CLOUD_EVENT_SOURCE":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld"},"runtime":"nodejs18","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRegistry":"ARTIFACT_REGISTRY"},"versionId":"1","updateTime":"2025-06-16T10:20:07.306329200Z","buildId":"74ad69e8-01bb-47d5-91e8-6e7194913616","buildName":"projects/447041935659/locations/us-central1/builds/74ad69e8-01bb-47d5-91e8-6e7194913616"}}
+[debug] [2025-06-16T10:20:45.101Z] [create-default-us-central1-getHelloWorld] Retrying task index 0
+[debug] [2025-06-16T10:20:45.102Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:45.102Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:45.102Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ [none]
+[debug] [2025-06-16T10:20:45.398Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ 200
+[debug] [2025-06-16T10:20:45.398Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ {"name":"operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","type":"CREATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"entryPoint":"getHelloWorld","updateTime":"1970-01-01T00:00:00Z","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"3c66f242679f9038d7d62fcdcbd5244a8c27c2f9"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip?GoogleAccessId=service-447041935659@gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"exfit-ai-dev-9d0fe\",\"storageBucket\":\"exfit-ai-dev-9d0fe.firebasestorage.app\"}","GCLOUD_PROJECT":"exfit-ai-dev-9d0fe","EVENTARC_CLOUD_EVENT_SOURCE":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld"},"runtime":"nodejs18","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRegistry":"ARTIFACT_REGISTRY"},"versionId":"1","updateTime":"2025-06-16T10:20:07.306329200Z","buildId":"74ad69e8-01bb-47d5-91e8-6e7194913616","buildName":"projects/447041935659/locations/us-central1/builds/74ad69e8-01bb-47d5-91e8-6e7194913616"}}
+[debug] [2025-06-16T10:20:55.401Z] [create-default-us-central1-getHelloWorld] Retrying task index 0
+[debug] [2025-06-16T10:20:55.402Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:55.402Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:55.402Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ [none]
+[debug] [2025-06-16T10:20:56.232Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ 200
+[debug] [2025-06-16T10:20:56.232Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ {"name":"operations/cHJvamVjdHMvZXhmaXQtYWktZGV2LTlkMGZlL2xvY2F0aW9ucy91cy1jZW50cmFsMS9vcGVyYXRpb25zL29wZXJhdGlvbi0xNzUwMDY5MjA2ODg5LTYzN2FkYmQ2OGI0ZjAtMDZlM2M1NmMtMTM2MGE5NDQ","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v1.OperationMetadataV1","target":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","type":"CREATE_FUNCTION","request":{"@type":"type.googleapis.com/google.cloud.functions.v1.CloudFunction","name":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld","httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"entryPoint":"getHelloWorld","updateTime":"1970-01-01T00:00:00Z","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"3c66f242679f9038d7d62fcdcbd5244a8c27c2f9"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-611875198437.us-central1.cloudfunctions.appspot.com/cc104509-c305-458b-a0b1-1ce0c824631b.zip?GoogleAccessId=service-447041935659@gcf-admin-robot.iam.gserviceaccount.com&Expires=1750071005&Signature=Zz5mjKJcGTxp54BOi%2Btrc1gCPE60Gvq%2BGeuxqDGHYUF8WKbQ8oOngPacrZwOi%2BIbRgvTQaYek%2FZhiL2UAqPZLteK9qf1kSvLJDahIbeV0JOhoYfCi%2FL%2BeU0l4knclCGtGGBgHwC3bOmnR9hLVE%2BVWa5JKqnwG4PN7q2W8m1Zr0DqHwvyxcZjcfRH%2B9g%2FrkEzCXr9qIrwQo9jPp5AH6WgXZv5OZmjUIjpt%2B6RV6AJkeuzCKUNtHagRvA5%2BpDZCW9KO7kl7jX%2BC7fNfIhfigBgOaShNfJTrY6eeTjr7LsU0ss%2F8X%2FkB7Y1iYYuohae6RsCZ3RuLJk4iNxHzyHU2FmS5A%3D%3D","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"exfit-ai-dev-9d0fe\",\"storageBucket\":\"exfit-ai-dev-9d0fe.firebasestorage.app\"}","GCLOUD_PROJECT":"exfit-ai-dev-9d0fe","EVENTARC_CLOUD_EVENT_SOURCE":"projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld"},"runtime":"nodejs18","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRegistry":"ARTIFACT_REGISTRY"},"versionId":"1","updateTime":"2025-06-16T10:20:51.935599113Z","buildId":"74ad69e8-01bb-47d5-91e8-6e7194913616","buildName":"projects/447041935659/locations/us-central1/builds/74ad69e8-01bb-47d5-91e8-6e7194913616"},"done":true,"error":{"code":3,"message":"Gen1 operation for function projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld failed: Build failed: This project is using pnpm but you have not included the Functions Framework in your dependencies. Please add it by running: 'pnpm add @google-cloud/functions-framework'.; Error ID: 5b6dc8b5."}}
+[debug] [2025-06-16T10:20:56.232Z] Got source token undefined for region us-central1
+[error] Gen1 operation for function projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld failed: Build failed: This project is using pnpm but you have not included the Functions Framework in your dependencies. Please add it by running: 'pnpm add @google-cloud/functions-framework'.; Error ID: 5b6dc8b5.
+[debug] [2025-06-16T10:20:56.235Z] Total Function Deployment time: 49724
+[debug] [2025-06-16T10:20:56.235Z] 1 Functions Deployed
+[debug] [2025-06-16T10:20:56.235Z] 1 Functions Errored
+[debug] [2025-06-16T10:20:56.235Z] 0 Function Deployments Aborted
+[debug] [2025-06-16T10:20:56.235Z] Average Function Deployment time: 49723
+[info] 
+[info] Functions deploy had errors with the following functions:
+	getHelloWorld(us-central1)
+[info] i  functions: cleaning up build files... 
+[debug] [2025-06-16T10:20:56.385Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:56.385Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:56.385Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:56.385Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:56.385Z] >>> [apiv2][query] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/exfit-ai-dev-9d0fe/locations/us-central1/repositories/gcf-artifacts/packages/get_hello_world [none]
+[debug] [2025-06-16T10:20:56.386Z] >>> [apiv2][query] GET https://us.gcr.io/v2/exfit-ai-dev-9d0fe/gcf/us-central1/tags/list [none]
+[debug] [2025-06-16T10:20:56.841Z] <<< [apiv2][status] GET https://us.gcr.io/v2/exfit-ai-dev-9d0fe/gcf/us-central1/tags/list 404
+[debug] [2025-06-16T10:20:56.841Z] <<< [apiv2][body] GET https://us.gcr.io/v2/exfit-ai-dev-9d0fe/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2025-06-16T10:20:56.842Z] Failed docker command with error  HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Not Found","status":404}
+[debug] [2025-06-16T10:20:56.844Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:56.844Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:56.844Z] >>> [apiv2][query] GET https://us.gcr.io/v2/exfit-ai-dev-9d0fe/gcf/us-central1/tags/list [none]
+[debug] [2025-06-16T10:20:57.297Z] <<< [apiv2][status] GET https://us.gcr.io/v2/exfit-ai-dev-9d0fe/gcf/us-central1/tags/list 404
+[debug] [2025-06-16T10:20:57.297Z] <<< [apiv2][body] GET https://us.gcr.io/v2/exfit-ai-dev-9d0fe/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2025-06-16T10:20:57.297Z] Failed docker command with error  HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Not Found","status":404}
+[debug] [2025-06-16T10:20:57.373Z] <<< [apiv2][status] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/exfit-ai-dev-9d0fe/locations/us-central1/repositories/gcf-artifacts/packages/get_hello_world 404
+[debug] [2025-06-16T10:20:57.373Z] <<< [apiv2][body] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/exfit-ai-dev-9d0fe/locations/us-central1/repositories/gcf-artifacts/packages/get_hello_world {"error":{"code":404,"message":"Package \"projects/exfit-ai-dev-9d0fe/locations/us-central1/repositories/gcf-artifacts/packages/get_hello_world\" was not found.","status":"NOT_FOUND"}}
+[debug] [2025-06-16T10:20:57.398Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:57.399Z] Checked if tokens are valid: true, expires at: 1750072398994
+[debug] [2025-06-16T10:20:57.399Z] >>> [apiv2][query] GET https://us.gcr.io/v2/exfit-ai-dev-9d0fe/gcf/us-central1/tags/list [none]
+[debug] [2025-06-16T10:20:57.881Z] <<< [apiv2][status] GET https://us.gcr.io/v2/exfit-ai-dev-9d0fe/gcf/us-central1/tags/list 404
+[debug] [2025-06-16T10:20:57.881Z] <<< [apiv2][body] GET https://us.gcr.io/v2/exfit-ai-dev-9d0fe/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2025-06-16T10:20:57.882Z] Failed docker command with error  HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Not Found","status":404}
+[warn] ⚠  functions: Unhandled error cleaning up build images. This could result in a small monthly bill if not corrected. You can attempt to delete these images by redeploying or you can delete them manually at https://console.cloud.google.com/gcr/images/exfit-ai-dev-9d0fe/us/gcf 
+[debug] [2025-06-16T10:20:57.882Z] Functions deploy failed.
+[debug] [2025-06-16T10:20:57.883Z] {
+  "endpoint": {
+    "id": "getHelloWorld",
+    "project": "exfit-ai-dev-9d0fe",
+    "region": "us-central1",
+    "entryPoint": "getHelloWorld",
+    "platform": "gcfv1",
+    "runtime": "nodejs18",
+    "callableTrigger": {},
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "serviceAccount": null,
+    "timeoutSeconds": null,
+    "maxInstances": null,
+    "minInstances": null,
+    "vpc": null,
+    "environmentVariables": {
+      "FIREBASE_CONFIG": "{\"projectId\":\"exfit-ai-dev-9d0fe\",\"storageBucket\":\"exfit-ai-dev-9d0fe.firebasestorage.app\"}",
+      "GCLOUD_PROJECT": "exfit-ai-dev-9d0fe",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld"
+    },
+    "codebase": "default",
+    "targetedByOnly": true,
+    "hash": "3c66f242679f9038d7d62fcdcbd5244a8c27c2f9"
+  },
+  "op": "create",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "exit": 1,
+    "message": "Gen1 operation for function projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld failed: Build failed: This project is using pnpm but you have not included the Functions Framework in your dependencies. Please add it by running: 'pnpm add @google-cloud/functions-framework'.; Error ID: 5b6dc8b5.",
+    "original": {
+      "code": 3,
+      "message": "Gen1 operation for function projects/exfit-ai-dev-9d0fe/locations/us-central1/functions/getHelloWorld failed: Build failed: This project is using pnpm but you have not included the Functions Framework in your dependencies. Please add it by running: 'pnpm add @google-cloud/functions-framework'.; Error ID: 5b6dc8b5."
+    },
+    "status": 3,
+    "code": 3
+  }
+}
+[debug] [2025-06-16T10:20:58.028Z] Error: Failed to create function getHelloWorld in region us-central1
+    at /Users/mbaziluc/Library/pnpm/global/5/.pnpm/firebase-tools@13.22.1_encoding@0.1.13/node_modules/firebase-tools/lib/deploy/functions/release/fabricator.js:52:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Fabricator.createV1Function (/Users/mbaziluc/Library/pnpm/global/5/.pnpm/firebase-tools@13.22.1_encoding@0.1.13/node_modules/firebase-tools/lib/deploy/functions/release/fabricator.js:182:32)
+    at async Fabricator.createEndpoint (/Users/mbaziluc/Library/pnpm/global/5/.pnpm/firebase-tools@13.22.1_encoding@0.1.13/node_modules/firebase-tools/lib/deploy/functions/release/fabricator.js:134:13)
+    at async handle (/Users/mbaziluc/Library/pnpm/global/5/.pnpm/firebase-tools@13.22.1_encoding@0.1.13/node_modules/firebase-tools/lib/deploy/functions/release/fabricator.js:89:17)
+[error] 
+[error] Error: There was an error deploying functions
