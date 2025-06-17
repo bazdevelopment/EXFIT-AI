@@ -7,13 +7,37 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-import {onRequest} from "firebase-functions/v2/https";
 import * as logger from "firebase-functions/logger";
+import * as functions from "firebase-functions/v1";
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+import * as userFunctions from "./user";
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+const usCentralFunctions = functions.region("us-central1");
+
+export const getHelloWorld = usCentralFunctions.https.onCall(
+  (data, context) => {
+    logger.info("Hello logs!", { structuredData: true });
+    const req = context.rawRequest;
+    const authorizationHeader = req.get("Authorization");
+    if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
+      throw new functions.https.HttpsError(
+        "unauthenticated",
+        "The function must be called while authenticated.",
+      );
+    }
+    return { message: data }; // Return a JSON response
+  },
+);
+
+/** User collection cloud functions  */
+export const loginUserAnonymously = usCentralFunctions.https.onCall(
+  userFunctions.loginUserAnonymouslyHandler,
+);
+
+export const getUserInfo = usCentralFunctions.https.onCall(
+  userFunctions.getUserInfo,
+);
+
+export const updateUser = usCentralFunctions.https.onCall(
+  userFunctions.updateUserHandler,
+);

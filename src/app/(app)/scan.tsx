@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { Ionicons } from '@expo/vector-icons';
 import { Camera, CameraView } from 'expo-camera';
 import { router } from 'expo-router';

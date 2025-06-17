@@ -13,6 +13,7 @@ const FlowModal = ({
   children,
   onSkip,
   resetFlow,
+  isSubmitOnboardingLoading,
 }: IFlow) => {
   const totalSteps = React.Children.toArray(children).length;
 
@@ -33,6 +34,7 @@ const FlowModal = ({
         onFinish,
         onSkip,
         resetFlow,
+        isSubmitOnboardingLoading,
       })
     : currentActiveScreen;
 

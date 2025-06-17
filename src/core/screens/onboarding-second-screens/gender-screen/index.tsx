@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
 
@@ -30,14 +29,14 @@ export default function GenderSelectionScreen({
         <Greeting userName="Marian" showGreeting={false} />
 
         <View className="rounded-full bg-[#172554] px-3 py-1">
-          <Text className="text-sm font-medium text-[#2563EB]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
+          <Text className="text-sm font-medium text-[#3195FD]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
         </View>
       </View>
 
       {/* Main Content */}
       <View className="px-6">
         {/* Title */}
-        <Text className="mb-12 mt-8 text-center text-2xl font-bold text-white">
+        <Text className="mb-12 mt-4 text-center text-2xl font-bold text-white">
           Select gender for a more tailored experience
         </Text>
       </View>

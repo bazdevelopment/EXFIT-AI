@@ -1,7 +1,10 @@
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 
+import { useUpdateUser, useUser } from '@/api/user/user.hooks';
 import FlowModal from '@/components/flow-modal';
+import { useSelectedLanguage } from '@/core';
+import { useSecondOnboarding } from '@/core/hooks/use-second-onboarding';
 import ExperienceLevelScreen from '@/core/screens/onboarding-second-screens/experience-level-screen';
 import FitnessGoalScreen from '@/core/screens/onboarding-second-screens/fitness-goal-screen';
 import GenderSelectionScreen from '@/core/screens/onboarding-second-screens/gender-screen';
@@ -13,12 +16,18 @@ export interface IOnboardingCollectedData {
 }
 
 export default function OnboardingSecond() {
+  const { language } = useSelectedLanguage();
+  const { data: userInfo } = useUser(language);
+  const [isSecondOnboardingDone, setIsSecondOnboardingDone] =
+    useSecondOnboarding();
+
+  const { mutateAsync: onUpdateUser, isPending: isSubmitOnboardingLoading } =
+    useUpdateUser();
   const [collectedData, setCollectedData] = useState<IOnboardingCollectedData>({
     gender: '',
     fitnessGoals: [],
     experience: '',
   });
-  console.log('collectedData', collectedData);
   const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
 
   const handleGoToNextScreen = (newCollectedData: IOnboardingCollectedData) => {
@@ -32,15 +41,43 @@ export default function OnboardingSecond() {
   const handleGoToPreviousScreen = () =>
     setCurrentScreenIndex((prevIndex) => prevIndex - 1);
 
-  const handleOnFinishFlow = (newCollectedData: IOnboardingCollectedData) => {
+  const handleOnFinishFlow = async (
+    newCollectedData: IOnboardingCollectedData
+  ) => {
+    const payload = {
+      onboarding: { ...collectedData, ...newCollectedData },
+      isOnboarded: true,
+    };
+    console.log('payload', payload);
     setCollectedData((prevCollectedData) => ({
       ...prevCollectedData,
       ...newCollectedData,
     }));
-    router.navigate('/(app)');
+
+    await onUpdateUser({
+      language,
+      userId: userInfo.userId,
+      fieldsToUpdate: payload,
+    }).then(() => {
+      !isSecondOnboardingDone && setIsSecondOnboardingDone(true);
+      router.navigate('/(app)');
+    });
   };
 
-  const onSkip = () => {};
+  const onSkip = async () => {
+    const payload = {
+      onboarding: collectedData,
+      isOnboarded: true,
+    };
+    await onUpdateUser({
+      language,
+      userId: userInfo.userId,
+      fieldsToUpdate: payload,
+    }).then(() => {
+      !isSecondOnboardingDone && setIsSecondOnboardingDone(true);
+      router.navigate('/(app)');
+    });
+  };
 
   return (
     <FlowModal
@@ -50,6 +87,7 @@ export default function OnboardingSecond() {
       onGoBack={handleGoToPreviousScreen}
       collectedData={collectedData}
       onSkip={onSkip}
+      isSubmitOnboardingLoading={isSubmitOnboardingLoading}
     >
       <GenderSelectionScreen />
       <FitnessGoalScreen />

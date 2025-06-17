@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import {
   type EventArg,
   NavigationContext,
@@ -51,7 +50,7 @@ function getScrollableNode(ref: React.RefObject<ScrollableWrapper>) {
 }
 
 export default function useCustomScrollToTop(
-  ref: React.RefObject<ScrollableWrapper>,
+  ref: React.RefObject<ScrollableWrapper>
 ) {
   const navigation = React.useContext(NavigationContext);
   const route = useRoute();
@@ -60,7 +59,7 @@ export default function useCustomScrollToTop(
 
   if (navigation === undefined) {
     throw new Error(
-      "Couldn't find a navigation object. Is your component inside NavigationContainer?",
+      "Couldn't find a navigation object. Is your component inside NavigationContainer?"
     );
   }
 
@@ -117,7 +116,7 @@ export default function useCustomScrollToTop(
               }
             }
           });
-        },
+        }
       );
     });
 

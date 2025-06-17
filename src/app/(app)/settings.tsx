@@ -1,9 +1,7 @@
-/* eslint-disable max-lines-per-function */
 import { useScrollToTop } from '@react-navigation/native';
 import { router } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useRef } from 'react';
-import { Toaster } from 'sonner-native';
 
 import { useUploadPrivacyPolicy } from '@/api/privacy-policy/privacy-policy.hooks';
 import {
@@ -24,7 +22,7 @@ import { ThemeItem } from '@/components/settings/theme-item';
 import Toast from '@/components/toast';
 import { Button, colors, ScrollView, View } from '@/components/ui';
 import { LogoutIcon, Rate } from '@/components/ui/assets/icons';
-import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 import { Env } from '@/core/env';
 import useRemoteConfig from '@/core/hooks/use-remote-config';
 
@@ -74,14 +72,6 @@ export default function Settings() {
             variant: 'destructive',
             onPress: async () => {
               try {
-                await onUpdateUser({
-                  language,
-                  userId: userInfo.userId,
-                  fieldsToUpdate: {
-                    verificationCode: '',
-                    verificationCodeExpiry: '',
-                  },
-                });
                 logout();
               } catch (error) {
                 Toast.error(translate('alerts.logoutUnsuccessful'));
@@ -100,11 +90,10 @@ export default function Settings() {
 
   return (
     <ScreenWrapper>
+      {/* {DEVICE_TYPE.IOS && (
+        <Toaster autoWiggleOnUpdate="toast-change" pauseWhenPageIsHidden />
+      )} */}
       <View className="flex-1">
-        {DEVICE_TYPE.IOS && (
-          <Toaster autoWiggleOnUpdate="toast-change" pauseWhenPageIsHidden />
-        )}
-
         <ScrollView ref={scrollViewRef}>
           <View className="mb-20 px-6">
             <ItemsContainer title="settings.generale">

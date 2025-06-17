@@ -5,4 +5,5 @@ export interface IExperienceLevelScreen {
   currentScreenIndex: number;
   goToPreviousScreen: () => void;
   onFinish: (data: IOnboardingCollectedData) => void;
+  isSubmitOnboardingLoading: boolean;
 }

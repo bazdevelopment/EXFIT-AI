@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import dayjs from 'dayjs';
 import React from 'react';
 import { Platform, TouchableOpacity, View, type ViewStyle } from 'react-native';

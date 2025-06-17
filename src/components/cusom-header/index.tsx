@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { twMerge } from 'tailwind-merge';

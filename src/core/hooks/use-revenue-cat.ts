@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { Env } from '@env';
 import { useCallback, useEffect, useState } from 'react';
 import { Platform } from 'react-native';

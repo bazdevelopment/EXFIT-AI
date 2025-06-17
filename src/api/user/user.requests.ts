@@ -19,7 +19,7 @@ export const createAnonymousAccount = async ({
   try {
     const { data }: { data: any } =
       await firebaseCloudFunctionsInstance.httpsCallable(
-        'loginUserAnonymously',
+        'loginUserAnonymously'
       )({
         username,
         language,
@@ -29,7 +29,7 @@ export const createAnonymousAccount = async ({
     // await firebaseAuth.signInAnonymously();
 
     const userCredentials = await firebaseAuth.signInWithCustomToken(
-      data.authToken,
+      data.authToken
     );
 
     return { ...userCredentials, ...data };
@@ -53,7 +53,7 @@ export const loginWithEmail = async ({
         language,
       });
     const userCredentials = await firebaseAuth.signInWithCustomToken(
-      data.authToken,
+      data.authToken
     );
     return userCredentials;
   } catch (error) {
@@ -71,7 +71,7 @@ export const sendOtpCodeViaEmail = async ({
   try {
     const sendEmailVerificationLink =
       firebaseCloudFunctionsInstance.httpsCallable(
-        'sendVerificationCodeViaEmail',
+        'sendVerificationCodeViaEmail'
       );
     const { data } = await sendEmailVerificationLink({
       email,
@@ -131,7 +131,7 @@ export const updateUserPreferredLanguage = async ({
 }) => {
   try {
     const onUpdateLanguage = firebaseCloudFunctionsInstance.httpsCallable(
-      'updatePreferredLanguage',
+      'updatePreferredLanguage'
     );
     const { data } = await onUpdateLanguage({ language });
 
@@ -169,8 +169,9 @@ export const updateUserInfo = async ({
 export const getUserInfo = async ({ language }: { language: string }) => {
   try {
     const { data } = await firebaseCloudFunctionsInstance.httpsCallable(
-      'getUserInfo',
+      'getUserInfo'
     )({ language });
+
     return data;
   } catch (error) {
     throw error;
@@ -179,7 +180,6 @@ export const getUserInfo = async ({ language }: { language: string }) => {
 
 export const logout = async () => {
   await firebaseAuth.signOut();
-  // router.navigate('/login');
   router.navigate('/anonymous-login');
   queryClient.clear(); // Clears all cached queries & mutations
   Toast.success(translate('alerts.loggedOutSuccess'));

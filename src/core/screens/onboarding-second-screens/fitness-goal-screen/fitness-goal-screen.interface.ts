@@ -5,4 +5,6 @@ export interface IFitnessGoalScreen {
   goToNextScreen: (data: IOnboardingCollectedData) => void;
   currentScreenIndex: number;
   goToPreviousScreen: () => void;
+  onSkip: () => void;
+  isSubmitOnboardingLoading: boolean;
 }

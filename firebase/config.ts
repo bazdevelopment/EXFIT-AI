@@ -13,7 +13,7 @@ import storage from '@react-native-firebase/storage';
 
 // Get instances of the services
 const firebaseAuth: FirebaseAuthTypes.Module = auth();
-const firebaseFirestore = firestore(); 
+const firebaseFirestore = firestore();
 const firebaseStorage = storage();
 const firebaseCrashlytics = crashlytics();
 const firebaseAnalytics = analytics();
