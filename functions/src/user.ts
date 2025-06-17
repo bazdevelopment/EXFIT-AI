@@ -57,7 +57,7 @@ const loginUserAnonymouslyHandler = async (data: {
       // No email or password needed for anonymous users
     });
 
-  const newUserId = createdUser.uid;
+    const newUserId = createdUser.uid;
 
     // Step 3: Create a new user document in Firestore
     await db
@@ -101,7 +101,6 @@ const loginUserAnonymouslyHandler = async (data: {
       authToken: customToken,
     };
   } catch (error: any) {
-    console.log("error boss", error);
     // Ensure 't' is defined before using it in handleAndThrowHttpsError
     // If getting translation also fails, this might need a more robust default mechanism.
     t = t || getTranslation("en");

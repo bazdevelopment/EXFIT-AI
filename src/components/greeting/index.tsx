@@ -1,6 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import { getDynamicGreeting } from '@/core/utilities/get-dynamic-greeting';
+
 import { Image, Text } from '../ui';
 
 // Define the props for the Greeting component
@@ -8,24 +10,18 @@ interface GreetingProps {
   userName: string;
   showGreeting?: boolean;
   avatarUri?: string;
+  streaks?: number;
+  showStreaks?: boolean;
 }
 
 const Greeting: React.FC<GreetingProps> = ({
   userName,
   showGreeting = true,
   avatarUri,
+  streaks,
+  showStreaks = false,
 }) => {
   // Function to get the appropriate greeting based on the current hour
-  const getDynamicGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour >= 5 && hour < 12) {
-      return 'Good Morning';
-    } else if (hour >= 12 && hour < 17) {
-      return 'Good Afternoon';
-    } else {
-      return 'Good Evening';
-    }
-  };
 
   // Determine the main message based on the showGreeting prop
   const mainMessage = showGreeting ? getDynamicGreeting() : 'Welcome';
@@ -49,10 +45,14 @@ const Greeting: React.FC<GreetingProps> = ({
         </Text>
         {/* User name/caption */}
         <Text className="text-[20px] font-bold text-white">{userName}!</Text>
-        <View className="mt-1 flex-row items-center">
-          <Text className="">🔥</Text>
-          <Text className="ml-1 font-bold-nunito text-white">100</Text>
-        </View>
+        {showStreaks && (
+          <View className="mt-1 flex-row items-center">
+            <Text className="">🔥</Text>
+            <Text className="ml-1 font-bold-nunito text-white">
+              {streaks || 0}
+            </Text>
+          </View>
+        )}
       </View>
     </View>
   );

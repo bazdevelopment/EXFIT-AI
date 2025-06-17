@@ -1,6 +1,8 @@
 import React from 'react';
-import { Animated, TouchableOpacity, View } from 'react-native';
+import { Animated, View } from 'react-native';
 
+import Icon from '../icon';
+import { colors } from '../ui';
 import { ArrowLeft, ArrowRight } from '../ui/assets/icons';
 
 interface OnboardingNavigationProps {
@@ -44,7 +46,7 @@ const DotIndicator = ({
     <Animated.View
       className={`mx-1 size-2 rounded-full ${className}`}
       style={{
-        backgroundColor: isActive ? '#FFFFFF' : 'rgba(255, 255, 255, 0.4)',
+        backgroundColor: isActive ? '#3195FD' : 'rgba(255, 255, 255, 0.4)',
         opacity: animatedValue,
         transform: [
           {
@@ -72,19 +74,17 @@ const NavigationButton = ({
   direction,
   className = '',
 }: NavigationButtonProps) => {
-  const Icon = direction === 'left' ? ArrowLeft : ArrowRight;
+  const icon = direction === 'left' ? <ArrowLeft /> : <ArrowRight />;
 
   return (
-    <TouchableOpacity
+    <Icon
       onPress={onPress}
       disabled={disabled}
-      className={`size-12 items-center justify-center rounded-full bg-black bg-opacity-30 ${
-        disabled ? 'opacity-30' : ''
-      } ${className}`}
-      activeOpacity={0.8}
-    >
-      <Icon width={24} height={24} color="white" />
-    </TouchableOpacity>
+      icon={icon}
+      size={24}
+      iconContainerStyle={`bg-charcoal-700 p-3 rounded-full ${disabled ? 'opacity-40' : ''}`}
+      color={colors.white}
+    />
   );
 };
 

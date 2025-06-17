@@ -6,7 +6,7 @@ import { colors, Image, Text } from '@/components/ui';
 const ActivityPromptBanner = ({
   containerClassName,
 }: {
-  containerClassName: string;
+  containerClassName?: string;
 }) => {
   return (
     <View

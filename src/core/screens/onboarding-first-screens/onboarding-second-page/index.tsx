@@ -48,7 +48,7 @@ const OnboardingSecondPage = ({
               </Text>
 
               {/* Subtitle */}
-              <Text className="font-regular-nunito text-center text-lg  text-white">
+            <Text className="font-regular-nunito text-center text-lg  text-white">
                 Boost Your Mood with AI-Powered Motivation
               </Text>
             </View>

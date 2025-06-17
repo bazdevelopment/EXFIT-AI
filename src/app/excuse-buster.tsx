@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 
 import GradientText from '@/components/gradient-text';
-import { Button, Input } from '@/components/ui';
-import { BackRoundedIcon } from '@/components/ui/assets/icons';
+import Icon from '@/components/icon';
+import { Button, colors, Input } from '@/components/ui';
+import { ArrowLeft } from '@/components/ui/assets/icons';
 
 interface ExcuseButtonProps {
   title: string;
@@ -95,15 +96,15 @@ const ExcuseBusterScreen: React.FC = () => {
         >
           {/* Header */}
           <View className="mb-8 mt-4 flex-row items-center">
-            <TouchableOpacity
-              className="mr-4 size-12 items-center justify-center rounded-full bg-gray-800"
-              activeOpacity={0.7}
+            <Icon
+              icon={<ArrowLeft />}
+              iconContainerStyle="items-center p-3 justify-center rounded-2xl bg-gray-800"
+              size={24}
+              color={colors.white}
               onPress={router.back}
-            >
-              <BackRoundedIcon />
-            </TouchableOpacity>
+            />
 
-            <GradientText colors={['#3195FD', '#666AFF']}>
+            <GradientText colors={['#3195FD', '#666AFF']} className="ml-4">
               <Text className="text-center text-2xl font-bold text-blue-400">
                 Excuse Buster
               </Text>

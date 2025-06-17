@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { Ionicons } from '@expo/vector-icons';
 import { Camera, CameraView } from 'expo-camera';
 import { router } from 'expo-router';
@@ -103,11 +104,13 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
           style={{ flex: 1 }}
         />
       )}
-      {!capturedImage && (
-        <View className="absolute top-2 w-full flex-row items-center justify-between px-6  pt-12">
-          <TouchableOpacity className="p-2" onPress={router.back}>
-            <CloseIcon color="white" width={25} height={25} />
-          </TouchableOpacity>
+
+      <View className="absolute top-2 w-full flex-row items-center justify-between px-6  pt-12">
+        <TouchableOpacity className="p-2" onPress={router.back}>
+          <CloseIcon color="white" width={25} height={25} />
+        </TouchableOpacity>
+
+        {!capturedImage && (
           <View className="flex-row space-x-4">
             <TouchableOpacity className="p-2" onPress={toggleFlash}>
               <Ionicons
@@ -117,8 +120,8 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
               />
             </TouchableOpacity>
           </View>
-        </View>
-      )}
+        )}
+      </View>
 
       {/* Scanning Overlay */}
       <ScanningOverlay

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
 
+import { useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
 import MotivationBanner from '@/components/banners/motivation-banner';
@@ -10,14 +11,19 @@ import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { colors } from '@/components/ui';
 import { Notification } from '@/components/ui/assets/icons'; // Ensure this is installed: npx expo install expo-linear-gradient
+import { useSelectedLanguage } from '@/core';
 
 export default function Home() {
+  const { language } = useSelectedLanguage();
+  const { data: userInfo } = useUser(language);
   return (
     <ScreenWrapper>
-      <View className="-mt-2 mr-4 flex-row  justify-between">
+      <View className="-mt-2 mr-4 flex-row justify-between">
         <Greeting
-          userName="Marian"
+          userName={userInfo.userName}
           avatarUri={require('../../components/ui/assets/images/avatar.png')}
+          streaks={userInfo.gamification.streakBalance}
+          showStreaks
         />
         <Icon
           icon={<Notification color="red" />}
@@ -31,7 +37,7 @@ export default function Home() {
         />
       </View>
       <ScrollView contentContainerClassName="pb-16">
-        <ActivityPromptBanner containerClassName="mt-1" />
+        <ActivityPromptBanner />
         <CalendarMiniView
           showMonth
           showYear

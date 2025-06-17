@@ -4,7 +4,7 @@ import { Pressable, View } from 'react-native';
 import type { TxKeyPath } from '@/core';
 
 import { colors, Text } from '../ui';
-import { ArrowRight } from '../ui/icons';
+import { ArrowRight } from '../ui/assets/icons';
 
 type ItemProps = {
   text: TxKeyPath;
@@ -19,7 +19,7 @@ export const Item = ({ text, value, icon, onPress }: ItemProps) => {
     <Pressable
       onPress={onPress}
       pointerEvents={isPressable ? 'auto' : 'none'}
-      className="bg-primary-100 dark:bg-blackBeauty flex-1 flex-row items-center justify-between rounded-xl p-4 active:opacity-80"
+      className="flex-1 flex-row items-center justify-between rounded-xl bg-primary-100 p-4 active:opacity-80 dark:bg-blackBeauty"
     >
       <View className="ml-1 flex-row items-center">
         {icon && <View className="pr-2">{icon}</View>}

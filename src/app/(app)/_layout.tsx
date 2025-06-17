@@ -1,4 +1,4 @@
-import { Redirect, SplashScreen, Tabs } from 'expo-router';
+import { Redirect, SplashScreen, Tabs, useSegments } from 'expo-router';
 import { firebaseAuth } from 'firebase/config';
 import { useColorScheme } from 'nativewind';
 import React, { useCallback, useEffect } from 'react';
@@ -35,6 +35,7 @@ export default function TabLayout() {
   const { data: userInfo, isPending: isPendingUserinfo } = useUser(language);
 
   const addSelectionHapticEffect = useHaptic('selection');
+  const segments = useSegments();
 
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
@@ -68,9 +69,7 @@ export default function TabLayout() {
   if (!isSecondOnboardingDone) {
     return <Redirect href="/onboarding-second" />;
   }
-  if (!userInfo?.isOnboarded) {
-    return <Redirect href="/onboarding-second" />;
-  }
+
   // if (status === 'signOut') {
   //   return <Redirect href="/login" />;
   // }
@@ -83,7 +82,10 @@ export default function TabLayout() {
     >
       <Tabs
         screenOptions={{
-          tabBarStyle: bottomTabBarStyles.tabBarContainer,
+          tabBarStyle: {
+            ...bottomTabBarStyles.tabBarContainer,
+            display: segments.includes('scan') ? 'none' : 'flex',
+          },
           tabBarLabelStyle: bottomTabBarStyles.tabBarLabel,
           tabBarInactiveTintColor: colors.white,
           tabBarActiveTintColor: '#3195FD',
@@ -111,6 +113,10 @@ export default function TabLayout() {
                   />
                 ),
               title: tab.title,
+              // tabBarStyle: {
+              //   display: tab.screenName === 'scan' ? 'none' : 'flex',
+              //   backgroundColor: 'black',
+              // },
               tabBarIcon: ({ color, focused }) => (
                 <TabBarIcon
                   icon={tab.icon(color, focused)}

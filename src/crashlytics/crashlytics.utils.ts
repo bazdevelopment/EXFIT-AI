@@ -1,4 +1,4 @@
-import crashlytics from '@react-native-firebase/crashlytics';
+import { getCrashlytics } from '@react-native-firebase/crashlytics';
 
 import {
   type CrashlyticsAttributes,
@@ -14,17 +14,17 @@ export const formatError = (error: any): Error => {
 
 export const setUserId = async (userId: string): Promise<void> => {
   try {
-    await crashlytics().setUserId(userId);
+    await getCrashlytics().setUserId(userId);
   } catch (error) {
     console.error('Failed to set user ID:', error);
   }
 };
 
 export const setAttributes = async (
-  attributes: CrashlyticsAttributes,
+  attributes: CrashlyticsAttributes
 ): Promise<void> => {
   try {
-    await crashlytics().setAttributes(attributes);
+    await getCrashlytics().setAttributes(attributes);
   } catch (error) {
     console.error('Failed to set attributes:', error);
   }
@@ -32,17 +32,17 @@ export const setAttributes = async (
 
 export const logEvent = async (
   message: string,
-  level: CrashlyticsLogLevel = 'info',
+  level: CrashlyticsLogLevel = 'info'
 ): Promise<void> => {
   try {
-    await crashlytics().log(message);
+    await getCrashlytics().log(message);
 
     switch (level) {
       case 'fatal':
-        crashlytics().recordError(new Error(message), 'fatal');
+        getCrashlytics().recordError(new Error(message), 'fatal');
         break;
       case 'error':
-        crashlytics().recordError(new Error(message));
+        getCrashlytics().recordError(new Error(message));
         break;
       case 'warn':
         console.warn(message);
@@ -51,7 +51,7 @@ export const logEvent = async (
         console.debug(message);
         break;
       default:
-        crashlytics().log(message);
+        getCrashlytics().log(message);
     }
   } catch (error) {
     console.error('Failed to log message:', error);
@@ -60,14 +60,14 @@ export const logEvent = async (
 
 export const recordError = async (
   error: any,
-  context?: string,
+  context?: string
 ): Promise<void> => {
   try {
     const formattedError = formatError(error);
     if (context) {
-      await crashlytics().log(context);
+      await getCrashlytics().log(context);
     }
-    await crashlytics().recordError(formattedError);
+    await getCrashlytics().recordError(formattedError);
   } catch (err) {
     console.error('Failed to record error:', err);
   }

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
 
+import { useUser } from '@/api/user/user.hooks';
 import { type IOnboardingCollectedData } from '@/app/onboarding-second';
 import GenderCard from '@/components/gender-card';
 import Greeting from '@/components/greeting';
-import { Button, Text } from '@/components/ui';
-import { ArrowRightRounded } from '@/components/ui/assets/icons';
+import { Button, colors, Text } from '@/components/ui';
+import { ArrowRight } from '@/components/ui/assets/icons';
+import { useSelectedLanguage } from '@/core/i18n';
 
 import { type IGenderScreen } from './gender-screen.interface';
 
@@ -17,6 +19,8 @@ export default function GenderSelectionScreen({
   currentScreenIndex,
 }: IGenderScreen) {
   const [selectedGender, setSelectedGender] = useState<GenderType>('male');
+  const { language } = useSelectedLanguage();
+  const { data: userInfo } = useUser(language);
 
   const handleGenderSelect = (gender: GenderType) => {
     setSelectedGender(gender);
@@ -26,7 +30,7 @@ export default function GenderSelectionScreen({
     <SafeAreaView className="flex-1 bg-black">
       {/* Header */}
       <View className="flex-row items-center justify-between px-6 py-4">
-        <Greeting userName="Marian" showGreeting={false} />
+        <Greeting userName={userInfo?.userName} showGreeting={false} />
 
         <View className="rounded-full bg-[#172554] px-3 py-1">
           <Text className="text-sm font-medium text-[#3195FD]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
@@ -61,7 +65,7 @@ export default function GenderSelectionScreen({
       <View className="mt-10 gap-2 px-6">
         <Button
           label="Continue"
-          icon={<ArrowRightRounded />}
+          icon={<ArrowRight color={colors.white} />}
           withGradientBackground
           className=""
           textClassName="text-white text-center text-lg font-semibold"
