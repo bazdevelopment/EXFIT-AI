@@ -10,6 +10,7 @@
 import * as logger from "firebase-functions/logger";
 import * as functions from "firebase-functions/v1";
 
+import * as activityLogsFunctions from "./activity-logs";
 import * as userFunctions from "./user";
 
 const usCentralFunctions = functions.region("us-central1");
@@ -40,4 +41,14 @@ export const getUserInfo = usCentralFunctions.https.onCall(
 
 export const updateUser = usCentralFunctions.https.onCall(
   userFunctions.updateUserHandler,
+);
+
+/** ActivityLogs collection cloud functions  */
+
+export const createActivityLog = usCentralFunctions.https.onCall(
+  activityLogsFunctions.createActivityLogHandler,
+);
+
+export const getCalendarActivityLog = usCentralFunctions.https.onCall(
+  activityLogsFunctions.getCalendarActivityLogHandler,
 );
