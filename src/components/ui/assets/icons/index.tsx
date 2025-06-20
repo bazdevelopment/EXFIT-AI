@@ -8,6 +8,7 @@ export * from './bot-icon';
 export * from './calendar';
 export * from './camera';
 export * from './caret-down';
+export * from './check';
 export * from './chevron-left';
 export * from './chevron-left-rounded';
 export * from './chevron-right-rounded';

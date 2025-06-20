@@ -432,7 +432,7 @@ const ChatScreen = () => {
   if (isLoading) {
     return (
       <View className="flex-1 items-center justify-center bg-black dark:bg-blackEerie">
-        <Branding isLogoVisible invertedColors />
+        <Branding imageClassname="" isLogoVisible invertedColors />
         <ActivityIndicator
           size="large"
           className="my-6 items-center justify-center"

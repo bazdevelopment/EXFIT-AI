@@ -1,28 +1,57 @@
+import { router } from 'expo-router';
 import React from 'react';
 import { ScrollView, View } from 'react-native';
 
+import {
+  useCreateActivityLog,
+  useGetCalendarActivityLog,
+} from '@/api/activity-logs/activity-logs.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
 import MotivationBanner from '@/components/banners/motivation-banner';
 import CalendarMiniView from '@/components/calendar-mini-view';
+import DailyCheckInStatus from '@/components/daily-check-in-status';
 import Greeting from '@/components/greeting';
 import Icon from '@/components/icon';
+import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
+import { NoActivityLogModal } from '@/components/modals/no-activity-log-modal';
 import ScreenWrapper from '@/components/screen-wrapper';
-import { colors } from '@/components/ui';
+import { colors, useModal } from '@/components/ui';
 import { Notification } from '@/components/ui/assets/icons'; // Ensure this is installed: npx expo install expo-linear-gradient
 import { useSelectedLanguage } from '@/core';
+import { getCurrentDay } from '@/core/utilities/date-time-helpers';
+
+import dayjs from '../../lib/dayjs';
 
 export default function Home() {
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
+  const activityCompleteModal = useModal();
+  const activitySkippedModal = useModal();
+
+  const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
+
+  const {
+    mutateAsync: onCreateActivityLog,
+    isPending: isCreateActivityLogPending,
+  } = useCreateActivityLog();
+
+  const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
+    startDate: dayjs().startOf('isoWeek').toISOString(),
+    endDate: dayjs().endOf('isoWeek').toISOString(),
+    language,
+  });
+
+  const isDailyCheckInDone = !!currentWeekActivityLog?.[currentActiveDay];
+
   return (
     <ScreenWrapper>
       <View className="-mt-2 mr-4 flex-row justify-between">
         <Greeting
-          userName={userInfo.userName}
+          userName={userInfo?.userName}
           avatarUri={require('../../components/ui/assets/images/avatar.png')}
-          streaks={userInfo.gamification.streakBalance}
+          streaks={userInfo?.gamification?.streakBalance}
           showStreaks
         />
         <Icon
@@ -37,14 +66,58 @@ export default function Home() {
         />
       </View>
       <ScrollView contentContainerClassName="pb-16">
-        <ActivityPromptBanner />
-        <CalendarMiniView
-          showMonth
-          showYear
-          containerClassName="px-6 py-4 bg-black"
-        />
+        {isDailyCheckInDone ? (
+          <DailyCheckInStatus
+            status={currentWeekActivityLog?.[currentActiveDay]}
+          />
+        ) : (
+          <ActivityPromptBanner
+            onShowActivityCompleteModal={activityCompleteModal.present}
+            onShowActivitySkippedModal={activitySkippedModal.present}
+          />
+        )}
+        {currentWeekActivityLog && (
+          <CalendarMiniView
+            showMonth
+            showYear
+            containerClassName="px-6 py-4 bg-black"
+            currentWeekActivityLog={currentWeekActivityLog}
+          />
+        )}
         <MotivationBanner containerClassName="mt-4" />
         <AICoachBanner containerClassName="mt-4" />
+        <DailyCheckInModal
+          ref={activityCompleteModal.ref}
+          isCreateActivityLogPending={isCreateActivityLogPending}
+          onSubmit={({ durationMinutes, activityName }) =>
+            onCreateActivityLog({
+              language,
+              type: 'daily_checkin',
+              details: {
+                durationMinutes,
+                activityName,
+              },
+            }).then(() => {
+              activityCompleteModal.dismiss();
+            })
+          }
+        />
+        <NoActivityLogModal
+          ref={activitySkippedModal.ref}
+          isCreateActivityLogPending={isCreateActivityLogPending}
+          onGoToExcuseBuster={() => router.navigate('/excuse-buster')}
+          onSubmit={({ skipReason }) =>
+            onCreateActivityLog({
+              language,
+              type: 'excuse_logged',
+              details: {
+                excuseReason: skipReason ?? '',
+              },
+            }).then(() => {
+              activitySkippedModal.dismiss();
+            })
+          }
+        />
       </ScrollView>
     </ScreenWrapper>
   );

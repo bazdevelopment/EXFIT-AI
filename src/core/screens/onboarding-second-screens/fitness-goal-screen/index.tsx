@@ -1,11 +1,12 @@
 // NativeWind is used implicitly for styling by applying className
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 
 import { useUser } from '@/api/user/user.hooks';
 import { type IOnboardingCollectedData } from '@/app/onboarding-second';
 import Greeting from '@/components/greeting';
 import Icon from '@/components/icon';
+import ScreenWrapper from '@/components/screen-wrapper';
 import SelectableButton from '@/components/selectable-button';
 import { Button, colors } from '@/components/ui';
 import { ArrowLeft, ArrowRight } from '@/components/ui/assets/icons';
@@ -50,9 +51,8 @@ const FitnessGoalScreen = ({
 
   return (
     // SafeAreaView for proper layout on iOS devices, StatusBar for dark content
-    <SafeAreaView className="flex-1 bg-black">
-      <StatusBar barStyle="light-content" />
-      <ScrollView className="flex-1">
+    <ScreenWrapper>
+      <ScrollView className="mt-4 flex-1">
         {/* Header Section */}
         <View className="flex-row items-center justify-between px-4">
           <View className="flex-row items-center">
@@ -116,7 +116,7 @@ const FitnessGoalScreen = ({
           onPress={onSkip}
         />
       </View>
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 };
 

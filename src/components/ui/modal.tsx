@@ -35,7 +35,7 @@ import type {
 import { BottomSheetModal, useBottomSheet } from '@gorhom/bottom-sheet';
 import * as React from 'react';
 import { Pressable, View } from 'react-native';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import { Path, Svg } from 'react-native-svg';
 
 import { Text } from './text';
@@ -87,7 +87,14 @@ export const Modal = React.forwardRef(
     const renderHandleComponent = React.useCallback(
       () => (
         <>
-          <View className="mb-8 mt-2 h-1 w-12 self-center rounded-lg bg-gray-400 dark:bg-gray-700" />
+          {/* <BlurView
+            blurAmount={10}
+            blurType="dark"
+            // style={[StyleSheet.absoluteFill]}
+          /> */}
+          <View className="rounded-t-2xl bg-charcoal-900 ">
+            <View className="top-4 mb-10 h-[4.5px] w-14 self-center rounded-lg bg-white dark:bg-white" />
+          </View>
           <ModalHeader title={title} dismiss={modal.dismiss} />
         </>
       ),
@@ -104,6 +111,8 @@ export const Modal = React.forwardRef(
         backdropComponent={props.backdropComponent || renderBackdrop}
         enableDynamicSizing={false}
         handleComponent={renderHandleComponent}
+        keyboardBlurBehavior={'restore'}
+        keyboardBehavior={'interactive'}
       />
     );
   }
@@ -118,10 +127,10 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const CustomBackdrop = ({ style }: BottomSheetBackdropProps) => {
   const { close } = useBottomSheet();
   return (
-    <AnimatedPressable
+    <Pressable
       onPress={() => close()}
-      entering={FadeIn.duration(50)}
-      exiting={FadeOut.duration(20)}
+      // entering={FadeIn.duration(50)}
+      // exiting={FadeOut.duration(20)}
       style={[style, { backgroundColor: 'rgba(0, 0, 0, 0.4)' }]}
     />
   );

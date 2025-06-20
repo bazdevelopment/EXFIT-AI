@@ -21,11 +21,11 @@ const OnboardingSecondPage = ({
       className="flex-1"
       resizeMode="cover"
     >
-      {/* Dark Overlay */}
+      {/* Dark Overlay - Fixed for Android compatibility */}
       <LinearGradient
         colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,1)', 'rgba(0,0,0,1)']}
-        locations={[0, 0.9]}
-        // className="flex-1"
+        locations={[0.4, 0.9, 0.9]}
+        style={{ flex: 1 }}
       >
         {/* Content Container */}
         <View className="flex-column h-full justify-between px-6 pb-10">
@@ -38,6 +38,7 @@ const OnboardingSecondPage = ({
               variant="outline"
             />
           </View>
+
           {/* Center Section - Logo and Branding */}
           <View className="flex-1 items-center justify-center">
             {/* Logo Icon */}
@@ -48,7 +49,7 @@ const OnboardingSecondPage = ({
               </Text>
 
               {/* Subtitle */}
-            <Text className="font-regular-nunito text-center text-lg  text-white">
+              <Text className="font-regular-nunito text-center text-lg text-white">
                 Boost Your Mood with AI-Powered Motivation
               </Text>
             </View>

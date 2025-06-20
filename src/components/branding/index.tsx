@@ -8,11 +8,13 @@ const Branding = ({
   isNameVisible = false,
   className,
   invertedColors,
+  imageClassname,
 }: {
   isLogoVisible?: boolean;
   isNameVisible?: boolean;
   className?: string;
   invertedColors?: boolean;
+  imageClassname?: string;
 }) => {
   const textColor = invertedColors ? 'text-black' : 'text-white';
   return (
@@ -21,7 +23,7 @@ const Branding = ({
         <View className="rounded-xl bg-transparent p-2 dark:bg-blackEerie dark:p-0">
           <Image
             source={require('assets/splash-icon.png')}
-            className="size-[50px]"
+            className={`size-[50px] ${imageClassname}`}
           />
         </View>
       )}

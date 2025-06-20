@@ -19,7 +19,7 @@ const button = tv({
   slots: {
     container: 'my-2 flex flex-row items-center justify-center rounded-md px-4',
     label: 'font-semibold-nunito text-base',
-    indicator: 'h-6 text-white',
+    indicator: 'h-6 text-white dark:text-white',
   },
 
   variants: {
@@ -41,7 +41,7 @@ const button = tv({
       },
       destructive: {
         container:
-          'rounded-xl border-2 border-red-100 bg-red-500 dark:border-0 dark:bg-red-600',
+          'rounded-xl border-[1.5px] border-red-100 bg-red-500 dark:border-0 dark:bg-red-600',
         label: 'text-white',
         indicator: 'text-white',
       },
@@ -79,7 +79,7 @@ const button = tv({
     },
     disabled: {
       true: {
-        container: 'disabled:border-neutral-200 disabled:bg-primary-600 ',
+        container: 'disabled:border-neutral-200 disabled:bg-primary-600',
         label: 'text-neutral-600 dark:text-neutral-600',
         indicator: 'text-neutral-400 dark:text-neutral-400',
       },
@@ -156,7 +156,8 @@ export const Button = React.forwardRef<View, Props>(
         {loading ? (
           <ActivityIndicator
             size="small"
-            className={styles.indicator()}
+            // className={styles.indicator()}
+            color={colors.white}
             testID={testID ? `${testID}-activity-indicator` : undefined}
           />
         ) : (
@@ -197,7 +198,7 @@ export const Button = React.forwardRef<View, Props>(
           end={gradientEnd}
           locations={gradientLocations}
           style={{
-            borderRadius: 20, // Adjust based on your design needs
+            borderRadius: 10, // Adjust based on your design needs
             opacity: disabled ? 0.8 : 1,
           }}
         >

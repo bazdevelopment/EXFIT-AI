@@ -2,7 +2,8 @@ import * as React from 'react';
 import Svg, { Circle, Path } from 'react-native-svg';
 
 import { type ISvgProps } from '@/types/svg-types';
-import colors from '@/ui/colors';
+
+import colors from '../../colors';
 
 export const UploadFilesIllustration = (props: ISvgProps) => (
   <Svg

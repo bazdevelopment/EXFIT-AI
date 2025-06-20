@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { useScrollToTop } from '@react-navigation/native';
 import { router } from 'expo-router';
 import { useColorScheme } from 'nativewind';
@@ -22,6 +23,7 @@ import { ThemeItem } from '@/components/settings/theme-item';
 import Toast from '@/components/toast';
 import { Button, colors, ScrollView, View } from '@/components/ui';
 import { LogoutIcon, Rate } from '@/components/ui/assets/icons';
+import { CrownIllustration } from '@/components/ui/assets/illustrations';
 import { translate, useSelectedLanguage } from '@/core';
 import { Env } from '@/core/env';
 import useRemoteConfig from '@/core/hooks/use-remote-config';
@@ -58,6 +60,8 @@ export default function Settings() {
         visible
         title={translate('general.attention')}
         subtitle={translate('alerts.logoutQuestion')}
+        image={<CrownIllustration />}
+        // imageSource={require('../../')}
         buttons={[
           {
             label: translate('general.close'),
@@ -83,7 +87,7 @@ export default function Settings() {
       />,
       {
         position: 'middle', // Place the alert in the middle of the screen
-        duration: Infinity, // Keep the alert visible until dismissed
+        duration: Infinity, // Keep the alert visible until dismissed,
       }
     );
   };

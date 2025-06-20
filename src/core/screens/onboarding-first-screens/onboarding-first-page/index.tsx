@@ -24,7 +24,8 @@ const OnboardingFirstPage = ({
       {/* Dark Overlay */}
       <LinearGradient
         colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,1)', 'rgba(0,0,0,1)']}
-        locations={[0, 0.9]}
+        locations={[0.4, 0.9, 0.9]}
+        style={{ flex: 1 }}
         // className="flex-1"
       >
         {/* Content Container */}

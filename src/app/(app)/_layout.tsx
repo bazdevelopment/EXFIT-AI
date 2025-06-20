@@ -1,7 +1,7 @@
-import { Redirect, SplashScreen, Tabs, useSegments } from 'expo-router';
+import { Redirect, Tabs, useSegments } from 'expo-router';
 import { firebaseAuth } from 'firebase/config';
 import { useColorScheme } from 'nativewind';
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 
 import { useUser } from '@/api/user/user.hooks';
 import CustomHeader from '@/components/cusom-header';
@@ -25,7 +25,6 @@ import { getBottomTabBarStyle } from '@/core/navigation/tabs/tabs.styles';
 export default function TabLayout() {
   const status = useAuth.use.status();
   const isLoggedIn = !!firebaseAuth.currentUser?.uid;
-
   const [isFirstTime] = useIsFirstTime();
   const [isFirstOnboardingDone] = useFirstOnboarding();
   const [isSecondOnboardingDone] = useSecondOnboarding();
@@ -33,24 +32,12 @@ export default function TabLayout() {
   const { language } = useSelectedLanguage();
   const { logEvent } = useCrashlytics();
   const { data: userInfo, isPending: isPendingUserinfo } = useUser(language);
-
   const addSelectionHapticEffect = useHaptic('selection');
   const segments = useSegments();
 
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
   const bottomTabBarStyles = getBottomTabBarStyle(isDark);
-
-  const hideSplash = useCallback(async () => {
-    await SplashScreen.hideAsync();
-  }, []);
-  useEffect(() => {
-    if (status !== 'idle') {
-      setTimeout(() => {
-        hideSplash();
-      }, 1000);
-    }
-  }, [hideSplash, status]);
 
   if (isPendingUserinfo) return <InitialLoadSpinner />;
 

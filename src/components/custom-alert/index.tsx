@@ -1,12 +1,7 @@
+/* eslint-disable max-lines-per-function */
 import { BlurView } from '@react-native-community/blur';
 import React, { useEffect, useRef } from 'react';
-import {
-  Animated,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import { Animated, Text, View } from 'react-native';
 
 import { Button } from '@/components/ui';
 import { DEVICE_DIMENSIONS } from '@/constants/device-dimentions';
@@ -28,6 +23,8 @@ interface CustomAlertProps {
   title?: string; // Optional title (bold)
   subtitle?: string; // Optional subtitle (normal weight)
   buttons: ButtonConfig[]; // Array of buttons (max 3)
+  // Changed type to React.ReactNode (can be JSX.Element, string, number, array of those)
+  image?: React.ReactNode; // <--- New prop for the component
 }
 
 // eslint-disable-next-line max-lines-per-function
@@ -36,6 +33,7 @@ const CustomAlert = ({
   title,
   subtitle,
   buttons,
+  image, // <--- Destructure the new prop
 }: CustomAlertProps) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -72,52 +70,65 @@ const CustomAlert = ({
         opacity: fadeAnim,
         marginRight: DEVICE_TYPE.IOS ? -14 : 0,
       }}
+      className="absolute left-0 top-0 items-center justify-center"
     >
       <BlurView
-        blurAmount={1}
+        blurAmount={5}
         blurType="dark"
-        style={[StyleSheet.absoluteFill]}
+        style={{
+          position: 'absolute',
+          top: -2000,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        }}
       />
 
-      <TouchableWithoutFeedback onPress={() => Toast.dismiss()}>
-        <Animated.View
-          style={[{ opacity: fadeAnim }]}
-          className="flex-1 items-center justify-center"
-        >
-          <View className="elevation-5 dark:bg-blackEerie mx-[15%] mt-[-50] items-center justify-center rounded-3xl bg-white p-7">
-            {/* Title (bold) */}
-            {title && (
-              <Text className="font-bold-nunito mb-2 text-center text-xl dark:text-white">
-                {title}
-              </Text>
-            )}
-
-            {/* Subtitle (normal weight) */}
-            {subtitle && (
-              <Text className="font-primary-nunito mb-2 text-center text-base dark:text-white">
-                {subtitle}
-              </Text>
-            )}
-
-            {/* Buttons */}
-            <View className="mt-2 w-full flex-row justify-between gap-5">
-              {buttons.map((button, index) => (
-                <Button
-                  key={index}
-                  variant={button.variant}
-                  label={button.label}
-                  className={button.className}
-                  textClassName={button.buttonTextClassName}
-                  onPress={() => {
-                    button.onPress();
-                    Toast.dismiss();
-                  }}
-                />
-              ))}
+      <Animated.View
+        style={[{ opacity: fadeAnim, position: 'absolute' }]}
+        className="size-full flex-1 items-center justify-center"
+      >
+        <View className="elevation-5 mx-[15%] mt-[-50] items-center justify-center rounded-2xl  bg-black/50 p-7 dark:bg-blackEerie">
+          {/* Icon Component */}
+          {image && (
+            <View className="mb-4">
+              {/* Add margin below the component */}
+              {image}
             </View>
+          )}
+
+          {/* Title (bold) */}
+          {title && (
+            <Text className="mb-2 text-center font-bold-nunito text-xl text-white dark:text-white">
+              {title}
+            </Text>
+          )}
+
+          {/* Subtitle (normal weight) */}
+          {subtitle && (
+            <Text className="mb-2 text-center font-primary-nunito text-base text-white dark:text-white">
+              {subtitle}
+            </Text>
+          )}
+
+          {/* Buttons */}
+          <View className="mt-2 w-full flex-row justify-between gap-5">
+            {buttons.map((button, index) => (
+              <Button
+                key={index}
+                variant={button.variant}
+                label={button.label}
+                className={button.className}
+                textClassName={button.buttonTextClassName}
+                onPress={() => {
+                  button.onPress();
+                  Toast.dismiss();
+                }}
+              />
+            ))}
           </View>
-        </Animated.View>
-      </TouchableWithoutFeedback>
+        </View>
+      </Animated.View>
     </Animated.View>
   );
 };

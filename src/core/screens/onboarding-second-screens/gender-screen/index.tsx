@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { View } from 'react-native';
 
 import { useUser } from '@/api/user/user.hooks';
 import { type IOnboardingCollectedData } from '@/app/onboarding-second';
 import GenderCard from '@/components/gender-card';
 import Greeting from '@/components/greeting';
+import ScreenWrapper from '@/components/screen-wrapper';
 import { Button, colors, Text } from '@/components/ui';
 import { ArrowRight } from '@/components/ui/assets/icons';
 import { useSelectedLanguage } from '@/core/i18n';
@@ -27,7 +28,7 @@ export default function GenderSelectionScreen({
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-black">
+    <ScreenWrapper>
       {/* Header */}
       <View className="flex-row items-center justify-between px-6 py-4">
         <Greeting userName={userInfo?.userName} showGreeting={false} />
@@ -76,6 +77,6 @@ export default function GenderSelectionScreen({
           }
         />
       </View>
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 }

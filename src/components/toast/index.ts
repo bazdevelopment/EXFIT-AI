@@ -88,7 +88,7 @@ export const showPromise = async <T>(
     loading?: string;
     success?: string | ((data: T) => string);
     error?: string | ((error: any) => string);
-  } & ToastProps,
+  } & ToastProps
 ) => {
   return toast.promise(promise, {
     ...mergeOptions(options),
@@ -109,7 +109,7 @@ export const showWithAction = (
   }: {
     actionLabel: string;
     onAction: () => void;
-  } & ToastProps,
+  } & ToastProps
 ) => {
   return toast(message, {
     ...mergeOptions(options),

@@ -15,10 +15,14 @@ const InitialLoadSpinner = () => {
 
   return (
     <ScreenWrapper>
-      <View className="-top-20 flex-1 items-center justify-center gap-3">
+      <View className="flex-1 items-center justify-center gap-3">
         <FocusAwareStatusBar hidden />
 
-        <Branding isLogoVisible className="top-[-25]" />
+        <Branding
+          isLogoVisible
+          className="top-[-25]"
+          imageClassname="size-[100px]"
+        />
         {/* Rotating Spinner */}
         <ActivityIndicator
           size="large"

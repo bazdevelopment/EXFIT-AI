@@ -37,7 +37,7 @@ export default function AnonymousLogin() {
     <View className="flex-1">
       <FocusAwareStatusBar hidden />
       <KeyboardStickyView
-        className="flex-1 bg-black"
+        className="flex-1"
         offset={{
           opened: isVerySmallDevice
             ? 0
@@ -58,10 +58,12 @@ export default function AnonymousLogin() {
           <ImageBackground
             source={require('../components/ui/assets/images/chest-press.jpg')}
             resizeMode="cover"
+            className="flex-1"
           >
             <LinearGradient
               colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,1)', 'rgba(0,0,0,1)']}
-              locations={[0, 0.9]}
+              locations={[0, 0.7, 0.9]}
+              style={{ flex: 1 }}
             >
               <View
                 className={`h-full px-6 pt-20 ${isVerySmallDevice && 'pt-[10%]'} ${isMediumDevice && 'pt-[20%]'}`}

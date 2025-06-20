@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 
 import { useUser } from '@/api/user/user.hooks';
 import { type IOnboardingCollectedData } from '@/app/onboarding-second';
 import Greeting from '@/components/greeting';
 import Icon from '@/components/icon';
+import ScreenWrapper from '@/components/screen-wrapper';
 import SelectableButton from '@/components/selectable-button';
 import { Button, colors } from '@/components/ui';
 import { ArrowLeft, ArrowRight } from '@/components/ui/assets/icons';
@@ -39,8 +40,8 @@ const ExperienceLevelScreen = ({
 
   return (
     // SafeAreaView for proper layout on iOS devices, StatusBar for dark content
-    <SafeAreaView className="flex-1 bg-black">
-      <ScrollView className="flex-1">
+    <ScreenWrapper>
+      <ScrollView className="mt-6 flex-1">
         {/* Header Section */}
         <View className="flex-row items-center justify-between px-4">
           <View className="flex-row items-center">
@@ -85,7 +86,7 @@ const ExperienceLevelScreen = ({
       <View className="bg-black px-4 py-6">
         <Button
           label="Continue"
-          icon={<ArrowRight />}
+          icon={<ArrowRight color={colors.white} />}
           loading={isSubmitOnboardingLoading}
           withGradientBackground
           disabled={!selectedLevel}
@@ -104,7 +105,7 @@ const ExperienceLevelScreen = ({
           onPress={onSkip}
         />
       </View>
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 };
 

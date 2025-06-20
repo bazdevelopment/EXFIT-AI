@@ -4,7 +4,7 @@ import React from 'react';
 import { ImageBackground, View } from 'react-native';
 
 import GradientText from '@/components/gradient-text';
-import { Button, Image, Text } from '@/components/ui';
+import { Button, FocusAwareStatusBar, Image, Text } from '@/components/ui';
 import { useIsFirstTime } from '@/core';
 
 const WelcomeScreen = () => {
@@ -12,18 +12,21 @@ const WelcomeScreen = () => {
 
   return (
     <View className="flex-1 bg-black">
-      {/* Background Image with Overlay */}
-      <ImageBackground
-        source={require('../components/ui/assets/images/welcome-image.jpg')}
-        className="flex-1"
-        resizeMode="cover"
+      <FocusAwareStatusBar hidden />
+
+      <LinearGradient
+        colors={['rgba(0,0,0,0.3)', 'rgba(0,0,0,0.7)', 'rgba(0,0,0,0.95)']}
+        locations={[0, 0.5]}
+        style={{ flex: 1 }}
       >
-        {/* Dark Overlay */}
-        <LinearGradient
-          colors={['rgba(0,0,0,0.3)', 'rgba(0,0,0,0.7)', 'rgba(0,0,0,0.95)']}
-          locations={[0, 0.5]}
-          // className="flex-1"
+        {/* Background Image with Overlay */}
+        <ImageBackground
+          source={require('../components/ui/assets/images/welcome-image.jpg')}
+          className="flex-1"
+          resizeMode="cover"
         >
+          {/* Dark Overlay */}
+
           {/* Content Container */}
           <View className="flex-column h-full justify-between px-6 pb-10">
             {/* Center Section - Logo and Branding */}
@@ -49,7 +52,7 @@ const WelcomeScreen = () => {
               <View className="absolute bottom-20 gap-4">
                 <GradientText colors={['#3195FD', '#666AFF']}>
                   <Text className="text-center font-extra-bold-nunito text-4xl leading-tight">
-                    Lift. Gain. Repeat.
+                    Move. Gain. Repeat.
                   </Text>
                 </GradientText>
 
@@ -74,8 +77,8 @@ const WelcomeScreen = () => {
               }}
             />
           </View>
-        </LinearGradient>
-      </ImageBackground>
+        </ImageBackground>
+      </LinearGradient>
     </View>
   );
 };

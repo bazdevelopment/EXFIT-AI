@@ -7,6 +7,7 @@ import { type IDayOfWeek } from '@/types/date-time';
 import {
   getCurrentDay,
   getCurrentMonth,
+  getCurrentMonthNumber,
   getDaysOfWeek,
   getSegmentedDays,
   getStartAndEndWeek,
@@ -33,6 +34,11 @@ export const useWeekNavigation = () => {
     language
   );
   const currentMonth = getCurrentMonth(currentYear, weekNumber, language);
+  const currentMonthNumber = getCurrentMonthNumber(
+    currentYear,
+    weekNumber,
+    language
+  );
   const segmentedDays = getSegmentedDays(weekDates);
   const interval = getWeekInterval(currentYear, weekNumber, language);
   const currentDay = getCurrentDay('ddd', language);
@@ -68,5 +74,6 @@ export const useWeekNavigation = () => {
     initialDayFocused,
     startOfWeek,
     endOfWeek,
+    currentMonthNumber,
   };
 };

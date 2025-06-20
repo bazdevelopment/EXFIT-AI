@@ -92,6 +92,18 @@ export const getCurrentMonth = (
 };
 
 /**
+ * Utility function used to get the current month of the current month number
+ */
+export const getCurrentMonthNumber = (
+  year: number,
+  weekNumber: number,
+  locale: string
+): string => {
+  const currentDate = dayjs().locale(locale).year(year).week(weekNumber);
+  return currentDate.format('MM');
+};
+
+/**
  * Utility function which returns a string with the interval of the week
  * E.g for the week between 22 and 28 april it will show => 22.04 - 28.04
  */

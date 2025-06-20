@@ -1,23 +1,32 @@
 import { TouchableOpacity, View } from 'react-native';
 
+import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
+
 import { Text } from '../ui';
 
-const CalendarMiniView = ({ showYear, showMonth, containerClassName }) => {
-  const year = '2025';
-  const month = 'June';
-  const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+const CalendarMiniView = ({
+  showYear,
+  showMonth,
+  containerClassName,
+  currentWeekActivityLog,
+}) => {
+  const {
+    segmentedDays,
+    currentMonth,
+    currentYear,
+    initialDayFocused,
+    currentMonthNumber,
+  } = useWeekNavigation();
 
+  const daysOfWeek = segmentedDays.map((day) => day.title);
   // Hardcoded data to match the image exactly
-  const dates: DateItem[] = [
-    { day: 29, status: 'inactive' },
-    { day: 30, status: 'inactive' },
-    { day: 1, status: 'completed' },
-    { day: 2, status: 'completed' },
-    { day: 3, status: 'skipped' },
-    { day: 4, status: 'completed' },
-    { day: 5, status: 'challenge' },
-  ];
+  const currentWeekActivityDates = segmentedDays.map((dayItem) => {
+    const day = Number(dayItem.subtitle);
+    const dateKey = `${currentYear}-${currentMonthNumber}-${dayItem.subtitle}`; // Adjust if leading zeros are missing
+    const status = currentWeekActivityLog[dateKey] || 'inactive';
 
+    return { day, status };
+  });
   return (
     <View className={`w-full rounded-lg ${containerClassName}`}>
       {/* 1. Header: Year and Month */}
@@ -25,11 +34,13 @@ const CalendarMiniView = ({ showYear, showMonth, containerClassName }) => {
         className={`flex-row items-center justify-between ${(showYear || showMonth) && 'mb-6'}`}
       >
         {showYear && (
-          <Text className="text-3xl font-bold text-white">{year}</Text>
+          <Text className="text-3xl font-bold text-white">{currentYear}</Text>
         )}
         {showMonth && (
           <TouchableOpacity className="flex-row items-center">
-            <Text className="text-bold mr-1 text-xl text-white">{month}</Text>
+            <Text className="text-bold mr-1 text-xl text-white">
+              {currentMonth}
+            </Text>
             {/* <Feather name="chevron-down" size={24} color="white" /> */}
           </TouchableOpacity>
         )}
@@ -40,7 +51,7 @@ const CalendarMiniView = ({ showYear, showMonth, containerClassName }) => {
         {daysOfWeek.map((day) => (
           <Text
             key={day}
-            className="w-12 text-center text-base font-semibold text-gray-400"
+            className={`w-12 text-center font-semibold-nunito text-base text-gray-400 ${day === initialDayFocused?.title ? 'font-extra-bold-nunito color-[#3195FD]' : ''}`}
           >
             {day}
           </Text>
@@ -49,14 +60,14 @@ const CalendarMiniView = ({ showYear, showMonth, containerClassName }) => {
 
       {/* 3. Dates Row */}
       <View className="mb-6 flex-row justify-between">
-        {dates.map((date, index) => (
+        {currentWeekActivityDates.map((date, index) => (
           <DateCircle key={index} day={date.day} status={date.status} />
         ))}
       </View>
 
       {/* 4. Legend */}
       <View className="flex-row items-center justify-center gap-2">
-        <LegendItem color="bg-green-400" label="Completed" />
+        <LegendItem color="bg-green-400" label="Attended" />
         <LegendItem color="bg-red-500" label="Skipped" />
         <LegendItem
           color="bg-black border-[1px] border-dashed border-white/60 p-2"
@@ -70,14 +81,9 @@ const CalendarMiniView = ({ showYear, showMonth, containerClassName }) => {
 export default CalendarMiniView;
 
 // Define the possible statuses for a date
-type DateStatus = 'completed' | 'skipped' | 'challenge' | 'inactive' | 'empty';
+type DateStatus = 'attended' | 'skipped' | 'challenge' | 'inactive' | 'empty';
 
 // Define the structure for our date data
-interface DateItem {
-  day: number | null; // Allow null for empty grid cells
-  status: DateStatus;
-}
-
 const DateCircle = ({
   day,
   status,
@@ -92,7 +98,7 @@ const DateCircle = ({
 
   // Define styles for each status using a key-value map
   const statusStyles = {
-    completed: 'bg-green-400',
+    attended: 'bg-green-400',
     skipped: 'bg-red-500',
     challenge: 'bg-gray-800',
     inactive: 'border-2 border-dashed border-gray-500',

@@ -13,7 +13,7 @@ import { ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
@@ -48,7 +48,19 @@ export default function RootLayout() {
     'Font-Medium': NunitoSans_400Regular,
     'Font-Extra-Bold': NunitoSans_800ExtraBold,
   });
-  if (!fontsLoaded) return null;
+
+  const hideSplash = useCallback(async () => {
+    await SplashScreen.hideAsync();
+  }, []);
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      setTimeout(() => {
+        hideSplash();
+      }, 500);
+    }
+  }, [hideSplash, fontsLoaded]);
+
   return (
     <Providers>
       <Stack>
@@ -94,7 +106,6 @@ export default function RootLayout() {
           name="excuse-buster"
           options={{
             headerShown: false,
-            gestureEnabled: false,
             animation: 'fade',
             animationDuration: 500,
           }}
