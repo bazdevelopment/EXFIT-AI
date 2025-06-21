@@ -28,6 +28,7 @@ export const useWeekNavigation = () => {
 
   const weekNumber: number = getWeekNumber(weekOffset, language);
   const currentYear = getYearFromWeekOffset(weekOffset, language);
+
   const weekDates: IDayOfWeek[] = getDaysOfWeek(
     weekNumber,
     currentYear,

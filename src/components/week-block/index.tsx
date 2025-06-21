@@ -1,8 +1,9 @@
-import { useColorScheme } from 'nativewind';
-import React, { useEffect } from 'react';
+import dayjs from 'dayjs';
+import React from 'react';
 import { View } from 'react-native';
 
-import { translate } from '@/core';
+import { useGetCalendarActivityLog } from '@/api/activity-logs/activity-logs.hooks';
+import { translate, useSelectedLanguage } from '@/core';
 import { useSegmentedSelection } from '@/core/hooks/use-segmented-selection';
 
 import CalendarMiniView from '../calendar-mini-view';
@@ -17,7 +18,7 @@ import { type IWeekBlock } from './week-block.interface';
  */
 const WeekBlock = ({
   reportSections,
-  onScrollToIndex,
+  onDayPress,
   weekOffset,
   initialDayFocused,
   changeWeekOffset,
@@ -26,39 +27,18 @@ const WeekBlock = ({
   interval,
   currentYear,
   segmentedDays,
+  currentMonthNumber,
   className,
 }: IWeekBlock) => {
-  const { colorScheme } = useColorScheme();
-  const isDark = colorScheme === 'dark';
   const { checkIsActive, handleChangeSelection, selectedOption } =
     useSegmentedSelection(initialDayFocused as ISegmentedControlOption);
 
-  /**
-   * When user navigation to the current week I want the current day to be selected
-   */
-  useEffect(() => {
-    const handleWeekOffsetChange = () => {
-      if (weekOffset !== 0) {
-        handleChangeSelection(null);
-        // onScrollToIndex(0, 0);
-      } else {
-        handleChangeSelection(initialDayFocused as ISegmentedControlOption);
-        const indexToScrollFound = findSectionIndexToScroll(
-          initialDayFocused?.subtitle as string,
-          reportSections
-        );
-
-        /**
-         *  Delay added to ensure the UI has time to update before scrolling
-         * TODO: maybe the check ofr indexes && can be replace with something more specific
-         */
-
-        // typeof indexToScrollFound === 'number' &&
-        //   wait(500).then(() => onScrollToIndex(indexToScrollFound));
-      }
-    };
-    handleWeekOffsetChange();
-  }, [weekOffset, reportSections?.length]);
+  const { language } = useSelectedLanguage();
+  const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
+    startDate: dayjs().startOf('isoWeek').toISOString(),
+    endDate: dayjs().endOf('isoWeek').toISOString(),
+    language,
+  });
 
   return (
     <>
@@ -85,42 +65,18 @@ const WeekBlock = ({
           color={colors.white}
         />
       </View>
-      <CalendarMiniView containerClassName="px-2" />
-      {/* <SegmentedControl
-        backgroundColor={colors.transparent}
-        tabInactiveColor={colors.black}
-        options={segmentedDays}
-        selectedOption={selectedOption as ISegmentedControlOption}
-        onOptionPress={(option) => {
-          handleChangeSelection(option);
-
-          const indexToScroll = findSectionIndexToScroll(
-            `${option.month}-${option.subtitle}`,
-            reportSections
-          );
-
-          // typeof indexToScroll === 'number' && onScrollToIndex(indexToScroll);
-        }}
-        withBorder={!isDark}
-        borderColor={colors.primary[300]}
-        spacing={8}
-        checkIsActive={checkIsActive}
-      /> */}
+      <CalendarMiniView
+        containerClassName="px-2 mb-3"
+        currentWeekActivityLog={currentWeekActivityLog}
+        segmentedDays={segmentedDays}
+        currentMonth={currentMonth}
+        currentYear={currentYear}
+        initialDayFocused={initialDayFocused}
+        currentMonthNumber={currentMonthNumber}
+        onDayPress={onDayPress}
+      />
     </>
   );
 };
 
 export default WeekBlock;
-
-/**
- * Utility function used to find the section index and element index to scroll
- * slice(8) to extract the last 2 characters from "20-12-22"
- */
-const findSectionIndexToScroll = (
-  selectedDayTitle: string,
-  reports: any
-): number => {
-  return reports.findIndex((record: ISegmentedControlOption) =>
-    record.month.includes(selectedDayTitle)
-  );
-};

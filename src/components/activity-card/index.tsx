@@ -3,17 +3,26 @@ import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
 interface ActivityCardProps {
-  excusedLog: string;
+  title: string;
   aiSuggestion: string;
   outcome: string;
   stakesEarned: number;
   onPress?: () => void;
 }
 
+const statusStyles = {
+  attended: 'bg-green-400',
+  skipped: 'bg-red-500',
+  challenge: 'bg-gray-800',
+  inactive: 'border-2 border-dashed border-gray-500',
+  empty: '', // No special style for empty
+};
+
 // Alternative compact version for lists
 const CompactActivityCard: React.FC<ActivityCardProps> = ({
-  excusedLog,
+  title,
   aiSuggestion,
+  status,
   outcome,
   stakesEarned,
   onPress,
@@ -25,14 +34,16 @@ const CompactActivityCard: React.FC<ActivityCardProps> = ({
       className="my-1 flex-row items-center rounded-2xl bg-gray-800 p-4 shadow-md"
     >
       {/* Blue accent line */}
-      <View className="mr-4 h-16 w-1 rounded-full bg-blue-500" />
+      <View className={`mr-4 h-16 w-1 rounded-full  ${statusStyles[status]}`} />
 
       {/* Content */}
       <View className="flex-1">
-        <Text className="mb-1 text-lg font-bold text-white">{excusedLog}</Text>
-        <Text className="mb-1 text-sm text-gray-400">{aiSuggestion}</Text>
+        <Text className="mb-1 text-lg font-bold text-white">{title}</Text>
+        {/* <Text className="mb-1 text-sm text-gray-400">{aiSuggestion}</Text> */}
         <View className="flex-row items-center justify-between">
-          <Text className="flex-1 text-sm text-gray-300">{outcome}</Text>
+          <Text className="flex-1 text-sm text-gray-300">
+            {status === 'skipped' ? 'Excus:' : 'Activities'}:{outcome || 'N/A'}
+          </Text>
           <View className="ml-2 flex-row items-center">
             <Text className="text-sm font-semibold text-orange-400">
               {stakesEarned} 🔥

@@ -12,7 +12,6 @@ export const createActivityLog = async (
   logData: ICreateLogRequestData
 ): Promise<ICreateLogResponseData> => {
   try {
-    console.log('createActivityLog', logData);
     const { data } =
       await firebaseCloudFunctionsInstance.httpsCallable('createActivityLog')(
         logData
