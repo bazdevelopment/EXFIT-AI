@@ -16,7 +16,7 @@ const db = admin.firestore();
  */
 interface CreateLogRequestData {
   language: string;
-  type: 'daily_checkin' | 'excuse_logged';
+  type: 'daily_checkin' | 'excuse_logged' | 'custom_activity';
   details: {
     durationMinutes?: number;
     activityName?: string;
@@ -25,6 +25,7 @@ interface CreateLogRequestData {
     // ... add any other client-provided details
   };
   linkedAiTaskId?: string;
+  date?: string; // Optional: Date in "YYYY-MM-DD" format
 }
 
 /**
@@ -34,7 +35,7 @@ interface CreateLogRequestData {
 interface ActivityLogDocument {
   date: admin.firestore.Timestamp;
   createdAt: admin.firestore.FieldValue;
-  type: 'daily_checkin' | 'excuse_logged';
+  type: 'daily_checkin' | 'excuse_logged' | 'custom_activity';
   status: 'attended' | 'skipped';
   stakesEarned: number;
   details: {
@@ -46,26 +47,29 @@ interface ActivityLogDocument {
   linkedAiTaskId?: string;
 }
 
+// eslint-disable-next-line valid-jsdoc
 /**
- * A Callable Cloud Function to create a new activity log for the authenticated user.
- * It handles validation, determines server-side values, and writes to Firestore.
+ * Callable Cloud Function to create a new activity log for the authenticated user.
+ * Validates input, determines server-side values, and writes to Firestore.
  *
- * @param {CreateLogRequestData} data - The data sent from the client, conforming to CreateLogRequestData.
- * @param {any} context - The context of the call, including authentication information.
- * @return {{ logId: string }} An object containing the ID of the newly created document.
+ * @param {CreateLogRequestData} data - The client-sent data, conforming to CreateLogRequestData.
+ * @param {functions.https.CallableContext} context - The call's context, including authentication information.
+ * @returns {{ logId: string; message: string }} An object containing the ID of the new document and a confirmation message.
  */
 const createActivityLogHandler = async (
   data: CreateLogRequestData,
-  context: any,
+  context: functions.https.CallableContext, // Use CallableContext for better type inference
 ): Promise<{ logId: string; message: string }> => {
-  // 1. --- AUTHENTICATION CHECK ---
   const t = getTranslation(data.language);
 
+  // 1. --- AUTHENTICATION ---
   if (!context.auth) {
     throwHttpsError('unauthenticated', t.common.notAuthorized);
   }
   const userId = context.auth.uid;
-  functions.logger.info(`Log creation attempt by user ${userId}`, { data });
+  functions.logger.info(`Attempting to create log for user: ${userId}`, {
+    data,
+  });
 
   // 2. --- INPUT VALIDATION ---
   if (!data.type || !data.details) {
@@ -75,47 +79,59 @@ const createActivityLogHandler = async (
     );
   }
 
-  // Prepare the final document with server-side logic
-  const today = new Date();
-  today.setHours(0, 0, 0, 0); // Normalize date to midnight
+  // Determine the activity date, prioritizing the provided date or defaulting to today.
+  let activityDate: Date;
+  if (data.date) {
+    // Parse provided date string. Append 'T00:00:00' to ensure UTC interpretation for consistency.
+    const parsedDate = new Date(`${data.date}T00:00:00Z`); // Added 'Z' for explicit UTC
+    if (isNaN(parsedDate.getTime())) {
+      throwHttpsError(
+        'invalid-argument',
+        'Invalid date format. Expected YYYY-MM-DD.',
+      );
+    }
+    activityDate = parsedDate;
+  } else {
+    // Use today's date, normalized to midnight UTC.
+    activityDate = new Date();
+    activityDate.setUTCHours(0, 0, 0, 0); // Use setUTCHours for timezone independence
+  }
 
+  // Prepare the activity log document with initial values.
   const finalLog: ActivityLogDocument = {
-    date: admin.firestore.Timestamp.fromDate(today),
+    date: admin.firestore.Timestamp.fromDate(activityDate),
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     type: data.type,
     details: data.details,
-    // Default values to be overridden by server logic
-    status: 'attended',
-    stakesEarned: 0,
+    status: 'attended', // Default status
+    stakesEarned: 0, // Default stakes
     linkedAiTaskId: data?.linkedAiTaskId || '',
   };
 
   // 3. --- SERVER-SIDE BUSINESS LOGIC ---
-  // This is the key benefit of using a Cloud Function.
   switch (data.type) {
     case 'daily_checkin':
-      finalLog.status = 'attended';
-      finalLog.stakesEarned = 50; // Standard reward for a attended activity
+      finalLog.stakesEarned = 50; // Award for daily check-in
       break;
-
+    case 'custom_activity':
+      finalLog.stakesEarned = 50; // Award for daily check-in
+      break;
     case 'excuse_logged':
-      finalLog.status = 'skipped'; // An excuse starts as 'skipped'
-      finalLog.stakesEarned = 0; // No reward for just logging an excuse
-      finalLog.details.overcome = false; // Explicitly set 'overcome' to false
+      finalLog.status = 'skipped'; // Excuse means activity was skipped
+      finalLog.details.overcome = false; // By default, an excuse means it wasn't overcome
       break;
-
     default:
-      throwHttpsError('invalid-argument', `Invalid log type: ${data.type}`);
+      throwHttpsError('invalid-argument', `Unsupported log type: ${data.type}`);
   }
 
   // 4. --- WRITE TO FIRESTORE ---
   try {
-    const logCollectionRef = db
+    const userActivityLogsRef = db
       .collection('users')
       .doc(userId)
       .collection('activityLogs');
 
-    const docRef = await logCollectionRef.add(finalLog);
+    const docRef = await userActivityLogsRef.add(finalLog);
     functions.logger.info(
       `Successfully created log ${docRef.id} for user ${userId}.`,
     );
@@ -123,27 +139,19 @@ const createActivityLogHandler = async (
     // 5. --- RETURN RESULT ---
     return {
       logId: docRef.id,
-      message: 'Thank you for logging your activity!',
+      message: 'Your activity has been successfully logged!',
     };
   } catch (error) {
-    functions.logger.error(`Error writing log for user ${userId}:`, error);
-
+    functions.logger.error(
+      `Error writing activity log for user ${userId}:`,
+      error,
+    );
     throwHttpsError(
       'internal',
       'Failed to save your activity log. Please try again.',
     );
   }
 };
-
-/**
- * Defines the possible states for a day on the calendar.
- * This enum makes the code more readable and less prone to typos.
- */
-enum CalendarDayStatus {
-  ATTENDED = 'attended', // Green Day
-  SKIPPED = 'skipped', // Red Day
-}
-
 /**
  * The structure of the data expected from the client-side call.
  */
@@ -166,6 +174,7 @@ interface ActivityLogDetails {
  * The structure of a document in the 'activityLogs' subcollection.
  */
 interface ActivityLog {
+  id: string;
   date: admin.firestore.Timestamp;
   type: 'gym_workout' | 'run' | 'yoga' | 'daily_checkin' | 'excuse_logged';
   status: 'attended' | 'skipped';
@@ -176,9 +185,10 @@ interface ActivityLog {
  * The structure of the JSON object that will be returned to the client.
  * e.g., { "2025-06-01": "attended", "2025-06-02": "skipped" }
  */
-type CalendarStatusMap = {
-  [dateString: string]: CalendarDayStatus;
-};
+
+interface CalendarActivityLogsMap {
+  [date: string]: ActivityLog[] | null; // Key: "YYYY-MM-DD", Value: Array of all ActivityLog documents for that day, or null
+}
 
 // ===================================================================
 // CLOUD FUNCTION
@@ -193,110 +203,107 @@ type CalendarStatusMap = {
  */
 const getCalendarActivityLogHandler = async (
   data: RequestData,
-  context: any,
-): Promise<CalendarStatusMap> => {
-  // 1. --- AUTHENTICATION CHECK ---
-  // Ensure the user is authenticated before proceeding.
+  context: functions.https.CallableContext, // Use specific CallableContext type
+): Promise<CalendarActivityLogsMap> => {
   const t = getTranslation(data.language);
 
-  if (!context.auth) {
-    if (!context.auth) {
-      throwHttpsError('unauthenticated', t.common.notAuthorized);
-    }
+  // 1. --- Authentication & Authorization Check ---
+  if (!context.auth || !context.auth.uid) {
+    throwHttpsError('unauthenticated', t.common.notAuthorized);
   }
   const userId = context.auth.uid;
 
-  // 2. --- INPUT VALIDATION ---
-  // Validate that the required parameters are present.
+  // 2. --- Input Validation and Date Parsing ---
   if (!data.startDate || !data.endDate) {
     throwHttpsError(
       'invalid-argument',
-      "The function must be called with 'startDate' and 'endDate' arguments.",
+      "Function requires 'startDate' and 'endDate' arguments.",
     );
   }
 
-  let startTimestamp: admin.firestore.Timestamp;
-
-  let endTimestamp: admin.firestore.Timestamp;
-
-  // Convert ISO date strings to Firestore Timestamps.
-  try {
-    startTimestamp = admin.firestore.Timestamp.fromDate(
-      new Date(data.startDate),
-    );
-    endTimestamp = admin.firestore.Timestamp.fromDate(new Date(data.endDate));
-  } catch (error) {
-    throwHttpsError(
-      'invalid-argument',
-      'Invalid date format. Please provide dates in ISO string format..',
-    );
-  }
-
-  functions.logger.info(
-    `Fetching logs for user ${userId} from ${data.startDate} to ${data.endDate}`,
-  );
+  let queryStartDate: Date;
+  let queryEndDate: Date;
+  let clientStartDateForIteration: Date;
+  let clientEndDateForIteration: Date;
 
   try {
-    // 3. --- FIRESTORE QUERY ---
-    // Fetch all activity logs for the user within the specified date range.
+    // Dates from dayjs are already YYYY-MM-DD, new Date() parses them as UTC midnight.
+    // This is good for consistency if Firestore timestamps are also effectively UTC.
+    clientStartDateForIteration = new Date(data.startDate);
+    clientEndDateForIteration = new Date(data.endDate);
+
+    // For the Firestore query, ensure timestamps cover the *entire* start and end days.
+    queryStartDate = new Date(data.startDate);
+    queryStartDate.setUTCHours(0, 0, 0, 0); // Start of the day in UTC
+
+    queryEndDate = new Date(data.endDate);
+    queryEndDate.setUTCHours(23, 59, 59, 999); // End of the day in UTC
+
+    // Convert to Firestore Timestamps for the query
+    const startTimestamp = admin.firestore.Timestamp.fromDate(queryStartDate);
+    const endTimestamp = admin.firestore.Timestamp.fromDate(queryEndDate);
+
+    functions.logger.info(
+      `Fetching logs for user ${userId} from ${data.startDate} to ${data.endDate} (UTC query range: ${queryStartDate.toISOString()} to ${queryEndDate.toISOString()})`,
+    );
+
+    // 3. --- Initialize Calendar Map for the Full Interval ---
+    const calendarActivityLogs: CalendarActivityLogsMap = {};
+    const tempDate = new Date(clientStartDateForIteration); // Use a temporary mutable date for iteration
+
+    while (tempDate <= clientEndDateForIteration) {
+      const dayString = tempDate.toISOString().split('T')[0]; // Format as "YYYY-MM-DD"
+      calendarActivityLogs[dayString] = null; // Initialize with null for all days in interval
+      tempDate.setDate(tempDate.getDate() + 1); // Move to the next day
+    }
+
+    // 4. --- Fetch Activity Logs from Firestore ---
     const logsSnapshot = await db
       .collection('users')
       .doc(userId)
       .collection('activityLogs')
       .where('date', '>=', startTimestamp)
       .where('date', '<=', endTimestamp)
+      .orderBy('date', 'asc') // Order by date for consistent processing
       .get();
 
-    const calendarStatus: CalendarStatusMap = {};
-
-    // 4. --- DATA PROCESSING ---
-    // Iterate over each log and determine the status for its day.
+    // 5. --- Process Fetched Logs and Populate Map ---
     logsSnapshot.forEach((doc) => {
-      const log = doc.data() as ActivityLog;
+      // Cast the Firestore document data to our ActivityLog interface
+      const log = { id: doc.id, ...doc.data() } as ActivityLog;
 
-      // Convert the Timestamp to a "YYYY-MM-DD" string to use as a key.
+      // Extract the date string (YYYY-MM-DD) from the log's timestamp,
+      // ensuring consistency with the key format used for initialization.
       const dayString = log.date.toDate().toISOString().split('T')[0];
 
-      let currentDayStatus: CalendarDayStatus | null = null;
-
-      // Determine the status based on the log's properties.
-      if (log.status === 'attended') {
-        currentDayStatus = CalendarDayStatus.ATTENDED;
-      } else if (
-        log.type === 'excuse_logged' &&
-        log.details.overcome === true
-      ) {
-        currentDayStatus = CalendarDayStatus.ATTENDED;
-      } else {
-        // All other cases (skipped activities, unresolved excuses) are considered 'skipped'.
-        currentDayStatus = CalendarDayStatus.SKIPPED;
+      // If this is the first log encountered for this day, change null to an empty array.
+      if (calendarActivityLogs[dayString] === null) {
+        calendarActivityLogs[dayString] = [];
       }
 
-      // --- PRIORITY LOGIC ---
-      // A 'attended' status for a day should always win.
-      // If a day is already marked 'attended', don't downgrade it to 'skipped'
-      // if another log for the same day was a skipped one.
-      if (
-        !calendarStatus[dayString] ||
-        calendarStatus[dayString] !== CalendarDayStatus.ATTENDED
-      ) {
-        calendarStatus[dayString] = currentDayStatus;
-      }
+      // Add the entire log data (including its ID) to the appropriate day's array.
+      // TypeScript assertion to confirm it's an array for push.
+      (calendarActivityLogs[dayString] as ActivityLog[]).push(log);
     });
 
     functions.logger.info(
-      `Successfully processed ${logsSnapshot.size} logs for user ${userId}.`,
+      `Successfully processed ${logsSnapshot.size} activity logs for user ${userId}.`,
     );
 
-    return calendarStatus;
+    return calendarActivityLogs;
   } catch (error) {
-    functions.logger.error('Error fetching activity logs:', error);
+    functions.logger.error('Error in getCalendarActivityLogHandler:', error);
 
-    throwHttpsError(
-      'internal',
-      'An unexpected error occurred while fetching your activity data.',
-    );
+    // Re-throw specific HttpsErrors if they originated from this function's explicit checks
+    // Otherwise, throw a generic internal error
+    if (error instanceof functions.https.HttpsError) {
+      throw error;
+    } else {
+      throwHttpsError(
+        'internal',
+        'An unexpected error occurred while fetching your activity data.',
+      );
+    }
   }
 };
-
 export { createActivityLogHandler, getCalendarActivityLogHandler };
