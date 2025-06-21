@@ -1,6 +1,7 @@
 export interface ICreateLogRequestData {
   language: string;
-  type: 'daily_checkin' | 'excuse_logged';
+  date: string; //YYYY-MM-DD
+  type: 'daily_checkin' | 'excuse_logged' | 'custom_activity';
   details: {
     durationMinutes?: number;
     excuseReason?: string;
@@ -12,11 +13,6 @@ export interface ICreateLogRequestData {
 export interface ICreateLogResponseData {
   logId: string;
   message: string;
-}
-
-enum CalendarDayStatus {
-  ATTENDED = 'attended', // Green Day
-  SKIPPED = 'skipped', // Red Day
 }
 
 /**
@@ -40,8 +36,8 @@ interface ActivityLogDetails {
 /**
  * The structure of a document in the 'activityLogs' subcollection.
  */
-interface ActivityLog {
-  date: admin.firestore.Timestamp;
+export interface IActivityLog {
+  date: string;
   type: 'gym_workout' | 'run' | 'yoga' | 'daily_checkin' | 'excuse_logged';
   status: 'attended' | 'skipped';
   details: ActivityLogDetails;
@@ -52,5 +48,5 @@ interface ActivityLog {
  * e.g., { "2025-06-01": "attended", "2025-06-02": "skipped" }
  */
 export type CalendarStatusMap = {
-  [dateString: string]: CalendarDayStatus;
+  [dateString: string]: IActivityLog;
 };

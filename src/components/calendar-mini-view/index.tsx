@@ -1,32 +1,30 @@
 import { TouchableOpacity, View } from 'react-native';
 
-import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
-
 import { Text } from '../ui';
+import { type ICalendarMiniView } from './calendar-mini-view.interface';
 
 const CalendarMiniView = ({
   showYear,
   showMonth,
   containerClassName,
   currentWeekActivityLog,
-}) => {
-  const {
-    segmentedDays,
-    currentMonth,
-    currentYear,
-    initialDayFocused,
-    currentMonthNumber,
-  } = useWeekNavigation();
-
+  segmentedDays,
+  currentMonth,
+  currentYear,
+  initialDayFocused,
+  currentMonthNumber,
+  onDayPress,
+}: ICalendarMiniView) => {
   const daysOfWeek = segmentedDays.map((day) => day.title);
   // Hardcoded data to match the image exactly
   const currentWeekActivityDates = segmentedDays.map((dayItem) => {
     const day = Number(dayItem.subtitle);
     const dateKey = `${currentYear}-${currentMonthNumber}-${dayItem.subtitle}`; // Adjust if leading zeros are missing
-    const status = currentWeekActivityLog[dateKey] || 'inactive';
+    const data = currentWeekActivityLog?.[dateKey] || null;
 
-    return { day, status };
+    return { day, data };
   });
+
   return (
     <View className={`w-full rounded-lg ${containerClassName}`}>
       {/* 1. Header: Year and Month */}
@@ -59,15 +57,24 @@ const CalendarMiniView = ({
       </View>
 
       {/* 3. Dates Row */}
-      <View className="mb-6 flex-row justify-between">
-        {currentWeekActivityDates.map((date, index) => (
-          <DateCircle key={index} day={date.day} status={date.status} />
-        ))}
+      <View className="mb-4 flex-row justify-between">
+        {currentWeekActivityDates.map((dateResponse, index) => {
+          const { data } = dateResponse;
+          const status = data === null ? 'inactive' : data[0].status;
+          return (
+            <DateCircle
+              key={index}
+              day={dateResponse.day}
+              status={status}
+              onPress={() => onDayPress?.(dateResponse)}
+            />
+          );
+        })}
       </View>
 
       {/* 4. Legend */}
-      <View className="flex-row items-center justify-center gap-2">
-        <LegendItem color="bg-green-400" label="Attended" />
+      <View className="flex-row items-center justify-center gap-4">
+        <LegendItem color="bg-green-400" label="Active" />
         <LegendItem color="bg-red-500" label="Skipped" />
         <LegendItem
           color="bg-black border-[1px] border-dashed border-white/60 p-2"
@@ -87,9 +94,11 @@ type DateStatus = 'attended' | 'skipped' | 'challenge' | 'inactive' | 'empty';
 const DateCircle = ({
   day,
   status,
+  onPress,
 }: {
   day: number | null;
   status: DateStatus;
+  onPress: () => void;
 }) => {
   // If the day is null, render an empty placeholder to maintain grid alignment
   if (!day) {
@@ -110,9 +119,11 @@ const DateCircle = ({
   const textClasses = 'text-white font-bold text-lg';
 
   return (
-    <View className={`${baseClasses} ${statusStyles[status]}`}>
-      <Text className={textClasses}>{day}</Text>
-    </View>
+    <TouchableOpacity onPress={onPress}>
+      <View className={`${baseClasses} ${statusStyles[status]}`}>
+        <Text className={textClasses}>{day}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 

@@ -15,4 +15,5 @@ export interface IWeekBlock {
   segmentedDays: ISegmentedControlOption[];
   reportSections: any;
   className: string;
+  currentMonthNumber: string;
 }

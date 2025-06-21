@@ -20,9 +20,8 @@ import ScreenWrapper from '@/components/screen-wrapper';
 import { colors, useModal } from '@/components/ui';
 import { Notification } from '@/components/ui/assets/icons'; // Ensure this is installed: npx expo install expo-linear-gradient
 import { useSelectedLanguage } from '@/core';
+import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
-
-import dayjs from '../../lib/dayjs';
 
 export default function Home() {
   const { language } = useSelectedLanguage();
@@ -33,13 +32,22 @@ export default function Home() {
   const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
 
   const {
+    segmentedDays,
+    currentMonth,
+    currentYear,
+    initialDayFocused,
+    currentMonthNumber,
+    startOfWeek,
+    endOfWeek,
+  } = useWeekNavigation();
+  const {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
   } = useCreateActivityLog();
 
   const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
-    startDate: dayjs().startOf('isoWeek').toISOString(),
-    endDate: dayjs().endOf('isoWeek').toISOString(),
+    startDate: startOfWeek,
+    endDate: endOfWeek,
     language,
   });
 
@@ -68,7 +76,7 @@ export default function Home() {
       <ScrollView contentContainerClassName="pb-16">
         {isDailyCheckInDone ? (
           <DailyCheckInStatus
-            status={currentWeekActivityLog?.[currentActiveDay]}
+            status={currentWeekActivityLog?.[currentActiveDay][0]?.status}
           />
         ) : (
           <ActivityPromptBanner
@@ -82,6 +90,11 @@ export default function Home() {
             showYear
             containerClassName="px-6 py-4 bg-black"
             currentWeekActivityLog={currentWeekActivityLog}
+            segmentedDays={segmentedDays}
+            currentMonth={currentMonth}
+            currentYear={currentYear}
+            initialDayFocused={initialDayFocused}
+            currentMonthNumber={currentMonthNumber}
           />
         )}
         <MotivationBanner containerClassName="mt-4" />
@@ -92,6 +105,7 @@ export default function Home() {
           onSubmit={({ durationMinutes, activityName }) =>
             onCreateActivityLog({
               language,
+              date: currentActiveDay,
               type: 'daily_checkin',
               details: {
                 durationMinutes,
@@ -108,6 +122,7 @@ export default function Home() {
           onGoToExcuseBuster={() => router.navigate('/excuse-buster')}
           onSubmit={({ skipReason }) =>
             onCreateActivityLog({
+              date: currentActiveDay,
               language,
               type: 'excuse_logged',
               details: {

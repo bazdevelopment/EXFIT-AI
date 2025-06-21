@@ -1,40 +1,38 @@
-import { mockInterpretationRecord } from '__mocks__/dashboard-reports';
+/* eslint-disable max-lines-per-function */
 import { useScrollToTop } from '@react-navigation/native';
 import { FlashList } from '@shopify/flash-list';
-import React, { useMemo, useRef } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { RefreshControl, View } from 'react-native';
+import { RefreshControl, TouchableOpacity, View } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 
+import {
+  useCreateActivityLog,
+  useGetCalendarActivityLog,
+} from '@/api/activity-logs/activity-logs.hooks';
+import { type IActivityLog } from '@/api/activity-logs/activity-logs.types';
 import CompactActivityCard from '@/components/activity-card';
 import { EndScrollPlaceholder } from '@/components/end-scroll-placeholder';
+import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
 import ScreenWrapper from '@/components/screen-wrapper';
-import { Text } from '@/components/ui';
+import { colors, Text, useModal } from '@/components/ui';
 import WeekBlock from '@/components/week-block';
 import { DATE_FORMAT } from '@/constants/date-format';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
+import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 import { formatDate } from '@/core/utilities/format-date';
-import {
-  type IInterpretationRecord,
-  type IInterpretationResult,
-} from '@/types/interpretation-report';
 
 const Activity = () => {
   const scrollViewRef = useRef<FlashList<any>>(null);
   const {
     i18n: { language },
   } = useTranslation();
-  const { isRefetching, onRefetch } = useDelayedRefetch(() => {});
 
-  useScrollToTop(scrollViewRef);
-  const scrollToTop = () => {
-    scrollViewRef.current?.scrollToIndex({
-      index: 0,
-      animated: true,
-    });
-  };
-
-  const interpretationData = mockInterpretationRecord;
   const {
     weekOffset,
     segmentedDays,
@@ -44,99 +42,170 @@ const Activity = () => {
     currentYear,
     initialDayFocused,
     changeWeekOffset,
+    currentMonthNumber,
     startOfWeek,
     endOfWeek,
   } = useWeekNavigation();
 
-  // Helper function to transform daily reports
-  const transformDailyReports = (days: IInterpretationResult | null) => {
-    if (!days) return [];
+  const activityCompleteModal = useModal();
+  const {
+    mutateAsync: onCreateActivityLog,
+    isPending: isCreateActivityLogPending,
+  } = useCreateActivityLog();
+  const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
 
-    return Object.entries(days).map(([dayIndex, reports]) => ({
-      day: dayIndex,
-      data: reports || null,
-    }));
+  const { isRefetching, onRefetch } = useDelayedRefetch(() => {});
+
+  const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
+    startDate: startOfWeek,
+    endDate: endOfWeek,
+    language,
+  });
+
+  // State to hold the actual height of the WeekBlock header.
+  const [headerHeight, setHeaderHeight] = useState(0);
+  // Use the custom hook, passing the dynamically determined headerHeight.
+  const { animatedHeaderStyle, onScroll } = useScrollToHideHeader(headerHeight);
+
+  const onHeaderLayout = useCallback(
+    (event) => {
+      const { height } = event.nativeEvent.layout;
+      if (height > 0 && headerHeight === 0) {
+        setHeaderHeight(height);
+      }
+    },
+    [headerHeight]
+  );
+  useScrollToTop(scrollViewRef);
+
+  const scrollToTop = () => {
+    scrollViewRef.current?.scrollToIndex({
+      index: 0,
+      animated: true,
+    });
   };
 
-  // Main sections transformation
-  const getSections = (interpretationData: IInterpretationRecord) => {
-    if (!interpretationData?.records) {
-      return [];
-    }
-    // Convert object to array, sort by date, and transform data
-    return Object.entries(interpretationData.records)
-      .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
-      .map(([month, dailyRecords]) => ({
-        month,
-        data: transformDailyReports(dailyRecords),
-      }));
+  const onScrollToIndex = ({
+    data,
+    day,
+  }: {
+    data: IActivityLog[];
+    day: string;
+  }) => {
+    const indexToScroll = findSectionIndexToScroll(day, currentWeekActivityLog);
+    typeof indexToScroll === 'number' &&
+      scrollViewRef.current?.scrollToIndex({
+        index: indexToScroll,
+        animated: true,
+      });
   };
 
-  // Usage
-  const sections = getSections(interpretationData);
-  const onScrollToIndex = (index: number) => {
-    scrollViewRef?.current?.scrollToIndex({ index, animated: true });
+  const records = currentWeekActivityLog || {};
+
+  const cardTitle = {
+    attended: 'Active',
+    skipped: 'Skipped',
+    inactive: 'Inactive',
   };
 
-  const records = interpretationData?.records || {};
   // Prepare flat data for FlashList
   const flashListData = useMemo(() => {
     return Object.entries(records)
       .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB)) // Sort by date
-      .map(([date, records]) => ({
+      .map(([date, recordsForDate]) => ({
         id: date,
         date,
-        records,
+        records: recordsForDate, // can be null or an array
       }));
   }, [records]);
 
-  const renderItem = ({ item }) => (
-    <View className="mb-2 mt-4">
-      <View className="flex-row items-center ">
-        <Text className="font-bold-nunito text-xl text-[#3195FD]">
-          {formatDate(item.date, DATE_FORMAT.weekDayMonth, language)}
-        </Text>
-      </View>
+  const renderItem = useCallback(
+    ({ item }) => (
+      <View className="mb-2 border-b-[0.5px] border-white/10">
+        <View className="flex-row items-center justify-between py-2">
+          <Text className="font-bold-nunito text-xl text-[#3195FD]">
+            {formatDate(item.date, DATE_FORMAT.weekDayMonth, language)}
+          </Text>
 
-      {!item.records ? (
-        <View className="ml-1 mt-4 rounded-lg">
-          <Text className="text-md text-white">No activity for this day</Text>
+          <TouchableOpacity
+            onPress={activityCompleteModal.present}
+            className="flex-row items-center rounded-full bg-[#3195FD]/10 px-3 py-1"
+          >
+            <Text className="font-bold-nunito text-lg text-white">+</Text>
+            <Text className="ml-1 font-bold-nunito text-sm text-white">
+              Add
+            </Text>
+          </TouchableOpacity>
         </View>
-      ) : (
-        <View className="mt-4 gap-4">
-          {Array.isArray(item.records) &&
-            item.records.map((record: IInterpretationResult) => {
+
+        {!item.records || item.records.length === 0 ? (
+          <View className="mb-2 rounded-lg">
+            <Text className="ml-[1] font-semibold-nunito text-white">
+              Not much activity going on for this day
+            </Text>
+          </View>
+        ) : (
+          <View className="mt-2 gap-4">
+            {item.records.map((record, index) => {
               return (
                 <CompactActivityCard
-                  excusedLog="Too Tired"
-                  aiSuggestion="10 Mins Energy Boost"
-                  outcome="Did the quick routine!"
-                  stakesEarned="100"
+                  key={`${item.date}-${index}`} // Unique key
+                  title={cardTitle[record.status]}
+                  status={record.status}
+                  outcome={
+                    record.details.excuseReason || record.details.activityName
+                  }
+                  stakesEarned={record.stakesEarned.toString()} // Dynamic value
                 />
               );
             })}
-        </View>
-      )}
-    </View>
+          </View>
+        )}
+      </View>
+    ),
+    [language]
   );
 
   return (
     <ScreenWrapper>
-      <WeekBlock
-        className="px-4"
-        reportSections={[]}
-        // onScrollToIndex={onScrollToIndex}
-        weekOffset={weekOffset}
-        initialDayFocused={initialDayFocused}
-        changeWeekOffset={changeWeekOffset}
-        weekNumber={weekNumber}
-        currentMonth={currentMonth}
-        interval={interval}
-        currentYear={currentYear}
-        segmentedDays={segmentedDays}
-      />
+      {/*
+        Wrap WeekBlock in an Animated.View.
+        Apply the animatedHeaderStyle from the hook.
+        Set onLayout to capture its height, which is then used by the hook.
+        Add a background color to hide content that might scroll underneath.
+      */}
+      <Animated.View
+        onLayout={onHeaderLayout}
+        style={[
+          animatedHeaderStyle,
+          {
+            backgroundColor: colors.black,
+            zIndex: 100,
+            paddingTop: 50,
+          },
+        ]} // Ensure background covers content when sliding
+        className="absolute inset-x-0 top-0 w-full" // Use NativeWind classes for absolute positioning
+      >
+        {/* <Text className="px-4 pb-4 font-bold-nunito text-3xl text-white">
+          Activity
+        </Text> */}
+        <WeekBlock
+          className="px-4"
+          reportSections={[]}
+          onDayPress={onScrollToIndex} // This can be removed if not used
+          weekOffset={weekOffset}
+          initialDayFocused={initialDayFocused}
+          changeWeekOffset={changeWeekOffset}
+          weekNumber={weekNumber}
+          currentMonth={currentMonth}
+          interval={interval}
+          currentYear={currentYear}
+          segmentedDays={segmentedDays}
+          currentMonthNumber={currentMonthNumber}
+        />
+      </Animated.View>
+
       <FlashList
-        // {...panResponder.panHandlers}
         ref={scrollViewRef}
         data={flashListData}
         renderItem={renderItem}
@@ -144,32 +213,137 @@ const Activity = () => {
         showsVerticalScrollIndicator={false}
         ListFooterComponent={
           <EndScrollPlaceholder
-            className="mt-[550]"
+            className="mt-[400]"
             onScrollToTop={scrollToTop}
           />
         }
+        onScroll={onScroll}
+        // Throttle scroll events for better performance with animations
+        scrollEventThrottle={16}
         contentContainerStyle={{
           paddingHorizontal: 16,
+          // Crucial fix: Add headerHeight + REFRESH_CONTROL_OFFSET to paddingTop
+          // This ensures enough space is reserved at the top for both the header
+          // and the refresh spinner to be visible.
+          paddingTop: headerHeight - 50,
         }}
         keyExtractor={(item) => item.id}
-        // ListEmptyComponent={
-        //   <>
-        //     <ReportSkeleton />
-        //     <ReportSkeleton />
-        //     <ReportSkeleton />
-        //     <ReportSkeleton />
-        //   </>
-        // }
         refreshControl={
           <RefreshControl
             refreshing={isRefetching}
             onRefresh={onRefetch}
-            tintColor={'#3195FD'}
+            tintColor={colors.white}
+            colors={[colors.black]}
+            // Set progressViewOffset to position the spinner correctly
+            // It should start rendering below your header.
+            progressViewOffset={180}
           />
+        }
+      />
+      <DailyCheckInModal
+        ref={activityCompleteModal.ref}
+        isCreateActivityLogPending={isCreateActivityLogPending}
+        onSubmit={({ durationMinutes, activityName }) =>
+          onCreateActivityLog({
+            language,
+            date: currentActiveDay,
+            type: 'custom_activity',
+            details: {
+              durationMinutes,
+              activityName,
+            },
+          }).then(() => {
+            activityCompleteModal.dismiss();
+          })
         }
       />
     </ScreenWrapper>
   );
+};
+
+/**
+ * Utility function used to find the section index and element index to scroll
+ * slice(8) to extract the last 2 characters from "20-12-22"
+ */
+const findSectionIndexToScroll = (
+  selectedDay: string,
+  currentWeekActivityLog: any
+): number => {
+  return Object.keys(currentWeekActivityLog)
+    .sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
+    .findIndex((date) => date.includes(selectedDay));
+};
+
+/**
+ * Custom hook to manage the animated hiding and showing of a header
+ * based on scroll direction using React Native Reanimated.
+ *
+ * @param {number} initialHeaderHeight The maximum height of the header when fully visible.
+ * This value should be determined dynamically using `onLayout` for accuracy.
+ * @returns {object} An object containing:
+ * - animatedHeaderStyle: Styles to apply to the Animated.View wrapper for the header.
+ * - onScroll: The scroll event handler to be passed to the FlashList's `onScroll` prop.
+ */
+export const useScrollToHideHeader = (initialHeaderHeight = 0) => {
+  // Use useSharedValue for animated properties.
+  // `top` controls the header's vertical position. 0 is fully visible.
+  // `-initialHeaderHeight` is fully hidden.
+  const top = useSharedValue(0);
+
+  // Ref to store the last known scroll position (contentOffset.y).
+  const scrollYRef = useRef(0);
+
+  // A threshold in pixels. Scrolling more than this amount triggers the hide/show animation.
+  // This prevents the header from flickering on very small, incidental scrolls.
+  const scrollThreshold = 0; // Keeping this at 0 makes the animation very sensitive to any scroll.
+  // Consider increasing it slightly (e.g., 5 or 10) for less "jumpy" behavior.
+
+  // useAnimatedStyle to apply the animated `top` property to the header.
+  const animatedHeaderStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: top.value }],
+    };
+  });
+
+  // Callback function to handle scroll events from the FlashList.
+  // This is a worklet, so it runs on the UI thread.
+  const handleScroll = useCallback(
+    (event) => {
+      'worklet'; // Add worklet directive for Reanimated
+      const currentScrollY = event.nativeEvent.contentOffset.y;
+      const scrollDiff = currentScrollY - scrollYRef.current;
+
+      // Only animate if headerHeight is known and significant
+      if (initialHeaderHeight > 0) {
+        // Scrolling down
+        if (scrollDiff > scrollThreshold) {
+          // If scrolling down and past a certain point, hide the header
+          // Ensure the header doesn't jump back out when scrolling down slightly after hiding
+          if (currentScrollY > initialHeaderHeight / 2) {
+            top.value = withSpring(-initialHeaderHeight, { damping: 16 });
+          }
+        }
+        // Scrolling up
+        else if (scrollDiff < -scrollThreshold) {
+          // If scrolling up and near the top, show the header
+          // The condition currentScrollY < initialHeaderHeight ensures it fully reappears when close to top
+          if (currentScrollY < initialHeaderHeight) {
+            // Changed this condition slightly for better behavior
+            top.value = withSpring(0, { damping: 16 });
+          }
+        }
+      }
+
+      // Update the last scroll position
+      scrollYRef.current = currentScrollY;
+    },
+    [initialHeaderHeight] // Dependencies for useCallback
+  );
+
+  return {
+    animatedHeaderStyle,
+    onScroll: handleScroll, // The scroll event handler to pass to FlashList
+  };
 };
 
 export default Activity;

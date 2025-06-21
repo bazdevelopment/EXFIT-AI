@@ -47,7 +47,6 @@ export const getDaysOfWeek = (
     });
     currentDay = currentDay.add(1, 'day'); // Move to the next day
   }
-
   return daysOfWeek;
 };
 

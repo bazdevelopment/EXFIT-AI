@@ -36,14 +36,3 @@ export const useGetCalendarActivityLog = (
     queryKey: ['activity-logs', variables.startDate, variables.endDate],
     fetcher: () => getCalendarActivity(variables),
   })();
-
-// export const useGetCalendarActivityLog = () =>
-//   createMutation<CalendarStatusMap, IRequestCalendarActivity, AxiosError>({
-//     mutationFn: (variables) => getCalendarActivity(variables),
-//     onSuccess: (data) => {
-//       Toast.success(data.message || 'Activity logs fetched successfully');
-//     },
-//     onError: () => {
-//       Toast.error('Error getting activity logs');
-//     },
-//   })();
