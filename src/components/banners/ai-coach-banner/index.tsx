@@ -1,4 +1,5 @@
 import { router } from 'expo-router';
+import { generateUniqueId } from 'functions/utilities/generate-unique-id';
 import { TouchableOpacity, View } from 'react-native';
 
 import { Image, Text } from '@/components/ui';
@@ -24,7 +25,17 @@ const AICoachBanner = ({
 
           <TouchableOpacity
             className="mt-8 self-start rounded-full bg-stone-300 px-8 py-3 active:bg-stone-400"
-            onPress={() => router.navigate('/chat-screen')}
+            onPress={() =>
+              router.navigate({
+                pathname: '/chat-screen',
+                params: {
+                  conversationId: generateUniqueId(),
+                  mediaSource: '',
+                  mimeType: '',
+                  conversationMode: 'RANDOM_CONVERSATION',
+                },
+              })
+            }
           >
             <Text className="text-base font-bold text-[#3195FD]">Chat now</Text>
           </TouchableOpacity>

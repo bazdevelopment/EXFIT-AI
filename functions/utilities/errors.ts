@@ -1,6 +1,6 @@
 /* eslint-disable valid-jsdoc */
 // utils/errors.ts
-import * as functions from "firebase-functions/v1";
+import * as functions from 'firebase-functions/v1';
 
 interface ErrorDetails {
   [key: string]: any;
@@ -40,7 +40,7 @@ export function handleAndThrowHttpsError(
 ): never {
   const logMessage = functionName
     ? `${functionName} error:`
-    : "Unexpected error:";
+    : 'Unexpected error:';
   console.error(logMessage, error);
 
   if (error instanceof functions.https.HttpsError) {
@@ -50,28 +50,62 @@ export function handleAndThrowHttpsError(
   // You can add more specific error handling here for known error types (e.g., Firebase Auth errors)
   if (
     error.code &&
-    typeof error.code === "string" &&
-    error.code.startsWith("auth/")
+    typeof error.code === 'string' &&
+    error.code.startsWith('auth/')
   ) {
     // Example: Firebase Auth specific errors
     let errorMessage = t(defaultMessageKey); // Default message
     switch (error.code) {
-      case "auth/email-already-exists":
-        errorMessage = t("auth.emailAlreadyExists"); // Assuming you have this translation
+      case 'auth/email-already-exists':
+        errorMessage = t('auth.emailAlreadyExists'); // Assuming you have this translation
         break;
-      case "auth/invalid-email":
-        errorMessage = t("auth.invalidEmail");
+      case 'auth/invalid-email':
+        errorMessage = t('auth.invalidEmail');
         break;
       // Add more cases as needed
     }
-    throw new functions.https.HttpsError("unauthenticated", errorMessage, {
+    throw new functions.https.HttpsError('unauthenticated', errorMessage, {
       originalError: error.message,
       errorCode: error.code,
     });
   }
 
-  throw new functions.https.HttpsError("internal", t(defaultMessageKey), {
-    message: error.message || "Unknown error occurred.",
+  throw new functions.https.HttpsError('internal', t(defaultMessageKey), {
+    message: error.message || 'Unknown error occurred.',
     originalError: error.toString(), // Include the original error for debugging on the client if needed
   });
 }
+
+export const logError = (context: string, errorDetails: any) => {
+  // Use Firebase's logger to log structured errors
+  functions.logger.error(`[${context}]`, errorDetails);
+};
+export const handleOnRequestError = ({
+  error,
+  res,
+  context = 'Global Error Handler',
+}: {
+  error: any;
+  res: any;
+  context?: string;
+}) => {
+  logError(context, {
+    name: error?.name || '',
+    message: error.message || '',
+    stack: error?.stack || '',
+    statusCode: error?.statusCode || 500,
+    statusMessage: error?.statusMessage || 'Internal Server Error',
+  });
+
+  res.status(500).json({
+    success: false,
+    message: error.message || 'Internal Server Error',
+    errorBody: {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+      statusCode: error?.statusCode || 500,
+      statusMessage: error?.statusMessage || 'Internal Server Error',
+    },
+  });
+};

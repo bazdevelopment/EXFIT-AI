@@ -6,8 +6,12 @@ import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { Alert, Dimensions, Image, TouchableOpacity, View } from 'react-native';
 
+import { useScanImage } from '@/api/scan/scan.hooks';
+import { useUser } from '@/api/user/user.hooks';
 import { Text } from '@/components/ui';
 import { CloseIcon } from '@/components/ui/assets/icons';
+import { useSelectedLanguage } from '@/core';
+import { createFormDataImagePayload } from '@/core/utilities/create-form-data-image-payload';
 
 const { width, height } = Dimensions.get('window');
 
@@ -15,13 +19,45 @@ interface CameraScanScreenProps {}
 
 const Scan: React.FC<CameraScanScreenProps> = () => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-  const [type, setType] = useState('back');
   const [flashMode, setFlashMode] = useState('off');
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
-  const [isScanning, setIsScanning] = useState(false);
-  const [scanProgress, setScanProgress] = useState(0);
+  // const [isScanning, setIsScanning] = useState(false);
   const cameraRef = useRef(null);
   const scanningLottieRef = useRef<LottieView>(null);
+  const { language } = useSelectedLanguage();
+  const { data: userInfo } = useUser(language);
+
+  const onSuccess = ({ conversationId }: { conversationId: string }) => {
+    router.navigate({
+      pathname: '/chat-screen',
+      params: {
+        conversationId,
+        mediaSource: capturedImage,
+        mimeType: 'image/jpeg',
+        conversationMode: 'IMAGE_SCAN_CONVERSATION',
+      },
+    });
+  };
+
+  const imagePayload = createFormDataImagePayload({
+    fileUri: capturedImage as string,
+    fileMimeType: 'image/jpeg',
+    promptMessage: '',
+    userId: userInfo.userId,
+  });
+
+  const {
+    mutate: onScanImage,
+    error: errorAnalyzeImage,
+    isPending: isScanning,
+  } = useScanImage({
+    onSuccessCallback: onSuccess,
+    language,
+    // handleCloseScanningModal,
+    // resetFlow,
+  });
+
+  console.log('aicii boss', errorAnalyzeImage?.message);
 
   useEffect(() => {
     (async () => {
@@ -45,28 +81,8 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
     }
   };
 
-  const startScanning = () => {
-    setIsScanning(true);
-    setScanProgress(0);
-    scanningLottieRef.current?.play();
-
-    // Simulate scanning progress
-    const interval = setInterval(() => {
-      setScanProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setIsScanning(false);
-          Alert.alert('Scan Complete', 'Product scanned successfully!');
-          return 100;
-        }
-        return prev + 2;
-      });
-    }, 100);
-  };
-
   const retakePhoto = () => {
     setCapturedImage(null);
-    setIsScanning(false);
   };
 
   const toggleFlash = () => {
@@ -128,7 +144,6 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
         capturedImage={capturedImage}
         scanningLottieRef={scanningLottieRef}
         isScanning={isScanning}
-        scanProgress={scanProgress}
       />
 
       {/* Bottom Controls */}
@@ -156,7 +171,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={startScanning}
+              onPress={() => onScanImage(imagePayload)}
               className="ml-3 flex-1 items-center rounded-xl bg-blue-600 py-4"
               disabled={isScanning}
             >
@@ -173,7 +188,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
 
 export default Scan;
 
-const ScanningOverlay = ({ capturedImage, isScanning, scanProgress }) => (
+const ScanningOverlay = ({ capturedImage, isScanning }) => (
   <View className="absolute inset-0 -top-12 items-center justify-center">
     {/* Scanning Frame */}
     <View className="relative">
@@ -219,27 +234,12 @@ const ScanningOverlay = ({ capturedImage, isScanning, scanProgress }) => (
           resizeMode="cover"
         />
       )}
-
-      {/* Scanning Progress */}
-      {isScanning && (
-        <View className="absolute inset-x-0 -bottom-16 items-center">
-          <Text className="mb-2 text-lg font-semibold text-white">
-            Scanning...{Math.round(scanProgress)}%
-          </Text>
-          <View className="h-2 w-48 overflow-hidden rounded-full bg-gray-700">
-            <View
-              className="h-full rounded-full bg-blue-500 transition-all duration-100"
-              style={{ width: `${scanProgress}%` }}
-            />
-          </View>
-        </View>
-      )}
     </View>
 
     {/* Instructions */}
     {!capturedImage && !isScanning && (
       <Text className="mt-8 px-6 text-center text-base text-white">
-        Position the product within the frame to scan
+        Position the image within the frame to scan
       </Text>
     )}
   </View>

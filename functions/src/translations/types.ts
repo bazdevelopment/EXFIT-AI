@@ -3,6 +3,7 @@ export interface ITranslation {
     welcome: string;
     notAuthorized: string;
     userIdMissing: string;
+    noUserFound: string;
   };
   loginUserAnonymously: {
     mandatoryUsername: string;
@@ -21,5 +22,18 @@ export interface ITranslation {
   updateUser: {
     successUpdatedUser: string;
     updateUserError: string;
+  };
+  analyzeImage: {
+    scanLimitReached: string;
+    imageMissing: string;
+    uploadImageStorageError: string;
+    interpretationNotSaved: string;
+    analysisCompleted: string;
+  };
+  continueConversation: {
+    messagesLimit: string;
+    conversationNotFound: string;
+    serviceIssueAi: string;
+    noResponseAiService: string;
   };
 }
