@@ -30,7 +30,7 @@ const WelcomeScreen = () => {
           {/* Content Container */}
           <View className="flex-column h-full justify-between px-6 pb-10">
             {/* Center Section - Logo and Branding */}
-            <View className="flex-1 items-center justify-center">
+            <View className="mt-14 flex-1 items-center justify-center">
               {/* Logo Icon */}
               <View className="mb-3">
                 <Image
@@ -49,19 +49,20 @@ const WelcomeScreen = () => {
 
               {/* Main Headline */}
 
-              <View className="absolute bottom-20 gap-4">
-                <GradientText colors={['#3195FD', '#666AFF']}>
-                  <Text className="text-center font-extra-bold-nunito text-4xl leading-tight">
-                    Move. Gain. Repeat.
+              <View className="absolute bottom-10 gap-12">
+                <GradientText colors={['#3195FD', '#3195FD']}>
+                  <Text className="text-center font-extra-bold-nunito text-3xl leading-10 tracking-[3px]">
+                    {/* Move. Gain. Repeat. */}
+                    IT'S YOU VS. YOUR EXCUSES!
                   </Text>
                 </GradientText>
 
                 {/* Subtitle */}
-                <GradientText colors={['#3195FD', '#666AFF']}>
-                  <Text className="text-center font-extra-bold-nunito text-lg text-blue-300 opacity-90">
-                    Let AI crush your excuses
-                  </Text>
-                </GradientText>
+                {/* <GradientText colors={['#3195FD', '#666AFF']}> */}
+                <Text className="text-center font-semibold-nunito  text-white opacity-90">
+                  Let EXFIT AI crush your excuses
+                </Text>
+                {/* </GradientText> */}
               </View>
             </View>
 

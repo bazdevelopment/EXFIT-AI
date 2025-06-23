@@ -6,10 +6,18 @@
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
+    "esModuleInterop": true
   },
   "compileOnSave": true,
   "include": [
-    "src"
+    "src",
+    "utilities/languages.ts",
+    "utilities/multipart.ts",
+    "./utilities/check-daily-scan-limit.ts",
+    "./utilities/convert-buffer-base-64.ts",
+    "./utilities/generate-unique-id.ts",
+    "./utilities/ai-models.ts",
+    "dayjs/index.ts"
   ]
 }

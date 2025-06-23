@@ -1,12 +1,12 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import { Ionicons } from '@expo/vector-icons';
 import { FlashList } from '@shopify/flash-list';
 import { router, useLocalSearchParams } from 'expo-router';
 import LottieView from 'lottie-react-native';
 import { useColorScheme } from 'nativewind';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   Animated,
@@ -21,13 +21,16 @@ import Markdown from 'react-native-markdown-display';
 import { Toaster } from 'sonner-native';
 import { twMerge } from 'tailwind-merge';
 
+import {
+  useConversation,
+  useConversationHistory,
+} from '@/api/conversation/conversation.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import AttachmentPreview from '@/components/attachment-preview';
 import BounceLoader from '@/components/bounce-loader';
 import Branding from '@/components/branding';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
-import Toast from '@/components/toast';
 import { colors, Text } from '@/components/ui';
 import {
   ArrowLeft,
@@ -37,8 +40,9 @@ import {
 } from '@/components/ui/assets/icons';
 import CopyIcon from '@/components/ui/assets/icons/copy';
 import { LOADING_MESSAGES_CHATBOT } from '@/constants/loading-messages';
-import { DEVICE_TYPE, translate } from '@/core';
+import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
+import { useClipboard } from '@/core/hooks/use-clipboard';
 import { useTextToSpeech } from '@/core/hooks/use-text-to-speech';
 import { checkIsVideo } from '@/core/utilities/check-is-video';
 import { generateUniqueId } from '@/core/utilities/generate-unique-id';
@@ -65,6 +69,7 @@ export const ChatBubble = ({
   isSpeaking: boolean;
 }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const { copyToClipboard } = useClipboard();
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -121,11 +126,16 @@ export const ChatBubble = ({
                 : 'bg-[#202020] rounded-bl-sm'
           )}
         >
+          {/* <Text selectable> */}
           <Markdown style={lightStyles}>{message.content}</Markdown>
+          {/* </Text> */}
           {!isUser && (
             <View className="mt-2 flex-row gap-2">
               {/* Thumbs Down */}
-              <TouchableOpacity className="rounded-full p-1">
+              <TouchableOpacity
+                className="rounded-full p-1"
+                onPress={() => copyToClipboard(message.content)}
+              >
                 <CopyIcon width={18} height={18} color={colors.white} />
               </TouchableOpacity>
 
@@ -205,13 +215,29 @@ export const TypingIndicator = () => {
   );
 };
 
+const RANDOM_QUESTIONS = [
+  'How can I improve my workout routine? 💪',
+  'What’s a good sport for me to try? ⚽️',
+  'How can I stay motivated to exercise? 🎯',
+  'What should I eat to support my training? 🍎',
+  'How can I get more flexible? 🤸',
+  'What are the best recovery tips? 🧘',
+  'How can I prevent injuries while training? 🛡️',
+  'What’s a fun way to add more movement to my day? 🚶',
+  'How can I build better fitness habits? 🌟',
+  'What’s a simple way to get started with fitness? 🚀',
+];
+
 const ChatScreen = () => {
   const {
     conversationId = generateUniqueId(),
     mediaSource,
     mimeType,
     conversationMode,
+    excuse,
   } = useLocalSearchParams();
+  const [randomQuestions, setRandomQuestions] = useState<string[]>([]);
+
   const [userMessage, setUserMessage] = useState('');
   const [pendingMessages, setPendingMessages] = useState<MessageType[]>([]);
   const [currentlySpeakingId, setCurrentlySpeakingId] = useState<string | null>(
@@ -234,46 +260,14 @@ const ChatScreen = () => {
 
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const {
-    i18n: { language },
-  } = useTranslation();
+
+  const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
 
-  // const { data: conversation, isLoading } = useConversationHistory(
-  //   conversationId as string
-  // );
-  // const { sendMessage, isSending } = useConversation(conversationId as string);
-
-  const conversation = {
-    messages: [
-      {
-        role: 'assistant',
-        content:
-          "Hello! I'm Aria, your AI assistant. How can I help you today?",
-      },
-      {
-        role: 'user',
-        content: 'Can you explain what machine learning is?',
-      },
-      {
-        role: 'assistant',
-        content:
-          "**Machine Learning** is a subset of artificial intelligence (AI) that enables computers to learn and make decisions from data without being explicitly programmed for every task.\n\nHere are the key concepts:\n\n• **Supervised Learning**: Learning from labeled examples\n• **Unsupervised Learning**: Finding patterns in unlabeled data\n• **Reinforcement Learning**: Learning through trial and error\n\nIt's like teaching a computer to recognize patterns, just like how humans learn from experience!",
-      },
-      {
-        role: 'user',
-        content: "That's helpful! Can you give me a simple example?",
-      },
-      {
-        role: 'assistant',
-        content:
-          'Sure! Here\'s a simple example:\n\nImagine you want to predict if an email is **spam** or **not spam**:\n\n1. **Training**: You show the computer thousands of emails labeled as "spam" or "not spam"\n2. **Pattern Recognition**: The computer learns that certain words like "FREE", "URGENT", or excessive exclamation marks often appear in spam\n3. **Prediction**: When a new email arrives, the computer analyzes these patterns and predicts whether it\'s spam\n\nIt\'s essentially pattern matching at scale! *Pretty cool, right?*',
-      },
-    ],
-  };
-  const isLoading = false;
-  const sendMessage = () => {};
-  const isSending = false;
+  const { data: conversation, isLoading } = useConversationHistory(
+    conversationId as string
+  );
+  const { sendMessage, isSending } = useConversation(conversationId as string);
 
   const handleSpeak = (messageId: string, text: string) => {
     if (currentlySpeakingId === messageId) {
@@ -287,15 +281,16 @@ const ChatScreen = () => {
     }
   };
 
-  const handleSendMessage = async () => {
-    if (!userMessage.trim()) return;
+  const handleSendMessage = async (userMsg: string) => {
+    console.log('here', userMsg);
+    if (!userMsg.trim()) return;
     setUserMessage('');
     Keyboard.dismiss();
 
     // Add the message to pending messages
     const newMessage: MessageType = {
       role: 'user',
-      content: userMessage,
+      content: userMsg,
       isPending: true,
     };
     setPendingMessages((prev) => [...prev, newMessage]);
@@ -305,7 +300,7 @@ const ChatScreen = () => {
 
     try {
       await sendMessage({
-        userMessage,
+        userMessage: userMsg,
         conversationId: conversationId as string,
         conversationMode,
         userId: userInfo.userId,
@@ -381,6 +376,19 @@ const ChatScreen = () => {
 
   useBackHandler(() => true);
 
+  useEffect(() => {
+    if (excuse) {
+      handleSendMessage(excuse);
+      // sendMessageExcuse();
+    }
+  }, [excuse]);
+
+  useEffect(() => {
+    if (conversationMode === 'RANDOM_CONVERSATION') {
+      setRandomQuestions(shuffleArray(RANDOM_QUESTIONS).slice(0, 5));
+    }
+  }, [conversationMode]);
+
   // Scroll logic based on the number of messages
   useEffect(() => {
     if (messages.length && flashListRef.current) {
@@ -401,7 +409,7 @@ const ChatScreen = () => {
         }
       }, 100);
     }
-  }, []);
+  }, [lastUserMessageIndex]);
 
   // Scroll to bottom when keyboard appears
   useEffect(() => {
@@ -420,16 +428,7 @@ const ChatScreen = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!isLoading && conversationMode === 'IMAGE_SCAN_CONVERSATION') {
-      Toast.warning(translate('alerts.medicalDisclaimerAlert'), {
-        closeButton: true,
-        duration: 8000,
-      });
-    }
-  }, [isLoading, conversationMode]);
-
-  if (isLoading) {
+  if (isLoading && conversationMode !== 'RANDOM_CONVERSATION') {
     return (
       <View className="flex-1 items-center justify-center bg-black dark:bg-blackEerie">
         <Branding imageClassname="" isLogoVisible invertedColors />
@@ -497,6 +496,14 @@ const ChatScreen = () => {
               )}
             </View>
           </View>
+          {conversationMode === 'RANDOM_CONVERSATION' &&
+            !conversation &&
+            !!randomQuestions.length && (
+              <AnimatedQuestions
+                questions={randomQuestions}
+                onSelect={(question) => handleSendMessage(question)}
+              />
+            )}
 
           {/* Messages List */}
           <FlashList
@@ -535,7 +542,7 @@ const ChatScreen = () => {
               />
             </View>
             <Icon
-              onPress={handleSendMessage}
+              onPress={() => handleSendMessage(userMessage)}
               icon={<SendIcon />}
               iconContainerStyle="rounded-full p-4 bg-[#3195FD]"
               color={colors.transparent}
@@ -584,23 +591,57 @@ function getChatMessagesStyles(
     },
     heading1: {
       color: baseTextColor,
+      fontSize: 24,
+      fontWeight: 'bold',
+    },
+    heading2: {
+      color: baseTextColor,
+      fontSize: 20,
+      fontWeight: 'bold',
+    },
+    heading3: {
+      color: baseTextColor,
+      fontSize: 18,
+      fontWeight: 'bold',
     },
     paragraph: {
       fontFamily: 'Font-Regular',
+      fontSize: 14,
+      marginBottom: 8,
     },
     list_item: {
       fontFamily: 'Font-Regular',
+      fontSize: 14,
+      marginBottom: 6,
     },
     span: {
       fontFamily: 'Font-Regular',
+      fontSize: 14,
     },
     strong: {
       fontFamily: 'Font-Extra-Bold',
       fontWeight: '800',
+      color: '#3195FD', // Highlight bold text with a strong color like amber
+      // backgroundColor: '#FEF3C7', // Soft background highlight for emphasis
+      borderRadius: 4,
     },
     em: {
       fontFamily: 'Font-Regular',
       fontStyle: 'italic',
+      color: '#6B7280', // Slightly muted color for italics to differentiate
+    },
+    blockquote: {
+      borderLeftWidth: 4,
+      paddingLeft: 10,
+      color: '#4B5563',
+      fontStyle: 'italic',
+    },
+    code_inline: {
+      // backgroundColor: '#F3F4F6',
+      borderRadius: 4,
+      fontFamily: 'Font-Mono',
+      fontSize: 13,
+      color: '#111827',
     },
   };
 
@@ -641,3 +682,89 @@ function getChatMessagesStyles(
 
   return { lightStyles, darkStyles };
 }
+
+function shuffleArray<T>(array: T[]): T[] {
+  return array
+    .map((item) => ({ item, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ item }) => item);
+}
+
+const AnimatedQuestions = ({
+  questions,
+  onSelect,
+}: {
+  questions: string[];
+  onSelect: (q: string) => void;
+}) => {
+  // Create a ref for animated values, keyed by question text for stability
+  const anims = useRef<{ [key: string]: Animated.Value }>({});
+
+  // Initialize animation values for all current questions
+  questions.forEach((q) => {
+    if (!anims.current[q]) {
+      anims.current[q] = new Animated.Value(0);
+    }
+  });
+
+  // Trigger animation when questions change
+  useEffect(() => {
+    const animations = questions.map((q) =>
+      Animated.spring(anims.current[q], {
+        toValue: 1,
+        useNativeDriver: true,
+      })
+    );
+
+    Animated.stagger(100, animations).start();
+  }, [questions]);
+
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        marginBottom: 16,
+      }}
+    >
+      {questions.map((q) => (
+        <Animated.View
+          key={q}
+          style={{
+            opacity: anims.current[q],
+            transform: [
+              {
+                translateY: anims.current[q].interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [30, 0],
+                }),
+              },
+              {
+                scale: anims.current[q].interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0.8, 1],
+                }),
+              },
+            ],
+            margin: 6,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => onSelect(q)}
+            style={{
+              backgroundColor: '#202020',
+              borderRadius: 20,
+              paddingVertical: 10,
+              paddingHorizontal: 18,
+              borderWidth: 1,
+              borderColor: '#3195FD',
+            }}
+          >
+            <Text className="text-base text-white">{q}</Text>
+          </TouchableOpacity>
+        </Animated.View>
+      ))}
+    </View>
+  );
+};

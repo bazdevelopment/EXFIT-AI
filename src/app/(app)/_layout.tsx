@@ -75,7 +75,7 @@ export default function TabLayout() {
           },
           tabBarLabelStyle: bottomTabBarStyles.tabBarLabel,
           tabBarInactiveTintColor: colors.white,
-          tabBarActiveTintColor: '#3195FD',
+          // tabBarActiveTintColor: '#3195FD',
         }}
       >
         {tabScreens.map((tab: ITabsNavigationScreen) => (

@@ -1,4 +1,5 @@
 import { router } from 'expo-router';
+import { generateUniqueId } from 'functions/utilities/generate-unique-id';
 import React, { useState } from 'react';
 import {
   SafeAreaView,
@@ -77,10 +78,19 @@ const ExcuseBusterScreen: React.FC = () => {
 
     if (allExcuses.length === 0) {
       alert('Please select at least one excuse or enter a custom one!');
-      router.navigate('/chat-screen');
-
       return;
     }
+
+    router.navigate({
+      pathname: '/chat-screen',
+      params: {
+        conversationId: generateUniqueId(),
+        mediaSource: '',
+        mimeType: '',
+        excuse: allExcuses,
+        conversationMode: 'RANDOM_CONVERSATION',
+      },
+    });
 
     // Handle the submission logic here
     console.log('Selected excuses:', allExcuses);
