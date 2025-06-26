@@ -57,8 +57,6 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
     // resetFlow,
   });
 
-  console.log('aicii boss', errorAnalyzeImage?.message);
-
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -176,7 +174,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
               disabled={isScanning}
             >
               <Text className="text-lg font-semibold text-white">
-                {isScanning ? 'Scanning...' : 'Scan Product'}
+                {isScanning ? 'Scanning...' : 'Analyze ✨'}
               </Text>
             </TouchableOpacity>
           </View>

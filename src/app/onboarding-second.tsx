@@ -48,7 +48,7 @@ export default function OnboardingSecond() {
       onboarding: { ...collectedData, ...newCollectedData },
       isOnboarded: true,
     };
-    console.log('payload', payload);
+
     setCollectedData((prevCollectedData) => ({
       ...prevCollectedData,
       ...newCollectedData,

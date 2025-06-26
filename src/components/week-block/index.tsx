@@ -1,14 +1,11 @@
-import dayjs from 'dayjs';
 import React from 'react';
 import { View } from 'react-native';
 
 import { useGetCalendarActivityLog } from '@/api/activity-logs/activity-logs.hooks';
 import { translate, useSelectedLanguage } from '@/core';
-import { useSegmentedSelection } from '@/core/hooks/use-segmented-selection';
 
 import CalendarMiniView from '../calendar-mini-view';
 import Icon from '../icon';
-import { type ISegmentedControlOption } from '../segmented-control/segmented-control.interface';
 import { colors, Text } from '../ui';
 import { ChevronLeftRounded, ChevronRightRounded } from '../ui/assets/icons';
 import { type IWeekBlock } from './week-block.interface';
@@ -29,14 +26,13 @@ const WeekBlock = ({
   segmentedDays,
   currentMonthNumber,
   className,
+  startOfWeek,
+  endOfWeek,
 }: IWeekBlock) => {
-  const { checkIsActive, handleChangeSelection, selectedOption } =
-    useSegmentedSelection(initialDayFocused as ISegmentedControlOption);
-
   const { language } = useSelectedLanguage();
   const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
-    startDate: dayjs().startOf('isoWeek').toISOString(),
-    endDate: dayjs().endOf('isoWeek').toISOString(),
+    startDate: startOfWeek,
+    endDate: endOfWeek,
     language,
   });
 
@@ -74,6 +70,7 @@ const WeekBlock = ({
         initialDayFocused={initialDayFocused}
         currentMonthNumber={currentMonthNumber}
         onDayPress={onDayPress}
+        weekOffset={weekOffset}
       />
     </>
   );

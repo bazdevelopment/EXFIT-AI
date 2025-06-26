@@ -72,7 +72,7 @@ const ActivityPromptBanner = ({
 
           <View className="items-center">
             <View className="rounded-2xl bg-white/20 p-3 backdrop-blur-sm">
-              <Feather name={'activity'} size={28} color="white" />
+              <Feather name="activity" size={28} color="white" />
             </View>
           </View>
         </View>

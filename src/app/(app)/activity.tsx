@@ -24,7 +24,6 @@ import WeekBlock from '@/components/week-block';
 import { DATE_FORMAT } from '@/constants/date-format';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
-import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 import { formatDate } from '@/core/utilities/format-date';
 
 const Activity = () => {
@@ -52,16 +51,15 @@ const Activity = () => {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
   } = useCreateActivityLog();
-  const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
+  const [currentActiveDay, setCurrentActiveDay] = useState('');
+  // const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
 
   const { isRefetching, onRefetch } = useDelayedRefetch(() => {});
-
   const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
     startDate: startOfWeek,
     endDate: endOfWeek,
     language,
   });
-
   // State to hold the actual height of the WeekBlock header.
   const [headerHeight, setHeaderHeight] = useState(0);
   // Use the custom hook, passing the dynamically determined headerHeight.
@@ -128,7 +126,12 @@ const Activity = () => {
           </Text>
 
           <TouchableOpacity
-            onPress={activityCompleteModal.present}
+            onPress={() => {
+              setCurrentActiveDay(
+                formatDate(item.date, 'YYYY-MM-DD', language)
+              );
+              activityCompleteModal.present();
+            }}
             className="flex-row items-center rounded-full bg-[#3195FD]/10 px-3 py-1"
           >
             <Text className="font-bold-nunito text-lg text-white">+</Text>
@@ -202,6 +205,8 @@ const Activity = () => {
           currentYear={currentYear}
           segmentedDays={segmentedDays}
           currentMonthNumber={currentMonthNumber}
+          startOfWeek={startOfWeek}
+          endOfWeek={endOfWeek}
         />
       </Animated.View>
 

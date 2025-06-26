@@ -7,6 +7,7 @@ interface ActivityCardProps {
   aiSuggestion: string;
   outcome: string;
   stakesEarned: number;
+  status: string;
   onPress?: () => void;
 }
 
@@ -21,7 +22,6 @@ const statusStyles = {
 // Alternative compact version for lists
 const CompactActivityCard: React.FC<ActivityCardProps> = ({
   title,
-  aiSuggestion,
   status,
   outcome,
   stakesEarned,
@@ -42,7 +42,7 @@ const CompactActivityCard: React.FC<ActivityCardProps> = ({
         {/* <Text className="mb-1 text-sm text-gray-400">{aiSuggestion}</Text> */}
         <View className="flex-row items-center justify-between">
           <Text className="flex-1 text-sm text-gray-300">
-            {status === 'skipped' ? 'Excus:' : 'Activities'}:{outcome || 'N/A'}
+            {status === 'skipped' ? 'Excuse:' : 'Activities'}:{outcome || 'N/A'}
           </Text>
           <View className="ml-2 flex-row items-center">
             <Text className="text-sm font-semibold text-orange-400">
