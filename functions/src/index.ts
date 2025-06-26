@@ -12,7 +12,9 @@ import * as functions from 'firebase-functions/v1';
 
 import * as activityLogsFunctions from './activity-logs';
 import * as conversationFunctions from './conversation';
+import * as excuseBusterFunctions from './excuse-buster';
 import * as scanImageFunctions from './scan';
+import * as aiTasksFunctions from './tasks';
 import * as userFunctions from './user';
 
 const usCentralFunctions = functions.region('us-central1');
@@ -71,4 +73,24 @@ export const continueConversationV2 = usCentralFunctions.https.onRequest(
 
 export const getConversation = usCentralFunctions.https.onCall(
   conversationFunctions.getConversationHandler,
+);
+/** excuse buster conversation collection cloud functions  */
+export const getExcuseBusterConversationMessages =
+  usCentralFunctions.https.onCall(
+    excuseBusterFunctions.getExcuseBusterConversationHandler,
+  );
+export const continueExcuseBusterConversation = usCentralFunctions.https.onCall(
+  excuseBusterFunctions.continueExcuseBusterConversation,
+);
+
+/** ai tasks cloud functions  */
+export const createAiTask = usCentralFunctions.https.onCall(
+  aiTasksFunctions.createAiTasksHandler,
+);
+export const getAiTasks = usCentralFunctions.https.onCall(
+  aiTasksFunctions.getAiTasksForDay,
+);
+
+export const updateAiTaskStatus = usCentralFunctions.https.onCall(
+  aiTasksFunctions.updateAiTasksStatusHandler,
 );

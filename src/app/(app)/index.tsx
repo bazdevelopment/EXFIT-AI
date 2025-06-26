@@ -6,6 +6,10 @@ import {
   useCreateActivityLog,
   useGetCalendarActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
+import {
+  useGetAiTasks,
+  useUpdateAiTaskStatus,
+} from '@/api/ai-tasks/ai-tasks.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
@@ -17,6 +21,7 @@ import Icon from '@/components/icon';
 import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
 import { NoActivityLogModal } from '@/components/modals/no-activity-log-modal';
 import ScreenWrapper from '@/components/screen-wrapper';
+import TaskListOverview from '@/components/task-list-overview';
 import { colors, useModal } from '@/components/ui';
 import { Notification } from '@/components/ui/assets/icons'; // Ensure this is installed: npx expo install expo-linear-gradient
 import { useSelectedLanguage } from '@/core';
@@ -39,6 +44,7 @@ export default function Home() {
     currentMonthNumber,
     startOfWeek,
     endOfWeek,
+    weekOffset,
   } = useWeekNavigation();
   const {
     mutateAsync: onCreateActivityLog,
@@ -50,6 +56,11 @@ export default function Home() {
     endDate: endOfWeek,
     language,
   });
+
+  const { data: todayActiveTasks } = useGetAiTasks(currentActiveDay);
+
+  const { mutate: onUpdateAiTaskStatus } =
+    useUpdateAiTaskStatus(currentActiveDay);
 
   const isDailyCheckInDone = !!currentWeekActivityLog?.[currentActiveDay];
 
@@ -84,17 +95,32 @@ export default function Home() {
             onShowActivitySkippedModal={activitySkippedModal.present}
           />
         )}
+
+        {!!todayActiveTasks?.length && (
+          <TaskListOverview
+            tasks={todayActiveTasks}
+            onCompleteTask={(taskId) =>
+              onUpdateAiTaskStatus({ language, status: 'completed', taskId })
+            }
+            onSkipTask={(taskId) =>
+              onUpdateAiTaskStatus({ language, status: 'skipped', taskId })
+            }
+            additionalClassName="mt-4"
+          />
+        )}
+
         {currentWeekActivityLog && (
           <CalendarMiniView
             showMonth
             showYear
-            containerClassName="px-6 py-4 bg-black"
+            containerClassName="px-6 mt-6 mb-2"
             currentWeekActivityLog={currentWeekActivityLog}
             segmentedDays={segmentedDays}
             currentMonth={currentMonth}
             currentYear={currentYear}
             initialDayFocused={initialDayFocused}
             currentMonthNumber={currentMonthNumber}
+            weekOffset={weekOffset}
           />
         )}
         <MotivationBanner containerClassName="mt-4" />

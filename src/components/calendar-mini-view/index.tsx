@@ -14,6 +14,7 @@ const CalendarMiniView = ({
   initialDayFocused,
   currentMonthNumber,
   onDayPress,
+  weekOffset,
 }: ICalendarMiniView) => {
   const daysOfWeek = segmentedDays.map((day) => day.title);
   // Hardcoded data to match the image exactly
@@ -49,7 +50,7 @@ const CalendarMiniView = ({
         {daysOfWeek.map((day) => (
           <Text
             key={day}
-            className={`w-12 text-center font-semibold-nunito text-base text-gray-400 ${day === initialDayFocused?.title ? 'font-extra-bold-nunito color-[#3195FD]' : ''}`}
+            className={`w-12 text-center font-semibold-nunito text-base text-gray-400 ${day === initialDayFocused?.title && weekOffset === 0 ? 'font-extra-bold-nunito color-[#3195FD]' : ''}`}
           >
             {day}
           </Text>

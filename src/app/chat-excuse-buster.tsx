@@ -1,5 +1,4 @@
 /* eslint-disable max-lines-per-function */
-/* eslint-disable react-hooks/exhaustive-deps */
 
 import { FlashList } from '@shopify/flash-list';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -15,16 +14,16 @@ import {
 import { type MessageType } from 'react-native-flash-message';
 import { Toaster } from 'sonner-native';
 
+import { useCreateAiTask } from '@/api/ai-tasks/ai-tasks.hooks';
 import {
-  useConversation,
-  useConversationHistory,
-} from '@/api/conversation/conversation.hooks';
+  useExcuseBusterConversation,
+  useExcuseBusterConversationHistory,
+} from '@/api/excuse-buster-conversation/excuse-buster-conversation.hooks';
 import { useUser } from '@/api/user/user.hooks';
-import AnimatedChatQuestions from '@/components/animted-chat-questions';
 import AttachmentPreview from '@/components/attachment-preview';
 import BounceLoader from '@/components/bounce-loader';
 import Branding from '@/components/branding';
-import ChatBubble from '@/components/chat-bubble';
+import ChatBubbleExcuseBuster from '@/components/chat-bubble-excuse-buster';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import TypingIndicator from '@/components/typing-indicator';
@@ -35,24 +34,11 @@ import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
 import { useTextToSpeech } from '@/core/hooks/use-text-to-speech';
 import { checkIsVideo } from '@/core/utilities/check-is-video';
+import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 import { generateUniqueId } from '@/core/utilities/generate-unique-id';
-import { shuffleArray } from '@/core/utilities/shuffle-array';
 import { wait } from '@/core/utilities/wait';
 
-const RANDOM_QUESTIONS = [
-  'How can I improve my workout routine? 💪',
-  'What’s a good sport for me to try? ⚽️',
-  'How can I stay motivated to exercise? 🎯',
-  'What should I eat to support my training? 🍎',
-  'How can I get more flexible? 🤸',
-  'What are the best recovery tips? 🧘',
-  'How can I prevent injuries while training? 🛡️',
-  'What’s a fun way to add more movement to my day? 🚶',
-  'How can I build better fitness habits? 🌟',
-  'What’s a simple way to get started with fitness? 🚀',
-];
-
-const ChatScreen = () => {
+const ChatExcuseBuster = () => {
   const {
     conversationId = generateUniqueId(),
     mediaSource,
@@ -60,8 +46,13 @@ const ChatScreen = () => {
     conversationMode,
     excuse,
   } = useLocalSearchParams();
-  const [randomQuestions, setRandomQuestions] = useState<string[]>([]);
-
+  console.log({
+    mediaSource,
+    mimeType,
+    conversationMode,
+    excuse,
+    conversationId,
+  });
   const [userMessage, setUserMessage] = useState('');
   const [pendingMessages, setPendingMessages] = useState<MessageType[]>([]);
   const [currentlySpeakingId, setCurrentlySpeakingId] = useState<string | null>(
@@ -84,14 +75,20 @@ const ChatScreen = () => {
 
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
-
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
+  const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
+  const dayLabelTaskCard = getCurrentDay('MMM D', language);
 
-  const { data: conversation, isLoading } = useConversationHistory(
+  const { data: conversation, isLoading } = useExcuseBusterConversationHistory(
     conversationId as string
   );
-  const { sendMessage, isSending } = useConversation(conversationId as string);
+
+  const { sendMessage, isSending } = useExcuseBusterConversation(
+    conversationId as string
+  );
+
+  const { mutate: onCreateTask } = useCreateAiTask(currentActiveDay);
 
   const handleSpeak = (messageId: string, text: string) => {
     if (currentlySpeakingId === messageId) {
@@ -113,7 +110,7 @@ const ChatScreen = () => {
     // Add the message to pending messages
     const newMessage: MessageType = {
       role: 'user',
-      content: userMsg,
+      content: { responseText: userMsg },
       isPending: true,
     };
     setPendingMessages((prev) => [...prev, newMessage]);
@@ -158,7 +155,7 @@ const ChatScreen = () => {
       );
 
       await sendMessage({
-        userMessage: message.content,
+        userMessage: `${message.content.responseText}`,
         conversationId: conversationId as string,
         conversationMode,
         userId: userInfo.userId,
@@ -170,7 +167,7 @@ const ChatScreen = () => {
         prev.filter((msg) => msg.content !== message.content)
       );
     } catch (error) {
-      console.error('Error retrying message:', error);
+      console.error('Error retrying message:', error.message);
       // Mark the message as failed again
       setPendingMessages((prev) =>
         prev.map((msg) =>
@@ -205,12 +202,6 @@ const ChatScreen = () => {
       // sendMessageExcuse();
     }
   }, [excuse]);
-
-  useEffect(() => {
-    if (conversationMode === 'RANDOM_CONVERSATION') {
-      setRandomQuestions(shuffleArray(RANDOM_QUESTIONS).slice(0, 5));
-    }
-  }, [conversationMode]);
 
   // Scroll logic based on the number of messages
   useEffect(() => {
@@ -319,14 +310,6 @@ const ChatScreen = () => {
               )}
             </View>
           </View>
-          {conversationMode === 'RANDOM_CONVERSATION' &&
-            !conversation &&
-            !!randomQuestions.length && (
-              <AnimatedChatQuestions
-                questions={randomQuestions}
-                onSelect={(question) => handleSendMessage(question)}
-              />
-            )}
 
           {/* Messages List */}
           <FlashList
@@ -339,12 +322,15 @@ const ChatScreen = () => {
               paddingBottom: 8,
             }}
             renderItem={({ item, index }) => (
-              <ChatBubble
+              <ChatBubbleExcuseBuster
                 message={item}
                 isUser={item.role === 'user'}
                 onRetrySendMessage={() => handleRetryMessage(item)}
                 speak={(text) => handleSpeak(index.toString(), text)}
                 isSpeaking={currentlySpeakingId === index.toString()}
+                onSendMessage={handleSendMessage}
+                onCreateTask={onCreateTask}
+                dayLabelTaskCard={dayLabelTaskCard}
               />
             )}
             estimatedItemSize={100}
@@ -378,4 +364,4 @@ const ChatScreen = () => {
   );
 };
 
-export default ChatScreen;
+export default ChatExcuseBuster;

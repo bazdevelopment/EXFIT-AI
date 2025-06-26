@@ -1,8 +1,8 @@
-import * as functions from "firebase-functions/v1";
+import * as functions from 'firebase-functions/v1';
 
-import { throwHttpsError } from "../utilities/errors";
-import { admin } from "./common";
-import { getTranslation } from "./translations";
+import { throwHttpsError } from '../utilities/errors';
+import { admin } from './common';
+import { getTranslation } from './translations';
 
 const db = admin.firestore();
 
@@ -19,7 +19,7 @@ const loginUserAnonymouslyHandler = async (data: {
     // Validate username
     if (!data.username) {
       throwHttpsError(
-        "invalid-argument",
+        'invalid-argument',
         t.loginUserAnonymously.mandatoryUsername,
       );
     }
@@ -30,12 +30,12 @@ const loginUserAnonymouslyHandler = async (data: {
     // Step 1: Check if actualUserId is provided and corresponds to an existing user
     if (data.actualUserId) {
       const existingUserDoc = await db
-        .collection("users")
+        .collection('users')
         .doc(data.actualUserId)
         .get();
       if (existingUserDoc.exists) {
         // Update the existing user's username
-        await db.collection("users").doc(data.actualUserId).update({
+        await db.collection('users').doc(data.actualUserId).update({
           userName: data.username, // Update the username
           updatedAt: admin.firestore.FieldValue.serverTimestamp(), // Update the timestamp
         });
@@ -61,7 +61,7 @@ const loginUserAnonymouslyHandler = async (data: {
 
     // Step 3: Create a new user document in Firestore
     await db
-      .collection("users")
+      .collection('users')
       .doc(newUserId)
       .set({
         userId: newUserId,
@@ -73,14 +73,14 @@ const loginUserAnonymouslyHandler = async (data: {
         userName: data.username, // Store the provided username
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        preferredLanguage: data.language || "en", // Use the provided language or default to 'en'
+        preferredLanguage: data.language || 'en', // Use the provided language or default to 'en'
         completedScans: 0, // Example field
-        email: "",
-        profilePictureUrl: "",
+        email: '',
+        profilePictureUrl: '',
         onboarding: {
-          gender: "",
+          gender: '',
           fitnessGoals: [],
-          experience: "",
+          experience: '',
         },
         gamification: {
           streakBalance: 0,
@@ -103,10 +103,10 @@ const loginUserAnonymouslyHandler = async (data: {
   } catch (error: any) {
     // Ensure 't' is defined before using it in handleAndThrowHttpsError
     // If getting translation also fails, this might need a more robust default mechanism.
-    t = t || getTranslation("en");
+    t = t || getTranslation('en');
 
-    throwHttpsError("internal", t.loginUserAnonymously.error, {
-      message: error.message || "Unknown error occurred.",
+    throwHttpsError('internal', t.loginUserAnonymously.error, {
+      message: error.message || 'Unknown error occurred.',
     });
   }
 };
@@ -119,7 +119,7 @@ const getUserInfo = async (data: { language: string }, context: any) => {
 
     // Ensure user is authenticated
     if (!context.auth) {
-      return throwHttpsError("unauthenticated", t.common.notAuthorized);
+      return throwHttpsError('unauthenticated', t.common.notAuthorized);
     }
     const userId = context.auth?.uid;
     const userInfoData = await getUserInfoById(userId, data.language);
@@ -127,16 +127,16 @@ const getUserInfo = async (data: { language: string }, context: any) => {
       ...userInfoData,
       verificationCodeExpiry: userInfoData?.verificationCodeExpiry
         ? userInfoData?.verificationCodeExpiry.toDate().toISOString()
-        : "",
+        : '',
       createdAt: userInfoData?.createdAt?.toDate()?.toISOString(),
       updatedAt: userInfoData?.updatedAt?.toDate()?.toISOString(),
       message: t.getUserInfo.successGetInfo,
     };
   } catch (error: any) {
-    t = t || getTranslation("en");
+    t = t || getTranslation('en');
 
-    throwHttpsError("internal", t.getUserInfo.errorGetInfo, {
-      message: error.message || "Unknown error occurred.",
+    throwHttpsError('internal', t.getUserInfo.errorGetInfo, {
+      message: error.message || 'Unknown error occurred.',
     });
   }
 };
@@ -152,17 +152,17 @@ const getUserInfoById = async (
     // Check if userId is valid
     if (!userId) {
       throw new functions.https.HttpsError(
-        "invalid-argument",
+        'invalid-argument',
         t.common.userIdMissing,
       );
     }
 
     // Fetch the user info from the database or service
-    const userInfoData = await db.collection("users").doc(userId).get();
+    const userInfoData = await db.collection('users').doc(userId).get();
     // Ensure user data is not null/undefined
     if (!userInfoData.exists) {
       throw new functions.https.HttpsError(
-        "data-loss",
+        'data-loss',
         t.getUserInfoById.noUserInfoData,
       );
     }
@@ -170,7 +170,7 @@ const getUserInfoById = async (
     // Return the user info data
     return userInfoData.data();
   } catch (error: any) {
-    t = t || getTranslation("en");
+    t = t || getTranslation('en');
 
     // Handle errors and rethrow as HttpsError for consistency
     if (error instanceof functions.https.HttpsError) {
@@ -178,11 +178,11 @@ const getUserInfoById = async (
     }
 
     // Log the error for debugging purposes
-    console.error("Error fetching user info:", error);
+    console.error('Error fetching user info:', error);
 
     // Throw a generic error for unexpected issues
     throw new functions.https.HttpsError(
-      "unknown",
+      'unknown',
       t.getUserInfoById.getUserFetchError,
       { details: error.message },
     );
@@ -198,14 +198,14 @@ const updateUserHandler = async (data: {
   let t;
   try {
     const { userId, language } = data;
-    const userDoc = db.collection("users").doc(userId);
+    const userDoc = db.collection('users').doc(userId);
     t = getTranslation(language);
 
     await userDoc.update(data.fieldsToUpdate);
 
     return { message: t.updateUser.successUpdatedUser };
   } catch (error: any) {
-    t = t || getTranslation("en");
+    t = t || getTranslation('en');
 
     throwHttpsError(error.code, error.message, {
       message: error.message || t?.updateUser.updateUserError,

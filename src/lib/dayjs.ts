@@ -14,11 +14,15 @@ import 'dayjs/locale/ro';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import weekOfYearSecond from 'dayjs/plugin/weekOfYear';
 
 dayjs.extend(isoWeek);
 dayjs.extend(weekOfYearSecond);
 dayjs.extend(isSameOrBefore);
+dayjs.extend(timezone);
+dayjs.extend(utc);
 
 /** here you can extend more plugins for dayjs */
 export default dayjs;

@@ -74,7 +74,6 @@ const ExcuseBusterScreen: React.FC = () => {
     if (customExcuse.trim()) {
       allExcuses.push(customExcuse.trim());
     }
-    console.log('allExcuses', allExcuses);
 
     if (allExcuses.length === 0) {
       alert('Please select at least one excuse or enter a custom one!');
@@ -82,7 +81,7 @@ const ExcuseBusterScreen: React.FC = () => {
     }
 
     router.navigate({
-      pathname: '/chat-screen',
+      pathname: '/chat-excuse-buster',
       params: {
         conversationId: generateUniqueId(),
         mediaSource: '',
@@ -91,10 +90,6 @@ const ExcuseBusterScreen: React.FC = () => {
         conversationMode: 'RANDOM_CONVERSATION',
       },
     });
-
-    // Handle the submission logic here
-    console.log('Selected excuses:', allExcuses);
-    alert(`Time to bust these excuses: ${allExcuses.join(', ')}!`);
   };
 
   return (
