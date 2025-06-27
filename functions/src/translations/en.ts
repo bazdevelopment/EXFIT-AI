@@ -47,4 +47,29 @@ export const en: ITranslation = {
     noResponseAiService:
       'Failed to get a valid response from the AI service. Please try again',
   },
+  sendGlobalPushNotifications: {
+    requiredParams: 'Notification title and body are mandatory.',
+    generalError: 'An error occurred while processing notifications',
+    generalErrorAdditional: 'Failed to send global notification',
+  },
+  getUserNotification: {
+    generalError: 'Failed to fetch user notifications',
+    generalErrorAdditional:
+      'An error occurred while fetching user notifications',
+  },
+  sendUserNotification: {
+    noTokenFound: 'No valid Expo tokens found. Unable to send notifications',
+    generalError: 'Failed to send notification',
+  },
+  checkDeviceUniqueIdentifier: {
+    deviceMandatory: 'Device ID is mandatory',
+    languageMandatory: 'Language is mandatory',
+    deviceIdentified: 'Your device has been identified successfully',
+    generalError: 'An error occurred while checking device trial',
+  },
+
+  storeDeviceToken: {
+    deviceTokenRequired: 'Providing a device token is mandatory.',
+    generalError: 'Error storing device token',
+  },
 };

@@ -22,5 +22,4 @@ export interface IMobileDeviceInfo {
   deviceName?: string;
   deviceModel?: string;
   deviceBrand?: string;
-  deviceUniqueId?: string;
 }

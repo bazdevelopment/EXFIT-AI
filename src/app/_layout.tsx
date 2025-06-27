@@ -11,6 +11,7 @@ import {
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import * as Notifications from 'expo-notifications';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useCallback, useEffect } from 'react';
@@ -21,6 +22,7 @@ import { Toaster } from 'sonner-native';
 
 import { APIProvider } from '@/api';
 import { hydrateAuth, loadSelectedTheme } from '@/core';
+import usePushNotifications from '@/core/hooks/use-push-notifications';
 import { useThemeConfig } from '@/core/use-theme-config';
 
 export { ErrorBoundary } from 'expo-router';
@@ -39,7 +41,17 @@ SplashScreen.setOptions({
   fade: true,
 });
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldPlaySound: false,
+    shouldShowAlert: true,
+    shouldSetBadge: true,
+  }),
+});
+
 export default function RootLayout() {
+  usePushNotifications(); // push notifications popup
+
   const [fontsLoaded] = useFonts({
     'Font-Regular': NunitoSans_400Regular,
     'Font-SemiBold': NunitoSans_600SemiBold,
