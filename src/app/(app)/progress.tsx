@@ -1,6 +1,8 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { BarChart, PieChartPro } from 'react-native-gifted-charts';
+
+import ScreenWrapper from '@/components/screen-wrapper';
 
 // Mock data for the charts with enhanced styling
 const excusesOvercomeData = [
@@ -220,7 +222,7 @@ const ProgressScreen: React.FC = () => {
   );
 
   return (
-    <SafeAreaView className="flex-1 bg-black">
+    <ScreenWrapper>
       <ScrollView
         className="flex-1 px-4 py-6"
         showsVerticalScrollIndicator={false}
@@ -337,7 +339,7 @@ const ProgressScreen: React.FC = () => {
           </View>
         </ChartCard>
       </ScrollView>
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 };
 

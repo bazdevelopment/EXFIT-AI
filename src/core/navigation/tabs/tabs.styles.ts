@@ -15,6 +15,7 @@ export const getBottomTabBarStyle = (isDark: boolean) =>
       borderWidth: 0,
       borderTopWidth: 0,
       bottom: 30,
+      height: 80,
       alignItems: 'center',
       shadowColor: colors.black, // iOS shadow color
       // shadowOffset: { width: 0, height: 5 }, // iOS shadow offset

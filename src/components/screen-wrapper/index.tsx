@@ -1,6 +1,8 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 
+import { DEVICE_TYPE } from '@/core';
+
 import { FocusAwareStatusBar, SafeAreaView } from '../ui';
 
 const ScreenWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -12,7 +14,7 @@ const ScreenWrapper = ({ children }: { children: React.ReactNode }) => {
       locations={[0.5, 1]}
       style={{ flex: 1 }}
     >
-      <SafeAreaView className="flex-1">
+      <SafeAreaView className={`flex-1 ${DEVICE_TYPE.ANDROID ? 'mt-4' : ''}`}>
         <FocusAwareStatusBar hidden />
         {children}
       </SafeAreaView>
