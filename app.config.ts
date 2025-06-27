@@ -61,6 +61,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   plugins: [
     [
+      'expo-notifications',
+      {
+        icon: './assets/icon_notification_96x96.png',
+        color: '#1d1e3c',
+        defaultChannel: 'default',
+      },
+    ],
+    [
       'expo-splash-screen',
       {
         backgroundColor: '#000000',
@@ -88,7 +96,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     '@react-native-firebase/auth',
     '@react-native-firebase/crashlytics',
     ['app-icon-badge', appIconBadgeConfig],
-    ['react-native-edge-to-edge'],
+    [
+      'react-native-edge-to-edge',
+      {
+        android: {
+          parentTheme: 'Default',
+          enforceNavigationBarContrast: false,
+        },
+      },
+    ],
     [
       'expo-camera',
       {

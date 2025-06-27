@@ -13,6 +13,7 @@ import * as functions from 'firebase-functions/v1';
 import * as activityLogsFunctions from './activity-logs';
 import * as conversationFunctions from './conversation';
 import * as excuseBusterFunctions from './excuse-buster';
+import * as pushNotificationsFunctions from './push-notifications';
 import * as scanImageFunctions from './scan';
 import * as aiTasksFunctions from './tasks';
 import * as userFunctions from './user';
@@ -93,4 +94,22 @@ export const getAiTasks = usCentralFunctions.https.onCall(
 
 export const updateAiTaskStatus = usCentralFunctions.https.onCall(
   aiTasksFunctions.updateAiTasksStatusHandler,
+);
+
+/** Push notifications  */
+
+export const storeDeviceToken = usCentralFunctions.https.onCall(
+  pushNotificationsFunctions.storeDeviceToken,
+);
+export const sendGlobalPushNotifications = usCentralFunctions.https.onCall(
+  pushNotificationsFunctions.handleSendGlobalPushNotifications,
+);
+export const sendIndividualPushNotification = usCentralFunctions.https.onCall(
+  pushNotificationsFunctions.sendUserPushNotification,
+);
+export const fetchUserNotifications = usCentralFunctions.https.onCall(
+  pushNotificationsFunctions.handleGetUserNotification,
+);
+export const markNotificationAsRead = usCentralFunctions.https.onCall(
+  pushNotificationsFunctions.handleMarkNotificationAsRead,
 );

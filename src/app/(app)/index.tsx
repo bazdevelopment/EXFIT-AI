@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { RefreshControl, ScrollView, View } from 'react-native';
 
 import {
   useCreateActivityLog,
@@ -25,6 +25,7 @@ import TaskListOverview from '@/components/task-list-overview';
 import { colors, useModal } from '@/components/ui';
 import { Notification } from '@/components/ui/assets/icons'; // Ensure this is installed: npx expo install expo-linear-gradient
 import { useSelectedLanguage } from '@/core';
+import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 
@@ -51,11 +52,13 @@ export default function Home() {
     isPending: isCreateActivityLogPending,
   } = useCreateActivityLog();
 
-  const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
-    startDate: startOfWeek,
-    endDate: endOfWeek,
-    language,
-  });
+  const { data: currentWeekActivityLog, refetch: refetchActivityLog } =
+    useGetCalendarActivityLog({
+      startDate: startOfWeek,
+      endDate: endOfWeek,
+      language,
+    });
+  console.log('currentWeekActivityLog', currentWeekActivityLog);
 
   const { data: todayActiveTasks } = useGetAiTasks(currentActiveDay);
 
@@ -63,6 +66,8 @@ export default function Home() {
     useUpdateAiTaskStatus(currentActiveDay);
 
   const isDailyCheckInDone = !!currentWeekActivityLog?.[currentActiveDay];
+
+  const { isRefetching, onRefetch } = useDelayedRefetch(refetchActivityLog);
 
   return (
     <ScreenWrapper>
@@ -84,7 +89,17 @@ export default function Home() {
           badgeClassName="right-1.5 top-1"
         />
       </View>
-      <ScrollView contentContainerClassName="pb-16">
+      <ScrollView
+        contentContainerClassName="pb-16"
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefetching}
+            onRefresh={onRefetch}
+            tintColor={colors.white}
+            colors={[colors.black]}
+          />
+        }
+      >
         {isDailyCheckInDone ? (
           <DailyCheckInStatus
             status={currentWeekActivityLog?.[currentActiveDay][0]?.status}

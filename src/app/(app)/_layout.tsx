@@ -1,7 +1,7 @@
 import { Redirect, Tabs, useSegments } from 'expo-router';
 import { firebaseAuth } from 'firebase/config';
 import { useColorScheme } from 'nativewind';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useUser } from '@/api/user/user.hooks';
 import CustomHeader from '@/components/cusom-header';
@@ -17,6 +17,7 @@ import {
 import { useCrashlytics } from '@/core/hooks/use-crashlytics';
 import { useFirstOnboarding } from '@/core/hooks/use-first-onboarding';
 import { useHaptic } from '@/core/hooks/use-haptics';
+import { usePushNotificationToken } from '@/core/hooks/use-push-notification-token';
 import { useSecondOnboarding } from '@/core/hooks/use-second-onboarding';
 import { tabScreens } from '@/core/navigation/tabs';
 import { type ITabsNavigationScreen } from '@/core/navigation/tabs/tabs.interface';
@@ -31,6 +32,7 @@ export default function TabLayout() {
 
   const { language } = useSelectedLanguage();
   const { logEvent } = useCrashlytics();
+  const { storeDeviceInfo } = usePushNotificationToken();
   const { data: userInfo, isPending: isPendingUserinfo } = useUser(language);
   const addSelectionHapticEffect = useHaptic('selection');
   const segments = useSegments();
@@ -38,6 +40,10 @@ export default function TabLayout() {
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
   const bottomTabBarStyles = getBottomTabBarStyle(isDark);
+
+  useEffect(() => {
+    storeDeviceInfo();
+  }, []);
 
   if (isPendingUserinfo) return <InitialLoadSpinner />;
 

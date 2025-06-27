@@ -36,4 +36,28 @@ export interface ITranslation {
     serviceIssueAi: string;
     noResponseAiService: string;
   };
+  sendGlobalPushNotifications: {
+    requiredParams: string;
+    generalError: string;
+    generalErrorAdditional: string;
+  };
+
+  checkDeviceUniqueIdentifier: {
+    deviceMandatory: string;
+    languageMandatory: string;
+    deviceIdentified: string;
+    generalError: string;
+  };
+  getUserNotification: {
+    generalError: string;
+    generalErrorAdditional: string;
+  };
+  sendUserNotification: {
+    noTokenFound: string;
+    generalError: string;
+  };
+  storeDeviceToken: {
+    deviceTokenRequired: string;
+    generalError: string;
+  };
 }

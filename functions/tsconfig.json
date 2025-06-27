@@ -18,6 +18,7 @@
     "./utilities/convert-buffer-base-64.ts",
     "./utilities/generate-unique-id.ts",
     "./utilities/ai-models.ts",
+    "./utilities/push-notifications-utils.ts",
     "dayjs/index.ts"
   ]
 }

@@ -36,8 +36,7 @@ export default function Settings() {
   const { mutateAsync: onUpdateUser, isPending: isPendingUpdateUser } =
     useUpdateUser();
 
-  const { SHOW_FAQ_SCREEN, SHOW_RATE_SCREEN, SHOW_ADMIN_SCREENS } =
-    useRemoteConfig();
+  const { SHOW_FAQ_SCREEN, SHOW_RATE_SCREEN } = useRemoteConfig();
 
   const scrollViewRef = useRef(null);
   const iconColor = colorScheme === 'dark' ? colors.neutral[50] : colors.black;
@@ -162,72 +161,71 @@ export default function Settings() {
               onPress={handleLogout}
             />
 
-            {__DEV__ &&
-              SHOW_ADMIN_SCREENS && ( //change the condition here so this will be available in dev/prod only for an admin account
-                <>
-                  <ItemsContainer title="settings.devMode.title">
+            {__DEV__ && ( //change the condition here so this will be available in dev/prod only for an admin account
+              <>
+                <ItemsContainer title="settings.devMode.title">
+                  <Item
+                    text="settings.devMode.componentsLibrary"
+                    onPress={() => router.navigate('/ui-library')}
+                  />
+                </ItemsContainer>
+
+                <View>
+                  <ItemsContainer title="Utils">
                     <Item
-                      text="settings.devMode.componentsLibrary"
-                      onPress={() => router.navigate('/ui-library')}
+                      text="Verify email"
+                      onPress={() => router.navigate('/verify-email')}
+                    />
+
+                    <Item
+                      text="Send global push notification"
+                      onPress={() =>
+                        onHandleGlobalPushNotifications({
+                          title: 'This is a global notification title',
+                          body: 'This is a global notification body',
+                          language,
+                        })
+                      }
+                    />
+                    <Item
+                      text="Send individual push notification"
+                      onPress={() =>
+                        onHandleIndividualNotification({
+                          title:
+                            'Hinweis zu persönlichen medizinischen Bildern',
+                          body: 'Wir empfehlen NICHT, persönliche medizinische Bilder zur individuellen Analyse auf MicroScan AI hochzuladen, da die Ergebnisse nicht als endgültig betrachtet werden sollten. Unsere KI-Modelle werden noch erforscht und verfeinert und es können potenzielle Ungenauigkeiten auftreten. Es eignet sich hervorragend zum Lernen und um allgemeine Einblicke zu gewinnen, für ausführlichere Überprüfungen sollten Sie jedoch einen Spezialisten konsultieren. Wenn Sie Fragen haben, kontaktieren Sie uns per E-Mail - microscanaiapp@gmail.com',
+                          // title: 'Notice About Personal microscopy Images',
+                          // body: 'We DO NOT encourage uploading personal microscopy images to MicroScan AI for individual analysis, as the results should not be considered final. Our AI models are still being researched and refined, and potential inaccuracies may occur. It’s great for learning and get general insights, but for in-depth reviews, consult a specialist. If you have any questions contact us via email - microscanaiapp@gmail.com',
+                          userId: '',
+                          language,
+                        })
+                      }
+                    />
+                    <Item
+                      text="Upload terms of service"
+                      onPress={() => onUploadTermsOfService({ language })}
+                    />
+                    <Item
+                      text="Upload privacy policy"
+                      onPress={() => onUploadPrivacyPolicy({ language })}
+                    />
+                    <Item
+                      text="Add completedScans field to userInfo"
+                      //! be careful with the below functions
+                      onPress={() =>
+                        onAddFieldsToCollection({
+                          fields: {
+                            //add fields here
+                            // completedScans: 0,
+                          },
+                          collectionName: 'users',
+                        })
+                      }
                     />
                   </ItemsContainer>
-
-                  <View>
-                    <ItemsContainer title="Utils">
-                      <Item
-                        text="Verify email"
-                        onPress={() => router.navigate('/verify-email')}
-                      />
-
-                      <Item
-                        text="Send global push notification"
-                        onPress={() =>
-                          onHandleGlobalPushNotifications({
-                            title: 'This is a global notification title',
-                            body: 'This is a global notification body',
-                            language,
-                          })
-                        }
-                      />
-                      <Item
-                        text="Send individual push notification"
-                        onPress={() =>
-                          onHandleIndividualNotification({
-                            title:
-                              'Hinweis zu persönlichen medizinischen Bildern',
-                            body: 'Wir empfehlen NICHT, persönliche medizinische Bilder zur individuellen Analyse auf MicroScan AI hochzuladen, da die Ergebnisse nicht als endgültig betrachtet werden sollten. Unsere KI-Modelle werden noch erforscht und verfeinert und es können potenzielle Ungenauigkeiten auftreten. Es eignet sich hervorragend zum Lernen und um allgemeine Einblicke zu gewinnen, für ausführlichere Überprüfungen sollten Sie jedoch einen Spezialisten konsultieren. Wenn Sie Fragen haben, kontaktieren Sie uns per E-Mail - microscanaiapp@gmail.com',
-                            // title: 'Notice About Personal microscopy Images',
-                            // body: 'We DO NOT encourage uploading personal microscopy images to MicroScan AI for individual analysis, as the results should not be considered final. Our AI models are still being researched and refined, and potential inaccuracies may occur. It’s great for learning and get general insights, but for in-depth reviews, consult a specialist. If you have any questions contact us via email - microscanaiapp@gmail.com',
-                            userId: '',
-                            language,
-                          })
-                        }
-                      />
-                      <Item
-                        text="Upload terms of service"
-                        onPress={() => onUploadTermsOfService({ language })}
-                      />
-                      <Item
-                        text="Upload privacy policy"
-                        onPress={() => onUploadPrivacyPolicy({ language })}
-                      />
-                      <Item
-                        text="Add completedScans field to userInfo"
-                        //! be careful with the below functions
-                        onPress={() =>
-                          onAddFieldsToCollection({
-                            fields: {
-                              //add fields here
-                              // completedScans: 0,
-                            },
-                            collectionName: 'users',
-                          })
-                        }
-                      />
-                    </ItemsContainer>
-                  </View>
-                </>
-              )}
+                </View>
+              </>
+            )}
           </View>
         </ScrollView>
       </View>

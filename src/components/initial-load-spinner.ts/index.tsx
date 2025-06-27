@@ -7,7 +7,7 @@ import { LOADING_MESSAGES_INITIAL_APP_LOAD } from '@/constants/loading-messages'
 import BounceLoader from '../bounce-loader';
 import Branding from '../branding';
 import ScreenWrapper from '../screen-wrapper';
-import { colors, FocusAwareStatusBar } from '../ui';
+import { colors } from '../ui';
 
 const InitialLoadSpinner = () => {
   const { colorScheme } = useColorScheme();
@@ -16,8 +16,6 @@ const InitialLoadSpinner = () => {
   return (
     <ScreenWrapper>
       <View className="flex-1 items-center justify-center gap-3">
-        <FocusAwareStatusBar hidden />
-
         <Branding
           isLogoVisible
           className="top-[-25]"
