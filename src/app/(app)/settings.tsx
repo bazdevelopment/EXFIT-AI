@@ -178,6 +178,11 @@ export default function Settings() {
                     />
 
                     <Item
+                      text="Create permanent account"
+                      onPress={() => router.navigate('/upgrade-account')}
+                    />
+
+                    <Item
                       text="Send global push notification"
                       onPress={() =>
                         onHandleGlobalPushNotifications({

@@ -213,4 +213,45 @@ const updateUserHandler = async (data: {
   }
 };
 
-export { getUserInfo, loginUserAnonymouslyHandler, updateUserHandler };
+/**
+ * A Callable Cloud Function to securely check if an email address
+ * is already registered in Firebase Auth.
+ *
+ * @param {Object} data - The input data object.
+ * @param {string} data.email - The email address to check.
+ * @return {Object} An object indicating if the email exists.
+ */
+const checkEmailExistsHandler = async (data: {
+  email: string;
+}): Promise<{ exists: boolean }> => {
+  if (!data.email) {
+    throw new functions.https.HttpsError(
+      'invalid-argument',
+      "The function must be called with an 'email' argument.",
+    );
+  }
+
+  try {
+    // This will throw an error if the user is not found.
+    await admin.auth().getUserByEmail(data.email);
+    // If the line above doesn't throw, the user exists.
+    return { exists: true };
+  } catch (error: any) {
+    // 'auth/user-not-found' is the expected error for an available email.
+    if (error.code === 'auth/user-not-found') {
+      return { exists: false };
+    }
+    // Re-throw other unexpected errors.
+    throw new functions.https.HttpsError(
+      'internal',
+      'An unexpected error occurred.',
+    );
+  }
+};
+
+export {
+  checkEmailExistsHandler,
+  getUserInfo,
+  loginUserAnonymouslyHandler,
+  updateUserHandler,
+};
