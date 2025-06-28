@@ -36,10 +36,16 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     fallbackToCacheTimeout: 0,
   },
   assetBundlePatterns: ['**/*'],
+  platforms: ['ios', 'android'],
+
   ios: {
     supportsTablet: true,
     bundleIdentifier: Env.BUNDLE_ID,
     googleServicesFile: ClientEnv.GOOGLE_SERVICES_PLIST_PATH,
+    associatedDomains: [
+      'applinks:exfit-ai-dev-9d0fe.firebaseapp.com', // Important for iOS Universal Links
+      'applinks:exfit-ai-dev-9d0fe.firebaseapp.com/scan',
+    ],
     config: {
       usesNonExemptEncryption: false, // Avoid the export compliance warning on the app store
     },
@@ -54,6 +60,22 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#000000',
     },
     package: Env.PACKAGE,
+    intentFilters: [
+      {
+        action: 'VIEW',
+        data: [
+          {
+            scheme: 'https',
+            host: 'exfit-ai-dev-9d0fe.firebaseapp.com',
+            pathPrefix: '/completeLogin', // This is important to match your Firebase link path
+          },
+          {
+            scheme: 'exfit', // Your custom scheme for Android
+          },
+        ],
+        category: ['BROWSABLE', 'DEFAULT'],
+      },
+    ],
   },
   web: {
     favicon: './assets/favicon.png',

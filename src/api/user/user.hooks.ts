@@ -11,6 +11,7 @@ import { wait } from '@/core/utilities/wait';
 import { queryClient } from '../common';
 import {
   createAnonymousAccount,
+  createPermanentAccount,
   decrementNumberOfScans,
   getUserInfo,
   loginWithEmail,
@@ -185,6 +186,16 @@ export const useUpdateUser = () => {
       Toast.error(error.message || translate('alerts.preferredLanguageError'));
       logEvent(`Error when the user is updated with new fields`, 'error');
       recordError(error, 'Error when the user is updated with new fields');
+    },
+  })();
+};
+
+export const useCreatePermanentAccount = () => {
+  return createMutation<any, { email: string; password: string }, AxiosError>({
+    mutationFn: (variables) => createPermanentAccount(variables),
+    onSuccess: () => {},
+    onError: (error) => {
+      console.log('error here boss', error);
     },
   })();
 };

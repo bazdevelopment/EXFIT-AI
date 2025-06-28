@@ -36,6 +36,13 @@
         <data android:scheme="exp+exfit-ai"/>
         <data android:scheme="com.exfit"/>
       </intent-filter>
+      <intent-filter data-generated="true">
+        <action android:name="android.intent.action.VIEW"/>
+        <data android:scheme="https" android:host="exfit-ai-dev-9d0fe.firebaseapp.com" android:pathPrefix="/completeLogin"/>
+        <data android:scheme="exfit"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
     </activity>
   </application>
 </manifest>

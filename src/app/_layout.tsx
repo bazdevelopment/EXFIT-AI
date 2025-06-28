@@ -140,6 +140,15 @@ export default function RootLayout() {
             animationDuration: 500,
           }}
         />
+        <Stack.Screen
+          name="upgrade-account"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
       </Stack>
     </Providers>
   );

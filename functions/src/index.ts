@@ -48,6 +48,10 @@ export const updateUser = usCentralFunctions.https.onCall(
   userFunctions.updateUserHandler,
 );
 
+export const checkEmailExist = usCentralFunctions.https.onCall(
+  userFunctions.checkEmailExistsHandler,
+);
+
 /** ActivityLogs collection cloud functions  */
 
 export const createActivityLog = usCentralFunctions.https.onCall(
