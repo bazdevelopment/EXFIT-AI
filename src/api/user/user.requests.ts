@@ -1,4 +1,9 @@
-import { sendSignInLinkToEmail } from '@react-native-firebase/auth';
+import {
+  EmailAuthProvider,
+  linkWithCredential,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from '@react-native-firebase/auth';
 import { router } from 'expo-router';
 import { firebaseAuth, firebaseCloudFunctionsInstance } from 'firebase/config';
 
@@ -185,7 +190,8 @@ export const checkEmail = async ({ email }: { email: string }) => {
     const { data } = await firebaseCloudFunctionsInstance.httpsCallable(
       'checkEmailExist'
     )({ email });
-    return data;
+    console.log('data', data);
+    return data as { exists: boolean };
   } catch (error) {
     throw error;
   }
@@ -193,7 +199,7 @@ export const checkEmail = async ({ email }: { email: string }) => {
 
 export const logout = async () => {
   await firebaseAuth.signOut();
-  router.navigate('/anonymous-login');
+  router.navigate('/login');
   queryClient.clear(); // Clears all cached queries & mutations
   Toast.success(translate('alerts.loggedOutSuccess'));
 };
@@ -207,16 +213,14 @@ interface UpgradePayload {
 
 export const createPermanentAccount = async ({
   email,
-}: UpgradePayload): Promise<void> => {
-  console.log('auth', firebaseAuth.currentUser);
-  const currentUserId = firebaseAuth?.currentUser?.uid;
-
+  password,
+}: UpgradePayload): Promise<User> => {
+  const currentUserId = firebaseAuth?.currentUser?.uid; // <-- Get UID before linking
   if (!currentUserId) {
     throw new Error('No anonymous user is currently signed in.');
   }
 
   // 1. Pre-check if email exists using our cloud function
-  // This helps prevent sending links to already registered emails (for security/UX)
   const data = await checkEmail({ email });
 
   console.log('data check email', data);
@@ -224,60 +228,127 @@ export const createPermanentAccount = async ({
     throw new Error('This email address is already in use.');
   }
 
-  // 2. Define action code settings for the email link
-  // IMPORTANT: For React Native, this URL should be a deep link that your app is configured to handle.
-  // You will need to set up deep linking in your React Native project using Universal Links (iOS)
-  // and Android App Links, or a third-party deep linking service.
-  const actionCodeSettings = {
-    // This URL is the deep link that will open your React Native app.
-    // Replace 'your-app-scheme' with your actual deep link scheme (e.g., 'myapp://').
-    // Example: 'yourapp://complete-sign-in?uid=' + currentUserId
-    url: `https://exfit-ai-dev-9d0fe.firebaseapp.com/scan`,
-    handleCodeInApp: true, // This must be set to true for the link to be handled by your app
-    // You should also configure iOS and Android specific settings for Universal Links / Android App Links.
-    // These typically involve setting up associated domains (iOS) and intent filters with assetlinks.json (Android).
-    iOS: {
-      bundleId: 'com.exfit.development', // Replace with your iOS bundle ID
-    },
-    android: {
-      packageName: 'com.exfit.development', // Replace with your Android package name
-      installApp: true, // Set to true if you want the app to be installed from the Play Store
-      minimumVersion: '1', // Minimum version of your app required to handle the link
-    },
-    // Firebase Dynamic Links are deprecated. Do not use dynamicLinkDomain.
-    // Ensure your `url` points to a universal link or app link that your app can handle directly.
-  };
-
+  // 2. Create the new Email/Password credential
+  const credential = EmailAuthProvider.credential(email, password);
   try {
-    // 3. Send the passwordless sign-in link to the user's email
-    await sendSignInLinkToEmail(firebaseAuth, email, actionCodeSettings);
+    // 3. Link the new credential to the existing anonymous account
+    const userCredential = await linkWithCredential(
+      firebaseAuth.currentUser!,
+      credential
+    );
+    // 4. *** On success, update the user's profile in the 'users' collection.
 
-    console.log(`Sign-in link sent to ${email}.`);
+    await updateUserInfo({
+      fieldsToUpdate: {
+        email: userCredential.user.email,
+        isAnonymous: false,
+      },
+      userId: currentUserId,
+      language: 'en',
+    });
 
-    // 4. Store the email using AsyncStorage for React Native
-    // This is crucial to know which email to use when the user returns
-    // from the email link to complete the sign-in process.
-    // await AsyncStorage.setItem('emailForSignIn', email);
-
-    // Note: At this point, the user's account is NOT yet linked.
-    // The linking (and updating of Firestore) will happen when the user
-    // clicks the email link and your app handles the sign-in completion.
-    // You'll need to set up deep link handling in your React Native app
-    // to call signInWithEmailLink when the user returns via the link.
-
-    console.log('Email link sent successfully.');
-    return; // Function completes successfully after sending email
+    return userCredential.user;
   } catch (error: any) {
-    console.error('Error sending sign-in link:', error);
-    if (error.code === 'auth/invalid-email') {
-      throw new Error('The email address is not valid.');
+    console.log('error here boss', error);
+    // Handle specific Firebase errors for better UX
+    if (error.code === 'auth/weak-password') {
+      throw new Error(
+        'The password is too weak. Please use at least 6 characters.'
+      );
     }
-    // Specific error for when the email is already in use
     if (error.code === 'auth/email-already-in-use') {
       throw new Error('This email address is already in use.');
     }
-    throw new Error(
-      'An unexpected error occurred while sending the sign-in link.'
+    if (error.code === 'auth/provider-already-linked') {
+      throw new Error(
+        'There is another account linked to this user. Please try to log in first'
+      );
+    }
+    throw new Error('An unexpected error occurred during signup.');
+  }
+};
+
+// --- Type Definitions for our functions ---
+interface SignInPayload {
+  email: string;
+  password: string;
+}
+
+// --- 1. Sign-In Function ---
+
+/**
+ * Signs in a user with their email and password.
+ * This function is designed to be used in a `useMutation` hook.
+ *
+ * @param {SignInPayload} payload - An object containing the user's email and password.
+ * @returns {Promise<User>} A promise that resolves with the signed-in User object.
+ * @throws {Error} Throws a user-friendly error message if sign-in fails.
+ */
+export const signInUser = async ({
+  email,
+  password,
+}: SignInPayload): Promise<User> => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      firebaseAuth,
+      email,
+      password
     );
+    console.log('userCredential.user', userCredential.user);
+    return userCredential.user;
+  } catch (error) {
+    // We cast the error to AuthError to access the 'code' property safely
+    const authError = error;
+
+    // Provide user-friendly error messages based on the Firebase error code
+    switch (authError.code) {
+      case 'auth/user-not-found':
+      case 'auth/wrong-password':
+      case 'auth/invalid-credential': // This is a common code for wrong email/pass in recent SDK versions
+        throw new Error('Invalid email or password. Please try again.');
+      case 'auth/invalid-email':
+        throw new Error('Please enter a valid email address.');
+      case 'auth/user-disabled':
+        throw new Error('This account has been disabled.');
+      default:
+        // A generic error for unexpected issues
+        console.error('Unhandled Sign-In Error:', authError);
+        throw new Error('An unexpected error occurred during sign-in.');
+    }
+  }
+};
+
+/**
+ * Sends a password reset email to the provided email address.
+ *
+ * @param {string} email - The user's email address.
+ * @returns {Promise<{success: boolean}>} A promise that resolves indicating success.
+ * @throws {Error} Throws a user-friendly error message if the request fails.
+ */
+export const resetPassword = async ({
+  email,
+}: {
+  email: string;
+}): Promise<{ success: boolean }> => {
+  try {
+    // Firebase will send its standard password reset email from its own servers.
+    await sendPasswordResetEmail(firebaseAuth, email);
+
+    // For security reasons, always return success even if the user doesn't exist.
+    // This prevents "email enumeration" attacks where someone could check
+    // which emails are registered with your service.
+    return { success: true };
+  } catch (error) {
+    const authError = error;
+
+    // We only really need to handle the invalid email case.
+    if (authError.code === 'auth/invalid-email') {
+      throw new Error('Please enter a valid email address.');
+    }
+
+    // For all other errors, including 'auth/user-not-found', we fail silently
+    // and return success to the user, as explained above.
+    console.warn('Password reset error (failing silently):', authError.code);
+    return { success: true };
   }
 };

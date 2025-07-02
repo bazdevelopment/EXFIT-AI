@@ -46,6 +46,7 @@ Notifications.setNotificationHandler({
     shouldPlaySound: false,
     shouldShowAlert: true,
     shouldSetBadge: true,
+    shouldShowBanner: true,
   }),
 });
 
@@ -78,7 +79,33 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(app)" options={{ headerShown: false }} />
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-        <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="sign-up"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
+        <Stack.Screen
+          name="login"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
+        <Stack.Screen
+          name="forgot-password"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
         <Stack.Screen
           name="onboarding-first"
           options={{
@@ -142,6 +169,15 @@ export default function RootLayout() {
         />
         <Stack.Screen
           name="upgrade-account"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            animation: 'fade',
+            animationDuration: 500,
+          }}
+        />
+        <Stack.Screen
+          name="profile"
           options={{
             headerShown: false,
             gestureEnabled: false,

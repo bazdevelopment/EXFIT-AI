@@ -33,6 +33,7 @@ export * from './moon';
 export * from './notification';
 export * from './notification-bell';
 export * from './paperclip';
+export * from './permanent-account';
 export * from './phone';
 export * from './player-icon';
 export * from './progress';

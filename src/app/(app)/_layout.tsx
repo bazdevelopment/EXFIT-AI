@@ -56,7 +56,7 @@ export default function TabLayout() {
 
   if (!isLoggedIn) {
     logEvent(`User ${userInfo?.userId} is redirected to login screen`);
-    return <Redirect href="/anonymous-login" />;
+    return <Redirect href="/login" />;
   }
 
   if (!isSecondOnboardingDone) {
