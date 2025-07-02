@@ -20,7 +20,7 @@ const Branding = ({
   return (
     <View className={`flex-row items-center ${className}`}>
       {isLogoVisible && (
-        <View className="rounded-xl bg-transparent p-2 dark:bg-blackEerie dark:p-0">
+        <View className="rounded-xl bg-transparent">
           <Image
             source={require('assets/splash-icon.png')}
             className={`size-[50px] ${imageClassname}`}

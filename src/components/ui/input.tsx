@@ -1,5 +1,4 @@
 import React from 'react';
-// only used with react-hook-form
 import { forwardRef } from 'react';
 import {
   type Control,
@@ -21,8 +20,7 @@ const inputTv = tv({
   slots: {
     container: 'mb-2',
     label: 'mb-2 font-semibold-nunito text-sm text-white',
-    input:
-      'relative flex flex-row items-center rounded-3xl border-4 border-primary-500',
+    input: 'relative flex flex-row items-center',
   },
 
   variants: {

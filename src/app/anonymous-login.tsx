@@ -1,5 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { firebaseAuth } from 'firebase/config';
 import { useColorScheme } from 'nativewind';
 import React, { useState } from 'react';
@@ -8,8 +8,15 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardStickyView } from 'react-native-keyboard-controller';
 
 import { useCreateAnonymousAccount } from '@/api/user/user.hooks';
-import { Button, FocusAwareStatusBar, Input, Text } from '@/components/ui';
-import { UserIcon } from '@/components/ui/assets/icons';
+import Icon from '@/components/icon';
+import {
+  Button,
+  colors,
+  FocusAwareStatusBar,
+  Input,
+  Text,
+} from '@/components/ui';
+import { ArrowLeft, UserIcon } from '@/components/ui/assets/icons';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import { useStoreUserId } from '@/core/hooks/use-store-user-id';
 import getDeviceSizeCategory from '@/core/utilities/get-device-size-category';
@@ -70,6 +77,12 @@ export default function AnonymousLogin() {
               >
                 {/* <Branding /> */}
 
+                <Icon
+                  size={24}
+                  containerStyle="rounded-2xl bg-charcoal-800 p-3 w-[50]"
+                  onPress={router.back}
+                  icon={<ArrowLeft color={colors.white} />}
+                />
                 <Text
                   testID="form-title"
                   className={`mt-14 font-bold-nunito text-[32px] text-white ${isVerySmallDevice && 'mt-4'}`}

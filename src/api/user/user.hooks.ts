@@ -15,7 +15,9 @@ import {
   decrementNumberOfScans,
   getUserInfo,
   loginWithEmail,
+  resetPassword,
   sendOtpCodeViaEmail,
+  signInUser,
   updateUserInfo,
   updateUserPreferredLanguage,
   validateVerificationCode,
@@ -193,9 +195,26 @@ export const useUpdateUser = () => {
 export const useCreatePermanentAccount = () => {
   return createMutation<any, { email: string; password: string }, AxiosError>({
     mutationFn: (variables) => createPermanentAccount(variables),
-    onSuccess: () => {},
-    onError: (error) => {
-      console.log('error here boss', error);
+    onSuccess: () => {
+      Toast.success(
+        'Your permanent account has been created! Your account is now secure'
+      );
     },
+  })();
+};
+
+export const useLogin = () => {
+  return createMutation<any, { email: string; password: string }, AxiosError>({
+    mutationFn: (variables) => signInUser(variables),
+    onSuccess: () => {
+      Toast.success('Logged in successfully!');
+      wait(2000).then(() => router.navigate('/(app)'));
+    },
+  })();
+};
+export const useResetPassword = () => {
+  return createMutation<{ success: boolean }, { email: string }, AxiosError>({
+    mutationFn: (variables) => resetPassword(variables),
+    onSuccess: () => {},
   })();
 };

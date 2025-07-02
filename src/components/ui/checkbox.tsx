@@ -45,9 +45,7 @@ export const Root = ({
   return (
     <Pressable
       onPress={handleChange}
-      className={`flex-row items-center ${className} ${
-        disabled ? 'opacity-50' : ''
-      }`}
+      className={`flex-row  ${className} ${disabled ? 'opacity-50' : ''}`}
       accessibilityState={{ checked }}
       disabled={disabled}
       {...props}
@@ -80,7 +78,7 @@ export const CheckboxIcon = ({ checked = false }: IconProps) => {
         width: SIZE,
         borderColor: color,
       }}
-      className="items-center justify-center rounded-[5px] border-2"
+      className="mt-[2px] items-center justify-center rounded-[5px] border-2"
       from={{ backgroundColor: 'transparent', borderColor: '#CCCFD6' }}
       animate={{
         backgroundColor: checked ? color : 'transparent',

@@ -12,20 +12,13 @@ export const getBottomTabBarStyle = (isDark: boolean) =>
       justifyContent: 'center',
       alignSelf: 'center',
       width: '90%',
-      borderWidth: 0,
-      borderTopWidth: 0,
       bottom: 30,
       height: 80,
       alignItems: 'center',
-      shadowColor: colors.black, // iOS shadow color
-      // shadowOffset: { width: 0, height: 5 }, // iOS shadow offset
-      // shadowOpacity: 0.4, // iOS shadow opacity
-      // shadowRadius: 10, // iOS shadow radius
-      // elevation: 5, // Android shadow
-      ...(isDark && {
-        borderTopColor: colors.charcoal[700],
-        borderTopWidth: 1,
-      }),
+      shadowColor: colors.black,
+      borderWidth: 0.5,
+      borderTopWidth: 0.5,
+      borderColor: colors.charcoal[800],
     },
     tabBarLabel: {
       color: 'red',
