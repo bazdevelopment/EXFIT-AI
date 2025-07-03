@@ -15,35 +15,37 @@ const db = admin.firestore();
  * Note the absence of server-controlled fields like `date`, `createdAt`, and `stakesEarned`.
  */
 interface CreateLogRequestData {
-  language: string;
-  type: 'daily_checkin' | 'excuse_logged' | 'custom_activity';
+  type:
+    | 'gym_workout'
+    | 'run'
+    | 'yoga'
+    | 'daily_checkin'
+    | 'custom_activity'
+    | 'excuse_logged';
   details: {
     durationMinutes?: number;
-    activityName?: string;
     excuseReason?: string;
     overcome?: boolean;
-    // ... add any other client-provided details
+    // ... any other details from the client
   };
+  timezone: string;
+  language: string;
   linkedAiTaskId?: string;
-  date?: string; // Optional: Date in "YYYY-MM-DD" format
 }
 
 /**
  * The full, final structure of the document to be written to Firestore.
  * This is constructed on the server.
  */
+// The final structure of the document written to the 'activityLogs' collection
 interface ActivityLogDocument {
   date: admin.firestore.Timestamp;
   createdAt: admin.firestore.FieldValue;
-  type: 'daily_checkin' | 'excuse_logged' | 'custom_activity';
+  type: CreateLogRequestData['type'];
+  details: CreateLogRequestData['details'];
   status: 'attended' | 'skipped';
-  stakesEarned: number;
-  details: {
-    durationMinutes?: number;
-    excuseReason?: string;
-    overcome?: boolean;
-    activityName?: string;
-  };
+  xpEarned: number; // Replaces stakesEarned
+  gemsEarned: number; // New currency
   linkedAiTaskId?: string;
 }
 
@@ -59,88 +61,124 @@ interface ActivityLogDocument {
 const createActivityLogHandler = async (
   data: CreateLogRequestData,
   context: functions.https.CallableContext, // Use CallableContext for better type inference
-): Promise<{ logId: string; message: string }> => {
+): Promise<{ xpEarned: number; gemsEarned: number; newStreak: number }> => {
   const t = getTranslation(data.language);
 
-  // 1. --- AUTHENTICATION ---
+  // 1. --- AUTHENTICATION & VALIDATION ---
   if (!context.auth) {
     throwHttpsError('unauthenticated', t.common.notAuthorized);
   }
   const userId = context.auth.uid;
-  functions.logger.info(`Attempting to create log for user: ${userId}`, {
-    data,
-  });
+  functions.logger.info(`Creating log for user: ${userId}`, { data });
 
-  // 2. --- INPUT VALIDATION ---
-  if (!data.type || !data.details) {
+  if (!data.type || !data.details || !data.timezone) {
     throwHttpsError(
       'invalid-argument',
-      "The 'type' and 'details' fields are required.",
+      "The 'type', 'details', and 'timezone' fields are required.",
     );
   }
 
-  // Determine the activity date, prioritizing the provided date or defaulting to today.
-  let activityDate: Date;
-  if (data.date) {
-    // Parse provided date string. Append 'T00:00:00' to ensure UTC interpretation for consistency.
-    const parsedDate = new Date(`${data.date}T00:00:00Z`); // Added 'Z' for explicit UTC
-    if (isNaN(parsedDate.getTime())) {
-      throwHttpsError(
-        'invalid-argument',
-        'Invalid date format. Expected YYYY-MM-DD.',
-      );
-    }
-    activityDate = parsedDate;
-  } else {
-    // Use today's date, normalized to midnight UTC.
-    activityDate = new Date();
-    activityDate.setUTCHours(0, 0, 0, 0); // Use setUTCHours for timezone independence
+  // An excuse log is a special case and doesn't award points, so we handle it separately.
+  if (data.type === 'excuse_logged') {
+    return handleExcuseLog(userId, data);
   }
 
-  // Prepare the activity log document with initial values.
-  const finalLog: ActivityLogDocument = {
-    date: admin.firestore.Timestamp.fromDate(activityDate),
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    type: data.type,
-    details: data.details,
-    status: 'attended', // Default status
-    stakesEarned: 0, // Default stakes
-    linkedAiTaskId: data?.linkedAiTaskId || '',
-  };
+  // 2. --- CORE TIMEZONE & REWARD LOGIC ---
+  let xpAwarded = 0;
+  let gemsAwarded = 0;
 
-  // 3. --- SERVER-SIDE BUSINESS LOGIC ---
+  // Define rewards based on activity type
   switch (data.type) {
-    case 'daily_checkin':
-      finalLog.stakesEarned = 50; // Award for daily check-in
-      break;
+    case 'gym_workout':
     case 'custom_activity':
-      finalLog.stakesEarned = 50; // Award for daily check-in
+      xpAwarded = 30;
+      gemsAwarded = 10;
       break;
-    case 'excuse_logged':
-      finalLog.status = 'skipped'; // Excuse means activity was skipped
-      finalLog.details.overcome = false; // By default, an excuse means it wasn't overcome
+    case 'daily_checkin':
+      xpAwarded = 10;
+      gemsAwarded = 2;
       break;
     default:
       throwHttpsError('invalid-argument', `Unsupported log type: ${data.type}`);
   }
 
-  // 4. --- WRITE TO FIRESTORE ---
+  // --- Timezone-Aware Date Calculation ---
+  // This is the key to making streaks work globally.
+  let userLocalDayTimestamp: admin.firestore.Timestamp;
   try {
-    const userActivityLogsRef = db
-      .collection('users')
-      .doc(userId)
-      .collection('activityLogs');
+    // Create a date object representing "now" in the user's local timezone
+    const nowInUserTz = new Date(
+      new Date().toLocaleString('en-US', { timeZone: data.timezone }),
+    );
+    // Normalize this date to the beginning of the user's local day
+    nowInUserTz.setHours(0, 0, 0, 0);
+    userLocalDayTimestamp = admin.firestore.Timestamp.fromDate(nowInUserTz);
+  } catch (error) {
+    functions.logger.error('Invalid timezone provided:', data.timezone);
+    throwHttpsError('invalid-argument', 'An invalid timezone was provided.');
+  }
 
-    const docRef = await userActivityLogsRef.add(finalLog);
+  // 3. --- ATOMIC FIRESTORE TRANSACTION ---
+  // Using a transaction is CRITICAL to prevent race conditions and ensure data consistency.
+  const userDocRef = db.collection('users').doc(userId);
+  try {
+    const { newStreak } = await db.runTransaction(async (transaction) => {
+      const userDoc = await transaction.get(userDocRef);
+      if (!userDoc.exists) {
+        throw new functions.https.HttpsError(
+          'not-found',
+          'User data not found.',
+        );
+      }
+
+      const gamification = userDoc.data()?.gamification || {};
+      let currentStreak = gamification.currentStreak || 0;
+
+      // --- Streak Increment Logic ---
+      const lastActivityTs =
+        gamification.lastActivityDate as admin.firestore.Timestamp;
+      // Increment streak only if it's the first activity of this new local day.
+      if (
+        !lastActivityTs ||
+        lastActivityTs.toMillis() < userLocalDayTimestamp.toMillis()
+      ) {
+        currentStreak++;
+      }
+
+      // --- Prepare Updates for User Document ---
+      const userUpdates = {
+        'gamification.lastActivityDate': userLocalDayTimestamp,
+        'gamification.currentStreak': currentStreak,
+        'gamification.xpTotal': admin.firestore.FieldValue.increment(xpAwarded),
+        'gamification.xpWeekly':
+          admin.firestore.FieldValue.increment(xpAwarded),
+        'gamification.gemsBalance':
+          admin.firestore.FieldValue.increment(gemsAwarded),
+      };
+      transaction.update(userDocRef, userUpdates);
+
+      // --- Prepare the New Activity Log Document ---
+      const finalLog: ActivityLogDocument = {
+        date: userLocalDayTimestamp,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        type: data.type,
+        details: data.details,
+        status: 'attended',
+        xpEarned: xpAwarded,
+        gemsEarned: gemsAwarded,
+      };
+      const logDocRef = userDocRef.collection('activityLogs').doc();
+      transaction.set(logDocRef, finalLog);
+
+      return { newStreak: currentStreak }; // Return the new streak count
+    });
+
     functions.logger.info(
-      `Successfully created log ${docRef.id} for user ${userId}.`,
+      `Successfully logged activity for user ${userId}. Awarded ${xpAwarded} XP and ${gemsAwarded} Gems.`,
     );
 
-    // 5. --- RETURN RESULT ---
-    return {
-      logId: docRef.id,
-      message: 'Your activity has been successfully logged!',
-    };
+    // 4. --- RETURN SUCCESS RESPONSE ---
+    return { xpEarned: xpAwarded, gemsEarned: gemsAwarded, newStreak };
   } catch (error) {
     functions.logger.error(
       `Error writing activity log for user ${userId}:`,
@@ -152,6 +190,42 @@ const createActivityLogHandler = async (
     );
   }
 };
+
+/**
+ * A helper function to handle the specific case of logging an excuse.
+ * This does not award points and has a simpler logic.
+ *
+ * @param {string} userId - The ID of the user logging the excuse.
+ * @param {CreateLogRequestData} data - The data payload for the excuse log.
+ */
+const handleExcuseLog = async (userId: string, data: CreateLogRequestData) => {
+  // ... (This function would contain the logic for when data.type === 'excuse_logged')
+  // For simplicity, we'll assume it just writes the log without a transaction.
+  const excuseLog = {
+    date: admin.firestore.Timestamp.now(), // Excuses are logged instantly
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    type: 'excuse_logged',
+    details: { ...data.details, overcome: false },
+    status: 'skipped',
+    xpEarned: 0,
+    gemsEarned: 0,
+  };
+  const docRef = await db
+    .collection('users')
+    .doc(userId)
+    .collection('activityLogs')
+    .add(excuseLog);
+
+  // Return a neutral response for an excuse
+  return {
+    xpEarned: 0,
+    gemsEarned: 0,
+    newStreak: 0,
+    logId: docRef.id,
+    message: '',
+  };
+};
+
 /**
  * The structure of the data expected from the client-side call.
  */

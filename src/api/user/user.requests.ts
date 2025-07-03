@@ -17,10 +17,12 @@ export const createAnonymousAccount = async ({
   username,
   language,
   actualUserId,
+  timezone,
 }: {
   username: string;
   language: string;
   actualUserId: string;
+  timezone: string;
 }) => {
   try {
     const { data }: { data: any } =
@@ -30,6 +32,7 @@ export const createAnonymousAccount = async ({
         username,
         language,
         actualUserId,
+        timezone,
       });
 
     // await firebaseAuth.signInAnonymously();

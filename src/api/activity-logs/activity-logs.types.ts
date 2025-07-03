@@ -1,5 +1,6 @@
 export interface ICreateLogRequestData {
   language: string;
+  timezone: string;
   date: string; //YYYY-MM-DD
   type: 'daily_checkin' | 'excuse_logged' | 'custom_activity';
   details: {

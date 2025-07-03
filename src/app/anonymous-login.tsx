@@ -1,4 +1,6 @@
+/* eslint-disable max-lines-per-function */
 import { LinearGradient } from 'expo-linear-gradient';
+import { getCalendars } from 'expo-localization';
 import { Link, router } from 'expo-router';
 import { firebaseAuth } from 'firebase/config';
 import { useColorScheme } from 'nativewind';
@@ -26,6 +28,8 @@ export default function AnonymousLogin() {
   const { language } = useSelectedLanguage();
   const { isVerySmallDevice, isMediumDevice } = getDeviceSizeCategory();
   const { colorScheme } = useColorScheme();
+  const [{ timeZone }] = getCalendars();
+
   const isDark = colorScheme === 'dark';
 
   const [storedUserId, setUserId] = useStoreUserId();
@@ -147,6 +151,7 @@ export default function AnonymousLogin() {
                       iconPosition="left"
                       onPress={async () => {
                         await onCreateAnonymousAccount({
+                          timezone: timeZone,
                           username,
                           language,
                           // submit the stored user id, otherwise check for firebase uid

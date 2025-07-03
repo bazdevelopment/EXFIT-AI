@@ -19,6 +19,7 @@
     "./utilities/generate-unique-id.ts",
     "./utilities/ai-models.ts",
     "./utilities/push-notifications-utils.ts",
+    "./utilities/timezones.ts",
     "dayjs/index.ts"
   ]
 }

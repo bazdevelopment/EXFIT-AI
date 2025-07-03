@@ -10,6 +10,7 @@ const loginUserAnonymouslyHandler = async (data: {
   language: string;
   username: string;
   actualUserId?: string; // Optional: The existing userId to check
+  timezone: string;
 }) => {
   let t;
   try {
@@ -65,6 +66,7 @@ const loginUserAnonymouslyHandler = async (data: {
       .doc(newUserId)
       .set({
         userId: newUserId,
+        timezone: data.timezone,
         isAnonymous: true, // Mark the user as anonymous
         subscribed: false, // Example field
         isActive: false, // Example field
@@ -83,7 +85,14 @@ const loginUserAnonymouslyHandler = async (data: {
           experience: '',
         },
         gamification: {
-          streakBalance: 0,
+          currentStreak: 0,
+          longestStreak: 0,
+          lastActivityDate: '',
+          gemsBalance: 0,
+          xpTotal: 0,
+          xpWeekly: 0,
+          streakFreezes: 0,
+          isStreakProtected: false,
         },
       });
 

@@ -1,6 +1,7 @@
 import { TouchableOpacity, View } from 'react-native';
 
 import { Text } from '../ui';
+import { StreakIcon } from '../ui/assets/icons';
 import { type ICalendarMiniView } from './calendar-mini-view.interface';
 
 const CalendarMiniView = ({
@@ -15,6 +16,8 @@ const CalendarMiniView = ({
   currentMonthNumber,
   onDayPress,
   weekOffset,
+  showStreak = false,
+  currentStreak,
 }: ICalendarMiniView) => {
   const daysOfWeek = segmentedDays.map((day) => day.title);
   // Hardcoded data to match the image exactly
@@ -29,20 +32,33 @@ const CalendarMiniView = ({
   return (
     <View className={`w-full rounded-lg ${containerClassName}`}>
       {/* 1. Header: Year and Month */}
+
       <View
-        className={`flex-row items-center justify-between ${(showYear || showMonth) && 'mb-6'}`}
+        className={`flex-row items-center justify-between gap-2 ${(showYear || showMonth) && 'mb-6'}`}
       >
-        {showYear && (
-          <Text className="text-3xl font-bold text-white">{currentYear}</Text>
-        )}
-        {showMonth && (
-          <TouchableOpacity className="flex-row items-center">
-            <Text className="text-bold mr-1 text-xl text-white">
-              {currentMonth}
+        {showStreak && (
+          <View className="flex-row items-center gap-2">
+            <StreakIcon width={25} height={25} />
+            <Text className="font-bold-nunito text-lg dark:text-yellow-500">
+              {currentStreak} days streak
             </Text>
-            {/* <Feather name="chevron-down" size={24} color="white" /> */}
-          </TouchableOpacity>
+          </View>
         )}
+
+        <View className="flex-1 flex-row justify-end gap-2">
+          {showMonth && (
+            <TouchableOpacity className="flex-row items-center">
+              <Text className="text-bold text-xl text-white">
+                {currentMonth}
+              </Text>
+
+              {/* <Feather name="chevron-down" size={24} color="white" /> */}
+            </TouchableOpacity>
+          )}
+          {showYear && (
+            <Text className="text-xl font-bold text-white">{currentYear}</Text>
+          )}
+        </View>
       </View>
 
       {/* 2. Days of the Week */}

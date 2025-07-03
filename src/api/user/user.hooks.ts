@@ -41,7 +41,12 @@ export const useCreateAnonymousAccount = (
 ) =>
   createMutation<
     Response,
-    { language: string; username: string; actualUserId: string },
+    {
+      language: string;
+      username: string;
+      actualUserId: string;
+      timezone: string;
+    },
     AxiosError
   >({
     mutationFn: (variables) => createAnonymousAccount(variables),

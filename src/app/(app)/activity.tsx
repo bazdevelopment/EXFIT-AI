@@ -158,7 +158,8 @@ const Activity = () => {
                   outcome={
                     record.details.excuseReason || record.details.activityName
                   }
-                  stakesEarned={record.stakesEarned.toString()} // Dynamic value
+                  gemsEarned={record.gemsEarned} // Dynamic value
+                  xpEarned={record.xpEarned} // Dynamic value
                 />
               );
             })}
