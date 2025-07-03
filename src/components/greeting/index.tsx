@@ -4,23 +4,26 @@ import { View } from 'react-native';
 import { getDynamicGreeting } from '@/core/utilities/get-dynamic-greeting';
 
 import { Image, Text } from '../ui';
+import { FlashIcon, GemIcon } from '../ui/assets/icons';
 
 // Define the props for the Greeting component
-interface GreetingProps {
+interface IGreetingProps {
   userName: string;
   showGreeting?: boolean;
   avatarUri?: string;
-  streaks?: number;
-  showStreaks?: boolean;
+  gemsBalance: boolean;
+  showStreaks: boolean;
+  xpBalance: number;
 }
 
-const Greeting: React.FC<GreetingProps> = ({
+const Greeting = ({
   userName,
   showGreeting = true,
   avatarUri,
-  streaks,
+  gemsBalance,
+  xpBalance,
   showStreaks = false,
-}) => {
+}: IGreetingProps) => {
   // Function to get the appropriate greeting based on the current hour
 
   // Determine the main message based on the showGreeting prop
@@ -46,11 +49,19 @@ const Greeting: React.FC<GreetingProps> = ({
         {/* User name/caption */}
         <Text className="text-[20px] font-bold text-white">{userName}!</Text>
         {showStreaks && (
-          <View className="mt-1 flex-row items-center">
-            <Text className="">🔥</Text>
-            <Text className="ml-1 font-bold-nunito text-white">
-              {streaks || 0}
-            </Text>
+          <View className="mt-2 flex-row gap-4">
+            <View className="flex-row items-center gap-2">
+              <FlashIcon width={20} height={20} />
+              <Text className="text-sm font-semibold dark:text-white">
+                {xpBalance} XP
+              </Text>
+            </View>
+            <View className="flex-row items-center gap-2">
+              <GemIcon />
+              <Text className="text-md font-bold-nunito text-blue-200">
+                {gemsBalance}
+              </Text>
+            </View>
           </View>
         )}
       </View>

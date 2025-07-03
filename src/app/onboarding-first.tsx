@@ -33,12 +33,12 @@ export default function OnboardingFirst() {
 
   const handleOnFinishFlow = () => {
     !isFirstOnboardingDone && setIsFirstOnboardedDone(true);
-    router.navigate('/anonymous-login');
+    router.navigate('/login');
   };
 
   const onSkip = () => {
     !isFirstOnboardingDone && setIsFirstOnboardedDone(true);
-    router.navigate('/anonymous-login');
+    router.navigate('/login');
   };
 
   return (

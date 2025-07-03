@@ -1,3 +1,4 @@
+import { getCalendars } from 'expo-localization';
 import { router } from 'expo-router';
 import React from 'react';
 import { RefreshControl, ScrollView, View } from 'react-native';
@@ -29,11 +30,13 @@ import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 
+// eslint-disable-next-line max-lines-per-function
 export default function Home() {
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
   const activityCompleteModal = useModal();
   const activitySkippedModal = useModal();
+  const [{ timeZone }] = getCalendars();
 
   const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
 
@@ -58,7 +61,6 @@ export default function Home() {
       endDate: endOfWeek,
       language,
     });
-  console.log('currentWeekActivityLog', currentWeekActivityLog);
 
   const { data: todayActiveTasks } = useGetAiTasks(currentActiveDay);
 
@@ -75,7 +77,9 @@ export default function Home() {
         <Greeting
           userName={userInfo?.userName}
           avatarUri={require('../../components/ui/assets/images/avatar.png')}
-          streaks={userInfo?.gamification?.streakBalance}
+          gemsBalance={userInfo?.gamification?.gemsBalance}
+          xpBalance={userInfo?.gamification.xpTotal}
+          streakBalance={userInfo?.gamification.currentStreak}
           showStreaks
         />
         <Icon
@@ -128,7 +132,9 @@ export default function Home() {
           <CalendarMiniView
             showMonth
             showYear
-            containerClassName="px-6 mt-6 mb-2"
+            showStreak
+            currentStreak={userInfo?.gamification?.currentStreak}
+            containerClassName="px-6 py-4 mt-2 bg-[#141426]"
             currentWeekActivityLog={currentWeekActivityLog}
             segmentedDays={segmentedDays}
             currentMonth={currentMonth}
@@ -146,6 +152,7 @@ export default function Home() {
           onSubmit={({ durationMinutes, activityName }) =>
             onCreateActivityLog({
               language,
+              timezone: timeZone as string,
               date: currentActiveDay,
               type: 'daily_checkin',
               details: {
@@ -164,6 +171,7 @@ export default function Home() {
           onSubmit={({ skipReason }) =>
             onCreateActivityLog({
               date: currentActiveDay,
+              timezone: timeZone as string,
               language,
               type: 'excuse_logged',
               details: {

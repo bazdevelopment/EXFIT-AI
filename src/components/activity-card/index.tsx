@@ -2,11 +2,14 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
+import { FlashIcon, GemIcon } from '../ui/assets/icons';
+
 interface ActivityCardProps {
   title: string;
   aiSuggestion: string;
   outcome: string;
-  stakesEarned: number;
+  xpEarned: number;
+  gemsEarned: number;
   status: string;
   onPress?: () => void;
 }
@@ -24,7 +27,8 @@ const CompactActivityCard: React.FC<ActivityCardProps> = ({
   title,
   status,
   outcome,
-  stakesEarned,
+  xpEarned,
+  gemsEarned,
   onPress,
 }) => {
   return (
@@ -38,17 +42,30 @@ const CompactActivityCard: React.FC<ActivityCardProps> = ({
 
       {/* Content */}
       <View className="flex-1">
-        <Text className="mb-1 text-lg font-bold text-white">{title}</Text>
+        <View className="mr-4 flex-row items-center justify-between">
+          <Text className="mb-1 text-lg font-bold text-white">{title}</Text>
+
+          <View className="flex-row gap-4">
+            <View className="flex-row items-center gap-2">
+              <FlashIcon width={20} height={20} />
+              <Text className="text-sm font-semibold dark:text-white">
+                {xpEarned} XP
+              </Text>
+            </View>
+            <View className="flex-row items-center gap-2">
+              <GemIcon />
+              <Text className="text-md font-bold-nunito text-blue-200">
+                {gemsEarned}
+              </Text>
+            </View>
+          </View>
+        </View>
+
         {/* <Text className="mb-1 text-sm text-gray-400">{aiSuggestion}</Text> */}
         <View className="flex-row items-center justify-between">
           <Text className="flex-1 text-sm text-gray-300">
             {status === 'skipped' ? 'Excuse:' : 'Activities'}:{outcome || 'N/A'}
           </Text>
-          <View className="ml-2 flex-row items-center">
-            <Text className="text-sm font-semibold text-orange-400">
-              {stakesEarned} 🔥
-            </Text>
-          </View>
         </View>
       </View>
 
