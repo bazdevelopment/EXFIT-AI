@@ -86,7 +86,7 @@ export const getCurrentMonth = (
   weekNumber: number,
   locale: string
 ): string => {
-  const currentDate = dayjs().locale(locale).year(year).week(weekNumber);
+  const currentDate = dayjs().locale(locale).year(year);
   return currentDate.format('MMMM');
 };
 
@@ -98,7 +98,7 @@ export const getCurrentMonthNumber = (
   weekNumber: number,
   locale: string
 ): string => {
-  const currentDate = dayjs().locale(locale).year(year).week(weekNumber);
+  const currentDate = dayjs().locale(locale).year(year);
   return currentDate.format('MM');
 };
 

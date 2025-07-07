@@ -30,6 +30,8 @@ import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 
+import dayjs from '../../lib/dayjs';
+
 // eslint-disable-next-line max-lines-per-function
 export default function Home() {
   const { language } = useSelectedLanguage();
@@ -39,6 +41,11 @@ export default function Home() {
   const [{ timeZone }] = getCalendars();
 
   const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
+  const lastResetStreakDay =
+    userInfo?.gamification.streakResetDates?.[
+      userInfo?.gamification?.streakResetDates?.length - 1
+    ];
+  const lastResetStreakDate = dayjs(lastResetStreakDay).format('YYYY-MM-DD');
 
   const {
     segmentedDays,
@@ -61,7 +68,6 @@ export default function Home() {
       endDate: endOfWeek,
       language,
     });
-
   const { data: todayActiveTasks } = useGetAiTasks(currentActiveDay);
 
   const { mutate: onUpdateAiTaskStatus } =
@@ -84,9 +90,9 @@ export default function Home() {
         />
         <Icon
           icon={<Notification color="red" />}
-          size={20}
+          size={24}
           color={colors.charcoal[800]}
-          iconContainerStyle="p-4 bg-charcoal-800 rounded-full mt-2"
+          iconContainerStyle="p-3 bg-charcoal-800 rounded-full mt-2"
           showBadge
           badgeSize={7}
           badgeColor="red"
@@ -142,6 +148,7 @@ export default function Home() {
             initialDayFocused={initialDayFocused}
             currentMonthNumber={currentMonthNumber}
             weekOffset={weekOffset}
+            lastResetStreakDate={lastResetStreakDate}
           />
         )}
         <MotivationBanner containerClassName="mt-4" />

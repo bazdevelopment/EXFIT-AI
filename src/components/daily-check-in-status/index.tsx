@@ -14,14 +14,13 @@ const DailyCheckInStatus = ({ status }: IDailyCheckInStatus) => {
   const currentDay = getCurrentDay('MMM D', language);
 
   // const isAttended = status === 'attended';
+  const isDailyCheckInDone = status === 'attended' || status === 'skipped';
   const isAttended = status === 'attended';
-
   const _resetCheckIn = () => {};
 
   // Dynamic gradient colors based on answer
-  const gradientColors = isAttended
-    ? ['#10B981', '#059669', '#047857'] // Green gradient for Yes
-    : ['#f35252', '#f04343', '#e52e4d']; // Purple gradient for No
+  const gradientColors = ['#10B981', '#059669', '#047857']; // Green gradient for Yes
+  // : ['#f35252', '#f04343', '#e52e4d']; // Purple gradient for No
   return (
     <View className="mx-4">
       <LinearGradient
@@ -30,7 +29,7 @@ const DailyCheckInStatus = ({ status }: IDailyCheckInStatus) => {
         end={{ x: 1, y: 1 }}
         className="rounded-2xl shadow-lg"
         style={{
-          shadowColor: isAttended ? '#10B981' : '#6366F1',
+          shadowColor: '#10B981',
           shadowOffset: { width: 0, height: 4 },
           shadowOpacity: 0.25,
           shadowRadius: 8,

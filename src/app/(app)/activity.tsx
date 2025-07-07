@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { useScrollToTop } from '@react-navigation/native';
 import { FlashList } from '@shopify/flash-list';
+import { getCalendars } from 'expo-localization';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RefreshControl, TouchableOpacity, View } from 'react-native';
@@ -31,6 +32,7 @@ const Activity = () => {
   const {
     i18n: { language },
   } = useTranslation();
+  const [{ timeZone }] = getCalendars();
 
   const {
     weekOffset,
@@ -251,6 +253,7 @@ const Activity = () => {
         isCreateActivityLogPending={isCreateActivityLogPending}
         onSubmit={({ durationMinutes, activityName }) =>
           onCreateActivityLog({
+            timezone: timeZone as string,
             language,
             date: currentActiveDay,
             type: 'custom_activity',

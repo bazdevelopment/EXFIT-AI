@@ -30,12 +30,12 @@ const Greeting = ({
   const mainMessage = showGreeting ? getDynamicGreeting() : 'Welcome';
 
   return (
-    <View className="flex-row items-center p-4">
+    <View className="flex-row items-start p-4">
       {/* Conditionally render the avatar if avatarUri is provided */}
       {avatarUri && (
         <Image
           source={avatarUri}
-          className="mr-4 size-16 rounded-full" // Tailwind classes for styling the avatar
+          className="top-1 mr-4 size-14 rounded-full" // Tailwind classes for styling the avatar
           accessibilityLabel="User Avatar"
           onError={() => console.error('Failed to load avatar image:')}
         />
@@ -43,11 +43,11 @@ const Greeting = ({
 
       <View className="flex-col">
         {/* Main greeting/welcome message */}
-        <Text className="mb-1 text-[20px] font-bold text-blue-500">
+        <Text className="mb-1 text-[18px] font-bold text-blue-500">
           {mainMessage},
         </Text>
         {/* User name/caption */}
-        <Text className="text-[20px] font-bold text-white">{userName}!</Text>
+        <Text className="text-[18px] font-bold text-white">{userName}!</Text>
         {showStreaks && (
           <View className="mt-2 flex-row gap-4">
             <View className="flex-row items-center gap-2">
