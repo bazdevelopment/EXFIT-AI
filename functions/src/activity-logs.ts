@@ -15,6 +15,7 @@ const db = admin.firestore();
  * Note the absence of server-controlled fields like `date`, `createdAt`, and `stakesEarned`.
  */
 interface CreateLogRequestData {
+  date: string;
   type:
     | 'gym_workout'
     | 'run'
@@ -71,16 +72,36 @@ const createActivityLogHandler = async (
   const userId = context.auth.uid;
   functions.logger.info(`Creating log for user: ${userId}`, { data });
 
-  if (!data.type || !data.details || !data.timezone) {
+  if (!data.type || !data.details || !data.timezone || !data.date) {
     throwHttpsError(
       'invalid-argument',
-      "The 'type', 'details', and 'timezone' fields are required.",
+      "The 'type', 'details', 'date' and 'timezone' fields are required.",
     );
+  }
+
+  let userLocalDayTimestamp: admin.firestore.Timestamp;
+
+  try {
+    // --- Timezone-Aware Date Calculation ---
+    // This is the key to making streaks work globally.
+    // Create a date object representing "now" in the user's local timezone
+    const dateInUserTz = new Date(
+      new Date(`${data.date}T00:00:00`).toLocaleString('en-US', {
+        timeZone: data.timezone,
+      }),
+    );
+
+    // Normalize this date to the beginning of the user's local day
+    dateInUserTz.setHours(0, 0, 0, 0);
+    userLocalDayTimestamp = admin.firestore.Timestamp.fromDate(dateInUserTz);
+  } catch (error) {
+    functions.logger.error('Invalid timezone provided:', data.timezone);
+    throwHttpsError('invalid-argument', 'An invalid timezone was provided.');
   }
 
   // An excuse log is a special case and doesn't award points, so we handle it separately.
   if (data.type === 'excuse_logged') {
-    return handleExcuseLog(userId, data);
+    return handleExcuseLog(userId, data, userLocalDayTimestamp);
   }
 
   // 2. --- CORE TIMEZONE & REWARD LOGIC ---
@@ -100,22 +121,6 @@ const createActivityLogHandler = async (
       break;
     default:
       throwHttpsError('invalid-argument', `Unsupported log type: ${data.type}`);
-  }
-
-  // --- Timezone-Aware Date Calculation ---
-  // This is the key to making streaks work globally.
-  let userLocalDayTimestamp: admin.firestore.Timestamp;
-  try {
-    // Create a date object representing "now" in the user's local timezone
-    const nowInUserTz = new Date(
-      new Date().toLocaleString('en-US', { timeZone: data.timezone }),
-    );
-    // Normalize this date to the beginning of the user's local day
-    nowInUserTz.setHours(0, 0, 0, 0);
-    userLocalDayTimestamp = admin.firestore.Timestamp.fromDate(nowInUserTz);
-  } catch (error) {
-    functions.logger.error('Invalid timezone provided:', data.timezone);
-    throwHttpsError('invalid-argument', 'An invalid timezone was provided.');
   }
 
   // 3. --- ATOMIC FIRESTORE TRANSACTION ---
@@ -197,12 +202,17 @@ const createActivityLogHandler = async (
  *
  * @param {string} userId - The ID of the user logging the excuse.
  * @param {CreateLogRequestData} data - The data payload for the excuse log.
+ * @param {string} userLocalDate - The local date string representing the user's day.
  */
-const handleExcuseLog = async (userId: string, data: CreateLogRequestData) => {
+const handleExcuseLog = async (
+  userId: string,
+  data: CreateLogRequestData,
+  userLocalDate: admin.firestore.Timestamp,
+) => {
   // ... (This function would contain the logic for when data.type === 'excuse_logged')
   // For simplicity, we'll assume it just writes the log without a transaction.
   const excuseLog = {
-    date: admin.firestore.Timestamp.now(), // Excuses are logged instantly
+    date: userLocalDate, // Excuses are logged instantly
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     type: 'excuse_logged',
     details: { ...data.details, overcome: false },

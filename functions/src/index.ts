@@ -16,6 +16,7 @@ import * as activityLogsFunctions from './activity-logs';
 import { admin } from './common';
 import * as conversationFunctions from './conversation';
 import * as excuseBusterFunctions from './excuse-buster';
+import * as progressFunctions from './progress';
 import * as pushNotificationsFunctions from './push-notifications';
 import * as scanImageFunctions from './scan';
 import * as aiTasksFunctions from './tasks';
@@ -121,18 +122,21 @@ export const fetchUserNotifications = usCentralFunctions.https.onCall(
 export const markNotificationAsRead = usCentralFunctions.https.onCall(
   pushNotificationsFunctions.handleMarkNotificationAsRead,
 );
+/** Progress  */
+export const getProgressAnalytics = usCentralFunctions.https.onCall(
+  progressFunctions.getProgressAnalyticsHandler,
+);
 
 /**
  * A scheduled function that runs every day shortly after midnight (UTC).
- * It iterates through all users to:
- * 1. Check if a streak was broken.
- * 2. Use a Streak Freeze if available to save a broken streak.
- * 3. Reset weekly XP totals every Monday.
- * 4. Reset the 'isStreakProtected' flag.
+ * It now works in two phases:
+ * 1. Identify users who missed a day, and immediately send them a notification
+ *    about their streak status (saved by a freeze or lost).
+ * 2. Process all database updates for streaks, freezes, and weekly XP in a single batch.
  */
 export const dailyGamificationUpdate = functions.pubsub
   .schedule('every day 00:10') // Run at a safe time after midnight
-  .timeZone('UTC') // Use a consistent global timezone to avoid DST issues
+  .timeZone('UTC') // Use a consistent global timezone
   .onRun(async () => {
     functions.logger.info('Starting daily gamification update...');
 
@@ -147,67 +151,140 @@ export const dailyGamificationUpdate = functions.pubsub
       return null;
     }
 
-    // Use a batched write for efficiency
-    const batch = db.batch();
-    let usersProcessed = 0;
+    // Correctly invoke the internal notification function and add its
+    // returned Promise to our array for parallel execution.
+    const fakeContext: functions.https.CallableContext = {
+      auth: { uid: 'some-user-id', token: {} as any }, // simulate auth context
+      rawRequest: {} as any, // if needed
+      instanceIdToken: undefined,
+      app: undefined,
+    };
 
-    usersSnapshot.forEach((doc) => {
+    // --- Phase 1: Identify & Prepare Notifications and Updates ---
+
+    // An array to hold all the notification tasks (Promises)
+    const notificationPromises = [];
+    // An array to hold all the database update operations
+    const userUpdates: { userId: string; updates: { [key: string]: any } }[] =
+      [];
+
+    for (const doc of usersSnapshot.docs) {
       const user = doc.data();
+      const userId = doc.id;
       const gamification = user.gamification || {};
       const lastActivityTs =
         gamification.lastActivityDate as admin.firestore.Timestamp;
 
-      // Skip users with no gamification data or no activity yet
-      if (!lastActivityTs) return;
+      if (!lastActivityTs) continue; // Skip users with no activity yet
 
       const lastActivityDate = lastActivityTs.toDate();
       lastActivityDate.setUTCHours(0, 0, 0, 0);
 
-      const userRef = db.collection('users').doc(doc.id);
       const updates: { [key: string]: any } = {};
-
-      // Always reset the protection flag from the previous day
+      // Always queue the reset of the protection flag for every active user
       updates['gamification.isStreakProtected'] = false;
 
       // --- Core Streak Logic ---
-      // Check if the last activity was before yesterday. If so, they missed a day.
+      // Check if the last activity was before yesterday (i.e., they missed yesterday)
       if (lastActivityDate.getTime() < yesterday.getTime()) {
+        const streak = gamification.currentStreak || 0;
         functions.logger.log(
-          `User ${doc.id} missed a day. Last active: ${lastActivityDate.toISOString()}`,
+          `User ${userId} missed a day. Current streak: ${streak}.`,
         );
+
         if (gamification.streakFreezes > 0) {
           // A. USE A STREAK FREEZE
           updates['gamification.streakFreezes'] =
             admin.firestore.FieldValue.increment(-1);
-          updates['gamification.isStreakProtected'] = true; // Set the flag for the UI
-          functions.logger.log(`Used a streak freeze for user ${doc.id}.`);
-        } else {
+          updates['gamification.isStreakProtected'] = true; // Set flag for UI
+
+          // Queue the "Streak Saved" notification
+          const title = 'Your Streak is Safe! 🥶';
+          const body = `You missed a day, but your Streak Freeze was used to save your ${streak}-day streak. Phew!`;
+          notificationPromises.push(
+            pushNotificationsFunctions.sendUserPushNotification(
+              {
+                userId,
+                title,
+                body,
+                language: 'en',
+              },
+              fakeContext,
+            ),
+          );
+        } else if (streak > 0) {
+          // Only send a "lost" notification if they actually had a streak to lose
           // B. RESET THE STREAK
+          const resetISOString = today.toISOString();
+
+          const resetTimestamp = admin.firestore.Timestamp.fromDate(
+            resetISOString as unknown as Date,
+          );
           updates['gamification.currentStreak'] = 0;
-          functions.logger.log(`Reset streak for user ${doc.id}.`);
+          updates['gamification.streakResetDates'] =
+            admin.firestore.FieldValue.arrayUnion(resetTimestamp);
+
+          // Queue the "Streak Lost" notification
+          const title = 'Oh no, you lost your streak! 😢';
+          const body = `You missed your activity yesterday and lost your ${streak}-day streak. Don't worry, you can start a new one today!`;
+          notificationPromises.push(
+            pushNotificationsFunctions.sendUserPushNotification(
+              {
+                userId,
+                title,
+                body,
+                language: 'en',
+              },
+              fakeContext,
+            ),
+          );
         }
       }
 
       // --- Weekly XP Reset Logic ---
-      // getUTCDay() returns 1 for Monday
       if (today.getUTCDay() === 1) {
+        // 1 = Monday
         updates['gamification.xpWeekly'] = 0;
       }
 
-      // Add the updates to the batch if there are any
+      // Add the prepared updates to our array for batch processing later
+      userUpdates.push({ userId, updates });
+    }
+
+    // --- Execute all notifications first ---
+    // We await all notification promises. This ensures all notifications are sent
+    // out before we modify the database state.
+    if (notificationPromises.length > 0) {
+      functions.logger.info(
+        `Sending ${notificationPromises.length} streak status notifications.`,
+      );
+      await Promise.all(notificationPromises);
+      functions.logger.info('All notifications have been sent.');
+    }
+
+    // --- Phase 2: Commit all Database Updates ---
+    const batch = db.batch();
+    let usersProcessed = 0;
+
+    userUpdates.forEach(({ userId, updates }) => {
       if (Object.keys(updates).length > 0) {
+        const userRef = db.collection('users').doc(userId);
         batch.update(userRef, updates);
         usersProcessed++;
       }
     });
 
-    await batch.commit();
-    functions.logger.info(
-      `Daily gamification update completed. Processed ${usersProcessed} users.`,
-    );
+    if (usersProcessed > 0) {
+      await batch.commit();
+      functions.logger.info(
+        `Database updates completed for ${usersProcessed} users.`,
+      );
+    } else {
+      functions.logger.info('No database updates were needed.');
+    }
+
     return null;
   });
-
 // ===================================================================
 // HOURLY ACTIVITY REMINDER - SCHEDULED FUNCTION
 // ===================================================================
@@ -333,5 +410,122 @@ export const hourlyActivityReminder = functions.pubsub
       );
     }
 
+    return null;
+  });
+
+// ===================================================================
+// FUNCTION 1: The "Last Chance" Warning Notifier
+// This function runs every hour to find users whose local time is 6 PM
+// and warns them if their streak is at risk.
+// ===================================================================
+/**
+ * A scheduled function that runs every hour to send "last chance" streak warnings.
+ * It targets users whose local time is 6 PM (18:00) and who have not yet
+ * completed an activity for the current day.
+ */
+export const streakWarningNotifier = functions.pubsub
+  .schedule('every 1 hours from 00:00 to 23:00')
+  .timeZone('UTC')
+  .onRun(async () => {
+    const warningHour = 18; // 6 PM local time
+    const now = new Date();
+
+    functions.logger.info(
+      `Running streak warning check at ${now.toUTCString()}`,
+    );
+
+    // 1. --- Identify Target Timezones ---
+    // Find all IANA timezones where the local time is currently 11:xx AM.
+    const allTimezones: { name: string }[] = moment.tz
+      .names()
+      .map((tz) => ({ name: tz }));
+
+    const targetTimezones = allTimezones
+      .filter((tz) => {
+        // Use `toZonedTime` to get a Date object representing the time in the target zone
+        const localTime = toZonedTime(now, tz.name);
+        return localTime.getHours() === warningHour;
+      })
+
+      .map((tz) => tz.name);
+    if (targetTimezones.length === 0) {
+      functions.logger.info('No timezones are at 6 PM. Exiting.');
+      return null;
+    }
+    functions.logger.info(
+      `Targeting timezones for 6 PM warning: ${targetTimezones.join(', ')}`,
+    );
+
+    // --- Query for active users in these timezones ---
+    const usersSnapshot = await db
+      .collection('users')
+      .where('timezone', 'in', targetTimezones)
+      .where('gamification.currentStreak', '>', 0) // Only warn users who have a streak to lose
+      .get();
+
+    if (usersSnapshot.empty) {
+      functions.logger.info(
+        'No users with active streaks found in target timezones.',
+      );
+      return null;
+    }
+
+    const notificationPromises = [];
+
+    for (const doc of usersSnapshot.docs) {
+      const user = doc.data();
+      const userId = doc.id;
+
+      // --- Check if they've been active *today* (their local today) ---
+      // This is a reliable way to get the start of the user's local day
+      const startOfUserLocalDay = new Date(
+        now.toLocaleString('en-US', { timeZone: user.timezone }),
+      );
+      startOfUserLocalDay.setHours(0, 0, 0, 0);
+
+      const gamification = user.gamification || {};
+      const lastActivityTs =
+        gamification.lastActivityDate as admin.firestore.Timestamp;
+      const hasBeenActiveToday =
+        lastActivityTs && lastActivityTs.toDate() >= startOfUserLocalDay;
+
+      // --- If inactive, send the warning notification ---
+      if (!hasBeenActiveToday) {
+        const streak = gamification.currentStreak || 0;
+        const freezes = gamification.streakFreezes || 0;
+
+        const title = `🚨 Streak Alert! Your ${streak}-day streak is in danger!`;
+        let body = `Complete any activity before midnight to keep your streak alive. You can do it!`;
+
+        if (freezes > 0) {
+          body = `Complete an activity before midnight to save your streak, or your Streak Freeze 🥶 will be used automatically.`;
+        }
+        // Correctly invoke the internal notification function and add its
+        // returned Promise to our array for parallel execution.
+        const fakeContext: functions.https.CallableContext = {
+          auth: { uid: 'some-user-id', token: {} as any }, // simulate auth context
+          rawRequest: {} as any, // if needed
+          instanceIdToken: undefined,
+          app: undefined,
+        };
+
+        notificationPromises.push(
+          pushNotificationsFunctions.sendUserPushNotification(
+            {
+              userId,
+              title,
+              body,
+              language: 'en',
+            },
+            fakeContext,
+          ),
+        );
+      }
+    }
+
+    await Promise.all(notificationPromises);
+    functions.logger.info(
+      `Sent ${notificationPromises.length} streak warning notifications.`,
+    );
     return null;
   });
