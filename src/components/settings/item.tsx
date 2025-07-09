@@ -31,7 +31,7 @@ export const Item = ({ text, value, icon, onPress }: ItemProps) => {
         </Text>
         {isPressable && (
           <View className="pl-2">
-            <ArrowRight fill={colors.primary[900]} />
+            <ArrowRight color={colors.charcoal[300]} />
           </View>
         )}
       </View>

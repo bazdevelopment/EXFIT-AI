@@ -193,7 +193,6 @@ export const checkEmail = async ({ email }: { email: string }) => {
     const { data } = await firebaseCloudFunctionsInstance.httpsCallable(
       'checkEmailExist'
     )({ email });
-    console.log('data', data);
     return data as { exists: boolean };
   } catch (error) {
     throw error;
@@ -297,7 +296,6 @@ export const signInUser = async ({
       email,
       password
     );
-    console.log('userCredential.user', userCredential.user);
     return userCredential.user;
   } catch (error) {
     // We cast the error to AuthError to access the 'code' property safely

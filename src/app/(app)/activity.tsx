@@ -15,7 +15,6 @@ import {
   useCreateActivityLog,
   useGetCalendarActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
-import { type IActivityLog } from '@/api/activity-logs/activity-logs.types';
 import CompactActivityCard from '@/components/activity-card';
 import { EndScrollPlaceholder } from '@/components/end-scroll-placeholder';
 import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
@@ -85,14 +84,12 @@ const Activity = () => {
     });
   };
 
-  const onScrollToIndex = ({
-    data,
-    day,
-  }: {
-    data: IActivityLog[];
-    day: string;
-  }) => {
-    const indexToScroll = findSectionIndexToScroll(day, currentWeekActivityLog);
+  const onScrollToIndex = (record) => {
+    const indexToScroll = findSectionIndexToScroll(
+      record.dateKey,
+      currentWeekActivityLog
+    );
+    console.log('indexToScroll', indexToScroll);
     typeof indexToScroll === 'number' &&
       scrollViewRef.current?.scrollToIndex({
         index: indexToScroll,
@@ -132,7 +129,7 @@ const Activity = () => {
               setCurrentActiveDay(
                 formatDate(item.date, 'YYYY-MM-DD', language)
               );
-              activityCompleteModal.present();
+              activityCompleteModal.present({ type: 'custom_activity' });
             }}
             className="flex-row items-center rounded-full bg-[#3195FD]/10 px-3 py-1"
           >
@@ -197,7 +194,6 @@ const Activity = () => {
         </Text> */}
         <WeekBlock
           className="px-4"
-          reportSections={[]}
           onDayPress={onScrollToIndex} // This can be removed if not used
           weekOffset={weekOffset}
           initialDayFocused={initialDayFocused}
@@ -251,12 +247,12 @@ const Activity = () => {
       <DailyCheckInModal
         ref={activityCompleteModal.ref}
         isCreateActivityLogPending={isCreateActivityLogPending}
-        onSubmit={({ durationMinutes, activityName }) =>
+        onSubmit={({ durationMinutes, activityName, type }) =>
           onCreateActivityLog({
             timezone: timeZone as string,
             language,
             date: currentActiveDay,
-            type: 'custom_activity',
+            type,
             details: {
               durationMinutes,
               activityName,

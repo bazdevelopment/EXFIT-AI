@@ -1,18 +1,15 @@
-import { Feather } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { getCalendars } from 'expo-localization';
-import React, { useRef, useState } from 'react';
-import {
-  Dimensions,
-  type NativeScrollEvent,
-  type NativeSyntheticEvent,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React from 'react';
+import { TouchableOpacity, View } from 'react-native';
 
-import dayjs from '../../lib/dayjs';
-import { colors, Text } from '../ui';
+import { translate } from '@/core';
+
+import CustomAlert from '../custom-alert';
+import Toast from '../toast';
+import { Image, Text } from '../ui';
+import { CheckListIcon } from '../ui/assets/icons/checklist';
+import { CrownIllustration } from '../ui/assets/illustrations';
 
 // Interfaces
 interface Task {
@@ -58,13 +55,6 @@ const statusStyles = {
 // Glassmorphism with neon borders
 const neonGlass = 'bg-white/5 backdrop-blur-lg border rounded-lg';
 
-// Utility function for time formatting
-const formatTime = (dateString: string, timeZone: string) => {
-  return dayjs(dateString).tz(timeZone).format('h:mm A');
-};
-
-const { width: screenWidth } = Dimensions.get('window');
-
 const TaskListOverview: React.FC<TaskListOverviewProps> = ({
   tasks,
   onCompleteTask,
@@ -72,22 +62,10 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
   additionalClassName = '',
 }) => {
   const [{ timeZone }] = getCalendars();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const scrollViewRef = useRef<ScrollView>(null);
 
   const activeTasksCount =
     tasks?.filter((t) => t.status === 'active').length || 0;
   const totalTasksCount = tasks?.length || 0;
-
-  // Define the width of each card to show a peek of the next/previous one
-  const cardWidth = screenWidth * 0.8; // Each card takes up 80% of the screen width
-  const cardSpacing = 16; // Spacing between cards (increased for better visual separation)
-
-  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const contentOffsetX = event.nativeEvent.contentOffset.x;
-    const index = Math.round(contentOffsetX / (cardWidth + cardSpacing));
-    setActiveIndex(index);
-  };
 
   return (
     <View
@@ -95,16 +73,26 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
       className={additionalClassName}
     >
       {/* Header */}
-      <View style={{ marginBottom: 6, paddingHorizontal: 16 }}>
+      <View className="mx-6 mb-3 flex-row items-center gap-4">
         <Text className="font-extra-bold-nunito text-xl text-white">
-          Today's Tasks
+          Today's tasks
         </Text>
         {totalTasksCount > 0 && (
-          <Text style={{ marginTop: 4, fontSize: 14, color: '#94a3b8' }}>
-            {activeTasksCount > 0
-              ? `${activeTasksCount}/${totalTasksCount} active`
-              : 'All tasks completed! ✨'}
-          </Text>
+          <View className=" flex-row items-center">
+            {/* Show "Completed" Badge if all tasks are finished */}
+            {activeTasksCount === 0 && (
+              <View className="rounded-full bg-green-500 px-4 py-1">
+                <Text className="text-sm font-bold text-white">Completed</Text>
+              </View>
+            )}
+
+            {/* Text for active/inactive tasks */}
+            <Text className="text-[#94a3b8]">
+              {activeTasksCount > 0
+                ? `${activeTasksCount}/${totalTasksCount} active`
+                : ''}
+            </Text>
+          </View>
         )}
       </View>
 
@@ -138,55 +126,22 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
         </View>
       ) : (
         <>
-          <ScrollView
-            ref={scrollViewRef}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            className="px-6"
-            contentContainerStyle={{
-              gap: cardSpacing,
-            }}
-            decelerationRate="fast"
-            snapToInterval={cardWidth + cardSpacing}
-            snapToAlignment="start"
-            onScroll={handleScroll}
-            scrollEventThrottle={16}
-          >
-            {tasks.map((task: Task) => (
-              <View key={task.id} style={{ width: cardWidth }}>
+          {tasks.map((task: Task, index) => {
+            const isLastItem = tasks.length - 1 === index;
+            return (
+              <View key={task.id} className="px-5">
                 <TaskCard
                   task={task}
                   onCompleteTask={onCompleteTask}
                   onSkipTask={onSkipTask}
                   timeZone={timeZone ?? 'UTC'}
                 />
+                {!isLastItem && (
+                  <View className="my-2 size-0.5 w-full bg-gray-600" />
+                )}
               </View>
-            ))}
-          </ScrollView>
-          {/* Pagination Dots */}
-          {tasks.length > 1 && (
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                marginTop: 16,
-              }}
-            >
-              {tasks.map((_, index) => (
-                <View
-                  key={index}
-                  style={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: 4,
-                    backgroundColor:
-                      index === activeIndex ? colors.white : '#64748b',
-                    marginHorizontal: 4,
-                  }}
-                />
-              ))}
-            </View>
-          )}
+            );
+          })}
         </>
       )}
     </View>
@@ -201,90 +156,141 @@ interface TaskCardProps {
   timeZone: string;
 }
 
-const TaskCard: React.FC<TaskCardProps> = ({
-  task,
-  onCompleteTask,
-  onSkipTask,
-  timeZone,
-}) => {
-  const { gradient, icon, statusText, neonColor } = statusStyles[task.status];
-  const isTaskActive = task.status === 'active';
+interface Task {
+  id: string;
+  title: string;
+  durationMinutes: number;
+  gems: number;
+  xp: number;
+  status: 'active' | 'completed'; // Simplified statuses for the new design
+  imageSrc: string; // New prop for the task image
+}
+
+interface TaskCardProps {
+  task: Task;
+  onTaskAction?: (taskId: string, newStatus: 'completed' | 'active') => void; // Unified action handler
+}
+
+const TaskCard: React.FC<TaskCardProps> = ({ task, onCompleteTask }) => {
+  const isTaskCompleted = task.status === 'completed';
+
+  // Placeholder for image loading error
+  const handleImageError = () => {
+    // In React Native, you might replace the image source or show a default image
+    // For simplicity, we'll just log an error or use a local placeholder if available.
+    console.error('Failed to load image for task:', task.title);
+    // A more robust solution would involve setting a state to change the image source
+    // For example: setFallbackImage(true); and then conditionally render a local image
+  };
+
+  const handleCompleteTask = async (taskId: string) => {
+    Toast.showCustomToast(
+      <CustomAlert
+        visible
+        title={translate('general.attention')}
+        subtitle={'Did you complete the task?'}
+        image={<CrownIllustration />}
+        // imageSource={require('../../')}
+        buttons={[
+          {
+            label: translate('general.close'),
+            variant: 'default',
+            onPress: () => Toast.dismiss(),
+            className:
+              'flex-1 rounded-xl h-[48] bg-slate-100 active:opacity-80',
+            buttonTextClassName: 'text-black',
+          },
+          {
+            label: translate('general.yes'),
+            variant: 'destructive',
+            onPress: async () => {
+              try {
+                onCompleteTask?.(taskId);
+              } catch (error) {
+                Toast.error(translate('alerts.logoutUnsuccessful'));
+              }
+            },
+            className: 'flex-1 rounded-xl h-[48] active:opacity-80',
+          },
+        ]}
+      />,
+      {
+        position: 'middle', // Place the alert in the middle of the screen
+        duration: Infinity, // Keep the alert visible until dismissed,
+      }
+    );
+  };
 
   return (
-    <View className={`${neonGlass} overflow-hidden ${neonColor}`}>
-      <LinearGradient colors={gradient} style={{ padding: 10 }}>
-        {/* Main Content */}
-        <View
+    <TouchableOpacity
+      onPress={() => handleCompleteTask?.(task.id)}
+      disabled={isTaskCompleted}
+      className="my-2 flex-row items-center rounded-xl shadow-lg"
+      accessibilityLabel="Mark task as complete" // For accessibility in React Native
+    >
+      {/* <View className="my-2 flex-row items-center rounded-xl shadow-lg"> */}
+      {/* Task Image */}
+      <View className="mr-4 ">
+        <Image
+          source={require('../../components/ui/assets/images/task.png')}
+          alt={task.title} // 'alt' is not a prop for Image in React Native, but good for context
           style={{
-            flexDirection: 'row',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            marginBottom: 6,
+            width: 56,
+            height: 56,
+            borderRadius: 8,
+            resizeMode: 'cover',
           }}
-        >
-          <View style={{ flex: 1, marginRight: 8 }}>
-            <Text
-              className="font-bold-nunito text-lg text-white"
-              numberOfLines={2}
-            >
-              {task.title}
-            </Text>
-            {/* Display streak points clearly */}
-            {isTaskActive && typeof task.streakPoints === 'number' && (
-              <Text className="mt-0.5 font-bold-nunito text-base text-yellow-300">
-                Win {task.streakPoints} 🔥
-              </Text>
-            )}
-          </View>
-          <View style={{ alignItems: 'flex-end', gap: 4 }}>
-            {/* Due Time with Icon */}
-            <View
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}
-            >
-              <Feather name="clock" size={12} color="#ffffff" />
-              <Text className="font-semibold-nunito text-sm text-white">
-                Due: {formatTime(task.expiresAt, timeZone)}
-              </Text>
-            </View>
-            {/* Duration with Icon */}
-            <View
-              className={`${neonGlass} border px-2 py-0.5 ${neonColor} flex-row items-center gap-1`}
-            >
-              <Feather name="clock" size={12} color="#ffffff" />
-              <Text className="text-sm text-white">
-                {task.durationMinutes}m
-              </Text>
-            </View>
-          </View>
-        </View>
+          onError={handleImageError}
+        />
+      </View>
 
-        {/* Action Buttons or Status */}
-        {isTaskActive ? (
-          <View style={{ flexDirection: 'row', gap: 6 }}>
-            <TouchableOpacity
-              className={`${neonGlass} flex-1 items-center border py-2 ${neonColor} flex-row justify-center gap-2`}
-              onPress={() => onCompleteTask?.(task.id)}
-            >
-              <Feather name="check" size={16} color="#ffffff" />
-              <Text className="text-white">Complete</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              className={`${neonGlass} flex-1 items-center border py-2 ${neonColor} flex-row justify-center gap-2`}
-              onPress={() => onSkipTask?.(task.id)}
-            >
-              <Feather name="x" size={16} color="#ffffff" />
-              <Text className="text-white">Skip</Text>
-            </TouchableOpacity>
-          </View>
+      {/* Task Details */}
+      <View className="grow flex-col justify-center">
+        <Text className="mb-1 font-semibold leading-tight text-white">
+          {task.title}
+        </Text>
+        <View className="mb-1 flex-row items-center text-gray-300">
+          <Feather name="clock" size={16} color="#D1D5DB" className="mr-1" />
+          {/* text-gray-300 */}
+          <Text className="text-sm text-gray-300">
+            {task.durationMinutes} min
+          </Text>
+        </View>
+        <View className="flex-row items-center text-gray-300">
+          <MaterialCommunityIcons
+            name="diamond"
+            size={16}
+            color="#60A5FA"
+            className="mr-1"
+          />
+          {/* text-blue-400 */}
+          <Text className="mr-3 text-sm text-gray-300">{task.gems} gems</Text>
+          <MaterialCommunityIcons
+            name="lightning-bolt"
+            size={16}
+            color="#FACC2A"
+            className="mr-1"
+          />
+          {/* text-yellow-400 */}
+          <Text className="text-sm text-gray-300">{task.xp} XP</Text>
+        </View>
+      </View>
+
+      {/* Status Indicator / Action Button */}
+      <>
+        {isTaskCompleted ? (
+          // <Feather name="check-circle" size={32} color="#22C55E" /> // text-green-500
+          <CheckListIcon />
         ) : (
           <View
-            className={`${neonGlass} items-center border py-1.5 ${neonColor}`}
+            className="flex size-7 items-center justify-center rounded-full border-2 border-gray-500"
+            accessibilityLabel="Mark task as complete" // For accessibility in React Native
           >
-            <Text className="text-white">{statusText}</Text>
+            {/* Empty circle for active task */}
           </View>
         )}
-      </LinearGradient>
-    </View>
+      </>
+    </TouchableOpacity>
   );
 };
 

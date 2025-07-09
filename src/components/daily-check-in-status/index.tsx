@@ -9,20 +9,22 @@ import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 import { Text } from '../ui';
 import { type IDailyCheckInStatus } from './daily-check-in-status.interface';
 
-const DailyCheckInStatus = ({ status }: IDailyCheckInStatus) => {
+const DailyCheckInStatus = ({
+  status,
+  additionalClassname,
+}: IDailyCheckInStatus) => {
   const { language } = useSelectedLanguage();
   const currentDay = getCurrentDay('MMM D', language);
 
   // const isAttended = status === 'attended';
   const isDailyCheckInDone = status === 'attended' || status === 'skipped';
   const isAttended = status === 'attended';
-  const _resetCheckIn = () => {};
 
   // Dynamic gradient colors based on answer
   const gradientColors = ['#10B981', '#059669', '#047857']; // Green gradient for Yes
   // : ['#f35252', '#f04343', '#e52e4d']; // Purple gradient for No
   return (
-    <View className="mx-4">
+    <View className={`mx-3 ${additionalClassname}`}>
       <LinearGradient
         colors={gradientColors}
         start={{ x: 0, y: 0 }}
@@ -44,7 +46,7 @@ const DailyCheckInStatus = ({ status }: IDailyCheckInStatus) => {
           <View className="flex-row items-center justify-between">
             <View className="flex-1 pr-3">
               {/* Header with enhanced styling */}
-              <View className="mb-3 flex-row items-center">
+              <View className="mb-1 flex-row items-center">
                 <View className="mr-2 rounded-xl bg-white/25 p-2 backdrop-blur-sm">
                   <Text className="text-sm font-black text-white">
                     {currentDay}
@@ -58,7 +60,7 @@ const DailyCheckInStatus = ({ status }: IDailyCheckInStatus) => {
               </View>
 
               {/* Compact message */}
-              <Text className="mb-3 font-semibold-nunito text-sm text-white">
+              <Text className="mt-2 font-semibold-nunito text-sm text-white">
                 {isAttended
                   ? 'You showed up today, that’s how progress is built. Keep going!'
                   : 'The couch wins today… but tomorrow, you’re making a comeback!'}

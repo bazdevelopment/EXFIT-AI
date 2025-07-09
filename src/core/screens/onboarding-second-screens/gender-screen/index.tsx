@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { useUser } from '@/api/user/user.hooks';
 import { type IOnboardingCollectedData } from '@/app/onboarding-second';
 import GenderCard from '@/components/gender-card';
-import Greeting from '@/components/greeting';
+import Greeting from '@/components/rewards-overview';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { Button, colors, Text } from '@/components/ui';
 import { ArrowRight } from '@/components/ui/assets/icons';

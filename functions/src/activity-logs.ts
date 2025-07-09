@@ -22,7 +22,7 @@ interface CreateLogRequestData {
     | 'yoga'
     | 'daily_checkin'
     | 'custom_activity'
-    | 'excuse_logged';
+    | 'excuse_logged_daily_checkin';
   details: {
     durationMinutes?: number;
     excuseReason?: string;
@@ -100,7 +100,7 @@ const createActivityLogHandler = async (
   }
 
   // An excuse log is a special case and doesn't award points, so we handle it separately.
-  if (data.type === 'excuse_logged') {
+  if (data.type === 'excuse_logged_daily_checkin') {
     return handleExcuseLog(userId, data, userLocalDayTimestamp);
   }
 
@@ -209,12 +209,12 @@ const handleExcuseLog = async (
   data: CreateLogRequestData,
   userLocalDate: admin.firestore.Timestamp,
 ) => {
-  // ... (This function would contain the logic for when data.type === 'excuse_logged')
+  // ... (This function would contain the logic for when data.type === 'excuse_logged_daily_checkin')
   // For simplicity, we'll assume it just writes the log without a transaction.
   const excuseLog = {
     date: userLocalDate, // Excuses are logged instantly
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    type: 'excuse_logged',
+    type: 'excuse_logged_daily_checkin',
     details: { ...data.details, overcome: false },
     status: 'skipped',
     xpEarned: 0,
@@ -258,9 +258,15 @@ interface ActivityLogDetails {
  * The structure of a document in the 'activityLogs' subcollection.
  */
 interface ActivityLog {
+  createdAt: Date;
   id: string;
   date: admin.firestore.Timestamp;
-  type: 'gym_workout' | 'run' | 'yoga' | 'daily_checkin' | 'excuse_logged';
+  type:
+    | 'gym_workout'
+    | 'run'
+    | 'yoga'
+    | 'daily_checkin'
+    | 'excuse_logged_daily_checkin';
   status: 'attended' | 'skipped';
   details: ActivityLogDetails;
 }
@@ -353,8 +359,13 @@ const getCalendarActivityLogHandler = async (
 
     // 5. --- Process Fetched Logs and Populate Map ---
     logsSnapshot.forEach((doc) => {
+      const data = doc.data();
       // Cast the Firestore document data to our ActivityLog interface
-      const log = { id: doc.id, ...doc.data() } as ActivityLog;
+      const log: ActivityLog = {
+        ...data,
+        id: doc.id,
+        createdAt: data?.createdAt ? data.createdAt.toDate().toISOString() : '',
+      } as ActivityLog;
 
       // Extract the date string (YYYY-MM-DD) from the log's timestamp,
       // ensuring consistency with the key format used for initialization.

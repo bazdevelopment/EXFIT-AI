@@ -19,7 +19,7 @@ import dayjs from '../lib/dayjs';
 const ProfileScreen = () => {
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
-  console.log('userInfo', userInfo);
+
   return (
     <ScreenWrapper>
       {/* Header */}
