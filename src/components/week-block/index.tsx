@@ -57,11 +57,11 @@ const WeekBlock = ({
         />
 
         <View className="flex-1 items-center justify-center">
-          <Text className="font-bold-nunito text-lg text-white">
+          <Text className="font-bold-poppins text-lg text-white">
             {interval}
           </Text>
 
-          <Text className="mt-1 font-medium-nunito text-base text-gray-200">{`${translate('components.WeekBlock.week')} ${weekNumber} - ${currentMonth} ${currentYear}`}</Text>
+          <Text className="mt-1 font-medium-poppins text-base text-gray-200">{`${translate('components.WeekBlock.week')} ${weekNumber} - ${currentMonth} ${currentYear}`}</Text>
         </View>
 
         <Icon

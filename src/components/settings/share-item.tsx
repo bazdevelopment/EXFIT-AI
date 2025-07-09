@@ -52,7 +52,7 @@ export const ShareItem = () => {
           <View className="p-6">
             {/* Header Section */}
             <View className="mb-8 mt-4 items-center">
-              <Text className="mb-2 text-center font-bold-nunito text-3xl text-gray-800">
+              <Text className="mb-2 text-center font-bold-poppins text-3xl text-gray-800">
                 {translate('rootLayout.screens.share.heading')}
               </Text>
               <Text className="mx-10 mt-2 text-center text-base text-gray-600">
@@ -72,7 +72,7 @@ export const ShareItem = () => {
                 backgroundColor={isDark ? colors.blackBeauty : colors.white}
                 logoBackgroundColor="transparent"
               />
-              <Text className="mt-10 text-center font-bold-nunito text-gray-700">
+              <Text className="mt-10 text-center font-bold-poppins text-gray-700">
                 {translate('rootLayout.screens.share.scanMessage')}
               </Text>
               <Text className="mt-2 text-center text-sm text-gray-600">

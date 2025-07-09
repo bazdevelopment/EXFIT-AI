@@ -10,12 +10,12 @@ module.exports = {
     extend: {
       fontFamily: {
         inter: ['Inter'],
-        'primary-nunito': 'Font-Regular', // For `font-medium`
-        'semibold-nunito': 'Font-SemiBold', // For `font-semibold`
-        'bold-nunito': 'Font-Bold', // For `font-bold`
-        'light-nunito': 'Font-Light', // For "font-light"
-        'medium-nunito': 'Font-Medium', // For "medium-nunito"
-        'extra-bold-nunito': 'Font-Extra-Bold',
+        'primary-poppins': 'Font-Regular', // For `font-medium`
+        'semibold-poppins': 'Font-SemiBold', // For `font-semibold`
+        'bold-poppins': 'Font-Bold', // For `font-bold`
+        'light-poppins': 'Font-Light', // For "font-light"
+        'medium-poppins': 'Font-Medium', // For "medium-poppins"
+        'extra-bold-poppins': 'Font-Extra-Bold',
       },
       colors,
     },

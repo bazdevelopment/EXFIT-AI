@@ -2,12 +2,13 @@
 import '../../global.css';
 
 import {
-  NunitoSans_300Light,
-  NunitoSans_400Regular,
-  NunitoSans_600SemiBold,
-  NunitoSans_700Bold,
-  NunitoSans_800ExtraBold,
-} from '@expo-google-fonts/nunito-sans';
+  Poppins_300Light,
+  Poppins_400Regular,
+  Poppins_500Medium,
+  Poppins_600SemiBold,
+  Poppins_700Bold,
+  Poppins_800ExtraBold,
+} from '@expo-google-fonts/poppins';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -54,12 +55,12 @@ export default function RootLayout() {
   usePushNotifications(); // push notifications popup
 
   const [fontsLoaded] = useFonts({
-    'Font-Regular': NunitoSans_400Regular,
-    'Font-SemiBold': NunitoSans_600SemiBold,
-    'Font-Light': NunitoSans_300Light,
-    'Font-Bold': NunitoSans_700Bold,
-    'Font-Medium': NunitoSans_400Regular,
-    'Font-Extra-Bold': NunitoSans_800ExtraBold,
+    'Font-Regular': Poppins_400Regular,
+    'Font-SemiBold': Poppins_600SemiBold,
+    'Font-Light': Poppins_300Light,
+    'Font-Bold': Poppins_700Bold,
+    'Font-Medium': Poppins_500Medium,
+    'Font-Extra-Bold': Poppins_800ExtraBold,
   });
 
   const hideSplash = useCallback(async () => {

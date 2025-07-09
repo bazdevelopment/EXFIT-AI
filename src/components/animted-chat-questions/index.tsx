@@ -74,7 +74,9 @@ const AnimatedChatQuestions = ({
               borderColor: '#3195FD',
             }}
           >
-            <Text className="text-base text-white">{q}</Text>
+            <Text className="font-primary-poppins text-base text-white">
+              {q}
+            </Text>
           </TouchableOpacity>
         </Animated.View>
       ))}

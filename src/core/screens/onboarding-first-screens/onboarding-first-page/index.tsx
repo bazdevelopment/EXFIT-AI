@@ -43,13 +43,13 @@ const OnboardingFirstPage = ({
           <View className="flex-1 items-center justify-center">
             {/* Logo Icon */}
 
-            <View className="absolute bottom-[20%] gap-4">
-              <Text className="text-center font-extra-bold-nunito text-4xl leading-tight text-white">
+            <View className="absolute bottom-1/4 gap-4">
+              <Text className="text-center font-semibold-poppins text-4xl leading-tight text-white">
                 Identify Activities & Get Expert AI guidance
               </Text>
 
               {/* Subtitle */}
-              <Text className="font-regular-nunito text-center text-lg  text-white">
+              <Text className="text-center font-primary-poppins text-lg  text-white">
                 From Gym Machines to Yoga poses
               </Text>
             </View>

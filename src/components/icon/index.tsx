@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
-import { colors } from '../ui';
+import { colors, Text } from '../ui';
 import { type IIcon } from './icon.interface';
 
 const Icon = ({
@@ -57,7 +57,7 @@ const Icon = ({
             {/* Optional: Add badge count text for numbers */}
             {badgeCount !== undefined && badgeCount > 0 && badgeCount < 100 && (
               <Text
-                className="text-center font-bold text-white"
+                className="text-center font-bold-poppins text-white"
                 style={{ fontSize: badgeSize * 0.6 }}
               >
                 {badgeCount > 99 ? '99+' : badgeCount.toString()}

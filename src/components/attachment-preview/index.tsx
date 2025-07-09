@@ -54,12 +54,12 @@ const AttachmentPreview = ({
       {showAdditionalInfo && (
         <View className="top-[-35px] z-[-1]  mb-[-35px] flex-row justify-between rounded-[22px] border-primary-700 bg-primary-900 px-4 pb-3 pt-[45px] dark:bg-blackEerie">
           {fileMimeType && (
-            <Text className="font-semibold-nunito text-sm text-white">
+            <Text className="font-semibold-poppins text-sm text-white">
               {fileMimeType.toUpperCase()}
             </Text>
           )}
           {!!showDate && (
-            <Text className="font-semibold-nunito text-sm text-white">
+            <Text className="font-semibold-poppins text-sm text-white">
               {dayjs().locale(language).format('DD/MM/YYYY')}
             </Text>
           )}

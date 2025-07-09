@@ -39,7 +39,7 @@ const SegmentedControlTab = ({
         </Text>
         {Boolean(option.subtitle) && (
           <Text
-            className={`mt-[-5px] font-bold-nunito text-lg ${isActive ? 'text-white' : 'text-white'}`}
+            className={`mt-[-5px] font-bold-poppins text-lg ${isActive ? 'text-white' : 'text-white'}`}
           >
             {option.subtitle}
           </Text>

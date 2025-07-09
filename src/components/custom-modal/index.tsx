@@ -44,7 +44,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
           />
 
           <View className="h-14 w-11/12 flex-row items-center justify-between rounded-t-xl bg-primary-900 px-5">
-            <Text className="font-medium-nunito text-lg text-white">
+            <Text className="font-medium-poppins text-lg text-white">
               {title || ''}
             </Text>
 

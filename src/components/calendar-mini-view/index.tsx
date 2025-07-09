@@ -65,14 +65,14 @@ const StreakDisplayHorizontal = ({
 }) => (
   <View className="border-1 items-center justify-center self-stretch rounded-2xl border border-charcoal-600 p-3">
     <StreakIcon width={40} height={40} />
-    <Text className="mt-2 font-bold-nunito text-lg text-orange-500 dark:text-orange-500">
+    <Text className="mt-2 font-bold-poppins text-lg text-orange-500 dark:text-orange-500">
       {currentStreak}
     </Text>
-    <Text className="font-bold-nunito text-orange-500 dark:text-orange-500">
+    <Text className="font-bold-poppins text-orange-500 dark:text-orange-500">
       days
     </Text>
 
-    <Text className="font-semibold text-white">streak</Text>
+    <Text className="font-medium-poppins text-white">streak</Text>
   </View>
 );
 
@@ -87,10 +87,10 @@ const StreakDisplayVertical = ({
       <StreakIcon width={40} height={40} />
     </View>
     <View>
-      <Text className="text-2xl font-bold text-orange-400">
+      <Text className="font-bold-poppins text-2xl text-orange-400">
         {currentStreak} days
       </Text>
-      <Text className="text-sm text-gray-400">streak</Text>
+      <Text className="font-medium-poppins text-sm text-gray-400">streak</Text>
     </View>
   </View>
 );
@@ -112,7 +112,7 @@ const CalendarHeader = ({
   if (layout === 'horizontal') {
     return (
       <Text
-        className={`text-xl font-bold text-white ${(showMonth || showYear) ?? 'mb-4 ml-1'}`}
+        className={`font-semibold-poppins text-xl text-white ${showMonth || showYear ? ' ml-1.5' : ''}`}
       >
         {showMonth ? currentMonth : ''} {showYear ? currentYear : ''}
       </Text>
@@ -122,12 +122,14 @@ const CalendarHeader = ({
   return (
     <View className="mb-4 flex-row items-center justify-center">
       {showMonth && (
-        <Text className="mr-2 text-xl font-bold text-white">
+        <Text className="mr-2 font-semibold-poppins text-xl text-white">
           {currentMonth}
         </Text>
       )}
       {showYear && (
-        <Text className="text-xl font-bold text-white">{currentYear}</Text>
+        <Text className="font-semibold-poppins text-xl text-white">
+          {currentYear}
+        </Text>
       )}
     </View>
   );
@@ -185,8 +187,12 @@ const DayItem = ({
   const content =
     layout === 'horizontal' ? (
       <>
-        <Text className={`text-sm font-bold ${textColor}`}>{dayTitle}</Text>
-        <Text className={`text-sm font-bold ${textColor}`}>{dayNumber}</Text>
+        <Text className={`font-semibold-poppins text-sm ${textColor}`}>
+          {dayTitle}
+        </Text>
+        <Text className={`font-bold-poppins text-base ${textColor}`}>
+          {dayNumber}
+        </Text>
         {getIcon()}
       </>
     ) : (
@@ -196,12 +202,16 @@ const DayItem = ({
         </Text>
         {status === 'inactive' ? (
           <View className="flex size-8 items-center justify-center rounded-full border-2 border-dashed border-gray-500">
-            <Text className="text-xs font-bold text-white">{dayNumber}</Text>
+            <Text className="font-semibold-poppins text-xs text-white">
+              {dayNumber}
+            </Text>
           </View>
         ) : (
           <View className="relative">
             <View className="flex size-8 items-center justify-center rounded-full bg-orange-500">
-              <Text className="text-xs font-bold text-white">{dayNumber}</Text>
+              <Text className="font-semibold-poppins text-xs text-white">
+                {dayNumber}
+              </Text>
             </View>
             {(status === 'completed' || status === 'attended') && (
               <View className="absolute -right-1 -top-1 size-4 items-center justify-center rounded-full bg-orange-600">

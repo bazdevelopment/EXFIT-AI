@@ -283,7 +283,7 @@ const ChatExcuseBuster = () => {
             />
 
             <View className="item-center mr-6 justify-center">
-              <Text className="ml-2 font-bold-nunito text-2xl text-white">
+              <Text className="ml-2 font-bold-poppins text-2xl text-white">
                 Aria
               </Text>
               {isSending ? (

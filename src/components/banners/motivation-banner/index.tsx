@@ -22,7 +22,7 @@ const MotivationBanner = ({
 
         {/* Content */}
         <View className="flex-1">
-          <Text className="text-lg font-bold leading-tight text-white">
+          <Text className="font-semibold-poppins text-lg text-white">
             Feeling Off? Let's beat that excuse
           </Text>
 
@@ -34,7 +34,7 @@ const MotivationBanner = ({
             <Button
               label="Beat your excuse now!"
               className="h-[34px] rounded-full active:opacity-90"
-              textClassName="text-white font-bold"
+              textClassName="text-white font-medium-poppins"
               onPress={() => router.navigate('/excuse-buster')}
             />
           </View>

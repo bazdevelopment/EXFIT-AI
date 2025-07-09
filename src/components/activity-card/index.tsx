@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
+import { Text } from '../ui';
 import { FlashIcon, GemIcon } from '../ui/assets/icons';
 
 interface ActivityCardProps {
@@ -54,7 +55,7 @@ const CompactActivityCard: React.FC<ActivityCardProps> = ({
             </View>
             <View className="flex-row items-center gap-2">
               <GemIcon width={20} height={20} />
-              <Text className="text-md font-bold-nunito text-blue-200">
+              <Text className="text-md font-bold-poppins text-blue-200">
                 {gemsEarned}
               </Text>
             </View>

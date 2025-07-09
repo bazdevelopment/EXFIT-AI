@@ -74,7 +74,7 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
     >
       {/* Header */}
       <View className="mx-6 mb-3 flex-row items-center gap-4">
-        <Text className="font-extra-bold-nunito text-xl text-white">
+        <Text className="font-extra-bold-poppins text-xl text-white">
           Today's tasks
         </Text>
         {totalTasksCount > 0 && (
@@ -82,7 +82,9 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
             {/* Show "Completed" Badge if all tasks are finished */}
             {activeTasksCount === 0 && (
               <View className="rounded-full bg-green-500 px-4 py-1">
-                <Text className="text-sm font-bold text-white">Completed</Text>
+                <Text className="font-bold-poppins text-sm text-white">
+                  Completed
+                </Text>
               </View>
             )}
 

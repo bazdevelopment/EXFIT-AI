@@ -156,7 +156,7 @@ export default function Settings() {
               loading={isPendingUpdateUser}
               variant="destructive"
               className="mt-4 h-[55px] justify-start pl-5"
-              textClassName="font-semibold-nunito text-lg"
+              textClassName="font-semibold-poppins text-lg"
               iconPosition="left"
               onPress={handleLogout}
             />

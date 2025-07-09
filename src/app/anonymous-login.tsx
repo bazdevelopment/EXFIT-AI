@@ -89,12 +89,12 @@ export default function AnonymousLogin() {
                 />
                 <Text
                   testID="form-title"
-                  className={`mt-14 font-bold-nunito text-[32px] text-white ${isVerySmallDevice && 'mt-4'}`}
+                  className={`mt-14 font-semibold-poppins text-[30px] text-white ${isVerySmallDevice && 'mt-4'}`}
                 >
                   {translate('rootLayout.screens.namePreferenceScreen.heading')}
                 </Text>
 
-                <Text className="my-4 text-xl text-white">
+                <Text className="my-4 font-primary-poppins text-lg text-white">
                   {translate(
                     'rootLayout.screens.namePreferenceScreen.preferredNameQuestion'
                   )}
@@ -115,7 +115,7 @@ export default function AnonymousLogin() {
                     autoComplete={undefined}
                     autoCorrect={false}
                     // autoFocus
-                    className="h-16 flex-1 rounded-3xl bg-blackEerie px-3.5 py-5 font-primary-nunito text-white dark:border-neutral-700 dark:bg-charcoal-800"
+                    className="h-16 flex-1 rounded-3xl bg-blackEerie px-3.5 py-5 font-primary-poppins text-white dark:border-neutral-700 dark:bg-charcoal-800"
                     containerClassName="bg-blackEerie"
                     icon={<UserIcon top={3} />}
                   />

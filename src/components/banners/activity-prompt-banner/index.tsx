@@ -39,7 +39,7 @@ const ActivityPromptBanner = ({
                 </Text>
               </View>
               <View className="flex-1">
-                <Text className="font-bold-nunito text-white">
+                <Text className="font-semibold-poppins text-white">
                   Daily check-in
                 </Text>
               </View>
@@ -47,7 +47,7 @@ const ActivityPromptBanner = ({
 
             {/* Middle Content */}
             <View className="mt-2">
-              <Text className="font-bold-nunito  text-white">
+              <Text className="font-semibold-poppins  text-white">
                 Did you get your body moving today?
               </Text>
             </View>
@@ -58,13 +58,17 @@ const ActivityPromptBanner = ({
                 className="flex-1 items-center justify-center rounded-xl bg-white/20 p-2 active:bg-white/30"
                 onPress={onShowActivityCompleteModal}
               >
-                <Text className="text-base font-bold text-white">Yes</Text>
+                <Text className="font-semibold-poppins text-base text-white">
+                  Yes
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 className="flex-1 items-center justify-center rounded-xl bg-white/20 p-2 active:bg-white/30"
                 onPress={onShowActivitySkippedModal}
               >
-                <Text className="text-base font-bold text-white">No</Text>
+                <Text className="font-semibold-poppins text-base text-white">
+                  No
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

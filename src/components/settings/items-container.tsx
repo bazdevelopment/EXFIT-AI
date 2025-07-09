@@ -15,7 +15,7 @@ export const ItemsContainer = ({ children, title }: Props) => {
     <View className="my-4 flex-1">
       {title && (
         <Text
-          className="mb-2 font-semibold-nunito text-lg text-white"
+          className="mb-2 font-semibold-poppins text-lg text-white"
           tx={title}
         />
       )}

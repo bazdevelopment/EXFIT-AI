@@ -80,7 +80,9 @@ const GradientCard = ({
     <View className="rounded-3xl bg-zinc-800 p-5">
       {/* Dark mode background */}
       <View className="mb-4 flex-row items-center justify-between">
-        <Text className="text-xl font-bold text-gray-100">{title}</Text>
+        <Text className="font-semibold-poppins text-xl text-gray-100">
+          {title}
+        </Text>
         {/* Light text */}
         {subtitle && <Text className="text-sm text-gray-300">{subtitle}</Text>}
       </View>
@@ -104,7 +106,9 @@ const ChartCard = ({
     {/* Dark mode background, border, and shadow */}
     <View className="mb-5 rounded-3xl border border-zinc-700 bg-zinc-800 p-5 shadow-xl">
       <View className="mb-4 flex-row flex-wrap items-center justify-between">
-        <Text className="text-xl font-bold text-gray-100">{title}</Text>
+        <Text className="font-semibold-poppins text-xl text-gray-100">
+          {title}
+        </Text>
         {/* Light text */}
         {subtitle && <Text className="text-sm text-gray-300">{subtitle}</Text>}
         {/* Lighter gray text */}
@@ -147,7 +151,9 @@ const EnhancedKPICard = ({
     >
       <View className="items-center">
         <FontAwesome5 name={icon as any} size={24} color="white" />
-        <Text className="mt-2 text-3xl font-bold text-white">{value}</Text>
+        <Text className="mt-2 font-semibold-poppins text-3xl text-white">
+          {value}
+        </Text>
         <Text className="text-center text-xs text-white opacity-90">
           {title}
           {unit ? ` (${unit})` : ''}
@@ -190,10 +196,12 @@ const InsightCard = ({
       >
         <FontAwesome5 name={icon as any} size={14} color={color} />
       </View>
-      <Text className="flex-1 text-sm font-medium text-gray-200">{title}</Text>
+      <Text className="flex-1 font-medium-poppins text-sm text-gray-200">
+        {title}
+      </Text>
       {/* Lighter text */}
     </View>
-    <Text className="text-lg font-bold text-white">{value}</Text>
+    <Text className="font-semibold-poppins text-lg text-white">{value}</Text>
     {/* White text */}
     {subtitle && <Text className="text-xs text-gray-400">{subtitle}</Text>}
     {/* Grayer text */}
@@ -218,7 +226,7 @@ const StatCard = ({
     >
       <FontAwesome5 name={icon as any} size={16} color={color} />
     </View>
-    <Text className="text-lg font-bold text-white">{value}</Text>
+    <Text className="font-semibold-poppins text-lg text-white">{value}</Text>
     {/* White text */}
     <Text className="text-center text-xs text-gray-400">{label}</Text>
     {/* Grayer text */}
@@ -241,7 +249,7 @@ const TabButton = ({
     }`}
   >
     <Text
-      className={`text-sm font-medium ${
+      className={`font-medium-poppins text-sm ${
         active ? 'text-white' : 'text-gray-200' // Dark mode inactive tab text
       }`}
     >
@@ -280,7 +288,7 @@ const EnhancedProgressScreen = () => {
         >
           <ActivityIndicator size="large" color="white" />
         </LinearGradient>
-        <Text className="text-lg font-medium text-gray-200">
+        <Text className="font-medium-poppins text-lg text-gray-200">
           {/* Light text */}
           Analyzing Your Progress...
         </Text>
@@ -301,7 +309,7 @@ const EnhancedProgressScreen = () => {
         >
           <FontAwesome5 name="exclamation-triangle" size={24} color="white" />
         </LinearGradient>
-        <Text className="mb-2 text-center text-xl font-bold text-red-200">
+        <Text className="mb-2 text-center font-semibold-poppins text-xl text-red-200">
           {/* Light red text */}
           Something went wrong
         </Text>
@@ -311,7 +319,7 @@ const EnhancedProgressScreen = () => {
           onPress={() => refetch()}
           className="rounded-full bg-red-500 px-6 py-3"
         >
-          <Text className="font-medium text-white">Try Again</Text>
+          <Text className="font-medium-poppins text-white">Try Again</Text>
         </TouchableOpacity>
       </View>
     );
@@ -335,10 +343,10 @@ const EnhancedProgressScreen = () => {
         {/* Header */}
 
         <View className="px-6">
-          <Text className="mb-2 text-3xl font-bold text-white">
+          <Text className="mb-2 font-bold-poppins text-3xl text-white">
             Progress Dashboard
           </Text>
-          <Text className="font-semibold-nunito text-lg text-white opacity-90">
+          <Text className="font-medium-poppins text-lg text-white opacity-90">
             Keep up the amazing work! 🚀
           </Text>
 
@@ -402,7 +410,7 @@ const EnhancedProgressScreen = () => {
 
           {/* Quick Insights */}
           <View className="mb-6 mt-4">
-            <Text className="mb-3 text-lg font-bold text-gray-100">
+            <Text className="mb-3 font-semibold-poppins text-lg text-gray-100">
               {/* Light text */}
               Quick Insights
             </Text>
@@ -560,7 +568,7 @@ const EnhancedProgressScreen = () => {
                     // textBackgroundRadius={16}
                     centerLabelComponent={() => (
                       <View className="items-center">
-                        <Text className="text-2xl font-bold text-gray-200">
+                        <Text className="font-semibold-poppins text-2xl text-gray-200">
                           {/* Light text */}
                           {data.kpis.totalActivities}
                         </Text>
@@ -814,13 +822,13 @@ const EnhancedProgressScreen = () => {
                   <View className="mt-4 flex-row justify-center">
                     <View className="mx-4 flex-row items-center">
                       <View className="mr-2 size-3 rounded-full bg-indigo-500" />
-                      <Text className="text-sm font-medium text-gray-300">
+                      <Text className="font-medium-poppins text-sm text-gray-300">
                         This Week
                       </Text>
                     </View>
                     <View className="mx-4 flex-row items-center">
                       <View className="mr-2 size-3 rounded-full bg-gray-400" />
-                      <Text className="text-sm font-medium text-gray-300">
+                      <Text className="font-medium-poppins text-sm text-gray-300">
                         Last Week
                       </Text>
                     </View>
@@ -830,7 +838,7 @@ const EnhancedProgressScreen = () => {
                   <View className="mx-4 mt-4 flex-row justify-between rounded-lg bg-gray-800/20 p-3">
                     <View className="items-center">
                       <Text className="text-xs text-gray-400">This Week</Text>
-                      <Text className="text-lg font-bold text-indigo-400">
+                      <Text className="font-semibold-poppins text-lg text-indigo-400">
                         {data.weeklyComparisonChartData.reduce(
                           (sum, item) => sum + item.thisWeek,
                           0
@@ -839,7 +847,7 @@ const EnhancedProgressScreen = () => {
                     </View>
                     <View className="items-center">
                       <Text className="text-xs text-gray-400">Last Week</Text>
-                      <Text className="text-lg font-bold text-gray-400">
+                      <Text className="font-semibold-poppins text-lg text-gray-400">
                         {data.weeklyComparisonChartData.reduce(
                           (sum, item) => sum + (item.lastWeek || 0),
                           0
@@ -849,7 +857,7 @@ const EnhancedProgressScreen = () => {
                     <View className="items-center">
                       <Text className="text-xs text-gray-400">Change</Text>
                       <Text
-                        className={`text-lg font-bold ${
+                        className={`font-semibold-poppins text-lg ${
                           data.weeklyComparisonChartData.reduce(
                             (sum, item) => sum + item.thisWeek,
                             0
@@ -1125,7 +1133,7 @@ const EnhancedProgressScreen = () => {
               <FontAwesome5 name="trophy" size={20} color="white" />
             </View>
             <View className="flex-1">
-              <Text className="text-lg font-bold text-white">
+              <Text className="font-semibold-poppins text-lg text-white">
                 Outstanding Progress!
               </Text>
               <Text className="text-sm text-white opacity-90">
@@ -1138,14 +1146,14 @@ const EnhancedProgressScreen = () => {
 
           {/* Detailed Stats Grid */}
           <View className="mb-6">
-            <Text className="mb-3 text-lg font-bold text-gray-100">
+            <Text className="mb-3 font-semibold-poppins text-lg text-gray-100">
               {/* Light text */}
               Detailed Statistics
             </Text>
             <View className="flex-row justify-between">
               <View className="mr-2 flex-1 rounded-2xl border border-zinc-700 bg-zinc-800 p-4 shadow-md">
                 {/* Dark mode background, border, shadow */}
-                <Text className="text-2xl font-bold text-indigo-400">
+                <Text className="font-semibold-poppins text-2xl text-indigo-400">
                   {/* Slightly lighter indigo for contrast */}
                   {data.detailedStats.longestStreak}
                 </Text>
@@ -1154,7 +1162,7 @@ const EnhancedProgressScreen = () => {
               </View>
               <View className="ml-2 flex-1 rounded-2xl border border-zinc-700 bg-zinc-800 p-4 shadow-md">
                 {/* Dark mode background, border, shadow */}
-                <Text className="text-2xl font-bold text-green-400">
+                <Text className="font-semibold-poppins text-2xl text-green-400">
                   {/* Slightly lighter green for contrast */}
                   {data.detailedStats.activeDaysThisMonth}
                 </Text>

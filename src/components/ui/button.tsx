@@ -18,7 +18,7 @@ import colors from './colors';
 const button = tv({
   slots: {
     container: 'my-2 flex flex-row items-center justify-center rounded-md px-4',
-    label: 'font-semibold-nunito text-base',
+    label: 'font-semibold-poppins text-base',
     indicator: 'h-6 text-white dark:text-white',
   },
 
@@ -252,7 +252,7 @@ export const RoundedButton = ({
   const ButtonContent = () => (
     <>
       {icon}
-      <Text className={`text-center font-semibold-nunito ${textClassName}`}>
+      <Text className={`text-center font-semibold-poppins ${textClassName}`}>
         {label}
       </Text>
     </>

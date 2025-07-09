@@ -1,12 +1,12 @@
 import { router } from 'expo-router';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
 import { useUser } from '@/api/user/user.hooks';
 import Avatar from '@/components/avatar';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
-import { colors } from '@/components/ui';
+import { colors, Text } from '@/components/ui';
 import {
   ArrowLeft,
   ArrowRight,
@@ -30,7 +30,7 @@ const ProfileScreen = () => {
           onPress={router.back}
           icon={<ArrowLeft color={colors.white} />}
         />
-        <Text className="text-xl font-semibold text-gray-900 dark:text-white">
+        <Text className="font-semibold-poppins text-xl text-gray-900 dark:text-white">
           Profile
         </Text>
         <View className="w-8" />
@@ -51,7 +51,7 @@ const ProfileScreen = () => {
 
       {/* Account Section */}
       <View className="flex-1 px-6">
-        <Text className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+        <Text className="mb-4 font-semibold-poppins text-xl text-gray-900 dark:text-white">
           Account
         </Text>
 
@@ -69,7 +69,7 @@ const ProfileScreen = () => {
           />
 
           <View className="flex-1">
-            <Text className="mb-1 text-base font-semibold text-gray-900 dark:text-white">
+            <Text className="mb-1 font-semibold-poppins text-base text-gray-900 dark:text-white">
               Convert to permanent account
             </Text>
             <Text className="text-sm leading-5 text-gray-500 dark:text-gray-400">

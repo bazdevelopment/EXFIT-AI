@@ -89,7 +89,6 @@ const Activity = () => {
       record.dateKey,
       currentWeekActivityLog
     );
-    console.log('indexToScroll', indexToScroll);
     typeof indexToScroll === 'number' &&
       scrollViewRef.current?.scrollToIndex({
         index: indexToScroll,
@@ -120,7 +119,7 @@ const Activity = () => {
     ({ item }) => (
       <View className="mb-2 border-b-[0.5px] border-white/10">
         <View className="flex-row items-center justify-between py-2">
-          <Text className="font-bold-nunito text-xl text-[#3195FD]">
+          <Text className="font-bold-poppins text-xl text-[#3195FD]">
             {formatDate(item.date, DATE_FORMAT.weekDayMonth, language)}
           </Text>
 
@@ -133,8 +132,8 @@ const Activity = () => {
             }}
             className="flex-row items-center rounded-full bg-[#3195FD]/10 px-3 py-1"
           >
-            <Text className="font-bold-nunito text-lg text-white">+</Text>
-            <Text className="ml-1 font-bold-nunito text-sm text-white">
+            <Text className="font-semibold-poppins text-lg text-white">+</Text>
+            <Text className="ml-1 font-semibold-poppins text-sm text-white">
               Add
             </Text>
           </TouchableOpacity>
@@ -142,8 +141,8 @@ const Activity = () => {
 
         {!item.records || item.records.length === 0 ? (
           <View className="mb-2 rounded-lg">
-            <Text className="ml-[1] font-semibold-nunito text-white">
-              Not much activity going on for this day
+            <Text className="ml-[1] font-primary-poppins text-white">
+              No physical activity noted for this day
             </Text>
           </View>
         ) : (
@@ -189,7 +188,7 @@ const Activity = () => {
         ]} // Ensure background covers content when sliding
         className="absolute inset-x-0 top-0 w-full" // Use NativeWind classes for absolute positioning
       >
-        {/* <Text className="px-4 pb-4 font-bold-nunito text-3xl text-white">
+        {/* <Text className="px-4 pb-4 font-bold-poppins text-3xl text-white">
           Activity
         </Text> */}
         <WeekBlock

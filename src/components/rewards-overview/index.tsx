@@ -30,7 +30,7 @@ const RewardsOverview = ({
         <View className="flex-row items-center gap-2">
           <View className="flex-row items-center gap-2 rounded-full border-[1.5px] border-gray-600 px-5 py-1.5">
             <GemIcon width={20} height={20} />
-            <Text className="font-bold-nunito text-sm text-blue-200">
+            <Text className="font-bold-poppins text-sm text-blue-200">
               {gemsBalance}
             </Text>
           </View>
@@ -43,7 +43,7 @@ const RewardsOverview = ({
           {showStreaks && (
             <View className="flex-row items-center gap-2 rounded-full ">
               <StreakIcon width={24} height={24} />
-              <Text className="font-bold-nunito text-sm text-blue-200">
+              <Text className="font-bold-poppins text-sm text-blue-200">
                 {streakBalance}
               </Text>
             </View>

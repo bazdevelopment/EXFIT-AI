@@ -34,8 +34,8 @@ const OnboardingThirdPage = ({
           className="-top-[10%]"
         />
 
-        <View className="absolute bottom-[20%] gap-4">
-          <Text className="text-center font-extra-bold-nunito text-3xl leading-tight text-white">
+        <View className="absolute bottom-1/4 gap-4">
+          <Text className="text-center font-semibold-poppins text-3xl leading-tight text-white">
             Let AI detect gym equipment, exercise poses, and technique
           </Text>
         </View>
