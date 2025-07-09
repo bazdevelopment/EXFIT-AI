@@ -1,7 +1,9 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import { View } from 'react-native';
 
 import { useGetCalendarActivityLog } from '@/api/activity-logs/activity-logs.hooks';
+import { useUser } from '@/api/user/user.hooks';
 import { translate, useSelectedLanguage } from '@/core';
 
 import CalendarMiniView from '../calendar-mini-view';
@@ -14,7 +16,6 @@ import { type IWeekBlock } from './week-block.interface';
  * Component used do display segmented tab bar for handling weekly navigation
  */
 const WeekBlock = ({
-  reportSections,
   onDayPress,
   weekOffset,
   initialDayFocused,
@@ -30,6 +31,14 @@ const WeekBlock = ({
   endOfWeek,
 }: IWeekBlock) => {
   const { language } = useSelectedLanguage();
+  const { data: userInfo } = useUser(language);
+
+  const lastResetStreakDay =
+    userInfo?.gamification.streakResetDates?.[
+      userInfo?.gamification?.streakResetDates?.length - 1
+    ];
+  const lastResetStreakDate = dayjs(lastResetStreakDay).format('YYYY-MM-DD');
+
   const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
     startDate: startOfWeek,
     endDate: endOfWeek,
@@ -62,8 +71,9 @@ const WeekBlock = ({
         />
       </View>
       <CalendarMiniView
-        containerClassName="px-2 mb-3"
+        containerClassName="px-4 mb-[-10px] top-[-25px] z-[-1]"
         currentWeekActivityLog={currentWeekActivityLog}
+        lastResetStreakDate={lastResetStreakDate}
         segmentedDays={segmentedDays}
         currentMonth={currentMonth}
         currentYear={currentYear}
@@ -71,6 +81,9 @@ const WeekBlock = ({
         currentMonthNumber={currentMonthNumber}
         onDayPress={onDayPress}
         weekOffset={weekOffset}
+        showYear={false}
+        showMonth={false}
+        showStreak={false}
       />
     </>
   );

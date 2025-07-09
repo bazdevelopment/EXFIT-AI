@@ -53,7 +53,7 @@ const CompactActivityCard: React.FC<ActivityCardProps> = ({
               </Text>
             </View>
             <View className="flex-row items-center gap-2">
-              <GemIcon />
+              <GemIcon width={20} height={20} />
               <Text className="text-md font-bold-nunito text-blue-200">
                 {gemsEarned}
               </Text>

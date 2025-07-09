@@ -66,7 +66,6 @@ const getProgressAnalyticsHandler = async (
   const userData = userDoc.data();
   // --- CRITICAL: Get the user's timezone. Default to UTC as a safe fallback. ---
   const userTimezone = userData?.timezone || 'UTC';
-  console.log('userTimezone', userTimezone);
   const gamification = userData?.gamification || {};
 
   // --- Establish "today" from the user's perspective for calculations ---

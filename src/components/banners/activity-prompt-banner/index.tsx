@@ -1,4 +1,3 @@
-import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
@@ -21,7 +20,7 @@ const ActivityPromptBanner = ({
 
   return (
     <View
-      className={`w-[90%] self-center overflow-hidden rounded-3xl shadow-lg ${containerClassName}`}
+      className={`w-[95%] self-center overflow-hidden rounded-3xl shadow-lg ${containerClassName}`}
     >
       <LinearGradient
         colors={['#4A90E2', '#316DFD']}
@@ -29,11 +28,11 @@ const ActivityPromptBanner = ({
         end={{ x: 0, y: 1 }}
       >
         {/* Main Flex Container: This is the key change for the layout */}
-        <View className="flex-row items-center justify-between p-4">
+        <View className="flex-row items-center justify-between p-3">
           {/* Left Column: Contains all text and buttons */}
-          <View className="w-[75%]">
+          <View className="w-full">
             {/* Daily Check-in Pill */}
-            <View className="mb-3 flex-row items-center">
+            <View className="flex-row items-center">
               <View className="mr-2 rounded-xl bg-white/25 p-2 backdrop-blur-sm">
                 <Text className="text-sm font-black text-white">
                   {currentDay}
@@ -47,14 +46,14 @@ const ActivityPromptBanner = ({
             </View>
 
             {/* Middle Content */}
-            <View className="mt-1">
+            <View className="mt-2">
               <Text className="font-bold-nunito  text-white">
                 Did you get your body moving today?
               </Text>
             </View>
 
             {/* Bottom Buttons */}
-            <View className="mt-4 flex-row gap-4">
+            <View className="mt-3 flex-row gap-4">
               <TouchableOpacity
                 className="flex-1 items-center justify-center rounded-xl bg-white/20 p-2 active:bg-white/30"
                 onPress={onShowActivityCompleteModal}
@@ -70,11 +69,11 @@ const ActivityPromptBanner = ({
             </View>
           </View>
 
-          <View className="items-center">
+          {/* <View className="items-center">
             <View className="rounded-2xl bg-white/20 p-3 backdrop-blur-sm">
               <Feather name="activity" size={28} color="white" />
             </View>
-          </View>
+          </View> */}
         </View>
       </LinearGradient>
     </View>

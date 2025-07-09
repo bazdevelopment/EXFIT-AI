@@ -2,7 +2,11 @@ export interface ICreateLogRequestData {
   language: string;
   timezone: string;
   date: string; //YYYY-MM-DD
-  type: 'daily_checkin' | 'excuse_logged' | 'custom_activity';
+  type:
+    | 'daily_checkin'
+    | 'excuse_logged'
+    | 'custom_activity'
+    | 'excuse_logged_daily_checkin';
   details: {
     durationMinutes?: number;
     excuseReason?: string;
@@ -39,7 +43,7 @@ interface ActivityLogDetails {
  */
 export interface IActivityLog {
   date: string;
-  type: 'gym_workout' | 'run' | 'yoga' | 'daily_checkin' | 'excuse_logged';
+  type: 'daily_checkin' | 'excuse_logged' | 'excuse_logged_daily_checkin';
   status: 'attended' | 'skipped';
   details: ActivityLogDetails;
 }

@@ -19,12 +19,14 @@ import CalendarMiniView from '@/components/calendar-mini-view';
 import DailyCheckInStatus from '@/components/daily-check-in-status';
 import Greeting from '@/components/greeting';
 import Icon from '@/components/icon';
+import { DailyActivityModal } from '@/components/modals/daily-activity-modal';
 import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
 import { NoActivityLogModal } from '@/components/modals/no-activity-log-modal';
+import RewardsOverview from '@/components/rewards-overview';
 import ScreenWrapper from '@/components/screen-wrapper';
 import TaskListOverview from '@/components/task-list-overview';
-import { colors, useModal } from '@/components/ui';
-import { Notification } from '@/components/ui/assets/icons'; // Ensure this is installed: npx expo install expo-linear-gradient
+import { colors, Image, useModal } from '@/components/ui';
+import { BellIcon } from '@/components/ui/assets/icons';
 import { useSelectedLanguage } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
@@ -38,6 +40,8 @@ export default function Home() {
   const { data: userInfo } = useUser(language);
   const activityCompleteModal = useModal();
   const activitySkippedModal = useModal();
+  const dailyActivityModal = useModal();
+
   const [{ timeZone }] = getCalendars();
 
   const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
@@ -68,6 +72,7 @@ export default function Home() {
       endDate: endOfWeek,
       language,
     });
+
   const { data: todayActiveTasks } = useGetAiTasks(currentActiveDay);
 
   const { mutate: onUpdateAiTaskStatus } =
@@ -76,29 +81,39 @@ export default function Home() {
   const isDailyCheckInDone = !!currentWeekActivityLog?.[currentActiveDay];
 
   const { isRefetching, onRefetch } = useDelayedRefetch(refetchActivityLog);
-
   return (
     <ScreenWrapper>
-      <View className="-mt-2 mr-4 flex-row justify-between">
-        <Greeting
-          userName={userInfo?.userName}
-          avatarUri={require('../../components/ui/assets/images/avatar.png')}
-          gemsBalance={userInfo?.gamification?.gemsBalance}
-          xpBalance={userInfo?.gamification.xpTotal}
-          streakBalance={userInfo?.gamification.currentStreak}
-          showStreaks
-        />
+      <View className="flex-row justify-between">
+        <View className="-mt-2 flex-row items-center">
+          <Image
+            source={require('../../components/ui/assets/images/avatar.png')}
+            className="top-1 mx-4 size-10 rounded-full" // Tailwind classes for styling the avatar
+            accessibilityLabel="User Avatar"
+            onError={() => console.error('Failed to load avatar image:')}
+          />
+
+          <RewardsOverview
+            userName={userInfo?.userName}
+            gemsBalance={userInfo?.gamification?.gemsBalance}
+            xpBalance={userInfo?.gamification.xpTotal}
+            streakBalance={userInfo?.gamification.currentStreak}
+            showStreaks={false}
+          />
+        </View>
+
         <Icon
-          icon={<Notification color="red" />}
+          icon={<BellIcon color="red" />}
           size={24}
           color={colors.charcoal[800]}
-          iconContainerStyle="p-3 bg-charcoal-800 rounded-full mt-2"
+          iconContainerStyle="p-2.5 border-[1px] border-charcoal-600 rounded-full "
           showBadge
           badgeSize={7}
           badgeColor="red"
-          badgeClassName="right-1.5 top-1"
+          badgeClassName="right-1.5"
+          containerStyle="right-4"
         />
       </View>
+
       <ScrollView
         contentContainerClassName="pb-16"
         refreshControl={
@@ -110,58 +125,76 @@ export default function Home() {
           />
         }
       >
-        {isDailyCheckInDone ? (
-          <DailyCheckInStatus
-            status={currentWeekActivityLog?.[currentActiveDay][0]?.status}
-          />
-        ) : (
-          <ActivityPromptBanner
-            onShowActivityCompleteModal={activityCompleteModal.present}
-            onShowActivitySkippedModal={activitySkippedModal.present}
-          />
-        )}
+        <Greeting
+          showGreeting
+          userName={userInfo.userName}
+          additionalClassName="ml-6 my-3"
+        />
 
-        {!!todayActiveTasks?.length && (
-          <TaskListOverview
-            tasks={todayActiveTasks}
-            onCompleteTask={(taskId) =>
-              onUpdateAiTaskStatus({ language, status: 'completed', taskId })
-            }
-            onSkipTask={(taskId) =>
-              onUpdateAiTaskStatus({ language, status: 'skipped', taskId })
-            }
-            additionalClassName="mt-4"
-          />
-        )}
+        <View className="mx-1 rounded-2xl bg-[#191A21] pb-2">
+          {currentWeekActivityLog && (
+            <CalendarMiniView
+              showMonth
+              showYear
+              showStreak
+              currentStreak={userInfo?.gamification?.currentStreak}
+              containerClassName="mx-2 mt-2 p-1"
+              currentWeekActivityLog={currentWeekActivityLog}
+              segmentedDays={segmentedDays}
+              currentMonth={currentMonth}
+              currentYear={currentYear}
+              initialDayFocused={initialDayFocused}
+              currentMonthNumber={currentMonthNumber}
+              weekOffset={weekOffset}
+              lastResetStreakDate={lastResetStreakDate}
+              onDayPress={(data) => dailyActivityModal.present(data)}
+            />
+          )}
+          {!isDailyCheckInDone ? (
+            <ActivityPromptBanner
+              containerClassName="mt-2"
+              onShowActivityCompleteModal={() =>
+                activityCompleteModal.present({
+                  type: 'daily_checkin',
+                })
+              }
+              onShowActivitySkippedModal={activitySkippedModal.present}
+            />
+          ) : (
+            <DailyCheckInStatus
+              additionalClassname="mt-2"
+              status={currentWeekActivityLog?.[currentActiveDay][0]?.status}
+            />
+          )}
 
-        {currentWeekActivityLog && (
-          <CalendarMiniView
-            showMonth
-            showYear
-            showStreak
-            currentStreak={userInfo?.gamification?.currentStreak}
-            containerClassName="px-6 py-4 mt-2 bg-[#141426]"
-            currentWeekActivityLog={currentWeekActivityLog}
-            segmentedDays={segmentedDays}
-            currentMonth={currentMonth}
-            currentYear={currentYear}
-            initialDayFocused={initialDayFocused}
-            currentMonthNumber={currentMonthNumber}
-            weekOffset={weekOffset}
-            lastResetStreakDate={lastResetStreakDate}
-          />
-        )}
-        <MotivationBanner containerClassName="mt-4" />
-        <AICoachBanner containerClassName="mt-4" />
+          {!!todayActiveTasks?.length && (
+            <TaskListOverview
+              tasks={todayActiveTasks}
+              onCompleteTask={(taskId) =>
+                onUpdateAiTaskStatus({ language, status: 'completed', taskId })
+              }
+              onSkipTask={(taskId) =>
+                onUpdateAiTaskStatus({ language, status: 'skipped', taskId })
+              }
+              additionalClassName="bg-black mt-2 mx-2 py-4 rounded-xl"
+            />
+          )}
+        </View>
+
+        <View className="mx-2">
+          <MotivationBanner containerClassName="mt-4" />
+          <AICoachBanner containerClassName="mt-4" />
+        </View>
+
         <DailyCheckInModal
           ref={activityCompleteModal.ref}
           isCreateActivityLogPending={isCreateActivityLogPending}
-          onSubmit={({ durationMinutes, activityName }) =>
+          onSubmit={({ durationMinutes, activityName, type }) =>
             onCreateActivityLog({
               language,
               timezone: timeZone as string,
               date: currentActiveDay,
-              type: 'daily_checkin',
+              type,
               details: {
                 durationMinutes,
                 activityName,
@@ -180,12 +213,20 @@ export default function Home() {
               date: currentActiveDay,
               timezone: timeZone as string,
               language,
-              type: 'excuse_logged',
+              type: 'excuse_logged_daily_checkin',
               details: {
                 excuseReason: skipReason ?? '',
               },
             }).then(() => {
               activitySkippedModal.dismiss();
+            })
+          }
+        />
+        <DailyActivityModal
+          ref={dailyActivityModal.ref}
+          onAddActivity={() =>
+            activityCompleteModal.present({
+              type: 'custom_activity',
             })
           }
         />

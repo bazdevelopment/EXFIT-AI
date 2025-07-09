@@ -86,7 +86,6 @@ export default function SignUpScreen({
 
   const handleSignUp: SubmitHandler<SignUpFormType> = (data) => {
     const { email, password } = data;
-    console.log('data', data);
     if (!acceptTerms) {
       Alert.alert(
         'Terms Required',

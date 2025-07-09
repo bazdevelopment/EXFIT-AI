@@ -1,8 +1,9 @@
 import { router } from 'expo-router';
 import { generateUniqueId } from 'functions/utilities/generate-unique-id';
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 
-import { Image, Text } from '@/components/ui';
+import { Button, colors, Text } from '@/components/ui';
+import { QuestionChat } from '@/components/ui/assets/icons';
 
 const AICoachBanner = ({
   containerClassName,
@@ -10,46 +11,48 @@ const AICoachBanner = ({
   containerClassName?: string;
 }) => {
   return (
-    // Main Container: Black background with large rounded corners and a subtle border
     <View
-      className={`w-[95%] max-w-lg self-center overflow-hidden rounded-[32px] border border-gray-800 bg-black shadow-lg ${containerClassName}`}
+      className={`w-full self-center overflow-hidden rounded-3xl bg-[#2A2D3A] shadow-lg ${containerClassName}`}
     >
-      {/* Main Flexbox row to align items */}
-      <View className="flex-row items-center">
-        {/* Left Column: Contains text and button */}
-        <View className="flex-1 p-6">
-          <Text className="font-semibold-nunito  text-white">
-            Ask Joe AI, your fitness coach everything regarding your goals,
-            routine and recommendations.
-          </Text>
-
-          <TouchableOpacity
-            className="mt-8 self-start rounded-full bg-stone-300 px-8 py-3 active:bg-stone-400"
-            onPress={() =>
-              router.navigate({
-                pathname: '/chat-screen',
-                params: {
-                  conversationId: generateUniqueId(),
-                  mediaSource: '',
-                  mimeType: '',
-                  conversationMode: 'RANDOM_CONVERSATION',
-                },
-              })
-            }
-          >
-            <Text className="text-base font-bold text-[#3195FD]">Chat now</Text>
-          </TouchableOpacity>
+      <View className="flex-row items-center p-3">
+        {/* Question Icon */}
+        <View className="mr-4 h-full w-[80px] flex-row items-center justify-center rounded-xl bg-[#191A21]">
+          <QuestionChat width={40} height={40} fill={colors.white} />
         </View>
 
-        <Image
-          source={require('../../../components/ui/assets/images/brain-ai.png')}
-          className="size-40"
-          style={{
-            resizeMode: 'cover',
-          }}
-        />
+        {/* Content */}
+        <View className="flex-1">
+          <Text className="text-lg font-bold leading-tight text-white">
+            Got a Question? Just Ask.
+          </Text>
+
+          <Text className="mt-2 text-sm text-gray-300">
+            Master your fitness—ask about gym machines, poses, injuries, form,
+            training plans
+          </Text>
+
+          <View className="mt-2">
+            <Button
+              label="Chat with AI Coach"
+              className="h-[34px] rounded-full bg-white active:bg-gray-200"
+              textClassName="text-black font-bold"
+              onPress={() =>
+                router.navigate({
+                  pathname: '/chat-screen',
+                  params: {
+                    conversationId: generateUniqueId(),
+                    mediaSource: '',
+                    mimeType: '',
+                    conversationMode: 'RANDOM_CONVERSATION',
+                  },
+                })
+              }
+            />
+          </View>
+        </View>
       </View>
     </View>
   );
 };
+
 export default AICoachBanner;

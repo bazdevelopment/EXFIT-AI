@@ -3,7 +3,7 @@ import { ScrollView, Text, View } from 'react-native';
 
 import { useUser } from '@/api/user/user.hooks';
 import { type IOnboardingCollectedData } from '@/app/onboarding-second';
-import Greeting from '@/components/greeting';
+import Greeting from '@/components/rewards-overview';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import SelectableButton from '@/components/selectable-button';
