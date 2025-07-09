@@ -1,10 +1,10 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React from 'react';
-import { ImageBackground, View } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 
-import GradientText from '@/components/gradient-text';
-import { Button, FocusAwareStatusBar, Image, Text } from '@/components/ui';
+import FadeInView from '@/components/fade-in-view/fade-in-view';
+import { Button, Image, Text } from '@/components/ui';
 import { useIsFirstTime } from '@/core';
 
 const WelcomeScreen = () => {
@@ -12,74 +12,70 @@ const WelcomeScreen = () => {
 
   return (
     <View className="flex-1 bg-black">
-      <FocusAwareStatusBar hidden />
+      {/* <FocusAwareStatusBar barStyle="light-content" /> */}
 
-      <LinearGradient
-        colors={['rgba(0,0,0,0.3)', 'rgba(0,0,0,0.7)', 'rgba(0,0,0,0.95)']}
-        locations={[0, 0.5]}
-        style={{ flex: 1 }}
+      <ImageBackground
+        source={require('../components/ui/assets/images/welcome-image.jpg')}
+        className="flex-1 justify-end"
+        resizeMode="cover"
       >
-        {/* Background Image with Overlay */}
-        <ImageBackground
-          source={require('../components/ui/assets/images/welcome-image.jpg')}
-          className="flex-1"
-          resizeMode="cover"
-        >
-          {/* Dark Overlay */}
+        {/* Darker, more subtle gradient overlay */}
+        <LinearGradient
+          colors={['rgba(0,0,0,0.4)', 'rgba(0,0,0,0.8)', '#000000']}
+          locations={[0, 0.9, 1]}
+          style={StyleSheet.absoluteFillObject}
+        />
 
-          {/* Content Container */}
-          <View className="flex-column h-full justify-between px-6 pb-10">
-            {/* Center Section - Logo and Branding */}
-            <View className="mt-14 flex-1 items-center justify-center">
-              {/* Logo Icon */}
-              <View className="mb-3">
+        <View className="flex-1 justify-between px-8 pb-12">
+          <View className="mt-[30%] flex-1 items-center justify-center">
+            <FadeInView delay={200}>
+              <View className="mb-6 mt-14 items-center justify-center rounded-3xl">
                 <Image
                   source={require('assets/splash-icon.png')}
-                  style={{ width: 70, height: 70 }}
+                  className="size-[65px]"
                 />
               </View>
+            </FadeInView>
 
-              {/* App Name */}
+            <FadeInView delay={600}>
+              <Text className="mb-6 mt-5 text-center text-[35px] font-bold leading-[52px] text-white">
+                It's{' '}
+                <Text className="text-[35px] text-[#3195FD] dark:text-[#3195FD]">
+                  you
+                </Text>{' '}
+                vs. your
+                {'\n'}
+                <Text className="text-[35px] text-[#3195FD] dark:text-[#3195FD]">
+                  potential
+                </Text>
+              </Text>
+            </FadeInView>
 
-              <GradientText colors={['#666AFF', '#3195FD']}>
-                <Text className="font-extra-bold-nunito text-xl tracking-wider">
+            <FadeInView delay={800}>
+              <Text className="mt-4 text-center font-primary-poppins text-lg leading-7">
+                Let{' '}
+                <Text className="font-semibold-poppins text-lg dark:text-[#3195FD]">
                   EXFIT AI
-                </Text>
-              </GradientText>
+                </Text>{' '}
+                crush your excuses
+              </Text>
+            </FadeInView>
+          </View>
 
-              {/* Main Headline */}
-
-              <View className="absolute bottom-10 gap-12">
-                <GradientText colors={['#3195FD', '#3195FD']}>
-                  <Text className="text-center font-extra-bold-nunito text-3xl leading-10 tracking-[3px]">
-                    {/* Move. Gain. Repeat. */}
-                    IT'S YOU VS. YOUR EXCUSES!
-                  </Text>
-                </GradientText>
-
-                {/* Subtitle */}
-                {/* <GradientText colors={['#3195FD', '#666AFF']}> */}
-                <Text className="text-center font-semibold-nunito  text-white opacity-90">
-                  Let EXFIT AI crush your excuses
-                </Text>
-                {/* </GradientText> */}
-              </View>
-            </View>
-
-            {/* Bottom Section - CTA Button */}
+          <FadeInView delay={1000} className="w-full">
             <Button
               label="Get Started"
               withGradientBackground
-              className="h-[40px]"
-              textClassName="text-white text-center text-lg font-semibold"
+              className="h-[38px] rounded-xl"
+              textClassName="text-white text-center font-bold tracking-wide"
               onPress={() => {
                 setIsFirstTime(false);
                 router.navigate('/onboarding-first');
               }}
             />
-          </View>
-        </ImageBackground>
-      </LinearGradient>
+          </FadeInView>
+        </View>
+      </ImageBackground>
     </View>
   );
 };

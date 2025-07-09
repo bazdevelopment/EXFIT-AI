@@ -109,7 +109,7 @@ export default function LoginScreen({
         {/* Content */}
         <View className="flex-1 px-6">
           {/* Title */}
-          <Text className="mb-12 mt-4 text-center text-3xl font-bold text-gray-900 dark:text-white">
+          <Text className="mb-12 mt-4 text-center font-semibold-poppins text-3xl text-gray-900 dark:text-white">
             Login
           </Text>
           {!!loginError && (
@@ -129,7 +129,7 @@ export default function LoginScreen({
               color={colors.white}
               className="mr-3 dark:color-gray-300"
             />
-            <Text className="ml-3 font-medium text-gray-700 dark:text-gray-300">
+            <Text className="ml-3 font-medium-poppins text-gray-700 dark:text-gray-300">
               Continue with username
             </Text>
           </TouchableOpacity>
@@ -137,7 +137,7 @@ export default function LoginScreen({
           {/* Divider */}
           <View className="my-8 flex-row items-center">
             <View className="h-px flex-1 bg-gray-300 dark:bg-gray-600" />
-            <Text className="mx-4 text-gray-500 dark:text-white">
+            <Text className="mx-4 font-primary-poppins text-gray-500 dark:text-white">
               Do you have an account?
             </Text>
             <View className="h-px flex-1 bg-gray-300 dark:bg-gray-600" />
@@ -163,11 +163,11 @@ export default function LoginScreen({
           {/* Password Input */}
           <View className="mb-2">
             <View className="mb-2 flex-row items-center justify-between">
-              <Text className="font-medium text-gray-700 dark:text-gray-300">
+              <Text className="font-medium-poppins text-gray-700">
                 Password
               </Text>
               <TouchableOpacity onPress={handleForgotPasswordPress}>
-                <Text className="text-blue-600 dark:text-blue-400">
+                <Text className="font-medium-poppins text-blue-600 dark:text-blue-400">
                   Forgot Password
                 </Text>
               </TouchableOpacity>
@@ -233,7 +233,7 @@ export default function LoginScreen({
             onPress={handleSubmit(handleLogin)}
             className="mb-8 rounded-lg bg-blue-600 py-4 dark:bg-blue-500"
           >
-            <Text className="text-center text-lg font-semibold text-white">
+            <Text className="text-center font-semibold-poppins text-lg text-white">
               Login
             </Text>
           </TouchableOpacity>

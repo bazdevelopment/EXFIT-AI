@@ -22,7 +22,7 @@ const AICoachBanner = ({
 
         {/* Content */}
         <View className="flex-1">
-          <Text className="text-lg font-bold leading-tight text-white">
+          <Text className="font-semibold-poppins text-lg text-white">
             Got a Question? Just Ask.
           </Text>
 
@@ -35,7 +35,7 @@ const AICoachBanner = ({
             <Button
               label="Chat with AI Coach"
               className="h-[34px] rounded-full bg-white active:bg-gray-200"
-              textClassName="text-black font-bold"
+              textClassName="text-black font-medium-poppins"
               onPress={() =>
                 router.navigate({
                   pathname: '/chat-screen',

@@ -91,7 +91,7 @@ export default function ForgotPasswordScreen({
         {/* Content */}
         <View className="flex-1 px-6">
           {/* Title */}
-          <Text className="mb-6 mt-4 text-3xl font-bold text-gray-900 dark:text-white">
+          <Text className="mb-6 mt-4 font-medium-poppins text-3xl text-gray-900 dark:text-white">
             Forgot Password
           </Text>
 
@@ -130,7 +130,7 @@ export default function ForgotPasswordScreen({
             onPress={handleSubmit(handleForgotPassword)}
             className="mb-8 rounded-lg bg-blue-600 py-4 dark:bg-blue-500"
           >
-            <Text className="text-center text-lg font-semibold text-white">
+            <Text className="text-center font-semibold-poppins text-lg text-white">
               Submit
             </Text>
           </TouchableOpacity>
@@ -141,7 +141,7 @@ export default function ForgotPasswordScreen({
               Remembered password?{' '}
             </Text>
             <TouchableOpacity onPress={handleLoginPress}>
-              <Text className="font-medium text-blue-600 dark:text-blue-400">
+              <Text className="font-medium-poppins text-blue-600 dark:text-blue-400">
                 Login to your account
               </Text>
             </TouchableOpacity>

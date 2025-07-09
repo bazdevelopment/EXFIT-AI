@@ -48,19 +48,19 @@ const DailyCheckInStatus = ({
               {/* Header with enhanced styling */}
               <View className="mb-1 flex-row items-center">
                 <View className="mr-2 rounded-xl bg-white/25 p-2 backdrop-blur-sm">
-                  <Text className="text-sm font-black text-white">
+                  <Text className="font-bold-poppins text-sm font-black text-white">
                     {currentDay}
                   </Text>
                 </View>
                 <View className="flex-1">
-                  <Text className="font-bold-nunito text-white">
+                  <Text className="font-bold-poppins text-white">
                     Daily check-in
                   </Text>
                 </View>
               </View>
 
               {/* Compact message */}
-              <Text className="mt-2 font-semibold-nunito text-sm text-white">
+              <Text className="mt-2 font-medium-poppins text-sm text-white">
                 {isAttended
                   ? 'You showed up today, that’s how progress is built. Keep going!'
                   : 'The couch wins today… but tomorrow, you’re making a comeback!'}
@@ -79,7 +79,7 @@ const DailyCheckInStatus = ({
 
               {/* Status indicator */}
               <View className="mt-2 rounded-full bg-white/25 px-2 py-0.5">
-                <Text className="text-xs font-bold text-white/90">
+                <Text className="font-bold-poppins text-xs text-white/90">
                   {isAttended ? 'Attended' : 'Skipped'}
                 </Text>
               </View>

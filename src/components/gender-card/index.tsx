@@ -1,9 +1,9 @@
 // Ensure @expo/vector-icons is installed in your project
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
 import SquareCheckbox from '../square-checkbox';
-import { colors, Image } from '../ui';
+import { colors, Image, Text } from '../ui';
 import FemaleIcon from '../ui/assets/icons/female-icon';
 import MaleIcon from '../ui/assets/icons/male-icon';
 
@@ -40,7 +40,9 @@ const GenderCard = ({
       <View className="relative h-[140px]">
         <View className="absolute ml-4 mt-4 flex-row items-center gap-2">
           {gender === 'male' ? <MaleIcon /> : <FemaleIcon />}
-          <Text className="text-lg font-semibold text-white">{title}</Text>
+          <Text className="font-medium-poppins text-lg text-white">
+            {title}
+          </Text>
         </View>
 
         {/* Male Image */}

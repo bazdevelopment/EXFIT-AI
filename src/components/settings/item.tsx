@@ -23,7 +23,7 @@ export const Item = ({ text, value, icon, onPress }: ItemProps) => {
     >
       <View className="ml-1 flex-row items-center">
         {icon && <View className="pr-2">{icon}</View>}
-        <Text tx={text} className="font-semibold-nunito text-lg" />
+        <Text tx={text} className="font-medium-poppins text-base" />
       </View>
       <View className="flex-row items-center">
         <Text className="text-base text-neutral-600 dark:text-white">

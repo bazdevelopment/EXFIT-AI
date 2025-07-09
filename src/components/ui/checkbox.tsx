@@ -63,7 +63,7 @@ type LabelProps = {
 
 const Label = ({ text, testID, className = '' }: LabelProps) => {
   return (
-    <Text testID={testID} className={` ${className} pl-2`}>
+    <Text testID={testID} className={` ${className} pl-2 font-primary-poppins`}>
       {text}
     </Text>
   );

@@ -54,13 +54,13 @@ export const NoActivityLogModal = React.forwardRef<
         {/* Header */}
         <View className="mb-6 mt-2">
           <GradientText colors={['#0482f8', '#3195FD']} className="mt-2">
-            <Text className="text-center font-bold-nunito text-2xl text-white">
+            <Text className="text-center font-bold-poppins text-2xl text-white">
               {/* Oh no! Couch Potato Alert? */}
               Oh no! Don’t Let the Couch Win!
             </Text>
           </GradientText>
 
-          <Text className="mt-2 text-center font-semibold-nunito text-base text-white">
+          <Text className="mt-2 text-center font-semibold-poppins text-base text-white">
             {/* Your body is itching for some action! Let's get moving, even just a
             little. */}
             {/* Small moves lead to big victories—let’s start now! */}
@@ -70,7 +70,7 @@ export const NoActivityLogModal = React.forwardRef<
 
         {/* Motivation and Options */}
         <View className="mb-6">
-          {/* <Text className="mb-4 font-bold-nunito text-lg text-white">
+          {/* <Text className="mb-4 font-bold-poppins text-lg text-white">
             Feeling stuck? Let's get your body moving!
           </Text> */}
 
@@ -79,7 +79,7 @@ export const NoActivityLogModal = React.forwardRef<
             onPress={onSuggestActivity}
             withGradientBackground
             className="h-[32px]"
-            textClassName="text-white text-center text-lg font-semibold-nunito"
+            textClassName="text-white text-center text-lg font-semibold-poppins"
           /> */}
 
           {/* <View className="self-center w-[80%]"> */}
@@ -91,7 +91,7 @@ export const NoActivityLogModal = React.forwardRef<
               ref.current.dismiss();
             }}
             className="h-[32px] self-center" // Example color for excuse buster
-            textClassName="text-white text-center font-bold-nunito"
+            textClassName="text-white text-center font-bold-poppins"
           />
           {/* </View> */}
 
@@ -102,14 +102,14 @@ export const NoActivityLogModal = React.forwardRef<
             }}
             className="py-3"
           >
-            <Text className="text-center font-semibold-nunito text-base text-white underline">
+            <Text className="text-center font-semibold-poppins text-base text-white underline">
               Not today, maybe tomorrow...
             </Text>
           </TouchableOpacity>
 
           {showSkipReasonInput && (
             <View className="mt-4">
-              <Text className="mb-2 font-semibold-nunito text-base text-white">
+              <Text className="mb-2 font-semibold-poppins text-base text-white">
                 No worries! But just curios, why the skip? (No judgment!)
               </Text>
               <BottomSheetTextInput
@@ -128,7 +128,7 @@ export const NoActivityLogModal = React.forwardRef<
                 onPress={handleSkip}
                 loading={isCreateActivityLogPending}
                 className="mt-4 h-[40px] bg-red-600 disabled:bg-danger-600 disabled:opacity-60" // Red for skipping
-                textClassName="text-white text-center text-base font-bold-nunito"
+                textClassName="text-white text-center text-base font-bold-poppins"
               />
             </View>
           )}

@@ -6,11 +6,11 @@ import {
   Alert,
   Image,
   Platform,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 
+import { Text } from '../ui';
 import { CheckIcon, EditIcon } from '../ui/assets/icons';
 
 interface AvatarProps {

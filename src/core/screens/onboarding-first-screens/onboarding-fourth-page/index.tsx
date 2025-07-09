@@ -32,12 +32,12 @@ const OnboardingFourthPage = ({
         {/* Logo Icon */}
         <Image
           source={require('../../../../components/ui/assets/images/streak.png')}
-          style={{ width: 300, height: 300 }}
+          style={{ width: 250, height: 250 }}
           className="mt-[25%]"
         />
 
-        <View className="absolute bottom-[20%] gap-4">
-          <Text className="text-center font-extra-bold-nunito text-3xl leading-tight text-white">
+        <View className="absolute bottom-1/4 gap-4 px-4">
+          <Text className="text-center font-bold-poppins text-3xl leading-tight text-white">
             Earn streak rewards and hit your fitness milestones
           </Text>
         </View>

@@ -1,9 +1,9 @@
 /* eslint-disable max-lines-per-function */
 import { BlurView } from '@react-native-community/blur';
 import React, { useEffect, useRef } from 'react';
-import { Animated, Text, View } from 'react-native';
+import { Animated, View } from 'react-native';
 
-import { Button } from '@/components/ui';
+import { Button, Text } from '@/components/ui';
 import { DEVICE_DIMENSIONS } from '@/constants/device-dimentions';
 import { DEVICE_TYPE } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
@@ -99,14 +99,14 @@ const CustomAlert = ({
 
           {/* Title (bold) */}
           {title && (
-            <Text className="mb-2 text-center font-bold-nunito text-xl text-white dark:text-white">
+            <Text className="mb-2 text-center font-bold-poppins text-xl text-white dark:text-white">
               {title}
             </Text>
           )}
 
           {/* Subtitle (normal weight) */}
           {subtitle && (
-            <Text className="mb-2 text-center font-primary-nunito text-base text-white dark:text-white">
+            <Text className="mb-2 text-center font-primary-poppins text-base text-white dark:text-white">
               {subtitle}
             </Text>
           )}

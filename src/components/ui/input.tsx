@@ -19,7 +19,7 @@ import { Text } from './text';
 const inputTv = tv({
   slots: {
     container: 'mb-2',
-    label: 'mb-2 font-semibold-nunito text-sm text-white',
+    label: 'mb-2 font-semibold-poppins text-sm text-white',
     input: 'relative flex flex-row items-center',
   },
 

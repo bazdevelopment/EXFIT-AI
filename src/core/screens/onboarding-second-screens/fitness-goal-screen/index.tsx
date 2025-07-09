@@ -4,7 +4,7 @@ import { ScrollView, Text, View } from 'react-native';
 
 import { useUser } from '@/api/user/user.hooks';
 import { type IOnboardingCollectedData } from '@/app/onboarding-second';
-import Greeting from '@/components/rewards-overview';
+import Greeting from '@/components/greeting';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import SelectableButton from '@/components/selectable-button';
@@ -73,7 +73,7 @@ const FitnessGoalScreen = ({
 
         {/* Main Question */}
         <View className="mb-6 mt-8 px-4">
-          <Text className="text-3xl font-bold text-white">
+          <Text className="font-bold-poppins text-3xl text-white">
             What's your fitness goal?
           </Text>
         </View>
@@ -112,7 +112,7 @@ const FitnessGoalScreen = ({
           loading={isSubmitOnboardingLoading}
           variant="default"
           className="mt-4 h-[55px] justify-center rounded-3xl bg-[#042140]"
-          textClassName="font-semibold-nunito text-lg text-center color-[#3195FD]"
+          textClassName="font-semibold-poppins text-lg text-center color-[#3195FD]"
           onPress={onSkip}
         />
       </View>

@@ -120,13 +120,13 @@ export const DailyCheckInModal = React.forwardRef<
             >
               {/* Header */}
               <View className="mb-6 mt-2">
-                <Text className="text-center font-bold-nunito text-lg text-white">
+                <Text className="text-center font-bold-poppins text-lg text-white">
                   Please mention fitness activity you did and the duration
                 </Text>
               </View>
               {/* Popular Activities */}
               <View className="mb-6">
-                <Text className="mb-3 font-bold-nunito text-lg text-white">
+                <Text className="mb-3 font-bold-poppins text-lg text-white">
                   Popular Activities
                 </Text>
                 <View className="flex-row flex-wrap gap-2">
@@ -141,7 +141,7 @@ export const DailyCheckInModal = React.forwardRef<
                       }`}
                     >
                       <Text
-                        className={`font-semibold-nunito text-sm text-white `}
+                        className={`font-semibold-poppins text-sm text-white `}
                       >
                         {activity.label}
                       </Text>
@@ -166,7 +166,7 @@ export const DailyCheckInModal = React.forwardRef<
               </View>
               {/* Duration */}
               <View className="mb-6">
-                <Text className="mb-3 font-bold-nunito text-lg font-medium text-white">
+                <Text className="mb-3 font-bold-poppins text-lg font-medium text-white">
                   Duration
                 </Text>
                 <View className="mb-4 flex-row flex-wrap gap-2">
@@ -184,7 +184,7 @@ export const DailyCheckInModal = React.forwardRef<
                       }`}
                     >
                       <Text
-                        className={`font-semibold-nunito text-sm text-white`}
+                        className={`font-semibold-poppins text-sm text-white`}
                       >
                         {duration.label}
                       </Text>
@@ -224,7 +224,7 @@ export const DailyCheckInModal = React.forwardRef<
                   <View className="self-center rounded-full bg-blue-500 px-4 py-2">
                     <View className="flex-row items-center gap-2">
                       <CheckIcon color={colors.white} width={15} height={15} />
-                      <Text className="font-semibold-nunito text-sm text-white">
+                      <Text className="font-semibold-poppins text-sm text-white">
                         {selectedActivity || customActivity}
                       </Text>
                     </View>
@@ -238,7 +238,7 @@ export const DailyCheckInModal = React.forwardRef<
                     <View className="flex-row items-center gap-2">
                       <CheckIcon color={colors.white} width={15} height={15} />
                       <Text
-                        className={`font-semibold-nunito text-sm text-white `}
+                        className={`font-semibold-poppins text-sm text-white `}
                       >
                         {`${selectedDuration || customDuration} min`}
                       </Text>

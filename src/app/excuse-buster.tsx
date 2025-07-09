@@ -39,7 +39,7 @@ const ExcuseButton: React.FC<ExcuseButtonProps> = ({
       activeOpacity={0.7}
       className={`rounded-full border border-gray-700  ${paddingClass} mx-1 mb-3 ${isSelected ? 'bg-[#3195FD]' : 'bg-gray-800'}`}
     >
-      <Text className="text-center font-semibold-nunito text-sm text-white">
+      <Text className="text-center font-semibold-poppins text-sm text-white">
         {title}
       </Text>
     </TouchableOpacity>
@@ -110,7 +110,7 @@ const ExcuseBusterScreen: React.FC = () => {
             />
 
             <GradientText colors={['#3195FD', '#666AFF']} className="ml-4">
-              <Text className="text-center text-2xl font-bold text-blue-400">
+              <Text className="text-center font-semibold-poppins text-2xl text-blue-400">
                 Excuse Buster
               </Text>
             </GradientText>
@@ -118,13 +118,13 @@ const ExcuseBusterScreen: React.FC = () => {
 
           {/* Main Title */}
           <GradientText colors={['#3195FD', '#666AFF']} className="mb-6">
-            <Text className="text-center text-2xl font-bold text-blue-400">
+            <Text className="text-center font-semibold-poppins text-2xl text-blue-400">
               Let's Bust Those Excuses!
             </Text>
           </GradientText>
 
           {/* Subtitle */}
-          <Text className="mb-8 text-center font-semibold-nunito text-lg text-white">
+          <Text className="mb-8 text-center font-semibold-poppins text-lg text-white">
             What's holding you back today, Marian? (Max. 3 reasons)
           </Text>
 
@@ -163,7 +163,7 @@ const ExcuseBusterScreen: React.FC = () => {
               label="Submit"
               withGradientBackground
               className="h-[30px] w-[200] rounded-xl"
-              textClassName="text-white font-bold-nunito"
+              textClassName="text-white font-bold-poppins"
               onPress={handleSubmit}
             />
           </View>

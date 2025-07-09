@@ -53,7 +53,7 @@ const ActivityTaskCard = ({
             {/* Left Column: Text Content */}
             <View className="w-4/5">
               {/* Task Title */}
-              <Text className="mb-1 font-extra-bold-nunito text-2xl leading-tight text-white">
+              <Text className="mb-1 font-extra-bold-poppins text-2xl leading-tight text-white">
                 {task.title}
               </Text>
 

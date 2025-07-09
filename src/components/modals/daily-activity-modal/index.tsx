@@ -76,7 +76,7 @@ export const DailyActivityModal = React.forwardRef<
                 {/* Day Number */}
 
                 {/* Title and Date */}
-                <Text className="mb-4 mt-[-10px] font-bold-nunito text-xl text-white">
+                <Text className="mb-4 mt-[-20px] font-bold-poppins text-xl text-white">
                   {dayjs(data.createdAt).format('dddd, MMMM D')}
                 </Text>
 
@@ -85,7 +85,7 @@ export const DailyActivityModal = React.forwardRef<
                   <View className="mb-4 w-full rounded-2xl border border-red-500/50 bg-red-500/20 p-4">
                     <View className="mb-2 flex-row items-center justify-center">
                       <StreakFreeze width={40} height={40} />
-                      <Text className="text-lg font-bold text-red-300">
+                      <Text className="font-bold-poppins text-lg text-red-300">
                         Streak freeze!
                       </Text>
                     </View>
@@ -102,28 +102,34 @@ export const DailyActivityModal = React.forwardRef<
                     <View className="mb-2 size-10 items-center justify-center rounded-full bg-purple-500/20">
                       <FlashIcon width={20} height={20} />
                     </View>
-                    <Text className="text-lg font-bold text-orange-400 dark:text-orange-400">
+                    <Text className="font-bold-poppins text-lg text-orange-400 dark:text-orange-400">
                       {totalXP}
                     </Text>
-                    <Text className="text-sm text-white">XP</Text>
+                    <Text className="font-medium-poppins text-sm text-white">
+                      XP
+                    </Text>
                   </View>
                   <View className="items-center">
                     <View className="mb-2 size-10 items-center justify-center rounded-full bg-yellow-500/20">
                       <GemIcon width={20} height={20} />
                     </View>
-                    <Text className="text-lg font-bold text-blue-300 dark:text-blue-300">
+                    <Text className="font-bold-poppins text-lg text-blue-300 dark:text-blue-300">
                       {totalGems}
                     </Text>
-                    <Text className="text-sm text-white">Gems</Text>
+                    <Text className="font-medium-poppins text-sm text-white">
+                      Gems
+                    </Text>
                   </View>
                   <View className="items-center">
                     <View className="mb-2 size-10 items-center justify-center rounded-full bg-green-500/20">
                       <Text className="text-lg">🎯</Text>
                     </View>
-                    <Text className="text-lg font-bold text-green-400 dark:text-green-400">
+                    <Text className="font-bold-poppins text-lg text-green-400 dark:text-green-400">
                       {data.activities?.length || 0}
                     </Text>
-                    <Text className="text-sm text-white">Activities</Text>
+                    <Text className="font-medium-poppins text-sm text-white">
+                      Activities
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -143,7 +149,7 @@ export const DailyActivityModal = React.forwardRef<
                           </Text>
                         </View>
                         <View className="flex-1">
-                          <Text className="font-semibold-nunito capitalize text-white">
+                          <Text className="font-semibold-poppins capitalize text-white">
                             {activity.type.replace('_', ' ')}
                           </Text>
                           <Text className="text-sm text-white">
@@ -160,7 +166,7 @@ export const DailyActivityModal = React.forwardRef<
                               : 'bg-gray-500'
                           }`}
                         >
-                          <Text className="font-bold-nunito text-xs text-white">
+                          <Text className="font-bold-poppins text-xs text-white">
                             {activity.status === 'attended'
                               ? 'Completed'
                               : activity.status}
@@ -169,13 +175,13 @@ export const DailyActivityModal = React.forwardRef<
                         <View className="flex-row items-center">
                           <View className="flex-row gap-2">
                             <GemIcon width={16} height={16} />
-                            <Text className="mr-4 text-sm font-bold text-yellow-400">
+                            <Text className="mr-4 font-bold-poppins text-sm text-yellow-400">
                               {activity.gemsEarned}
                             </Text>
                           </View>
                           <View className="flex-row gap-2">
                             <FlashIcon width={16} height={16} />
-                            <Text className="text-sm font-bold text-purple-400">
+                            <Text className="font-bold-poppins text-sm text-purple-400">
                               {activity.xpEarned}
                             </Text>
                           </View>
@@ -187,7 +193,7 @@ export const DailyActivityModal = React.forwardRef<
               ) : (
                 <View className="mb-6 items-center rounded-xl bg-white/5 p-6">
                   <Text className="mb-3 text-4xl">🎯</Text>
-                  <Text className="mb-2 text-lg font-semibold text-white">
+                  <Text className="mb-2 font-semibold-poppins text-lg text-white">
                     No Activities
                   </Text>
                   <Text className="text-center text-sm text-gray-400">
@@ -201,7 +207,7 @@ export const DailyActivityModal = React.forwardRef<
                 onPress={onAddActivity}
                 className="mb-8 items-center rounded-xl bg-blue-500 p-4"
               >
-                <Text className="text-lg font-semibold text-white">
+                <Text className="font-semibold-poppins text-white">
                   Add Activity
                 </Text>
               </TouchableOpacity>
