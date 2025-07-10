@@ -34,7 +34,7 @@ const ActivityPromptBanner = ({
             {/* Daily Check-in Pill */}
             <View className="flex-row items-center">
               <View className="mr-2 rounded-xl bg-white/25 p-2 backdrop-blur-sm">
-                <Text className="text-sm font-black text-white">
+                <Text className="font-semibold-poppins text-sm text-white">
                   {currentDay}
                 </Text>
               </View>
@@ -47,7 +47,7 @@ const ActivityPromptBanner = ({
 
             {/* Middle Content */}
             <View className="mt-2">
-              <Text className="font-semibold-poppins  text-white">
+              <Text className="font-medium-poppins text-base text-white">
                 Did you get your body moving today?
               </Text>
             </View>
@@ -72,12 +72,6 @@ const ActivityPromptBanner = ({
               </TouchableOpacity>
             </View>
           </View>
-
-          {/* <View className="items-center">
-            <View className="rounded-2xl bg-white/20 p-3 backdrop-blur-sm">
-              <Feather name="activity" size={28} color="white" />
-            </View>
-          </View> */}
         </View>
       </LinearGradient>
     </View>
