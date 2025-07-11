@@ -19,6 +19,7 @@ import CalendarMiniView from '@/components/calendar-mini-view';
 import DailyCheckInStatus from '@/components/daily-check-in-status';
 import Greeting from '@/components/greeting';
 import Icon from '@/components/icon';
+import { ActivityLogSuccessModal } from '@/components/modals/activity-log-success-modal';
 import { DailyActivityModal } from '@/components/modals/daily-activity-modal';
 import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
 import { NoActivityLogModal } from '@/components/modals/no-activity-log-modal';
@@ -41,6 +42,7 @@ export default function Home() {
   const activityCompleteModal = useModal();
   const activitySkippedModal = useModal();
   const dailyActivityModal = useModal();
+  const activityLogSuccessModal = useModal();
 
   const [{ timeZone }] = getCalendars();
 
@@ -64,7 +66,9 @@ export default function Home() {
   const {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
-  } = useCreateActivityLog();
+  } = useCreateActivityLog({
+    onSuccess: activityLogSuccessModal.present,
+  });
 
   const { data: currentWeekActivityLog, refetch: refetchActivityLog } =
     useGetCalendarActivityLog({
@@ -77,7 +81,6 @@ export default function Home() {
 
   const { mutate: onUpdateAiTaskStatus } =
     useUpdateAiTaskStatus(currentActiveDay);
-
   const isDailyCheckInDone = !!currentWeekActivityLog?.[currentActiveDay];
 
   const { isRefetching, onRefetch } = useDelayedRefetch(refetchActivityLog);
@@ -156,6 +159,7 @@ export default function Home() {
               onShowActivityCompleteModal={() =>
                 activityCompleteModal.present({
                   type: 'daily_checkin',
+                  date: currentActiveDay,
                 })
               }
               onShowActivitySkippedModal={activitySkippedModal.present}
@@ -189,11 +193,11 @@ export default function Home() {
         <DailyCheckInModal
           ref={activityCompleteModal.ref}
           isCreateActivityLogPending={isCreateActivityLogPending}
-          onSubmit={({ durationMinutes, activityName, type }) =>
+          onSubmit={({ durationMinutes, activityName, type, date }) =>
             onCreateActivityLog({
               language,
               timezone: timeZone as string,
-              date: currentActiveDay,
+              date,
               type,
               details: {
                 durationMinutes,
@@ -224,11 +228,17 @@ export default function Home() {
         />
         <DailyActivityModal
           ref={dailyActivityModal.ref}
-          onAddActivity={() =>
+          onAddActivity={(date) =>
             activityCompleteModal.present({
               type: 'custom_activity',
+              date,
             })
           }
+        />
+
+        <ActivityLogSuccessModal
+          ref={activityLogSuccessModal.ref}
+          onCloseModal={activityLogSuccessModal.dismiss}
         />
       </ScrollView>
     </ScreenWrapper>

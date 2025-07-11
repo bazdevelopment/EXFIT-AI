@@ -39,17 +39,19 @@ const CompactActivityCard: React.FC<ActivityCardProps> = ({
       className="my-1 flex-row items-center rounded-2xl bg-gray-800 p-4 shadow-md"
     >
       {/* Blue accent line */}
-      <View className={`mr-4 h-16 w-1 rounded-full  ${statusStyles[status]}`} />
+      <View className={`mr-4 h-16 w-1 rounded-full ${statusStyles[status]}`} />
 
       {/* Content */}
       <View className="flex-1">
         <View className="mr-4 flex-row items-center justify-between">
-          <Text className="mb-1 text-lg font-bold text-white">{title}</Text>
+          <Text className="mb-1 font-semibold-poppins text-lg text-white">
+            {title}
+          </Text>
 
           <View className="flex-row gap-4">
             <View className="flex-row items-center gap-2">
               <FlashIcon width={20} height={20} />
-              <Text className="text-sm font-semibold dark:text-white">
+              <Text className="font-bold-poppins text-sm dark:text-white">
                 {xpEarned} XP
               </Text>
             </View>
@@ -64,8 +66,9 @@ const CompactActivityCard: React.FC<ActivityCardProps> = ({
 
         {/* <Text className="mb-1 text-sm text-gray-400">{aiSuggestion}</Text> */}
         <View className="flex-row items-center justify-between">
-          <Text className="flex-1 text-sm text-gray-300">
-            {status === 'skipped' ? 'Excuse:' : 'Activities'}:{outcome || 'N/A'}
+          <Text className="flex-1 font-medium-poppins text-sm text-gray-300">
+            {status === 'skipped' ? 'Excuse: ' : 'Activities: '}
+            {outcome || 'N/A'}
           </Text>
         </View>
       </View>
