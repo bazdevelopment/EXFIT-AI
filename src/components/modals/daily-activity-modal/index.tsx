@@ -12,7 +12,7 @@ import dayjs from '../../../lib/dayjs';
 interface DailyActivityModalProps {
   onSubmit: ({ skipReason }: { skipReason: string }) => void;
   dailyActivityDetails: any;
-  onAddActivity: () => void;
+  onAddActivity: (date: string) => void;
 }
 
 export const DailyActivityModal = React.forwardRef<
@@ -77,7 +77,7 @@ export const DailyActivityModal = React.forwardRef<
 
                 {/* Title and Date */}
                 <Text className="mb-4 mt-[-20px] font-bold-poppins text-xl text-white">
-                  {dayjs(data.createdAt).format('dddd, MMMM D')}
+                  {dayjs(data.dateKey).format('dddd, MMMM D')}
                 </Text>
 
                 {/* Streak Reset Warning */}
@@ -204,7 +204,7 @@ export const DailyActivityModal = React.forwardRef<
 
               {/* Action Button */}
               <TouchableOpacity
-                onPress={onAddActivity}
+                onPress={() => onAddActivity(data.dateKey)}
                 className="mb-8 items-center rounded-xl bg-blue-500 p-4"
               >
                 <Text className="font-semibold-poppins text-white">

@@ -34,7 +34,9 @@ const ExcuseBusterScreen = () => {
       if (selectedExcuses.length < 3) {
         setSelectedExcuses([...selectedExcuses, excuse]);
       } else {
-        Alert.alert('Maximum 3 excuses allowed');
+        Alert.alert(
+          "Oops, looks like you're trying to set a world record for excuses! 😅 Maximum 3 excuses allowed - pick your top 3 and let's get moving!"
+        );
       }
     }
   };

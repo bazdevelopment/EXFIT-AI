@@ -15,11 +15,12 @@ import {
   type IRequestCalendarActivity,
 } from './activity-logs.types';
 
-export const useCreateActivityLog = () =>
+export const useCreateActivityLog = ({ onSuccess }) =>
   createMutation<ICreateLogResponseData, ICreateLogRequestData, AxiosError>({
     mutationFn: (variables) => createActivityLog(variables),
     onSuccess: (data) => {
-      Toast.success(data.message || 'Activity log created successfully');
+      // Toast.success(data.message || 'Activity log created successfully');
+      onSuccess();
       queryClient.invalidateQueries({
         queryKey: ['activity-logs'],
       });
