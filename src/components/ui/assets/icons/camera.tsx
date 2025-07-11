@@ -1,38 +1,29 @@
 import * as React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
 import { type ISvgProps } from '@/types/svg-types';
 
 export const Camera = (props: ISvgProps) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={21}
-    height={21}
+    width={32}
+    height={32}
+    viewBox="0 0 32 32"
     fill="none"
-    viewBox="0 0 21 21"
+    {...props}
   >
-    <Path
-      stroke={props.fill || '#fff'}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.5}
-      d="M13.034 3.798c.841.335 1.099 1.502 1.443 1.877.344.375.837.502 1.11.502A2.622 2.622 0 0 1 18.208 8.8v4.83a3.517 3.517 0 0 1-3.517 3.516H6.309a3.517 3.517 0 0 1-3.517-3.517V8.8a2.622 2.622 0 0 1 2.622-2.622c.272 0 .765-.127 1.11-.502.344-.375.6-1.542 1.442-1.877.843-.335 4.226-.335 5.068 0Z"
-      clipRule="evenodd"
-    />
-    <Path
-      stroke={props.fill || '#fff'}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M15.08 8.339h.007"
-    />
-    <Path
-      stroke={props.fill || '#fff'}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.5}
-      d="M13.15 11.362a2.649 2.649 0 1 0-5.298 0 2.649 2.649 0 0 0 5.297 0Z"
-      clipRule="evenodd"
-    />
+    <G clipPath="url(#a)">
+      <Path
+        fill="#fff"
+        fillRule="evenodd"
+        d="M19.724 4a2 2 0 0 1 1.267.453l.147.134 2.082 2.08h3.447a2.667 2.667 0 0 1 2.66 2.466l.007.2v16a2.667 2.667 0 0 1-2.467 2.66l-.2.007H5.334a2.667 2.667 0 0 1-2.66-2.467l-.007-.2v-16a2.667 2.667 0 0 1 2.467-2.66l.2-.006h3.448l2.08-2.08a2 2 0 0 1 1.217-.578L12.276 4h7.448Zm-.276 2.667h-6.896l-2.08 2.08a2 2 0 0 1-1.217.577l-.197.01H5.334v16h21.333v-16h-3.724a2 2 0 0 1-1.267-.454l-.146-.133-2.082-2.08ZM16 10a6.667 6.667 0 1 1 0 13.334A6.667 6.667 0 0 1 16 10Zm0 2.667a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
+        clipRule="evenodd"
+      />
+    </G>
+    <Defs>
+      <ClipPath id="a">
+        <Path fill="#fff" d="M0 0h32v32H0z" />
+      </ClipPath>
+    </Defs>
   </Svg>
 );
