@@ -17,6 +17,7 @@ import {
 } from '@/api/activity-logs/activity-logs.hooks';
 import CompactActivityCard from '@/components/activity-card';
 import { EndScrollPlaceholder } from '@/components/end-scroll-placeholder';
+import { ActivityLogSuccessModal } from '@/components/modals/activity-log-success-modal';
 import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { colors, Text, useModal } from '@/components/ui';
@@ -48,10 +49,11 @@ const Activity = () => {
   } = useWeekNavigation();
 
   const activityCompleteModal = useModal();
+  const activityLogSuccessModal = useModal();
   const {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
-  } = useCreateActivityLog();
+  } = useCreateActivityLog({ onSuccess: activityLogSuccessModal.present });
   const [currentActiveDay, setCurrentActiveDay] = useState('');
   // const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
 
@@ -260,6 +262,10 @@ const Activity = () => {
             activityCompleteModal.dismiss();
           })
         }
+      />
+      <ActivityLogSuccessModal
+        ref={activityLogSuccessModal.ref}
+        onCloseModal={activityLogSuccessModal.dismiss}
       />
     </ScreenWrapper>
   );

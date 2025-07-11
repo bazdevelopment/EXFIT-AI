@@ -67,7 +67,7 @@ export default function Home() {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
   } = useCreateActivityLog({
-    onSuccess: activityLogSuccessModal.present,
+    onSuccess: activityLogSuccessModal.presents,
   });
 
   const { data: currentWeekActivityLog, refetch: refetchActivityLog } =
