@@ -20,11 +20,11 @@ const EdgeCaseTemplate = ({
       style={{ width: DEVICE_DIMENSIONS.DEVICE_WIDTH }}
     >
       {image && <View className="mb-4">{image}</View>}
-      <Text className="mb-2 text-center font-semibold-poppins text-2xl text-gray-900">
+      <Text className="mb-2 text-center font-semibold-poppins text-xl text-white dark:text-white">
         {title}
       </Text>
       {!!message && (
-        <Text className="mt-2 text-center font-medium-poppins text-base text-gray-600">
+        <Text className="mt-2 text-center font-medium-poppins text-base text-white dark:text-white">
           {message}
         </Text>
       )}
@@ -33,7 +33,8 @@ const EdgeCaseTemplate = ({
         {!!primaryAction && (
           <Button
             label={primaryAction.label}
-            className="rounded-full"
+            className="rounded-full bg-white active:opacity-85 dark:bg-white"
+            textClassName="text-black font-semibold-poppins text-sm"
             variant={primaryAction.variant}
             icon={primaryAction.icon}
             onPress={primaryAction.onPress}

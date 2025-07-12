@@ -3,7 +3,6 @@ import * as React from 'react';
 import Svg, {
   Circle,
   Defs,
-  FeBlend,
   FeColorMatrix,
   FeComposite,
   FeFlood,
@@ -30,7 +29,7 @@ export const NoNotification = (props) => (
         cx={142}
         cy={138}
         r={134}
-        fill={colors.charcoal[600]}
+        fill={colors.charcoal[900]}
         fillOpacity={0.5}
         shapeRendering="crispEdges"
       />
@@ -81,12 +80,12 @@ export const NoNotification = (props) => (
         <FeGaussianBlur stdDeviation={4} />
         <FeComposite in2="hardAlpha" operator="out" />
         <FeColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
-        <FeBlend in2="BackgroundImageFix" result="effect1_dropShadow_15_150" />
+        {/* <FeBlend in2="BackgroundImageFix" result="effect1_dropShadow_15_150" />
         <FeBlend
           in="SourceGraphic"
           in2="effect1_dropShadow_15_150"
           result="shape"
-        />
+        /> */}
       </Filter>
       <Filter
         id="c"
@@ -107,12 +106,12 @@ export const NoNotification = (props) => (
         <FeGaussianBlur stdDeviation={4} />
         <FeComposite in2="hardAlpha" operator="out" />
         <FeColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
-        <FeBlend in2="BackgroundImageFix" result="effect1_dropShadow_15_150" />
-        <FeBlend
+        {/* <FeBlend i/n2="BackgroundImageFix" result="effect1_dropShadow_15_150" /> */}
+        {/* <FeBlend
           in="SourceGraphic"
           in2="effect1_dropShadow_15_150"
           result="shape"
-        />
+        /> */}
       </Filter>
       <Filter
         id="d"
@@ -133,12 +132,12 @@ export const NoNotification = (props) => (
         <FeGaussianBlur stdDeviation={4} />
         <FeComposite in2="hardAlpha" operator="out" />
         <FeColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
-        <FeBlend in2="BackgroundImageFix" result="effect1_dropShadow_15_150" />
-        <FeBlend
+        {/* <FeBlend in2="BackgroundImageFix" result="effect1_dropShadow_15_150" /> */}
+        {/* <FeBlend
           in="SourceGraphic"
           in2="effect1_dropShadow_15_150"
           result="shape"
-        />
+        /> */}
       </Filter>
       <RadialGradient
         id="b"

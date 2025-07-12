@@ -38,7 +38,7 @@ const SelectableButton = ({
     >
       <View className="flex-row items-center">
         <Text className="mr-3 text-2xl text-white">{icon}</Text>
-        <Text className="text-base font-semibold text-white">{text}</Text>
+        <Text className="font-medium-poppins text-base text-white">{text}</Text>
       </View>
       {/* Square Checkbox implementation */}
       <SquareCheckbox

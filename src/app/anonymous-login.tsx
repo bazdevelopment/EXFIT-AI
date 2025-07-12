@@ -18,7 +18,7 @@ import {
   Input,
   Text,
 } from '@/components/ui';
-import { ArrowLeft, UserIcon } from '@/components/ui/assets/icons';
+import { ArrowLeft } from '@/components/ui/assets/icons';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import { useStoreUserId } from '@/core/hooks/use-store-user-id';
 import getDeviceSizeCategory from '@/core/utilities/get-device-size-category';
@@ -115,9 +115,9 @@ export default function AnonymousLogin() {
                     autoComplete={undefined}
                     autoCorrect={false}
                     // autoFocus
-                    className="h-16 flex-1 rounded-3xl bg-blackEerie px-3.5 py-5 font-primary-poppins text-white dark:border-neutral-700 dark:bg-charcoal-800"
+                    className="dark-blackEerie h-14 flex-1 rounded-xl border-2 border-neutral-700 bg-blackEerie px-3.5 font-primary-poppins text-white dark:border-neutral-700"
                     containerClassName="bg-blackEerie"
-                    icon={<UserIcon top={3} />}
+                    // icon={<UserIcon top={3} />}
                   />
 
                   <View className="mt-1 w-full flex-row flex-wrap items-center">
@@ -144,10 +144,10 @@ export default function AnonymousLogin() {
                   <View className="mt-6">
                     <Button
                       label={translate('general.continue')}
-                      withGradientBackground
-                      variant="default"
-                      className="w-full"
-                      textClassName="text-lg text-center text-white dark:text-white"
+                      // withGradientBackground
+                      // variant="default"
+                      className="h-14 w-full rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
+                      textClassName="text-base font-medium-poppins text-center text-white dark:text-white"
                       iconPosition="left"
                       onPress={async () => {
                         await onCreateAnonymousAccount({

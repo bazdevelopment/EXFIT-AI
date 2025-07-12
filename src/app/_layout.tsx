@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 // Import  global CSS file
 import '../../global.css';
 
@@ -22,7 +23,7 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { Toaster } from 'sonner-native';
 
 import { APIProvider } from '@/api';
-import { hydrateAuth, loadSelectedTheme } from '@/core';
+import { DEVICE_TYPE, hydrateAuth, loadSelectedTheme } from '@/core';
 import usePushNotifications from '@/core/hooks/use-push-notifications';
 import { useThemeConfig } from '@/core/use-theme-config';
 
@@ -62,6 +63,7 @@ export default function RootLayout() {
     'Font-Medium': Poppins_500Medium,
     'Font-Extra-Bold': Poppins_800ExtraBold,
   });
+  console.log('fontsLoaded', fontsLoaded);
 
   const hideSplash = useCallback(async () => {
     await SplashScreen.hideAsync();
@@ -85,8 +87,10 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
@@ -94,8 +98,10 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
@@ -103,8 +109,10 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
@@ -112,8 +120,10 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
@@ -121,16 +131,20 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
           name="welcome"
           options={{
             headerShown: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
@@ -138,16 +152,20 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
           name="excuse-buster"
           options={{
             headerShown: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
@@ -155,8 +173,10 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
@@ -164,8 +184,10 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
@@ -173,8 +195,10 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
@@ -182,8 +206,10 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
         <Stack.Screen
@@ -191,8 +217,21 @@ export default function RootLayout() {
           options={{
             headerShown: false,
             gestureEnabled: false,
-            animation: 'fade',
-            animationDuration: 500,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
+          }}
+        />
+        <Stack.Screen
+          name="paywall"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
           }}
         />
       </Stack>

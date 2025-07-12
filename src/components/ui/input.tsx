@@ -19,7 +19,7 @@ import { Text } from './text';
 const inputTv = tv({
   slots: {
     container: 'mb-2',
-    label: 'mb-2 font-semibold-poppins text-sm text-white',
+    label: 'mb-2 font-semibold-poppins text-sm text-white dark:text-white',
     input: 'relative flex flex-row items-center',
   },
 
@@ -115,10 +115,12 @@ export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
         )}
         <NTextInput
           testID={testID}
+          keyboardAppearance="dark"
           ref={ref}
           placeholderTextColor={colors.charcoal[400]}
           onBlur={onBlur}
           onFocus={onFocus}
+          className={textClassName}
           {...inputProps}
           style={StyleSheet.flatten([
             { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' },
@@ -130,7 +132,7 @@ export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
       {error && (
         <Text
           testID={testID ? `${testID}-error` : undefined}
-          className={`text-sm text-danger-400 dark:text-danger-600 ${textClassName}`}
+          className={`text-sm text-danger-600 dark:text-danger-600`}
         >
           {error}
         </Text>
@@ -155,6 +157,7 @@ export const ControlledInput = forwardRef<
         autoCapitalize="none"
         onChangeText={onChangeText}
         value={(value as string) || ''}
+        keyboardAppearance="dark"
         {...inputProps}
         error={error}
       />

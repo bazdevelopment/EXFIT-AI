@@ -4,13 +4,12 @@ import React, { useState } from 'react';
 import {
   ActionSheetIOS,
   Alert,
-  Image,
   Platform,
   TouchableOpacity,
   View,
 } from 'react-native';
 
-import { Text } from '../ui';
+import { Image, Text } from '../ui';
 import { CheckIcon, EditIcon } from '../ui/assets/icons';
 
 interface AvatarProps {
@@ -39,7 +38,6 @@ const Avatar: React.FC<AvatarProps> = ({
   const [currentImageUri, setCurrentImageUri] = useState<string | undefined>(
     imageUri
   );
-
   // Size configurations
   const sizeConfig = {
     small: {
@@ -200,17 +198,13 @@ const Avatar: React.FC<AvatarProps> = ({
         <TouchableOpacity
           onPress={editable ? showActionSheet : onEditPress}
           activeOpacity={0.8}
-          className={`${config.container} items-center justify-center overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700`}
+          className={`${config.container} items-center justify-center overflow-hidden rounded-full bg-gray-700 dark:bg-gray-700`}
         >
           {currentImageUri ? (
-            <Image
-              source={{ uri: currentImageUri }}
-              className="size-full"
-              resizeMode="cover"
-            />
+            <Image source={currentImageUri} className="size-full" />
           ) : (
             <View className="size-full items-center justify-center bg-gradient-to-br from-blue-400 to-purple-600">
-              <Text className="text-lg font-bold text-white">
+              <Text className="text-lg font-bold text-white dark:text-white">
                 {getInitials(name)}
               </Text>
             </View>
@@ -236,10 +230,10 @@ const Avatar: React.FC<AvatarProps> = ({
           </View>
         )}
       </View>
-      <Text className="mb-2 mt-4 text-2xl font-bold text-gray-900 dark:text-white">
+      <Text className="mb-2 mt-4 text-2xl font-bold text-white dark:text-white">
         {name}
       </Text>
-      <Text className="text-sm text-gray-400 dark:text-gray-500">
+      <Text className="dark:text-gray4500 text-sm text-gray-400">
         Joined {creationDate}
       </Text>
     </View>

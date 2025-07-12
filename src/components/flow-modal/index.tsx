@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import React from 'react';
 import { View } from 'react-native';
 
+import { FocusAwareStatusBar } from '../ui';
 import { type IFlow } from './flow-modal.interface';
 
 const FlowModal = ({
@@ -38,7 +39,12 @@ const FlowModal = ({
       })
     : currentActiveScreen;
 
-  return <View className="flex-1">{wrappedCurrentChild}</View>;
+  return (
+    <View className="flex-1">
+      <FocusAwareStatusBar hidden />
+      {wrappedCurrentChild}
+    </View>
+  );
 };
 
 export default FlowModal;

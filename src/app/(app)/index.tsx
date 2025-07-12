@@ -1,7 +1,12 @@
 import { getCalendars } from 'expo-localization';
 import { router } from 'expo-router';
 import React from 'react';
-import { RefreshControl, ScrollView, View } from 'react-native';
+import {
+  RefreshControl,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import {
   useCreateActivityLog,
@@ -30,7 +35,7 @@ import ScreenWrapper from '@/components/screen-wrapper';
 import TaskListOverview from '@/components/task-list-overview';
 import { colors, Image, useModal } from '@/components/ui';
 import { BellIcon } from '@/components/ui/assets/icons';
-import { useSelectedLanguage } from '@/core';
+import { DEVICE_TYPE, useSelectedLanguage } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { avatars, type TAvatarGender } from '@/core/utilities/avatars';
@@ -99,14 +104,18 @@ export default function Home() {
   const { isRefetching, onRefetch } = useDelayedRefetch(refetchActivityLog);
   return (
     <ScreenWrapper>
-      <View className="-mt-2 flex-row justify-between">
+      <View
+        className={`${DEVICE_TYPE.IOS ? '-mt-1' : 'mt-1'} flex-row justify-between`}
+      >
         <View className="flex-row items-center">
-          <Image
-            source={avatars[userInfo.onboarding.gender as TAvatarGender]}
-            className="mx-4 mr-3  size-12 rounded-full bg-white/20" // Tailwind classes for styling the avatar
-            accessibilityLabel="User Avatar"
-            onError={() => console.error('Failed to load avatar image:')}
-          />
+          <TouchableOpacity onPress={() => router.navigate('/profile')}>
+            <Image
+              source={avatars[userInfo.onboarding.gender as TAvatarGender]}
+              className="mx-4 mr-3  size-12 rounded-full bg-white/20" // Tailwind classes for styling the avatar
+              accessibilityLabel="User Avatar"
+              onError={() => console.error('Failed to load avatar image:')}
+            />
+          </TouchableOpacity>
 
           <RewardsOverview
             userName={userInfo?.userName}
@@ -146,6 +155,7 @@ export default function Home() {
           showGreeting
           userName={userInfo.userName}
           additionalClassName="ml-6 my-3"
+          textClassName="text-white dark:text-white"
         />
 
         <View className="mx-1 rounded-2xl bg-[#191A21] pb-2">

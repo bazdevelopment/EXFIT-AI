@@ -44,7 +44,7 @@ const ExperienceLevelScreen = ({
       <ScrollView className="mt-6 flex-1">
         {/* Header Section */}
         <View className="flex-row items-center justify-between px-4">
-          <View className="flex-row items-center">
+          <View className="flex-row items-center gap-4">
             <Icon
               icon={<ArrowLeft />}
               iconContainerStyle="items-center p-3 justify-center rounded-2xl bg-gray-800"
@@ -88,10 +88,9 @@ const ExperienceLevelScreen = ({
           label="Continue"
           icon={<ArrowRight color={colors.white} />}
           loading={isSubmitOnboardingLoading}
-          withGradientBackground
           disabled={!selectedLevel}
-          className=""
-          textClassName="text-white text-center text-lg font-semibold"
+          className="h-14 rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
+          textClassName="text-white text-center text-base font-medium-poppins dark:text-white"
           onPress={() =>
             onFinish({ experience: selectedLevel } as IOnboardingCollectedData)
           }
@@ -99,9 +98,8 @@ const ExperienceLevelScreen = ({
         <Button
           label="Skip"
           loading={false}
-          variant="default"
-          className="mt-4 h-[55px] justify-center rounded-3xl bg-[#042140]"
-          textClassName="font-semibold-poppins text-lg text-center color-[#3195FD]"
+          className="mt-2 h-[50px] justify-center rounded-full bg-[#042140] dark:bg-[#042140]"
+          textClassName="font-medium-poppins text-base text-center text-[#3195FD] dark:text-[#3195FD]"
           onPress={onSkip}
         />
       </View>

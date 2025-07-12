@@ -144,7 +144,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
   }
 
   return (
-    <View className="flex-1 bg-black">
+    <ScreenWrapper>
       {/* Camera View */}
       {!capturedImage && (
         <CameraView
@@ -215,7 +215,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
           </View>
         )}
       </View>
-    </View>
+    </ScreenWrapper>
   );
 };
 

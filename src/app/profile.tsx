@@ -23,14 +23,14 @@ const ProfileScreen = () => {
   return (
     <ScreenWrapper>
       {/* Header */}
-      <View className="flex-row items-center justify-between  px-4 py-3">
+      <View className="flex-row items-center justify-between px-4 py-3">
         <Icon
           size={24}
           containerStyle="rounded-2xl bg-charcoal-800 p-3 w-[50]"
           onPress={router.back}
           icon={<ArrowLeft color={colors.white} />}
         />
-        <Text className="font-semibold-poppins text-xl text-gray-900 dark:text-white">
+        <Text className="font-semibold-poppins text-xl text-white dark:text-white">
           Profile
         </Text>
         <View className="w-8" />
@@ -40,9 +40,14 @@ const ProfileScreen = () => {
       <View className="items-center px-6 py-8">
         {/* Avatar */}
         <Avatar
+          imageUri={
+            userInfo.onboarding.gender === 'male'
+              ? require('../components/ui/assets/images/avatar-male.png')
+              : require('../components/ui/assets/images/avatar-female.png')
+          }
           name={userInfo.userName}
           size="large"
-          showEditBadge={true}
+          showEditBadge={false}
           showVerifiedBadge={!userInfo.isAnonymous}
           editable={false}
           creationDate={dayjs(userInfo.createdAt).format('MMMM YYYY')}
@@ -51,14 +56,14 @@ const ProfileScreen = () => {
 
       {/* Account Section */}
       <View className="flex-1 px-6">
-        <Text className="mb-4 font-semibold-poppins text-xl text-gray-900 dark:text-white">
+        <Text className="mb-4 font-semibold-poppins text-xl text-white dark:text-white">
           Account
         </Text>
 
         {/* Convert to permanent account option */}
         <TouchableOpacity
           activeOpacity={0.8}
-          className="flex-row items-center rounded-xl border border-gray-100 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-none"
+          className="flex-row items-center rounded-xl border  bg-gray-800 p-4 shadow-sm  dark:bg-gray-800 dark:shadow-none"
           onPress={() => router.navigate('/sign-up')}
         >
           <Icon
@@ -69,7 +74,7 @@ const ProfileScreen = () => {
           />
 
           <View className="flex-1">
-            <Text className="mb-1 font-semibold-poppins text-base text-gray-900 dark:text-white">
+            <Text className="mb-1 font-semibold-poppins text-base text-white dark:text-white">
               Convert to permanent account
             </Text>
             <Text className="text-sm leading-5 text-gray-500 dark:text-gray-400">

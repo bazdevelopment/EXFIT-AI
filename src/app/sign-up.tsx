@@ -99,8 +99,6 @@ export default function SignUpScreen({
   };
 
   const handleSignInPress = () => {
-    Alert.alert('Sign In', 'Sign in functionality would be implemented here');
-    // onSignIn?.();
     router.navigate('/login');
   };
 
@@ -120,37 +118,39 @@ export default function SignUpScreen({
         {/* Content */}
         <View className="flex-1 px-6">
           {/* Title */}
-          <Text className="mb-12 mt-4 text-center text-3xl font-bold text-gray-900 dark:text-white">
+          <Text className="mb-12 mt-4 text-center font-medium-poppins text-3xl text-white dark:text-white">
             Sign Up
           </Text>
 
           {!!error && (
-            <Text className="mb-5 text-center dark:text-red-400">
+            <Text className="mb-5 text-center text-red-400 dark:text-red-400">
               {error.message}
             </Text>
           )}
 
           {/* Email Input */}
           <View className="mb-4">
+            <Text className="mb-2 font-medium-poppins text-white dark:text-white">
+              Email Address
+            </Text>
             <ControlledInput
               control={control}
               name="email"
               returnKeyType="done"
               testID="email-input"
-              label="Email Address"
               placeholder="Enter your email"
               keyboardType="email-address"
               autoCapitalize="none"
               value={emailField.value}
               onChangeText={emailField.onChange}
               error={errors.email?.message}
-              className="h-[44] flex-1 rounded-xl border border-gray-300 bg-white p-4 pr-12 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+              className="h-[44] flex-1 rounded-xl border border-gray-600 bg-gray-800 p-4 pr-12 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
             />
           </View>
 
           {/* Password Input */}
           <View className="mb-4">
-            <Text className="mb-2 font-medium text-gray-700 dark:text-gray-300">
+            <Text className="mb-2 font-medium-poppins text-white dark:text-white">
               Password
             </Text>
             <View className="relative">
@@ -164,7 +164,7 @@ export default function SignUpScreen({
                 value={passwordField.value}
                 onChangeText={passwordField.onChange}
                 error={errors.password?.message}
-                className="h-[44] flex-1 rounded-xl border border-gray-300 bg-white p-4 pr-12 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                className="h-[44] flex-1 rounded-xl border border-gray-600 bg-gray-800 p-4 pr-12 text-white dark:border-gray-600 dark:bg-gray-800 dark:text-white"
               />
               <TouchableOpacity
                 onPress={() => setShowPassword(!showPassword)}
@@ -182,7 +182,7 @@ export default function SignUpScreen({
 
           {/* Confirm Password Input */}
           <View className="mb-4">
-            <Text className="mb-2 font-medium text-gray-700 dark:text-gray-300">
+            <Text className="mb-2 font-medium-poppins text-white dark:text-white">
               Confirm Password
             </Text>
             <View className="relative">
@@ -196,7 +196,8 @@ export default function SignUpScreen({
                 value={confirmPasswordField.value}
                 onChangeText={confirmPasswordField.onChange}
                 error={errors.confirmPassword?.message}
-                className="h-[44] flex-1 rounded-xl border border-gray-300 bg-white p-4 pr-12 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                textClassName="text-blue-200 dark:text-blue-200"
+                className="h-[44] flex-1 rounded-xl border border-gray-600 bg-gray-800 p-4 pr-12 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
               />
               <TouchableOpacity
                 onPress={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -212,7 +213,6 @@ export default function SignUpScreen({
             </View>
           </View>
 
-          {/* Terms and Conditions Checkbox */}
           <Checkbox
             testID="terms-checkbox"
             checked={acceptTerms}
@@ -223,23 +223,21 @@ export default function SignUpScreen({
             className="mb-6 mt-4"
           />
 
-          {/* Sign Up Button */}
           <TouchableOpacity
             onPress={handleSubmit(handleSignUp)}
-            className="mb-8 rounded-lg bg-blue-600 py-4 dark:bg-blue-500"
+            className="mb-8 h-14 items-center justify-center rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
           >
             <Text className="text-center text-lg font-semibold text-white">
               Sign Up
             </Text>
           </TouchableOpacity>
 
-          {/* Sign in link */}
           <View className="flex-row items-center justify-center">
-            <Text className="text-gray-700 dark:text-gray-300">
+            <Text className="text-white dark:text-gray-300">
               Have an account?{' '}
             </Text>
             <TouchableOpacity onPress={handleSignInPress}>
-              <Text className="font-medium text-blue-600 dark:text-blue-400">
+              <Text className="font-medium-poppins text-blue-400 dark:text-blue-400">
                 Sign in here
               </Text>
             </TouchableOpacity>
