@@ -86,14 +86,14 @@ export const useFetchUserNotifications = (variables: {
   });
 
 export const useDeviceInfoByUniqueIdentifier = (
-  variables: TUniqueIdentifierPayload,
+  variables: TUniqueIdentifierPayload
 ) =>
   createQuery<any, TUniqueIdentifierPayload, AxiosError>({
     queryKey: ['device-info-by-unique-identifier', variables.deviceUniqueId],
     fetcher: () =>
       getDeviceInfoByUniqueIdentifier(
         variables.deviceUniqueId,
-        variables.language,
+        variables.language
       ),
   });
 

@@ -115,7 +115,7 @@ export default function TabLayout() {
                   icon={tab.icon(color, focused)}
                   focused={focused}
                   isScanScreen={tab.screenName === 'scan'}
-                  textClassName={`text-sm text-center w-full ${focused ? 'font-bold-nunito text-primary-900 dark:text-primary-900' : 'font-medium-nunito'} `}
+                  textClassName={`text-sm text-center w-full ${focused ? 'font-bold-poppins text-primary-900 dark:text-primary-900' : 'font-medium-poppins'} `}
                   title={tab.title}
                 />
               ),

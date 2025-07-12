@@ -4,7 +4,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import { DEVICE_DIMENSIONS } from '@/constants/device-dimentions';
+import { DEVICE_DIMENSIONS } from '@/constants/device-dimensions';
 
 import { colors } from '../ui';
 import SegmentedControlTab from './components/segmented-control-tab';
