@@ -33,6 +33,7 @@ import { BellIcon } from '@/components/ui/assets/icons';
 import { useSelectedLanguage } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
+import { avatars, type TAvatarGender } from '@/core/utilities/avatars';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 
 import dayjs from '../../lib/dayjs';
@@ -101,7 +102,7 @@ export default function Home() {
       <View className="flex-row justify-between">
         <View className="-mt-2 flex-row items-center">
           <Image
-            source={require('../../components/ui/assets/images/avatar.png')}
+            source={avatars[userInfo.onboarding.gender as TAvatarGender]}
             className="top-1 mx-4 size-10 rounded-full" // Tailwind classes for styling the avatar
             accessibilityLabel="User Avatar"
             onError={() => console.error('Failed to load avatar image:')}
