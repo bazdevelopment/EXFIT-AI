@@ -34,7 +34,7 @@ const RewardsOverview = ({
               {gemsBalance}
             </Text>
           </View>
-          <View className="flex-row items-center gap-2 rounded-full border-[1.5px]  border-gray-600 px-5 py-1.5">
+          <View className="flex-row items-center gap-2 rounded-full border-[1.5px] border-gray-600 px-5 py-1.5">
             <FlashIcon width={20} height={20} />
             <Text className="font-bold-poppins text-sm dark:text-white">
               {xpBalance} XP

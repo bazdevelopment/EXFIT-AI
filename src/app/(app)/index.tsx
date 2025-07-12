@@ -99,11 +99,11 @@ export default function Home() {
   const { isRefetching, onRefetch } = useDelayedRefetch(refetchActivityLog);
   return (
     <ScreenWrapper>
-      <View className="flex-row justify-between">
-        <View className="-mt-2 flex-row items-center">
+      <View className="-mt-2 flex-row justify-between">
+        <View className="flex-row items-center">
           <Image
             source={avatars[userInfo.onboarding.gender as TAvatarGender]}
-            className="top-1 mx-4 size-10 rounded-full" // Tailwind classes for styling the avatar
+            className="mx-4 mr-3  size-12 rounded-full bg-white/20" // Tailwind classes for styling the avatar
             accessibilityLabel="User Avatar"
             onError={() => console.error('Failed to load avatar image:')}
           />
@@ -120,9 +120,9 @@ export default function Home() {
         <Icon
           icon={<BellIcon />}
           onPress={() => router.navigate('/notifications')}
-          size={24}
+          size={20}
           color={colors.charcoal[800]}
-          iconContainerStyle="p-2.5 border-[1px] border-charcoal-600 rounded-full "
+          iconContainerStyle="p-2 border-[1px] border-charcoal-600 rounded-full"
           showBadge={hasUnreadMessages}
           badgeSize={7}
           badgeColor="red"

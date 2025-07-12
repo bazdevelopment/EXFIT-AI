@@ -34,7 +34,7 @@ const ActivityPromptBanner = ({
             {/* Daily Check-in Pill */}
             <View className="flex-row items-center">
               <View className="mr-2 rounded-xl bg-white/25 p-2 backdrop-blur-sm">
-                <Text className="font-semibold-poppins text-sm text-white">
+                <Text className="font-bold-poppins text-sm text-white">
                   {currentDay}
                 </Text>
               </View>
