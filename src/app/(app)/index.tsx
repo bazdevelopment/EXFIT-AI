@@ -11,6 +11,7 @@ import {
   useGetAiTasks,
   useUpdateAiTaskStatus,
 } from '@/api/ai-tasks/ai-tasks.hooks';
+import { useFetchUserNotifications } from '@/api/push-notifications/push-notifications.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
@@ -23,6 +24,7 @@ import { ActivityLogSuccessModal } from '@/components/modals/activity-log-succes
 import { DailyActivityModal } from '@/components/modals/daily-activity-modal';
 import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
 import { NoActivityLogModal } from '@/components/modals/no-activity-log-modal';
+import { type INotificationItem } from '@/components/notifications/notification-item/notification-item.interface';
 import RewardsOverview from '@/components/rewards-overview';
 import ScreenWrapper from '@/components/screen-wrapper';
 import TaskListOverview from '@/components/task-list-overview';
@@ -43,6 +45,16 @@ export default function Home() {
   const activitySkippedModal = useModal();
   const dailyActivityModal = useModal();
   const activityLogSuccessModal = useModal();
+
+  const { data: userNotifications } = useFetchUserNotifications({
+    userId: userInfo?.userId,
+    language,
+  })();
+
+  const unReadMessages = userNotifications?.notifications.filter(
+    (notification: INotificationItem) => !notification.isRead
+  );
+  const hasUnreadMessages = !!unReadMessages?.length;
 
   const [{ timeZone }] = getCalendars();
 
@@ -105,11 +117,12 @@ export default function Home() {
         </View>
 
         <Icon
-          icon={<BellIcon color="red" />}
+          icon={<BellIcon />}
+          onPress={() => router.navigate('/notifications')}
           size={24}
           color={colors.charcoal[800]}
           iconContainerStyle="p-2.5 border-[1px] border-charcoal-600 rounded-full "
-          showBadge
+          showBadge={hasUnreadMessages}
           badgeSize={7}
           badgeColor="red"
           badgeClassName="right-1.5"

@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, View } from 'react-native';
 
 import { Button, Text } from '@/components/ui';
-import { DEVICE_DIMENSIONS } from '@/constants/device-dimentions';
+import { DEVICE_DIMENSIONS } from '@/constants/device-dimensions';
 import { DEVICE_TYPE } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
 

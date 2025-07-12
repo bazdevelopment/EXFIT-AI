@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Animated, PanResponder } from 'react-native';
 
-import { DEVICE_DIMENSIONS } from '@/constants/device-dimentions';
+import { DEVICE_DIMENSIONS } from '@/constants/device-dimensions';
 import { type TPositions } from '@/constants/positions';
 
 const SWIPE_THRESHOLD = 100;
@@ -48,7 +48,7 @@ export const useWeekPanSwipe = ({
           }).start();
         }
       },
-    }),
+    })
   ).current;
   return { panResponder };
 };

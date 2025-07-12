@@ -77,7 +77,7 @@ export const NoActivityLogModal = React.forwardRef<
           <Button
             label="Not today, maybe tomorrow..."
             icon={<DeadFaceEmoji />}
-            className="h-[42px] w-full gap-3 rounded-full  border-2 border-white/40 bg-transparent disabled:bg-[#7A7A7A] dark:bg-transparent"
+            className="h-[42px] w-full gap-3 rounded-full  border-2 border-white/40 bg-transparent active:opacity-70 disabled:bg-[#7A7A7A] dark:bg-transparent"
             textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
             iconPosition="left"
             onPress={() => {
