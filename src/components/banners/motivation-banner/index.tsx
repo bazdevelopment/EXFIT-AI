@@ -33,8 +33,8 @@ const MotivationBanner = ({
           <View className="mt-2">
             <Button
               label="Beat your excuse now!"
-              className="h-[34px] rounded-full active:opacity-90"
-              textClassName="text-white font-medium-poppins"
+              className="h-[34px] rounded-full bg-white active:opacity-90"
+              textClassName="text-black font-medium-poppins"
               onPress={() => router.navigate('/excuse-buster')}
             />
           </View>

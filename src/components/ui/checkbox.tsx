@@ -70,7 +70,7 @@ const Label = ({ text, testID, className = '' }: LabelProps) => {
 };
 
 export const CheckboxIcon = ({ checked = false }: IconProps) => {
-  const color = checked ? colors.primary[300] : colors.charcoal[400];
+  const color = checked ? '#4E52FB' : colors.charcoal[400];
   return (
     <MotiView
       style={{
@@ -127,7 +127,7 @@ const CheckboxBase = ({
         <Label
           text={label}
           testID={testID ? `${testID}-label` : undefined}
-          className="pr-2"
+          className="pr-2 text-white dark:text-white"
         />
       ) : null}
     </CheckboxRoot>
@@ -141,7 +141,7 @@ export const Checkbox = Object.assign(CheckboxBase, {
 });
 
 export const RadioIcon = ({ checked = false }: IconProps) => {
-  const color = checked ? colors.primary[300] : colors.charcoal[400];
+  const color = checked ? '#4E52FB' : colors.charcoal[400];
   return (
     <MotiView
       style={{

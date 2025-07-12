@@ -4,7 +4,7 @@ import React from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 
 import FadeInView from '@/components/fade-in-view/fade-in-view';
-import { Button, Image, Text } from '@/components/ui';
+import { Button, FocusAwareStatusBar, Image, Text } from '@/components/ui';
 import { useIsFirstTime } from '@/core';
 
 const WelcomeScreen = () => {
@@ -12,7 +12,7 @@ const WelcomeScreen = () => {
 
   return (
     <View className="flex-1 bg-black">
-      {/* <FocusAwareStatusBar barStyle="light-content" /> */}
+      <FocusAwareStatusBar hidden />
 
       <ImageBackground
         source={require('../components/ui/assets/images/welcome-image.jpg')}
@@ -38,7 +38,7 @@ const WelcomeScreen = () => {
             </FadeInView>
 
             <FadeInView delay={600}>
-              <Text className="mb-6 mt-5 text-center text-[35px] font-bold leading-[52px] text-white">
+              <Text className="mb-6 mt-5 text-center text-[35px]  leading-[52px] text-white">
                 It's{' '}
                 <Text className="text-[35px] text-[#3195FD] dark:text-[#3195FD]">
                   you
@@ -52,9 +52,9 @@ const WelcomeScreen = () => {
             </FadeInView>
 
             <FadeInView delay={800}>
-              <Text className="mt-4 text-center font-primary-poppins text-lg leading-7">
+              <Text className="mt-4 text-center font-primary-poppins text-lg leading-7 text-white dark:text-white">
                 Let{' '}
-                <Text className="font-semibold-poppins text-lg dark:text-[#3195FD]">
+                <Text className="font-semibold-poppins text-lg text-[#3195FD] dark:text-[#3195FD]">
                   EXFIT AI
                 </Text>{' '}
                 crush your excuses
@@ -63,11 +63,21 @@ const WelcomeScreen = () => {
           </View>
 
           <FadeInView delay={1000} className="w-full">
-            <Button
+            {/* <Button
               label="Get Started"
               withGradientBackground
               className="h-[38px] rounded-xl"
               textClassName="text-white text-center font-bold tracking-wide"
+              onPress={() => {
+                setIsFirstTime(false);
+                router.navigate('/onboarding-first');
+              }}
+            /> */}
+            <Button
+              label="Get Started"
+              variant="default"
+              className="h-[50px] w-full rounded-full bg-[#3B82F6] pl-5 active:opacity-80 dark:bg-[#3B82F6]"
+              textClassName="text-base text-center text-white dark:text-white"
               onPress={() => {
                 setIsFirstTime(false);
                 router.navigate('/onboarding-first');

@@ -2,10 +2,8 @@
 import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import {} from 'nativewind';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
-  ActivityIndicator,
-  Animated,
   Dimensions,
   RefreshControl,
   ScrollView,
@@ -15,53 +13,15 @@ import {
 import { BarChart, LineChart, PieChart } from 'react-native-gifted-charts';
 
 import { useProgressData } from '@/api/progress/progress.hooks';
+import EdgeCaseTemplate from '@/components/edge-case-template';
+import FadeInView from '@/components/fade-in-view/fade-in-view';
 import ScreenWrapper from '@/components/screen-wrapper';
+import SkeletonLoader from '@/components/skeleton-loader';
 import { colors, Text } from '@/components/ui';
+import { RetryIcon } from '@/components/ui/assets/icons';
+import { WarningIllustration } from '@/components/ui/assets/illustrations/warning';
 
 const { width: screenWidth } = Dimensions.get('window');
-
-// --- Enhanced UI Components ---
-
-const AnimatedCard = ({
-  children,
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-}) => {
-  const fadeAnim = new Animated.Value(0);
-  const slideAnim = new Animated.Value(20);
-
-  useEffect(() => {
-    const animation = Animated.parallel([
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 600,
-        delay,
-        useNativeDriver: true,
-      }),
-      Animated.timing(slideAnim, {
-        toValue: 0,
-        duration: 600,
-        delay,
-        useNativeDriver: true,
-      }),
-    ]);
-
-    animation.start();
-  }, []);
-
-  return (
-    <Animated.View
-      style={{
-        opacity: fadeAnim,
-        transform: [{ translateY: slideAnim }],
-      }}
-    >
-      {children}
-    </Animated.View>
-  );
-};
 
 const GradientCard = ({
   title,
@@ -76,8 +36,8 @@ const GradientCard = ({
   gradient?: string[];
   delay?: number;
 }) => (
-  <AnimatedCard delay={delay}>
-    <View className="rounded-3xl bg-zinc-800 p-5">
+  <FadeInView delay={delay}>
+    <View className="rounded-3xl bg-white/10 p-5 dark:bg-white/10">
       {/* Dark mode background */}
       <View className="mb-4 flex-row items-center justify-between">
         <Text className="font-semibold-poppins text-xl text-gray-100">
@@ -88,7 +48,7 @@ const GradientCard = ({
       </View>
       {children}
     </View>
-  </AnimatedCard>
+  </FadeInView>
 );
 
 const ChartCard = ({
@@ -102,9 +62,9 @@ const ChartCard = ({
   children: React.ReactNode;
   delay?: number;
 }) => (
-  <AnimatedCard delay={delay}>
+  <FadeInView delay={delay}>
     {/* Dark mode background, border, and shadow */}
-    <View className="mb-5 rounded-3xl border border-zinc-700 bg-zinc-800 p-5 shadow-xl">
+    <View className="mb-5 rounded-3xl border border-zinc-700 bg-white/10 p-5 shadow-xl">
       <View className="mb-4 flex-row flex-wrap items-center justify-between">
         <Text className="font-semibold-poppins text-xl text-gray-100">
           {title}
@@ -115,7 +75,7 @@ const ChartCard = ({
       </View>
       {children}
     </View>
-  </AnimatedCard>
+  </FadeInView>
 );
 
 const EnhancedKPICard = ({
@@ -135,7 +95,7 @@ const EnhancedKPICard = ({
   color?: string;
   delay?: number;
 }) => (
-  <AnimatedCard delay={delay}>
+  <FadeInView delay={delay}>
     <LinearGradient
       colors={[color, `${color}90`]}
       start={{ x: 0, y: 0 }}
@@ -172,7 +132,7 @@ const EnhancedKPICard = ({
         )}
       </View>
     </LinearGradient>
-  </AnimatedCard>
+  </FadeInView>
 );
 const InsightCard = ({
   icon,
@@ -187,7 +147,7 @@ const InsightCard = ({
   subtitle?: string;
   color?: string;
 }) => (
-  <View className="mr-4 w-36 rounded-2xl border border-zinc-700 bg-zinc-800 p-4 shadow-md">
+  <View className="mr-4 w-36 rounded-2xl border border-zinc-700 bg-white/10 p-4 shadow-md">
     {/* Dark mode background, border, shadow */}
     <View className="mb-2 flex-row items-center">
       <View
@@ -218,7 +178,7 @@ const StatCard = ({
   icon: string;
   color?: string;
 }) => (
-  <View className="flex-1 items-center rounded-2xl border border-zinc-700 bg-zinc-800 p-4 shadow-md">
+  <View className="flex-1 items-center rounded-2xl border border-zinc-700 bg-white/10 p-4 shadow-md">
     {/* Dark mode background, border, shadow */}
     <View
       className="mb-2 size-10 items-center justify-center rounded-full"
@@ -258,15 +218,8 @@ const TabButton = ({
   </TouchableOpacity>
 );
 
-// --- Main Enhanced Progress Screen ---
-
 const EnhancedProgressScreen = () => {
   const { data, isLoading, error, refetch } = useProgressData();
-
-  // console.log(
-  //   'data.weeklyComparisonChartData',
-  //   data.weeklyComparisonChartData.map((record) => record.lastWeek)
-  // );
 
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
@@ -280,47 +233,28 @@ const EnhancedProgressScreen = () => {
   // Loading State
   if (isLoading) {
     return (
-      <View className="flex-1 items-center justify-center bg-zinc-900">
-        {/* Dark mode background */}
-        <LinearGradient
-          colors={['#6366f1', '#8b5cf6']}
-          className="mb-4 size-16 items-center justify-center rounded-full"
-        >
-          <ActivityIndicator size="large" color="white" />
-        </LinearGradient>
-        <Text className="font-medium-poppins text-lg text-gray-200">
-          {/* Light text */}
-          Analyzing Your Progress...
-        </Text>
-        <Text className="mt-1 text-sm text-gray-400">This won't take long</Text>
-        {/* Grayer text */}
-      </View>
+      <ScreenWrapper>
+        <SkeletonLoader />
+      </ScreenWrapper>
     );
   }
 
   // Error State
   if (error) {
     return (
-      <View className="flex-1 items-center justify-center bg-red-900 p-6">
-        {/* Dark red background */}
-        <LinearGradient
-          colors={['#ef4444', '#f87171']}
-          className="mb-4 size-16 items-center justify-center rounded-full"
-        >
-          <FontAwesome5 name="exclamation-triangle" size={24} color="white" />
-        </LinearGradient>
-        <Text className="mb-2 text-center font-semibold-poppins text-xl text-red-200">
-          {/* Light red text */}
-          Something went wrong
-        </Text>
-        <Text className="mb-6 text-center text-red-300">{error.message}</Text>
-        {/* Lighter red text */}
-        <TouchableOpacity
-          onPress={() => refetch()}
-          className="rounded-full bg-red-500 px-6 py-3"
-        >
-          <Text className="font-medium-poppins text-white">Try Again</Text>
-        </TouchableOpacity>
+      <View className="flex-1 items-center justify-center gap-6 bg-black p-6">
+        <EdgeCaseTemplate
+          image={<WarningIllustration />}
+          title="Something went wrong"
+          // message="  Something went wrong"
+          additionalClassName="px-16"
+          primaryAction={{
+            label: 'Try again',
+            onPress: refetch,
+            variant: 'default',
+            icon: <RetryIcon color={colors.black} width={18} height={18} />,
+          }}
+        />
       </View>
     );
   }
@@ -342,11 +276,11 @@ const EnhancedProgressScreen = () => {
       >
         {/* Header */}
 
-        <View className="px-6">
+        <View className="mt-4 px-6">
           <Text className="mb-2 font-bold-poppins text-3xl text-white">
             Progress Dashboard
           </Text>
-          <Text className="font-medium-poppins text-lg text-white opacity-90">
+          <Text className="font-medium-poppins text-base text-white opacity-90">
             Keep up the amazing work! 🚀
           </Text>
 
@@ -385,7 +319,7 @@ const EnhancedProgressScreen = () => {
             <View className="mb-4 flex-row justify-between">
               <View className="mr-4 flex-1">
                 {/* Dark mode progress bar background */}
-                <View className="mb-2 h-2 rounded-full bg-zinc-700">
+                <View className="mb-2 h-2 rounded-full bg-white/10">
                   <View
                     className="h-2 rounded-full bg-indigo-500"
                     style={{ width: `${data.kpis.weeklyGoalProgress}%` }}
@@ -1151,7 +1085,7 @@ const EnhancedProgressScreen = () => {
               Detailed Statistics
             </Text>
             <View className="flex-row justify-between">
-              <View className="mr-2 flex-1 rounded-2xl border border-zinc-700 bg-zinc-800 p-4 shadow-md">
+              <View className="mr-2 flex-1 rounded-2xl border border-zinc-700 bg-white/10 p-4 shadow-md">
                 {/* Dark mode background, border, shadow */}
                 <Text className="font-semibold-poppins text-2xl text-indigo-400">
                   {/* Slightly lighter indigo for contrast */}
@@ -1160,7 +1094,7 @@ const EnhancedProgressScreen = () => {
                 <Text className="text-sm text-gray-300">Longest Streak</Text>
                 {/* Lighter text */}
               </View>
-              <View className="ml-2 flex-1 rounded-2xl border border-zinc-700 bg-zinc-800 p-4 shadow-md">
+              <View className="ml-2 flex-1 rounded-2xl border border-zinc-700 bg-white/10 p-4 shadow-md">
                 {/* Dark mode background, border, shadow */}
                 <Text className="font-semibold-poppins text-2xl text-green-400">
                   {/* Slightly lighter green for contrast */}

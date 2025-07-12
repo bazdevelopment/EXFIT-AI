@@ -35,7 +35,7 @@ export default function GenderSelectionScreen({
           <Greeting userName={userInfo?.userName} showGreeting={false} />
         </View>
         <View className="rounded-full bg-[#172554] px-3 py-1">
-          <Text className="font-bold-poppins text-sm text-[#3195FD]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
+          <Text className="font-bold-poppins text-sm text-[#3195FD] dark:text-[#3195FD] ">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
         </View>
       </View>
 
@@ -68,9 +68,8 @@ export default function GenderSelectionScreen({
         <Button
           label="Continue"
           icon={<ArrowRight color={colors.white} />}
-          withGradientBackground
-          className=""
-          textClassName="text-white text-center font-medium-poppins"
+          className="h-14 rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
+          textClassName="text-white dark:text-white text-center font-medium-poppins"
           onPress={() =>
             goToNextScreen({
               gender: selectedGender,

@@ -91,18 +91,18 @@ export default function ForgotPasswordScreen({
         {/* Content */}
         <View className="flex-1 px-6">
           {/* Title */}
-          <Text className="mb-6 mt-4 font-medium-poppins text-3xl text-gray-900 dark:text-white">
+          <Text className="mb-6 mt-4 font-medium-poppins text-3xl text-white dark:text-white">
             Forgot Password
           </Text>
 
           {/* Description */}
           {isSuccess ? (
-            <Text className="mb-12 text-base leading-6 text-gray-600 dark:text-green-300">
+            <Text className="dark:white mb-12 text-base leading-6 text-white">
               Please check your email for a password reset link. If you don't
               see it in your inbox, be sure to check your spam or junk folder.
             </Text>
           ) : (
-            <Text className="mb-12 text-base leading-6 text-gray-600 dark:text-gray-300">
+            <Text className="mb-12 text-base leading-6 text-white dark:text-white">
               Enter the email address registered with your account. We'll send
               you a link to reset your password.
             </Text>
@@ -121,27 +121,27 @@ export default function ForgotPasswordScreen({
               value={emailField.value}
               onChangeText={emailField.onChange}
               error={errors.email?.message}
-              className="h-[44] flex-1 rounded-xl border border-gray-300 bg-white p-4 pr-12 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+              className="h-[44] flex-1 rounded-xl border border-gray-600 bg-gray-800 p-4 pr-12 text-white dark:border-gray-600 dark:bg-gray-800  dark:text-white"
             />
           </View>
 
           {/* Submit Button */}
           <TouchableOpacity
             onPress={handleSubmit(handleForgotPassword)}
-            className="mb-8 rounded-lg bg-blue-600 py-4 dark:bg-blue-500"
+            className="mb-8 rounded-full bg-[#4E52FB] py-3 dark:bg-[#4E52FB]"
           >
-            <Text className="text-center font-semibold-poppins text-lg text-white">
+            <Text className="text-center font-medium-poppins text-base text-white">
               Submit
             </Text>
           </TouchableOpacity>
 
           {/* Login link */}
           <View className="flex-row justify-center">
-            <Text className="text-gray-700 dark:text-gray-300">
+            <Text className="text-white dark:text-white">
               Remembered password?{' '}
             </Text>
             <TouchableOpacity onPress={handleLoginPress}>
-              <Text className="font-medium-poppins text-blue-600 dark:text-blue-400">
+              <Text className="font-medium-poppins text-blue-400 dark:text-blue-400">
                 Login to your account
               </Text>
             </TouchableOpacity>

@@ -346,6 +346,7 @@ const ChatExcuseBuster = () => {
                 onChangeText={setUserMessage}
                 placeholder={translate('general.chatbotPlaceholder')}
                 placeholderTextColor={colors.white}
+                keyboardAppearance="dark"
                 multiline
                 maxLength={150}
               />

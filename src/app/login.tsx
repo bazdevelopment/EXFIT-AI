@@ -109,7 +109,7 @@ export default function LoginScreen({
         {/* Content */}
         <View className="flex-1 px-6">
           {/* Title */}
-          <Text className="mb-12 mt-4 text-center font-semibold-poppins text-3xl text-gray-900 dark:text-white">
+          <Text className="mb-12 mt-4 text-center font-semibold-poppins text-3xl text-white dark:text-white">
             Login
           </Text>
           {!!loginError && (
@@ -121,7 +121,7 @@ export default function LoginScreen({
           {/* Anonymous Sign In Button */}
           <TouchableOpacity
             onPress={handleAnonymousSignIn}
-            className="mb-8 flex-row items-center justify-center rounded-lg bg-gray-100 px-6 py-4 dark:bg-gray-800"
+            className="mb-8 flex-row items-center justify-center rounded-lg bg-gray-800 px-6 py-4 dark:bg-gray-800"
           >
             <Ionicons
               name="person-outline"
@@ -129,7 +129,7 @@ export default function LoginScreen({
               color={colors.white}
               className="mr-3 dark:color-gray-300"
             />
-            <Text className="ml-3 font-medium-poppins text-gray-700 dark:text-gray-300">
+            <Text className="ml-3 font-medium-poppins text-white dark:text-white">
               Continue with username
             </Text>
           </TouchableOpacity>
@@ -137,7 +137,7 @@ export default function LoginScreen({
           {/* Divider */}
           <View className="my-8 flex-row items-center">
             <View className="h-px flex-1 bg-gray-300 dark:bg-gray-600" />
-            <Text className="mx-4 font-primary-poppins text-gray-500 dark:text-white">
+            <Text className="mx-4 font-primary-poppins text-white dark:text-white">
               Do you have an account?
             </Text>
             <View className="h-px flex-1 bg-gray-300 dark:bg-gray-600" />
@@ -156,18 +156,18 @@ export default function LoginScreen({
               value={emailField.value}
               onChangeText={emailField.onChange}
               error={errors.email?.message}
-              className="h-[44] flex-1 rounded-xl border border-gray-300 bg-white p-4 pr-12 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+              className="h-[44] flex-1 rounded-xl border border-gray-600 bg-gray-800 p-4 pr-12 text-white dark:border-gray-600 dark:bg-gray-800 dark:text-white"
             />
           </View>
 
           {/* Password Input */}
           <View className="mb-2">
             <View className="mb-2 flex-row items-center justify-between">
-              <Text className="font-medium-poppins text-gray-700">
+              <Text className="font-medium-poppins text-white dark:text-white">
                 Password
               </Text>
               <TouchableOpacity onPress={handleForgotPasswordPress}>
-                <Text className="font-medium-poppins text-blue-600 dark:text-blue-400">
+                <Text className="font-medium-poppins text-blue-400 dark:text-blue-400">
                   Forgot Password
                 </Text>
               </TouchableOpacity>
@@ -182,7 +182,7 @@ export default function LoginScreen({
                 value={passwordField.value}
                 onChangeText={passwordField.onChange}
                 error={errors.password?.message}
-                className="h-[44] flex-1 rounded-xl border border-gray-300 bg-white p-4 pr-12 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                className="h-[44] flex-1 rounded-xl border border-gray-600 bg-gray-800 p-4 pr-12 text-white dark:border-gray-600 dark:bg-gray-800 dark:text-white"
               />
               <TouchableOpacity
                 onPress={() => setShowPassword(!showPassword)}
@@ -198,26 +198,6 @@ export default function LoginScreen({
             </View>
           </View>
 
-          {/* Keep me signed in */}
-          {/* <TouchableOpacity
-            onPress={() => setKeepSignedIn(!keepSignedIn)}
-            className="mb-8 mt-4 flex-row items-center"
-          >
-            <View
-              className={`mr-3 size-5 items-center justify-center rounded border-2 ${
-                keepSignedIn
-                  ? 'border-teal-500 bg-teal-500 dark:border-teal-400 dark:bg-teal-400'
-                  : 'border-gray-300 dark:border-gray-600'
-              }`}
-            >
-              {keepSignedIn && (
-                <Ionicons name="checkmark" size={12} color="white" />
-              )}
-            </View>
-            <Text className="text-gray-700 dark:text-gray-300">
-              Keep me signed in
-            </Text>
-          </TouchableOpacity> */}
           <Checkbox
             testID="checkbox"
             checked={keepSignedIn}
@@ -231,9 +211,9 @@ export default function LoginScreen({
           {/* Login Button */}
           <TouchableOpacity
             onPress={handleSubmit(handleLogin)}
-            className="mb-8 rounded-lg bg-blue-600 py-4 dark:bg-blue-500"
+            className="mb-8 rounded-full bg-[#4E52FB] py-4 dark:bg-[#4E52FB]"
           >
-            <Text className="text-center font-semibold-poppins text-lg text-white">
+            <Text className="text-center font-medium-poppins text-base text-white dark:text-white">
               Login
             </Text>
           </TouchableOpacity>

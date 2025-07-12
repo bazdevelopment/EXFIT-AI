@@ -51,13 +51,13 @@ const CompactActivityCard: React.FC<ActivityCardProps> = ({
           <View className="flex-row gap-4">
             <View className="flex-row items-center gap-2">
               <FlashIcon width={20} height={20} />
-              <Text className="font-bold-poppins text-sm dark:text-white">
+              <Text className="font-bold-poppins text-sm text-white dark:text-white">
                 {xpEarned} XP
               </Text>
             </View>
             <View className="flex-row items-center gap-2">
               <GemIcon width={20} height={20} />
-              <Text className="text-md font-bold-poppins text-blue-200">
+              <Text className="text-md font-bold-poppins text-blue-200 dark:text-blue-200">
                 {gemsEarned}
               </Text>
             </View>

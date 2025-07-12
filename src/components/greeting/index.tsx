@@ -10,19 +10,17 @@ const Greeting = ({
   showGreeting,
   userName,
   additionalClassName,
+  textClassName,
 }: IGreeting) => {
   const mainMessage = showGreeting ? getDynamicGreeting() : 'Welcome';
 
   return (
     <View className={`w-full flex-row items-center ${additionalClassName}`}>
-      <Text className="font-semibold-poppins text-[18px] text-blue-500">
+      <Text
+        className={`font-semibold-poppins text-[18px] text-blue-500 dark:text-blue-500  ${textClassName}`}
+      >
         {userName ? `${mainMessage}, ${userName}! 👋` : `${mainMessage}! 👋`}
       </Text>
-
-      {/* <Text className="font-semibold-poppins text-[18px] text-white">
-        {' '}
-        {userName}! 👋
-      </Text> */}
     </View>
   );
 };

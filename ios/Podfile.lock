@@ -1799,6 +1799,8 @@ PODS:
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
     - PromisesObjC (= 2.4.0)
+  - PurchasesHybridCommon (14.2.0):
+    - RevenueCat (= 5.32.0)
   - RCT-Folly (2024.01.01.00):
     - boost
     - DoubleConversion
@@ -3456,6 +3458,7 @@ PODS:
     - React-perflogger (= 0.76.6)
     - React-utils (= 0.76.6)
   - RecaptchaInterop (101.0.0)
+  - RevenueCat (5.32.0)
   - RNCMaskedView (0.1.11):
     - React
   - RNFBAnalytics (22.2.0):
@@ -3532,6 +3535,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNPurchases (8.11.9):
+    - PurchasesHybridCommon (= 14.2.0)
+    - React-Core
   - RNReanimated (3.16.1):
     - DoubleConversion
     - glog
@@ -3835,6 +3841,7 @@ DEPENDENCIES:
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
   - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNPurchases (from `../node_modules/react-native-purchases`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -3877,7 +3884,9 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - PromisesSwift
+    - PurchasesHybridCommon
     - RecaptchaInterop
+    - RevenueCat
     - SDWebImage
     - SDWebImageAVIFCoder
     - SDWebImageSVGCoder
@@ -4104,6 +4113,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@shopify/flash-list"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNPurchases:
+    :path: "../node_modules/react-native-purchases"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -4185,6 +4196,7 @@ SPEC CHECKSUMS:
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
+  PurchasesHybridCommon: f1650b33e9a1dd04d5e8a40dfe757f39e63f935c
   RCT-Folly: 84578c8756030547307e4572ab1947de1685c599
   RCTDeprecation: 063fc281b30b7dc944c98fe53a7e266dab1a8706
   RCTRequired: 8eda2a5a745f6081157a4f34baac40b65fe02b31
@@ -4248,6 +4260,7 @@ SPEC CHECKSUMS:
   ReactCodegen: 2f96de87b7680e294a46fc52b4399d51ec90cb6b
   ReactCommon: 09e5005e0ea50a4e36f412990212140e5b8f1db3
   RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba
+  RevenueCat: 7e1d0768fb287c9983173c9b28e39ccbeeb828a9
   RNCMaskedView: 4c5ee1c8667d56077246cc6d1977f77393923560
   RNFBAnalytics: c95efeb35d463b522b2734597f16114cb6ea0d1c
   RNFBApp: 2b2bb0f17eb6732e2e90d9c57bfde443cd7fc681
@@ -4259,6 +4272,7 @@ SPEC CHECKSUMS:
   RNFBStorage: 3786fb22c7a70ba3acf419a644a37495032b6e31
   RNFlashList: a20646b8c477f8c65a7aeab12f08d1659f9f148f
   RNGestureHandler: 1e33ee267aaf61bbab6089d32df3b38c3024e3dd
+  RNPurchases: 4c820359d90fab9c83ffd3ef5471d59db72e2ed1
   RNReanimated: a9ee834fa6b3fc14c89d0317f399c42ce16a1b8f
   RNScreens: f5762e2dd74e365dcee2007dc96942a528ac25d4
   RNSVG: b5087ac7a1b96b793cddb461b0e166e809a114b8
