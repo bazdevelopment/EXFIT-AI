@@ -1,5 +1,7 @@
+import { BlurView } from '@react-native-community/blur';
 import { useColorScheme } from 'nativewind';
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
 import {
@@ -18,7 +20,7 @@ import { useShareLink } from '@/core/hooks/use-share-link';
 
 import { Item } from './item';
 
-const IconTransparent = require('../../../assets/splash-icon.png');
+const IconTransparent = require('assets/splash-icon.png');
 
 export const ShareItem = () => {
   const modal = useModal();
@@ -43,12 +45,16 @@ export const ShareItem = () => {
         ref={modal.ref}
         index={0}
         snapPoints={['90%']}
-        title={translate('general.share')}
         backgroundStyle={{
-          backgroundColor: isDark ? colors.blackBeauty : colors.white,
+          backgroundColor: colors.transparent,
         }}
       >
-        <ScrollView className="flex-1 bg-gray-50 dark:bg-blackEerie">
+        <BlurView
+          blurAmount={10}
+          blurType="dark"
+          style={[StyleSheet.absoluteFill]}
+        />
+        <ScrollView className="flex-1">
           <View className="p-6">
             {/* Header Section */}
             <View className="mb-8 mt-4 items-center">
@@ -62,14 +68,14 @@ export const ShareItem = () => {
             {/* QR Code Section */}
             <View className="mt-4 items-center">
               <QRCode
-                value={appLink}
+                value={'https://www.google.com'}
                 size={225}
                 color={colors.primary[900]}
                 logo={IconTransparent}
                 logoMargin={5}
                 logoSize={35}
                 logoBorderRadius={10}
-                backgroundColor={isDark ? colors.blackBeauty : colors.white}
+                backgroundColor={colors.black}
                 logoBackgroundColor="transparent"
               />
               <Text className="mt-10 text-center font-bold-poppins text-gray-700">

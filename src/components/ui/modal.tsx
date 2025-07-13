@@ -90,7 +90,7 @@ export const Modal = React.forwardRef(
           {/* <BlurView
             blurAmount={10}
             blurType="dark"
-            // style={[StyleSheet.absoluteFill]}
+            style={[StyleSheet.absoluteFill]}
           /> */}
           <View className="rounded-t-2xl bg-charcoal-900 ">
             <View className="top-4 mb-10 h-[4.5px] w-14 self-center rounded-lg bg-white dark:bg-white" />
@@ -169,9 +169,8 @@ const ModalHeader = React.memo(({ title, dismiss }: ModalHeaderProps) => {
     <>
       {title && (
         <View className="flex-row px-2 py-4">
-          <View className="size-[24px]" />
           <View className="flex-1">
-            <Text className="text-center font-bold-poppins text-[16px] text-[#26313D] dark:text-white">
+            <Text className="text-center font-semibold-poppins text-base text-white dark:text-white">
               {title}
             </Text>
           </View>

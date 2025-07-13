@@ -19,7 +19,7 @@ const EdgeCaseTemplate = ({
       className={`flex-1 items-center justify-center px-6 ${additionalClassName}`}
       style={{ width: DEVICE_DIMENSIONS.DEVICE_WIDTH }}
     >
-      {image && <View className="mb-4">{image}</View>}
+      {image && <View>{image}</View>}
       <Text className="mb-2 text-center font-semibold-poppins text-xl text-white dark:text-white">
         {title}
       </Text>

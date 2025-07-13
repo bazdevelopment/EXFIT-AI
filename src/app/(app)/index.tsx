@@ -113,7 +113,6 @@ export default function Home() {
               source={avatars[userInfo.onboarding.gender as TAvatarGender]}
               className="mx-4 mr-3  size-12 rounded-full bg-white/20" // Tailwind classes for styling the avatar
               accessibilityLabel="User Avatar"
-              onError={() => console.error('Failed to load avatar image:')}
             />
           </TouchableOpacity>
 
@@ -129,13 +128,13 @@ export default function Home() {
         <Icon
           icon={<BellIcon />}
           onPress={() => router.navigate('/notifications')}
-          size={20}
+          size={22}
           color={colors.charcoal[800]}
           iconContainerStyle="p-2 border-[1px] border-charcoal-600 rounded-full"
           showBadge={hasUnreadMessages}
-          badgeSize={7}
-          badgeColor="red"
-          badgeClassName="right-1.5"
+          badgeSize={9}
+          badgeColor={colors.danger[600]}
+          badgeClassName="right-0"
           containerStyle="right-4"
         />
       </View>

@@ -193,6 +193,11 @@ const Activity = () => {
         {/* <Text className="px-4 pb-4 font-bold-poppins text-3xl text-white">
           Activity
         </Text> */}
+        <View className="px-6">
+          <Text className="mb-2 font-bold-poppins text-3xl text-white">
+            Schedule
+          </Text>
+        </View>
         <WeekBlock
           className="px-4"
           onDayPress={onScrollToIndex} // This can be removed if not used
@@ -236,7 +241,7 @@ const Activity = () => {
             colors={[colors.black]}
             // Set progressViewOffset to position the spinner correctly
             // It should start rendering below your header.
-            progressViewOffset={180}
+            progressViewOffset={200}
           />
         }
       />

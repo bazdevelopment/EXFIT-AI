@@ -1,156 +1,40 @@
 /* eslint-disable max-lines-per-function */
 import * as React from 'react';
-import Svg, {
-  Circle,
-  Defs,
-  FeColorMatrix,
-  FeComposite,
-  FeFlood,
-  FeGaussianBlur,
-  FeOffset,
-  Filter,
-  G,
-  Path,
-  RadialGradient,
-  Stop,
-} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-import colors from '../../colors';
 export const NoNotification = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={284}
-    height={284}
+    width={280}
+    height={280}
+    viewBox="0 0 280 280"
     fill="none"
     {...props}
   >
-    <G filter="url(#a)">
-      <Circle
-        cx={142}
-        cy={138}
-        r={134}
-        fill={colors.charcoal[900]}
-        fillOpacity={0.5}
-        shapeRendering="crispEdges"
-      />
-    </G>
-    <Circle
-      cx={142}
-      cy={138}
-      r={121}
-      stroke="url(#b)"
-      strokeOpacity={0.8}
-      strokeWidth={4}
+    <Path
+      fill="#DEE9FF"
+      d="M139.751 63.285s5.034 32.371 59.298 33.265c48.191.793 32.875 58.112 15.769 76.135-22.16 23.347-65.587 17.24-67.867 44.415-2.279 27.176-63.502 16.625-62.46-24.348 1.298-50.969-26.62-35.471-40.754-49.104-10.144-9.785-6.657-55.08 25.495-60.266C96.287 79.02 94.885 67.556 97.036 59.07c3.102-12.239 34.467-23.325 42.715 4.215Z"
     />
-    <G filter="url(#c)">
-      <Path
-        fill={colors.charcoal[600]}
-        fillOpacity={0.8}
-        d="M209 138c0 37.003-29.997 67-67 67s-67-29.997-67-67 29.997-67 67-67 67 29.997 67 67Z"
-        shapeRendering="crispEdges"
-      />
-    </G>
-    <G filter="url(#d)">
-      <Path
-        fill="#1B1B1B"
-        d="M175 138c0 18.225-14.775 33-33 33s-33-14.775-33-33 14.775-33 33-33 33 14.775 33 33Z"
-      />
-    </G>
+    <Path
+      fill="#208AF2"
+      d="M190.799 178.517a6.237 6.237 0 0 1-1.822 4.433 6.244 6.244 0 0 1-4.426 1.839l-100.225.204a6.258 6.258 0 0 1-6.272-6.249l-.14-70.47 55.475-34.829a1.571 1.571 0 0 1 1.66-.007l54.31 33.802 1.3.806v1.128l.14 69.343Z"
+    />
+    <Path
+      fill="#699CFF"
+      d="M182.622 79.51H85.353a.42.42 0 0 0-.42.42v104.084c0 .232.189.42.42.42h97.269a.42.42 0 0 0 .42-.42V79.931a.42.42 0 0 0-.42-.42Z"
+    />
+    <Path
+      fill="#A2BDFF"
+      d="m184.451 184.69-49.747-37.93a.313.313 0 0 1-.125-.261.326.326 0 0 1 .139-.255l55.44-37.892a.324.324 0 0 1 .328-.019.324.324 0 0 1 .17.281l.14 69.869a6.262 6.262 0 0 1-1.786 4.392 6.262 6.262 0 0 1-4.35 1.884.335.335 0 0 1-.209-.069ZM84.41 184.889l49.595-38.127a.317.317 0 0 0 .124-.262.313.313 0 0 0-.14-.254l-55.59-37.67a.313.313 0 0 0-.328-.018.321.321 0 0 0-.169.282l.14 69.869a6.264 6.264 0 0 0 6.16 6.25.334.334 0 0 0 .208-.07Z"
+    />
+    <Path
+      fill="#418DF9"
+      d="m184.543 184.76-100.224.2a6.282 6.282 0 0 1-6.216-5.423 1.568 1.568 0 0 1 .52-1.387l54.663-48.36a1.564 1.564 0 0 1 2.07-.005l54.855 48.142a1.573 1.573 0 0 1 .526 1.385 6.28 6.28 0 0 1-6.194 5.448Z"
+    />
     <Path
       fill="#fff"
-      d="m156.21 140.305-3.71 3.728-3.71-3.728-2.485 2.485 3.727 3.71-3.727 3.71 2.485 2.485 3.71-3.727 3.71 3.727 2.485-2.485-3.728-3.71 3.728-3.71M142 118.5a3.51 3.51 0 0 0-3.5 3.5v.508a12.247 12.247 0 0 0-8.75 11.742v10.5l-3.5 3.5V150h16.362a10.39 10.39 0 0 1-.612-3.5h-8.75v-12.25a8.749 8.749 0 1 1 17.5 0v1.908a11.546 11.546 0 0 1 1.75-.158 9.72 9.72 0 0 1 1.75.158v-1.908c0-5.565-3.71-10.255-8.75-11.742V122a3.503 3.503 0 0 0-3.5-3.5Zm-3.5 33.25a3.5 3.5 0 0 0 6.387 1.978 10.97 10.97 0 0 1-1.47-1.978H138.5Z"
+      d="M109.831 105.35c1.946 0 3.524-2.103 3.524-4.698 0-2.594-1.578-4.698-3.524-4.698s-3.524 2.104-3.524 4.698c0 2.595 1.578 4.698 3.524 4.698ZM159.161 105.35c1.946 0 3.523-2.103 3.523-4.698 0-2.594-1.577-4.698-3.523-4.698-1.946 0-3.524 2.104-3.524 4.698 0 2.595 1.578 4.698 3.524 4.698ZM147.808 120.928a.698.698 0 0 1-.595-.329c-.036-.059-3.868-5.978-12.775-6.72-3.707-.309-7.225.723-10.452 3.069a17.926 17.926 0 0 0-3.794 3.682.702.702 0 0 1-1.26-.282.7.7 0 0 1 .113-.522c.059-.084 1.467-2.074 4.076-3.981 3.467-2.534 7.421-3.696 11.433-3.362 9.635.803 13.679 7.106 13.846 7.374a.697.697 0 0 1 .019.71.708.708 0 0 1-.612.361h.001Z"
     />
-    <Defs>
-      <Filter
-        id="a"
-        width={284}
-        height={284}
-        x={0}
-        y={0}
-        colorInterpolationFilters="sRGB"
-        filterUnits="userSpaceOnUse"
-      >
-        <FeFlood floodOpacity={0} result="BackgroundImageFix" />
-        <FeColorMatrix
-          in="SourceAlpha"
-          result="hardAlpha"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        />
-        <FeOffset dy={4} />
-        <FeGaussianBlur stdDeviation={4} />
-        <FeComposite in2="hardAlpha" operator="out" />
-        <FeColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
-        {/* <FeBlend in2="BackgroundImageFix" result="effect1_dropShadow_15_150" />
-        <FeBlend
-          in="SourceGraphic"
-          in2="effect1_dropShadow_15_150"
-          result="shape"
-        /> */}
-      </Filter>
-      <Filter
-        id="c"
-        width={150}
-        height={150}
-        x={67}
-        y={67}
-        colorInterpolationFilters="sRGB"
-        filterUnits="userSpaceOnUse"
-      >
-        <FeFlood floodOpacity={0} result="BackgroundImageFix" />
-        <FeColorMatrix
-          in="SourceAlpha"
-          result="hardAlpha"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        />
-        <FeOffset dy={4} />
-        <FeGaussianBlur stdDeviation={4} />
-        <FeComposite in2="hardAlpha" operator="out" />
-        <FeColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
-        {/* <FeBlend i/n2="BackgroundImageFix" result="effect1_dropShadow_15_150" /> */}
-        {/* <FeBlend
-          in="SourceGraphic"
-          in2="effect1_dropShadow_15_150"
-          result="shape"
-        /> */}
-      </Filter>
-      <Filter
-        id="d"
-        width={82}
-        height={82}
-        x={101}
-        y={101}
-        colorInterpolationFilters="sRGB"
-        filterUnits="userSpaceOnUse"
-      >
-        <FeFlood floodOpacity={0} result="BackgroundImageFix" />
-        <FeColorMatrix
-          in="SourceAlpha"
-          result="hardAlpha"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        />
-        <FeOffset dy={4} />
-        <FeGaussianBlur stdDeviation={4} />
-        <FeComposite in2="hardAlpha" operator="out" />
-        <FeColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
-        {/* <FeBlend in2="BackgroundImageFix" result="effect1_dropShadow_15_150" /> */}
-        {/* <FeBlend
-          in="SourceGraphic"
-          in2="effect1_dropShadow_15_150"
-          result="shape"
-        /> */}
-      </Filter>
-      <RadialGradient
-        id="b"
-        cx={0}
-        cy={0}
-        r={1}
-        gradientTransform="rotate(52.091 -12.396 47.25) scale(297.849)"
-        gradientUnits="userSpaceOnUse"
-      >
-        <Stop stopOpacity={0.55} />
-        <Stop offset={1} stopOpacity={0} />
-      </RadialGradient>
-    </Defs>
   </Svg>
 );
 

@@ -1,6 +1,6 @@
 {
   "onboarding": {
-    "message": "Welcome to MicroScan AI!"
+    "message": "Welcome to EXFIT AI!"
   },
   "general": {
     "back": "Back",
@@ -93,7 +93,7 @@
   "rootLayout": {
     "screens": {
       "welcome": {
-        "heading": "Welcome to MicroScan AI!",
+        "heading": "Welcome to EXFIT AI!",
         "startButton": "Let's get started!",
         "accountButton": "I already have an account"
       },
@@ -172,8 +172,8 @@
       },
       "share": {
         "title": "Share",
-        "heading": "Share MicroScan AI App",
-        "subheading": "Help others discover the power of AI-driven microscopy analysis",
+        "heading": "Share EXFIT AI App",
+        "subheading": "Help others discover EXFIT AI App",
         "scanMessage": "Scan to download the app",
         "shareMessage": "or share via your favorite platform"
       },
@@ -200,12 +200,12 @@
       },
       "disclaimerScreen": {
         "heading": "Important Disclaimer",
-        "subheading": "MicroScan AI is designed for microscopy professionals, researchers, students, and enthusiasts",
+        "subheading": "EXFIT AI is designed for microscopy professionals, researchers, students, and enthusiasts",
         "consentAgreement": "I have read and consent to the disclaimer.",
-        "firstConsent": "MicroScan AI does not provide health measurements, diagnoses, or treatment advice, nor is it intended for such purposes. Users of MicroScan AI must apply their clinical judgment and verify information from authoritative sources before making any clinical decisions.",
-        "secondConsent": "MicroScan AI is not a diagnostic tool, treatment platform, or a replacement for professional medical advice. It offers AI-generated insights to assist healthcare professionals in accessing medical knowledge and analyzing medical images and documents. MicroScan AI is an AI-driven informational and educational app designed more to support licensed healthcare professionals.",
-        "fourthConsent": "MicroScan AI is not classified as a medical device and does not claim regulatory approval. It is intended for educational and informational purposes to complement professional expertise.",
-        "fifthConsent": "MicroScan AI does not collect, store, or process personal or patient data. All user interactions are confidential and limited to the scope of the app."
+        "firstConsent": "EXFIT AI does not provide health measurements, diagnoses, or treatment advice, nor is it intended for such purposes. Users of EXFIT AI must apply their clinical judgment and verify information from authoritative sources before making any clinical decisions.",
+        "secondConsent": "EXFIT AI is not a diagnostic tool, treatment platform, or a replacement for professional medical advice. It offers AI-generated insights to assist healthcare professionals in accessing medical knowledge and analyzing medical images and documents. EXFIT AI is an AI-driven informational and educational app designed more to support licensed healthcare professionals.",
+        "fourthConsent": "EXFIT AI is not classified as a medical device and does not claim regulatory approval. It is intended for educational and informational purposes to complement professional expertise.",
+        "fifthConsent": "EXFIT AI does not collect, store, or process personal or patient data. All user interactions are confidential and limited to the scope of the app."
       },
       "contactUs": {
         "heading": "Feel free to email us directly, and our team will get back to you as soon as possible",
@@ -246,7 +246,7 @@
     "tab": "Home",
     "homeForeground": {
       "maxNumberOfScans": "You've reached your scan limit! Upgrade your plan now to unlock more scans. 🚀",
-      "heading": "Welcome to MicroScan AI!",
+      "heading": "Welcome to EXFIT AI!",
       "subHeading": "Get AI-powered analysis of any microscopy samples in seconds"
     },
     "scanCategories": {
@@ -271,6 +271,7 @@
   "settings": {
     "tab": "Settings",
     "profile": "Profile",
+    "shop": "Shop",
     "contactUs": "Contact us",
     "about": "About",
     "app_name": "App Name",
@@ -296,7 +297,7 @@
     "more": "More",
     "privacy": "Privacy Policy",
     "faq": "FAQ",
-    "rate": "Rate",
+    "rate": "Give us feedback",
     "share": "Share",
     "citations": "Citations for medical information",
     "support": "Support",
@@ -429,7 +430,7 @@
     "noSubscriptionToRestore": "Oops! It looks like you don't have an active subscription at the moment. To continue enjoying full access, please choose one of our subscription plans.",
     "restorationSuccessful": "Restoration was successful! Enjoy!",
     "restorationError": "An error occurred while restoring the purchase.",
-    "medicalDisclaimerAlert": "MicroScan AI app does not offer diagnoses, treatment recommendations, or any medical advice. Always seek guidance from a qualified healthcare professional for medical decisions.",
+    "medicalDisclaimerAlert": "EXFIT AI app does not offer diagnoses, treatment recommendations, or any medical advice. Always seek guidance from a qualified healthcare professional for medical decisions.",
     "scanLimitReached": "We're optimizing scan quality for you! You'll be able to scan again in around {{hours}} hours and {{minutes}} minutes. Have any questions about any microscopy topic? Ask our chat assistant while you wait!"
   }
 }
