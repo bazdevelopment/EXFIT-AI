@@ -18,7 +18,7 @@ export const useHaptic = (feedbackType: FeedbackType = 'selection') => {
         ? undefined
         : () => Haptics.impactAsync(type);
     },
-    [],
+    []
   );
   const createNotificationFeedback = useCallback(
     (type: Haptics.NotificationFeedbackType) => {
@@ -26,7 +26,7 @@ export const useHaptic = (feedbackType: FeedbackType = 'selection') => {
         ? undefined
         : () => Haptics.notificationAsync(type);
     },
-    [],
+    []
   );
 
   const hapticHandlers = useMemo(
@@ -36,14 +36,14 @@ export const useHaptic = (feedbackType: FeedbackType = 'selection') => {
       heavy: createHapticHandler(Haptics.ImpactFeedbackStyle.Heavy),
       selection: Platform.OS === 'web' ? undefined : Haptics.selectionAsync,
       success: createNotificationFeedback(
-        Haptics.NotificationFeedbackType.Success,
+        Haptics.NotificationFeedbackType.Success
       ),
       warning: createNotificationFeedback(
-        Haptics.NotificationFeedbackType.Warning,
+        Haptics.NotificationFeedbackType.Warning
       ),
       error: createNotificationFeedback(Haptics.NotificationFeedbackType.Error),
     }),
-    [createHapticHandler, createNotificationFeedback],
+    [createHapticHandler, createNotificationFeedback]
   );
 
   return hapticHandlers[feedbackType];
