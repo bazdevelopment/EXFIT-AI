@@ -147,13 +147,13 @@
         }
       },
       "newAppVersionScreen": {
-        "heading": "A new version of MicroScan AI is available",
+        "heading": "A new version of EXFIT AI is available",
         "subheading": "Please update to the latest version to continue using the app",
         "action": "Get it now!"
       },
       "rateAppScreen": {
         "heading": "Are you finding the app valuable and engaging?",
-        "like": "Yes, I love it!",
+        "like": "Yes, I love it! ❤️",
         "dislike": "Not really..."
       },
       "noInternetScreen": {

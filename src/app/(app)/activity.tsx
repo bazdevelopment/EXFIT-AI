@@ -16,13 +16,13 @@ import {
   useGetCalendarActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
 import CompactActivityCard from '@/components/activity-card';
-import { EndScrollPlaceholder } from '@/components/end-scroll-placeholder';
 import { ActivityLogSuccessModal } from '@/components/modals/activity-log-success-modal';
 import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { colors, Text, useModal } from '@/components/ui';
 import WeekBlock from '@/components/week-block';
 import { DATE_FORMAT } from '@/constants/date-format';
+import { DEVICE_TYPE } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { formatDate } from '@/core/utilities/format-date';
@@ -216,12 +216,7 @@ const Activity = () => {
         renderItem={renderItem}
         estimatedItemSize={150}
         showsVerticalScrollIndicator={false}
-        ListFooterComponent={
-          <EndScrollPlaceholder
-            className="mt-[400]"
-            onScrollToTop={scrollToTop}
-          />
-        }
+        ListFooterComponent={<View className="mb-[500]"></View>}
         onScroll={onScroll}
         // Throttle scroll events for better performance with animations
         scrollEventThrottle={16}
@@ -230,7 +225,7 @@ const Activity = () => {
           // Crucial fix: Add headerHeight + REFRESH_CONTROL_OFFSET to paddingTop
           // This ensures enough space is reserved at the top for both the header
           // and the refresh spinner to be visible.
-          paddingTop: headerHeight - 50,
+          paddingTop: headerHeight - (DEVICE_TYPE.IOS ? 60 : 10),
         }}
         keyExtractor={(item) => item.id}
         refreshControl={

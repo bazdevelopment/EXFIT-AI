@@ -1470,6 +1470,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - ExpoQuickActions (5.0.0):
+    - ExpoModulesCore
   - ExpoSharing (13.0.1):
     - ExpoModulesCore
   - ExpoSpeech (12.0.2):
@@ -3756,6 +3758,7 @@ DEPENDENCIES:
   - ExpoLinking (from `../node_modules/expo-linking/ios`)
   - ExpoLocalization (from `../node_modules/expo-localization/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
+  - ExpoQuickActions (from `../node_modules/expo-quick-actions/ios`)
   - ExpoSharing (from `../node_modules/expo-sharing/ios`)
   - ExpoSpeech (from `../node_modules/expo-speech/ios`)
   - ExpoSplashScreen (from `../node_modules/expo-splash-screen/ios`)
@@ -3946,6 +3949,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-localization/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core"
+  ExpoQuickActions:
+    :path: "../node_modules/expo-quick-actions/ios"
   ExpoSharing:
     :path: "../node_modules/expo-sharing/ios"
   ExpoSpeech:
@@ -4153,6 +4158,7 @@ SPEC CHECKSUMS:
   ExpoLinking: 4a09f2f0dc1132607c20f5628ba30d94795ea73d
   ExpoLocalization: 7776ea3bdb112125390745bbaf919b734b2ad1c7
   ExpoModulesCore: 21579d3f15f7678b67cad9f2547a5ce15b5d3240
+  ExpoQuickActions: fdbda7f5874aed3dd2b1d891ec00ab3300dc7541
   ExpoSharing: 849a5ce9985c22598c16ec027e32969be8062e8e
   ExpoSpeech: f17507715159aac594682a91239c53ab4593329f
   ExpoSplashScreen: c64f3b577e1cb0b6a2f47d01c528ad7d80d9ae6a

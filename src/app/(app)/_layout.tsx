@@ -1,5 +1,8 @@
+import * as QuickActions from 'expo-quick-actions';
+import { useQuickActionRouting } from 'expo-quick-actions/router';
 import { Redirect, Tabs, useSegments } from 'expo-router';
 import { firebaseAuth } from 'firebase/config';
+import { checkForAppUpdate } from 'firebase/remote-config';
 import { useColorScheme } from 'nativewind';
 import React, { useEffect } from 'react';
 
@@ -10,7 +13,7 @@ import { TabBarIcon } from '@/components/tab-bar-icon';
 import { colors, SafeAreaView } from '@/components/ui';
 import {
   DEVICE_TYPE,
-  useAuth,
+  translate,
   useIsFirstTime,
   useSelectedLanguage,
 } from '@/core';
@@ -18,13 +21,13 @@ import { useCrashlytics } from '@/core/hooks/use-crashlytics';
 import { useFirstOnboarding } from '@/core/hooks/use-first-onboarding';
 import { useHaptic } from '@/core/hooks/use-haptics';
 import { usePushNotificationToken } from '@/core/hooks/use-push-notification-token';
+import useRemoteConfig from '@/core/hooks/use-remote-config';
 import { useSecondOnboarding } from '@/core/hooks/use-second-onboarding';
 import { tabScreens } from '@/core/navigation/tabs';
 import { type ITabsNavigationScreen } from '@/core/navigation/tabs/tabs.interface';
 import { getBottomTabBarStyle } from '@/core/navigation/tabs/tabs.styles';
 
 export default function TabLayout() {
-  const status = useAuth.use.status();
   const isLoggedIn = !!firebaseAuth.currentUser?.uid;
   const [isFirstTime] = useIsFirstTime();
   const [isFirstOnboardingDone] = useFirstOnboarding();
@@ -40,6 +43,23 @@ export default function TabLayout() {
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
   const bottomTabBarStyles = getBottomTabBarStyle(isDark);
+
+  useQuickActionRouting();
+
+  const { MINIMUM_VERSION_ALLOWED } = useRemoteConfig();
+  checkForAppUpdate(MINIMUM_VERSION_ALLOWED);
+
+  useEffect(() => {
+    QuickActions.setItems<QuickActions.Action>([
+      {
+        title: translate('deleteApp.title'),
+        subtitle: translate('deleteApp.subtitle'),
+        icon: 'heart_icon',
+        id: '0',
+        params: { href: '/rate' },
+      },
+    ]);
+  }, []);
 
   useEffect(() => {
     storeDeviceInfo();
@@ -62,11 +82,6 @@ export default function TabLayout() {
   if (!isSecondOnboardingDone) {
     return <Redirect href="/onboarding-second" />;
   }
-
-  // if (status === 'signOut') {
-  //   return <Redirect href="/login" />;
-  // }
-  //   if (isPendingUserinfo || isPendingRevenueCatSdkInit)
 
   return (
     <SafeAreaView

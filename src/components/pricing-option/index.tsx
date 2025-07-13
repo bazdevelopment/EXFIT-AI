@@ -32,7 +32,7 @@ const PricingOption = ({ plan, selectedPlan, onSelectOption, badge }) => {
         >
           {badge && (
             <View className="absolute right-28 top-2.5 rounded-full bg-blue-500 px-2 py-1">
-              <Text className="font-bold-nunito text-sm text-white">
+              <Text className="font-bold-poppins text-sm text-white">
                 {badge}
               </Text>
             </View>
@@ -45,14 +45,14 @@ const PricingOption = ({ plan, selectedPlan, onSelectOption, badge }) => {
               )}
             </View>
             <View>
-              <Text className="font-bold-nunito text-lg text-white">
+              <Text className="font-bold-poppins text-lg text-white">
                 {plan.title}
               </Text>
               <Text className="mr-10 text-sm text-white">{plan.subtitle}</Text>
             </View>
           </View>
 
-          <Text className="font-semibold-nunito text-lg text-white">
+          <Text className="font-semibold-poppins text-lg text-white">
             {plan.price}
           </Text>
         </View>

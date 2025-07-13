@@ -39,7 +39,7 @@ const useRemoteConfig = (): {
       Object.entries(allConfigs).map(([key, value]) => {
         const stringValue = value.asString();
         return [key, parseConfigValue(stringValue)];
-      }),
+      })
     );
   }, []);
 

@@ -1,5 +1,6 @@
-import { Env } from '@env';
 import { router } from 'expo-router';
+
+import { Env } from '@/core/env';
 
 /**
  * Fetches a value from Firebase Remote Config.

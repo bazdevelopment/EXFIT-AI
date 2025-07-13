@@ -49,6 +49,7 @@ export const DailyActivityModal = React.forwardRef<
       }}
     >
       {({ data }) => {
+        console.log('data', data);
         const totalXP =
           data.activities?.reduce(
             (sum, activity) => sum + activity.xpEarned,
