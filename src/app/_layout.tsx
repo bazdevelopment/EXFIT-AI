@@ -234,6 +234,28 @@ export default function RootLayout() {
             }),
           }}
         />
+        <Stack.Screen
+          name="new-app-version"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
+          }}
+        />
+        <Stack.Screen
+          name="rate"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
+          }}
+        />
       </Stack>
     </Providers>
   );

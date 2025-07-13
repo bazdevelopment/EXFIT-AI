@@ -30,7 +30,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version: Env.VERSION.toString(),
   orientation: 'portrait',
   icon: './assets/icon.png',
-  userInterfaceStyle: 'automatic',
+  userInterfaceStyle: 'dark',
   newArchEnabled: true,
   updates: {
     fallbackToCacheTimeout: 0,
@@ -82,6 +82,20 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundler: 'metro',
   },
   plugins: [
+    [
+      'expo-quick-actions',
+      {
+        androidIcons: {
+          heart_icon: {
+            foregroundImage: './assets/heart-icon-android.png',
+            backgroundColor: '#FFFFFF',
+          },
+        },
+        iosIcons: {
+          heart_icon: './assets/heart-icon-ios.png',
+        },
+      },
+    ],
     [
       'expo-notifications',
       {

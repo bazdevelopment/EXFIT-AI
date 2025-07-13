@@ -256,6 +256,7 @@ const generateWeekDataFromLog = (
     const dayNumber = parseInt(day);
     const dayTitle = dayTitles[index];
     const logData = currentWeekActivityLog[dateKey];
+
     const isStreakReset = dateKey === lastResetStreakDate;
     let status: DateStatus = 'inactive';
     if (logData && Array.isArray(logData) && logData.length > 0) {
@@ -297,11 +298,9 @@ const CalendarMiniView = ({
   initialDayFocused,
   currentMonthNumber,
   onDayPress,
-  weekOffset = 0,
   showStreak = true,
   currentStreak = 4,
   lastResetStreakDate,
-  onCheckInPress,
   layout = 'horizontal',
 }: ICalendarMiniView) => {
   // Generate week data from currentWeekActivityLog if not provided
