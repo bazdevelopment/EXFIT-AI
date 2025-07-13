@@ -19,9 +19,8 @@ import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
 import { ShareItem } from '@/components/settings/share-item';
-import { ThemeItem } from '@/components/settings/theme-item';
 import Toast from '@/components/toast';
-import { Button, colors, ScrollView, View } from '@/components/ui';
+import { Button, colors, ScrollView, Text, View } from '@/components/ui';
 import { LogoutIcon, Rate } from '@/components/ui/assets/icons';
 import { CrownIllustration } from '@/components/ui/assets/illustrations';
 import { translate, useSelectedLanguage } from '@/core';
@@ -96,6 +95,11 @@ export default function Settings() {
       {/* {DEVICE_TYPE.IOS && (
         <Toaster autoWiggleOnUpdate="toast-change" pauseWhenPageIsHidden />
       )} */}
+      <View className="mt-4 px-6">
+        <Text className="mb-2 font-bold-poppins text-3xl text-white">
+          Settings
+        </Text>
+      </View>
       <View className="flex-1">
         <ScrollView ref={scrollViewRef}>
           <View className="mb-20 px-6">
@@ -104,8 +108,12 @@ export default function Settings() {
                 text="settings.profile"
                 onPress={() => router.navigate('/profile')}
               />
+              <Item
+                text="settings.shop"
+                onPress={() => router.navigate('/shop')}
+              />
               <LanguageItem />
-              <ThemeItem />
+              {/* <ThemeItem /> */}
               <Item
                 text="settings.contactUs"
                 onPress={() => router.navigate('/contact-us')}
@@ -131,10 +139,6 @@ export default function Settings() {
 
             <ItemsContainer title="settings.links">
               <Item
-                text="settings.citations"
-                onPress={() => router.navigate('/citations')}
-              />
-              <Item
                 text="settings.privacy"
                 onPress={() => router.navigate('/privacy-policy')}
               />
@@ -156,7 +160,7 @@ export default function Settings() {
               loading={isPendingUpdateUser}
               variant="destructive"
               className="mt-4 h-[55px] justify-start pl-5"
-              textClassName="font-semibold-poppins text-lg"
+              textClassName="font-medium-poppins text-base"
               iconPosition="left"
               onPress={handleLogout}
             />
@@ -198,9 +202,9 @@ export default function Settings() {
                         onHandleIndividualNotification({
                           title:
                             'Hinweis zu persönlichen medizinischen Bildern',
-                          body: 'Wir empfehlen NICHT, persönliche medizinische Bilder zur individuellen Analyse auf MicroScan AI hochzuladen, da die Ergebnisse nicht als endgültig betrachtet werden sollten. Unsere KI-Modelle werden noch erforscht und verfeinert und es können potenzielle Ungenauigkeiten auftreten. Es eignet sich hervorragend zum Lernen und um allgemeine Einblicke zu gewinnen, für ausführlichere Überprüfungen sollten Sie jedoch einen Spezialisten konsultieren. Wenn Sie Fragen haben, kontaktieren Sie uns per E-Mail - microscanaiapp@gmail.com',
+                          body: 'Wir empfehlen NICHT, persönliche medizinische Bilder zur individuellen Analyse auf EXFIT AI hochzuladen, da die Ergebnisse nicht als endgültig betrachtet werden sollten. Unsere KI-Modelle werden noch erforscht und verfeinert und es können potenzielle Ungenauigkeiten auftreten. Es eignet sich hervorragend zum Lernen und um allgemeine Einblicke zu gewinnen, für ausführlichere Überprüfungen sollten Sie jedoch einen Spezialisten konsultieren. Wenn Sie Fragen haben, kontaktieren Sie uns per E-Mail - microscanaiapp@gmail.com',
                           // title: 'Notice About Personal microscopy Images',
-                          // body: 'We DO NOT encourage uploading personal microscopy images to MicroScan AI for individual analysis, as the results should not be considered final. Our AI models are still being researched and refined, and potential inaccuracies may occur. It’s great for learning and get general insights, but for in-depth reviews, consult a specialist. If you have any questions contact us via email - microscanaiapp@gmail.com',
+                          // body: 'We DO NOT encourage uploading personal microscopy images to EXFIT AI for individual analysis, as the results should not be considered final. Our AI models are still being researched and refined, and potential inaccuracies may occur. It’s great for learning and get general insights, but for in-depth reviews, consult a specialist. If you have any questions contact us via email - microscanaiapp@gmail.com',
                           userId: '',
                           language,
                         })

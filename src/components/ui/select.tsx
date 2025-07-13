@@ -1,25 +1,27 @@
-import {
-  BottomSheetFlatList,
-  type BottomSheetModal,
-} from '@gorhom/bottom-sheet';
+import { type BottomSheetModal } from '@gorhom/bottom-sheet';
+import { BlurView } from '@react-native-community/blur';
 import { FlashList } from '@shopify/flash-list';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { useController } from 'react-hook-form';
-import { Platform, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { Pressable, type PressableProps } from 'react-native';
+import { StyleSheet } from 'react-native';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
 import { tv } from 'tailwind-variants';
 
-import colors from '@/components/ui/colors';
+import { translate } from '@/core';
 
+import SelectableButton from '../selectable-button';
+import { CaretDown } from './assets/icons';
+import { Checkbox, Radio } from './checkbox';
+import colors from './colors';
 import type { InputControllerType } from './input';
 import { useModal } from './modal';
 import { Modal } from './modal';
 import { Text } from './text';
-import { CaretDown } from './assets/icons';
 
 const selectTv = tv({
   slots: {
@@ -55,7 +57,7 @@ const selectTv = tv({
   },
 });
 
-const List = Platform.OS === 'web' ? FlashList : BottomSheetFlatList;
+const List = FlashList;
 
 export type OptionType = { label: string; value: string | number };
 
@@ -71,20 +73,23 @@ function keyExtractor(item: OptionType) {
 }
 
 export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
-  ({ options, onSelect, value, testID }, ref) => {
-    const height = options.length * 70 + 100;
+  ({ options, onSelect, value, isPending, testID, heading }, ref) => {
+    const height =
+      options.length > 3 ? options.length * 70 : options.length * 70 + 150;
     const snapPoints = React.useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === 'dark';
 
     const renderSelectItem = React.useCallback(
       ({ item }: { item: OptionType }) => (
-        <Option
+        <SelectableButton
           key={`select-item-${item.value}`}
-          label={item.label}
-          selected={value === item.value}
+          text={item.label}
+          isSelected={value === item.value}
           onPress={() => onSelect(item)}
           testID={testID ? `${testID}-item-${item.value}` : undefined}
+          icon={item.icon}
+          className="bg-white/5 dark:bg-white/5"
         />
       ),
       [onSelect, value, testID]
@@ -94,12 +99,24 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
       <Modal
         ref={ref}
         index={0}
+        // title={heading}
         snapPoints={snapPoints}
         backgroundStyle={{
-          backgroundColor: isDark ? colors.neutral[800] : colors.white,
+          backgroundColor: colors.transparent,
         }}
       >
+        <BlurView
+          blurAmount={10}
+          blurType="dark"
+          style={[StyleSheet.absoluteFill]}
+        />
+        {isPending && <ActivityIndicator size="small" />}
+        <Text className="my-4 text-center font-semibold-poppins">
+          {translate('settings.language')}
+        </Text>
         <List
+          contentContainerStyle={{ paddingBottom: 100 }}
+          showsVerticalScrollIndicator={false}
           data={options}
           keyExtractor={keyExtractor}
           renderItem={renderSelectItem}
@@ -266,3 +283,93 @@ const Check = ({ ...props }: SvgProps) => (
     />
   </Svg>
 );
+
+const indicatorsType = {
+  checkbox: Checkbox,
+  radio: Radio,
+};
+
+export const SelectableLabel = ({
+  title,
+  selected = false,
+  icon,
+  showIndicator = true,
+  subtitle,
+  onPress,
+  additionalClassName,
+  titleClassName,
+  subtitleClassName,
+  indicatorPosition = 'right',
+  indicatorType = 'radio',
+  extraInfo,
+  ...props
+}: ISelectableLabel) => {
+  const Indicator = indicatorsType[indicatorType];
+  return (
+    <Pressable
+      className={`
+        mt-4 flex-row items-center gap-4 rounded-2xl
+        p-6
+        ${selected ? 'border-[3px] border-primary-500' : 'bg-primary-100 dark:bg-blackEerie'}
+        active:bg-gray-100 dark:active:bg-primary-700
+        ${additionalClassName}
+      `}
+      onPress={onPress}
+      {...props}
+    >
+      {showIndicator && indicatorPosition === 'left' && (
+        <Indicator
+          disabled={false}
+          onPress={onPress}
+          checked={selected}
+          testID="radio"
+          accessibilityLabel="Agree"
+          accessibilityHint="toggle Agree"
+        />
+      )}
+      <View className="flex-1 flex-row items-center">
+        {icon && <View className="items-center justify-center">{icon}</View>}
+        <View className="gap-2">
+          <Text
+            className={`
+            text-base
+            ${selected ? 'font-medium-poppins text-lg text-white' : 'font-medium-poppins text-lg'}
+         ${titleClassName}
+          `}
+          >
+            {title}
+          </Text>
+
+          {subtitle && (
+            <Text
+              className={`
+            ${selected ? 'text-md font-bold-poppins text-white' : ' text-md'}
+            ${subtitleClassName}
+          `}
+            >
+              {subtitle}
+            </Text>
+          )}
+        </View>
+      </View>
+      {!!extraInfo && (
+        <View
+          className={`absolute right-2 top-[10px] flex-row items-center gap-2 rounded-xl bg-primary-500 px-5 py-1 ${selected ? 'dark:bg-blackEerie' : 'dark:border dark:border-primary-800 dark:bg-blackEerie'}`}
+        >
+          <Text className="font-bold-poppins">{extraInfo}</Text>
+        </View>
+      )}
+
+      {showIndicator && indicatorPosition === 'right' && (
+        <Indicator
+          disabled={false}
+          onChange={onPress}
+          checked={selected}
+          testID="radio"
+          accessibilityLabel="Agree"
+          accessibilityHint="toggle Agree"
+        />
+      )}
+    </Pressable>
+  );
+};

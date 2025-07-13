@@ -5,7 +5,7 @@ import { Linking, View } from 'react-native';
 import EdgeCaseTemplate from '@/components/edge-case-template';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
-import { Button, colors } from '@/components/ui';
+import { Button, colors, Text } from '@/components/ui';
 import { ArrowLeft } from '@/components/ui/assets/icons';
 import { RatingIllustration } from '@/components/ui/assets/illustrations';
 import { DEVICE_TYPE, translate } from '@/core';
@@ -29,14 +29,18 @@ const Rate = () => {
 
   return (
     <ScreenWrapper>
-      <Icon
-        icon={<ArrowLeft />}
-        iconContainerStyle="ml-6 items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
-        size={24}
-        color={colors.white}
-        onPress={router.back}
-      />
-
+      <View className="flex-row items-center gap-4 px-6">
+        <Icon
+          icon={<ArrowLeft />}
+          iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
+          size={24}
+          color={colors.white}
+          onPress={router.back}
+        />
+        <Text className="font-bold-poppins text-2xl text-white">
+          Give us feedback
+        </Text>
+      </View>
       <View className="flex-1 items-center justify-center">
         <EdgeCaseTemplate
           image={<RatingIllustration />}

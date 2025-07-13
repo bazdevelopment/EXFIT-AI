@@ -76,12 +76,12 @@ export default function NotificationsScreen() {
           <SkeletonLoader />
         ) : !userNotifications?.notifications?.length ? (
           <EdgeCaseTemplate
-            image={<NoNotification />}
+            image={<NoNotification width={350} height={350} />}
             title={translate(
               'rootLayout.screens.notifications.noNotifications'
             )}
             message="You have no notification right now. Come back later"
-            additionalClassName="mt-[20%] px-16"
+            additionalClassName="mt-[5%] px-16"
           />
         ) : (
           Object.entries(groupedNotifications)?.map(

@@ -267,6 +267,17 @@ export default function RootLayout() {
             }),
           }}
         />
+        <Stack.Screen
+          name="contact-us"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
+          }}
+        />
       </Stack>
     </Providers>
   );

@@ -17,17 +17,18 @@ const SelectableButton = ({
   text,
   isSelected,
   onPress,
+  className,
 }: iSelectableButton) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPress}
       className={`
-        mx-4 my-2 h-[56px] flex-row
-        items-center justify-between rounded-2xl bg-gray-800
+        mx-4 my-1 h-[56px] flex-row
+        items-center justify-between rounded-2xl
         px-4 py-3
         ${isSelected ? 'border-2 border-blue-500' : 'border border-transparent'}
-      `}
+    ${className} `}
       style={{
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },

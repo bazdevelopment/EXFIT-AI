@@ -326,23 +326,38 @@ export const hourlyActivityReminder = functions.pubsub
       `Targeting ${targetTimezones.length} timezones at 11 AM: ${targetTimezones.join(', ')}`,
     );
 
-    // 2. --- Query for Users in Target Timezones ---
-    // Note: Firestore 'in' query is limited to 30 values. This is fine as there are never
-    // more than 30 timezones at the same hour.
-    const usersSnapshot = await db
-      .collection('users')
-      .where('timezone', 'in', targetTimezones)
-      .get();
+    // 2. --- Query for Users in Target Timezones (with batching) ---
+    // Firestore 'in' query is limited to 30 values, so we need to batch when there are more
+    const batchSize = 30;
+    const timezoneBatches = [];
 
-    if (usersSnapshot.empty) {
+    for (let i = 0; i < targetTimezones.length; i += batchSize) {
+      timezoneBatches.push(targetTimezones.slice(i, i + batchSize));
+    }
+
+    // Execute all batched queries in parallel
+    const batchPromises = timezoneBatches.map((batch) =>
+      db.collection('users').where('timezone', 'in', batch).get(),
+    );
+
+    const batchSnapshots = await Promise.all(batchPromises);
+
+    // Combine all results
+    const allUserDocs = batchSnapshots.flatMap((snapshot) => snapshot.docs);
+
+    if (allUserDocs.length === 0) {
       functions.logger.info('No users found in the target timezones.');
       return null;
     }
 
+    functions.logger.info(
+      `Found ${allUserDocs.length} users in target timezones.`,
+    );
+
     // 3. --- Process Each User to Check for Activity ---
     const notificationPromises = [];
 
-    for (const doc of usersSnapshot.docs) {
+    for (const doc of allUserDocs) {
       const user = doc.data();
       const userId = doc.id;
 
@@ -412,7 +427,6 @@ export const hourlyActivityReminder = functions.pubsub
 
     return null;
   });
-
 // ===================================================================
 // FUNCTION 1: The "Last Chance" Warning Notifier
 // This function runs every hour to find users whose local time is 6 PM
