@@ -1,3 +1,4 @@
+import { useNetInfo } from '@react-native-community/netinfo';
 import * as QuickActions from 'expo-quick-actions';
 import { useQuickActionRouting } from 'expo-quick-actions/router';
 import { Redirect, Tabs, useSegments } from 'expo-router';
@@ -27,6 +28,8 @@ import { tabScreens } from '@/core/navigation/tabs';
 import { type ITabsNavigationScreen } from '@/core/navigation/tabs/tabs.interface';
 import { getBottomTabBarStyle } from '@/core/navigation/tabs/tabs.styles';
 
+import NoInternet from '../no-internet';
+
 export default function TabLayout() {
   const isLoggedIn = !!firebaseAuth.currentUser?.uid;
   const [isFirstTime] = useIsFirstTime();
@@ -45,7 +48,7 @@ export default function TabLayout() {
   const bottomTabBarStyles = getBottomTabBarStyle(isDark);
 
   useQuickActionRouting();
-
+  const { isConnected } = useNetInfo();
   const { MINIMUM_VERSION_ALLOWED } = useRemoteConfig();
   checkForAppUpdate(MINIMUM_VERSION_ALLOWED);
 
@@ -64,6 +67,8 @@ export default function TabLayout() {
   useEffect(() => {
     storeDeviceInfo();
   }, []);
+
+  if (isConnected === false && isConnected !== null) return <NoInternet />;
 
   if (isPendingUserinfo) return <InitialLoadSpinner />;
 

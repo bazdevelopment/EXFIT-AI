@@ -158,7 +158,7 @@
       },
       "noInternetScreen": {
         "heading": "You are offline",
-        "subheading": "Your connection seems to be unstable. Please verify your network status"
+        "subheading": "Your connection seems to be unstable. Please verify your network status and try again"
       },
       "notifications": {
         "title": "Notifications",

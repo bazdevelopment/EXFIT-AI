@@ -256,6 +256,17 @@ export default function RootLayout() {
             }),
           }}
         />
+        <Stack.Screen
+          name="no-internet"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
+          }}
+        />
       </Stack>
     </Providers>
   );
