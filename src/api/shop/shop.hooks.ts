@@ -40,6 +40,7 @@ export const usePurchaseShopItem = () => {
       queryClient.invalidateQueries({
         queryKey: ['owned-purchased-shop-items'],
       });
+      queryClient.invalidateQueries({ queryKey: ['user-info'] });
     },
     onError: (error) => {
       Toast.error(

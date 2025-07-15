@@ -34,7 +34,7 @@ import RewardsOverview from '@/components/rewards-overview';
 import ScreenWrapper from '@/components/screen-wrapper';
 import TaskListOverview from '@/components/task-list-overview';
 import { colors, Image, useModal } from '@/components/ui';
-import { BellIcon } from '@/components/ui/assets/icons';
+import { BellIcon, ShoppingCart } from '@/components/ui/assets/icons';
 import { DEVICE_TYPE, useSelectedLanguage } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
@@ -116,7 +116,7 @@ export default function Home() {
           <TouchableOpacity onPress={() => router.navigate('/profile')}>
             <Image
               source={avatars[userInfo.onboarding.gender as TAvatarGender]}
-              className="mx-4 mr-3  size-12 rounded-full bg-white/20" // Tailwind classes for styling the avatar
+              className="mx-4 size-12  rounded-full bg-white/20" // Tailwind classes for styling the avatar
               accessibilityLabel="User Avatar"
             />
           </TouchableOpacity>
@@ -129,19 +129,27 @@ export default function Home() {
             showStreaks={false}
           />
         </View>
-
-        <Icon
-          icon={<BellIcon />}
-          onPress={() => router.navigate('/notifications')}
-          size={22}
-          color={colors.charcoal[800]}
-          iconContainerStyle="p-2 border-[1px] border-charcoal-600 rounded-full"
-          showBadge={hasUnreadMessages}
-          badgeSize={9}
-          badgeColor={colors.danger[600]}
-          badgeClassName="right-0"
-          containerStyle="right-4"
-        />
+        <View className="flex-row gap-7">
+          <Icon
+            icon={<ShoppingCart />}
+            iconContainerStyle="items-center p-2.5 self-start rounded-full border-[1px] border-charcoal-800"
+            size={20}
+            color={colors.white}
+            onPress={() => router.navigate('/shopping-cart')}
+          />
+          <Icon
+            icon={<BellIcon />}
+            onPress={() => router.navigate('/notifications')}
+            size={22}
+            color={colors.charcoal[800]}
+            iconContainerStyle="p-2 border-[1px] border-charcoal-800 rounded-full"
+            showBadge={hasUnreadMessages}
+            badgeSize={9}
+            badgeColor={colors.danger[600]}
+            badgeClassName="right-0"
+            containerStyle="right-4"
+          />
+        </View>
       </View>
 
       <ScrollView
