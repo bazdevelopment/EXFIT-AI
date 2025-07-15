@@ -535,7 +535,7 @@ export const streakWarningNotifier = functions.pubsub
     );
 
     // 1. --- Identify Target Timezones ---
-    // Find all IANA timezones where the local time is currently 11:xx AM.
+    // Find all IANA timezones where the local time is currently 6 PM.
     const allTimezones: { name: string }[] = moment.tz
       .names()
       .map((tz) => ({ name: tz }));
@@ -546,24 +546,41 @@ export const streakWarningNotifier = functions.pubsub
         const localTime = toZonedTime(now, tz.name);
         return localTime.getHours() === warningHour;
       })
-
       .map((tz) => tz.name);
+
     if (targetTimezones.length === 0) {
       functions.logger.info('No timezones are at 6 PM. Exiting.');
       return null;
     }
+
     functions.logger.info(
       `Targeting timezones for 6 PM warning: ${targetTimezones.join(', ')}`,
     );
 
-    // --- Query for active users in these timezones ---
-    const usersSnapshot = await db
-      .collection('users')
-      .where('timezone', 'in', targetTimezones)
-      .where('gamification.currentStreak', '>', 0) // Only warn users who have a streak to lose
-      .get();
+    // 2. --- Query for Users in Target Timezones (with batching) ---
+    // Firestore 'in' query is limited to 30 values, so we need to batch when there are more
+    const batchSize = 30;
+    const timezoneBatches = [];
 
-    if (usersSnapshot.empty) {
+    for (let i = 0; i < targetTimezones.length; i += batchSize) {
+      timezoneBatches.push(targetTimezones.slice(i, i + batchSize));
+    }
+
+    // Execute all batched queries in parallel
+    const batchPromises = timezoneBatches.map((batch) =>
+      db
+        .collection('users')
+        .where('timezone', 'in', batch)
+        .where('gamification.currentStreak', '>', 0) // Only warn users who have a streak to lose
+        .get(),
+    );
+
+    const batchSnapshots = await Promise.all(batchPromises);
+
+    // Combine all snapshots into a single array of documents
+    const allDocs = batchSnapshots.flatMap((snapshot) => snapshot.docs);
+
+    if (allDocs.length === 0) {
       functions.logger.info(
         'No users with active streaks found in target timezones.',
       );
@@ -572,7 +589,7 @@ export const streakWarningNotifier = functions.pubsub
 
     const notificationPromises = [];
 
-    for (const doc of usersSnapshot.docs) {
+    for (const doc of allDocs) {
       const user = doc.data();
       const userId = doc.id;
 
