@@ -57,6 +57,8 @@ export * from './send-icon';
 export * from './settings';
 export * from './settings-wheel';
 export * from './share';
+export * from './shop-basket';
+export * from './shopping-cart';
 export * from './smile-emoji';
 export * from './sound-on';
 export * from './square-scan';

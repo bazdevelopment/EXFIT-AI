@@ -46,16 +46,17 @@ import dayjs from '../../lib/dayjs';
 // eslint-disable-next-line max-lines-per-function
 export default function Home() {
   const { language } = useSelectedLanguage();
-  const { data: userInfo } = useUser(language);
+  const { data: userInfo, refetch: refetchUserInfo } = useUser(language);
   const activityCompleteModal = useModal();
   const activitySkippedModal = useModal();
   const dailyActivityModal = useModal();
   const activityLogSuccessModal = useModal();
 
-  const { data: userNotifications } = useFetchUserNotifications({
-    userId: userInfo?.userId,
-    language,
-  })();
+  const { data: userNotifications, refetch: refetchUserNotifications } =
+    useFetchUserNotifications({
+      userId: userInfo?.userId,
+      language,
+    })();
 
   const unReadMessages = userNotifications?.notifications.filter(
     (notification: INotificationItem) => !notification.isRead
@@ -85,7 +86,7 @@ export default function Home() {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
   } = useCreateActivityLog({
-    onSuccess: activityLogSuccessModal.presents,
+    onSuccess: activityLogSuccessModal.present,
   });
 
   const { data: currentWeekActivityLog, refetch: refetchActivityLog } =
@@ -101,7 +102,11 @@ export default function Home() {
     useUpdateAiTaskStatus(currentActiveDay);
   const isDailyCheckInDone = !!currentWeekActivityLog?.[currentActiveDay];
 
-  const { isRefetching, onRefetch } = useDelayedRefetch(refetchActivityLog);
+  const { isRefetching, onRefetch } = useDelayedRefetch(() => {
+    refetchActivityLog();
+    refetchUserInfo();
+    refetchUserNotifications();
+  });
   return (
     <ScreenWrapper>
       <View

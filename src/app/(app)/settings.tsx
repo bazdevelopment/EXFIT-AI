@@ -10,6 +10,7 @@ import {
   useSendIndividualPushNotification,
 } from '@/api/push-notifications/push-notifications.hooks';
 import { useAddFieldsToCollection } from '@/api/services/services.hooks';
+import { seedShopItems } from '@/api/shop/shop.requests';
 import { useUploadTermsOfService } from '@/api/terms-of-service/terms-of-service.hooks';
 import { useUpdateUser, useUser } from '@/api/user/user.hooks';
 import { logout } from '@/api/user/user.requests';
@@ -218,6 +219,7 @@ export default function Settings() {
                       text="Upload privacy policy"
                       onPress={() => onUploadPrivacyPolicy({ language })}
                     />
+                    <Item text="Seed shop items" onPress={seedShopItems} />
                     <Item
                       text="Add completedScans field to userInfo"
                       //! be careful with the below functions

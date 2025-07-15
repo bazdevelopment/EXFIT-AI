@@ -18,6 +18,7 @@ export const ArrowRight = ({
     strokeLinecap="round"
     strokeLinejoin="round"
     strokeWidth={2}
+    viewBox="0 0 24 24"
     className="lucide lucide-arrow-right-icon lucide-arrow-right"
     {...props}
   >

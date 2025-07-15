@@ -190,9 +190,6 @@ const Activity = () => {
         ]} // Ensure background covers content when sliding
         className="absolute inset-x-0 top-0 w-full" // Use NativeWind classes for absolute positioning
       >
-        {/* <Text className="px-4 pb-4 font-bold-poppins text-3xl text-white">
-          Activity
-        </Text> */}
         <View className="px-6">
           <Text className="mb-2 font-bold-poppins text-3xl text-white">
             Schedule

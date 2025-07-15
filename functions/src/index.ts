@@ -19,6 +19,7 @@ import * as excuseBusterFunctions from './excuse-buster';
 import * as progressFunctions from './progress';
 import * as pushNotificationsFunctions from './push-notifications';
 import * as scanImageFunctions from './scan';
+import * as shopItemsFunctions from './shop-items';
 import * as aiTasksFunctions from './tasks';
 import * as userFunctions from './user';
 
@@ -126,6 +127,19 @@ export const markNotificationAsRead = usCentralFunctions.https.onCall(
 export const getProgressAnalytics = usCentralFunctions.https.onCall(
   progressFunctions.getProgressAnalyticsHandler,
 );
+/** shop items  */
+export const seedShopItems = usCentralFunctions.https.onCall(
+  shopItemsFunctions.seedShopItemsHandler,
+);
+export const getShopItems = usCentralFunctions.https.onCall(
+  shopItemsFunctions.getShopItemsHandler,
+);
+export const getOwnPurchasedItems = usCentralFunctions.https.onCall(
+  shopItemsFunctions.getPurchasedItemsHandler,
+);
+export const purchaseShopItem = usCentralFunctions.https.onCall(
+  shopItemsFunctions.purchaseShopItemHandler,
+);
 
 /**
  * A scheduled function that runs every day shortly after midnight (UTC).
@@ -145,6 +159,7 @@ export const dailyGamificationUpdate = functions.pubsub
     const yesterday = new Date(today);
     yesterday.setDate(today.getDate() - 1); // Get the beginning of yesterday
 
+    const batch = db.batch();
     const usersSnapshot = await db.collection('users').get();
     if (usersSnapshot.empty) {
       functions.logger.info('No users found. Exiting.');
@@ -166,6 +181,9 @@ export const dailyGamificationUpdate = functions.pubsub
     const notificationPromises = [];
     // An array to hold all the database update operations
     const userUpdates: { userId: string; updates: { [key: string]: any } }[] =
+      [];
+    // Array to hold streak freeze potion updates that need to be processed separately
+    const freezePotionUpdates: { userId: string; shouldDecrement: boolean }[] =
       [];
 
     for (const doc of usersSnapshot.docs) {
@@ -198,6 +216,9 @@ export const dailyGamificationUpdate = functions.pubsub
             admin.firestore.FieldValue.increment(-1);
           updates['gamification.isStreakProtected'] = true; // Set flag for UI
 
+          // Mark this user for streak freeze potion decrement
+          freezePotionUpdates.push({ userId, shouldDecrement: true });
+
           // Queue the "Streak Saved" notification
           const title = 'Your Streak is Safe! 🥶';
           const body = `You missed a day, but your Streak Freeze was used to save your ${streak}-day streak. Phew!`;
@@ -215,14 +236,15 @@ export const dailyGamificationUpdate = functions.pubsub
         } else if (streak > 0) {
           // Only send a "lost" notification if they actually had a streak to lose
           // B. RESET THE STREAK
-          const resetISOString = today.toISOString();
-
-          const resetTimestamp = admin.firestore.Timestamp.fromDate(
-            resetISOString as unknown as Date,
-          );
+          const resetDate = new Date(today);
+          const resetISOString = resetDate.toISOString();
+          updates['gamification.longestStreak'] =
+            gamification.currentStreak > gamification.longestStreak
+              ? gamification.currentStreak
+              : gamification.longestStreak;
           updates['gamification.currentStreak'] = 0;
           updates['gamification.streakResetDates'] =
-            admin.firestore.FieldValue.arrayUnion(resetTimestamp);
+            admin.firestore.FieldValue.arrayUnion(resetISOString);
 
           // Queue the "Streak Lost" notification
           const title = 'Oh no, you lost your streak! 😢';
@@ -261,9 +283,67 @@ export const dailyGamificationUpdate = functions.pubsub
       await Promise.all(notificationPromises);
       functions.logger.info('All notifications have been sent.');
     }
+    // --- Phase 2: Process Streak Freeze Potion Updates ---
+    // Handle streak freeze potion updates separately to avoid batch failures
+    if (freezePotionUpdates.length > 0) {
+      functions.logger.info(
+        `Processing streak freeze potion updates for ${freezePotionUpdates.length} users.`,
+      );
 
-    // --- Phase 2: Commit all Database Updates ---
-    const batch = db.batch();
+      const potionUpdatePromises = freezePotionUpdates.map(
+        async ({ userId, shouldDecrement }) => {
+          if (!shouldDecrement) return;
+
+          const userRef = db.collection('users').doc(userId);
+          const freezePotionRef = userRef
+            .collection('ownedItems')
+            .doc('STREAK_FREEZE_POTION');
+
+          try {
+            // Use a transaction to safely handle the potion quantity update
+            await db.runTransaction(async (transaction) => {
+              const potionDoc = await transaction.get(freezePotionRef);
+
+              if (potionDoc.exists) {
+                const currentQuantity = potionDoc.data()?.quantity || 0;
+                if (currentQuantity > 0) {
+                  transaction.update(freezePotionRef, {
+                    quantity: admin.firestore.FieldValue.increment(-1),
+                  });
+                } else {
+                  functions.logger.warn(
+                    `User ${userId} has streak freeze potion document but quantity is ${currentQuantity}. Skipping decrement.`,
+                  );
+                }
+              } else {
+                // If the document doesn't exist, create it with quantity 0
+                // This prevents future errors and maintains data consistency
+                transaction.set(freezePotionRef, {
+                  quantity: 0,
+                  shopItemId: 'STREAK_FREEZE_POTION',
+                  purchasedAt: admin.firestore.FieldValue.serverTimestamp(),
+                  handledByJob: true,
+                });
+                functions.logger.warn(
+                  `User ${userId} missing streak freeze potion document. Created with quantity 0.`,
+                );
+              }
+            });
+          } catch (error) {
+            functions.logger.error(
+              `Failed to update streak freeze potion for user ${userId}:`,
+              error,
+            );
+            // Continue processing other users even if one fails
+          }
+        },
+      );
+
+      await Promise.all(potionUpdatePromises);
+      functions.logger.info('Streak freeze potion updates completed.');
+    }
+
+    // --- Phase 3: Commit all Database Updates ---
     let usersProcessed = 0;
 
     userUpdates.forEach(({ userId, updates }) => {
@@ -275,14 +355,20 @@ export const dailyGamificationUpdate = functions.pubsub
     });
 
     if (usersProcessed > 0) {
-      await batch.commit();
-      functions.logger.info(
-        `Database updates completed for ${usersProcessed} users.`,
-      );
+      try {
+        await batch.commit();
+        functions.logger.info(
+          `Database updates completed for ${usersProcessed} users.`,
+        );
+      } catch (error) {
+        functions.logger.error('Failed to commit batch updates:', error);
+        throw error; // Re-throw to trigger Cloud Functions retry
+      }
     } else {
       functions.logger.info('No database updates were needed.');
     }
 
+    functions.logger.info('Daily gamification update completed successfully.');
     return null;
   });
 // ===================================================================

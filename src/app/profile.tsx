@@ -23,17 +23,16 @@ const ProfileScreen = () => {
   return (
     <ScreenWrapper>
       {/* Header */}
-      <View className="flex-row items-center justify-between px-4 py-3">
+      <View className="flex-row items-center justify-start px-4 py-3">
         <Icon
           size={24}
           containerStyle="rounded-2xl bg-charcoal-800 p-3 w-[50]"
           onPress={router.back}
           icon={<ArrowLeft color={colors.white} />}
         />
-        <Text className="font-semibold-poppins text-xl text-white dark:text-white">
+        <Text className="ml-4 font-semibold-poppins text-xl text-white dark:text-white">
           Profile
         </Text>
-        <View className="w-8" />
       </View>
 
       {/* Profile Section */}
