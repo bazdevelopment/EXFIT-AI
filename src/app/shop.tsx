@@ -2,14 +2,17 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Alert, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
-import { usePurchaseShopItem, useShopItems } from '@/api/shop/shop.hooks';
+import { useShopItems } from '@/api/shop/shop.hooks';
+import { useUser } from '@/api/user/user.hooks';
 import Icon from '@/components/icon';
+import { PurchaseItemModal } from '@/components/modals/purchase-item-modal';
 import ScreenWrapper from '@/components/screen-wrapper';
 import SkeletonLoader from '@/components/skeleton-loader';
-import { colors, Image, Text } from '@/components/ui';
+import { colors, Image, Text, useModal } from '@/components/ui';
 import { ArrowLeft, ShoppingCart } from '@/components/ui/assets/icons';
+import { useSelectedLanguage } from '@/core';
 import getDeviceSizeCategory from '@/core/utilities/get-device-size-category';
 
 // mockData/shopData.ts
@@ -222,38 +225,13 @@ export const gemOffers: GemOffer[] = [
 
 const ShopScreen = () => {
   const { data: shopData, isLoading } = useShopItems();
+  const { language } = useSelectedLanguage();
+  const { data: userInfo } = useUser(language);
+  const purchaseItemModal = useModal();
 
-  const { mutate: onPurchaseShopItem } = usePurchaseShopItem();
-  // console.log('data', data);
   const { isVerySmallDevice } = getDeviceSizeCategory();
 
-  // Sort items by price (cheaper to expensive)
-  const sortedGemOffers = [...gemOffers].sort((a, b) => a.price - b.price);
   const shopItems = shopData?.items;
-  // const sortedShopItems = [...shopItems].sort((a, b) => a.price - b.price);
-
-  const handleGemOfferPress = (offer: GemOffer) => {
-    Alert.alert(
-      'Purchase Gems',
-      `Purchase ${offer.amount} gems for $${offer.price.toFixed(2)}?`
-    );
-  };
-
-  const handleShopItemPress = (item: ShopItem) => {
-    if (item.disabled) return;
-    Alert.alert(
-      `${item.description}`,
-      `Purchase ${item.name} for ${item.price} gems?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Purchase',
-          style: 'default',
-          onPress: () => onPurchaseShopItem({ itemId: item.id, quantity: 1 }),
-        },
-      ]
-    );
-  };
 
   return (
     <ScreenWrapper>
@@ -306,13 +284,22 @@ const ShopScreen = () => {
                   key={item.id}
                   className={`mb-4 ${isVerySmallDevice ? 'w-[48%]' : 'w-[32%]'} `}
                 >
-                  <ShopItemCard item={item} onPress={handleShopItemPress} />
+                  <ShopItemCard
+                    item={item}
+                    onPress={purchaseItemModal.present}
+                  />
                 </View>
               ))}
             </View>
           </View>
         )}
       </ScrollView>
+
+      <PurchaseItemModal
+        onCloseModal={purchaseItemModal.dismiss}
+        currentGemBalance={userInfo.gamification.gemsBalance}
+        ref={purchaseItemModal.ref}
+      />
     </ScreenWrapper>
   );
 };

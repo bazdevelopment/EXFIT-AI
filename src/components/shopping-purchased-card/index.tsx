@@ -1,6 +1,7 @@
 import { View } from 'react-native';
 
-import { Image, Text } from '../ui';
+import { colors, Image, Text } from '../ui';
+import { CheckIcon } from '../ui/assets/icons';
 
 export const ShoppingPurchasedCard = ({ record }) => {
   return (
@@ -22,13 +23,29 @@ export const ShoppingPurchasedCard = ({ record }) => {
           </Text>
 
           {/* Status Badge */}
-          <View className="flex-row items-center gap-2 self-start rounded-md bg-white/20 px-3">
-            <Text className="font-extra-bold-poppins text-lg text-white dark:text-white">
-              {record.quantity}
-            </Text>
-            <Text className="font-semibold-poppins text-sm text-white dark:text-white">
-              OWNED
-            </Text>
+          <View className="flex-row items-center gap-2">
+            <View className="flex-row items-center gap-2 self-start rounded-md bg-white/20 px-3">
+              <Text className="g font-medium-poppins text-white dark:text-white">
+                {record.quantity}
+              </Text>
+              <Text className="font-semibold-poppins text-sm text-white dark:text-white">
+                OWNED
+              </Text>
+            </View>
+            <View className="flex-row items-center gap-2 self-start rounded-md bg-[#4E52FB] px-3 dark:bg-[#4E52FB]">
+              <CheckIcon width={20} height={20} color={colors.white} />
+              <Text className="font-semibold-poppins text-sm text-white dark:text-white">
+                ACTIVE
+              </Text>
+            </View>
+            {/* <SelectableChip
+              title="Active"
+              isSelected={true}
+              className="bg-[#3195FD] py-[2.5px] dark:bg-[#3195FD]"
+              textClassName="text-white"
+              icon={<CheckIcon width={14} height={14} color="white" />}
+              onPress={() => {}}
+            /> */}
           </View>
         </View>
       </View>

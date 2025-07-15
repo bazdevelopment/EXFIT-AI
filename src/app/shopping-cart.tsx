@@ -29,7 +29,7 @@ const ShoppingCart = () => {
           onPress={router.back}
         />
         <Text className="font-bold-poppins text-2xl text-white">
-          Owned Items
+          Items Owned
         </Text>
       </View>
 
@@ -45,7 +45,7 @@ const ShoppingCart = () => {
               <ShoppingPurchasedCard record={item} key={item.id} />
             ))}
             <Button
-              label="Explore More"
+              label="Equip More"
               icon={<ShopBasket color={colors.white} width={20} height={20} />}
               loading={false}
               className="mt-8 h-14 w-[90%] justify-center self-center rounded-full bg-[#4E52FB] active:opacity-85 dark:bg-[#4E52FB]"
