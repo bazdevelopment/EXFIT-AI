@@ -205,7 +205,7 @@ export default function RootLayout() {
           name="profile"
           options={{
             headerShown: false,
-            gestureEnabled: false,
+            gestureEnabled: true,
             ...(DEVICE_TYPE.IOS && {
               animation: 'fade',
               animationDuration: 500,
@@ -216,7 +216,7 @@ export default function RootLayout() {
           name="notifications"
           options={{
             headerShown: false,
-            gestureEnabled: false,
+            gestureEnabled: true,
             ...(DEVICE_TYPE.IOS && {
               animation: 'fade',
               animationDuration: 500,
@@ -249,7 +249,7 @@ export default function RootLayout() {
           name="rate"
           options={{
             headerShown: false,
-            gestureEnabled: false,
+            gestureEnabled: true,
             ...(DEVICE_TYPE.IOS && {
               animation: 'fade',
               animationDuration: 500,
@@ -271,7 +271,29 @@ export default function RootLayout() {
           name="contact-us"
           options={{
             headerShown: false,
-            gestureEnabled: false,
+            gestureEnabled: true,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
+          }}
+        />
+        <Stack.Screen
+          name="shop"
+          options={{
+            headerShown: false,
+            gestureEnabled: true,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
+          }}
+        />
+        <Stack.Screen
+          name="shopping-cart"
+          options={{
+            headerShown: false,
+            gestureEnabled: true,
             ...(DEVICE_TYPE.IOS && {
               animation: 'fade',
               animationDuration: 500,

@@ -216,7 +216,7 @@
   },
   "deleteApp": {
     "title": "Wait! Don't delete me!",
-    "subtitle": "Send a feedback instead"
+    "subtitle": "Send a feedback before"
   },
 
   "pdfPreview": {

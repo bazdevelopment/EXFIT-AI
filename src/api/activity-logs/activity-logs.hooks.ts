@@ -19,13 +19,13 @@ export const useCreateActivityLog = ({ onSuccess }) =>
   createMutation<ICreateLogResponseData, ICreateLogRequestData, AxiosError>({
     mutationFn: (variables) => createActivityLog(variables),
     onSuccess: (data) => {
-      // Toast.success(data.message || 'Activity log created successfully');
-      onSuccess();
+      // Toast.success(data.message || 'Activity created successfully');
+      onSuccess && onSuccess();
       queryClient.invalidateQueries({
         queryKey: ['activity-logs'],
       });
     },
-    onError: () => {
+    onError: (error) => {
       Toast.error('Error creating activity log');
     },
   })();

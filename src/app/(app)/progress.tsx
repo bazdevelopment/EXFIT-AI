@@ -1098,11 +1098,11 @@ const EnhancedProgressScreen = () => {
                 {/* Dark mode background, border, shadow */}
                 <Text className="font-semibold-poppins text-2xl text-green-400">
                   {/* Slightly lighter green for contrast */}
-                  {data.detailedStats.activeDaysThisMonth}
+                  {data.detailedStats.physicalActivitiesThisMonth}
                 </Text>
                 <Text className="text-sm text-gray-300">
                   {/* Lighter text */}
-                  Active Days This Month
+                  Physical Activities Completed This Month!
                 </Text>
               </View>
             </View>

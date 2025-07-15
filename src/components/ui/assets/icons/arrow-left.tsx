@@ -16,6 +16,6 @@ export const ArrowLeft = (props: ISvgProps) => (
     className="lucide lucide-arrow-left-icon lucide-arrow-left"
     {...props}
   >
-    <Path d="m12 19-7-7 7-7M19 12H5" />
+    <Path color={props.color} d="m12 19-7-7 7-7M19 12H5" />
   </Svg>
 );

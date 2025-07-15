@@ -29,12 +29,12 @@ const EdgeCaseTemplate = ({
         </Text>
       )}
 
-      <View className="mt-2 w-full flex-row items-center justify-center gap-4">
+      <View className="mt-4 w-full flex-row items-center justify-center gap-4">
         {!!primaryAction && (
           <Button
             label={primaryAction.label}
             className="rounded-full bg-white active:opacity-85 dark:bg-white"
-            textClassName="text-black font-semibold-poppins text-sm"
+            textClassName="text-black font-medium-poppins"
             variant={primaryAction.variant}
             icon={primaryAction.icon}
             onPress={primaryAction.onPress}

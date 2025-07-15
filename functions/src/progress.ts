@@ -326,7 +326,6 @@ const getProgressAnalyticsHandler = async (
     thisWeek: weeklyComparisonData.get(day)?.thisWeek || 0,
     lastWeek: weeklyComparisonData.get(day)?.lastWeek || 0,
   }));
-
   // 5. --- RETURN ENHANCED PAYLOAD ---
   return {
     kpis,
@@ -356,10 +355,9 @@ const getProgressAnalyticsHandler = async (
       longestStreak: gamification.longestStreak || 0,
       totalMinutesActive: totalDurationMinutes,
       averageSessionDuration: performanceMetrics.averageSessionDuration,
-      activeDaysThisMonth: Array.from(monthlyActivityData.values()).reduce(
-        (a, b) => a + b,
-        0,
-      ),
+      physicalActivitiesThisMonth: Array.from(
+        monthlyActivityData.values(),
+      ).reduce((a, b) => a + b, 0),
       bestPerformanceDay: performanceMetrics.bestDay,
     },
   };

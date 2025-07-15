@@ -54,7 +54,8 @@ export const ActivityLogSuccessModal = React.forwardRef<
 
           {/* Subtitle */}
           <Text className="mb-5 px-5 text-center font-primary-poppins text-base leading-5 text-white">
-            You completed your daily check-in and earned the reward.
+            You did it! One activity down, and you’ve unlocked your reward.
+            Let’s keep the streak going!
           </Text>
 
           {/* Rewards */}
