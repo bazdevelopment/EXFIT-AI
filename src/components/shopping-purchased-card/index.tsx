@@ -35,7 +35,9 @@ export const ShoppingPurchasedCard = ({ record }) => {
             <View className="flex-row items-center gap-2 self-start rounded-md bg-[#4E52FB] px-3 dark:bg-[#4E52FB]">
               <CheckIcon width={20} height={20} color={colors.white} />
               <Text className="font-semibold-poppins text-sm text-white dark:text-white">
-                ACTIVE
+                {record.id === 'STREAK_REVIVAL_ELIXIR'
+                  ? 'MANUAL TRIGGER'
+                  : 'ACTIVATED'}
               </Text>
             </View>
             {/* <SelectableChip

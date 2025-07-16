@@ -17,6 +17,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.54.0",
     "@google-cloud/functions-framework": "^4.0.0",
+    "@google/genai": "^1.9.0",
     "@google/generative-ai": "^0.24.1",
     "@vvo/tzdb": "^6.176.0",
     "busboy": "^1.6.0",

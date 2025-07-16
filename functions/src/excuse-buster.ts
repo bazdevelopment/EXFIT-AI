@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { Content, GoogleGenAI } from '@google/genai';
 import * as functions from 'firebase-functions/v1';
 
 import { throwHttpsError } from '../utilities/errors';
@@ -153,8 +153,11 @@ const continueExcuseBusterConversation = async (
       );
     }
 
-    // Initialize Google Generative AI client
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
+    // Initialize Google GenAI client
+    const ai = new GoogleGenAI({
+      vertexai: false,
+      apiKey: process.env.GEMINI_API_KEY as string,
+    });
 
     const userDocRef = db.collection('users').doc(userId);
     const conversationDocRef = db
@@ -189,15 +192,30 @@ const continueExcuseBusterConversation = async (
       } else {
         messages = conversationSnapshot.data()?.messages || [];
       }
-      // Prepare History and Prompt for the AI Model
-      const history = messages.map((msg: any) => ({
-        role: msg.role === 'assistant' ? 'model' : 'user',
-        parts: [
-          {
-            text: `${msg.content.responseText}`,
-          },
-        ],
+
+      // !maybe in the past you can store the conversation in the Content[], not with responseText
+      const historyArray: Content[] = messages.map((message) => ({
+        parts: [{ text: message.content.responseText }], // Using 'text' as per your format
+        role: message.role,
       }));
+
+      // Create chat with the new @google/genai approach
+      const chat = ai.chats.create({
+        model: 'gemini-2.5-flash',
+        config: {
+          thinkingConfig: {
+            thinkingBudget: 0,
+          },
+        },
+        history: historyArray,
+      });
+
+      // Get the current chat history for logging or debugging
+      const currentHistory = chat.getHistory();
+      functions.logger.info(
+        'Current chat history length:',
+        currentHistory.length,
+      );
 
       const fullPrompt = `
         ${responseGuidelinesExcuseBuster}
@@ -217,20 +235,10 @@ const continueExcuseBusterConversation = async (
         ${additionalLngPrompt}
       `;
 
-      // Call the Gemini AI Model
-      const model = genAI.getGenerativeModel({
-        model: 'gemini-2.5-flash-preview-04-17',
-        // model: 'gemini-2.5-flash-lite-preview-06-17',
-      });
+      // Send the current user message
+      const result = await chat.sendMessage({ message: fullPrompt });
 
-      const chat = model.startChat({
-        history,
-        generationConfig: { maxOutputTokens: 1024 },
-      });
-
-      const result = await chat.sendMessage(fullPrompt);
-      const response = await result.response;
-      const assistantResponseText = response.text();
+      const assistantResponseText = result.text;
 
       // Parse AI Response and Update Firestore
       let assistantJsonResponse;
@@ -265,7 +273,7 @@ const continueExcuseBusterConversation = async (
         messages: [
           ...messages,
           { role: 'user', content: { responseText: userMessage } },
-          { role: 'assistant', content: assistantJsonResponse },
+          { role: 'model', content: assistantJsonResponse },
         ],
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
