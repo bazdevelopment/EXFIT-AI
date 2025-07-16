@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 import { Request } from 'firebase-functions/v1/https';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -79,11 +79,7 @@ const analyzeScanImageConversationHandler = async (req: Request, res: any) => {
       });
     }
 
-    // Initialize Google Generative AI client
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-2.5-flash-preview-04-17',
-    });
+    const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
     const base64String = convertBufferToBase64(imageFile.buf);
 
@@ -96,7 +92,13 @@ const analyzeScanImageConversationHandler = async (req: Request, res: any) => {
       },
     };
 
-    const result = await model.generateContent({
+    const result = await genAI.models.generateContent({
+      model: 'gemini-2.5-flash',
+      config: {
+        thinkingConfig: {
+          thinkingBudget: 0,
+        },
+      },
       contents: [
         {
           role: 'user',
@@ -105,9 +107,7 @@ const analyzeScanImageConversationHandler = async (req: Request, res: any) => {
       ],
     });
 
-    const response = await result.response;
-    const textResult = response.text();
-
+    const textResult = result.text;
     /* Logic for storing the image in db */
     // Generate a unique filename
     const uniqueId = generateUniqueId();
@@ -160,10 +160,9 @@ const analyzeScanImageConversationHandler = async (req: Request, res: any) => {
             content: [
               // Add image URL (mandatory)
               {
-                type: 'image',
-                source: {
-                  type: 'url',
-                  url, // Always include the image URL
+                fileData: {
+                  mimeType: 'image/jpeg',
+                  fileUri: url, // Always include the image URL
                 },
               },
             ],
@@ -172,7 +171,7 @@ const analyzeScanImageConversationHandler = async (req: Request, res: any) => {
             ? [{ role: 'user', content: promptMessage || '' }]
             : []),
           {
-            role: 'assistant',
+            role: 'model',
             content: textResult, // Assistant's response
           },
         ],
