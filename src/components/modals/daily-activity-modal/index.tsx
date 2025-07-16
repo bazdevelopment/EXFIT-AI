@@ -6,21 +6,24 @@ import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { colors, Modal, Text } from '@/components/ui';
 import { FlashIcon, GemIcon, StreakFreeze } from '@/components/ui/assets/icons';
+import { useSelectedLanguage } from '@/core';
+import { checkIsToday } from '@/core/utilities/date-time-helpers';
 
 import dayjs from '../../../lib/dayjs';
 
 interface DailyActivityModalProps {
-  onSubmit: ({ skipReason }: { skipReason: string }) => void;
-  dailyActivityDetails: any;
   onAddActivity: (date: string) => void;
+  totalTodayActivities: number;
 }
 
 export const DailyActivityModal = React.forwardRef<
   BottomSheetModal,
   DailyActivityModalProps
->(({ onAddActivity }, ref) => {
-  const height = 450;
+>(({ onAddActivity, totalTodayActivities }, ref) => {
+  // const height = totalTodayActivities >= 2 ? 550 : 400;
+  const height = 550;
   const snapPoints = useMemo(() => [height, '80%'], [height]);
+  const { language } = useSelectedLanguage();
 
   const getActivityIcon = (type: string) => {
     switch (type) {
@@ -49,7 +52,6 @@ export const DailyActivityModal = React.forwardRef<
       }}
     >
       {({ data }) => {
-        console.log('data', data);
         const totalXP =
           data.activities?.reduce(
             (sum, activity) => sum + activity.xpEarned,
@@ -77,7 +79,7 @@ export const DailyActivityModal = React.forwardRef<
                 {/* Day Number */}
 
                 {/* Title and Date */}
-                <Text className="mb-4 mt-[-20px] font-bold-poppins text-xl text-white">
+                <Text className="mb-4 mt-[-10px] font-bold-poppins text-xl text-white">
                   {dayjs(data.dateKey).format('dddd, MMMM D')}
                 </Text>
 
@@ -195,23 +197,28 @@ export const DailyActivityModal = React.forwardRef<
                 <View className="mb-6 items-center rounded-xl bg-white/5 p-6">
                   <Text className="mb-3 text-4xl">🎯</Text>
                   <Text className="mb-2 font-semibold-poppins text-lg text-white">
-                    No Activities
+                    No Physical Activities
                   </Text>
-                  <Text className="text-center text-sm text-gray-400">
-                    Add your first activity to get started!
-                  </Text>
+
+                  {checkIsToday(data.dateKey, language) && (
+                    <Text className="text-center text-sm text-gray-400">
+                      Add your first physical activity you did today!
+                    </Text>
+                  )}
                 </View>
               )}
 
               {/* Action Button */}
-              <TouchableOpacity
-                onPress={() => onAddActivity(data.dateKey)}
-                className="mb-8 items-center rounded-xl bg-blue-500 p-4"
-              >
-                <Text className="font-semibold-poppins text-white">
-                  Add Activity
-                </Text>
-              </TouchableOpacity>
+              {checkIsToday(data.dateKey, language) && (
+                <TouchableOpacity
+                  onPress={() => onAddActivity(data.dateKey)}
+                  className="mb-8 items-center rounded-xl bg-blue-500 p-4"
+                >
+                  <Text className="font-semibold-poppins text-white">
+                    Add Activity
+                  </Text>
+                </TouchableOpacity>
+              )}
             </ScrollView>
           </>
         );

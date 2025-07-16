@@ -264,6 +264,7 @@ export default function Home() {
         />
         <DailyActivityModal
           ref={dailyActivityModal.ref}
+          // totalTodayActivities={totalTodayActivities}
           onAddActivity={(date) =>
             activityCompleteModal.present({
               type: 'custom_activity',

@@ -25,6 +25,7 @@ import { DATE_FORMAT } from '@/constants/date-format';
 import { DEVICE_TYPE } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
+import { checkIsToday } from '@/core/utilities/date-time-helpers';
 import { formatDate } from '@/core/utilities/format-date';
 
 const Activity = () => {
@@ -46,16 +47,18 @@ const Activity = () => {
     currentMonthNumber,
     startOfWeek,
     endOfWeek,
+    currentDay,
   } = useWeekNavigation();
 
   const activityCompleteModal = useModal();
   const activityLogSuccessModal = useModal();
+
   const {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
   } = useCreateActivityLog({ onSuccess: activityLogSuccessModal.present });
   const [currentActiveDay, setCurrentActiveDay] = useState('');
-  // const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
+  // const today = getCurrentDay('YYYY-MM-DD', language);
 
   const { isRefetching, onRefetch } = useDelayedRefetch(() => {});
   const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
@@ -63,6 +66,8 @@ const Activity = () => {
     endDate: endOfWeek,
     language,
   });
+
+  // const totalTodayActivities = currentWeekActivityLog?.[today]?.length;
   // State to hold the actual height of the WeekBlock header.
   const [headerHeight, setHeaderHeight] = useState(0);
   // Use the custom hook, passing the dynamically determined headerHeight.
@@ -124,21 +129,23 @@ const Activity = () => {
           <Text className="font-bold-poppins text-xl text-[#3195FD]">
             {formatDate(item.date, DATE_FORMAT.weekDayMonth, language)}
           </Text>
-
-          <TouchableOpacity
-            onPress={() => {
-              setCurrentActiveDay(
-                formatDate(item.date, 'YYYY-MM-DD', language)
-              );
-              activityCompleteModal.present({ type: 'custom_activity' });
-            }}
-            className="flex-row items-center rounded-full bg-[#3195FD]/10 px-3 py-1"
-          >
-            <Text className="font-semibold-poppins text-lg text-white">+</Text>
-            <Text className="ml-1 font-semibold-poppins text-sm text-white">
-              Add
-            </Text>
-          </TouchableOpacity>
+          {checkIsToday(item.date, language) && (
+            <TouchableOpacity
+              onPress={() => {
+                setCurrentActiveDay(
+                  formatDate(item.date, 'YYYY-MM-DD', language)
+                );
+                activityCompleteModal.present({ type: 'custom_activity' });
+              }}
+              className="flex-row items-center rounded-full bg-[#4E52FB] px-3 py-1 dark:bg-[#4E52FB]"
+            >
+              <Text className="font-medium-poppins text-xl text-white">+</Text>
+              {/* <PlusIcon /> */}
+              <Text className="ml-2 font-semibold-poppins text-sm text-white">
+                Add Activity
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         {!item.records || item.records.length === 0 ? (
