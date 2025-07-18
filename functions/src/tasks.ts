@@ -10,13 +10,18 @@ interface ICreateTaskRequestData {
   title: string; // e.g., "Energy Boost Challenge"
   durationMinutes: number; // e.g., 10
   language: string;
+  xpReward: number;
+  gemsReward: number;
+  description: string;
 }
 
 interface AiTaskDocument {
   createdAt: admin.firestore.FieldValue;
   expiresAt: admin.firestore.Timestamp;
   trigger: string;
-  streakPoints: number;
+  gemsReward: number;
+  xpReward: number;
+  description: string;
   title: string;
   durationMinutes: number;
   status: 'active' | 'completed' | 'skipped' | 'expired';
@@ -46,11 +51,13 @@ const createAiTasksHandler = async (
       !data.trigger ||
       !data.title ||
       !data.language ||
-      data.durationMinutes == null
+      data.durationMinutes == null ||
+      !data.xpReward ||
+      !data.gemsReward
     ) {
       throwHttpsError(
         'invalid-argument',
-        'Missing required fields: trigger, title, language, or durationMinutes.',
+        'Missing required fields: trigger, title, language,xpReward, gemsReward or durationMinutes.',
       );
     }
 
@@ -66,8 +73,10 @@ const createAiTasksHandler = async (
       expiresAt: admin.firestore.Timestamp.fromDate(expiryTime),
       trigger: data.trigger,
       title: data.title,
-      streakPoints: 150,
       durationMinutes: data.durationMinutes,
+      description: data.description || '',
+      gemsReward: data.gemsReward,
+      xpReward: data.xpReward,
       status: 'active', // A new task always starts as active
     };
 
@@ -122,7 +131,9 @@ interface AiTaskResponse {
   expiresAt: string; // ISO string
   trigger: string;
   title: string;
-  streakPoints: number;
+  xpReward: number;
+  gemsReward: number;
+  description: string;
   durationMinutes: number;
   status: 'active' | 'completed' | 'skipped' | 'expired';
 }
@@ -190,7 +201,9 @@ const getAiTasksForDay = async (
         title: docData.title,
         durationMinutes: docData.durationMinutes,
         status: docData.status,
-        streakPoints: docData.streakPoints,
+        gemsReward: docData.gemsReward,
+        xpReward: docData.xpReward,
+        description: docData.description,
       };
     });
 

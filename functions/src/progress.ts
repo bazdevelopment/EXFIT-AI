@@ -132,8 +132,8 @@ const getProgressAnalyticsHandler = async (
 
     const dateString = format(logDateInUserTz, 'yyyy-MM-dd');
     const xpEarned = log.xpEarned || 0;
-    const duration = log.details?.durationMinutes || 0;
-    const activityType = log.details?.activityName || 'unknown';
+    const duration = log.durationMinutes || 0;
+    const activityType = log.activityName || 'unknown';
 
     kpis.totalActivities++;
 

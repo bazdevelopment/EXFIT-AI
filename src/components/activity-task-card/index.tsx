@@ -6,7 +6,9 @@ import { TouchableOpacity, View } from 'react-native';
 import { type ICreateTaskRequestData } from '@/api/ai-tasks/ai-tasks.types';
 import { useSelectedLanguage } from '@/core';
 
+import { type IExcuseBusterTask } from '../chat-bubble-excuse-buster/chat-bubble-excuse-buster.interface';
 import { Text } from '../ui';
+import { FlashIcon, GemIcon } from '../ui/assets/icons';
 
 // --- Compact Activity Task Card ---
 const ActivityTaskCard = ({
@@ -16,7 +18,7 @@ const ActivityTaskCard = ({
   dayLabelTaskCard,
   containerClassName,
 }: {
-  task: ICreateTaskRequestData;
+  task: IExcuseBusterTask;
   dayLabelTaskCard: string;
   currentStreaks: number;
   containerClassName: string;
@@ -66,14 +68,22 @@ const ActivityTaskCard = ({
                   </Text>
                 </View>
               )}
-            </View>
 
-            {/* Right Column: Icon */}
-            {/* <View className="items-center">
-              <View className="rounded-2xl border border-white/10 bg-gradient-to-br from-blue-500/20 to-purple-600/20 p-3 shadow-xl backdrop-blur-md">
-                <Feather name="play-circle" size={28} color="#E2E8F0" />
+              <View className="mt-1 flex-row gap-4">
+                <View className="flex-row items-center gap-2">
+                  <GemIcon width={20} height={20} />
+                  <Text className="font-medium-poppins text-sm text-white dark:text-white">
+                    {task.rewards.gems}
+                  </Text>
+                </View>
+                <View className="flex-row items-center gap-2">
+                  <FlashIcon width={20} height={20} />
+                  <Text className="font-medium-poppins text-sm text-white dark:text-white">
+                    {task.rewards.xp} XP
+                  </Text>
+                </View>
               </View>
-            </View> */}
+            </View>
           </View>
 
           {/* Action Button */}

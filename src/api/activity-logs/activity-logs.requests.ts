@@ -5,6 +5,8 @@ import {
   type ICreateLogRequestData,
   type ICreateLogResponseData,
   type IRequestCalendarActivity,
+  type IUpdateLogRequestData,
+  type IUpdateLogResponseData,
 } from './activity-logs.types';
 
 /** Crete activity log */
@@ -32,6 +34,21 @@ export const getCalendarActivity = async (
       'getCalendarActivityLog'
     )(payload);
     return data as CalendarStatusMap;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/** Get calendar activity log */
+export const updateActivityLog = async (
+  payload: IUpdateLogRequestData
+): Promise<IUpdateLogResponseData> => {
+  try {
+    const { data } =
+      await firebaseCloudFunctionsInstance.httpsCallable('updateActivityLog')(
+        payload
+      );
+    return data as IUpdateLogResponseData;
   } catch (error) {
     throw error;
   }

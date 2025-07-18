@@ -68,6 +68,10 @@ export const getCalendarActivityLog = usCentralFunctions.https.onCall(
   activityLogsFunctions.getCalendarActivityLogHandler,
 );
 
+export const updateActivityLog = usCentralFunctions.https.onCall(
+  activityLogsFunctions.updateActivityLogHandler,
+);
+
 /** scan image collection cloud functions  */
 export const analyzeScanImageConversation = usCentralFunctions.https.onRequest(
   scanImageFunctions.analyzeScanImageConversationHandler,

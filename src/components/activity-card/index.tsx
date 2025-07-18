@@ -5,7 +5,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { Text } from '../ui';
 import { FlashIcon, GemIcon } from '../ui/assets/icons';
 
-interface ActivityCardProps {
+export interface ActivityCardProps {
   title: string;
   aiSuggestion: string;
   outcome: string;
@@ -17,9 +17,11 @@ interface ActivityCardProps {
 
 const statusStyles = {
   attended: 'bg-green-400',
+  completed: 'bg-green-400',
   skipped: 'bg-red-500',
   challenge: 'bg-gray-800',
   inactive: 'border-2 border-dashed border-gray-500',
+  active: 'bg-yellow-300',
   empty: '', // No special style for empty
 };
 
