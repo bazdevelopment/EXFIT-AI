@@ -11,11 +11,8 @@ import {
 import {
   useCreateActivityLog,
   useGetCalendarActivityLog,
+  useUpdateActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
-import {
-  useGetAiTasks,
-  useUpdateAiTaskStatus,
-} from '@/api/ai-tasks/ai-tasks.hooks';
 import { useFetchUserNotifications } from '@/api/push-notifications/push-notifications.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
@@ -89,6 +86,8 @@ export default function Home() {
     onSuccess: activityLogSuccessModal.present,
   });
 
+  const { mutateAsync: onUpdateActivityLog } = useUpdateActivityLog();
+
   const { data: currentWeekActivityLog, refetch: refetchActivityLog } =
     useGetCalendarActivityLog({
       startDate: startOfWeek,
@@ -96,10 +95,11 @@ export default function Home() {
       language,
     });
 
-  const { data: todayActiveTasks } = useGetAiTasks(currentActiveDay);
+  console.log('currentActiveDay', currentActiveDay);
+  const todayActiveTasks = currentWeekActivityLog?.[currentActiveDay]?.filter(
+    (task) => task.type === 'custom_ai_task'
+  );
 
-  const { mutate: onUpdateAiTaskStatus } =
-    useUpdateAiTaskStatus(currentActiveDay);
   const isDailyCheckInDone = !!currentWeekActivityLog?.[currentActiveDay];
 
   const { isRefetching, onRefetch } = useDelayedRefetch(() => {
@@ -107,6 +107,7 @@ export default function Home() {
     refetchUserInfo();
     refetchUserNotifications();
   });
+
   return (
     <ScreenWrapper>
       <View
@@ -210,12 +211,20 @@ export default function Home() {
           {!!todayActiveTasks?.length && (
             <TaskListOverview
               tasks={todayActiveTasks}
-              onCompleteTask={(taskId) =>
-                onUpdateAiTaskStatus({ language, status: 'completed', taskId })
+              onCompleteTask={(activityLogId) =>
+                onUpdateActivityLog({
+                  language,
+                  logId: activityLogId,
+                  fieldsToUpdate: { status: 'completed' },
+                })
               }
-              onSkipTask={(taskId) =>
-                onUpdateAiTaskStatus({ language, status: 'skipped', taskId })
-              }
+              onSkipTask={(activityLogId) => {
+                onUpdateActivityLog({
+                  language,
+                  logId: activityLogId,
+                  fieldsToUpdate: { status: 'skipped' },
+                });
+              }}
               additionalClassName="bg-black mt-2 mx-2 py-4 rounded-xl"
             />
           )}
@@ -235,10 +244,8 @@ export default function Home() {
               timezone: timeZone as string,
               date,
               type,
-              details: {
-                durationMinutes,
-                activityName,
-              },
+              durationMinutes,
+              activityName,
             }).then(() => {
               activityCompleteModal.dismiss();
             })
@@ -254,9 +261,7 @@ export default function Home() {
               timezone: timeZone as string,
               language,
               type: 'excuse_logged_daily_checkin',
-              details: {
-                excuseReason: skipReason ?? '',
-              },
+              excuseReason: skipReason ?? '',
             }).then(() => {
               activitySkippedModal.dismiss();
             })

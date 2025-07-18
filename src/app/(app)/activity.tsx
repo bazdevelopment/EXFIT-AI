@@ -109,6 +109,8 @@ const Activity = () => {
     attended: 'Active',
     skipped: 'Skipped',
     inactive: 'Inactive',
+    completed: 'Completed Task',
+    active: 'Active Task',
   };
 
   // Prepare flat data for FlashList
@@ -162,9 +164,7 @@ const Activity = () => {
                   key={`${item.date}-${index}`} // Unique key
                   title={cardTitle[record.status]}
                   status={record.status}
-                  outcome={
-                    record.details.excuseReason || record.details.activityName
-                  }
+                  outcome={record.excuseReason || record.activityName}
                   gemsEarned={record.gemsEarned} // Dynamic value
                   xpEarned={record.xpEarned} // Dynamic value
                 />
@@ -258,10 +258,8 @@ const Activity = () => {
             language,
             date: currentActiveDay,
             type,
-            details: {
-              durationMinutes,
-              activityName,
-            },
+            durationMinutes,
+            activityName,
           }).then(() => {
             activityCompleteModal.dismiss();
           })

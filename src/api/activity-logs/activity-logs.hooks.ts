@@ -7,26 +7,42 @@ import { queryClient } from '../common';
 import {
   createActivityLog,
   getCalendarActivity,
+  updateActivityLog,
 } from './activity-logs.requests';
 import {
   type CalendarStatusMap,
   type ICreateLogRequestData,
   type ICreateLogResponseData,
   type IRequestCalendarActivity,
+  type IUpdateLogRequestData,
+  type IUpdateLogResponseData,
 } from './activity-logs.types';
 
 export const useCreateActivityLog = ({ onSuccess }) =>
   createMutation<ICreateLogResponseData, ICreateLogRequestData, AxiosError>({
     mutationFn: (variables) => createActivityLog(variables),
-    onSuccess: (data) => {
-      // Toast.success(data.message || 'Activity created successfully');
+    onSuccess: () => {
       onSuccess && onSuccess();
       queryClient.invalidateQueries({
         queryKey: ['activity-logs'],
       });
     },
-    onError: (error) => {
+    onError: () => {
       Toast.error('Error creating activity log');
+    },
+  })();
+
+export const useUpdateActivityLog = () =>
+  createMutation<IUpdateLogResponseData, IUpdateLogRequestData, AxiosError>({
+    mutationFn: (variables) => updateActivityLog(variables),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['activity-logs'],
+      });
+      queryClient.invalidateQueries({ queryKey: ['user-info'] });
+    },
+    onError: () => {
+      Toast.error('Error updating activity log');
     },
   })();
 

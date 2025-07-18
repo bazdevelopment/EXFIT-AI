@@ -20,7 +20,10 @@ export interface ICreateTaskRequestData {
   trigger: string; // e.g., "excuse_buster_chat"
   title: string; // e.g., "Energy Boost Challenge"
   durationMinutes: number; // e.g., 10
+  xpReward: number;
+  gemsReward: number;
   language: string;
+  description: string;
 }
 
 export interface ITaskUpdateRequestData {

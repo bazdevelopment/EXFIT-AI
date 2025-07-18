@@ -22,13 +22,19 @@ interface CreateLogRequestData {
     | 'yoga'
     | 'daily_checkin'
     | 'custom_activity'
-    | 'excuse_logged_daily_checkin';
-  details: {
-    durationMinutes?: number;
-    excuseReason?: string;
-    overcome?: boolean;
-    // ... any other details from the client
-  };
+    | 'excuse_logged_daily_checkin'
+    | 'custom_ai_task';
+
+  durationMinutes?: number;
+  excuseReason?: string;
+  overcome: boolean;
+  xpReward: number;
+  gemsReward: number;
+  activityName?: string; // For custom activities or AI tasks
+  description?: string;
+  status?: 'active' | 'completed' | 'attended' | 'skipped'; // For AI tasks, to indicate if it was completed or not
+  // ... any other details from the client
+
   timezone: string;
   language: string;
   linkedAiTaskId?: string;
@@ -43,11 +49,14 @@ interface ActivityLogDocument {
   date: admin.firestore.Timestamp;
   createdAt: admin.firestore.FieldValue;
   type: CreateLogRequestData['type'];
-  details: CreateLogRequestData['details'];
-  status: 'attended' | 'skipped';
+  status: 'attended' | 'skipped' | 'active' | 'completed';
   xpEarned: number; // Replaces stakesEarned
   gemsEarned: number; // New currency
-  linkedAiTaskId?: string;
+  overcome: boolean;
+  durationMinutes: number;
+  activityName: string;
+  description: string;
+  excuseReason: string;
 }
 
 // eslint-disable-next-line valid-jsdoc
@@ -72,7 +81,7 @@ const createActivityLogHandler = async (
   const userId = context.auth.uid;
   functions.logger.info(`Creating log for user: ${userId}`, { data });
 
-  if (!data.type || !data.details || !data.timezone || !data.date) {
+  if (!data.type || !data.timezone || !data.date) {
     throwHttpsError(
       'invalid-argument',
       "The 'type', 'details', 'date' and 'timezone' fields are required.",
@@ -99,14 +108,10 @@ const createActivityLogHandler = async (
     throwHttpsError('invalid-argument', 'An invalid timezone was provided.');
   }
 
-  // An excuse log is a special case and doesn't award points, so we handle it separately.
-  if (data.type === 'excuse_logged_daily_checkin') {
-    return handleExcuseLog(userId, data, userLocalDayTimestamp);
-  }
-
   // 2. --- CORE TIMEZONE & REWARD LOGIC ---
   let xpAwarded = 0;
   let gemsAwarded = 0;
+  let status: 'attended' | 'skipped' | 'active' | 'completed';
 
   // Define rewards based on activity type
   switch (data.type) {
@@ -114,10 +119,23 @@ const createActivityLogHandler = async (
     case 'custom_activity':
       xpAwarded = 30;
       gemsAwarded = 10;
+      status = 'attended';
       break;
     case 'daily_checkin':
       xpAwarded = 10;
       gemsAwarded = 2;
+      status = 'attended';
+      break;
+
+    case 'excuse_logged_daily_checkin':
+      xpAwarded = 0;
+      gemsAwarded = 0;
+      status = 'skipped';
+      break;
+    case 'custom_ai_task':
+      xpAwarded = 0; // update the xp award only when the task is completed
+      gemsAwarded = 0; // update the gems award only when the task is completed
+      status = data.status as any;
       break;
     default:
       throwHttpsError('invalid-argument', `Unsupported log type: ${data.type}`);
@@ -167,10 +185,15 @@ const createActivityLogHandler = async (
         date: userLocalDayTimestamp,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         type: data.type,
-        details: data.details,
-        status: 'attended',
-        xpEarned: xpAwarded,
-        gemsEarned: gemsAwarded,
+        overcome: data.type === 'excuse_logged_daily_checkin' ? false : true,
+        status,
+        durationMinutes: data.durationMinutes || 0,
+        activityName: data.activityName || '',
+        description: data.description || '',
+        excuseReason: data.excuseReason || '',
+        xpEarned: data.type === 'custom_ai_task' ? data.xpReward : xpAwarded,
+        gemsEarned:
+          data.type === 'custom_ai_task' ? data.gemsReward : gemsAwarded,
       };
       const logDocRef = userDocRef.collection('activityLogs').doc();
       transaction.set(logDocRef, finalLog);
@@ -194,46 +217,6 @@ const createActivityLogHandler = async (
       'Failed to save your activity log. Please try again.',
     );
   }
-};
-
-/**
- * A helper function to handle the specific case of logging an excuse.
- * This does not award points and has a simpler logic.
- *
- * @param {string} userId - The ID of the user logging the excuse.
- * @param {CreateLogRequestData} data - The data payload for the excuse log.
- * @param {string} userLocalDate - The local date string representing the user's day.
- */
-const handleExcuseLog = async (
-  userId: string,
-  data: CreateLogRequestData,
-  userLocalDate: admin.firestore.Timestamp,
-) => {
-  // ... (This function would contain the logic for when data.type === 'excuse_logged_daily_checkin')
-  // For simplicity, we'll assume it just writes the log without a transaction.
-  const excuseLog = {
-    date: userLocalDate, // Excuses are logged instantly
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    type: 'excuse_logged_daily_checkin',
-    details: { ...data.details, overcome: false },
-    status: 'skipped',
-    xpEarned: 0,
-    gemsEarned: 0,
-  };
-  const docRef = await db
-    .collection('users')
-    .doc(userId)
-    .collection('activityLogs')
-    .add(excuseLog);
-
-  // Return a neutral response for an excuse
-  return {
-    xpEarned: 0,
-    gemsEarned: 0,
-    newStreak: 0,
-    logId: docRef.id,
-    message: '',
-  };
 };
 
 /**
@@ -401,4 +384,145 @@ const getCalendarActivityLogHandler = async (
     }
   }
 };
-export { createActivityLogHandler, getCalendarActivityLogHandler };
+
+// --- Type Definitions ---
+
+// This now reflects the flattened structure of the update payload.
+interface UpdateLogRequestData {
+  logId: string; // The ID of the document to update
+  fieldsToUpdate: {
+    status?: 'completed' | 'skipped' | 'active' | 'attended';
+    activityName?: string;
+    durationMinutes?: number;
+  };
+  language: string;
+}
+
+/**
+ * A Callable Cloud Function to update an existing activity log with a flattened data structure.
+ * It uses a whitelist to ensure only safe fields can be modified.
+ *
+ * @param {UpdateLogRequestData} data - The client-sent data, including logId and the update payload.
+ * @param {functions.https.CallableContext} context - The call's context, including authentication.
+ */
+const updateActivityLogHandler = async (
+  data: UpdateLogRequestData,
+  context: functions.https.CallableContext,
+) => {
+  const t = getTranslation(data.language);
+
+  // 1. --- AUTHENTICATION & VALIDATION ---
+  if (!context.auth) {
+    throwHttpsError('unauthenticated', t.common.notAuthorized);
+  }
+  const userId = context.auth.uid;
+
+  if (!data.logId || !data.fieldsToUpdate) {
+    throwHttpsError(
+      'invalid-argument',
+      "A 'logId' and 'fieldsToUpdate' object are required.",
+    );
+  }
+
+  // 2. --- PREPARE REFERENCES ---
+  const userDocRef = db.collection('users').doc(userId);
+  const logDocRef = userDocRef.collection('activityLogs').doc(data.logId);
+
+  // 3. --- ATOMIC TRANSACTION ---
+  try {
+    await db.runTransaction(async (transaction) => {
+      // --- a. Read the activity log document ---
+      const logDoc = await transaction.get(logDocRef);
+      if (!logDoc.exists) {
+        throwHttpsError(
+          'not-found',
+          'The specified activity log was not found.',
+        );
+      }
+      const logData = logDoc.data();
+
+      // --- b. Sanitize the update payload (as before) ---
+      const allowedFields = new Set([
+        'status',
+        'activityName',
+        'durationMinutes',
+      ]);
+      const sanitizedUpdatePayload: { [key: string]: any } = {};
+      for (const [key, value] of Object.entries(data.fieldsToUpdate)) {
+        if (allowedFields.has(key)) {
+          sanitizedUpdatePayload[key] = value;
+        }
+      }
+      if (Object.keys(sanitizedUpdatePayload).length === 0) {
+        throwHttpsError(
+          'invalid-argument',
+          'No valid fields were provided for update.',
+        );
+      }
+
+      console.log('logData', logData);
+
+      // --- c. CORE LOGIC: Grant pre-defined rewards on completion ---
+
+      // Check ALL conditions:
+      // 1. Is the status being updated to 'completed'?
+      // 2. Was the log's *previous* status NOT 'completed'? (Prevents re-awarding)
+      // 3. Is the log's type 'custom_ai_task'?
+      if (
+        sanitizedUpdatePayload.status === 'completed' &&
+        logData?.status !== 'completed' &&
+        logData?.type === 'custom_ai_task'
+      ) {
+        // Get the reward values that are already on the document.
+        const xpToAward = logData.xpEarned || 0;
+        const gemsToAward = logData.gemsEarned || 0;
+
+        functions.logger.info(
+          `User ${userId} completed AI task ${data.logId}. Awarding ${xpToAward} XP and ${gemsToAward} Gems.`,
+        );
+
+        // If there are rewards to grant, update the user's main gamification stats.
+        if (xpToAward > 0 || gemsToAward > 0) {
+          const userGamificationUpdates = {
+            'gamification.xpTotal':
+              admin.firestore.FieldValue.increment(xpToAward),
+            'gamification.gemsBalance':
+              admin.firestore.FieldValue.increment(gemsToAward),
+          };
+          transaction.update(userDocRef, userGamificationUpdates);
+        }
+      }
+
+      // --- d. Write the update to the activity log ---
+      // This happens regardless of whether rewards were granted.
+      transaction.update(logDocRef, sanitizedUpdatePayload);
+    });
+
+    // 4. --- RETURN SUCCESS ---
+    functions.logger.info(
+      `Successfully updated log ${data.logId} for user ${userId}.`,
+    );
+    return {
+      success: true,
+      message: 'Your activity has been successfully updated!',
+    };
+  } catch (error) {
+    if (error instanceof functions.https.HttpsError) {
+      throw error;
+    }
+    functions.logger.error(
+      `Error in updateActivityLog transaction for user ${userId}:`,
+      error,
+    );
+    throwHttpsError(
+      'internal',
+      'Failed to update your activity. Please try again.',
+    );
+  }
+};
+
+export {
+  createActivityLogHandler,
+  getCalendarActivityLogHandler,
+  updateActivityLogHandler,
+};

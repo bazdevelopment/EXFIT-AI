@@ -14,7 +14,7 @@ import {
 import { type MessageType } from 'react-native-flash-message';
 import { Toaster } from 'sonner-native';
 
-import { useCreateAiTask } from '@/api/ai-tasks/ai-tasks.hooks';
+import { useCreateActivityLog } from '@/api/activity-logs/activity-logs.hooks';
 import {
   useExcuseBusterConversation,
   useExcuseBusterConversationHistory,
@@ -24,10 +24,11 @@ import AttachmentPreview from '@/components/attachment-preview';
 import BounceLoader from '@/components/bounce-loader';
 import Branding from '@/components/branding';
 import ChatBubbleExcuseBuster from '@/components/chat-bubble-excuse-buster';
+import { type IExcuseBusterMessage } from '@/components/chat-bubble-excuse-buster/chat-bubble-excuse-buster.interface';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import TypingIndicator from '@/components/typing-indicator';
-import { colors, Text } from '@/components/ui';
+import { colors, Image, Text } from '@/components/ui';
 import { ArrowLeft, SendIcon } from '@/components/ui/assets/icons';
 import { LOADING_MESSAGES_CHATBOT } from '@/constants/loading-messages';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
@@ -46,13 +47,7 @@ const ChatExcuseBuster = () => {
     conversationMode,
     excuse,
   } = useLocalSearchParams();
-  console.log({
-    mediaSource,
-    mimeType,
-    conversationMode,
-    excuse,
-    conversationId,
-  });
+
   const [userMessage, setUserMessage] = useState('');
   const [pendingMessages, setPendingMessages] = useState<MessageType[]>([]);
   const [currentlySpeakingId, setCurrentlySpeakingId] = useState<string | null>(
@@ -79,7 +74,6 @@ const ChatExcuseBuster = () => {
   const { data: userInfo } = useUser(language);
   const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
   const dayLabelTaskCard = getCurrentDay('MMM D', language);
-
   const { data: conversation, isLoading } = useExcuseBusterConversationHistory(
     conversationId as string
   );
@@ -88,7 +82,8 @@ const ChatExcuseBuster = () => {
     conversationId as string
   );
 
-  const { mutate: onCreateTask } = useCreateAiTask(currentActiveDay);
+  const { mutateAsync: onCreateActivityLog, isPending: isCreatingTaskPending } =
+    useCreateActivityLog({ onSuccess: () => router.navigate('/(app)') });
 
   const handleSpeak = (messageId: string, text: string) => {
     if (currentlySpeakingId === messageId) {
@@ -108,7 +103,7 @@ const ChatExcuseBuster = () => {
     Keyboard.dismiss();
 
     // Add the message to pending messages
-    const newMessage: MessageType = {
+    const newMessage: IExcuseBusterMessage = {
       role: 'user',
       content: { responseText: userMsg },
       isPending: true,
@@ -264,41 +259,49 @@ const ChatExcuseBuster = () => {
       {DEVICE_TYPE.IOS && (
         <Toaster autoWiggleOnUpdate="toast-change" pauseWhenPageIsHidden />
       )}
+
       <KeyboardAvoidingView
         behavior="padding"
         className="flex-1"
         keyboardVerticalOffset={DEVICE_TYPE.ANDROID ? 40 : 0}
       >
-        <View className="flex-1">
+        <View className="-mt-4 flex-1">
           {/* Header */}
-          <View className="flex-row items-center justify-between px-4 py-3">
-            <Icon
-              size={24}
-              containerStyle="rounded-2xl bg-charcoal-800 p-3"
-              onPress={() => {
-                stopSpeaking();
-                router.back();
-              }}
-              icon={<ArrowLeft color={colors.white} />}
-            />
 
-            <View className="item-center mr-6 justify-center">
-              <Text className="ml-2 font-bold-poppins text-2xl text-white">
-                Aria
-              </Text>
-              {isSending ? (
-                <Text className="ml-2 text-xs text-white">
-                  {translate('general.typing')}
+          <View className="flex-row items-center px-4 py-3">
+            <Icon
+              icon={<ArrowLeft />}
+              iconContainerStyle="items-center p-2.5 justify-center rounded-full border-2 border-charcoal-800"
+              size={24}
+              color={colors.white}
+              onPress={router.back}
+            />
+            <View className="ml-3 flex-row items-center">
+              <View className="mr-3 items-center justify-center rounded-full">
+                <Image
+                  source={require('../components/ui/assets/images/excuse-buster-robot.jpg')}
+                  className="size-[40] rounded-full"
+                />
+              </View>
+              <View>
+                <Text className="font-medium-poppins text-lg text-white">
+                  Excuse Buster
                 </Text>
-              ) : (
                 <View className="flex-row items-center gap-2">
                   <View className="size-2 rounded-full bg-success-400" />
-                  <Text className="text-xs text-white">
-                    {translate('general.online')}
-                  </Text>
+                  {isSending ? (
+                    <Text className="text-xs text-white">
+                      {translate('general.typing')}
+                    </Text>
+                  ) : (
+                    <Text className="font-medium-poppins text-xs text-white">
+                      Online
+                    </Text>
+                  )}
                 </View>
-              )}
+              </View>
             </View>
+
             <View>
               {!!mediaSource && (
                 <AttachmentPreview
@@ -315,10 +318,10 @@ const ChatExcuseBuster = () => {
           <FlashList
             ref={flashListRef}
             data={messages}
-            extraData={isSpeaking}
+            extraData={isSpeaking || isCreatingTaskPending}
             keyExtractor={(item, index) => index.toString()}
             contentContainerStyle={{
-              padding: 16,
+              paddingHorizontal: 16,
               paddingBottom: 8,
             }}
             renderItem={({ item, index }) => (
@@ -329,8 +332,11 @@ const ChatExcuseBuster = () => {
                 speak={(text) => handleSpeak(index.toString(), text)}
                 isSpeaking={currentlySpeakingId === index.toString()}
                 onSendMessage={handleSendMessage}
-                onCreateTask={onCreateTask}
+                onCreateTask={onCreateActivityLog}
+                currentActiveDay={currentActiveDay}
+                isCreatingTaskPending={isCreatingTaskPending}
                 dayLabelTaskCard={dayLabelTaskCard}
+                userGender={userInfo.onboarding.gender}
               />
             )}
             estimatedItemSize={100}
@@ -338,7 +344,7 @@ const ChatExcuseBuster = () => {
           />
 
           {/* Input Area */}
-          <View className="w-full flex-row items-center justify-between gap-4 bg-black px-4 pb-2 pt-4 dark:border-blackEerie dark:bg-blackEerie">
+          <View className="w-full flex-row items-center justify-between gap-4 bg-black px-4 pb-2 pt-4 dark:border-blackEerie dark:bg-black">
             <View className="w-[85%] rounded-full border border-white bg-black px-4 py-1">
               <TextInput
                 className="ml-4 pb-4 pt-3 text-base text-white"

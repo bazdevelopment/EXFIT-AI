@@ -6,13 +6,31 @@ export interface ICreateLogRequestData {
     | 'daily_checkin'
     | 'excuse_logged'
     | 'custom_activity'
-    | 'excuse_logged_daily_checkin';
-  details: {
-    durationMinutes?: number;
-    excuseReason?: string;
+    | 'excuse_logged_daily_checkin'
+    | 'custom_ai_task';
+  durationMinutes?: number;
+  excuseReason?: string;
+  activityName?: string;
+  description?: string; // Optional description for custom activities or AI tasks
+  overcome?: boolean;
+  xpReward?: number; // Optional XP reward for the activity
+  gemsReward?: number; // Optional Gems reward for the activity
+  status?: 'active' | 'completed'; // For AI tasks, to indicate if it was completed or not
+}
+
+export interface IUpdateLogRequestData {
+  language: string;
+  logId: string;
+  fieldsToUpdate: {
+    status?: 'completed' | 'skipped' | 'active' | 'attended';
     activityName?: string;
+    durationMinutes?: number;
   };
-  linkedAiTaskId?: string | null;
+}
+
+export interface IUpdateLogResponseData {
+  success: boolean;
+  message: string;
 }
 
 export interface ICreateLogResponseData {
@@ -30,22 +48,15 @@ export interface IRequestCalendarActivity {
 }
 
 /**
- * The structure of the 'details' map inside an ActivityLog document.
- */
-interface ActivityLogDetails {
-  durationMinutes?: number;
-  excuseReason?: string;
-  overcome?: boolean;
-}
-
-/**
  * The structure of a document in the 'activityLogs' subcollection.
  */
 export interface IActivityLog {
   date: string;
   type: 'daily_checkin' | 'excuse_logged' | 'excuse_logged_daily_checkin';
   status: 'attended' | 'skipped';
-  details: ActivityLogDetails;
+  durationMinutes?: number;
+  excuseReason?: string;
+  overcome?: boolean;
 }
 
 /**

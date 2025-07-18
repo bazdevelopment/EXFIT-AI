@@ -17,7 +17,7 @@ import colors from './colors';
 
 const button = tv({
   slots: {
-    container: 'my-2 flex flex-row items-center justify-center rounded-md px-4',
+    container: 'my-2 flex-row items-center justify-center rounded-md px-4',
     label: 'font-semibold-poppins text-base',
     indicator: 'h-6 text-white dark:text-white',
   },
