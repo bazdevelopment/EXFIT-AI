@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import React from 'react';
 import { View } from 'react-native';
 
@@ -33,11 +32,9 @@ const WeekBlock = ({
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
 
-  const lastResetStreakDay =
-    userInfo?.gamification.streakResetDates?.[
-      userInfo?.gamification?.streakResetDates?.length - 1
-    ];
-  const lastResetStreakDate = dayjs(lastResetStreakDay).format('YYYY-MM-DD');
+  const lastResetStreakDates = userInfo?.gamification.streakResetDates;
+  const streakFreezeUsageDates = userInfo?.gamification?.streakFreezeUsageDates;
+  const streakRepairDates = userInfo?.gamification?.streakRepairDates;
 
   const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
     startDate: startOfWeek,
@@ -73,12 +70,14 @@ const WeekBlock = ({
       <CalendarMiniView
         containerClassName="px-4 mb-[-10px] top-[-25px] z-[-1]"
         currentWeekActivityLog={currentWeekActivityLog}
-        lastResetStreakDate={lastResetStreakDate}
         segmentedDays={segmentedDays}
         currentMonth={currentMonth}
         currentYear={currentYear}
         initialDayFocused={initialDayFocused}
         currentMonthNumber={currentMonthNumber}
+        lastResetStreakDates={lastResetStreakDates}
+        streakFreezeUsageDates={streakFreezeUsageDates}
+        streakRepairDates={streakRepairDates}
         onDayPress={onDayPress}
         weekOffset={weekOffset}
         showYear={false}

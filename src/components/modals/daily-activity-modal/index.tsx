@@ -2,9 +2,9 @@
 import { type BottomSheetModal } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import React, { useMemo } from 'react';
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
-import { colors, Modal, Text } from '@/components/ui';
+import { Button, colors, Image, Modal, Text } from '@/components/ui';
 import { FlashIcon, GemIcon, StreakFreeze } from '@/components/ui/assets/icons';
 import { useSelectedLanguage } from '@/core';
 import { checkIsToday } from '@/core/utilities/date-time-helpers';
@@ -13,14 +13,14 @@ import dayjs from '../../../lib/dayjs';
 
 interface DailyActivityModalProps {
   onAddActivity: (date: string) => void;
-  totalTodayActivities: number;
+  onRepairStreak: () => void;
+  isRepairStreakPending: boolean;
 }
 
 export const DailyActivityModal = React.forwardRef<
   BottomSheetModal,
   DailyActivityModalProps
->(({ onAddActivity, totalTodayActivities }, ref) => {
-  // const height = totalTodayActivities >= 2 ? 550 : 400;
+>(({ onAddActivity, onRepairStreak, isRepairStreakPending }, ref) => {
   const height = 550;
   const snapPoints = useMemo(() => [height, '80%'], [height]);
   const { language } = useSelectedLanguage();
@@ -85,7 +85,7 @@ export const DailyActivityModal = React.forwardRef<
 
                 {/* Streak Reset Warning */}
                 {data?.isStreakReset && (
-                  <View className="mb-4 w-full rounded-2xl border border-red-500/50 bg-red-500/20 p-4">
+                  <View className="mb-4 w-full rounded-2xl border border-blue-500/50 bg-blue-500/20 p-4">
                     <View className="mb-2 flex-row items-center justify-center">
                       <StreakFreeze width={40} height={40} />
                       <Text className="font-bold-poppins text-lg text-red-300">
@@ -93,8 +93,61 @@ export const DailyActivityModal = React.forwardRef<
                       </Text>
                     </View>
                     <Text className="text-center text-sm text-red-200">
-                      Your streak was reset on this day. Time to build it back
-                      up stronger!
+                      Your streak was reset on this day. Use your Streak Revival
+                      Elixir to keep your streak alive
+                    </Text>
+
+                    {!data.isElixirUsageExpired ? (
+                      <Button
+                        label="Repair Streak"
+                        className="mt-4 w-full rounded-full active:opacity-80"
+                        onPress={onRepairStreak}
+                        textClassName="font-medium-poppins text-base"
+                        loading={isRepairStreakPending}
+                        loadingAnimationColor={colors.black}
+                      />
+                    ) : (
+                      <Text className="mt-4 text-center text-sm text-red-200">
+                        Streak Repair Elixir has expired. You can no longer
+                        repair your streak for this day.
+                      </Text>
+                    )}
+                  </View>
+                )}
+
+                {/* Streak Reset Warning */}
+                {data?.isStreakFreezeUsed && (
+                  <View className="mb-4 w-full rounded-2xl border border-blue-500/50 bg-blue-500/20 p-4">
+                    <View className="mb-2 flex-row items-center justify-center">
+                      <Image
+                        source={require('../../ui/assets/images/shop/streak-freeze-potion.png')}
+                        className="right-1 size-[32]"
+                      />
+                      <Text className="font-bold-poppins text-lg text-red-300">
+                        Streak Freeze Potion Consumed!
+                      </Text>
+                    </View>
+                    <Text className="text-center text-sm text-red-200">
+                      Your Streak Freeze Potion kicked in and protected your
+                      streak. You're still on fire!
+                    </Text>
+                  </View>
+                )}
+
+                {data?.isStreakRepaired && (
+                  <View className="mb-4 w-full rounded-2xl border border-rose-500/50 bg-rose-500/20 p-4">
+                    <View className="mb-2 flex-row items-center justify-center">
+                      <Image
+                        source={require('../../ui/assets/images/shop/streak-revival-elixir.png')}
+                        className="right-1 size-[32]"
+                      />
+                      <Text className="font-bold-poppins text-lg text-red-300">
+                        Streak Repair Elixir Potion Kicked In!
+                      </Text>
+                    </View>
+                    <Text className="text-center text-sm">
+                      You saved your Streak! Your Streak Freeze Potion kicked in
+                      and protected your streak. You're still on fire!
                     </Text>
                   </View>
                 )}
@@ -210,14 +263,22 @@ export const DailyActivityModal = React.forwardRef<
 
               {/* Action Button */}
               {checkIsToday(data.dateKey, language) && (
-                <TouchableOpacity
+                <Button
+                  label="Add Activity"
+                  variant="default"
+                  className="mt-6 h-[52px]  rounded-full border-2 border-primary-900 bg-[#4E52FB] pl-5 active:bg-primary-700 dark:bg-[#4E52FB]"
+                  textClassName="text-base text-center  dark:text-white"
+                  iconPosition="left"
                   onPress={() => onAddActivity(data.dateKey)}
-                  className="mb-8 items-center rounded-xl bg-blue-500 p-4"
-                >
-                  <Text className="font-semibold-poppins text-white">
-                    Add Activity
-                  </Text>
-                </TouchableOpacity>
+                />
+                // <TouchableOpacity
+                //   onPress={() => onAddActivity(data.dateKey)}
+                //   className="mb-8 items-center rounded-xl bg-blue-500 p-4"
+                // >
+                //   <Text className="font-semibold-poppins text-white">
+                //     Add Activity
+                //   </Text>
+                // </TouchableOpacity>
               )}
             </ScrollView>
           </>

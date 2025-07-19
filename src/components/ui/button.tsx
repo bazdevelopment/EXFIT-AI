@@ -107,6 +107,7 @@ interface Props extends ButtonVariants, Omit<PressableProps, 'disabled'> {
   loading?: boolean;
   className?: string;
   textClassName?: string;
+  loadingAnimationColor?: string;
   icon?: ReactElement;
   iconPosition?: 'left' | 'right';
   withGradientText?: boolean;
@@ -128,6 +129,7 @@ export const Button = React.forwardRef<View, Props>(
       className = '',
       icon,
       testID,
+      loadingAnimationColor = colors.white,
       textClassName = '',
       withGradientText = false,
       withGradientBackground = false,
@@ -157,7 +159,7 @@ export const Button = React.forwardRef<View, Props>(
           <ActivityIndicator
             size="small"
             // className={styles.indicator()}
-            color={colors.white}
+            color={loadingAnimationColor}
             testID={testID ? `${testID}-activity-indicator` : undefined}
           />
         ) : (

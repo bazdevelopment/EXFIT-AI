@@ -20,6 +20,7 @@
     "./utilities/ai-models.ts",
     "./utilities/push-notifications-utils.ts",
     "./utilities/timezones.ts",
+    "./utilities/fake-context.ts",
     "dayjs/index.ts"
   ]
 }

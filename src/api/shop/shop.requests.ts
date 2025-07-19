@@ -52,14 +52,27 @@ export const purchaseShopItem = async ({
   quantity: number;
 }): Promise<IPurchaseShopItemResponse> => {
   try {
-    const handleFetchOwnedItems =
+    const handlePurchaseShopItem =
       firebaseCloudFunctionsInstance.httpsCallable('purchaseShopItem');
-    const { data } = await handleFetchOwnedItems({
+    const { data } = await handlePurchaseShopItem({
       itemId,
       quantity,
     });
     console.log('data here after purchase', data);
     return data as IPurchaseShopItemResponse;
+  } catch (error) {
+    console.log('error here', error);
+    throw error;
+  }
+};
+
+export const onStreakRepair = async () => {
+  try {
+    const handleStreakRepair =
+      firebaseCloudFunctionsInstance.httpsCallable('repairStreak');
+    const { data } = await handleStreakRepair();
+    console.log('data from streak repair', data);
+    return data;
   } catch (error) {
     console.log('error here', error);
     throw error;

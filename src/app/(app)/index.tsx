@@ -14,6 +14,7 @@ import {
   useUpdateActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
 import { useFetchUserNotifications } from '@/api/push-notifications/push-notifications.hooks';
+import { useRepairStreak } from '@/api/shop/shop.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
@@ -38,8 +39,6 @@ import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { avatars, type TAvatarGender } from '@/core/utilities/avatars';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 
-import dayjs from '../../lib/dayjs';
-
 // eslint-disable-next-line max-lines-per-function
 export default function Home() {
   const { language } = useSelectedLanguage();
@@ -63,11 +62,13 @@ export default function Home() {
   const [{ timeZone }] = getCalendars();
 
   const currentActiveDay = getCurrentDay('YYYY-MM-DD', language);
-  const lastResetStreakDay =
-    userInfo?.gamification.streakResetDates?.[
-      userInfo?.gamification?.streakResetDates?.length - 1
-    ];
-  const lastResetStreakDate = dayjs(lastResetStreakDay).format('YYYY-MM-DD');
+
+  const lastResetStreakDates = userInfo?.gamification.streakResetDates;
+  const streakFreezeUsageDates = userInfo?.gamification?.streakFreezeUsageDates;
+  const streakRepairDates = userInfo?.gamification?.streakRepairDates;
+  // const lastResetStreakDate = userInfo?.gamification.lostStreakTimestamp
+  //   ? dayjs(userInfo?.gamification.lostStreakTimestamp).format('YYYY-MM-DD')
+  //   : '';
 
   const {
     segmentedDays,
@@ -95,11 +96,11 @@ export default function Home() {
       language,
     });
 
-  console.log('currentActiveDay', currentActiveDay);
   const todayActiveTasks = currentWeekActivityLog?.[currentActiveDay]?.filter(
     (task) => task.type === 'custom_ai_task'
   );
-
+  const { mutate: onRepairStreak, isPending: isRepairStreakPending } =
+    useRepairStreak();
   const isDailyCheckInDone = !!currentWeekActivityLog?.[currentActiveDay];
 
   const { isRefetching, onRefetch } = useDelayedRefetch(() => {
@@ -186,8 +187,10 @@ export default function Home() {
               initialDayFocused={initialDayFocused}
               currentMonthNumber={currentMonthNumber}
               weekOffset={weekOffset}
-              lastResetStreakDate={lastResetStreakDate}
+              lastResetStreakDates={lastResetStreakDates}
               onDayPress={(data) => dailyActivityModal.present(data)}
+              streakFreezeUsageDates={streakFreezeUsageDates}
+              streakRepairDates={streakRepairDates}
             />
           )}
           {!isDailyCheckInDone ? (
@@ -270,6 +273,8 @@ export default function Home() {
         <DailyActivityModal
           ref={dailyActivityModal.ref}
           // totalTodayActivities={totalTodayActivities}
+          isRepairStreakPending={isRepairStreakPending}
+          onRepairStreak={onRepairStreak}
           onAddActivity={(date) =>
             activityCompleteModal.present({
               type: 'custom_activity',
