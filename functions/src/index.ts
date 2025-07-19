@@ -12,6 +12,7 @@ import * as logger from 'firebase-functions/logger';
 import * as functions from 'firebase-functions/v1';
 import moment from 'moment-timezone';
 
+import { fakeContext } from '../utilities/fake-context';
 import * as activityLogsFunctions from './activity-logs';
 import { admin } from './common';
 import * as conversationFunctions from './conversation';
@@ -144,6 +145,9 @@ export const getOwnPurchasedItems = usCentralFunctions.https.onCall(
 export const purchaseShopItem = usCentralFunctions.https.onCall(
   shopItemsFunctions.purchaseShopItemHandler,
 );
+export const repairStreak = usCentralFunctions.https.onCall(
+  shopItemsFunctions.repairStreakHandler,
+);
 
 /**
  * A scheduled function that runs every day shortly after midnight (UTC).
@@ -153,13 +157,14 @@ export const purchaseShopItem = usCentralFunctions.https.onCall(
  * 2. Process all database updates for streaks, freezes, and weekly XP in a single batch.
  */
 export const dailyGamificationUpdate = functions.pubsub
-  .schedule('every day 00:10') // Run at a safe time after midnight
+  .schedule('every day 09:00') // Run at a safe time after midnight (00:10 used before)
   .timeZone('UTC') // Use a consistent global timezone
   .onRun(async () => {
     functions.logger.info('Starting daily gamification update...');
 
     const today = new Date();
     today.setUTCHours(0, 0, 0, 0); // Normalize to the beginning of the day in UTC
+    const todayISOString = today.toISOString();
     const yesterday = new Date(today);
     yesterday.setDate(today.getDate() - 1); // Get the beginning of yesterday
 
@@ -170,19 +175,11 @@ export const dailyGamificationUpdate = functions.pubsub
       return null;
     }
 
-    // Correctly invoke the internal notification function and add its
-    // returned Promise to our array for parallel execution.
-    const fakeContext: functions.https.CallableContext = {
-      auth: { uid: 'some-user-id', token: {} as any }, // simulate auth context
-      rawRequest: {} as any, // if needed
-      instanceIdToken: undefined,
-      app: undefined,
-    };
-
     // --- Phase 1: Identify & Prepare Notifications and Updates ---
 
     // An array to hold all the notification tasks (Promises)
     const notificationPromises = [];
+    // An array to hold all the activity logs tasks (Promises)
     // An array to hold all the database update operations
     const userUpdates: { userId: string; updates: { [key: string]: any } }[] =
       [];
@@ -206,6 +203,20 @@ export const dailyGamificationUpdate = functions.pubsub
       // Always queue the reset of the protection flag for every active user
       updates['gamification.isStreakProtected'] = false;
 
+      // Clear any expired streak repair state from the previous day
+      const repairTimestamp = gamification.lostStreakTimestamp;
+      if (repairTimestamp) {
+        const repairDate = new Date(repairTimestamp); // Convert the ISO string to a Date object
+        const hoursSinceLost =
+          (new Date().getTime() - repairDate.getTime()) / (1000 * 60 * 60);
+        if (hoursSinceLost > 48) {
+          // 48-hour window
+          updates['gamification.lostStreakValue'] =
+            admin.firestore.FieldValue.delete();
+          updates['gamification.lostStreakTimestamp'] =
+            admin.firestore.FieldValue.delete();
+        }
+      }
       // --- Core Streak Logic ---
       // Check if the last activity was before yesterday (i.e., they missed yesterday)
       if (lastActivityDate.getTime() < yesterday.getTime()) {
@@ -219,6 +230,8 @@ export const dailyGamificationUpdate = functions.pubsub
           updates['gamification.streakFreezes'] =
             admin.firestore.FieldValue.increment(-1);
           updates['gamification.isStreakProtected'] = true; // Set flag for UI
+          updates['gamification.streakFreezeUsageDates'] =
+            admin.firestore.FieldValue.arrayUnion(todayISOString);
 
           // Mark this user for streak freeze potion decrement
           freezePotionUpdates.push({ userId, shouldDecrement: true });
@@ -240,8 +253,7 @@ export const dailyGamificationUpdate = functions.pubsub
         } else if (streak > 0) {
           // Only send a "lost" notification if they actually had a streak to lose
           // B. RESET THE STREAK
-          const resetDate = new Date(today);
-          const resetISOString = resetDate.toISOString();
+          const resetISOString = today.toISOString();
           updates['gamification.longestStreak'] =
             gamification.currentStreak > gamification.longestStreak
               ? gamification.currentStreak
@@ -249,6 +261,8 @@ export const dailyGamificationUpdate = functions.pubsub
           updates['gamification.currentStreak'] = 0;
           updates['gamification.streakResetDates'] =
             admin.firestore.FieldValue.arrayUnion(resetISOString);
+          updates['gamification.lostStreakValue'] = streak;
+          updates['gamification.lostStreakTimestamp'] = resetISOString;
 
           // Queue the "Streak Lost" notification
           const title = 'Oh no, you lost your streak! 😢';
@@ -621,14 +635,6 @@ export const streakWarningNotifier = functions.pubsub
         if (freezes > 0) {
           body = `Complete an activity before midnight to save your streak, or your Streak Freeze 🥶 will be used automatically.`;
         }
-        // Correctly invoke the internal notification function and add its
-        // returned Promise to our array for parallel execution.
-        const fakeContext: functions.https.CallableContext = {
-          auth: { uid: 'some-user-id', token: {} as any }, // simulate auth context
-          rawRequest: {} as any, // if needed
-          instanceIdToken: undefined,
-          app: undefined,
-        };
 
         notificationPromises.push(
           pushNotificationsFunctions.sendUserPushNotification(

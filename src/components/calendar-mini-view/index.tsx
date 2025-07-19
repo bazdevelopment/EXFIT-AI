@@ -5,8 +5,9 @@ import { TouchableOpacity, View } from 'react-native';
 
 import { type IActivityLog } from '@/api/activity-logs/activity-logs.types';
 
+import dayjs from '../../lib/dayjs';
 import { type ISegmentedControlOption } from '../segmented-control/segmented-control.interface';
-import { colors, Text } from '../ui';
+import { colors, Image, Text } from '../ui';
 import {
   AttendedCheckMark,
   HeartBreak,
@@ -32,6 +33,9 @@ interface DayData {
   status: DateStatus;
   isFocused?: boolean;
   isStreakReset: boolean;
+  isStreakFreezeUsed: boolean;
+  isStreakRepaired: boolean;
+  isElixirUsageExpired: boolean;
   activities: IActivityLog[];
   dateKey: string;
 }
@@ -55,6 +59,10 @@ interface ICalendarMiniView {
   showSuccessMessage?: boolean;
   weekData?: DayData[];
   layout?: 'horizontal' | 'vertical';
+  streakFreezeUsageDates: string[];
+  lastResetStreakDates: string[];
+  streakRepairDates: string[];
+  isRepairStreakPending: boolean;
 }
 
 // Streak Display Component (Horizontal Layout)
@@ -143,6 +151,8 @@ const DayItem = ({
   isFocused,
   onPress,
   isStreakReset,
+  isStreakFreezeUsed,
+  isStreakRepaired,
   layout = 'vertical',
 }: DayData & {
   onPress?: () => void;
@@ -152,13 +162,37 @@ const DayItem = ({
     switch (status) {
       case 'completed':
       case 'attended':
-        return (
+        return isStreakReset ? (
+          <StreakFreeze width={27} height={27} top={-3} />
+        ) : isStreakFreezeUsed ? (
+          <Image
+            source={require('../ui/assets/images/shop/streak-freeze-potion.png')}
+            className="-top-1.5 size-[27]"
+          />
+        ) : isStreakRepaired ? (
+          <Image
+            source={require('../ui/assets/images/shop/streak-revival-elixir.png')}
+            className="-top-1.5 size-[27]"
+          />
+        ) : (
           <View className="flex items-center justify-center  ">
             <AttendedCheckMark />
           </View>
         );
       case 'skipped':
-        return (
+        return isStreakReset ? (
+          <StreakFreeze width={27} height={27} top={-3} />
+        ) : isStreakFreezeUsed ? (
+          <Image
+            source={require('../ui/assets/images/shop/streak-freeze-potion.png')}
+            className="-top-1.5 size-[27]"
+          />
+        ) : isStreakRepaired ? (
+          <Image
+            source={require('../ui/assets/images/shop/streak-revival-elixir.png')}
+            className="-top-1.5 size-[27]"
+          />
+        ) : (
           <View className="flex  items-center justify-center">
             <HeartBreak fill={colors.danger[400]} />
           </View>
@@ -168,6 +202,16 @@ const DayItem = ({
           <>
             {isStreakReset ? (
               <StreakFreeze width={27} height={27} top={-3} />
+            ) : isStreakFreezeUsed ? (
+              <Image
+                source={require('../ui/assets/images/shop/streak-freeze-potion.png')}
+                className="-top-1.5 size-[27]"
+              />
+            ) : isStreakRepaired ? (
+              <Image
+                source={require('../ui/assets/images/shop/streak-revival-elixir.png')}
+                className="-top-1.5 size-[27]"
+              />
             ) : (
               <View className="flex size-6 items-center justify-center rounded-full border border-dashed border-gray-500" />
             )}
@@ -240,14 +284,34 @@ const DayItem = ({
 };
 
 // Helper function to generate week data from currentWeekActivityLog
-const generateWeekDataFromLog = (
-  currentWeekActivityLog: Record<string, any>,
-  segmentedDays: any,
-  lastResetStreakDate: string,
-  initialDayFocused: ISegmentedControlOption
-) => {
+const generateWeekDataFromLog = ({
+  currentWeekActivityLog,
+  segmentedDays,
+  lastResetStreakDates,
+  initialDayFocused,
+  streakFreezeUsageDates,
+  streakRepairDates,
+}: {
+  currentWeekActivityLog: Record<string, any>;
+  segmentedDays: any;
+  lastResetStreakDates: string[];
+  initialDayFocused: ISegmentedControlOption;
+  streakFreezeUsageDates: string[];
+  streakRepairDates: string[];
+}) => {
+  const lasResetStreakDateFormatted = lastResetStreakDates?.map((date) =>
+    dayjs(date).format('YYYY-MM-DD')
+  );
+
   const weekData: DayData[] = [];
   const dayTitles = segmentedDays.map((day) => day.title);
+
+  const streakRepairDatesFormatted = streakRepairDates?.map((date) =>
+    dayjs(date).format('YYYY-MM-DD')
+  );
+  const streakFreezeUsageDatesFormatted = streakFreezeUsageDates?.map((date) =>
+    dayjs(date).format('YYYY-MM-DD')
+  );
 
   // Get all dates from the log and sort them
   const dates = Object.keys(currentWeekActivityLog).sort();
@@ -256,8 +320,20 @@ const generateWeekDataFromLog = (
     const dayNumber = parseInt(day);
     const dayTitle = dayTitles[index];
     const logData = currentWeekActivityLog[dateKey];
-
-    const isStreakReset = dateKey === lastResetStreakDate;
+    const isStreakReset = lasResetStreakDateFormatted?.includes(dateKey);
+    const isStreakFreezeUsed =
+      streakFreezeUsageDatesFormatted?.includes(dateKey);
+    const isStreakRepaired = streakRepairDatesFormatted?.includes(dateKey);
+    /**map all the streak repair dates  */
+    const isElixirUsageExpirationStatus = lasResetStreakDateFormatted?.map(
+      (resetDate) => {
+        const resetDateTime = dayjs(resetDate);
+        const expiryDateTime = resetDateTime.add(48, 'hours');
+        const now = dayjs();
+        return now.isAfter(expiryDateTime);
+      }
+    );
+    const isElixirUsageExpired = isElixirUsageExpirationStatus?.every(Boolean); //if all the values from the map are true, then the elixir usage is expired
     let status: DateStatus = 'inactive';
     if (logData && Array.isArray(logData) && logData.length > 0) {
       // Check if any activity has "attended" status
@@ -278,6 +354,9 @@ const generateWeekDataFromLog = (
       status,
       isFocused: day === initialDayFocused.subtitle, // You can set this based on current date logic
       isStreakReset,
+      isStreakFreezeUsed,
+      isStreakRepaired,
+      isElixirUsageExpired,
       activities: logData,
       dateKey,
     });
@@ -300,16 +379,21 @@ const CalendarMiniView = ({
   onDayPress,
   showStreak = true,
   currentStreak = 4,
-  lastResetStreakDate,
   layout = 'horizontal',
+  streakFreezeUsageDates,
+  lastResetStreakDates,
+  streakRepairDates,
+  isRepairStreakPending,
 }: ICalendarMiniView) => {
   // Generate week data from currentWeekActivityLog if not provided
-  const generatedWeekData = generateWeekDataFromLog(
+  const generatedWeekData = generateWeekDataFromLog({
     currentWeekActivityLog,
     segmentedDays,
-    lastResetStreakDate,
-    initialDayFocused
-  );
+    lastResetStreakDates,
+    initialDayFocused,
+    streakFreezeUsageDates,
+    streakRepairDates,
+  });
   // Horizontal Layout (matching the second reference)
   if (layout === 'horizontal') {
     return (
@@ -339,6 +423,8 @@ const CalendarMiniView = ({
                 status={item.status}
                 isFocused={item.isFocused}
                 isStreakReset={item.isStreakReset}
+                isStreakFreezeUsed={item.isStreakFreezeUsed}
+                isStreakRepaired={item.isStreakRepaired}
                 onPress={() => onDayPress?.(item)}
                 layout="horizontal"
               />
@@ -398,6 +484,8 @@ const CalendarMiniView = ({
               isFocused={dayData.isFocused}
               onPress={() => onDayPress?.(dateResponse)}
               isStreakReset={dayData.isStreakReset}
+              isStreakFreezeUsed={dayData.isStreakFreezeUsed}
+              isStreakRepaired={dayData.isStreakRepaired}
               layout="vertical"
             />
           );

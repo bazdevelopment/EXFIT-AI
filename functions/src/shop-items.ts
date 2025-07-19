@@ -412,6 +412,108 @@ const getPurchasedItemsHandler = async (
   return { items: enrichedItems };
 };
 
+/**
+ * A Callable Function that allows a user to repair their most recently broken streak.
+ * It requires a "Streak Revival Elixir" and must be used within a 48-hour window.
+ * @param {any} data - The data passed to the callable function (not used).
+ * @param {functions.https.CallableContext} context - The callable function context, including authentication info.
+ * @return {Promise<{success: boolean, message: string}>} Result of the streak repair operation.
+ */
+export const repairStreakHandler = (
+  data: any,
+  context: functions.https.CallableContext,
+) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      'unauthenticated',
+      'You must be authenticated.',
+    );
+  }
+  const userId = context.auth.uid;
+
+  const userRef = db.collection('users').doc(userId);
+  // The ID for the elixir item in the user's inventory
+  const elixirRef = userRef
+    .collection('ownedItems')
+    .doc('STREAK_REVIVAL_ELIXIR');
+
+  // Use a transaction to ensure all checks and writes are atomic
+  return db.runTransaction(async (transaction) => {
+    // 1. --- READ all necessary documents first ---
+    const userDoc = await transaction.get(userRef);
+    const elixirDoc = await transaction.get(elixirRef);
+
+    if (!userDoc.exists) {
+      throw new functions.https.HttpsError('not-found', 'User data not found.');
+    }
+
+    const gamification = userDoc.data()?.gamification || {};
+    const now = new Date();
+
+    // 2. --- PERFORM ALL VALIDATION CHECKS (THE "GATES") ---
+
+    // GATE 1: Check if the user owns an elixir.
+    if (!elixirDoc.exists || elixirDoc.data()?.quantity < 1) {
+      throw new functions.https.HttpsError(
+        'failed-precondition',
+        'You do not have a Streak Revival Elixir to use.',
+      );
+    }
+
+    // GATE 2: Check if the user is in a "repairable" state.
+    const lostStreakValue = gamification.lostStreakValue;
+    const lostStreakTimestamp =
+      gamification.lostStreakTimestamp as admin.firestore.Timestamp;
+
+    if (!lostStreakValue || !lostStreakTimestamp || lostStreakValue <= 0) {
+      throw new functions.https.HttpsError(
+        'failed-precondition',
+        'You already repaired your streak over the last 48 hour.',
+      );
+    }
+
+    const lostStreakTimestampDate = new Date(lostStreakTimestamp as any); // need to convert to new Date
+    // GATE 3: Check if the action is within the time limit (e.g., 48 hours).
+    const hoursSinceLost =
+      (now.getTime() - lostStreakTimestampDate.getTime()) / (1000 * 60 * 60);
+    if (hoursSinceLost > 48) {
+      throw new functions.https.HttpsError(
+        'failed-precondition',
+        'The 48-hour window to repair your streak has expired.',
+      );
+    }
+
+    // 3. --- IF ALL CHECKS PASS, PERFORM THE ACTIONS ---
+
+    // a. Restore the streak and set last activity date to "yesterday"
+    //    to prevent it from breaking again immediately.
+    const yesterday = new Date();
+    yesterday.setDate(now.getDate() - 1);
+    const yesterdayTimestamp = admin.firestore.Timestamp.fromDate(yesterday);
+
+    const userUpdates = {
+      'gamification.currentStreak': lostStreakValue,
+      'gamification.lastActivityDate': yesterdayTimestamp, // Critical UX improvement!
+      // b. Clean up the state to prevent reuse.
+      'gamification.lostStreakValue': admin.firestore.FieldValue.delete(),
+      'gamification.lostStreakTimestamp': admin.firestore.FieldValue.delete(),
+      'gamification.streakRepairDates': admin.firestore.FieldValue.arrayUnion(
+        new Date().toISOString(),
+      ),
+    };
+    transaction.update(userRef, userUpdates);
+
+    // c. Consume the elixir.
+    transaction.update(elixirRef, {
+      quantity: admin.firestore.FieldValue.increment(-1),
+    });
+
+    return {
+      success: true,
+      message: `Your ${lostStreakValue}-day streak has been restored!`,
+    };
+  });
+};
 export {
   getPurchasedItemsHandler,
   getShopItemsHandler,
