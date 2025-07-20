@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { router } from 'expo-router';
-import React from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
+import React, { useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { ScrollView, View } from 'react-native';
 
@@ -228,10 +228,21 @@ const ShopScreen = () => {
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
   const purchaseItemModal = useModal();
-
+  const { displayProductName } = useLocalSearchParams();
   const { isVerySmallDevice } = getDeviceSizeCategory();
 
   const shopItems = shopData?.items;
+
+  useEffect(() => {
+    if (displayProductName && !!shopItems?.length) {
+      const foundProduct = shopItems.find(
+        (potion) => potion.id === displayProductName
+      );
+      if (foundProduct) {
+        purchaseItemModal.present(foundProduct);
+      }
+    }
+  }, [displayProductName, purchaseItemModal, shopItems]);
 
   return (
     <ScreenWrapper>

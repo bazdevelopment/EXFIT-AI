@@ -9,8 +9,7 @@ import { Text } from '../ui';
 
 interface TaskListOverviewProps {
   tasks: ITaskCardProps[];
-  onCompleteTask?: (taskId: string) => void;
-  onSkipTask?: (taskId: string) => void;
+  onCompleteTask?: (task: ITaskCardProps) => void;
   additionalClassName?: string;
 }
 
@@ -100,7 +99,7 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
                   durationMinutes={task.durationMinutes}
                   xpEarned={task.xpEarned}
                   gemsEarned={task.gemsEarned}
-                  onCompleteTask={onCompleteTask}
+                  onCompleteTask={() => onCompleteTask(task)}
                   status={task.status}
                   onSkipTask={onSkipTask}
                   timeZone={timeZone ?? 'UTC'}

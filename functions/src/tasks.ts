@@ -303,14 +303,14 @@ export const updateAiTasksStatusHandler = async (
           completedAt: admin.firestore.FieldValue.serverTimestamp(),
         });
         transaction.update(userDocRef, {
-          'gamification.stakesBalance':
+          'gamification.currentStreak':
             admin.firestore.FieldValue.increment(REWARD_AMOUNT),
           activeAiTask: null, // Also clear the active task
         });
 
         // --- Return the calculated new balance ---
         // You can now use the data you already read at the top
-        const currentBalance = userDoc.data()?.gamification.stakesBalance || 0;
+        const currentBalance = userDoc.data()?.gamification.currentStreak || 0;
         return currentBalance + REWARD_AMOUNT;
       });
 

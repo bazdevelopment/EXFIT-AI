@@ -12,7 +12,7 @@ export const LogoutIcon = (props: ISvgProps) => (
     {...props}
   >
     <Path
-      stroke="#fff"
+      stroke={props.color || '#fff'}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}

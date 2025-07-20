@@ -38,6 +38,7 @@ interface DayData {
   isElixirUsageExpired: boolean;
   activities: IActivityLog[];
   dateKey: string;
+  lostStreakValue: number;
 }
 
 interface ICalendarMiniView {
@@ -291,6 +292,8 @@ const generateWeekDataFromLog = ({
   initialDayFocused,
   streakFreezeUsageDates,
   streakRepairDates,
+  lastTimeLostStreakTimestamp,
+  lostStreakValue,
 }: {
   currentWeekActivityLog: Record<string, any>;
   segmentedDays: any;
@@ -298,6 +301,8 @@ const generateWeekDataFromLog = ({
   initialDayFocused: ISegmentedControlOption;
   streakFreezeUsageDates: string[];
   streakRepairDates: string[];
+  lastTimeLostStreakTimestamp: string;
+  lostStreakValue: number;
 }) => {
   const lasResetStreakDateFormatted = lastResetStreakDates?.map((date) =>
     dayjs(date).format('YYYY-MM-DD')
@@ -325,15 +330,18 @@ const generateWeekDataFromLog = ({
       streakFreezeUsageDatesFormatted?.includes(dateKey);
     const isStreakRepaired = streakRepairDatesFormatted?.includes(dateKey);
     /**map all the streak repair dates  */
-    const isElixirUsageExpirationStatus = lasResetStreakDateFormatted?.map(
-      (resetDate) => {
-        const resetDateTime = dayjs(resetDate);
-        const expiryDateTime = resetDateTime.add(48, 'hours');
-        const now = dayjs();
-        return now.isAfter(expiryDateTime);
+
+    const isElixirUsageExpired = (() => {
+      if (!lastTimeLostStreakTimestamp) {
+        return true; // No streak lost yet, so elixir usage is not expired
       }
-    );
-    const isElixirUsageExpired = isElixirUsageExpirationStatus?.every(Boolean); //if all the values from the map are true, then the elixir usage is expired
+
+      const resetDateTime = dayjs(lastTimeLostStreakTimestamp);
+      const expiryDateTime = resetDateTime.add(48, 'hours');
+      const now = dayjs();
+      return now.isAfter(expiryDateTime);
+    })();
+
     let status: DateStatus = 'inactive';
     if (logData && Array.isArray(logData) && logData.length > 0) {
       // Check if any activity has "attended" status
@@ -357,6 +365,7 @@ const generateWeekDataFromLog = ({
       isStreakFreezeUsed,
       isStreakRepaired,
       isElixirUsageExpired,
+      lostStreakValue,
       activities: logData,
       dateKey,
     });
@@ -384,6 +393,8 @@ const CalendarMiniView = ({
   lastResetStreakDates,
   streakRepairDates,
   isRepairStreakPending,
+  lastTimeLostStreakTimestamp,
+  lostStreakValue,
 }: ICalendarMiniView) => {
   // Generate week data from currentWeekActivityLog if not provided
   const generatedWeekData = generateWeekDataFromLog({
@@ -393,6 +404,8 @@ const CalendarMiniView = ({
     initialDayFocused,
     streakFreezeUsageDates,
     streakRepairDates,
+    lastTimeLostStreakTimestamp,
+    lostStreakValue,
   });
   // Horizontal Layout (matching the second reference)
   if (layout === 'horizontal') {

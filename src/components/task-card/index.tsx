@@ -1,16 +1,15 @@
 /* eslint-disable max-lines-per-function */
+import { router } from 'expo-router';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
-import { translate } from '@/core';
-
 import CustomAlert from '../custom-alert';
+import Icon from '../icon';
 import Toast from '../toast';
-import { Button, Image, Text } from '../ui';
-import { FlashIcon, GemIcon } from '../ui/assets/icons';
+import { Button, colors, Image, Text } from '../ui';
+import { FlashIcon, GemIcon, TaskListIcon } from '../ui/assets/icons';
 import { CheckListIcon } from '../ui/assets/icons/checklist';
 import { ClockIcon } from '../ui/assets/icons/clock';
-import { CrownIllustration } from '../ui/assets/illustrations';
 import { type ITaskCardProps } from './task-card.interface';
 
 const TaskCard = ({
@@ -36,39 +35,46 @@ const TaskCard = ({
     // For example: setFallbackImage(true); and then conditionally render a local image
   };
 
-  const handleCompleteTask = async (taskId: string) => {
+  const handleCompleteTask = async () => {
     Toast.showCustomToast(
       <CustomAlert
         visible
-        title={translate('general.attention')}
-        subtitle={'Did you complete the task?'}
-        image={<CrownIllustration />}
+        title="Task Done? Be Honest!"
+        subtitle="Did you really crush this one? If so, let's mark it as complete!"
+        image={
+          <Icon
+            size={40}
+            color={colors.white}
+            containerStyle="rounded-full bg-success-500 size-[50] items-center justify-center"
+            onPress={router.back}
+            icon={<TaskListIcon />}
+          />
+        }
         buttons={[
           {
-            label: translate('general.close'),
-            variant: 'default',
+            label: 'Oops, Not Yet',
+            variant: '',
             onPress: () => Toast.dismiss(),
             className:
-              'flex-1 rounded-xl h-[48] bg-slate-100 active:opacity-80',
-            buttonTextClassName: 'text-black',
+              'flex-1 rounded-full bg-transparent dark:bg-transparent border border-white dark:border-white h-[48]',
+            buttonTextClassName: 'text-white dark:text-white text-sm',
           },
           {
-            label: translate('general.yes'),
-            variant: 'destructive',
+            label: "Yes, I'm Done!",
+            variant: '',
             onPress: async () => {
               try {
-                onCompleteTask?.(taskId);
-              } catch (error) {
-                Toast.error(translate('alerts.logoutUnsuccessful'));
-              }
+                onCompleteTask?.();
+              } catch (error) {}
             },
-            className: 'flex-1 rounded-xl h-[48] active:opacity-80',
+            buttonTextClassName: 'text-white dark:text-white text-sm',
+            className:
+              'flex-1 rounded-full h-[48] bg-[#4E52FB] dark:bg-[#4E52FB] active:opacity-80',
           },
         ]}
       />,
       {
-        position: 'middle', // Place the alert in the middle of the screen
-        duration: Infinity, // Keep the alert visible until dismissed,
+        duration: 10000000,
       }
     );
   };
@@ -76,7 +82,7 @@ const TaskCard = ({
   return (
     <>
       <TouchableOpacity
-        onPress={() => handleCompleteTask?.(id as string)}
+        onPress={handleCompleteTask}
         disabled={isTaskCompleted || !!onCreateTask}
         className={`my-2 flex-row items-center rounded-xl shadow-lg ${className}`}
         accessibilityLabel="Mark task as complete" // For accessibility in React Native

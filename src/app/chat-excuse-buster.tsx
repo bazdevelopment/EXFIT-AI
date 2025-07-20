@@ -12,7 +12,6 @@ import {
   View,
 } from 'react-native';
 import { type MessageType } from 'react-native-flash-message';
-import { Toaster } from 'sonner-native';
 
 import { useCreateActivityLog } from '@/api/activity-logs/activity-logs.hooks';
 import {
@@ -256,10 +255,6 @@ const ChatExcuseBuster = () => {
 
   return (
     <ScreenWrapper>
-      {DEVICE_TYPE.IOS && (
-        <Toaster autoWiggleOnUpdate="toast-change" pauseWhenPageIsHidden />
-      )}
-
       <KeyboardAvoidingView
         behavior="padding"
         className="flex-1"

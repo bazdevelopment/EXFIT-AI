@@ -15,15 +15,16 @@ import { useUploadTermsOfService } from '@/api/terms-of-service/terms-of-service
 import { useUpdateUser, useUser } from '@/api/user/user.hooks';
 import { logout } from '@/api/user/user.requests';
 import CustomAlert from '@/components/custom-alert';
+import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
 import { ShareItem } from '@/components/settings/share-item';
+import { ThemeItem } from '@/components/settings/theme-item';
 import Toast from '@/components/toast';
 import { Button, colors, ScrollView, Text, View } from '@/components/ui';
 import { LogoutIcon, Rate } from '@/components/ui/assets/icons';
-import { CrownIllustration } from '@/components/ui/assets/illustrations';
 import { translate, useSelectedLanguage } from '@/core';
 import { Env } from '@/core/env';
 import useRemoteConfig from '@/core/hooks/use-remote-config';
@@ -59,20 +60,29 @@ export default function Settings() {
         visible
         title={translate('general.attention')}
         subtitle={translate('alerts.logoutQuestion')}
-        image={<CrownIllustration />}
-        // imageSource={require('../../')}
+        image={
+          <Icon
+            size={24}
+            containerStyle="rounded-full bg-red-500 size-[50] items-center justify-center"
+            onPress={router.back}
+            icon={<LogoutIcon color={colors.white} />}
+          />
+        }
         buttons={[
           {
             label: translate('general.close'),
-            variant: 'default',
+            variant: '',
             onPress: () => Toast.dismiss(),
             className:
-              'flex-1 rounded-xl h-[48] bg-slate-100 active:opacity-80',
-            buttonTextClassName: 'text-black',
+              'flex-1 rounded-full h-[48] bg-slate-100 active:opacity-80',
+            buttonTextClassName: 'text-black font-medium-poppins',
           },
           {
             label: translate('general.yes'),
-            variant: 'destructive',
+            variant: '',
+            buttonTextClassName: 'text-white dark:text-white',
+            className:
+              'rounded-full flex-1 h-[48] bg-red-600 active:opacity-80',
             onPress: async () => {
               try {
                 logout();
@@ -80,13 +90,12 @@ export default function Settings() {
                 Toast.error(translate('alerts.logoutUnsuccessful'));
               }
             },
-            className: 'flex-1 rounded-xl h-[48] active:opacity-80',
           },
         ]}
       />,
       {
-        position: 'middle', // Place the alert in the middle of the screen
-        duration: Infinity, // Keep the alert visible until dismissed,
+        // position: "bottom-center", // Place the alert in the middle of the screen
+        duration: 10000000,
       }
     );
   };
@@ -114,7 +123,7 @@ export default function Settings() {
                 onPress={() => router.navigate('/shop')}
               />
               <LanguageItem />
-              {/* <ThemeItem /> */}
+              <ThemeItem />
               <Item
                 text="settings.contactUs"
                 onPress={() => router.navigate('/contact-us')}
@@ -160,7 +169,7 @@ export default function Settings() {
               icon={<LogoutIcon width={30} height={30} />}
               loading={isPendingUpdateUser}
               variant="destructive"
-              className="mt-4 h-[55px] justify-start pl-5"
+              className="mt-4 h-[48px] rounded-full active:opacity-80"
               textClassName="font-medium-poppins text-base"
               iconPosition="left"
               onPress={handleLogout}

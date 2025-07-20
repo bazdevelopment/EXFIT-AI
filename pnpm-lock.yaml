@@ -219,8 +219,8 @@ importers:
         specifier: ^3.3.0
         version: 3.3.0(@tanstack/react-query@5.52.1(react@18.3.1))
       sonner-native:
-        specifier: ^0.17.0
-        version: 0.17.0(tcdxquchhfbh4k4cx3dktwsiwq)
+        specifier: ^0.21.0
+        version: 0.21.0(tcdxquchhfbh4k4cx3dktwsiwq)
       tailwind-variants:
         specifier: ^0.2.1
         version: 0.2.1(tailwindcss@3.4.4)
@@ -7234,8 +7234,8 @@ packages:
     resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
     engines: {node: '>=8.0.0'}
 
-  sonner-native@0.17.0:
-    resolution: {integrity: sha512-RRkgnuiuccgEDJdeYnFjPzTgunN75RVB9yFh6vc9D4QEKKITrhkBGaNz0wLY85/A5MBCMmaKtfKv/uxQDxqg+g==}
+  sonner-native@0.21.0:
+    resolution: {integrity: sha512-pIdyMd722xuDukIvCZCmWh9Jy5FV+m9uKYl3oAzonYE+91eX5556vYrIik5MisDlBniSXaWqC9CnPoS6DKo2Lg==}
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -16962,7 +16962,7 @@ snapshots:
 
   slugify@1.6.6: {}
 
-  sonner-native@0.17.0(tcdxquchhfbh4k4cx3dktwsiwq):
+  sonner-native@0.21.0(tcdxquchhfbh4k4cx3dktwsiwq):
     dependencies:
       react: 18.3.1
       react-native: 0.76.6(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.12)(react@18.3.1)

@@ -510,7 +510,7 @@ export const repairStreakHandler = (
 
     return {
       success: true,
-      message: `Your ${lostStreakValue}-day streak has been restored!`,
+      message: `Congratulations! Your ${lostStreakValue}-day streak is officially restored. You're on track—let's keep it rolling!`,
     };
   });
 };

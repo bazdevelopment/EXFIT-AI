@@ -13,7 +13,6 @@ import {
   View,
 } from 'react-native';
 import { type MessageType } from 'react-native-flash-message';
-import { Toaster } from 'sonner-native';
 
 import {
   useConversation,
@@ -270,9 +269,6 @@ const ChatScreen = () => {
 
   return (
     <ScreenWrapper>
-      {DEVICE_TYPE.IOS && (
-        <Toaster autoWiggleOnUpdate="toast-change" pauseWhenPageIsHidden />
-      )}
       <KeyboardAvoidingView
         behavior="padding"
         className="flex-1"
