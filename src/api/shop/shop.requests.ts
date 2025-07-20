@@ -71,10 +71,9 @@ export const onStreakRepair = async () => {
     const handleStreakRepair =
       firebaseCloudFunctionsInstance.httpsCallable('repairStreak');
     const { data } = await handleStreakRepair();
-    console.log('data from streak repair', data);
     return data;
   } catch (error) {
-    console.log('error here', error);
+    console.log('error onStreakRepair', error);
     throw error;
   }
 };

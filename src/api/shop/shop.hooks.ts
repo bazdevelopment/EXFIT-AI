@@ -49,10 +49,16 @@ export const usePurchaseShopItem = () => {
   })();
 };
 
-export const useRepairStreak = () => {
+export const useRepairStreak = ({
+  onSuccessCallback,
+}: {
+  onSuccessCallback?: () => void;
+}) => {
   return createMutation<any, void, AxiosError>({
     mutationFn: onStreakRepair,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      Toast.success(data.message);
+      onSuccessCallback?.();
       queryClient.invalidateQueries({
         queryKey: ['owned-purchased-shop-items'],
       });

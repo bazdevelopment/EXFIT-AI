@@ -68,6 +68,7 @@ export * from './streak-freeze';
 export * from './style';
 export * from './sun';
 export * from './support';
+export * from './task-list';
 export * from './tick';
 export * from './tick-circle';
 export * from './trash';

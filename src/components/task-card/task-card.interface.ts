@@ -7,7 +7,7 @@ export interface ITaskCardProps {
   description: string;
   status?: 'active' | 'completed'; // Simplified statuses for the new design
   className?: string;
-  onCompleteTask?: (taskId: string) => void;
+  onCompleteTask?: (task: ITaskCardProps) => void;
   onCreateTask?: () => void;
   isCreatingTaskPending?: boolean; // New prop to handle task creation state
 }

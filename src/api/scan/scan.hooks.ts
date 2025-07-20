@@ -71,7 +71,7 @@ export const useScanImage = ({
 
         return Toast.warning(limitReachedMessage, {
           closeButton: true,
-          duration: Infinity,
+          duration: 10000000,
           action: {
             label: 'Ask AI assistant',
             onClick: () => {

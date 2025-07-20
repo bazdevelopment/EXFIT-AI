@@ -54,7 +54,7 @@ export const usePurchaseSubscription = createMutation<
     if (!selectedPackage) {
       return Toast.error('Kindly choose a subscription plan to continue!', {
         closeButton: true,
-        duration: Infinity,
+        duration: 10000000,
       });
     }
 
@@ -132,7 +132,7 @@ export const useRestorePurchases = (
       });
       if (!customerInfo.activeSubscriptions.length)
         Toast.warning(translate('alerts.noSubscriptionToRestore'), {
-          duration: Infinity,
+          duration: 10000000,
           closeButton: true,
         });
       if (customerInfo?.activeSubscriptions?.length) {

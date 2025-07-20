@@ -14,7 +14,7 @@ import {
   useUpdateActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
 import { useFetchUserNotifications } from '@/api/push-notifications/push-notifications.hooks';
-import { useRepairStreak } from '@/api/shop/shop.hooks';
+import { useOwnedPurchasedItems, useRepairStreak } from '@/api/shop/shop.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
@@ -54,6 +54,9 @@ export default function Home() {
       language,
     })();
 
+  const { data: ownPurchasedData, refetch: refetchOwnedShopItems } =
+    useOwnedPurchasedItems();
+
   const unReadMessages = userNotifications?.notifications.filter(
     (notification: INotificationItem) => !notification.isRead
   );
@@ -66,6 +69,14 @@ export default function Home() {
   const lastResetStreakDates = userInfo?.gamification.streakResetDates;
   const streakFreezeUsageDates = userInfo?.gamification?.streakFreezeUsageDates;
   const streakRepairDates = userInfo?.gamification?.streakRepairDates;
+  const lastTimeLostStreakTimestamp =
+    userInfo?.gamification?.lostStreakTimestamp;
+  const lostStreakValue = userInfo?.gamification?.lostStreakValue;
+
+  const foundElixirShopItem = ownPurchasedData?.items?.find(
+    (shopItem) => shopItem.id === 'STREAK_REVIVAL_ELIXIR'
+  );
+  const hasUserRepairStreakElixir = foundElixirShopItem?.quantity > 0;
   // const lastResetStreakDate = userInfo?.gamification.lostStreakTimestamp
   //   ? dayjs(userInfo?.gamification.lostStreakTimestamp).format('YYYY-MM-DD')
   //   : '';
@@ -84,9 +95,12 @@ export default function Home() {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
   } = useCreateActivityLog({
-    onSuccess: activityLogSuccessModal.present,
+    onSuccess: () =>
+      activityLogSuccessModal.present({
+        gemsReward: 50, // Example value, replace with actual logic
+        xpReward: 50, // Example value, replace with actual logic})
+      }),
   });
-
   const { mutateAsync: onUpdateActivityLog } = useUpdateActivityLog();
 
   const { data: currentWeekActivityLog, refetch: refetchActivityLog } =
@@ -100,13 +114,16 @@ export default function Home() {
     (task) => task.type === 'custom_ai_task'
   );
   const { mutate: onRepairStreak, isPending: isRepairStreakPending } =
-    useRepairStreak();
+    useRepairStreak({
+      onSuccessCallback: dailyActivityModal.ref.current?.dismiss,
+    });
   const isDailyCheckInDone = !!currentWeekActivityLog?.[currentActiveDay];
 
   const { isRefetching, onRefetch } = useDelayedRefetch(() => {
     refetchActivityLog();
     refetchUserInfo();
     refetchUserNotifications();
+    refetchOwnedShopItems();
   });
 
   return (
@@ -191,6 +208,8 @@ export default function Home() {
               onDayPress={(data) => dailyActivityModal.present(data)}
               streakFreezeUsageDates={streakFreezeUsageDates}
               streakRepairDates={streakRepairDates}
+              lastTimeLostStreakTimestamp={lastTimeLostStreakTimestamp}
+              lostStreakValue={lostStreakValue}
             />
           )}
           {!isDailyCheckInDone ? (
@@ -214,20 +233,25 @@ export default function Home() {
           {!!todayActiveTasks?.length && (
             <TaskListOverview
               tasks={todayActiveTasks}
-              onCompleteTask={(activityLogId) =>
+              onCompleteTask={(task) =>
                 onUpdateActivityLog({
                   language,
-                  logId: activityLogId,
+                  logId: task.id as string,
                   fieldsToUpdate: { status: 'completed' },
+                }).then(() => {
+                  activityLogSuccessModal.present({
+                    gemsReward: task.gemsEarned, // Example value, replace with actual logic
+                    xpReward: task.xpEarned, // Example value, replace with actual logic
+                  });
                 })
               }
-              onSkipTask={(activityLogId) => {
-                onUpdateActivityLog({
-                  language,
-                  logId: activityLogId,
-                  fieldsToUpdate: { status: 'skipped' },
-                });
-              }}
+              // onSkipTask={(activityLogId) => {
+              //   onUpdateActivityLog({
+              //     language,
+              //     logId: activityLogId,
+              //     fieldsToUpdate: { status: 'skipped' },
+              //   });
+              // }}
               additionalClassName="bg-black mt-2 mx-2 py-4 rounded-xl"
             />
           )}
@@ -272,7 +296,7 @@ export default function Home() {
         />
         <DailyActivityModal
           ref={dailyActivityModal.ref}
-          // totalTodayActivities={totalTodayActivities}
+          hasUserRepairStreakElixir={hasUserRepairStreakElixir}
           isRepairStreakPending={isRepairStreakPending}
           onRepairStreak={onRepairStreak}
           onAddActivity={(date) =>
