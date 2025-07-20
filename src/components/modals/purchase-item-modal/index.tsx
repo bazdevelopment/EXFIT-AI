@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { type BottomSheetModal } from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView, type BottomSheetModal } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import LottieView from 'lottie-react-native';
 import React, { useMemo } from 'react';
@@ -48,7 +48,7 @@ export const PurchaseItemModal = React.forwardRef<
                 blurType="dark"
                 style={[StyleSheet.absoluteFill]}
               />
-              <ScrollView
+              <BottomSheetScrollView
                 className="flex-1 px-4"
                 showsVerticalScrollIndicator={false}
               >
@@ -88,7 +88,7 @@ export const PurchaseItemModal = React.forwardRef<
                     onPress={onCloseModal}
                   />
                 </View>
-              </ScrollView>
+              </BottomSheetScrollView>
             </>
           );
         }

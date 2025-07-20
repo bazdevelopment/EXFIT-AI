@@ -1,9 +1,12 @@
 /* eslint-disable max-lines-per-function */
-import { type BottomSheetModal } from '@gorhom/bottom-sheet';
+import {
+  type BottomSheetModal,
+  BottomSheetScrollView,
+} from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import LottieView from 'lottie-react-native';
 import React, { useMemo } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Button, colors, Modal } from '@/components/ui';
 import { FlashIcon, GemIcon } from '@/components/ui/assets/icons';
@@ -37,7 +40,7 @@ export const ActivityLogSuccessModal = React.forwardRef<
               blurType="dark"
               style={[StyleSheet.absoluteFill]}
             />
-            <ScrollView
+            <BottomSheetScrollView
               className="flex-1 px-4"
               showsVerticalScrollIndicator={false}
             >
@@ -102,7 +105,7 @@ export const ActivityLogSuccessModal = React.forwardRef<
             <Text className="text-base font-semibold text-white">Go Back</Text>
           </TouchableOpacity> */}
               </View>
-            </ScrollView>
+            </BottomSheetScrollView>
           </>
         );
       }}
