@@ -36,3 +36,17 @@ pnpm android
 ```
 
 ## ✍️ Documentation
+
+## 👨🏼‍🔧 Troubleshooting
+
+-implementation for expo-blur to have the same behavior as react-native-community/blur library
+-keep in mind blur on android is experimental and it can cause some issues/crashes
+
+<!-- <BlurView
+intensity={100}
+experimentalBlurMethod="dimezisBlurView" //!important for android
+tint="dark"
+style={[StyleSheet.absoluteFill]}
+/> -->
+
+<!-- Common error: Your app just crashed. See the error below. java.lang.IllegalStateException: Underflow in restore - more restores than saves android.graphics.Canvas.restore(Canvas.java:663) react native BlurView -->

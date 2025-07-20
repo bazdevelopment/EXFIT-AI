@@ -1,9 +1,12 @@
 /* eslint-disable max-lines-per-function */
-import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import {
+  BottomSheetScrollView,
+  BottomSheetTextInput,
+} from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import dayjs from 'dayjs';
 import React, { useCallback, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import HorizontalLine from '@/components/horizontal-line';
 import SelectableChip from '@/components/selectable-chip';
@@ -331,7 +334,7 @@ export const DailyCheckInModal = React.forwardRef<any, DailyCheckInModalProps>(
               blurType="dark"
               style={StyleSheet.absoluteFill}
             />
-            <ScrollView
+            <BottomSheetScrollView
               className="flex-1 px-4"
               showsVerticalScrollIndicator={false}
               keyboardShouldPersistTaps="handled"
@@ -364,7 +367,7 @@ export const DailyCheckInModal = React.forwardRef<any, DailyCheckInModalProps>(
                 disabled={isSubmitDisabled || isCreateActivityLogPending}
                 loading={isCreateActivityLogPending}
               />
-            </ScrollView>
+            </BottomSheetScrollView>
           </>
         )}
       </Modal>

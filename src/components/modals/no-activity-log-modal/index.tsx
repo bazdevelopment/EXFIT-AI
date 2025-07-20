@@ -1,11 +1,12 @@
 /* eslint-disable max-lines-per-function */
 import {
   type BottomSheetModal,
+  BottomSheetScrollView,
   BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import React, { useCallback, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import HorizontalLine from '@/components/horizontal-line';
 import { Button, colors, Modal, Text } from '@/components/ui';
@@ -50,7 +51,10 @@ export const NoActivityLogModal = React.forwardRef<
         blurType="dark"
         style={[StyleSheet.absoluteFill]}
       />
-      <ScrollView className="flex-1 px-4" showsVerticalScrollIndicator={false}>
+      <BottomSheetScrollView
+        className="flex-1 px-4"
+        showsVerticalScrollIndicator={false}
+      >
         {/* Header */}
         <View className="mb-3 mt-4">
           <Text className="font-medium-poppins text-lg text-white">
@@ -117,7 +121,7 @@ export const NoActivityLogModal = React.forwardRef<
             </>
           )}
         </View>
-      </ScrollView>
+      </BottomSheetScrollView>
     </Modal>
   );
 });

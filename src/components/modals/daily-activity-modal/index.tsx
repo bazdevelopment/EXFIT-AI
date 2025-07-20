@@ -1,9 +1,12 @@
 /* eslint-disable max-lines-per-function */
-import { type BottomSheetModal } from '@gorhom/bottom-sheet';
+import {
+  type BottomSheetModal,
+  BottomSheetScrollView,
+} from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import { router } from 'expo-router';
 import React, { useMemo } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import CustomAlert from '@/components/custom-alert';
 import Toast from '@/components/toast';
@@ -35,7 +38,7 @@ export const DailyActivityModal = React.forwardRef<
     ref
   ) => {
     const height = 550;
-    const snapPoints = useMemo(() => [height, '80%'], [height]);
+    const snapPoints = useMemo(() => [height, '90%'], [height]);
     const { language } = useSelectedLanguage();
 
     const getActivityIcon = (type: string) => {
@@ -144,7 +147,7 @@ export const DailyActivityModal = React.forwardRef<
         index={0}
         snapPoints={snapPoints}
         backgroundStyle={{
-          backgroundColor: colors.transparent,
+          backgroundColor: 'transparent',
         }}
       >
         {({ data }) => {
@@ -166,8 +169,9 @@ export const DailyActivityModal = React.forwardRef<
                 blurType="dark"
                 style={[StyleSheet.absoluteFill]}
               />
-              <ScrollView
+              <BottomSheetScrollView
                 className="flex-1 px-4 pt-6"
+                // contentContainerClassName="mb-[200]"
                 showsVerticalScrollIndicator={false}
               >
                 {/* Header with Date */}
@@ -316,15 +320,19 @@ export const DailyActivityModal = React.forwardRef<
                         <View className="items-end">
                           <View
                             className={`mb-2 rounded-full px-3 py-1 ${
-                              activity.status === 'attended'
+                              activity.status === 'attended' ||
+                              activity.status === 'completed'
                                 ? 'bg-green-500'
                                 : 'bg-gray-500'
                             }`}
                           >
                             <Text className="font-bold-poppins text-xs text-white">
-                              {activity.status === 'attended'
+                              {activity.status === 'attended' ||
+                              activity.status === 'completed'
                                 ? 'Completed'
-                                : activity.status}
+                                : activity.status === 'active'
+                                  ? 'Not Finished'
+                                  : activity.status}
                             </Text>
                           </View>
                           <View className="flex-row items-center">
@@ -349,7 +357,7 @@ export const DailyActivityModal = React.forwardRef<
                   <View className="mb-6 items-center rounded-xl bg-white/5 p-6">
                     <Text className="mb-3 text-4xl">🎯</Text>
                     <Text className="mb-2 font-semibold-poppins text-lg text-white">
-                      No Physical Activities
+                      No Activities
                     </Text>
 
                     {checkIsToday(data.dateKey, language) && (
@@ -371,37 +379,7 @@ export const DailyActivityModal = React.forwardRef<
                     onPress={() => onAddActivity(data.dateKey)}
                   />
                 )}
-                {checkIsToday(data.dateKey, language) && (
-                  <Button
-                    label="Add Activity"
-                    variant="default"
-                    className="mt-6 h-[52px]  rounded-full border-2 border-primary-900 bg-[#4E52FB] pl-5 active:bg-primary-700 dark:bg-[#4E52FB]"
-                    textClassName="text-base text-center  dark:text-white"
-                    iconPosition="left"
-                    onPress={() => onAddActivity(data.dateKey)}
-                  />
-                )}
-                {checkIsToday(data.dateKey, language) && (
-                  <Button
-                    label="Add Activity"
-                    variant="default"
-                    className="mt-6 h-[52px]  rounded-full border-2 border-primary-900 bg-[#4E52FB] pl-5 active:bg-primary-700 dark:bg-[#4E52FB]"
-                    textClassName="text-base text-center  dark:text-white"
-                    iconPosition="left"
-                    onPress={() => onAddActivity(data.dateKey)}
-                  />
-                )}
-                {checkIsToday(data.dateKey, language) && (
-                  <Button
-                    label="Add Activity"
-                    variant="default"
-                    className="mt-6 h-[52px]  rounded-full border-2 border-primary-900 bg-[#4E52FB] pl-5 active:bg-primary-700 dark:bg-[#4E52FB]"
-                    textClassName="text-base text-center  dark:text-white"
-                    iconPosition="left"
-                    onPress={() => onAddActivity(data.dateKey)}
-                  />
-                )}
-              </ScrollView>
+              </BottomSheetScrollView>
             </>
           );
         }}
