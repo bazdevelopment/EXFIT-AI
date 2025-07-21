@@ -82,9 +82,10 @@ export default function ForgotPasswordScreen({
         <View className="flex-row items-center px-4 py-3">
           <Icon
             size={24}
-            containerStyle="rounded-2xl bg-charcoal-800 p-3 w-[50]"
+            iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
             onPress={router.back}
             icon={<ArrowLeft color={colors.white} />}
+            color={colors.white}
           />
         </View>
 

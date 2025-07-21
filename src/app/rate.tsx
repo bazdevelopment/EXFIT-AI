@@ -1,12 +1,10 @@
-import { router } from 'expo-router';
 import React from 'react';
 import { Linking, View } from 'react-native';
 
 import EdgeCaseTemplate from '@/components/edge-case-template';
-import Icon from '@/components/icon';
+import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
-import { Button, colors, Text } from '@/components/ui';
-import { ArrowLeft } from '@/components/ui/assets/icons';
+import { Button } from '@/components/ui';
 import { RatingIllustration } from '@/components/ui/assets/illustrations';
 import { DEVICE_TYPE, translate } from '@/core';
 
@@ -29,18 +27,7 @@ const Rate = () => {
 
   return (
     <ScreenWrapper>
-      <View className="flex-row items-center gap-4 px-6">
-        <Icon
-          icon={<ArrowLeft />}
-          iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
-          size={24}
-          color={colors.white}
-          onPress={router.back}
-        />
-        <Text className="font-bold-poppins text-2xl text-white">
-          Give us feedback
-        </Text>
-      </View>
+      <ScreenHeader title="Give us feedback" />
       <View className="flex-1 items-center justify-center">
         <EdgeCaseTemplate
           image={<RatingIllustration />}

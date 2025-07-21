@@ -8,10 +8,11 @@ import { useShopItems } from '@/api/shop/shop.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import Icon from '@/components/icon';
 import { PurchaseItemModal } from '@/components/modals/purchase-item-modal';
+import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
 import SkeletonLoader from '@/components/skeleton-loader';
 import { colors, Image, Text, useModal } from '@/components/ui';
-import { ArrowLeft, ShoppingCart } from '@/components/ui/assets/icons';
+import { ShoppingCart } from '@/components/ui/assets/icons';
 import { useSelectedLanguage } from '@/core';
 import getDeviceSizeCategory from '@/core/utilities/get-device-size-category';
 
@@ -118,11 +119,6 @@ export const ShopItemCard: React.FC<ShopItemCardProps> = ({
       className="h-[174] items-center justify-between rounded-2xl border border-gray-700 bg-[#191A21] p-4 transition-all duration-200 active:scale-95 dark:bg-[#191A21]"
       accessibilityLabel={`${item.name}, costs ${item.costInGems} gems`}
     >
-      {/* Info button */}
-      <View className="absolute right-2 top-2 size-5 items-center justify-center rounded-full bg-gray-600">
-        <Text className="font-bold-poppins text-xs text-white">i</Text>
-      </View>
-
       {/* Main Content */}
       <View className="flex-1 items-center justify-center">
         <Image source={{ uri: item.imageUrl }} className="size-[72]" />
@@ -247,40 +243,20 @@ const ShopScreen = () => {
   return (
     <ScreenWrapper>
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="flex-row justify-between px-6">
-          <View className="flex-row items-center gap-4">
+        <ScreenHeader
+          title="Shop"
+          rightComponent={
             <Icon
-              icon={<ArrowLeft />}
+              icon={<ShoppingCart />}
               iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
-              size={24}
+              size={20}
               color={colors.white}
-              onPress={router.back}
+              onPress={() => router.navigate('/shopping-cart')}
             />
-            <Text className="font-bold-poppins text-2xl text-white">Shop</Text>
-          </View>
-          <Icon
-            icon={<ShoppingCart />}
-            iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
-            size={20}
-            color={colors.white}
-            onPress={() => router.navigate('/shopping-cart')}
-          />
-        </View>
-        <RewardBanner />
+          }
+        />
 
-        {/* Gem Offers Section */}
-        {/* <View className="mt-8 px-6">
-          <Text className="mb-4 font-semibold-poppins text-xl text-white">
-            Gem Offers
-          </Text>
-          <View className="flex-row justify-between gap-2">
-            {sortedGemOffers.map((offer) => (
-              <View key={offer.id} className="flex-1">
-                <GemOfferCard offer={offer} onPress={handleGemOfferPress} />
-              </View>
-            ))}
-          </View>
-        </View> */}
+        <RewardBanner />
 
         {isLoading ? (
           <SkeletonLoader />
