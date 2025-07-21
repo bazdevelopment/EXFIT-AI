@@ -3,16 +3,12 @@ import React from 'react';
 
 import { useOwnedPurchasedItems } from '@/api/shop/shop.hooks';
 import EdgeCaseTemplate from '@/components/edge-case-template';
-import Icon from '@/components/icon';
+import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { ShoppingPurchasedCard } from '@/components/shopping-purchased-card';
 import SkeletonLoader from '@/components/skeleton-loader';
 import { Button, colors, Text, View } from '@/components/ui';
-import {
-  ArrowLeft,
-  ArrowRight,
-  ShopBasket,
-} from '@/components/ui/assets/icons';
+import { ArrowRight, ShopBasket } from '@/components/ui/assets/icons';
 import { ShoppingCartEmpty } from '@/components/ui/assets/illustrations/shopping-cart-empty';
 
 const ShoppingCart = () => {
@@ -20,18 +16,7 @@ const ShoppingCart = () => {
 
   return (
     <ScreenWrapper>
-      <View className="flex-row items-center gap-4 px-6">
-        <Icon
-          icon={<ArrowLeft />}
-          iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
-          size={24}
-          color={colors.white}
-          onPress={router.back}
-        />
-        <Text className="font-bold-poppins text-2xl text-white">
-          Items Owned
-        </Text>
-      </View>
+      <ScreenHeader title="Items Owned" />
 
       {isLoading ? (
         <SkeletonLoader />

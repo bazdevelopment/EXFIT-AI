@@ -276,18 +276,19 @@ const ChatScreen = () => {
       >
         <View className="flex-1">
           {/* Header */}
-          <View className="flex-row items-center justify-between px-4 py-3">
+          <View className="flex-row items-center px-4 py-3">
             <Icon
+              icon={<ArrowLeft color={colors.white} />}
+              iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
               size={24}
-              containerStyle="rounded-2xl bg-charcoal-800 p-3"
+              color={colors.white}
               onPress={() => {
                 stopSpeaking();
                 router.back();
               }}
-              icon={<ArrowLeft color={colors.white} />}
             />
 
-            <View className="item-center mr-6 justify-center">
+            <View className="mr-10 flex-1 items-center">
               <Text className="ml-2 font-semibold-poppins text-2xl text-white">
                 Aria
               </Text>

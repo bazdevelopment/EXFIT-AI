@@ -1,13 +1,13 @@
-import { router } from 'expo-router';
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import Icon from '@/components/icon';
+import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
 import Toast from '@/components/toast';
-import { colors, Text } from '@/components/ui';
-import { ArrowLeft, MailIcon } from '@/components/ui/assets/icons';
+import { Text } from '@/components/ui';
+import { MailIcon } from '@/components/ui/assets/icons';
 import CopyIcon from '@/components/ui/assets/icons/copy';
 import { translate } from '@/core';
 import { useClipboard } from '@/core/hooks/use-clipboard';
@@ -25,18 +25,8 @@ const ContactUs = () => {
 
   return (
     <ScreenWrapper>
-      <View className="flex-row items-center gap-4 px-6">
-        <Icon
-          icon={<ArrowLeft />}
-          iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
-          size={24}
-          color={colors.white}
-          onPress={router.back}
-        />
-        <Text className="font-bold-poppins text-2xl text-white">
-          Contact Us
-        </Text>
-      </View>
+      <ScreenHeader title="Contact Us" />
+
       <View className="p-6">
         <Text className="mb-6 text-charcoal-600">
           {translate('rootLayout.screens.contactUs.heading')}

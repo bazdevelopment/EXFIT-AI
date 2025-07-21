@@ -5,13 +5,10 @@ import { TouchableOpacity, View } from 'react-native';
 import { useUser } from '@/api/user/user.hooks';
 import Avatar from '@/components/avatar';
 import Icon from '@/components/icon';
+import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { colors, Text } from '@/components/ui';
-import {
-  ArrowLeft,
-  ArrowRight,
-  PermanentAccount,
-} from '@/components/ui/assets/icons';
+import { ArrowRight, PermanentAccount } from '@/components/ui/assets/icons';
 import { useSelectedLanguage } from '@/core';
 
 import dayjs from '../lib/dayjs';
@@ -23,17 +20,8 @@ const ProfileScreen = () => {
   return (
     <ScreenWrapper>
       {/* Header */}
-      <View className="flex-row items-center justify-start px-4 py-3">
-        <Icon
-          size={24}
-          containerStyle="rounded-2xl bg-charcoal-800 p-3 w-[50]"
-          onPress={router.back}
-          icon={<ArrowLeft color={colors.white} />}
-        />
-        <Text className="ml-4 font-semibold-poppins text-xl text-white dark:text-white">
-          Profile
-        </Text>
-      </View>
+
+      <ScreenHeader title="Profile" />
 
       {/* Profile Section */}
       <View className="items-center px-6 py-8">

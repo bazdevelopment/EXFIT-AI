@@ -3,7 +3,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { getCalendars } from 'expo-localization';
 import { Link, router } from 'expo-router';
 import { firebaseAuth } from 'firebase/config';
-import { useColorScheme } from 'nativewind';
 import React, { useState } from 'react';
 import { ImageBackground, Keyboard, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -27,10 +26,7 @@ export default function AnonymousLogin() {
   const [username, setUsername] = useState('');
   const { language } = useSelectedLanguage();
   const { isVerySmallDevice, isMediumDevice } = getDeviceSizeCategory();
-  const { colorScheme } = useColorScheme();
   const [{ timeZone }] = getCalendars();
-
-  const isDark = colorScheme === 'dark';
 
   const [storedUserId, setUserId] = useStoreUserId();
 
@@ -83,10 +79,12 @@ export default function AnonymousLogin() {
 
                 <Icon
                   size={24}
-                  containerStyle="rounded-2xl bg-charcoal-800 p-3 w-[50]"
+                  iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
                   onPress={router.back}
                   icon={<ArrowLeft color={colors.white} />}
+                  color={colors.white}
                 />
+
                 <Text
                   testID="form-title"
                   className={`mt-14 font-semibold-poppins text-[30px] text-white ${isVerySmallDevice && 'mt-4'}`}

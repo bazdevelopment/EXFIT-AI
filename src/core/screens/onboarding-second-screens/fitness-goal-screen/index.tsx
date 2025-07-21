@@ -58,7 +58,7 @@ const FitnessGoalScreen = ({
           <View className="flex-row items-center gap-4">
             <Icon
               icon={<ArrowLeft />}
-              iconContainerStyle="items-center p-3 justify-center rounded-2xl bg-gray-800"
+              iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
               size={24}
               color={colors.white}
               onPress={goToPreviousScreen}
