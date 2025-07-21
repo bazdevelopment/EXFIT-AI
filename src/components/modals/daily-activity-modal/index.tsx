@@ -8,10 +8,12 @@ import { router } from 'expo-router';
 import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import ActivitiesList from '@/components/activities-list';
 import CustomAlert from '@/components/custom-alert';
+import StreakWarning from '@/components/streak-warning';
 import Toast from '@/components/toast';
-import { Button, colors, Image, Modal, Text } from '@/components/ui';
-import { FlashIcon, GemIcon, StreakFreeze } from '@/components/ui/assets/icons';
+import { Image, Modal, Text } from '@/components/ui';
+import { FlashIcon, GemIcon } from '@/components/ui/assets/icons';
 import { useSelectedLanguage } from '@/core';
 import { checkIsToday } from '@/core/utilities/date-time-helpers';
 
@@ -41,22 +43,6 @@ export const DailyActivityModal = React.forwardRef<
     const snapPoints = useMemo(() => [height, '90%'], [height]);
     const { language } = useSelectedLanguage();
 
-    const getActivityIcon = (type: string) => {
-      switch (type) {
-        case 'custom_activity':
-          return '🏃‍♂️';
-        case 'daily_checkin':
-          return '✅';
-        case 'workout':
-          return '💪';
-        case 'cardio':
-          return '❤️';
-        case 'strength':
-          return '🏋️‍♂️';
-        default:
-          return '⚡';
-      }
-    };
     const handleRepairStreak = (lostStreakValue: number) => {
       if (!hasUserRepairStreakElixir) {
         Toast.showCustomToast(
@@ -165,7 +151,7 @@ export const DailyActivityModal = React.forwardRef<
           return (
             <>
               <BlurView
-                blurAmount={20}
+                blurAmount={30}
                 blurType="dark"
                 style={[StyleSheet.absoluteFill]}
               />
@@ -182,78 +168,16 @@ export const DailyActivityModal = React.forwardRef<
                   <Text className="mb-4 mt-[-10px] font-bold-poppins text-xl text-white">
                     {dayjs(data.dateKey).format('dddd, MMMM D')}
                   </Text>
-
-                  {/* Streak Reset Warning */}
-                  {data?.isStreakReset && (
-                    <View className="mb-4 w-full rounded-2xl border border-blue-500/50 bg-blue-500/20 p-4">
-                      <View className="mb-2 flex-row items-center justify-center">
-                        <StreakFreeze width={40} height={40} />
-                        <Text className="font-bold-poppins text-lg text-red-300">
-                          Streak freeze!
-                        </Text>
-                      </View>
-                      <Text className="text-center text-sm text-red-200">
-                        Your streak was reset on this day.{' '}
-                        {`${!data.isElixirUsageExpired ? 'Use your Streak Repair Elixir to keep your streak alive' : ''}`}
-                      </Text>
-
-                      {!data.isElixirUsageExpired ? (
-                        <Button
-                          label="Repair Streak"
-                          className="mt-4 w-full rounded-full active:opacity-80"
-                          onPress={() =>
-                            handleRepairStreak(data.lostStreakValue ?? '')
-                          }
-                          textClassName="font-medium-poppins text-base"
-                          loading={isRepairStreakPending}
-                          loadingAnimationColor={colors.black}
-                        />
-                      ) : (
-                        <Text className="mt-4 text-center text-sm text-red-200">
-                          Your 48-hour streak repair window has expired! But
-                          hey, new streaks mean new opportunities to beat your
-                          personal best.
-                        </Text>
-                      )}
-                    </View>
-                  )}
-
-                  {/* Streak Reset Warning */}
-                  {data?.isStreakFreezeUsed && (
-                    <View className="mb-4 w-full rounded-2xl border border-blue-500/50 bg-blue-500/20 p-4">
-                      <View className="mb-2 flex-row items-center justify-center">
-                        <Image
-                          source={require('../../ui/assets/images/shop/streak-freeze-potion.png')}
-                          className="right-1 size-[32]"
-                        />
-                        <Text className="font-bold-poppins text-lg text-red-300">
-                          Streak Freeze Potion Consumed!
-                        </Text>
-                      </View>
-                      <Text className="text-center text-sm text-red-200">
-                        Your Streak Freeze Potion kicked in and protected your
-                        streak. You're still on fire!
-                      </Text>
-                    </View>
-                  )}
-
-                  {data?.isStreakRepaired && (
-                    <View className="mb-4 w-full rounded-2xl border border-rose-500/50 bg-rose-500/20 p-4">
-                      <View className="mb-2 flex-row items-center justify-center">
-                        <Image
-                          source={require('../../ui/assets/images/shop/streak-revival-elixir.png')}
-                          className="right-1 size-[32]"
-                        />
-                        <Text className="font-bold-poppins text-lg text-red-300">
-                          Streak Repair Elixir Potion Kicked In!
-                        </Text>
-                      </View>
-                      <Text className="text-center text-sm">
-                        You saved your Streak! Your Streak Freeze Potion kicked
-                        in and protected your streak. You're still on fire!
-                      </Text>
-                    </View>
-                  )}
+                  <StreakWarning
+                    isStreakReset={data?.isStreakReset}
+                    isStreakFreezeUsed={data?.isStreakFreezeUsed}
+                    isStreakRepaired={data?.isStreakRepaired}
+                    isElixirUsageExpired={data?.isElixirUsageExpired}
+                    onRepairStreak={() =>
+                      handleRepairStreak(data?.lostStreakValue)
+                    }
+                    isRepairStreakPending={false}
+                  />
 
                   {/* Stats */}
                   <View className="flex-row gap-8">
@@ -293,92 +217,11 @@ export const DailyActivityModal = React.forwardRef<
                   </View>
                 </View>
 
-                {/* Activities List */}
-                {data.activities && data.activities.length > 0 ? (
-                  data.activities.map((activity, index) => (
-                    <View
-                      key={activity.id}
-                      className="mb-3 rounded-xl bg-white/10 p-4"
-                    >
-                      <View className="flex-row items-center justify-between">
-                        <View className="flex-1 flex-row items-center">
-                          <View className="mr-3 size-12 items-center justify-center rounded-full bg-gray-500/30">
-                            <Text className="ml-1 text-lg">
-                              {getActivityIcon(activity.type)}
-                            </Text>
-                          </View>
-                          <View className="flex-1">
-                            <Text className="font-semibold-poppins capitalize text-white">
-                              {activity.type.replace('_', ' ')}
-                            </Text>
-                            <Text className="text-sm text-white">
-                              {dayjs(activity.createdAt).format('hh:mm A')}
-                            </Text>
-                          </View>
-                        </View>
-
-                        <View className="items-end">
-                          <View
-                            className={`mb-2 rounded-full px-3 py-1 ${
-                              activity.status === 'attended' ||
-                              activity.status === 'completed'
-                                ? 'bg-green-500'
-                                : 'bg-gray-500'
-                            }`}
-                          >
-                            <Text className="font-bold-poppins text-xs text-white">
-                              {activity.status === 'attended' ||
-                              activity.status === 'completed'
-                                ? 'Completed'
-                                : activity.status === 'active'
-                                  ? 'Not Finished'
-                                  : activity.status}
-                            </Text>
-                          </View>
-                          <View className="flex-row items-center">
-                            <View className="flex-row gap-2">
-                              <GemIcon width={16} height={16} />
-                              <Text className="mr-4 font-bold-poppins text-sm text-yellow-400">
-                                {activity.gemsEarned}
-                              </Text>
-                            </View>
-                            <View className="flex-row gap-2">
-                              <FlashIcon width={16} height={16} />
-                              <Text className="font-bold-poppins text-sm text-purple-400">
-                                {activity.xpEarned}
-                              </Text>
-                            </View>
-                          </View>
-                        </View>
-                      </View>
-                    </View>
-                  ))
-                ) : (
-                  <View className="mb-6 items-center rounded-xl bg-white/5 p-6">
-                    <Text className="mb-3 text-4xl">🎯</Text>
-                    <Text className="mb-2 font-semibold-poppins text-lg text-white">
-                      No Activities
-                    </Text>
-
-                    {checkIsToday(data.dateKey, language) && (
-                      <Text className="text-center text-sm text-gray-400">
-                        Add your first physical activity you did today!
-                      </Text>
-                    )}
-                  </View>
-                )}
-
-                {/* Action Button */}
-                {checkIsToday(data.dateKey, language) && (
-                  <Button
-                    label="Add Activity"
-                    variant="default"
-                    className="mt-6 h-[52px]  rounded-full border-2 border-primary-900 bg-[#4E52FB] pl-5 active:bg-primary-700 dark:bg-[#4E52FB]"
-                    textClassName="text-base text-center  dark:text-white"
-                    iconPosition="left"
-                    onPress={() => onAddActivity(data.dateKey)}
-                  />
-                )}
+                <ActivitiesList
+                  activities={data.activities}
+                  onAddActivity={() => onAddActivity(data.dateKey)}
+                  isToday={checkIsToday(data.dateKey, language)}
+                />
               </BottomSheetScrollView>
             </>
           );

@@ -93,6 +93,9 @@ const loginUserAnonymouslyHandler = async (data: {
           xpWeekly: 0,
           streakFreezes: 0,
           isStreakProtected: false,
+          streakFreezeUsageDates: [],
+          streakRepairDates: [],
+          streakResetDates: [],
         },
       });
 

@@ -2,6 +2,7 @@
 import { useScrollToTop } from '@react-navigation/native';
 import { FlashList } from '@shopify/flash-list';
 import { getCalendars } from 'expo-localization';
+import { router } from 'expo-router';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RefreshControl, TouchableOpacity, View } from 'react-native';
@@ -15,11 +16,16 @@ import {
   useCreateActivityLog,
   useGetCalendarActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
-import CompactActivityCard from '@/components/activity-card';
+import { useOwnedPurchasedItems, useRepairStreak } from '@/api/shop/shop.hooks';
+import { useUser } from '@/api/user/user.hooks';
+import ActivitiesList from '@/components/activities-list';
+import CustomAlert from '@/components/custom-alert';
 import { ActivityLogSuccessModal } from '@/components/modals/activity-log-success-modal';
 import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
 import ScreenWrapper from '@/components/screen-wrapper';
-import { colors, Text, useModal } from '@/components/ui';
+import StreakWarning from '@/components/streak-warning';
+import Toast from '@/components/toast';
+import { colors, Image, Text, useModal } from '@/components/ui';
 import WeekBlock from '@/components/week-block';
 import { DATE_FORMAT } from '@/constants/date-format';
 import { DEVICE_TYPE } from '@/core';
@@ -27,6 +33,7 @@ import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { checkIsToday } from '@/core/utilities/date-time-helpers';
 import { formatDate } from '@/core/utilities/format-date';
+import { generateWeekDataOverview } from '@/core/utilities/generate-week-data-overview';
 
 const Activity = () => {
   const scrollViewRef = useRef<FlashList<any>>(null);
@@ -47,17 +54,22 @@ const Activity = () => {
     currentMonthNumber,
     startOfWeek,
     endOfWeek,
-    currentDay,
   } = useWeekNavigation();
 
   const activityCompleteModal = useModal();
   const activityLogSuccessModal = useModal();
-
+  const { data: userInfo } = useUser(language);
   const {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
   } = useCreateActivityLog({ onSuccess: activityLogSuccessModal.present });
   const [currentActiveDay, setCurrentActiveDay] = useState('');
+
+  const { mutate: onRepairStreak, isPending: isRepairStreakPending } =
+    useRepairStreak({});
+
+  const { data: ownPurchasedData, refetch: refetchOwnedShopItems } =
+    useOwnedPurchasedItems();
   // const today = getCurrentDay('YYYY-MM-DD', language);
 
   const { isRefetching, onRefetch } = useDelayedRefetch(() => {});
@@ -84,13 +96,6 @@ const Activity = () => {
   );
   useScrollToTop(scrollViewRef);
 
-  const scrollToTop = () => {
-    scrollViewRef.current?.scrollToIndex({
-      index: 0,
-      animated: true,
-    });
-  };
-
   const onScrollToIndex = (record) => {
     const indexToScroll = findSectionIndexToScroll(
       record.dateKey,
@@ -103,35 +108,150 @@ const Activity = () => {
       });
   };
 
-  const records = currentWeekActivityLog || {};
+  const lastResetStreakDates = userInfo?.gamification.streakResetDates;
+  const streakFreezeUsageDates = userInfo?.gamification?.streakFreezeUsageDates;
+  const streakRepairDates = userInfo?.gamification?.streakRepairDates;
+  const lastTimeLostStreakTimestamp =
+    userInfo?.gamification?.lostStreakTimestamp;
+  const lostStreakValue = userInfo?.gamification?.lostStreakValue;
 
-  const cardTitle = {
-    attended: 'Active',
-    skipped: 'Skipped',
-    inactive: 'Inactive',
-    completed: 'Completed Task',
-    active: 'Active Task',
-  };
+  const foundElixirShopItem = ownPurchasedData?.items?.find(
+    (shopItem) => shopItem.id === 'STREAK_REVIVAL_ELIXIR'
+  );
+  const hasUserRepairStreakElixir = foundElixirShopItem?.quantity > 0;
+
+  const generatedWeekData = generateWeekDataOverview({
+    currentWeekActivityLog,
+    segmentedDays,
+    lastResetStreakDates,
+    initialDayFocused,
+    streakFreezeUsageDates,
+    streakRepairDates,
+    lastTimeLostStreakTimestamp,
+    lostStreakValue,
+  });
+
+  // First, transform your array into an object with date keys
+  const generatedWeekDataMapped = generatedWeekData.reduce((acc, record) => {
+    const dateKey = record.dateKey; // or however you get the date from your record
+    if (!acc[dateKey]) {
+      acc[dateKey] = [];
+    }
+    acc[dateKey].push(record);
+
+    return acc;
+  }, {});
 
   // Prepare flat data for FlashList
   const flashListData = useMemo(() => {
-    return Object.entries(records)
-      .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB)) // Sort by date
-      .map(([date, recordsForDate]) => ({
-        id: date,
-        date,
-        records: recordsForDate, // can be null or an array
-      }));
-  }, [records]);
+    return (
+      Object.entries(generatedWeekDataMapped)
+        // .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB)) // Sort by date
+        .map(([date, recordsForDate]) => ({
+          id: date,
+          date,
+          records: recordsForDate, // can be null or an array
+        }))
+    );
+  }, [generatedWeekDataMapped]);
 
-  const renderItem = useCallback(
-    ({ item }) => (
+  const handleRepairStreak = (lostStreakValue: number) => {
+    if (!hasUserRepairStreakElixir) {
+      Toast.showCustomToast(
+        <CustomAlert
+          visible
+          image={
+            <Image
+              source={require('../../components/ui/assets/images/shop/streak-revival-elixir.png')}
+              className="size-[80]"
+            />
+          }
+          title="Streak Broke! Save it now!"
+          subtitle="Buy a Streak Repair Elixir for 800 💎 to bring back your lost streak."
+          buttons={[
+            {
+              label: 'Let It Break',
+              variant: '',
+              onPress: () => Toast.dismiss(),
+              className:
+                'flex-1 rounded-full bg-transparent dark:bg-transparent border border-white dark:border-white h-[48]',
+              buttonTextClassName: 'text-white dark:text-white text-sm',
+            },
+            {
+              label: 'Buy & Save Streak',
+              variant: '',
+              onPress: () => {
+                // router.navigate('/shop');
+                router.push({
+                  pathname: `/shop`,
+                  params: { displayProductName: 'STREAK_REVIVAL_ELIXIR' },
+                });
+                // ref.current.dismiss();
+              },
+              buttonTextClassName:
+                'text-white dark:text-white text-sm text-center',
+              className:
+                'flex-1 rounded-full h-[48] bg-[#4E52FB] dark:bg-[#4E52FB] active:opacity-80',
+            },
+          ]}
+        />,
+        {
+          duration: 10000000,
+        }
+      );
+      return;
+    }
+
+    Toast.showCustomToast(
+      <CustomAlert
+        visible
+        image={
+          <Image
+            source={require('../../components/ui/assets/images/shop/streak-revival-elixir.png')}
+            className="size-[80]"
+          />
+        }
+        title="Streak in Peril! Revive It Now!"
+        subtitle={`Bring your ${lostStreakValue}-day streak back to life with the powerful Streak Repair Elixir!`}
+        buttons={[
+          {
+            label: 'Let It Break',
+            variant: '',
+            onPress: () => Toast.dismiss(),
+            className:
+              'flex-1 rounded-full bg-transparent dark:bg-transparent border border-white dark:border-white h-[48]',
+            buttonTextClassName: 'text-white dark:text-white text-sm',
+          },
+          {
+            label: 'Use Elixir',
+            variant: '',
+            onPress: onRepairStreak,
+            buttonTextClassName:
+              'text-white dark:text-white text-sm text-center',
+            className:
+              'flex-1 rounded-full h-[48] bg-[#4E52FB] dark:bg-[#4E52FB] active:opacity-80',
+          },
+        ]}
+      />,
+      {
+        duration: 10000000,
+      }
+    );
+  };
+
+  const renderItem = ({ item }) => {
+    const data = item.records[0];
+    const isToday = checkIsToday(
+      formatDate(item.date, 'YYYY-MM-DD', language),
+      language
+    );
+    return (
       <View className="mb-2 border-b-[0.5px] border-white/10">
         <View className="flex-row items-center justify-between py-2">
           <Text className="font-bold-poppins text-xl text-[#3195FD]">
             {formatDate(item.date, DATE_FORMAT.weekDayMonth, language)}
           </Text>
-          {checkIsToday(item.date, language) && (
+          {isToday && (
             <TouchableOpacity
               onPress={() => {
                 setCurrentActiveDay(
@@ -149,33 +269,28 @@ const Activity = () => {
             </TouchableOpacity>
           )}
         </View>
+        {/* Streak Reset Warning */}
+        <StreakWarning
+          isStreakReset={data?.isStreakReset}
+          isStreakFreezeUsed={data?.isStreakFreezeUsed}
+          isStreakRepaired={data?.isStreakRepaired}
+          isElixirUsageExpired={data?.isElixirUsageExpired}
+          onRepairStreak={() => handleRepairStreak(data?.lostStreakValue)}
+          isRepairStreakPending={isRepairStreakPending}
+        />
 
-        {!item.records || item.records.length === 0 ? (
-          <View className="mb-2 rounded-lg">
-            <Text className="ml-[1] font-primary-poppins text-white">
-              No physical activity noted for this day
-            </Text>
-          </View>
-        ) : (
-          <View className="mt-2 gap-4">
-            {item.records.map((record, index) => {
-              return (
-                <CompactActivityCard
-                  key={`${item.date}-${index}`} // Unique key
-                  title={cardTitle[record.status]}
-                  status={record.status}
-                  outcome={record.excuseReason || record.activityName}
-                  gemsEarned={record.gemsEarned} // Dynamic value
-                  xpEarned={record.xpEarned} // Dynamic value
-                />
-              );
-            })}
-          </View>
-        )}
+        <ActivitiesList
+          showHeading={false}
+          activities={data.activities}
+          onAddActivity={() => {
+            setCurrentActiveDay(formatDate(item.date, 'YYYY-MM-DD', language));
+            activityCompleteModal.present({ type: 'custom_activity' });
+          }}
+          isToday={isToday}
+        />
       </View>
-    ),
-    [language]
-  );
+    );
+  };
 
   return (
     <ScreenWrapper>
