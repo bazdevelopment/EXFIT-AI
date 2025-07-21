@@ -460,8 +460,6 @@ const updateActivityLogHandler = async (
         );
       }
 
-      console.log('logData', logData);
-
       // --- c. CORE LOGIC: Grant pre-defined rewards on completion ---
 
       // Check ALL conditions:
