@@ -34,8 +34,9 @@ export interface IUpdateLogResponseData {
 }
 
 export interface ICreateLogResponseData {
-  logId: string;
-  message: string;
+  xpEarned: number;
+  gemsEarned: number;
+  newStreak: number;
 }
 
 /**

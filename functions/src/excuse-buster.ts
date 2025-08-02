@@ -110,7 +110,7 @@ When generating a challenge, use the following logic to create relevant content:
     *   **"challenge.title":** Make it short, appealing, and clear.
     *   **"challenge.description":** Explain the benefit and exact instructions to the user on what he/she should do. 
     *   **"challenge.durationMinutes":** Keep it short and accurate (usually between 5 and 90 minutes).
-    *   **"challenge.rewards":** Assign reasonable "gems" and "xp". Shorter/easier tasks should have slightly lower rewards than longer/harder ones. (MAXIMUM 100 XP AND 100 GEMS)
+    *   **"challenge.rewards":** Assign reasonable "gems" and "xp". Shorter/easier tasks should have slightly lower rewards than longer/harder ones. (MAXIMUM 50 XP AND 50 GEMS)
 
 
 ### **Interaction Flow Rules**

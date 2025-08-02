@@ -401,7 +401,7 @@ export const hourlyActivityReminder = functions.pubsub
   .schedule('every 1 hours from 00:00 to 23:00') // Runs on the hour, every hour
   .timeZone('UTC') // Always run scheduled jobs on a stable, universal timezone
   .onRun(async () => {
-    const notificationHour = 11; // The local hour we want to send the notification (11 AM)
+    const notificationHour = 14; // The local hour we want to send the notification (it was 11 AM)
     const now = new Date(); // The current time in UTC
 
     functions.logger.info(`Running hourly check at ${now.toUTCString()}`);
@@ -545,7 +545,7 @@ export const streakWarningNotifier = functions.pubsub
   .schedule('every 1 hours from 00:00 to 23:00')
   .timeZone('UTC')
   .onRun(async () => {
-    const warningHour = 18; // 6 PM local time
+    const warningHour = 19; // 19 PM local time
     const now = new Date();
 
     functions.logger.info(
