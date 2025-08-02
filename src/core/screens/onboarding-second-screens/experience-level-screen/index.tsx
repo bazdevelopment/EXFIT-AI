@@ -44,7 +44,7 @@ const ExperienceLevelScreen = ({
       <ScrollView className="mt-6 flex-1">
         {/* Header Section */}
         <View className="flex-row items-center justify-between px-4">
-          <View className="flex-row items-center gap-4">
+          <View className="max-w-[70%] flex-1 flex-row items-center gap-4">
             <Icon
               icon={<ArrowLeft />}
               iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
@@ -57,7 +57,7 @@ const ExperienceLevelScreen = ({
           </View>
 
           <View className="rounded-full bg-[#172554] px-3 py-1">
-            <Text className="text-sm font-medium text-[#3195FD]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
+            <Text className="font-bold-poppins text-sm text-[#3195FD]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
           </View>
         </View>
 

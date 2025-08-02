@@ -18,11 +18,13 @@ const SelectableButton = ({
   isSelected,
   onPress,
   className,
+  disabled = false,
 }: iSelectableButton) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPress}
+      disabled={disabled}
       className={`
         mx-4 my-1 h-[56px] flex-row
         items-center justify-between rounded-2xl

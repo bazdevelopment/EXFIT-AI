@@ -17,7 +17,7 @@ const OnboardingFirstPage = ({
   <View className="flex-1 bg-black">
     {/* Background Image with Overlay */}
     <ImageBackground
-      source={require('../../../../components/ui/assets/images/women-lift.jpg')}
+      source={require('../../../../components/ui/assets/images/scan-feature.png')}
       className="flex-1"
       resizeMode="cover"
     >
@@ -26,7 +26,6 @@ const OnboardingFirstPage = ({
         colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,1)', 'rgba(0,0,0,1)']}
         locations={[0.4, 0.9, 0.9]}
         style={{ flex: 1 }}
-        // className="flex-1"
       >
         {/* Content Container */}
         <View className="flex-column h-full justify-between px-6 pb-10">
@@ -43,14 +42,15 @@ const OnboardingFirstPage = ({
           <View className="flex-1 items-center justify-center">
             {/* Logo Icon */}
 
-            <View className="absolute bottom-1/4 gap-4">
-              <Text className="text-center font-semibold-poppins text-4xl leading-tight text-white">
-                Identify Activities & Get Expert AI guidance
+            <View className="absolute bottom-40 gap-4">
+              <Text className="text-center font-semibold-poppins text-3xl leading-tight text-white">
+                Let AI Power Your Fitness
               </Text>
 
               {/* Subtitle */}
-              <Text className="text-center font-primary-poppins text-lg  text-white">
-                From Gym Machines to Yoga poses
+              <Text className="text-center font-primary-poppins text-base  text-white">
+                Scan anything in your fitness journey, talk to your AI Coach,
+                and get daily challenges built for you
               </Text>
             </View>
           </View>

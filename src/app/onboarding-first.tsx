@@ -6,7 +6,6 @@ import { useFirstOnboarding } from '@/core/hooks/use-first-onboarding';
 import OnboardingFirstPage from '@/core/screens/onboarding-first-screens/onboarding-first-page';
 import OnboardingFourthPage from '@/core/screens/onboarding-first-screens/onboarding-fourth-page';
 import OnboardingSecondPage from '@/core/screens/onboarding-first-screens/onboarding-second-page';
-import OnboardingThirdPage from '@/core/screens/onboarding-first-screens/onboarding-third-page';
 
 export interface IOnboardingCollectedData {
   preferredName: string;
@@ -52,7 +51,7 @@ export default function OnboardingFirst() {
     >
       <OnboardingSecondPage />
       <OnboardingFirstPage />
-      <OnboardingThirdPage />
+      {/* <OnboardingThirdPage /> */}
       <OnboardingFourthPage />
     </FlowModal>
   );

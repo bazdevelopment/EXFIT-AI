@@ -14,6 +14,8 @@ import { useSelectedLanguage } from '@/core/i18n';
 
 import { type IFitnessGoalScreen } from './fitness-goal-screen.interface';
 
+const MAX_SELECTED_GOALS = 4;
+
 // Define the main screen component
 const FitnessGoalScreen = ({
   totalSteps,
@@ -22,8 +24,11 @@ const FitnessGoalScreen = ({
   goToPreviousScreen,
   onSkip,
   isSubmitOnboardingLoading,
+  collectedData,
 }: IFitnessGoalScreen) => {
-  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
+  const [selectedGoals, setSelectedGoals] = useState<string[]>(
+    collectedData.fitnessGoals ?? []
+  );
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
   // Array of fitness goals to display
@@ -34,6 +39,10 @@ const FitnessGoalScreen = ({
     { id: 'gain_endurance', icon: '⚡', text: 'I wanna gain endurance' },
     { id: 'lose_weight', icon: '⚖️', text: 'I want to loose weight' },
     { id: 'practice_yoga', icon: '🧘', text: 'I want to practice yoga' },
+    { id: 'home_workouts', icon: '🏠', text: 'Do Home Workouts' },
+    { id: 'mental_health', icon: '🧠', text: 'Boost Mental Health' },
+    { id: 'get_toned', icon: '🎯', text: 'Get Toned & Defined' },
+    { id: 'gain_weight', icon: '🍽️', text: 'I want to gain weight' },
   ];
 
   // Function to handle selecting/deselecting multiple goals
@@ -43,7 +52,12 @@ const FitnessGoalScreen = ({
         // If already selected, remove it
         return prevSelectedGoals.filter((id) => id !== goalId);
       } else {
-        // If not selected, add it
+        // If max limit reached, prevent adding more
+        if (prevSelectedGoals.length >= MAX_SELECTED_GOALS) {
+          alert(`You can select up to ${MAX_SELECTED_GOALS} goals.`);
+          return prevSelectedGoals;
+        }
+        // Otherwise, add the new goal
         return [...prevSelectedGoals, goalId];
       }
     });
@@ -55,7 +69,7 @@ const FitnessGoalScreen = ({
       <ScrollView className="mt-4 flex-1">
         {/* Header Section */}
         <View className="flex-row items-center justify-between px-4">
-          <View className="flex-row items-center gap-4">
+          <View className="max-w-[70%] flex-1 flex-row items-center gap-4">
             <Icon
               icon={<ArrowLeft />}
               iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
@@ -67,7 +81,7 @@ const FitnessGoalScreen = ({
             <Greeting userName={userInfo.userName} showGreeting={false} />
           </View>
           <View className="rounded-full bg-[#172554] px-3 py-1">
-            <Text className="text-sm font-medium text-[#3195FD]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
+            <Text className="font-bold-poppins text-sm text-[#3195FD]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>
           </View>
         </View>
 

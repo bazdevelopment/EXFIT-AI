@@ -4,4 +4,5 @@ export interface IGenderScreen {
   totalSteps: number;
   goToNextScreen: (data: IOnboardingCollectedData) => void;
   currentScreenIndex: number;
+  collectedData: IOnboardingCollectedData;
 }

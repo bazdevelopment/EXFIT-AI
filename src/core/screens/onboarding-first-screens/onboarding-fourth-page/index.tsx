@@ -1,8 +1,9 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { View } from 'react-native';
+import { ImageBackground, View } from 'react-native';
 
 import { OnboardingNavigation } from '@/components/onboarding-first-navigation';
-import { Button, Image, Text } from '@/components/ui';
+import { Button, Text } from '@/components/ui';
 
 import { type IOnboardingFourthPage } from './onboarding-fourth-page.interface';
 
@@ -17,43 +18,56 @@ const OnboardingFourthPage = ({
 }: IOnboardingFourthPage) => (
   <View className="flex-1 bg-black">
     {/* Content Container */}
-    <View className="flex-column h-full justify-between px-6 pb-10">
-      <View className="mt-[60] w-full flex-row justify-end">
-        <Button
-          onPress={onSkip}
-          label="Skip"
-          className="border-white bg-blackEerie active:opacity-90"
-          textClassName="text-white"
-          variant="outline"
-        />
-      </View>
-      {/* Center Section - Logo and Branding */}
-      <View className="flex-1 items-center">
-        {/* Logo Icon */}
-        <Image
-          source={require('../../../../components/ui/assets/images/streak.png')}
-          style={{ width: 250, height: 250 }}
-          className="mt-[25%]"
-        />
 
-        <View className="absolute bottom-1/4 gap-4 px-4">
-          <Text className="text-center font-bold-poppins text-3xl leading-tight text-white">
-            Earn streak rewards and hit your fitness milestones
-          </Text>
-        </View>
-      </View>
+    {/* Center Section - Logo and Branding */}
+    <View className="flex-1 items-center">
+      {/* Logo Icon */}
+      <ImageBackground
+        source={require('../../../../components/ui/assets/images/reward-feature.png')}
+        className="flex-1"
+        resizeMode="cover"
+      >
+        <LinearGradient
+          colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,1)', 'rgba(0,0,0,1)']}
+          locations={[0.4, 0.9, 0.9]}
+          style={{ flex: 1 }}
+        >
+          <View className="flex-column h-full justify-between px-6 pb-10">
+            <View className="mt-[60] w-full flex-row justify-end">
+              <Button
+                onPress={onSkip}
+                label="Skip"
+                className="border-white bg-blackEerie active:opacity-90"
+                textClassName="text-white"
+                variant="outline"
+              />
+            </View>
 
-      {/* Bottom Section - CTA Button */}
-      <OnboardingNavigation
-        currentIndex={currentScreenIndex}
-        totalSteps={totalSteps}
-        onPrevious={goToPreviousScreen}
-        onNext={goToNextScreen}
-        isLastScreenDisplayed={isLastScreenDisplayed}
-        className="absolute inset-x-0 bottom-20"
-        buttonClassName="bg-charcoal-600"
-        onFinish={onFinish}
-      />
+            {/* Bottom Section - CTA Button */}
+            <OnboardingNavigation
+              currentIndex={currentScreenIndex}
+              totalSteps={totalSteps}
+              onPrevious={goToPreviousScreen}
+              onNext={goToNextScreen}
+              isLastScreenDisplayed={isLastScreenDisplayed}
+              className="absolute inset-x-0 bottom-20"
+              buttonClassName="bg-charcoal-600"
+              onFinish={onFinish}
+            />
+          </View>
+        </LinearGradient>
+      </ImageBackground>
+
+      <View className="absolute bottom-52 gap-4 px-4">
+        <Text className="text-center font-bold-poppins text-3xl leading-tight text-white">
+          Train. Earn. Level Up.
+        </Text>
+        {/* Subtitle */}
+        <Text className="text-center font-primary-poppins text-base  text-white">
+          Score XP, collect gems, keep your streak alive, and unlock rewards for
+          showing up.
+        </Text>
+      </View>
     </View>
   </View>
 );

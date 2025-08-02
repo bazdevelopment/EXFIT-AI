@@ -18,8 +18,11 @@ export default function GenderSelectionScreen({
   totalSteps,
   goToNextScreen,
   currentScreenIndex,
+  collectedData,
 }: IGenderScreen) {
-  const [selectedGender, setSelectedGender] = useState<GenderType>('male');
+  const [selectedGender, setSelectedGender] = useState(
+    (collectedData.gender ?? 'male') as GenderType
+  );
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
 
@@ -31,7 +34,7 @@ export default function GenderSelectionScreen({
     <ScreenWrapper>
       {/* Header */}
       <View className="flex-row items-center justify-between px-6 py-4">
-        <View className=" flex-1">
+        <View className="flex-1">
           <Greeting userName={userInfo?.userName} showGreeting={false} />
         </View>
         <View className="rounded-full bg-[#172554] px-3 py-1">

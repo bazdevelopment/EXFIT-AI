@@ -33,7 +33,7 @@ const GenderCard = ({
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={() => onGenderSelect(gender)}
-      className={`overflow-hidden rounded-[30px] border-2 ${
+      className={`overflow-hidden rounded-[30px] border-4 ${
         isSelected ? 'border-blue-500' : 'border-gray-700'
       }`}
     >

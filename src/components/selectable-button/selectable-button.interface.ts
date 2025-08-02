@@ -3,4 +3,6 @@ export interface iSelectableButton {
   text: string;
   isSelected: boolean;
   onPress: () => void;
+  className?: string;
+  disabled?: boolean;
 }

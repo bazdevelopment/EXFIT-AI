@@ -43,14 +43,15 @@ const OnboardingSecondPage = ({
           <View className="flex-1 items-center justify-center">
             {/* Logo Icon */}
 
-            <View className="absolute bottom-1/4 gap-4">
+            <View className="absolute bottom-40 gap-4">
               <Text className="text-center font-semibold-poppins text-4xl leading-tight text-white">
-                Beat Excuses, Stay Consistent
+                Your Excuse is the Real Enemy
               </Text>
 
               {/* Subtitle */}
-              <Text className="text-md text-center font-primary-poppins text-white">
-                Boost Your Mood with AI-Powered Motivation
+              <Text className="text-center font-primary-poppins text-base text-white">
+                Meet EXFIT AI, your smart sidekick to crush doubt, spark
+                motivation, and keep you moving
               </Text>
             </View>
           </View>
