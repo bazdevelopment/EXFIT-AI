@@ -38,6 +38,7 @@ import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { avatars, type TAvatarGender } from '@/core/utilities/avatars';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
+import { generateWeekDataOverview } from '@/core/utilities/generate-week-data-overview';
 
 // eslint-disable-next-line max-lines-per-function
 export default function Home() {
@@ -95,29 +96,52 @@ export default function Home() {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
   } = useCreateActivityLog({
-    onSuccess: () =>
+    onSuccess: ({ gemsReward, xpReward }) =>
       activityLogSuccessModal.present({
-        gemsReward: 50, // Example value, replace with actual logic
-        xpReward: 50, // Example value, replace with actual logic})
+        gemsReward: gemsReward,
+        xpReward: xpReward,
       }),
   });
+
   const { mutateAsync: onUpdateActivityLog } = useUpdateActivityLog();
 
-  const { data: currentWeekActivityLog, refetch: refetchActivityLog } =
+  const { data: currentWeekActivityLogs, refetch: refetchActivityLog } =
     useGetCalendarActivityLog({
       startDate: startOfWeek,
       endDate: endOfWeek,
       language,
     });
 
-  const todayActiveTasks = currentWeekActivityLog?.[currentActiveDay]?.filter(
+  const generatedWeekData = generateWeekDataOverview({
+    currentWeekActivityLog: currentWeekActivityLogs,
+    segmentedDays,
+    lastResetStreakDates,
+    initialDayFocused,
+    streakFreezeUsageDates,
+    streakRepairDates,
+    lastTimeLostStreakTimestamp,
+    lostStreakValue,
+  });
+
+  // First, transform your array into an object with date keys
+  const generatedWeekDataMapped = generatedWeekData.reduce((acc, record) => {
+    const dateKey = record.dateKey; // or however you get the date from your record
+    if (!acc[dateKey]) {
+      acc[dateKey] = [];
+    }
+    acc[dateKey].push(record);
+
+    return acc;
+  }, {});
+
+  const todayActiveTasks = currentWeekActivityLogs?.[currentActiveDay]?.filter(
     (task) => task.type === 'custom_ai_task'
   );
   const { mutate: onRepairStreak, isPending: isRepairStreakPending } =
     useRepairStreak({
       onSuccessCallback: dailyActivityModal.ref.current?.dismiss,
     });
-  const isDailyCheckInDone = !!currentWeekActivityLog?.[currentActiveDay];
+  const isDailyCheckInDone = !!currentWeekActivityLogs?.[currentActiveDay];
 
   const { isRefetching, onRefetch } = useDelayedRefetch(() => {
     refetchActivityLog();
@@ -190,14 +214,14 @@ export default function Home() {
         />
 
         <View className="mx-1 rounded-2xl bg-[#191A21] pb-2">
-          {currentWeekActivityLog && (
+          {currentWeekActivityLogs && (
             <CalendarMiniView
               showMonth
               showYear
               showStreak
               currentStreak={userInfo?.gamification?.currentStreak}
               containerClassName="mx-2 mt-2 p-1"
-              currentWeekActivityLog={currentWeekActivityLog}
+              currentWeekActivityLog={currentWeekActivityLogs}
               segmentedDays={segmentedDays}
               currentMonth={currentMonth}
               currentYear={currentYear}
@@ -226,7 +250,7 @@ export default function Home() {
           ) : (
             <DailyCheckInStatus
               additionalClassname="mt-2"
-              status={currentWeekActivityLog?.[currentActiveDay][0]?.status}
+              status={currentWeekActivityLogs?.[currentActiveDay][0]?.status}
             />
           )}
 
@@ -299,6 +323,7 @@ export default function Home() {
           hasUserRepairStreakElixir={hasUserRepairStreakElixir}
           isRepairStreakPending={isRepairStreakPending}
           onRepairStreak={onRepairStreak}
+          currentWeekActivityLogs={generatedWeekDataMapped}
           onAddActivity={(date) =>
             activityCompleteModal.present({
               type: 'custom_activity',

@@ -79,7 +79,13 @@ interface ModalRenderProps {
   data?: ModalData;
 }
 
-// --- Helper Components ---
+interface DailyCheckInFormProps {
+  data?: ModalData;
+  onFormSubmit: (data: SubmitData) => void;
+  isCreateActivityLogPending?: boolean;
+}
+
+// --- Helper Components (Unchanged) ---
 
 const ModalHeader: React.FC<ModalHeaderProps> = ({ date }) => (
   <>
@@ -188,7 +194,7 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
   </View>
 );
 
-// --- Main Component ---
+// --- Stateful Form Component ---
 
 const initialState: ComponentState = {
   activity: '',
@@ -199,176 +205,185 @@ const initialState: ComponentState = {
   showCustomDuration: false,
 };
 
+const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
+  data,
+  onFormSubmit,
+  isCreateActivityLogPending,
+}) => {
+  const [state, setState] = useState<ComponentState>(initialState);
+
+  const activityOptions = useMemo<ActivityOption[]>(
+    () => [
+      { id: 'gym', label: 'Gym' },
+      { id: 'yoga', label: 'Yoga' },
+      { id: 'running', label: 'Running' },
+      { id: 'walking', label: 'Walking' },
+      { id: 'cycling', label: 'Cycling' },
+      { id: 'dance', label: 'Dance' },
+      { id: 'stretching', label: 'Stretching' },
+      { id: 'swimming', label: 'Swimming' },
+      { id: 'hiking', label: 'Hiking' },
+      { id: 'pilates', label: 'Pilates' },
+      { id: 'climbing', label: 'Climbing' },
+      { id: 'skating', label: 'Skating' },
+    ],
+    []
+  );
+
+  const durationOptions = useMemo<DurationOption[]>(
+    () => [
+      { id: '10min', value: 10, label: '10 min' },
+      { id: '15min', value: 15, label: '15 min' },
+      { id: '20min', value: 20, label: '20 min' },
+      { id: '30min', value: 30, label: '30 min' },
+      { id: '45min', value: 45, label: '45 min' },
+      { id: '60min', value: 60, label: '60 min' },
+      { id: '90min', value: 90, label: '90 min' },
+      { id: '120min', value: 120, label: '120 min' },
+    ],
+    []
+  );
+
+  const handleSelectActivity = useCallback((activity: string) => {
+    setState((prev) => ({
+      ...prev,
+      activity: prev.activity === activity ? '' : activity,
+      showCustomActivity: false,
+      customActivity: '',
+    }));
+  }, []);
+
+  const handleSelectDuration = useCallback((duration: number) => {
+    setState((prev) => ({
+      ...prev,
+      duration: prev.duration === duration ? 0 : duration,
+      showCustomDuration: false,
+      customDuration: '',
+    }));
+  }, []);
+
+  const handleSelectCustomActivity = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      activity: '',
+      showCustomActivity: true,
+    }));
+  }, []);
+
+  const handleSelectCustomDuration = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      duration: 0,
+      showCustomDuration: true,
+    }));
+  }, []);
+
+  const handleCustomActivityChange = useCallback((text: string) => {
+    setState((prev) => ({ ...prev, customActivity: text }));
+  }, []);
+
+  const handleCustomDurationChange = useCallback((text: string) => {
+    const sanitizedText = text.replace(/[^0-9]/g, '');
+    if (Number(sanitizedText) > 360) {
+      alert('Selected duration cannot exceed 360 minutes');
+      setState((prev) => ({ ...prev, customDuration: '' }));
+      return;
+    }
+    setState((prev) => ({ ...prev, customDuration: sanitizedText }));
+  }, []);
+
+  const handleSubmit = useCallback(() => {
+    const { activity, duration, customActivity, customDuration } = state;
+    onFormSubmit({
+      durationMinutes: duration || parseInt(customDuration, 10) || 0,
+      activityName: activity || customActivity,
+      type: data?.type ?? '',
+      date: data?.date ?? '',
+    });
+  }, [state, onFormSubmit, data]);
+
+  const isSubmitDisabled = useMemo(() => {
+    const { activity, duration, customActivity, customDuration } = state;
+    const hasActivity = Boolean(activity || customActivity.trim());
+    const hasDuration = duration > 0 || Boolean(customDuration.trim());
+    return !(hasActivity && hasDuration);
+  }, [state]);
+
+  return (
+    <>
+      <BlurView
+        blurAmount={20}
+        blurType="dark"
+        style={StyleSheet.absoluteFill}
+      />
+      <BottomSheetScrollView
+        className="flex-1 px-4"
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+      >
+        <ModalHeader date={data?.dateKey} />
+
+        <ActivitySelector
+          activityOptions={activityOptions}
+          selectedActivity={state.activity}
+          onSelectActivity={handleSelectActivity}
+          onSelectCustom={handleSelectCustomActivity}
+          showCustomInput={state.showCustomActivity}
+          onCustomActivityChange={handleCustomActivityChange}
+        />
+
+        <DurationSelector
+          durationOptions={durationOptions}
+          selectedDuration={state.duration}
+          onSelectDuration={handleSelectDuration}
+          onSelectCustom={handleSelectCustomDuration}
+          showCustomInput={state.showCustomDuration}
+          onCustomDurationChange={handleCustomDurationChange}
+        />
+
+        <Button
+          label="Add Activity"
+          className="h-[40px] w-full rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
+          textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
+          onPress={handleSubmit}
+          disabled={isSubmitDisabled || isCreateActivityLogPending}
+          loading={isCreateActivityLogPending}
+        />
+      </BottomSheetScrollView>
+    </>
+  );
+};
+
+// --- Main Modal Component (Refactored) ---
+
 export const DailyCheckInModal = React.forwardRef<any, DailyCheckInModalProps>(
   ({ onSubmit, isCreateActivityLogPending }, ref) => {
-    const [state, setState] = useState<ComponentState>(initialState);
-
     const snapPoints = useMemo(() => ['85%', '92%'], []);
 
-    const activityOptions = useMemo<ActivityOption[]>(
-      () => [
-        { id: 'gym', label: 'Gym' },
-        { id: 'yoga', label: 'Yoga' },
-        { id: 'running', label: 'Running' },
-        { id: 'walking', label: 'Walking' },
-        { id: 'cycling', label: 'Cycling' },
-        { id: 'dance', label: 'Dance' },
-        { id: 'stretching', label: 'Stretching' },
-        { id: 'swimming', label: 'Swimming' },
-        { id: 'hiking', label: 'Hiking' },
-        { id: 'pilates', label: 'Pilates' },
-        { id: 'climbing', label: 'Climbing' },
-        { id: 'skating', label: 'Skating' },
-      ],
-      []
-    );
-
-    const durationOptions = useMemo<DurationOption[]>(
-      () => [
-        { id: '10min', value: 10, label: '10 min' },
-        { id: '15min', value: 15, label: '15 min' },
-        { id: '20min', value: 20, label: '20 min' },
-        { id: '30min', value: 30, label: '30 min' },
-        { id: '45min', value: 45, label: '45 min' },
-        { id: '60min', value: 60, label: '60 min' },
-        { id: '90min', value: 90, label: '90 min' },
-        { id: '120min', value: 120, label: '120 min' },
-      ],
-      []
-    );
-
-    const resetState = useCallback(() => setState(initialState), []);
-
-    const handleSelectActivity = useCallback((activity: string) => {
-      setState((prev) => ({
-        ...prev,
-        activity: prev.activity === activity ? '' : activity,
-        showCustomActivity: false,
-        customActivity: '',
-      }));
-    }, []);
-
-    const handleSelectDuration = useCallback((duration: number) => {
-      setState((prev) => ({
-        ...prev,
-        duration: prev.duration === duration ? 0 : duration,
-        showCustomDuration: false,
-        customDuration: '',
-      }));
-    }, []);
-
-    const handleSelectCustomActivity = useCallback(() => {
-      setState((prev) => ({
-        ...prev,
-        activity: '',
-        showCustomActivity: true,
-      }));
-    }, []);
-
-    const handleSelectCustomDuration = useCallback(() => {
-      setState((prev) => ({
-        ...prev,
-        duration: 0,
-        showCustomDuration: true,
-      }));
-    }, []);
-
-    const handleCustomActivityChange = useCallback((text: string) => {
-      setState((prev) => ({ ...prev, customActivity: text }));
-    }, []);
-
-    const handleCustomDurationChange = useCallback((text: string) => {
-      const sanitizedText = text.replace(/[^0-9]/g, '');
-
-      if (Number(sanitizedText) > 360) {
-        alert('Selected duration cannot exceed 360 minutes');
-        // Option 1: Clear the input completely
-        setState((prev) => ({ ...prev, customDuration: '' }));
-
-        // Option 2: Keep only the first 2 digits (uncomment this and comment out option 1)
-        // setState((prev) => ({ ...prev, customDuration: sanitizedText.slice(0, 2) }));
-
-        return;
-      }
-
-      setState((prev) => ({ ...prev, customDuration: sanitizedText }));
-    }, []);
-
-    const handleSubmit = useCallback(
-      (data?: ModalData) => {
-        const { activity, duration, customActivity, customDuration } = state;
-
-        // Submit the data
-        onSubmit?.({
-          durationMinutes: duration || parseInt(customDuration, 10) || 0,
-          activityName: activity || customActivity,
-          type: data?.type ?? '',
-          date: data?.date ?? '',
-        });
-
-        // Reset the form after submission
-        resetState();
+    // This handler calls the original onSubmit and then resets the form
+    const handleFormSubmit = useCallback(
+      (formData: SubmitData) => {
+        onSubmit?.(formData);
+        // resetForm(); // Reset the form after submission
       },
-      [state, onSubmit, resetState]
+      [onSubmit]
     );
-
-    const isSubmitDisabled = useMemo(() => {
-      const { activity, duration, customActivity, customDuration } = state;
-      const hasActivity = Boolean(activity || customActivity.trim());
-      const hasDuration = duration > 0 || Boolean(customDuration.trim());
-      return !(hasActivity && hasDuration);
-    }, [state]);
 
     return (
       <Modal
         ref={ref}
         index={0}
-        onDismiss={resetState}
+        // onDismiss={resetForm} // Also reset form when the modal is dismissed
         snapPoints={snapPoints}
         backgroundStyle={{ backgroundColor: colors.transparent }}
       >
         {({ data }: ModalRenderProps = {}) => (
-          <>
-            <BlurView
-              blurAmount={20}
-              blurType="dark"
-              style={StyleSheet.absoluteFill}
-            />
-            <BottomSheetScrollView
-              className="flex-1 px-4"
-              showsVerticalScrollIndicator={false}
-              keyboardShouldPersistTaps="handled"
-            >
-              <ModalHeader date={data?.dateKey} />
-
-              <ActivitySelector
-                activityOptions={activityOptions}
-                selectedActivity={state.activity}
-                onSelectActivity={handleSelectActivity}
-                onSelectCustom={handleSelectCustomActivity}
-                showCustomInput={state.showCustomActivity}
-                onCustomActivityChange={handleCustomActivityChange}
-              />
-
-              <DurationSelector
-                durationOptions={durationOptions}
-                selectedDuration={state.duration}
-                onSelectDuration={handleSelectDuration}
-                onSelectCustom={handleSelectCustomDuration}
-                showCustomInput={state.showCustomDuration}
-                onCustomDurationChange={handleCustomDurationChange}
-              />
-
-              <Button
-                label="Add Activity"
-                className="h-[40px] w-full rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
-                textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
-                onPress={() => handleSubmit(data)}
-                disabled={isSubmitDisabled || isCreateActivityLogPending}
-                loading={isCreateActivityLogPending}
-              />
-            </BottomSheetScrollView>
-          </>
+          // Render the stateful form content with a key to enable resets
+          <DailyCheckInForm
+            data={data}
+            onFormSubmit={handleFormSubmit}
+            isCreateActivityLogPending={isCreateActivityLogPending}
+          />
         )}
       </Modal>
     );

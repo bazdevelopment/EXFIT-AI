@@ -315,6 +315,7 @@ const CalendarMiniView = ({
     lastTimeLostStreakTimestamp,
     lostStreakValue,
   });
+
   // Horizontal Layout (matching the second reference)
   if (layout === 'horizontal') {
     return (
@@ -346,7 +347,7 @@ const CalendarMiniView = ({
                 isStreakReset={item.isStreakReset}
                 isStreakFreezeUsed={item.isStreakFreezeUsed}
                 isStreakRepaired={item.isStreakRepaired}
-                onPress={() => onDayPress?.(item)}
+                onPress={() => onDayPress?.({ dateKey: item.dateKey })}
                 layout="horizontal"
               />
             ))}

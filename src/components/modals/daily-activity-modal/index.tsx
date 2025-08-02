@@ -5,6 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import { router } from 'expo-router';
+import { GAMIFICATION_REWARDS_CONFIG } from 'functions/utilities/rewards-pricing';
 import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -36,12 +37,15 @@ export const DailyActivityModal = React.forwardRef<
       onRepairStreak,
       isRepairStreakPending,
       hasUserRepairStreakElixir,
+      currentWeekActivityLogs,
     },
     ref
   ) => {
     const height = 550;
     const snapPoints = useMemo(() => [height, '90%'], [height]);
     const { language } = useSelectedLanguage();
+    const elixirPrice =
+      GAMIFICATION_REWARDS_CONFIG.shopItems.STREAK_REVIVAL_ELIXIR.costInGems;
 
     const handleRepairStreak = (lostStreakValue: number) => {
       if (!hasUserRepairStreakElixir) {
@@ -55,7 +59,7 @@ export const DailyActivityModal = React.forwardRef<
               />
             }
             title="Streak Broke! Save it now!"
-            subtitle="Buy a Streak Repair Elixir for 800 💎 to bring back your lost streak."
+            subtitle={`Buy a Streak Repair Elixir for ${elixirPrice} 💎 to bring back your lost streak.`}
             buttons={[
               {
                 label: 'Let It Break',
@@ -137,13 +141,14 @@ export const DailyActivityModal = React.forwardRef<
         }}
       >
         {({ data }) => {
+          const { dateKey } = data;
+          const record = currentWeekActivityLogs[dateKey][0];
+          const activities = record.activities;
           const totalXP =
-            data.activities?.reduce(
-              (sum, activity) => sum + activity.xpEarned,
-              0
-            ) || 0;
+            activities?.reduce((sum, activity) => sum + activity.xpEarned, 0) ||
+            0;
           const totalGems =
-            data.activities?.reduce(
+            activities?.reduce(
               (sum, activity) => sum + activity.gemsEarned,
               0
             ) || 0;
@@ -157,7 +162,7 @@ export const DailyActivityModal = React.forwardRef<
               />
               <BottomSheetScrollView
                 className="flex-1 px-4 pt-6"
-                // contentContainerClassName="mb-[200]"
+                contentContainerClassName="mb-[200]"
                 showsVerticalScrollIndicator={false}
               >
                 {/* Header with Date */}
@@ -169,12 +174,12 @@ export const DailyActivityModal = React.forwardRef<
                     {dayjs(data.dateKey).format('dddd, MMMM D')}
                   </Text>
                   <StreakWarning
-                    isStreakReset={data?.isStreakReset}
-                    isStreakFreezeUsed={data?.isStreakFreezeUsed}
-                    isStreakRepaired={data?.isStreakRepaired}
-                    isElixirUsageExpired={data?.isElixirUsageExpired}
+                    isStreakReset={record?.isStreakReset}
+                    isStreakFreezeUsed={record?.isStreakFreezeUsed}
+                    isStreakRepaired={record?.isStreakRepaired}
+                    isElixirUsageExpired={record?.isElixirUsageExpired}
                     onRepairStreak={() =>
-                      handleRepairStreak(data?.lostStreakValue)
+                      handleRepairStreak(record?.lostStreakValue)
                     }
                     isRepairStreakPending={false}
                   />
@@ -208,7 +213,7 @@ export const DailyActivityModal = React.forwardRef<
                         <Text className="text-lg">🎯</Text>
                       </View>
                       <Text className="font-bold-poppins text-lg text-green-400 dark:text-green-400">
-                        {data.activities?.length || 0}
+                        {activities?.length || 0}
                       </Text>
                       <Text className="font-medium-poppins text-sm text-white">
                         Activities
@@ -218,9 +223,9 @@ export const DailyActivityModal = React.forwardRef<
                 </View>
 
                 <ActivitiesList
-                  activities={data.activities}
-                  onAddActivity={() => onAddActivity(data.dateKey)}
-                  isToday={checkIsToday(data.dateKey, language)}
+                  activities={activities}
+                  onAddActivity={() => onAddActivity(dateKey)}
+                  isToday={checkIsToday(dateKey, language)}
                 />
               </BottomSheetScrollView>
             </>

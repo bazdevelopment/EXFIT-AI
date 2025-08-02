@@ -95,15 +95,6 @@ export const ActivityLogSuccessModal = React.forwardRef<
                   textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
                   onPress={onCloseModal}
                 />
-
-                {/* Go Back Button */}
-                {/* <TouchableOpacity
-            className="px-15 w-4/5 items-center rounded-full bg-indigo-600 py-4 shadow-lg shadow-indigo-600/30"
-            onPress={onCloseModal}
-            activeOpacity={0.8}
-          >
-            <Text className="text-base font-semibold text-white">Go Back</Text>
-          </TouchableOpacity> */}
               </View>
             </BottomSheetScrollView>
           </>

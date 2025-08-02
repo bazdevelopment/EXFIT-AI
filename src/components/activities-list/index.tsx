@@ -305,6 +305,16 @@ const ActivitiesList: React.FC<ActivityListProps> = ({
           onPress={() => onActivityPress?.(activity)}
         />
       ))}
+      {isToday && (
+        <Button
+          label="Add Activity"
+          variant="default"
+          className="mt-4 h-[45px] w-full rounded-full bg-[#4E52FB] pl-5 active:bg-primary-700 dark:bg-[#4E52FB]"
+          textClassName="text-base text-center  dark:text-white"
+          iconPosition="left"
+          onPress={onAddActivity}
+        />
+      )}
     </ScrollView>
   );
 };

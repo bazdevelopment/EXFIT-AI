@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions/v1';
 
 import { throwHttpsError } from '../utilities/errors';
+import { GAMIFICATION_REWARDS_CONFIG } from '../utilities/rewards-pricing';
 import { admin } from './common';
 import { getTranslation } from './translations';
 
@@ -115,21 +116,24 @@ const createActivityLogHandler = async (
 
   // Define rewards based on activity type
   switch (data.type) {
-    case 'gym_workout':
     case 'custom_activity':
-      xpAwarded = 30;
-      gemsAwarded = 10;
+      xpAwarded = GAMIFICATION_REWARDS_CONFIG.eventRewards.custom_activity.xp;
+      gemsAwarded =
+        GAMIFICATION_REWARDS_CONFIG.eventRewards.custom_activity.gems;
       status = 'attended';
       break;
     case 'daily_checkin':
-      xpAwarded = 10;
-      gemsAwarded = 2;
+      xpAwarded = GAMIFICATION_REWARDS_CONFIG.eventRewards.daily_checkin.xp;
+      gemsAwarded = GAMIFICATION_REWARDS_CONFIG.eventRewards.daily_checkin.gems;
       status = 'attended';
       break;
 
     case 'excuse_logged_daily_checkin':
-      xpAwarded = 0;
-      gemsAwarded = 0;
+      xpAwarded =
+        GAMIFICATION_REWARDS_CONFIG.eventRewards.excuse_logged_daily_checkin.xp;
+      gemsAwarded =
+        GAMIFICATION_REWARDS_CONFIG.eventRewards.excuse_logged_daily_checkin
+          .gems;
       status = 'skipped';
       break;
     case 'custom_ai_task':

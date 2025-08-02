@@ -21,8 +21,10 @@ import {
 export const useCreateActivityLog = ({ onSuccess }) =>
   createMutation<ICreateLogResponseData, ICreateLogRequestData, AxiosError>({
     mutationFn: (variables) => createActivityLog(variables),
-    onSuccess: () => {
-      onSuccess && onSuccess();
+    onSuccess: (data) => {
+      onSuccess &&
+        onSuccess({ xpReward: data.xpEarned, gemsReward: data.gemsEarned });
+      queryClient.invalidateQueries({ queryKey: ['user-info'] });
       queryClient.invalidateQueries({
         queryKey: ['activity-logs'],
       });

@@ -3,6 +3,7 @@ import { useScrollToTop } from '@react-navigation/native';
 import { FlashList } from '@shopify/flash-list';
 import { getCalendars } from 'expo-localization';
 import { router } from 'expo-router';
+import { GAMIFICATION_REWARDS_CONFIG } from 'functions/utilities/rewards-pricing';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RefreshControl, TouchableOpacity, View } from 'react-native';
@@ -62,9 +63,16 @@ const Activity = () => {
   const {
     mutateAsync: onCreateActivityLog,
     isPending: isCreateActivityLogPending,
-  } = useCreateActivityLog({ onSuccess: activityLogSuccessModal.present });
+  } = useCreateActivityLog({
+    onSuccess: ({ gemsReward, xpReward }) =>
+      activityLogSuccessModal.present({
+        gemsReward: gemsReward,
+        xpReward: xpReward,
+      }),
+  });
   const [currentActiveDay, setCurrentActiveDay] = useState('');
-
+  const elixirPrice =
+    GAMIFICATION_REWARDS_CONFIG.shopItems.STREAK_REVIVAL_ELIXIR.costInGems;
   const { mutate: onRepairStreak, isPending: isRepairStreakPending } =
     useRepairStreak({});
 
@@ -167,7 +175,7 @@ const Activity = () => {
             />
           }
           title="Streak Broke! Save it now!"
-          subtitle="Buy a Streak Repair Elixir for 800 💎 to bring back your lost streak."
+          subtitle={`Buy a Streak Repair Elixir for ${elixirPrice} 💎 to bring back your lost streak.`}
           buttons={[
             {
               label: 'Let It Break',
@@ -367,6 +375,7 @@ const Activity = () => {
       <DailyCheckInModal
         ref={activityCompleteModal.ref}
         isCreateActivityLogPending={isCreateActivityLogPending}
+        // activityLogs={}
         onSubmit={({ durationMinutes, activityName, type }) =>
           onCreateActivityLog({
             timezone: timeZone as string,
