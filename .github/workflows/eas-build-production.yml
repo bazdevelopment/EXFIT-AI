@@ -84,15 +84,10 @@ jobs:
           # Append environment variables to the defined env file
           echo "GOOGLE_SERVICES_JSON_PATH=${{ vars.GOOGLE_SERVICES_JSON_PATH }}" >> $ENV_FILE
           echo "GOOGLE_SERVICES_PLIST_PATH=${{ vars.GOOGLE_SERVICES_PLIST_PATH }}" >> $ENV_FILE
-          echo "ANTHROPIC_API_KEY=${{secrets.ANTHROPIC_API_KEY}}" >> $ENV_FILE
-          echo "RESEND_API_KEY=${{secrets.RESEND_API_KEY}}" >> $ENV_FILE
-          echo "RESEND_SENDER_EMAIL=${{secrets.RESEND_SENDER_EMAIL}}" >> $ENV_FILE
-          echo "RESEND_SENDER_EMAIL=${{secrets.TEST_ACCOUNT}}" >> $ENV_FILE
-          echo "TEST_ACCOUNT=${{secrets.TEST_ACCOUNT}}" >> $ENV_FILE
           echo "REVENUE_CAT_API_KEYS_GOOGLE=${{secrets.REVENUE_CAT_API_KEYS_GOOGLE}}" >> $ENV_FILE
           echo "REVENUE_CAT_API_KEYS_APPLE=${{secrets.REVENUE_CAT_API_KEYS_APPLE}}" >> $ENV_FILE
-          echo "ANALYZE_IMAGE_ENDPOINT=${{secrets.ANALYZE_IMAGE_ENDPOINT}}" >> $ENV_FILE
-          echo "ANALYZE_VIDEO_ENDPOINT=${{secrets.ANALYZE_VIDEO_ENDPOINT}}" >> $ENV_FILE
+          echo "EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION=${{secrets.EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION}}" >> $ENV_FILE
+          echo "EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT=${{secrets.EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT}}" >> $ENV_FILE
 
       - name: 🧑‍💻 Decode google services
         run: pnpm run decode-google-services
@@ -111,9 +106,7 @@ jobs:
           SHOULD_SUBMIT: ${{ inputs.should_submit }}
           REVENUE_CAT_API_KEYS_GOOGLE: ${{ secrets.REVENUE_CAT_API_KEYS_GOOGLE }}
           REVENUE_CAT_API_KEYS_APPLE: ${{ secrets.REVENUE_CAT_API_KEYS_APPLE }}
-          TEST_ACCOUNT: ${{ secrets.TEST_ACCOUNT }}
-          ANALYZE_IMAGE_CONVERSATION_ENDPOINT: ${{ secrets.EXPO_PUBLIC_ANALYZE_IMAGE_CONVERSATION_ENDPOINT }}
-          ANALYZE_VIDEO_CONVERSATION_ENDPOINT: ${{ secrets.EXPO_PUBLIC_ANALYZE_VIDEO_CONVERSATION_ENDPOINT }}
+          ANALYZE_SCAN_IMAGE_CONVERSATION: ${{ secrets.EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION }}
           CONTINUE_CONVERSATION_ENDPOINT: ${{ secrets.EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT }}
 
   android_build:
@@ -142,14 +135,10 @@ jobs:
           # Append environment variables to the defined env file
           echo "GOOGLE_SERVICES_JSON_PATH=${{ vars.GOOGLE_SERVICES_JSON_PATH }}" >> $ENV_FILE
           echo "GOOGLE_SERVICES_PLIST_PATH=${{ vars.GOOGLE_SERVICES_PLIST_PATH }}" >> $ENV_FILE
-          echo "ANTHROPIC_API_KEY=${{secrets.ANTHROPIC_API_KEY}}" >> $ENV_FILE
-          echo "RESEND_API_KEY=${{secrets.RESEND_API_KEY}}" >> $ENV_FILE
-          echo "RESEND_SENDER_EMAIL=${{secrets.RESEND_SENDER_EMAIL}}" >> $ENV_FILE
-          echo "TEST_ACCOUNT=${{secrets.TEST_ACCOUNT}}" >> $ENV_FILE
           echo "REVENUE_CAT_API_KEYS_GOOGLE=${{secrets.REVENUE_CAT_API_KEYS_GOOGLE}}" >> $ENV_FILE
           echo "REVENUE_CAT_API_KEYS_APPLE=${{secrets.REVENUE_CAT_API_KEYS_APPLE}}" >> $ENV_FILE
-          echo "ANALYZE_IMAGE_ENDPOINT=${{secrets.ANALYZE_IMAGE_ENDPOINT}}" >> $ENV_FILE
-          echo "ANALYZE_VIDEO_ENDPOINT=${{secrets.ANALYZE_VIDEO_ENDPOINT}}" >> $ENV_FILE
+          echo "EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION=${{secrets.EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION}}" >> $ENV_FILE
+          echo "EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT=${{secrets.EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT}}" >> $ENV_FILE
 
       - name: 🧑‍💻 Decode google services
         run: pnpm run decode-google-services
@@ -171,10 +160,7 @@ jobs:
           ANDROID: true
           IOS: false
           SHOULD_SUBMIT: ${{ inputs.should_submit }}
-          EXPO_PUBLIC_TEST_URL: ${{ secrets.EXPO_PUBLIC_TEST_URL }}
           REVENUE_CAT_API_KEYS_GOOGLE: ${{ secrets.REVENUE_CAT_API_KEYS_GOOGLE }}
           REVENUE_CAT_API_KEYS_APPLE: ${{ secrets.REVENUE_CAT_API_KEYS_APPLE }}
-          TEST_ACCOUNT: ${{ secrets.TEST_ACCOUNT }}
-          ANALYZE_IMAGE_CONVERSATION_ENDPOINT: ${{ secrets.EXPO_PUBLIC_ANALYZE_IMAGE_CONVERSATION_ENDPOINT }}
-          ANALYZE_VIDEO_CONVERSATION_ENDPOINT: ${{ secrets.EXPO_PUBLIC_ANALYZE_VIDEO_CONVERSATION_ENDPOINT }}
+          ANALYZE_SCAN_IMAGE_CONVERSATION: ${{ secrets.EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION }}
           CONTINUE_CONVERSATION_ENDPOINT: ${{ secrets.EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT }}

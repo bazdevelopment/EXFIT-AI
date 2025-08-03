@@ -16,6 +16,7 @@ import { Button, Text } from '@/components/ui';
 import { WarningIconRounded } from '@/components/ui/assets/icons';
 import { UpgradeProgress } from '@/components/ui/assets/icons/upgrade-progress';
 import { useSelectedLanguage } from '@/core';
+import { calculateFreeTrialDays } from '@/core/utilities/calculate-free-trial-days';
 import { calculateLevel } from '@/core/utilities/calculate-level';
 
 // Types
@@ -171,6 +172,13 @@ const UpgradeCard: React.FC<{
 
 // Main Component
 const ProfileScreen: React.FC = () => {
+  const { language } = useSelectedLanguage();
+  const { data: userInfo } = useUser(language);
+
+  const daysLeft = calculateFreeTrialDays({
+    endDateISO: userInfo.trial.endDateISO,
+  });
+
   const _badges = [
     { id: '1', title: 'Habit Hero', icon: '🤠', earned: true },
     { id: '2', title: 'Consistency Champ', icon: '💝', earned: true },
@@ -181,8 +189,6 @@ const ProfileScreen: React.FC = () => {
     { id: '1', title: 'Streak Freeze Potion', icon: '🧪', owned: 2 },
     { id: '2', title: 'Time Turner', icon: '⏳', owned: 1 },
   ];
-  const { language } = useSelectedLanguage();
-  const { data: userInfo } = useUser(language);
 
   const levelInfo = calculateLevel(userInfo.gamification.xpTotal);
 
@@ -206,7 +212,10 @@ const ProfileScreen: React.FC = () => {
   };
 
   const handleUpgrade = () => {
-    router.navigate('/paywall');
+    router.push({
+      pathname: '/paywall',
+      params: { showFreeTrialOffering: 'false', allowToNavigateBack: 'true' },
+    });
   };
 
   const _handleViewAllBadges = () => {
@@ -224,8 +233,8 @@ const ProfileScreen: React.FC = () => {
       <ScreenHeader title="Profile" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <ProfileHeader
-          isTemporary={true}
-          trialDaysLeft={4}
+          isTemporary={true} // here we need a variable to check if the user created a permanent account or not
+          trialDaysLeft={daysLeft}
           onCreateAccount={handleCreateAccount}
           onSettings={handleSettings}
           userInfo={userInfo}

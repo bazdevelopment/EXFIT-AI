@@ -58,6 +58,9 @@ export const updateUser = usCentralFunctions.https.onCall(
 export const checkEmailExist = usCentralFunctions.https.onCall(
   userFunctions.checkEmailExistsHandler,
 );
+export const startFreeTrial = usCentralFunctions.https.onCall(
+  userFunctions.startFreeTrialHandler,
+);
 
 /** ActivityLogs collection cloud functions  */
 

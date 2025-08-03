@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -14,20 +14,38 @@ import {
   useGetOfferings,
   usePurchaseSubscription,
   useRestorePurchases,
+  useStartFreeTrial,
 } from '@/api/subscription/subscription.hooks';
 import { useUpdateUser, useUser } from '@/api/user/user.hooks';
 import PricingOption from '@/components/pricing-option';
 import { Button, colors, FocusAwareStatusBar, Text } from '@/components/ui';
 import { CloseIcon } from '@/components/ui/assets/icons';
+import { MAX_FREE_SCANS } from '@/constants/limits';
 import { SUBSCRIPTION_PLANS_PER_PLATFORM } from '@/constants/subscriptions';
 import { translate } from '@/core';
 import { calculateAnnualDiscount } from '@/core/utilities/calculate-annual-discout';
 import { updateUserAfterSelectingPlan } from '@/core/utilities/update-user-subscription-plan';
 
-const formatPaywallData = (offerings: any) => {
-  if (!offerings) return [];
-
+const formatPaywallData = (offerings: any, showFreeTrialOffering: string) => {
   const paywallData = [];
+
+  if (showFreeTrialOffering === 'true') {
+    paywallData.push({
+      id: 'free_trial',
+      title: translate(
+        'rootLayout.screens.paywallUpgradeScreen.firstOffering.title'
+      ),
+      subtitle: translate(
+        'rootLayout.screens.paywallUpgradeScreen.firstOffering.subtitle',
+        { freeScans: MAX_FREE_SCANS }
+      ),
+      price: 'Free',
+      priceNumber: '',
+      currency: '',
+      type: 'FREE_TRIAL',
+    });
+  }
+  if (!offerings) return paywallData;
 
   if (offerings?.monthly?.product) {
     paywallData.push({
@@ -77,23 +95,26 @@ const Paywall = () => {
       'rootLayout.screens.paywallOnboarding.freeTierOfferings.firstOffering'
     ),
     translate(
+      'rootLayout.screens.paywallOnboarding.freeTierOfferings.thirdOffering'
+    ),
+    translate(
+      'rootLayout.screens.paywallOnboarding.freeTierOfferings.fourthOffering'
+    ),
+    translate(
       'rootLayout.screens.paywallOnboarding.freeTierOfferings.secondOffering'
-    ),
-
-    translate(
-      'rootLayout.screens.paywallOnboarding.freeTierOfferings.fourthOffering'
-    ),
-    translate(
-      'rootLayout.screens.paywallOnboarding.freeTierOfferings.fourthOffering'
     ),
   ];
   const {
     i18n: { language },
   } = useTranslation();
   const { data: userInfo } = useUser(language);
-
+  const { showFreeTrialOffering = 'true', allowToNavigateBack = 'false' } =
+    useLocalSearchParams();
   const { mutateAsync: onUpdateUser, isPending: isPendingUpdateUser } =
     useUpdateUser();
+
+  const { mutate: onHandleFreeTrial, isPending: isPendingFreeTrialRequest } =
+    useStartFreeTrial();
 
   const [selectedPlan, setSelectedPlan] = useState(
     SUBSCRIPTION_PLANS_PER_PLATFORM?.YEARLY
@@ -105,7 +126,11 @@ const Paywall = () => {
 
   const { mutateAsync: purchaseSubscription } = usePurchaseSubscription();
   const { data: offerings } = useGetOfferings();
-  const formattedOfferings = formatPaywallData(offerings);
+  const formattedOfferings = formatPaywallData(
+    offerings,
+    showFreeTrialOffering
+  );
+  console.log('formattedOfferings', formattedOfferings);
   const { mutate: restorePurchase, isPending: isPendingRestorePurchase } =
     useRestorePurchases(onSuccessRestoration);
 
@@ -121,20 +146,22 @@ const Paywall = () => {
   const onSelect = (planId: string) => setSelectedPlan(planId);
 
   const handlePurchase = async () => {
-    const customerInfoAfterPurchase = await purchaseSubscription({
-      packageIdentifier: selectedPlan,
-    });
+    if (selectedPlan === 'free_trial') {
+      onHandleFreeTrial({});
 
-    await updateUserAfterSelectingPlan({
-      language,
-      userId: userInfo.userId,
-      collectedData: { preferredName: userInfo.userName },
-      customerInfo: customerInfoAfterPurchase as CustomerInfo,
-      onUpdateUser,
-    });
+      //add here the logic to start the trial
+    } else {
+      const customerInfoAfterPurchase = await purchaseSubscription({
+        packageIdentifier: selectedPlan,
+      });
 
-    if (customerInfoAfterPurchase) {
-      router.back();
+      await updateUserAfterSelectingPlan({
+        language,
+        userId: userInfo.userId,
+        collectedData: { preferredName: userInfo.userName },
+        customerInfo: customerInfoAfterPurchase as CustomerInfo,
+        onUpdateUser,
+      });
     }
   };
 
@@ -165,7 +192,11 @@ const Paywall = () => {
         <View className="top-[5] flex-row justify-end p-4">
           <TouchableOpacity
             className="size-10 items-center justify-center"
-            onPress={() => router.back()}
+            onPress={() =>
+              allowToNavigateBack === 'true'
+                ? router.back()
+                : router.navigate('/(app)')
+            }
             activeOpacity={0.7}
           >
             <CloseIcon color={colors.white} width={28} height={28} />
@@ -175,20 +206,20 @@ const Paywall = () => {
         {/* Content */}
         <View className="px-6">
           {/* Title */}
-          <Text className="mb-16 mt-4 text-center font-semibold-poppins text-3xl text-white">
+          <Text className="mb-10 mt-4 text-center font-semibold-poppins text-3xl text-white">
             {translate(
               'rootLayout.screens.paywallOnboarding.freeTierOfferings.title'
             )}
           </Text>
 
           {/* Features */}
-          <View className="mb-6">
+          <View className="mb-2">
             {features.map((feature, index) => (
-              <View key={index} className="mb-6 w-[90%] flex-row items-center">
+              <View key={index} className="mb-4 w-[90%] flex-row items-center">
                 <View className="mr-5 size-7 items-center justify-center rounded-full bg-blue-500">
                   <Ionicons name="checkmark" size={18} color="white" />
                 </View>
-                <Text className="font-primary-poppins text-lg text-white">
+                <Text className="font-primary-poppins text-base text-white dark:text-white">
                   {feature}
                 </Text>
               </View>
@@ -221,7 +252,7 @@ const Paywall = () => {
             textClassName="text-base text-center text-white dark:text-white"
             iconPosition="left"
             onPress={handlePurchase}
-            loading={isPendingUpdateUser}
+            loading={isPendingUpdateUser || isPendingFreeTrialRequest}
           />
 
           {/* Restore Purchase Button */}

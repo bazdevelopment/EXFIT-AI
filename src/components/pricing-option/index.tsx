@@ -9,21 +9,26 @@ import { Text } from '../ui';
 //!wrapped is needed because on android blur view doesn't support nested views
 const Wrapper = ({ children }: { children: React.ReactElement }) =>
   DEVICE_TYPE.IOS ? (
-    <BlurView
-      blurAmount={10}
-      className="overflow-hidden rounded-3xl p-4"
-      style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.05)',
-        borderRadius: 10,
-      }}
-    >
+    <View className="overflow-hidden rounded-xl">
+      <BlurView
+        blurType="dark"
+        blurAmount={5}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        }}
+      />
       {children}
-    </BlurView>
+    </View>
   ) : (
     <View className="">{children}</View>
   );
 
 const PricingOption = ({ plan, selectedPlan, onSelectOption, badge }) => {
+  console.log('plan', plan);
   return (
     <Wrapper>
       <TouchableOpacity onPress={onSelectOption} activeOpacity={0.7}>
@@ -45,7 +50,7 @@ const PricingOption = ({ plan, selectedPlan, onSelectOption, badge }) => {
               )}
             </View>
             <View>
-              <Text className="font-bold-poppins text-lg text-white">
+              <Text className="font-bold-poppins text-lg text-white dark:text-white">
                 {plan.title}
               </Text>
               <Text className="mr-10 text-sm text-white">{plan.subtitle}</Text>
