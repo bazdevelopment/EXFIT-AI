@@ -77,10 +77,14 @@ const Paywall = () => {
       'rootLayout.screens.paywallOnboarding.freeTierOfferings.firstOffering'
     ),
     translate(
-      'rootLayout.screens.paywallOnboarding.freeTierOfferings.thirdOffering'
+      'rootLayout.screens.paywallOnboarding.freeTierOfferings.secondOffering'
+    ),
+
+    translate(
+      'rootLayout.screens.paywallOnboarding.freeTierOfferings.fourthOffering'
     ),
     translate(
-      'rootLayout.screens.paywallOnboarding.freeTierOfferings.secondOffering'
+      'rootLayout.screens.paywallOnboarding.freeTierOfferings.fourthOffering'
     ),
   ];
   const {

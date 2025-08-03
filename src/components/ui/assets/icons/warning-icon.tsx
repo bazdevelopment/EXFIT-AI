@@ -9,6 +9,7 @@ export const WarningIcon = (props: ISvgProps) => (
     width={24}
     height={21}
     fill="none"
+    viewBox="0 0 24 24"
     {...props}
   >
     <Path

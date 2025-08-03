@@ -230,12 +230,10 @@ const Avatar: React.FC<AvatarProps> = ({
           </View>
         )}
       </View>
-      <Text className="mb-2 mt-4 text-2xl font-bold text-white dark:text-white">
+      <Text className="mt-4 font-bold-poppins text-xl text-white dark:text-white">
         {name}
       </Text>
-      <Text className="dark:text-gray4500 text-sm text-gray-400">
-        Joined {creationDate}
-      </Text>
+      <Text className="text-sm text-gray-400">Joined {creationDate}</Text>
     </View>
   );
 };

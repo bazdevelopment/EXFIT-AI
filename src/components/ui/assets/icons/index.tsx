@@ -76,4 +76,5 @@ export * from './upload';
 export * from './user-icon';
 export * from './wand-sparkle';
 export * from './warning-icon';
+export * from './warning-icon-rounded';
 export * from './website';

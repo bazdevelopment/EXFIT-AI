@@ -105,7 +105,7 @@ export default function Settings() {
       {/* {DEVICE_TYPE.IOS && (
         <Toaster autoWiggleOnUpdate="toast-change" pauseWhenPageIsHidden />
       )} */}
-      <View className="mt-4 px-6">
+      <View className="px-6">
         <Text className="mb-2 font-bold-poppins text-3xl text-white">
           Settings
         </Text>
