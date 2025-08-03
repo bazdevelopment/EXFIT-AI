@@ -99,22 +99,22 @@ runs:
     - name: Update EAS JSON env variables used in the app
       run: |
         # Debug: Print inputs to verify they are not empty
-         echo "REVENUE_CAT_API_KEYS_GOOGLE: ${{ inputs.REVENUE_CAT_API_KEYS_GOOGLE }}"
-         echo "REVENUE_CAT_API_KEYS_APPLE: ${{ inputs.REVENUE_CAT_API_KEYS_APPLE }}"
+         echo "REVENUE_CAT_API_KEYS_GOOGLE: ${{ inputs.EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE }}"
+         echo "REVENUE_CAT_API_KEYS_APPLE: ${{ inputs.EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE }}"
          echo "ANALYZE_IMAGE_CONVERSATION_ENDPOINT: ${{ inputs.ANALYZE_SCAN_IMAGE_CONVERSATION }}"
          echo "CONTINUE_CONVERSATION_ENDPOINT: ${{ inputs.CONTINUE_CONVERSATION_ENDPOINT }}"
 
          # Detect OS and use appropriate sed syntax (ios use sed -i '')
          if [[ "$OSTYPE" == "darwin"* ]]; then
          # Use sed to replace placeholders in eas.json
-         sed -i '' "s|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE_CI|${{ inputs.REVENUE_CAT_API_KEYS_GOOGLE }}|g" eas.json
-         sed -i '' "s|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE_CI|${{ inputs.REVENUE_CAT_API_KEYS_APPLE }}|g" eas.json
+         sed -i '' "s|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE_CI|${{ inputs.EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE }}|g" eas.json
+         sed -i '' "s|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE_CI|${{ inputs.EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE }}|g" eas.json
          sed -i '' "s|EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION_CI|${{ inputs.ANALYZE_SCAN_IMAGE_CONVERSATION }}|g" eas.json
          sed -i '' "s|EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT_CI|${{ inputs.CONTINUE_CONVERSATION_ENDPOINT }}|g" eas.json
 
          else
-         sed -i 's|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE_CI|${{ inputs.REVENUE_CAT_API_KEYS_GOOGLE }}|g' eas.json
-         sed -i 's|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE_CI|${{ inputs.REVENUE_CAT_API_KEYS_APPLE }}|g' eas.json
+         sed -i 's|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE_CI|${{ inputs.EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE }}|g' eas.json
+         sed -i 's|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE_CI|${{ inputs.EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE }}|g' eas.json
          sed -i 's|EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION_CI|${{inputs.ANALYZE_SCAN_IMAGE_CONVERSATION }}|g' eas.json
          sed -i 's|EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT_CI|${{ inputs.CONTINUE_CONVERSATION_ENDPOINT }}|g' eas.json
 
