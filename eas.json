@@ -10,7 +10,7 @@
       "pnpm": "9.12.3",
       "autoIncrement": true,
       "ios": {
-        "image": "latest"
+        "image": "macos-sonoma-14.6-xcode-16.1"
       },
       "android": {
         "buildType": "app-bundle",
@@ -19,7 +19,11 @@
       "env": {
         "EXPO_NO_DOTENV": "1",
         "APP_ENV": "production",
-        "FLIPPER_DISABLE": "1"
+        "FLIPPER_DISABLE": "1",
+        "EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT": "EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT_CI",
+        "EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION": "EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION_CI",
+        "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE": "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE_CI",
+        "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE": "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE_CI"
       }
     },
     "staging": {
@@ -37,7 +41,11 @@
       "env": {
         "APP_ENV": "production", // !don't change it to staging for now otherwise eas build will request a .env.staging file
         "EXPO_NO_DOTENV": "1",
-        "FLIPPER_DISABLE": "1"
+        "FLIPPER_DISABLE": "1",
+        "EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT": "EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT_CI",
+        "EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION": "EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION_CI",
+        "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE": "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE_CI",
+        "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE": "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE_CI"
       }
     },
     "development": {
@@ -67,7 +75,11 @@
       },
       "env": {
         "APP_ENV": "development",
-        "EXPO_NO_DOTENV": "1"
+        "EXPO_NO_DOTENV": "1",
+        "EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT": "EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT_CI",
+        "EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION": "EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION_CI",
+        "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE": "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE_CI",
+        "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE": "EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE_CI"
       }
     }
   },
@@ -78,7 +90,7 @@
         "releaseStatus": "draft"
       },
       "ios": {
-        "ascAppId": "1234" //Apple ID from app information tab in app store connect, move to env file in the future if it's possible
+        "ascAppId": "6749510101" //Apple ID from app information tab in app store connect, move to env file in the future if it's possible
       }
     }
   }

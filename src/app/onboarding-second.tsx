@@ -60,7 +60,8 @@ export default function OnboardingSecond() {
       fieldsToUpdate: payload,
     }).then(() => {
       !isSecondOnboardingDone && setIsSecondOnboardingDone(true);
-      router.navigate('/(app)');
+      // router.navigate('/(app)');
+      router.navigate('/paywall');
     });
   };
 
@@ -75,7 +76,8 @@ export default function OnboardingSecond() {
       fieldsToUpdate: payload,
     }).then(() => {
       !isSecondOnboardingDone && setIsSecondOnboardingDone(true);
-      router.navigate('/(app)');
+      // router.navigate('/(app)');
+      router.navigate('/paywall');
     });
   };
 

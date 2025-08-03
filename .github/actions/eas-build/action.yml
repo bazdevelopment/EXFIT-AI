@@ -67,15 +67,8 @@ inputs:
   REVENUE_CAT_API_KEYS_APPLE:
     description: 'REVENUE_CAT_API_KEYS_APPLE'
     required: true
-  TEST_ACCOUNT:
-    description: 'TEST_ACCOUNT'
-    required: true
-
-  ANALYZE_IMAGE_CONVERSATION_ENDPOINT:
+  ANALYZE_SCAN_IMAGE_CONVERSATION:
     description: 'ANALYZE_IMAGE_CONVERSATION_ENDPOINT'
-    required: true
-  ANALYZE_VIDEO_CONVERSATION_ENDPOINT:
-    description: ' ANALYZE_VIDEO_CONVERSATION_ENDPOINT'
     required: true
   CONTINUE_CONVERSATION_ENDPOINT:
     description: 'CONTINUE_CONVERSATION_ENDPOINT'
@@ -108,9 +101,7 @@ runs:
         # Debug: Print inputs to verify they are not empty
          echo "REVENUE_CAT_API_KEYS_GOOGLE: ${{ inputs.REVENUE_CAT_API_KEYS_GOOGLE }}"
          echo "REVENUE_CAT_API_KEYS_APPLE: ${{ inputs.REVENUE_CAT_API_KEYS_APPLE }}"
-         echo "TEST_ACCOUNT: ${{ inputs.TEST_ACCOUNT }}"
-         echo "ANALYZE_IMAGE_CONVERSATION_ENDPOINT: ${{ inputs.ANALYZE_IMAGE_CONVERSATION_ENDPOINT }}"
-         echo "ANALYZE_VIDEO_CONVERSATION_ENDPOINT: ${{ inputs.ANALYZE_VIDEO_CONVERSATION_ENDPOINT }}"
+         echo "ANALYZE_IMAGE_CONVERSATION_ENDPOINT: ${{ inputs.ANALYZE_SCAN_IMAGE_CONVERSATION }}"
          echo "CONTINUE_CONVERSATION_ENDPOINT: ${{ inputs.CONTINUE_CONVERSATION_ENDPOINT }}"
 
          # Detect OS and use appropriate sed syntax (ios use sed -i '')
@@ -118,17 +109,13 @@ runs:
          # Use sed to replace placeholders in eas.json
          sed -i '' "s|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE_CI|${{ inputs.REVENUE_CAT_API_KEYS_GOOGLE }}|g" eas.json
          sed -i '' "s|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE_CI|${{ inputs.REVENUE_CAT_API_KEYS_APPLE }}|g" eas.json
-         sed -i '' "s|EXPO_PUBLIC_TEST_ACCOUNT_CI|${{ inputs.TEST_ACCOUNT }}|g" eas.json
-         sed -i '' "s|EXPO_PUBLIC_ANALYZE_IMAGE_CONVERSATION_ENDPOINT_CI|${{ inputs.ANALYZE_IMAGE_CONVERSATION_ENDPOINT }}|g" eas.json
-         sed -i '' "s|EXPO_PUBLIC_ANALYZE_VIDEO_CONVERSATION_ENDPOINT_CI|${{ inputs.ANALYZE_VIDEO_CONVERSATION_ENDPOINT }}|g" eas.json
+         sed -i '' "s|EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION_CI|${{ inputs.ANALYZE_SCAN_IMAGE_CONVERSATION }}|g" eas.json
          sed -i '' "s|EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT_CI|${{ inputs.CONTINUE_CONVERSATION_ENDPOINT }}|g" eas.json
 
          else
          sed -i 's|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_GOOGLE_CI|${{ inputs.REVENUE_CAT_API_KEYS_GOOGLE }}|g' eas.json
          sed -i 's|EXPO_PUBLIC_REVENUE_CAT_API_KEYS_APPLE_CI|${{ inputs.REVENUE_CAT_API_KEYS_APPLE }}|g' eas.json
-         sed -i 's|EXPO_PUBLIC_TEST_ACCOUNT_CI|${{ inputs.TEST_ACCOUNT }}|g' eas.json
-         sed -i 's|EXPO_PUBLIC_ANALYZE_IMAGE_CONVERSATION_ENDPOINT_CI|${{ inputs.ANALYZE_IMAGE_CONVERSATION_ENDPOINT }}|g' eas.json
-         sed -i 's|EXPO_PUBLIC_ANALYZE_VIDEO_CONVERSATION_ENDPOINT_CI|${{ inputs.ANALYZE_VIDEO_CONVERSATION_ENDPOINT }}|g' eas.json
+         sed -i 's|EXPO_PUBLIC_ANALYZE_SCAN_IMAGE_CONVERSATION_CI|${{inputs.ANALYZE_SCAN_IMAGE_CONVERSATION }}|g' eas.json
          sed -i 's|EXPO_PUBLIC_CONTINUE_CONVERSATION_ENDPOINT_CI|${{ inputs.CONTINUE_CONVERSATION_ENDPOINT }}|g' eas.json
 
          fi

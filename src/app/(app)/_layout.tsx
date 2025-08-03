@@ -7,6 +7,7 @@ import { checkForAppUpdate } from 'firebase/remote-config';
 import { useColorScheme } from 'nativewind';
 import React, { useEffect } from 'react';
 
+import { useInitializeRevenueCat } from '@/api/subscription/subscription.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import CustomHeader from '@/components/cusom-header';
 import InitialLoadSpinner from '@/components/initial-load-spinner.ts';
@@ -41,6 +42,9 @@ export default function TabLayout() {
   const { storeDeviceInfo } = usePushNotificationToken();
   const { data: userInfo, isPending: isPendingUserinfo } = useUser(language);
   const addSelectionHapticEffect = useHaptic('selection');
+  const { isPending: isPendingRevenueCatSdkInit } = useInitializeRevenueCat(
+    firebaseAuth.currentUser?.uid as string
+  );
   const segments = useSegments();
 
   const { colorScheme } = useColorScheme();
@@ -70,7 +74,8 @@ export default function TabLayout() {
 
   if (isConnected === false && isConnected !== null) return <NoInternet />;
 
-  if (isPendingUserinfo) return <InitialLoadSpinner />;
+  if (isPendingUserinfo || isPendingRevenueCatSdkInit)
+    return <InitialLoadSpinner />;
 
   if (isFirstTime) {
     return <Redirect href="/welcome" />;
@@ -88,6 +93,9 @@ export default function TabLayout() {
     return <Redirect href="/onboarding-second" />;
   }
 
+  if (!userInfo.trial) {
+    return <Redirect href="/paywall" />;
+  }
   return (
     <SafeAreaView
       className="flex-1 bg-black"

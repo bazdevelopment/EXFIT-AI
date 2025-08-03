@@ -1,3 +1,4 @@
+import { addDays } from 'date-fns';
 import * as functions from 'firebase-functions/v1';
 
 import { throwHttpsError } from '../utilities/errors';
@@ -261,9 +262,104 @@ const checkEmailExistsHandler = async (data: {
   }
 };
 
+/**
+ * A callable Cloud Function that starts a trial for anonymous users.
+ * Can be called from the client-side when needed.
+ *
+ * @param {Object} data - The input data object (not used in this function).
+ * @param {Object} context - The callable function context, including authentication info.
+ */
+const startFreeTrialHandler = async (
+  data: any,
+  context: functions.https.CallableContext,
+) => {
+  // Check if user is authenticated
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      'unauthenticated',
+      'User must be authenticated to start a trial',
+    );
+  }
+
+  const userId = context.auth.uid;
+
+  try {
+    // Get the user document from Firestore
+    const userDocRef = db.collection('users').doc(userId);
+    const userDoc = await userDocRef.get();
+
+    if (!userDoc.exists) {
+      throwHttpsError('not-found', 'User document not found.');
+    }
+
+    const userData = userDoc.data();
+
+    // Check if the user is anonymous
+    if (userData?.isAnonymous === true) {
+      functions.logger.info(
+        `Starting 7-day trial for anonymous user ${userId}`,
+      );
+
+      // Check if trial already exists
+      if (userData.trial) {
+        functions.logger.info(`Trial already exists for user ${userId}`);
+        return {
+          success: false,
+          message: 'Trial already exists for this user',
+          trial: userData.trial,
+        };
+      }
+
+      const now = new Date();
+      const trialEndDate = addDays(now, 7);
+
+      // Prepare the trial data with ISO strings
+      const trialData = {
+        trial: {
+          startDateISO: now.toISOString(),
+          endDateISO: trialEndDate.toISOString(),
+        },
+      };
+
+      // Update the user document with trial data
+      await userDocRef.update(trialData);
+
+      functions.logger.info(
+        `Trial started for anonymous user ${userId}. Trial ends: ${trialEndDate.toISOString()}`,
+      );
+
+      return {
+        success: true,
+        message: 'Trial started successfully',
+        trial: trialData.trial,
+      };
+    }
+
+    // If the user is not anonymous, return error
+    functions.logger.info(
+      `Non-anonymous user ${userId} attempted to start trial`,
+    );
+
+    throwHttpsError(
+      'failed-precondition',
+      'Only anonymous users can start trials.',
+    );
+  } catch (error) {
+    functions.logger.error(`Error starting trial for user ${userId}:`, error);
+
+    // Re-throw HttpsError as-is, wrap other errors
+    if (error instanceof functions.https.HttpsError) {
+      throw error;
+    }
+
+    throwHttpsError('internal', 'Failed to start user trial');
+  }
+};
+
 export {
   checkEmailExistsHandler,
   getUserInfo,
   loginUserAnonymouslyHandler,
+  startFreeTrialHandler,
   updateUserHandler,
 };

@@ -15,6 +15,7 @@ import { wait } from '@/core/utilities/wait';
 import { type IUserInfo } from '@/types/general-types';
 
 import { queryClient } from '../common';
+import { startFreeTrial } from './subscription.requests';
 
 // Query to fetch offerings
 export const useGetOfferings = createQuery<PurchasesOffering | null, Error>({
@@ -168,3 +169,13 @@ export const useRestorePurchases = (
       wait(500).then(() => Toast.error(translate('alerts.restorationError')));
     },
   })();
+
+//purchase subscription mutation
+export const useStartFreeTrial = createMutation<any, any, Error>({
+  mutationFn: startFreeTrial,
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ['user-info'] });
+    Toast.success(translate('alerts.subscriptionActivated'));
+    wait(3000).then(() => router.navigate('/(app)'));
+  },
+});
