@@ -276,7 +276,7 @@ const EnhancedProgressScreen = () => {
       >
         {/* Header */}
 
-        <View className="mt-4 px-6">
+        <View className="mt-2 px-6">
           <Text className="mb-2 font-bold-poppins text-3xl text-white">
             Progress Dashboard
           </Text>
@@ -285,7 +285,7 @@ const EnhancedProgressScreen = () => {
           </Text>
 
           {/* Enhanced KPIs */}
-          <View className="mb-6 mt-10 flex-row justify-between">
+          <View className="my-6 flex-row justify-between">
             <EnhancedKPICard
               title="Current Streak"
               value={data.kpis.currentStreak}
@@ -1079,7 +1079,7 @@ const EnhancedProgressScreen = () => {
           </View>
 
           {/* Detailed Stats Grid */}
-          <View className="mb-6">
+          <View className="mb-6 mt-2">
             <Text className="mb-3 font-semibold-poppins text-lg text-gray-100">
               {/* Light text */}
               Detailed Statistics

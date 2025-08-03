@@ -124,11 +124,11 @@
       },
       "paywallOnboarding": {
         "freeTierOfferings": {
-          "title": "Unlock Premium Features Today!",
-          "firstOffering": "Access All Premium Features",
-          "secondOffering": "Ad-Free Experience",
-          "thirdOffering": "Unlimited scans within reasonable use",
-          "fourthOffering": "Unlimited scans with fair use and 24/7 personal AI assistant access"
+          "title": "Unlock Your Full Potential!",
+          "firstOffering": "Get full access to every feature — no limits",
+          "secondOffering": "Enjoy a 100% ad-free experience.",
+          "thirdOffering": "Unlimited AI scans, Excuse Buster, and AI Coach support.",
+          "fourthOffering": "Keep your progress synced with a permanent account across all devices."
         }
       },
       "paywallUpgradeScreen": {

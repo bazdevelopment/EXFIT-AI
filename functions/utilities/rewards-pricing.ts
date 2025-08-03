@@ -11,7 +11,8 @@ type EventRewardKey =
   | 'daily_checkin'
   | 'custom_ai_task'
   | 'custom_activity'
-  | 'excuse_logged_daily_checkin';
+  | 'excuse_logged_daily_checkin'
+  | 'permanent_account_creation';
 
 // Define the keys for purchasable shop items.
 type ShopItemKey =
@@ -82,6 +83,11 @@ export const GAMIFICATION_REWARDS_CONFIG: GamificationRewardsConfig = {
       xp: 25,
       gems: 20,
       description: 'Base reward for confirming any activity.',
+    },
+    permanent_account_creation: {
+      xp: 60,
+      gems: 50,
+      description: 'Base reward for creating a permanent account.',
     },
   },
 
