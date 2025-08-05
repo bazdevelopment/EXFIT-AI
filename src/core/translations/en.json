@@ -61,9 +61,9 @@
         "fourth": "Almost there, finalizing the scan..."
       },
       "loadingChatbot": {
-        "first": "Aura is getting ready to assist you...",
-        "second": "Hold on! Aura is preparing your response...",
-        "third": "Thinking...your assistant Aura is on it!"
+        "first": "AI Coach is getting ready to assist you...",
+        "second": "Hold on! Your AI Coach is preparing your response...",
+        "third": "Thinking...your AI Coach is on it!"
       }
     }
   },
@@ -221,7 +221,7 @@
 
   "pdfPreview": {
     "noEditorInstalled": "To preview the PDF, ensure you have a PDF viewer installed, like Adobe Acrobat Reader or Google PDF Viewer",
-    "conversationTitlePdf": "Conversation with Aura, your AI assistant"
+    "conversationTitlePdf": "Conversation with your AI Coach"
   },
 
   "flows": {

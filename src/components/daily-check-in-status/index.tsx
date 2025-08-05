@@ -15,10 +15,7 @@ const DailyCheckInStatus = ({
 }: IDailyCheckInStatus) => {
   const { language } = useSelectedLanguage();
   const currentDay = getCurrentDay('MMM D', language);
-
-  // const isAttended = status === 'attended';
-  const isDailyCheckInDone = status === 'attended' || status === 'skipped';
-  const isAttended = status === 'attended';
+  const isAttended = status === 'attended' || status === 'completed';
 
   // Dynamic gradient colors based on answer
   const gradientColors = ['#10B981', '#059669', '#047857']; // Green gradient for Yes
