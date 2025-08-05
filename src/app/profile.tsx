@@ -116,7 +116,7 @@ const ProfileHeader: React.FC<{
             Secure and sync your progress with a permanent account.
           </Text>
           <Text className="font-medium-poppins text-sm text-white">
-            {`Earn ⚡ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems!`}
+            {`Win ⚡ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems!`}
           </Text>
           <Button
             label="Create My Account"
@@ -174,7 +174,6 @@ const UpgradeCard: React.FC<{
 const ProfileScreen: React.FC = () => {
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
-
   const daysLeft = calculateFreeTrialDays({
     endDateISO: userInfo.trial.endDateISO,
   });
@@ -242,7 +241,7 @@ const ProfileScreen: React.FC = () => {
 
         <StatsGrid
           stats={{
-            streak: userInfo.gamification.streakBalance || 0,
+            streak: userInfo.gamification.currentStreak || 0,
             gems: userInfo.gamification.gemsBalance,
             xp: userInfo.gamification.xpTotal,
             level: levelInfo.currentLevel,

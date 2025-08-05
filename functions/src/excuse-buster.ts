@@ -72,7 +72,7 @@ You MUST use one of the following JSON formats for every reply.
      "type": "taskAccepted",
      "responseText": "YES! That's the spirit! 🙌 You just chose to show up — and that matters a lot.",
      "isFinalStep": true,
-     "task": {
+     "challenge": {
        // You MUST copy the 'challenge' object from the proposal here
        "title": "10-minute Stretch",
        "description": "Let's help your body reset and recharge. You'll find it in your Today's Tasks now.",
@@ -88,7 +88,7 @@ You MUST use one of the following JSON formats for every reply.
      "type": "finalCommitment",
      "responseText": "No turning back! The contract is signed. Crush this NOW!",
      "isFinalStep": true,
-     "task": {
+     "challenge": {
        "title": "User-Defined Activity Title",
        "description": "User-Defined Activity description",
        "durationMinutes": 30,

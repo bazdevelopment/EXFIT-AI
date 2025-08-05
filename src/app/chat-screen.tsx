@@ -290,7 +290,7 @@ const ChatScreen = () => {
 
             <View className="mr-10 flex-1 items-center">
               <Text className="ml-2 font-semibold-poppins text-2xl text-white">
-                Aria
+                AI Coach
               </Text>
               {isSending ? (
                 <Text className="ml-2 text-xs text-white">
