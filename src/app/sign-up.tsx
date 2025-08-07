@@ -11,7 +11,13 @@ import * as z from 'zod';
 import { useCreatePermanentAccount } from '@/api/user/user.hooks';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
-import { Checkbox, colors, ControlledInput, Text } from '@/components/ui';
+import {
+  Button,
+  Checkbox,
+  colors,
+  ControlledInput,
+  Text,
+} from '@/components/ui';
 import { ArrowLeft } from '@/components/ui/assets/icons';
 
 const schema = z
@@ -65,7 +71,7 @@ export default function SignUpScreen({
 
   const {
     mutate: createPermanentAccount,
-    isPending,
+    isPending: isPendingCreatingAcount,
     error,
   } = useCreatePermanentAccount();
 
@@ -99,7 +105,15 @@ export default function SignUpScreen({
   };
 
   const handleSignInPress = () => {
-    router.navigate('/login');
+    // router.navigate('/login');
+    router.push({
+      pathname: `/login`,
+      params: {
+        showAnonymousLoginOption: 'false',
+        showSignUpLabel: 'true',
+        showBackButton: 'true',
+      },
+    });
   };
 
   return (
@@ -224,14 +238,14 @@ export default function SignUpScreen({
             className="mb-6 mt-4"
           />
 
-          <TouchableOpacity
+          <Button
+            label="Sign Up"
+            className="h-14 w-full rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
+            textClassName="text-base font-medium-poppins text-center text-white dark:text-white"
+            iconPosition="left"
             onPress={handleSubmit(handleSignUp)}
-            className="mb-8 h-14 items-center justify-center rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
-          >
-            <Text className="text-center text-lg font-semibold text-white">
-              Sign Up
-            </Text>
-          </TouchableOpacity>
+            loading={isPendingCreatingAcount}
+          />
 
           <View className="flex-row items-center justify-center">
             <Text className="text-white dark:text-gray-300">

@@ -104,28 +104,29 @@ const ProfileHeader: React.FC<{
           }}
         />
       )}
-
-      <LinearGradient
-        colors={['#4E52FB', '#2326EA']}
-        start={{ x: 1, y: 0 }}
-        end={{ x: 0, y: 1 }}
-        style={{ borderRadius: 20 }}
-      >
-        <View className="rounded-2xl p-4 pb-3">
-          <Text className="text-md mb-2 font-semibold-poppins text-white">
-            Secure and sync your progress with a permanent account.
-          </Text>
-          <Text className="font-medium-poppins text-sm text-white">
-            {`Win ⚡ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems!`}
-          </Text>
-          <Button
-            label="Create My Account"
-            className="mt-3 h-[34px] rounded-full bg-white active:opacity-90"
-            textClassName="text-black font-medium-poppins"
-            onPress={onCreateAccount}
-          />
-        </View>
-      </LinearGradient>
+      {isTemporary && (
+        <LinearGradient
+          colors={['#4E52FB', '#2326EA']}
+          start={{ x: 1, y: 0 }}
+          end={{ x: 0, y: 1 }}
+          style={{ borderRadius: 20 }}
+        >
+          <View className="rounded-2xl p-4 pb-3">
+            <Text className="text-md mb-2 font-semibold-poppins text-white">
+              Secure and sync your progress with a permanent account.
+            </Text>
+            <Text className="font-medium-poppins text-sm text-white">
+              {`Win ⚡ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems!`}
+            </Text>
+            <Button
+              label="Create My Account"
+              className="mt-3 h-[34px] rounded-full bg-white active:opacity-90"
+              textClassName="text-black font-medium-poppins"
+              onPress={onCreateAccount}
+            />
+          </View>
+        </LinearGradient>
+      )}
     </View>
   </View>
 );
@@ -177,6 +178,8 @@ const ProfileScreen: React.FC = () => {
   const daysLeft = calculateFreeTrialDays({
     endDateISO: userInfo.trial.endDateISO,
   });
+
+  const isTemporaryAccount = userInfo.isAnonymous;
 
   const _badges = [
     { id: '1', title: 'Habit Hero', icon: '🤠', earned: true },
@@ -232,7 +235,7 @@ const ProfileScreen: React.FC = () => {
       <ScreenHeader title="Profile" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <ProfileHeader
-          isTemporary={true} // here we need a variable to check if the user created a permanent account or not
+          isTemporary={isTemporaryAccount} // here we need a variable to check if the user created a permanent account or not
           trialDaysLeft={daysLeft}
           onCreateAccount={handleCreateAccount}
           onSettings={handleSettings}
