@@ -20,6 +20,7 @@ import {
 import { useOwnedPurchasedItems, useRepairStreak } from '@/api/shop/shop.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import ActivitiesList from '@/components/activities-list';
+import UpgradeBanner from '@/components/banners/upgrade-banner';
 import CustomAlert from '@/components/custom-alert';
 import { ActivityLogSuccessModal } from '@/components/modals/activity-log-success-modal';
 import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
@@ -31,6 +32,7 @@ import WeekBlock from '@/components/week-block';
 import { DATE_FORMAT } from '@/constants/date-format';
 import { DEVICE_TYPE } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
+import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { checkIsToday } from '@/core/utilities/date-time-helpers';
 import { formatDate } from '@/core/utilities/format-date';
@@ -79,6 +81,7 @@ const Activity = () => {
   const { data: ownPurchasedData, refetch: refetchOwnedShopItems } =
     useOwnedPurchasedItems();
   // const today = getCurrentDay('YYYY-MM-DD', language);
+  const { isUpgradeRequired } = useSubscriptionAlert();
 
   const { isRefetching, onRefetch } = useDelayedRefetch(() => {});
   const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
@@ -325,6 +328,8 @@ const Activity = () => {
             Schedule
           </Text>
         </View>
+        {isUpgradeRequired && <UpgradeBanner />}
+
         <WeekBlock
           className="px-4"
           onDayPress={onScrollToIndex} // This can be removed if not used
@@ -372,6 +377,7 @@ const Activity = () => {
           />
         }
       />
+
       <DailyCheckInModal
         ref={activityCompleteModal.ref}
         isCreateActivityLogPending={isCreateActivityLogPending}

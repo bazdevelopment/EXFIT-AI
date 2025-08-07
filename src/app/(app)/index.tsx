@@ -19,6 +19,7 @@ import { useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
 import MotivationBanner from '@/components/banners/motivation-banner';
+import UpgradeBanner from '@/components/banners/upgrade-banner';
 import CalendarMiniView from '@/components/calendar-mini-view';
 import DailyCheckInStatus from '@/components/daily-check-in-status';
 import Greeting from '@/components/greeting';
@@ -35,6 +36,7 @@ import { colors, Image, useModal } from '@/components/ui';
 import { BellIcon, ShoppingCart } from '@/components/ui/assets/icons';
 import { DEVICE_TYPE, useSelectedLanguage } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
+import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { avatars, type TAvatarGender } from '@/core/utilities/avatars';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
@@ -48,7 +50,7 @@ export default function Home() {
   const activitySkippedModal = useModal();
   const dailyActivityModal = useModal();
   const activityLogSuccessModal = useModal();
-
+  const { isUpgradeRequired } = useSubscriptionAlert();
   const { data: userNotifications, refetch: refetchUserNotifications } =
     useFetchUserNotifications({
       userId: userInfo?.userId,
@@ -212,6 +214,7 @@ export default function Home() {
           additionalClassName="ml-6 my-3"
           textClassName="text-white dark:text-white"
         />
+        {isUpgradeRequired && <UpgradeBanner />}
 
         <View className="mx-1 rounded-2xl bg-[#191A21] pb-2">
           {currentWeekActivityLogs && (
@@ -282,8 +285,14 @@ export default function Home() {
         </View>
 
         <View className="mx-2">
-          <MotivationBanner containerClassName="mt-4" />
-          <AICoachBanner containerClassName="mt-4" />
+          <MotivationBanner
+            containerClassName="mt-4"
+            isUpgradeRequired={isUpgradeRequired}
+          />
+          <AICoachBanner
+            containerClassName="mt-4"
+            isUpgradeRequired={isUpgradeRequired}
+          />
         </View>
 
         <DailyCheckInModal

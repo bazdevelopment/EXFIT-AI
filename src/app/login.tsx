@@ -8,11 +8,18 @@ import { useController, useForm } from 'react-hook-form';
 import { Alert, ScrollView, TouchableOpacity, View } from 'react-native';
 import * as z from 'zod';
 
-import { useLogin } from '@/api/user/user.hooks';
+import { useLogin, useUser } from '@/api/user/user.hooks';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
-import { Checkbox, colors, ControlledInput, Text } from '@/components/ui';
+import {
+  Button,
+  Checkbox,
+  colors,
+  ControlledInput,
+  Text,
+} from '@/components/ui';
 import { ArrowLeft } from '@/components/ui/assets/icons';
+import { useSelectedLanguage } from '@/core';
 
 const schema = z.object({
   email: z
@@ -37,6 +44,9 @@ export default function LoginScreen() {
     showSignUpLabel = 'false',
     showBackButton = 'false',
   } = useLocalSearchParams();
+
+  const { language } = useSelectedLanguage();
+  const { data: userInfo } = useUser(language);
   const {
     handleSubmit,
     control,
@@ -44,7 +54,7 @@ export default function LoginScreen() {
   } = useForm<FormType>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: '',
+      email: userInfo.email || '',
       password: '',
     },
   });
@@ -59,7 +69,11 @@ export default function LoginScreen() {
     name: 'password',
   });
 
-  const { mutate: onLogin, error: loginError } = useLogin();
+  const {
+    mutate: onLogin,
+    isPending: isPendingLogin,
+    error: loginError,
+  } = useLogin();
 
   const handleLogin: SubmitHandler<FormType> = (data) => {
     console.log('Login data:', data, 'Keep signed in:', keepSignedIn);
@@ -206,14 +220,15 @@ export default function LoginScreen() {
           />
 
           {/* Login Button */}
-          <TouchableOpacity
+          <Button
+            label="Login"
+            className="h-14 w-full rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
+            textClassName="text-base font-medium-poppins text-center text-white dark:text-white"
+            iconPosition="left"
             onPress={handleSubmit(handleLogin)}
-            className="mb-8 rounded-full bg-[#4E52FB] py-4 dark:bg-[#4E52FB]"
-          >
-            <Text className="text-center font-medium-poppins text-base text-white dark:text-white">
-              Login
-            </Text>
-          </TouchableOpacity>
+            loading={isPendingLogin}
+          />
+
           {/* {showSignUpLabel === 'true' && (
             <View className="flex-row items-center justify-center">
               <Text className="text-white dark:text-gray-300">
@@ -228,16 +243,16 @@ export default function LoginScreen() {
           )} */}
 
           {/* Sign up link */}
-          <View className="flex-row justify-center">
-            {/* <Text className="text-gray-700 dark:text-gray-300">
+          {/* <View className="flex-row justify-center"> */}
+          {/* <Text className="text-gray-700 dark:text-gray-300">
               Don't have an Account? Use anonymous login first
             </Text> */}
-            <TouchableOpacity onPress={handleSignUpPress}>
-              {/* <Text className="font-medium text-blue-600 dark:text-blue-400">
+          {/* <TouchableOpacity onPress={handleSignUpPress}> */}
+          {/* <Text className="font-medium text-blue-600 dark:text-blue-400">
                 Sign up here
               </Text> */}
-            </TouchableOpacity>
-          </View>
+          {/* </TouchableOpacity> */}
+          {/* </View> */}
         </View>
       </ScrollView>
     </ScreenWrapper>

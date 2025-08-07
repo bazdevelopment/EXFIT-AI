@@ -3,6 +3,7 @@ import { useScrollToTop } from '@react-navigation/native';
 import { router } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useRef } from 'react';
+import { Linking } from 'react-native';
 
 import { useUploadPrivacyPolicy } from '@/api/privacy-policy/privacy-policy.hooks';
 import {
@@ -12,8 +13,9 @@ import {
 import { useAddFieldsToCollection } from '@/api/services/services.hooks';
 import { seedShopItems } from '@/api/shop/shop.requests';
 import { useUploadTermsOfService } from '@/api/terms-of-service/terms-of-service.hooks';
-import { useUpdateUser, useUser } from '@/api/user/user.hooks';
+import { useUpdateUser } from '@/api/user/user.hooks';
 import { logout } from '@/api/user/user.requests';
+import UpgradeBanner from '@/components/banners/upgrade-banner';
 import CustomAlert from '@/components/custom-alert';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
@@ -28,14 +30,15 @@ import { LogoutIcon, Rate } from '@/components/ui/assets/icons';
 import { translate, useSelectedLanguage } from '@/core';
 import { Env } from '@/core/env';
 import useRemoteConfig from '@/core/hooks/use-remote-config';
+import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 
 export default function Settings() {
   const { colorScheme } = useColorScheme();
   const { language } = useSelectedLanguage();
-  const { data: userInfo } = useUser(language);
 
   const { mutateAsync: onUpdateUser, isPending: isPendingUpdateUser } =
     useUpdateUser();
+  const { isUpgradeRequired } = useSubscriptionAlert();
 
   const { SHOW_FAQ_SCREEN, SHOW_RATE_SCREEN } = useRemoteConfig();
 
@@ -112,6 +115,8 @@ export default function Settings() {
       </View>
       <View className="flex-1">
         <ScrollView ref={scrollViewRef}>
+          {isUpgradeRequired && <UpgradeBanner />}
+
           <View className="mb-20 px-6">
             <ItemsContainer title="settings.generale">
               <Item
@@ -150,11 +155,17 @@ export default function Settings() {
             <ItemsContainer title="settings.links">
               <Item
                 text="settings.privacy"
-                onPress={() => router.navigate('/privacy-policy')}
+                onPress={() =>
+                  Linking.openURL('https://exfitai-privacy.netlify.app/')
+                }
               />
               <Item
                 text="settings.terms"
-                onPress={() => router.navigate('/terms-of-service')}
+                onPress={() =>
+                  Linking.openURL(
+                    'https://exfitai-terms-conditions.netlify.app/'
+                  )
+                }
               />
               {SHOW_FAQ_SCREEN && (
                 <Item

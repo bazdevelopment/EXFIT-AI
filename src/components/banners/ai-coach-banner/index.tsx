@@ -2,14 +2,58 @@ import { router } from 'expo-router';
 import { generateUniqueId } from 'functions/utilities/generate-unique-id';
 import { View } from 'react-native';
 
+import CustomAlert from '@/components/custom-alert';
+import Toast from '@/components/toast';
 import { Button, colors, Text } from '@/components/ui';
 import { QuestionChat } from '@/components/ui/assets/icons';
+import { translate } from '@/core';
 
 const AICoachBanner = ({
   containerClassName,
+  isUpgradeRequired,
 }: {
   containerClassName?: string;
+  isUpgradeRequired: boolean;
 }) => {
+  const handleGoToChatScreen = () => {
+    if (isUpgradeRequired) {
+      return Toast.showCustomToast(
+        <CustomAlert
+          title={translate('general.attention')}
+          subtitle={translate('home.homeForeground.maxNumberOfScans')}
+          buttons={[
+            {
+              label: translate('components.UpgradeBanner.heading'),
+              variant: 'default',
+              onPress: () =>
+                router.push({
+                  pathname: '/paywall',
+                  params: {
+                    showFreeTrialOffering: 'false',
+                    allowToNavigateBack: 'true',
+                  },
+                }), // a small delay in mandatory for Toast, not sure why
+              buttonTextClassName: 'dark:text-white',
+              className:
+                'flex-1 rounded-xl h-[48] bg-primary-900 active:opacity-80 dark:bg-primary-900',
+            },
+          ]}
+        />,
+        {
+          duration: 10000000,
+        }
+      );
+    }
+    router.navigate({
+      pathname: '/chat-screen',
+      params: {
+        conversationId: generateUniqueId(),
+        mediaSource: '',
+        mimeType: '',
+        conversationMode: 'RANDOM_CONVERSATION',
+      },
+    });
+  };
   return (
     <View
       className={`w-full self-center overflow-hidden rounded-3xl bg-[#2A2D3A] shadow-lg ${containerClassName}`}
@@ -36,17 +80,7 @@ const AICoachBanner = ({
               label="Chat with AI Coach"
               className="h-[34px] rounded-full bg-white active:bg-gray-200"
               textClassName="text-black font-medium-poppins"
-              onPress={() =>
-                router.navigate({
-                  pathname: '/chat-screen',
-                  params: {
-                    conversationId: generateUniqueId(),
-                    mediaSource: '',
-                    mimeType: '',
-                    conversationMode: 'RANDOM_CONVERSATION',
-                  },
-                })
-              }
+              onPress={handleGoToChatScreen}
             />
           </View>
         </View>
