@@ -63,7 +63,6 @@ export default function RootLayout() {
     'Font-Medium': Poppins_500Medium,
     'Font-Extra-Bold': Poppins_800ExtraBold,
   });
-  console.log('fontsLoaded', fontsLoaded);
 
   const hideSplash = useCallback(async () => {
     await SplashScreen.hideAsync();

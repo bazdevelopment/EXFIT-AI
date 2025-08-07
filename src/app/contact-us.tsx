@@ -13,7 +13,7 @@ import { translate } from '@/core';
 import { useClipboard } from '@/core/hooks/use-clipboard';
 
 const ContactUs = () => {
-  const emailAddress = 'exfitaiapp@gmail.com';
+  const emailAddress = 'exfitai@gmail.com';
   const { copyToClipboard } = useClipboard();
   const handleCopyEmail = () => {
     copyToClipboard(emailAddress);
