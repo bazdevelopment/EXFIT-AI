@@ -13,6 +13,7 @@ import {
 import { BarChart, LineChart, PieChart } from 'react-native-gifted-charts';
 
 import { useProgressData } from '@/api/progress/progress.hooks';
+import UpgradeBanner from '@/components/banners/upgrade-banner';
 import EdgeCaseTemplate from '@/components/edge-case-template';
 import FadeInView from '@/components/fade-in-view/fade-in-view';
 import ScreenWrapper from '@/components/screen-wrapper';
@@ -20,6 +21,7 @@ import SkeletonLoader from '@/components/skeleton-loader';
 import { colors, Text } from '@/components/ui';
 import { RetryIcon } from '@/components/ui/assets/icons';
 import { WarningIllustration } from '@/components/ui/assets/illustrations/warning';
+import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -220,6 +222,7 @@ const TabButton = ({
 
 const EnhancedProgressScreen = () => {
   const { data, isLoading, error, refetch } = useProgressData();
+  const { isUpgradeRequired } = useSubscriptionAlert();
 
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
@@ -275,6 +278,7 @@ const EnhancedProgressScreen = () => {
         }
       >
         {/* Header */}
+        {isUpgradeRequired && <UpgradeBanner />}
 
         <View className="mt-2 px-6">
           <Text className="mb-2 font-bold-poppins text-3xl text-white">

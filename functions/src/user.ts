@@ -252,7 +252,6 @@ const updateUserHandler = async (data: {
 
     // Perform a SINGLE atomic update with all the combined changes.
     // This will either update all fields or fail completely, ensuring data consistency.
-    console.log('end fieldsToUpdate', fieldsToUpdate);
     await userDoc.update(fieldsToUpdate);
 
     // The old `if (isPermanentAccountCreated)` block is no longer needed here.

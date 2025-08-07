@@ -7,11 +7,12 @@ import { useController, useForm } from 'react-hook-form';
 import { Alert, ScrollView, TouchableOpacity, View } from 'react-native';
 import * as z from 'zod';
 
-import { useResetPassword } from '@/api/user/user.hooks';
+import { useResetPassword, useUser } from '@/api/user/user.hooks';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
-import { colors, ControlledInput, Text } from '@/components/ui';
+import { Button, colors, ControlledInput, Text } from '@/components/ui';
 import { ArrowLeft } from '@/components/ui/assets/icons';
+import { useSelectedLanguage } from '@/core';
 
 const schema = z.object({
   email: z
@@ -34,6 +35,8 @@ export default function ForgotPasswordScreen({
   onLogin,
   onBack,
 }: ForgotPasswordScreenProps) {
+  const { language } = useSelectedLanguage();
+  const { data: userInfo } = useUser(language);
   const {
     handleSubmit,
     control,
@@ -41,7 +44,7 @@ export default function ForgotPasswordScreen({
   } = useForm<ForgotPasswordFormType>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: '',
+      email: userInfo.email || '',
     },
   });
 
@@ -50,12 +53,16 @@ export default function ForgotPasswordScreen({
     name: 'email',
   });
 
-  const { mutate: onResetPassword, isSuccess, error } = useResetPassword();
+  const {
+    mutate: onResetPassword,
+    isSuccess,
+    error: resetPasswordError,
+    isPending: isPendingResetPassword,
+  } = useResetPassword();
 
   const handleForgotPassword: SubmitHandler<ForgotPasswordFormType> = (
     data
   ) => {
-    console.log('Forgot password data:', data);
     Alert.alert(
       'Password Reset Sent',
       'If an account with this email exists, we have sent you a password reset link.',
@@ -66,13 +73,17 @@ export default function ForgotPasswordScreen({
         },
       ]
     );
-    // onResetPassword(data);
   };
 
   const handleLoginPress = () => {
-    // Alert.alert('Login', 'Login functionality would be implemented here');
-    // onLogin?.();
-    router.navigate('/login');
+    router.push({
+      pathname: `/login`,
+      params: {
+        showAnonymousLoginOption: 'false',
+        showSignUpLabel: 'false',
+        showBackButton: 'true',
+      },
+    });
   };
 
   return (
@@ -95,10 +106,15 @@ export default function ForgotPasswordScreen({
           <Text className="mb-6 mt-4 font-medium-poppins text-3xl text-white dark:text-white">
             Forgot Password
           </Text>
+          {!!resetPasswordError && (
+            <Text className="mb-5 text-center dark:text-red-400">
+              {resetPasswordError.message}
+            </Text>
+          )}
 
           {/* Description */}
           {isSuccess ? (
-            <Text className="dark:white mb-12 text-base leading-6 text-white">
+            <Text className="mb-12 font-medium-poppins text-base leading-6 text-success-400 dark:text-success-400">
               Please check your email for a password reset link. If you don't
               see it in your inbox, be sure to check your spam or junk folder.
             </Text>
@@ -127,14 +143,14 @@ export default function ForgotPasswordScreen({
           </View>
 
           {/* Submit Button */}
-          <TouchableOpacity
+          <Button
+            label="Submit"
+            className="h-14 w-full rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
+            textClassName="text-base font-medium-poppins text-center text-white dark:text-white"
+            iconPosition="left"
             onPress={handleSubmit(handleForgotPassword)}
-            className="mb-8 rounded-full bg-[#4E52FB] py-3 dark:bg-[#4E52FB]"
-          >
-            <Text className="text-center font-medium-poppins text-base text-white">
-              Submit
-            </Text>
-          </TouchableOpacity>
+            loading={isPendingResetPassword}
+          />
 
           {/* Login link */}
           <View className="flex-row justify-center">

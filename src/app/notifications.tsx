@@ -7,6 +7,7 @@ import {
   useMarkNotificationAsRead,
 } from '@/api/push-notifications/push-notifications.hooks';
 import { useUser } from '@/api/user/user.hooks';
+import UpgradeBanner from '@/components/banners/upgrade-banner';
 import EdgeCaseTemplate from '@/components/edge-case-template';
 import { NotificationDetailsModal } from '@/components/modals/notification-details-modal';
 import NotificationGroup from '@/components/notifications/notification-group';
@@ -17,11 +18,13 @@ import SkeletonLoader from '@/components/skeleton-loader';
 import { useModal } from '@/components/ui';
 import { NoNotification } from '@/components/ui/assets/illustrations';
 import { translate } from '@/core';
+import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 
 import dayjs from '../lib/dayjs';
 
 export default function NotificationsScreen() {
   const notificationModal = useModal();
+  const { isUpgradeRequired } = useSubscriptionAlert();
 
   const {
     i18n: { language },
@@ -59,6 +62,7 @@ export default function NotificationsScreen() {
     <ScreenWrapper>
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <ScreenHeader title="Notifications" />
+        {isUpgradeRequired && <UpgradeBanner additionalClassName="mt-4 mb-0" />}
 
         {areUserNotificationsLoading ? (
           <SkeletonLoader />
