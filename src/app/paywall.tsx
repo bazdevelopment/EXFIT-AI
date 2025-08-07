@@ -130,7 +130,6 @@ const Paywall = () => {
     offerings,
     showFreeTrialOffering
   );
-  console.log('formattedOfferings', formattedOfferings);
   const { mutate: restorePurchase, isPending: isPendingRestorePurchase } =
     useRestorePurchases(onSuccessRestoration);
 

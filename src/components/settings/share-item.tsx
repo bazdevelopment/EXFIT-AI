@@ -14,6 +14,7 @@ import {
   View,
 } from '@/components/ui';
 import { CopyLink, ShareIcon } from '@/components/ui/assets/icons';
+import { STORE_URLS } from '@/constants/stores-urls';
 import { DEVICE_TYPE, translate } from '@/core';
 import { useClipboard } from '@/core/hooks/use-clipboard';
 import { useShareLink } from '@/core/hooks/use-share-link';
@@ -26,7 +27,7 @@ export const ShareItem = () => {
   const modal = useModal();
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const appLink = DEVICE_TYPE.IOS ? '' : '';
+  const appLink = DEVICE_TYPE.IOS ? STORE_URLS.IOS : STORE_URLS.ANDROID;
 
   const iconColor = isDark ? colors.neutral[50] : colors.black;
 

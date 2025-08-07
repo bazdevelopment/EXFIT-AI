@@ -5,12 +5,13 @@ import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { Button, Text } from '@/components/ui';
 import { MobileIcon } from '@/components/ui/assets/icons/mobile-icon';
+import { STORE_URLS } from '@/constants/stores-urls';
 import { DEVICE_TYPE, translate } from '@/core';
 
 const NewAppVersion = () => {
   const openAppStore = () => {
     // Determine the URL based on device type
-    const storeUrl = DEVICE_TYPE.IOS ? '' : '';
+    const storeUrl = DEVICE_TYPE.IOS ? STORE_URLS.IOS : STORE_URLS.ANDROID;
 
     // Try opening the appropriate URL
     Linking.openURL(storeUrl).catch((err) => {
