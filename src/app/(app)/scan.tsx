@@ -113,7 +113,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
         <View className="flex-1 items-center justify-center px-6">
           <CameraIcon width={64} height={64} color="white" />
           <Text className="mt-4 text-center font-medium-poppins text-base text-white">
-            Camera access is required to use this feature
+            Camera access permission is required to use this feature
           </Text>
           <Button
             label="Open settings"

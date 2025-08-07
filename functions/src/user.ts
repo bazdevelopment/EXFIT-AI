@@ -2,6 +2,7 @@ import { addDays } from 'date-fns';
 import * as functions from 'firebase-functions/v1';
 
 import { throwHttpsError } from '../utilities/errors';
+import { GAMIFICATION_REWARDS_CONFIG } from '../utilities/rewards-pricing';
 import { admin } from './common';
 import { getTranslation } from './translations';
 
@@ -202,23 +203,65 @@ const getUserInfoById = async (
   }
 };
 
-// function used to update user collection fields
+/**
+ * Updates a user document. If the update includes converting an anonymous account
+ * to a permanent one, it atomically awards a sign-up bonus of gems and XP.
+ *
+ * @param {Object} data - The update payload containing userId, language, and fields to update.
+ * @param {string} data.userId - The ID of the user to update.
+ * @param {string} data.language - The preferred language for messages.
+ * @param {Object} data.fieldsToUpdate - The fields to update in the user document.
+ */
 const updateUserHandler = async (data: {
   userId: string;
   language: string;
-  fieldsToUpdate: object;
+  // Use a more flexible type to allow adding new properties
+  fieldsToUpdate: { [key: string]: any };
 }) => {
   let t;
   try {
-    const { userId, language } = data;
+    const { userId, language, fieldsToUpdate } = data;
     const userDoc = db.collection('users').doc(userId);
+
+    // This is our trigger condition: is the `isAnonymous` field being set to `false`?
+    const isPermanentAccountCreated = fieldsToUpdate.isAnonymous === false;
+
     t = getTranslation(language);
 
-    await userDoc.update(data.fieldsToUpdate);
+    // --- REWARD LOGIC ---
+    // If the account is being upgraded, add the rewards to the update payload.
+    if (isPermanentAccountCreated) {
+      functions.logger.info(
+        `User ${userId} is being upgraded to permanent. Awarding sign-up bonus.`,
+      );
 
-    return { message: t.updateUser.successUpdatedUser };
+      const GEMS_REWARD =
+        GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation
+          .gems;
+      const XP_REWARD =
+        GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp;
+
+      // Add the increment operations to the SAME update object.
+      // We use dot notation to update nested fields within the 'gamification' map.
+      // This is the safest way to add to a numeric value.
+      fieldsToUpdate['gamification.gemsBalance'] =
+        admin.firestore.FieldValue.increment(GEMS_REWARD);
+      fieldsToUpdate['gamification.xpTotal'] =
+        admin.firestore.FieldValue.increment(XP_REWARD);
+    }
+
+    // Perform a SINGLE atomic update with all the combined changes.
+    // This will either update all fields or fail completely, ensuring data consistency.
+    console.log('end fieldsToUpdate', fieldsToUpdate);
+    await userDoc.update(fieldsToUpdate);
+
+    // The old `if (isPermanentAccountCreated)` block is no longer needed here.
+
+    return {
+      message: t.updateUser.successUpdatedUser,
+    };
   } catch (error: any) {
-    t = t || getTranslation('en');
+    t = t || getTranslation('en'); // Ensure t is defined for error messages
 
     throwHttpsError(error.code, error.message, {
       message: error.message || t?.updateUser.updateUserError,

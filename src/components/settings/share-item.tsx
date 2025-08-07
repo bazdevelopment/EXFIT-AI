@@ -69,7 +69,7 @@ export const ShareItem = () => {
             {/* QR Code Section */}
             <View className="mt-4 items-center">
               <QRCode
-                value={'https://www.google.com'}
+                value={appLink}
                 size={225}
                 color={colors.primary[900]}
                 logo={IconTransparent}

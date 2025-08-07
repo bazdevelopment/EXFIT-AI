@@ -217,29 +217,31 @@ export const createPermanentAccount = async ({
   email,
   password,
 }: UpgradePayload): Promise<User> => {
-  const currentUserId = firebaseAuth?.currentUser?.uid; // <-- Get UID before linking
+  const currentUserId = firebaseAuth?.currentUser?.uid;
+
   if (!currentUserId) {
     throw new Error('No anonymous user is currently signed in.');
   }
 
   // 1. Pre-check if email exists using our cloud function
   const data = await checkEmail({ email });
-
   console.log('data check email', data);
+
   if (data.exists) {
     throw new Error('This email address is already in use.');
   }
 
   // 2. Create the new Email/Password credential
   const credential = EmailAuthProvider.credential(email, password);
+
   try {
     // 3. Link the new credential to the existing anonymous account
     const userCredential = await linkWithCredential(
       firebaseAuth.currentUser!,
       credential
     );
-    // 4. *** On success, update the user's profile in the 'users' collection.
 
+    // 4. Only update the user info if linking is successful
     await updateUserInfo({
       fieldsToUpdate: {
         email: userCredential.user.email,
@@ -252,21 +254,22 @@ export const createPermanentAccount = async ({
     return userCredential.user;
   } catch (error: any) {
     console.log('error here boss', error);
-    // Handle specific Firebase errors for better UX
-    if (error.code === 'auth/weak-password') {
-      throw new Error(
-        'The password is too weak. Please use at least 6 characters.'
-      );
+
+    // Handle specific Firebase errors
+    switch (error.code) {
+      case 'auth/weak-password':
+        throw new Error(
+          'The password is too weak. Please use at least 6 characters.'
+        );
+      case 'auth/email-already-in-use':
+        throw new Error('This email address is already in use.');
+      case 'auth/provider-already-linked':
+        throw new Error(
+          'There is another account linked to this user. Please try to log in first'
+        );
+      default:
+        throw new Error('An unexpected error occurred during signup.');
     }
-    if (error.code === 'auth/email-already-in-use') {
-      throw new Error('This email address is already in use.');
-    }
-    if (error.code === 'auth/provider-already-linked') {
-      throw new Error(
-        'There is another account linked to this user. Please try to log in first'
-      );
-    }
-    throw new Error('An unexpected error occurred during signup.');
   }
 };
 

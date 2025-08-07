@@ -1,5 +1,6 @@
 import { type AxiosError } from 'axios';
 import { router } from 'expo-router';
+import { GAMIFICATION_REWARDS_CONFIG } from 'functions/utilities/rewards-pricing';
 import { createMutation, createQuery } from 'react-query-kit';
 
 import Toast from '@/components/toast';
@@ -200,9 +201,9 @@ export const useUpdateUser = () => {
 export const useCreatePermanentAccount = () => {
   return createMutation<any, { email: string; password: string }, AxiosError>({
     mutationFn: (variables) => createPermanentAccount(variables),
-    onSuccess: () => {
+    onSuccess: (data) => {
       Toast.success(
-        'Your permanent account has been created! Your account is now secure'
+        `Your permanent account has been created! Your account is now secure. Oh, and you also received ⚡️ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems`
       );
     },
   })();
