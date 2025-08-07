@@ -28,7 +28,6 @@ const Wrapper = ({ children }: { children: React.ReactElement }) =>
   );
 
 const PricingOption = ({ plan, selectedPlan, onSelectOption, badge }) => {
-  console.log('plan', plan);
   return (
     <Wrapper>
       <TouchableOpacity onPress={onSelectOption} activeOpacity={0.7}>
