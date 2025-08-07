@@ -8,13 +8,13 @@ import { ScrollView, TouchableOpacity, View } from 'react-native';
 
 import { useUser } from '@/api/user/user.hooks';
 import Avatar from '@/components/avatar';
+import UpgradeBanner from '@/components/banners/upgrade-banner';
 import ProgressBarLevel from '@/components/progress-bar-level';
 import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
 import StatsGrid from '@/components/stats-grid';
 import { Button, Text } from '@/components/ui';
 import { WarningIconRounded } from '@/components/ui/assets/icons';
-import { UpgradeProgress } from '@/components/ui/assets/icons/upgrade-progress';
 import { useSelectedLanguage } from '@/core';
 import { calculateFreeTrialDays } from '@/core/utilities/calculate-free-trial-days';
 import { calculateLevel } from '@/core/utilities/calculate-level';
@@ -144,33 +144,6 @@ const _SectionHeader: React.FC<{
   </View>
 );
 
-const UpgradeCard: React.FC<{
-  onUpgrade: () => void;
-}> = ({ onUpgrade }) => (
-  <View className="mx-4 mb-6">
-    <View className="relative overflow-hidden rounded-2xl bg-green-500 p-4 pb-2">
-      <View className="flex-row items-center">
-        <UpgradeProgress width={70} height={70} />
-        <View className="ml-3 flex-1">
-          <Text className="mb-1 font-bold-poppins text-lg text-white">
-            Upgrade to EXFIT AI PRO
-          </Text>
-          <Text className="font-medium-poppins text-sm text-green-100">
-            All AI features. All premium tools. All yours to stay on track.
-          </Text>
-        </View>
-      </View>
-
-      <Button
-        label="Upgrade"
-        className="mt-3 h-[34px] rounded-full bg-white active:opacity-90"
-        textClassName="text-black font-medium-poppins"
-        onPress={onUpgrade}
-      />
-    </View>
-  </View>
-);
-
 // Main Component
 const ProfileScreen: React.FC = () => {
   const { language } = useSelectedLanguage();
@@ -285,7 +258,7 @@ const ProfileScreen: React.FC = () => {
           ))}
         </ScrollView> */}
 
-        <UpgradeCard onUpgrade={handleUpgrade} />
+        <UpgradeBanner />
       </ScrollView>
     </ScreenWrapper>
   );

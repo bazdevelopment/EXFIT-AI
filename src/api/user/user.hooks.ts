@@ -201,12 +201,20 @@ export const useUpdateUser = () => {
 export const useCreatePermanentAccount = () => {
   return createMutation<any, { email: string; password: string }, AxiosError>({
     mutationFn: (variables) => createPermanentAccount(variables),
-    onSuccess: (data) => {
+    onSuccess: () => {
       Toast.success(
         `Your permanent account has been created! Your account is now secure. Oh, and you also received ⚡️ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems`
       );
+      queryClient.invalidateQueries({ queryKey: ['user-info'] });
 
-      router.back();
+      router.push({
+        pathname: `/login`,
+        params: {
+          showAnonymousLoginOption: 'false',
+          showSignUpLabel: 'false',
+          showBackButton: 'false',
+        },
+      });
     },
   })();
 };
