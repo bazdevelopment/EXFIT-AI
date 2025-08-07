@@ -49,7 +49,7 @@ const Avatar: React.FC<AvatarProps> = ({
     medium: {
       container: 'w-20 h-20',
       badge: 'w-6 h-6',
-      badgePosition: '-bottom-1 -right-1',
+      badgePosition: '-bottom-1 right-0',
       icon: 16,
     },
     large: {
@@ -217,16 +217,16 @@ const Avatar: React.FC<AvatarProps> = ({
             onPress={showActionSheet}
             className={`absolute ${config.badgePosition} ${config.badge} items-center justify-center rounded-full border-2 border-white bg-blue-500 dark:border-gray-900 dark:bg-blue-600`}
           >
-            <EditIcon size={config.icon} color="white" />
+            <EditIcon width={config.icon} height={config.icon} color="white" />
           </TouchableOpacity>
         )}
 
         {/* Verified Badge */}
         {showVerifiedBadge && (
           <View
-            className={`absolute ${config.badgePosition} ${config.badge} items-center justify-center rounded-full border-2 border-white bg-green-500 dark:border-gray-900`}
+            className={`absolute ${config.badgePosition} ${config.badge} items-center justify-center rounded-full border-2 border-white bg-blue-500 dark:border-gray-900`}
           >
-            <CheckIcon size={config.icon} color="white" />
+            <CheckIcon width={config.icon} height={config.icon} color="white" />
           </View>
         )}
       </View>

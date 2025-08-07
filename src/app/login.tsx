@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { Ionicons } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import React, { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useController, useForm } from 'react-hook-form';
@@ -9,8 +9,10 @@ import { Alert, ScrollView, TouchableOpacity, View } from 'react-native';
 import * as z from 'zod';
 
 import { useLogin } from '@/api/user/user.hooks';
+import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { Checkbox, colors, ControlledInput, Text } from '@/components/ui';
+import { ArrowLeft } from '@/components/ui/assets/icons';
 
 const schema = z.object({
   email: z
@@ -27,22 +29,14 @@ const schema = z.object({
 
 export type FormType = z.infer<typeof schema>;
 
-export type LoginScreenProps = {
-  onSubmit?: SubmitHandler<FormType>;
-  onAnonymousSignIn?: () => void;
-  onForgotPassword?: () => void;
-  onSignUp?: () => void;
-  onBack?: () => void;
-};
-
-export default function LoginScreen({
-  onSubmit = () => {},
-  onSignUp,
-  onBack,
-}: LoginScreenProps) {
+export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [keepSignedIn, setKeepSignedIn] = useState(true);
-
+  const {
+    showAnonymousLoginOption = 'true',
+    showSignUpLabel = 'false',
+    showBackButton = 'false',
+  } = useLocalSearchParams();
   const {
     handleSubmit,
     control,
@@ -95,16 +89,17 @@ export default function LoginScreen({
     <ScreenWrapper>
       <ScrollView>
         {/* Header */}
-        <View className="flex-row items-center px-4 py-3">
-          <TouchableOpacity onPress={handleBackPress}>
-            <Ionicons
-              name="chevron-back"
+        {showBackButton === 'true' && (
+          <View className="flex-row items-center px-4 py-3">
+            <Icon
               size={24}
-              color="#000"
-              className="dark:color-white"
+              iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
+              onPress={router.back}
+              icon={<ArrowLeft color={colors.white} />}
+              color={colors.white}
             />
-          </TouchableOpacity>
-        </View>
+          </View>
+        )}
 
         {/* Content */}
         <View className="flex-1 px-6">
@@ -119,20 +114,22 @@ export default function LoginScreen({
           )}
 
           {/* Anonymous Sign In Button */}
-          <TouchableOpacity
-            onPress={handleAnonymousSignIn}
-            className="mb-8 flex-row items-center justify-center rounded-lg bg-gray-800 px-6 py-4 dark:bg-gray-800"
-          >
-            <Ionicons
-              name="person-outline"
-              size={20}
-              color={colors.white}
-              className="mr-3 dark:color-gray-300"
-            />
-            <Text className="ml-3 font-medium-poppins text-white dark:text-white">
-              Continue with username
-            </Text>
-          </TouchableOpacity>
+          {showAnonymousLoginOption === 'true' && (
+            <TouchableOpacity
+              onPress={handleAnonymousSignIn}
+              className="mb-8 flex-row items-center justify-center rounded-lg bg-gray-800 px-6 py-4 dark:bg-gray-800"
+            >
+              <Ionicons
+                name="person-outline"
+                size={20}
+                color={colors.white}
+                className="mr-3 dark:color-gray-300"
+              />
+              <Text className="ml-3 font-medium-poppins text-white dark:text-white">
+                Continue with username
+              </Text>
+            </TouchableOpacity>
+          )}
 
           {/* Divider */}
           <View className="my-8 flex-row items-center">
@@ -217,6 +214,18 @@ export default function LoginScreen({
               Login
             </Text>
           </TouchableOpacity>
+          {/* {showSignUpLabel === 'true' && (
+            <View className="flex-row items-center justify-center">
+              <Text className="text-white dark:text-gray-300">
+                Need an account?{' '}
+              </Text>
+              <TouchableOpacity onPress={() => {}}>
+                <Text className="font-medium-poppins text-blue-400 dark:text-blue-400">
+                  Sign up here
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )} */}
 
           {/* Sign up link */}
           <View className="flex-row justify-center">

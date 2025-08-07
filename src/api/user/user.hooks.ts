@@ -205,6 +205,8 @@ export const useCreatePermanentAccount = () => {
       Toast.success(
         `Your permanent account has been created! Your account is now secure. Oh, and you also received ⚡️ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems`
       );
+
+      router.back();
     },
   })();
 };
