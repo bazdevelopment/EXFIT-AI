@@ -44,7 +44,7 @@ export default function ForgotPasswordScreen({
   } = useForm<ForgotPasswordFormType>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: userInfo.email || '',
+      email: userInfo?.email || '',
     },
   });
 
