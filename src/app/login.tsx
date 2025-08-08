@@ -54,7 +54,7 @@ export default function LoginScreen() {
   } = useForm<FormType>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: userInfo.email || '',
+      email: userInfo?.email || '',
       password: '',
     },
   });
