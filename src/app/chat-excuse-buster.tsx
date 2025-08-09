@@ -28,7 +28,7 @@ import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import TypingIndicator from '@/components/typing-indicator';
 import { colors, Image, Text } from '@/components/ui';
-import { ArrowLeft, SendIcon } from '@/components/ui/assets/icons';
+import { ArrowLeft, PaperPlane } from '@/components/ui/assets/icons';
 import { LOADING_MESSAGES_CHATBOT } from '@/constants/loading-messages';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
@@ -316,7 +316,7 @@ const ChatExcuseBuster = () => {
             extraData={isSpeaking || isCreatingTaskPending}
             keyExtractor={(item, index) => index.toString()}
             contentContainerStyle={{
-              paddingHorizontal: 16,
+              paddingHorizontal: 10,
               paddingBottom: 8,
             }}
             renderItem={({ item, index }) => (
@@ -339,14 +339,14 @@ const ChatExcuseBuster = () => {
           />
 
           {/* Input Area */}
-          <View className="w-full flex-row items-center justify-between gap-4 bg-black px-4 pb-2 pt-4 dark:border-blackEerie dark:bg-black">
-            <View className="w-[85%] rounded-full border border-white bg-black px-4 py-1">
+          <View className="w-full flex-row items-center justify-between gap-3 bg-black px-3 pb-2 pt-4 dark:border-blackEerie dark:bg-black">
+            <View className="flex-1 rounded-2xl border border-white/20 bg-[#191A21] px-4 py-1">
               <TextInput
-                className="ml-4 pb-4 pt-3 text-base text-white"
+                className="ml-0 pb-3 pt-2 text-base text-white"
                 value={userMessage}
                 onChangeText={setUserMessage}
                 placeholder={translate('general.chatbotPlaceholder')}
-                placeholderTextColor={colors.white}
+                placeholderTextColor={colors.charcoal[300]}
                 keyboardAppearance="dark"
                 multiline
                 maxLength={150}
@@ -354,8 +354,8 @@ const ChatExcuseBuster = () => {
             </View>
             <Icon
               onPress={() => handleSendMessage(userMessage)}
-              icon={<SendIcon />}
-              iconContainerStyle="rounded-full p-4 bg-[#3195FD]"
+              icon={<PaperPlane />}
+              iconContainerStyle="rounded-2xl p-4 bg-[#4E52FB]"
               color={colors.transparent}
               size={21}
             />

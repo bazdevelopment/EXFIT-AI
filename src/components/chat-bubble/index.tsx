@@ -11,6 +11,7 @@ import { translate } from '@/core';
 import { useClipboard } from '@/core/hooks/use-clipboard';
 import { getChatMessagesStyles } from '@/core/utilities/get-chat-messages.styles';
 
+import { MessageContainer } from '../chat-bubble-excuse-buster';
 import TypingIndicator from '../typing-indicator';
 import { colors, Image, Text } from '../ui';
 
@@ -21,18 +22,26 @@ type MessageType = {
   isError?: boolean;
 };
 
+const avatars = {
+  male: require('../../components/ui/assets/images/avatar-male.png'),
+  female: require('../../components/ui/assets/images/avatar-female.png'),
+  default: require('../../components/ui/assets/images/avatar-male.png'),
+};
+
 export const ChatBubble = ({
   message,
   isUser,
   onRetrySendMessage,
   speak,
   isSpeaking,
+  userGender,
 }: {
   message: MessageType;
   isUser: boolean;
   onRetrySendMessage: () => void;
   speak: (text: string) => void;
   isSpeaking: boolean;
+  userGender: string;
 }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const { copyToClipboard } = useClipboard();
@@ -71,25 +80,16 @@ export const ChatBubble = ({
         {!isUser && (
           <View className="mb-1 mr-3 size-10 items-center justify-center rounded-full bg-charcoal-800">
             <Image
-              source={require('../ui/assets/images/assistant-avatar.png')}
+              source={require('../ui/assets/images/fit-character-training.jpg')}
               className="size-8 rounded-full"
             />
           </View>
         )}
 
         {/* Message Bubble */}
-        <View
-          className={twMerge(
-            'px-4 py-3 rounded-2xl max-w-[90%]',
-            isUser
-              ? 'bg-[#3195FD] rounded-br-sm ml-12 w-[85%]'
-              : message.isError
-                ? 'bg-red-500 rounded-tl-sm'
-                : 'bg-[#202020] rounded-bl-sm'
-          )}
-        >
-          {/* <Text selectable> */}
-          <Markdown style={lightStyles}>{message.content}</Markdown>
+        <MessageContainer isUser={isUser} message={message}>
+          <Markdown style={lightStyles}>{`${message.content}`}</Markdown>
+
           {/* </Text> */}
           {!isUser && (
             <View className="mt-2 flex-row gap-2">
@@ -128,14 +128,15 @@ export const ChatBubble = ({
               )}
             </View>
           )}
+
           {message.isPending && !isUser && <TypingIndicator />}
-        </View>
+        </MessageContainer>
 
         {/* User Avatar */}
         {isUser && (
-          <View className="mb-1 ml-3 size-10 items-center justify-center rounded-full bg-charcoal-800">
+          <View className="ml-2 size-8 items-center justify-center rounded-full bg-charcoal-800">
             <Image
-              source={require('../ui/assets/images/avatar.png')}
+              source={avatars[userGender]}
               className="size-8 rounded-full"
             />
           </View>

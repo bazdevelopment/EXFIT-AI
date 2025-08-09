@@ -8,12 +8,15 @@ import { queryClient } from '../common';
 import {
   createAiTaskRequest,
   fetchAiTasks,
+  updateAiTaskNotes,
   updateAiTaskStatus,
 } from './ai-taks.requests';
 import {
   type ICreateTaskRequestData,
   type ITaskUpdateRequestData,
   type ITaskUpdateStatusResponse,
+  type IUpdateTaskNotesRequest,
+  type IUpdateTaskNotesResponse,
 } from './ai-tasks.types';
 
 export const useGetAiTasks = (date: string) => {
@@ -58,3 +61,21 @@ export const useUpdateAiTaskStatus = (date: string) =>
       },
     }
   )();
+
+export const useUpdateAiTaskNotes = createMutation<
+  IUpdateTaskNotesResponse,
+  IUpdateTaskNotesRequest,
+  AxiosError
+>({
+  mutationFn: (variables) => updateAiTaskNotes(variables),
+  onSuccess: (data) => {
+    Toast.success(data.message);
+
+    queryClient.invalidateQueries({
+      queryKey: ['ai-tasks'],
+    });
+  },
+  onError: (error) => {
+    Toast.error(error.response.data.message);
+  },
+});

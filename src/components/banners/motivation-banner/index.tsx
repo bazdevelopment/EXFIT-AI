@@ -60,8 +60,8 @@ const MotivationBanner = ({
 
         {/* Content */}
         <View className="flex-1">
-          <Text className="font-semibold-poppins text-lg text-white">
-            Feeling Off? Let's beat that excuse
+          <Text className="text-md font-semibold-poppins text-white">
+            No Motivation? Feeling off? Let's beat that excuse.
           </Text>
 
           <Text className="mt-2 text-sm text-gray-300">

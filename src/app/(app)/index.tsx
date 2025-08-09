@@ -13,6 +13,7 @@ import {
   useGetCalendarActivityLog,
   useUpdateActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
+import { useUpdateAiTaskNotes } from '@/api/ai-tasks/ai-tasks.hooks';
 import { useFetchUserNotifications } from '@/api/push-notifications/push-notifications.hooks';
 import { useOwnedPurchasedItems, useRepairStreak } from '@/api/shop/shop.hooks';
 import { useUser } from '@/api/user/user.hooks';
@@ -32,6 +33,7 @@ import { type INotificationItem } from '@/components/notifications/notification-
 import RewardsOverview from '@/components/rewards-overview';
 import ScreenWrapper from '@/components/screen-wrapper';
 import TaskListOverview from '@/components/task-list-overview';
+import Toast from '@/components/toast';
 import { colors, Image, useModal } from '@/components/ui';
 import { BellIcon, ShoppingCart } from '@/components/ui/assets/icons';
 import { DEVICE_TYPE, useSelectedLanguage } from '@/core';
@@ -124,6 +126,8 @@ export default function Home() {
     lastTimeLostStreakTimestamp,
     lostStreakValue,
   });
+
+  const { mutate: onAddNotes } = useUpdateAiTaskNotes();
 
   // First, transform your array into an object with date keys
   const generatedWeekDataMapped = generatedWeekData.reduce((acc, record) => {
@@ -254,6 +258,12 @@ export default function Home() {
             <DailyCheckInStatus
               additionalClassname="mt-2"
               status={currentWeekActivityLogs?.[currentActiveDay][0]?.status}
+              onAddActivity={() =>
+                activityCompleteModal.present({
+                  type: 'custom_activity',
+                  date: currentActiveDay,
+                })
+              }
             />
           )}
 
@@ -332,6 +342,15 @@ export default function Home() {
           hasUserRepairStreakElixir={hasUserRepairStreakElixir}
           isRepairStreakPending={isRepairStreakPending}
           onRepairStreak={onRepairStreak}
+          onAddNotes={({ taskId, notes }) =>
+            onUpdateActivityLog({
+              language,
+              logId: taskId as string,
+              fieldsToUpdate: { notes },
+            }).then(() => {
+              Toast.success('Notes saved! 📝 All set.');
+            })
+          }
           currentWeekActivityLogs={generatedWeekDataMapped}
           onAddActivity={(date) =>
             activityCompleteModal.present({

@@ -54,6 +54,7 @@ export const NoActivityLogModal = React.forwardRef<
       <BottomSheetScrollView
         className="flex-1 px-4"
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       >
         {/* Header */}
         <View className="mb-3 mt-4">

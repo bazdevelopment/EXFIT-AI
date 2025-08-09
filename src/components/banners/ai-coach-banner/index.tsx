@@ -66,7 +66,7 @@ const AICoachBanner = ({
 
         {/* Content */}
         <View className="flex-1">
-          <Text className="font-semibold-poppins text-lg text-white">
+          <Text className="text-md font-semibold-poppins text-white">
             Got a Question? Just Ask.
           </Text>
 

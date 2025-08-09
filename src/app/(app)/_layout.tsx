@@ -22,6 +22,7 @@ import {
 import { useCrashlytics } from '@/core/hooks/use-crashlytics';
 import { useFirstOnboarding } from '@/core/hooks/use-first-onboarding';
 import { useHaptic } from '@/core/hooks/use-haptics';
+import useKeyboard from '@/core/hooks/use-keyboard';
 import { usePushNotificationToken } from '@/core/hooks/use-push-notification-token';
 import useRemoteConfig from '@/core/hooks/use-remote-config';
 import { useSecondOnboarding } from '@/core/hooks/use-second-onboarding';
@@ -46,6 +47,7 @@ export default function TabLayout() {
     firebaseAuth.currentUser?.uid as string
   );
   const segments = useSegments();
+  const { isKeyboardVisible } = useKeyboard();
 
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
@@ -103,9 +105,16 @@ export default function TabLayout() {
     >
       <Tabs
         screenOptions={{
+          // tabBarHideOnKeyboard: DEVICE_TYPE.ANDROID && isKeyboardVisible,
           tabBarStyle: {
             ...bottomTabBarStyles.tabBarContainer,
             display: segments.includes('scan') ? 'none' : 'flex',
+            marginBottom:
+              DEVICE_TYPE.ANDROID &&
+              isKeyboardVisible &&
+              segments.includes('activity')
+                ? -300
+                : 0,
           },
           tabBarLabelStyle: bottomTabBarStyles.tabBarLabel,
           tabBarInactiveTintColor: colors.white,
