@@ -52,6 +52,6 @@ export const useGetCalendarActivityLog = (
   variables: IRequestCalendarActivity
 ) =>
   createQuery<CalendarStatusMap, IRequestCalendarActivity, AxiosError>({
-    queryKey: ['activity-logs'],
+    queryKey: ['activity-logs', variables.startDate, variables.endDate],
     fetcher: () => getCalendarActivity(variables),
   })();
