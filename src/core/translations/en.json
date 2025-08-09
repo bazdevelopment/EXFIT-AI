@@ -61,9 +61,9 @@
         "fourth": "Almost there, finalizing the scan..."
       },
       "loadingChatbot": {
-        "first": "AI Coach is getting ready to assist you...",
-        "second": "Hold on! Your AI Coach is preparing your response...",
-        "third": "Thinking...your AI Coach is on it!"
+        "first": "Mojo, your AI Coach is getting ready to assist you...",
+        "second": "Hold on! Mojo is preparing your response...",
+        "third": "Thinking...your Mojo is on it!"
       }
     }
   },

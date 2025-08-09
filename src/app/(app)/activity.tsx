@@ -4,9 +4,16 @@ import { FlashList } from '@shopify/flash-list';
 import { getCalendars } from 'expo-localization';
 import { router } from 'expo-router';
 import { GAMIFICATION_REWARDS_CONFIG } from 'functions/utilities/rewards-pricing';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { RefreshControl, TouchableOpacity, View } from 'react-native';
+import {
+  RefreshControl,
+  type ScrollView,
+  type ScrollViewProps,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -16,6 +23,7 @@ import Animated, {
 import {
   useCreateActivityLog,
   useGetCalendarActivityLog,
+  useUpdateActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
 import { useOwnedPurchasedItems, useRepairStreak } from '@/api/shop/shop.hooks';
 import { useUser } from '@/api/user/user.hooks';
@@ -32,11 +40,17 @@ import WeekBlock from '@/components/week-block';
 import { DATE_FORMAT } from '@/constants/date-format';
 import { DEVICE_TYPE } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
+import { useRefetchOnFocus } from '@/core/hooks/use-refetch-on-focus';
 import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { checkIsToday } from '@/core/utilities/date-time-helpers';
 import { formatDate } from '@/core/utilities/format-date';
 import { generateWeekDataOverview } from '@/core/utilities/generate-week-data-overview';
+import { wait } from '@/core/utilities/wait';
+
+const _RenderScrollComponent = React.forwardRef<ScrollView, ScrollViewProps>(
+  (props, ref) => <KeyboardAwareScrollView {...props} ref={ref} />
+);
 
 const Activity = () => {
   const scrollViewRef = useRef<FlashList<any>>(null);
@@ -72,6 +86,8 @@ const Activity = () => {
         xpReward: xpReward,
       }),
   });
+  const { mutateAsync: onUpdateActivityLog } = useUpdateActivityLog();
+
   const [currentActiveDay, setCurrentActiveDay] = useState('');
   const elixirPrice =
     GAMIFICATION_REWARDS_CONFIG.shopItems.STREAK_REVIVAL_ELIXIR.costInGems;
@@ -83,13 +99,17 @@ const Activity = () => {
   // const today = getCurrentDay('YYYY-MM-DD', language);
   const { isUpgradeRequired } = useSubscriptionAlert();
 
-  const { isRefetching, onRefetch } = useDelayedRefetch(() => {});
-  const { data: currentWeekActivityLog } = useGetCalendarActivityLog({
-    startDate: startOfWeek,
-    endDate: endOfWeek,
-    language,
-  });
+  const { data: currentWeekActivityLog, refetch: onRefetchActivityLog } =
+    useGetCalendarActivityLog({
+      startDate: startOfWeek,
+      endDate: endOfWeek,
+      language,
+    });
 
+  const { isRefetching, onRefetch } = useDelayedRefetch(() => {
+    //add here logic to refetch
+    onRefetchActivityLog();
+  });
   // const totalTodayActivities = currentWeekActivityLog?.[today]?.length;
   // State to hold the actual height of the WeekBlock header.
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -99,13 +119,18 @@ const Activity = () => {
   const onHeaderLayout = useCallback(
     (event) => {
       const { height } = event.nativeEvent.layout;
-      if (height > 0 && headerHeight === 0) {
-        setHeaderHeight(height);
-      }
+      //trick to make sure that header height has the right value (sometimes it has a value and after a few ms it was updated with another value)
+      wait(600).then(() => {
+        if (height > 0 && headerHeight === 0) {
+          setHeaderHeight(height);
+        }
+      });
     },
     [headerHeight]
   );
   useScrollToTop(scrollViewRef);
+  /**Trigger the refetch on focus to get the latest data */
+  useRefetchOnFocus(onRefetchActivityLog);
 
   const onScrollToIndex = (record) => {
     const indexToScroll = findSectionIndexToScroll(
@@ -154,17 +179,13 @@ const Activity = () => {
   }, {});
 
   // Prepare flat data for FlashList
-  const flashListData = useMemo(() => {
-    return (
-      Object.entries(generatedWeekDataMapped)
-        // .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB)) // Sort by date
-        .map(([date, recordsForDate]) => ({
-          id: date,
-          date,
-          records: recordsForDate, // can be null or an array
-        }))
-    );
-  }, [generatedWeekDataMapped]);
+  const flashListData = Object.entries(generatedWeekDataMapped)
+    // .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB)) // Sort by date
+    .map(([date, recordsForDate]) => ({
+      id: date,
+      date,
+      records: recordsForDate, // can be null or an array
+    }));
 
   const handleRepairStreak = (lostStreakValue: number) => {
     if (!hasUserRepairStreakElixir) {
@@ -291,6 +312,7 @@ const Activity = () => {
         />
 
         <ActivitiesList
+          showInModal={false}
           showHeading={false}
           activities={data.activities}
           onAddActivity={() => {
@@ -298,6 +320,15 @@ const Activity = () => {
             activityCompleteModal.present({ type: 'custom_activity' });
           }}
           isToday={isToday}
+          onAddNotes={({ taskId, notes }) =>
+            onUpdateActivityLog({
+              language,
+              logId: taskId as string,
+              fieldsToUpdate: { notes },
+            }).then(() => {
+              Toast.success('Notes saved! 📝 All set.');
+            })
+          }
         />
       </View>
     );
@@ -347,11 +378,22 @@ const Activity = () => {
         />
       </Animated.View>
 
+      {/* <KeyboardAvoidingView
+        enabled
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      > */}
       <FlashList
+        //! consider using RenderScrollComponent but be careful on opening "add activity" modal, the content has a weird behavior
+        // renderScrollComponent={RenderScrollComponent}
+
         ref={scrollViewRef}
         data={flashListData}
+        /** //! this combination together with keyExtractor and useRefetchOnFocus trigger a re-rendering  */
+        extraData={[currentWeekActivityLog, flashListData]}
         renderItem={renderItem}
         estimatedItemSize={150}
+        keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
         ListFooterComponent={<View className="mb-[500]"></View>}
         onScroll={onScroll}
@@ -362,9 +404,11 @@ const Activity = () => {
           // Crucial fix: Add headerHeight + REFRESH_CONTROL_OFFSET to paddingTop
           // This ensures enough space is reserved at the top for both the header
           // and the refresh spinner to be visible.
-          paddingTop: headerHeight - (DEVICE_TYPE.IOS ? 60 : 10),
+          paddingTop: headerHeight - (DEVICE_TYPE.IOS ? 60 : 50),
         }}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) =>
+          `${item.id}-${item.records[0]?.activities?.length}-${JSON.stringify(item.records[0]?.activities)}`
+        } // Better key
         refreshControl={
           <RefreshControl
             refreshing={isRefetching}
@@ -377,6 +421,7 @@ const Activity = () => {
           />
         }
       />
+      {/* </KeyboardAvoidingView> */}
 
       <DailyCheckInModal
         ref={activityCompleteModal.ref}

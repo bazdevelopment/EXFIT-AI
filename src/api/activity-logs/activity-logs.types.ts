@@ -25,6 +25,7 @@ export interface IUpdateLogRequestData {
     status?: 'completed' | 'skipped' | 'active' | 'attended';
     activityName?: string;
     durationMinutes?: number;
+    notes?: string;
   };
 }
 
@@ -52,12 +53,18 @@ export interface IRequestCalendarActivity {
  * The structure of a document in the 'activityLogs' subcollection.
  */
 export interface IActivityLog {
-  date: string;
-  type: 'daily_checkin' | 'excuse_logged' | 'excuse_logged_daily_checkin';
-  status: 'attended' | 'skipped';
-  durationMinutes?: number;
-  excuseReason?: string;
-  overcome?: boolean;
+  activityName: string;
+  createdAt: string;
+  date: { _nanoseconds: number; _seconds: number };
+  description: string;
+  durationMinutes: number;
+  excuseReason: string;
+  gemsEarned: number;
+  id: string;
+  overcome: boolean;
+  status: 'completed' | 'attended' | 'active' | 'skipped';
+  type: string;
+  xpEarned: number;
 }
 
 /**

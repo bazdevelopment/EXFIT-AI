@@ -114,6 +114,10 @@ export const updateAiTaskStatus = usCentralFunctions.https.onCall(
   aiTasksFunctions.updateAiTasksStatusHandler,
 );
 
+export const updateAiTaskNotes = usCentralFunctions.https.onCall(
+  aiTasksFunctions.updateAiTaskNotesHandler,
+);
+
 /** Push notifications  */
 
 export const storeDeviceToken = usCentralFunctions.https.onCall(
