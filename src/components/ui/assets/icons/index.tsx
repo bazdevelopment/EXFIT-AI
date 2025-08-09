@@ -40,6 +40,7 @@ export * from './membership';
 export * from './moon';
 export * from './notification';
 export * from './notification-bell';
+export * from './paper-plane';
 export * from './paperclip';
 export * from './permanent-account';
 export * from './phone';

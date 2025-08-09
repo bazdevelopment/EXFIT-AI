@@ -25,13 +25,14 @@ interface AiTaskDocument {
   title: string;
   durationMinutes: number;
   status: 'active' | 'completed' | 'skipped' | 'expired';
+  notes?: string;
 }
 
 const db = admin.firestore();
 
 const createAiTasksHandler = async (
   data: ICreateTaskRequestData,
-  context: any,
+  context: functions.https.CallableContext,
 ): Promise<{ taskId: string }> => {
   {
     // const t = getTranslation(data.language);
@@ -147,7 +148,7 @@ interface AiTaskResponse {
  */
 const getAiTasksForDay = async (
   data: IGetTasksRequestData,
-  context: any,
+  context: functions.https.CallableContext,
 ): Promise<AiTaskResponse[]> => {
   // 1. --- AUTHENTICATION & VALIDATION ---
   if (!context.auth) {
@@ -239,9 +240,9 @@ interface IResolveTaskRequestData {
  * @param {any} context - The context of the call, including auth info.
  * @return {Promise<{ success: boolean; newBalance?: number }>} An object confirming the success and the user's new balance if applicable.
  */
-export const updateAiTasksStatusHandler = async (
+const updateAiTasksStatusHandler = async (
   data: IResolveTaskRequestData,
-  context: any,
+  context: functions.https.CallableContext,
 ): Promise<{ success: boolean; newBalance?: number }> => {
   const t = getTranslation(data.language);
 
@@ -349,4 +350,95 @@ export const updateAiTasksStatusHandler = async (
   throwHttpsError('internal', 'Unhandled task status.');
 };
 
-export { createAiTasksHandler, getAiTasksForDay };
+// --- Type Definition for the data sent from the client ---
+interface UpdateTaskNotesRequest {
+  taskId: string;
+  notes: string;
+}
+
+/**
+ * A Callable Cloud Function that allows a user to add or update a 'notes' field
+ * on a specific document in their `aiTasks` subcollection.
+ */
+const updateAiTaskNotesHandler = async (
+  data: UpdateTaskNotesRequest,
+  context: functions.https.CallableContext,
+) => {
+  // 1. --- AUTHENTICATION & VALIDATION ---
+  if (!context.auth) {
+    throwHttpsError(
+      'unauthenticated',
+      'You must be authenticated to update a task',
+    );
+  }
+
+  const { taskId, notes } = data;
+  const userId = context.auth.uid;
+
+  if (!taskId || typeof taskId !== 'string') {
+    throwHttpsError('invalid-argument', "A valid 'taskId' must be provided.");
+  }
+
+  // `notes` can be an empty string to clear it, but it must be a string.
+  if (typeof notes !== 'string') {
+    throwHttpsError('invalid-argument', "The 'notes' field must be a string.");
+  }
+
+  // Optional: Add a character limit to prevent abuse
+  if (notes.length > 500) {
+    throwHttpsError('invalid-argument', 'Notes cannot exceed 500 characters.');
+  }
+
+  functions.logger.info(`User ${userId} is updating notes for task ${taskId}.`);
+
+  // 2. --- SECURE DOCUMENT REFERENCE ---
+  // Construct the path directly using the authenticated userId to ensure
+  // a user can only ever access their own tasks.
+  const taskDocRef = db
+    .collection('users')
+    .doc(userId)
+    .collection('aiTasks')
+    .doc(taskId);
+
+  // 3. --- DATABASE UPDATE ---
+  try {
+    // It's good practice to check if the document exists first,
+    // though `update` would also fail. This gives a better error message.
+    const docSnapshot = await taskDocRef.get();
+    if (!docSnapshot.exists) {
+      throwHttpsError('not-found', 'The specified task could not be found.');
+    }
+
+    // Perform the update. This will add the 'notes' field if it doesn't exist,
+    // or overwrite it if it does.
+    await taskDocRef.update({
+      notes: notes,
+    });
+
+    functions.logger.log(`Successfully updated notes for task ${taskId}.`);
+
+    // 4. --- RETURN SUCCESS RESPONSE ---
+    return { success: true, message: 'Notes updated successfully.' };
+  } catch (error) {
+    // If the error is already an HttpsError we threw, re-throw it.
+    if (error instanceof functions.https.HttpsError) {
+      throw error;
+    }
+    // Otherwise, log the unexpected error and throw a generic internal error.
+    functions.logger.error(
+      `Error updating task ${taskId} for user ${userId}:`,
+      error,
+    );
+    throwHttpsError(
+      'internal',
+      'An unexpected error occurred while saving your notes.',
+    );
+  }
+};
+
+export {
+  createAiTasksHandler,
+  getAiTasksForDay,
+  updateAiTaskNotesHandler,
+  updateAiTasksStatusHandler,
+};

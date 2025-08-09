@@ -252,7 +252,7 @@ const getBubbleStyle = ({ isUser, message }) => {
   }
 };
 
-const MessageContainer = ({ children, isUser, message }) => {
+export const MessageContainer = ({ children, isUser, message }) => {
   if (isUser) {
     return (
       <LinearGradient

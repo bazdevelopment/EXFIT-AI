@@ -1,86 +1,345 @@
-import { Ionicons } from '@expo/vector-icons';
+/* eslint-disable max-lines-per-function */
+import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import dayjs from 'dayjs';
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TextInput, TouchableOpacity, View } from 'react-native';
+import Markdown from 'react-native-markdown-display';
 
-import { Text } from '../ui';
+import { colors, Text } from '../ui';
 import { FlashIcon, GemIcon } from '../ui/assets/icons';
 
-export interface ActivityCardProps {
-  title: string;
-  aiSuggestion: string;
-  outcome: string;
-  xpEarned: number;
-  gemsEarned: number;
-  status: string;
-  onPress?: () => void;
-}
-
-const statusStyles = {
-  attended: 'bg-green-400',
-  completed: 'bg-green-400',
-  skipped: 'bg-red-500',
-  challenge: 'bg-gray-800',
-  inactive: 'border-2 border-dashed border-gray-500',
-  active: 'bg-yellow-300',
-  empty: '', // No special style for empty
+const getStatusConfig = (status: string) => {
+  const configs = {
+    completed: {
+      bg: 'bg-emerald-500/20',
+      text: 'text-emerald-400',
+      border: 'border-emerald-500/30',
+      label: 'Completed',
+      dot: 'bg-emerald-400',
+    },
+    attended: {
+      bg: 'bg-emerald-500/20',
+      text: 'text-emerald-400',
+      border: 'border-emerald-500/30',
+      label: 'Completed',
+      dot: 'bg-emerald-400',
+    },
+    active: {
+      bg: 'bg-amber-500/20',
+      text: 'text-amber-400',
+      border: 'border-amber-500/30',
+      label: 'Unfinished',
+      dot: 'bg-amber-400',
+    },
+    skipped: {
+      bg: 'bg-red-500/20',
+      text: 'text-red-400',
+      border: 'border-red-500/30',
+      label: 'Skipped',
+      dot: 'bg-red-400',
+    },
+  };
+  return configs[status as keyof typeof configs] || configs.active;
 };
 
-// Alternative compact version for lists
-const CompactActivityCard: React.FC<ActivityCardProps> = ({
-  title,
-  status,
-  outcome,
-  xpEarned,
-  gemsEarned,
-  onPress,
-}) => {
+// Activity type icons mapping
+const getActivityIcon = (type: string): string => {
+  const iconMap: { [key: string]: string } = {
+    custom_ai_task: '🤖',
+    custom_activity: '🏃',
+    workout: '💪',
+    cardio: '❤️',
+    strength: '🏋️',
+    yoga: '🧘',
+    walking: '🚶',
+    running: '🏃',
+    cycling: '🚴',
+    swimming: '🏊',
+    default: '⚡',
+  };
+  return iconMap[type] || iconMap.default;
+};
+
+// Individual Activity Card Component
+const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
+  const [isDescriptionExpanded, setIsDescriptionExpanded] =
+    React.useState(false);
+  const [isEditingNotes, setIsEditingNotes] = React.useState(false);
+  const [notes, setNotes] = React.useState(activity.notes || '');
+  const [tempNotes, setTempNotes] = React.useState(notes);
+
+  const TextInputWrapper = showInModal ? BottomSheetTextInput : TextInput;
+
+  const statusConfig = getStatusConfig(activity.status);
+  const hasDescription = !!activity.description;
+  const hasNotes = !!notes;
+  const isDescriptionLong =
+    hasDescription && activity.description!.length > 100;
+
+  const handleSaveNotes = () => {
+    if (tempNotes !== notes) {
+      setNotes(tempNotes);
+      onAddNotes?.({ taskId: activity.id, notes: tempNotes });
+    }
+    setIsEditingNotes(false);
+  };
+
+  const handleCancelNotes = () => {
+    setTempNotes(notes);
+    setIsEditingNotes(false);
+  };
+
+  const handleAddNotePress = () => {
+    setIsEditingNotes(true);
+    setTempNotes(notes);
+  };
+
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      activeOpacity={0.8}
-      className="my-1 flex-row items-center rounded-2xl bg-gray-800 p-4 shadow-md"
-    >
-      {/* Blue accent line */}
-      <View className={`mr-4 h-16 w-1 rounded-full ${statusStyles[status]}`} />
-
-      {/* Content */}
-      <View className="flex-1">
-        <View className="mr-4 flex-row items-center justify-between">
-          <Text className="mb-1 font-semibold-poppins text-lg text-white">
-            {title}
-          </Text>
-
-          <View className="flex-row gap-4">
-            <View className="flex-row items-center gap-2">
-              <FlashIcon width={20} height={20} />
-              <Text className="font-bold-poppins text-sm text-white dark:text-white">
-                {xpEarned} XP
+    <View className="mb-3 overflow-hidden rounded-2xl border border-white/20 bg-black/40 p-4">
+      {/* Header Row */}
+      <View className="mb-3 flex-row items-start justify-between">
+        <View className="mr-3 flex-1 flex-row items-start">
+          <View className="mr-3 size-11 items-center justify-center rounded-xl border border-purple-500/20 bg-gradient-to-br from-purple-500/20 to-blue-500/20">
+            <Text className="text-lg">{getActivityIcon(activity.type)}</Text>
+          </View>
+          <View className="flex-1">
+            <Text className="mb-1 font-bold-poppins text-base leading-tight text-white">
+              {activity.activityName ||
+                (activity.status === 'skipped' ? 'Day Off' : '')}
+            </Text>
+            <View className="mb-1 flex-row items-center">
+              <Text className="mr-2 text-sm text-gray-300">
+                {dayjs(activity.createdAt).format('h:mm A')}
               </Text>
-            </View>
-            <View className="flex-row items-center gap-2">
-              <GemIcon width={20} height={20} />
-              <Text className="text-md font-bold-poppins text-blue-200 dark:text-blue-200">
-                {gemsEarned}
+              <View className="mr-2 size-1 rounded-full bg-gray-500" />
+              <Text className="text-sm text-gray-300">
+                {activity.durationMinutes}min
               </Text>
             </View>
           </View>
         </View>
 
-        {/* <Text className="mb-1 text-sm text-gray-400">{aiSuggestion}</Text> */}
-        <View className="flex-row items-center justify-between">
-          <Text className="flex-1 font-medium-poppins text-sm text-gray-300">
-            {status === 'skipped' ? 'Excuse: ' : 'Activities: '}
-            {outcome || 'N/A'}
-          </Text>
+        <View
+          className={`rounded-lg border px-2.5 py-1 ${statusConfig.bg} ${statusConfig.border}`}
+        >
+          <View className="flex-row items-center">
+            <View
+              className={`size-1.5 rounded-full ${statusConfig.dot} mr-1.5`}
+            />
+            <Text
+              className={`font-semibold-poppins text-sm ${statusConfig.text}`}
+            >
+              {statusConfig.label}
+            </Text>
+          </View>
         </View>
       </View>
 
-      {/* Arrow */}
-      <TouchableOpacity className="ml-2 rounded-full bg-gray-700 p-2">
-        <Ionicons name="chevron-forward" size={16} color="white" />
-      </TouchableOpacity>
-    </TouchableOpacity>
+      {/* Description (if available) */}
+      {hasDescription && (
+        <View className="mb-3 rounded-lg border-l-2 border-l-blue-400/50 bg-white/5 p-2.5">
+          <Text className="mb-1 font-bold-poppins text-sm tracking-wide text-blue-400/80">
+            Description
+          </Text>
+          {isDescriptionExpanded ? (
+            <Markdown style={lightStyles}>{activity.description}</Markdown>
+          ) : (
+            <Text
+              className="text-sm leading-relaxed text-gray-300"
+              numberOfLines={2}
+            >
+              {activity.description}
+            </Text>
+          )}
+
+          {isDescriptionLong && (
+            <TouchableOpacity
+              onPress={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+              className="mt-2 self-start"
+              activeOpacity={0.7}
+            >
+              <Text className="font-semibold-poppins text-sm text-blue-400">
+                {isDescriptionExpanded ? 'See less' : 'See more'}
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
+      {!!activity.excuseReason && (
+        <View className="mb-3 rounded-lg border-l-2 border-l-red-400/50 bg-white/5 p-2.5">
+          <Text className="mb-1 font-bold-poppins text-sm tracking-wide text-red-400/80">
+            Excuse Reason ⚠️
+          </Text>
+
+          <Text
+            className="text-sm leading-relaxed text-gray-300"
+            numberOfLines={2}
+          >
+            {activity.excuseReason}
+          </Text>
+        </View>
+      )}
+
+      {/* User Notes Section (Conditional) */}
+      {(hasNotes || isEditingNotes) && (
+        <View className="mb-3 rounded-lg border-l-2 border-l-green-400/50 bg-white/5 p-2.5">
+          <View className="mb-2 flex-row items-center justify-between">
+            <Text className="font-bold-poppins text-sm  text-green-400/80">
+              Your Notes 📝
+            </Text>
+            {isEditingNotes ? (
+              <View className="flex-row items-center gap-2">
+                <TouchableOpacity
+                  onPress={handleCancelNotes}
+                  className="rounded-md bg-gray-500/20 px-3 py-1.5"
+                  activeOpacity={0.7}
+                >
+                  <Text className="font-medium-poppins text-sm text-white dark:text-white">
+                    Cancel
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={handleSaveNotes}
+                  className="rounded-md bg-green-500/20 px-3 py-1.5"
+                  activeOpacity={0.7}
+                >
+                  <Text className="font-medium-poppins text-sm text-green-400 dark:text-green-400">
+                    Save
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <TouchableOpacity
+                onPress={() => setIsEditingNotes(true)}
+                className="flex-row items-center gap-1.5 rounded-lg bg-green-500/10 px-2.5 py-1"
+                activeOpacity={0.7}
+              >
+                <Text className="font-medium-poppins text-sm text-green-400 dark:text-green-400">
+                  Edit
+                </Text>
+              </TouchableOpacity>
+            )}
+          </View>
+          {isEditingNotes ? (
+            <TextInputWrapper
+              placeholder="E.g. Back and biceps workout, 3 supersets"
+              placeholderTextColor={colors.charcoal[300]}
+              className="min-h-[50px] rounded-md border border-gray-500/50 p-2 font-primary-poppins text-sm leading-relaxed text-white"
+              multiline
+              value={tempNotes}
+              onChangeText={setTempNotes}
+              autoFocus
+            />
+          ) : (
+            <Text className="text-sm leading-relaxed text-gray-300">
+              {notes}
+            </Text>
+          )}
+        </View>
+      )}
+
+      {/* Bottom Row - Rewards & Add Note Button */}
+      <View className="flex-row items-center justify-between">
+        <View className="flex-row items-center">
+          <View className="mr-4 flex-row items-center gap-2 rounded-lg bg-yellow-500/10 px-2.5 py-1">
+            <GemIcon width={18} height={18} />
+            <Text className="font-bold-poppins text-sm text-yellow-400">
+              {activity.gemsEarned}
+            </Text>
+          </View>
+
+          <View className="flex-row items-center gap-2 rounded-lg bg-purple-500/10 px-2.5 py-1">
+            <FlashIcon width={18} height={18} />
+            <Text className="font-bold-poppins text-sm text-purple-400">
+              {activity.xpEarned}
+            </Text>
+          </View>
+
+          {/* Add Note Button - Only show if no notes exist and not editing */}
+          {!isEditingNotes && !hasNotes && (
+            <TouchableOpacity
+              onPress={handleAddNotePress}
+              className="ml-3 flex-row items-center gap-1.5 rounded-lg bg-green-500/10 px-2.5 py-1"
+              activeOpacity={0.7}
+            >
+              <Text className="text-md">📝</Text>
+              <Text className="font-medium-poppins text-sm text-green-400">
+                Add notes
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+
+        {/* <View className="rounded-md bg-gray-500/20 px-2 py-1">
+            <Text className="text-[12px] font-medium capitalize text-gray-400">
+              {activity.type.replace(/_/g, ' ')}
+            </Text>
+          </View> */}
+      </View>
+    </View>
+    // </TouchableOpacity>
   );
 };
 
-export default CompactActivityCard;
+export default ActivityCard;
+
+const lightStyles = {
+  body: {
+    marginTop: -7,
+    marginBottom: -7,
+    fontSize: 14,
+    lineHeight: 22,
+    color: colors.white,
+  },
+  heading1: {
+    color: colors.white,
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  heading2: {
+    color: colors.white,
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  heading3: {
+    color: colors.white,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  paragraph: {
+    fontFamily: 'Font-Regular',
+    fontSize: 14,
+    marginBottom: 8,
+  },
+  list_item: {
+    fontFamily: 'Font-Regular',
+    fontSize: 14,
+    marginBottom: 6,
+  },
+  span: {
+    fontFamily: 'Font-Regular',
+    fontSize: 14,
+  },
+  strong: {
+    fontFamily: 'Font-Extra-Bold',
+    fontWeight: '800',
+    color: '#3195FD', // Highlight bold text with a strong color like amber
+  },
+  em: {
+    fontFamily: 'Font-Extra-Bold',
+    color: colors.white, // Slightly muted color for italics to differentiate
+  },
+  blockquote: {
+    borderLeftWidth: 4,
+    paddingLeft: 10,
+    color: '#4B5563',
+    fontStyle: 'italic',
+  },
+  code_inline: {
+    // backgroundColor: '#F3F4F6',
+    borderRadius: 4,
+    fontFamily: 'Font-Mono',
+    fontSize: 13,
+    color: '#111827',
+  },
+};

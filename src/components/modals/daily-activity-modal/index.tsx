@@ -35,6 +35,7 @@ export const DailyActivityModal = React.forwardRef<
     {
       onAddActivity,
       onRepairStreak,
+      onAddNotes,
       isRepairStreakPending,
       hasUserRepairStreakElixir,
       currentWeekActivityLogs,
@@ -160,11 +161,24 @@ export const DailyActivityModal = React.forwardRef<
                 blurType="dark"
                 style={[StyleSheet.absoluteFill]}
               />
-              <BottomSheetScrollView
+              {/* <BottomSheetScrollView
                 className="flex-1 px-4 pt-6"
                 contentContainerClassName="mb-[200]"
                 showsVerticalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
+              > */}
+              {/* //!very important to use BottomSheetScrollView to trigger on drag gesture (up and bottom)*/}
+              <BottomSheetScrollView
+                keyboardShouldPersistTaps="handled"
+                showsVerticalScrollIndicator={false}
+                className="flex-1 px-4 pt-6"
               >
+                {/* <KeyboardAwareScrollView
+                  keyboardShouldPersistTaps="handled"
+                  showsVerticalScrollIndicator={false}
+                  contentContainerClassName="mb-[200]"
+                  className="flex-1 px-4 pt-6"
+                > */}
                 {/* Header with Date */}
                 <View className="mb-6 items-center">
                   {/* Day Number */}
@@ -223,10 +237,13 @@ export const DailyActivityModal = React.forwardRef<
                 </View>
 
                 <ActivitiesList
+                  showInModal
                   activities={activities}
                   onAddActivity={() => onAddActivity(dateKey)}
                   isToday={checkIsToday(dateKey, language)}
+                  onAddNotes={onAddNotes}
                 />
+                {/* </KeyboardAwareScrollView> */}
               </BottomSheetScrollView>
             </>
           );

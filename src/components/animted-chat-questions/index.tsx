@@ -66,17 +66,15 @@ const AnimatedChatQuestions = ({
           <TouchableOpacity
             onPress={() => onSelect(q)}
             style={{
-              backgroundColor: '#202020',
+              backgroundColor: '#191A21',
               borderRadius: 20,
               paddingVertical: 10,
               paddingHorizontal: 18,
               borderWidth: 1,
-              borderColor: '#3195FD',
+              borderColor: '#4E52FB',
             }}
           >
-            <Text className="font-primary-poppins text-base text-white">
-              {q}
-            </Text>
+            <Text className="font-primary-poppins text-sm text-white">{q}</Text>
           </TouchableOpacity>
         </Animated.View>
       ))}

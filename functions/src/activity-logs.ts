@@ -58,6 +58,7 @@ interface ActivityLogDocument {
   activityName: string;
   description: string;
   excuseReason: string;
+  notes: string;
 }
 
 // eslint-disable-next-line valid-jsdoc
@@ -195,6 +196,7 @@ const createActivityLogHandler = async (
         activityName: data.activityName || '',
         description: data.description || '',
         excuseReason: data.excuseReason || '',
+        notes: '',
         xpEarned: data.type === 'custom_ai_task' ? data.xpReward : xpAwarded,
         gemsEarned:
           data.type === 'custom_ai_task' ? data.gemsReward : gemsAwarded,
@@ -450,6 +452,7 @@ const updateActivityLogHandler = async (
         'status',
         'activityName',
         'durationMinutes',
+        'notes',
       ]);
       const sanitizedUpdatePayload: { [key: string]: any } = {};
       for (const [key, value] of Object.entries(data.fieldsToUpdate)) {

@@ -36,3 +36,14 @@ export interface ITaskUpdateStatusResponse {
   success: boolean;
   newBalance?: number;
 }
+
+// --- Type Definition for the data sent from the client ---
+export interface IUpdateTaskNotesRequest {
+  taskId: string;
+  notes: string;
+}
+
+export interface IUpdateTaskNotesResponse {
+  success: boolean;
+  message: string;
+}

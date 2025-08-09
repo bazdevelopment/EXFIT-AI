@@ -5,6 +5,8 @@ import {
   type ICreateTaskRequestData,
   type ITaskUpdateRequestData,
   type ITaskUpdateStatusResponse,
+  type IUpdateTaskNotesRequest,
+  type IUpdateTaskNotesResponse,
 } from './ai-tasks.types';
 
 export const fetchAiTasks = async ({
@@ -46,6 +48,22 @@ export const updateAiTaskStatus = async (
         payload
       );
     return data as ITaskUpdateStatusResponse;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateAiTaskNotes = async (
+  payload: IUpdateTaskNotesRequest
+): Promise<IUpdateTaskNotesResponse> => {
+  try {
+    const { data } =
+      await firebaseCloudFunctionsInstance.httpsCallable('updateAiTaskNotes')(
+        payload
+      );
+    console.log('payload', payload);
+    console.log('data', data);
+    return data as IUpdateTaskNotesResponse;
   } catch (error) {
     throw error;
   }
