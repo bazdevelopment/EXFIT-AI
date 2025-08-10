@@ -285,61 +285,60 @@ export default ActivityCard;
 
 const lightStyles = {
   body: {
-    marginTop: -7,
-    marginBottom: -7,
-    fontSize: 14,
-    lineHeight: 22,
+    marginTop: -4,
+    marginBottom: -4,
+    fontSize: 12,
+    lineHeight: 18,
     color: colors.white,
   },
   heading1: {
     color: colors.white,
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   heading2: {
     color: colors.white,
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   heading3: {
     color: colors.white,
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   paragraph: {
     fontFamily: 'Font-Regular',
-    fontSize: 14,
-    marginBottom: 8,
+    fontSize: 12,
+    marginBottom: 4,
   },
   list_item: {
     fontFamily: 'Font-Regular',
-    fontSize: 14,
-    marginBottom: 6,
+    fontSize: 12,
+    marginBottom: 3,
   },
   span: {
     fontFamily: 'Font-Regular',
-    fontSize: 14,
+    fontSize: 12,
   },
   strong: {
     fontFamily: 'Font-Extra-Bold',
     fontWeight: '800',
-    color: '#3195FD', // Highlight bold text with a strong color like amber
+    color: '#3195FD',
   },
   em: {
     fontFamily: 'Font-Extra-Bold',
-    color: colors.white, // Slightly muted color for italics to differentiate
+    color: colors.white,
   },
   blockquote: {
-    borderLeftWidth: 4,
-    paddingLeft: 10,
+    borderLeftWidth: 3,
+    paddingLeft: 8,
     color: '#4B5563',
     fontStyle: 'italic',
   },
   code_inline: {
-    // backgroundColor: '#F3F4F6',
-    borderRadius: 4,
+    borderRadius: 3,
     fontFamily: 'Font-Mono',
-    fontSize: 13,
+    fontSize: 11,
     color: '#111827',
   },
 };

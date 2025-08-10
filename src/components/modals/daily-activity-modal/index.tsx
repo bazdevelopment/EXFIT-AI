@@ -2,6 +2,7 @@
 import {
   type BottomSheetModal,
   BottomSheetScrollView,
+  BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import { router } from 'expo-router';
@@ -15,7 +16,7 @@ import StreakWarning from '@/components/streak-warning';
 import Toast from '@/components/toast';
 import { Image, Modal, Text } from '@/components/ui';
 import { FlashIcon, GemIcon } from '@/components/ui/assets/icons';
-import { useSelectedLanguage } from '@/core';
+import { DEVICE_TYPE, useSelectedLanguage } from '@/core';
 import { checkIsToday } from '@/core/utilities/date-time-helpers';
 
 import dayjs from '../../../lib/dayjs';
@@ -132,6 +133,8 @@ export const DailyActivityModal = React.forwardRef<
       );
     };
 
+    const Wrapper = DEVICE_TYPE.IOS ? React.Fragment : BottomSheetView;
+
     return (
       <Modal
         ref={ref}
@@ -155,7 +158,7 @@ export const DailyActivityModal = React.forwardRef<
             ) || 0;
 
           return (
-            <>
+            <Wrapper>
               <BlurView
                 blurAmount={30}
                 blurType="dark"
@@ -172,6 +175,9 @@ export const DailyActivityModal = React.forwardRef<
                 keyboardShouldPersistTaps="handled"
                 showsVerticalScrollIndicator={false}
                 className="flex-1 px-4 pt-6"
+                contentContainerClassName={
+                  DEVICE_TYPE.ANDROID ? 'pb-[500px]' : ''
+                }
               >
                 {/* <KeyboardAwareScrollView
                   keyboardShouldPersistTaps="handled"
@@ -245,7 +251,7 @@ export const DailyActivityModal = React.forwardRef<
                 />
                 {/* </KeyboardAwareScrollView> */}
               </BottomSheetScrollView>
-            </>
+            </Wrapper>
           );
         }}
       </Modal>

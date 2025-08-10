@@ -111,8 +111,8 @@ export const Modal = React.forwardRef(
         backdropComponent={props.backdropComponent || renderBackdrop}
         enableDynamicSizing={false}
         handleComponent={renderHandleComponent}
-        keyboardBlurBehavior={'restore'}
-        keyboardBehavior={'interactive'}
+        keyboardBlurBehavior="restore"
+        keyboardBehavior="interactive"
       />
     );
   }

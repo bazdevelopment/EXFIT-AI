@@ -10,6 +10,7 @@ import ScreenWrapper from '@/components/screen-wrapper';
 import SelectableChip from '@/components/selectable-chip';
 import { Button, colors, Image, Input, Text } from '@/components/ui';
 import { ArrowLeft, WandSparkle } from '@/components/ui/assets/icons';
+import { DEVICE_TYPE } from '@/core';
 
 const ExcuseBusterScreen = () => {
   const [selectedExcuses, setSelectedExcuses] = useState<string[]>([]);
@@ -76,94 +77,96 @@ const ExcuseBusterScreen = () => {
 
   return (
     <ScreenWrapper>
-      <ScrollView contentContainerStyle={{ flex: 1 }}>
-        <KeyboardAvoidingView
-          className="flex-1"
-          behavior="padding"
-          keyboardVerticalOffset={50}
-        >
-          {/* Header */}
-          <View className="z-100 flex-row items-center bg-[#0a1420] p-4">
-            <Icon
-              icon={<ArrowLeft />}
-              iconContainerStyle="items-center p-2.5 justify-center rounded-full border-2 border-charcoal-800"
-              size={24}
-              color={colors.white}
-              onPress={router.back}
-            />
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior={DEVICE_TYPE.IOS ? 'padding' : undefined}
+      >
+        <ScrollView contentContainerClassName="flex-1">
+          <View className="flex-1">
+            <View className="z-100 flex-row items-center bg-[#0a1420] p-4">
+              <Icon
+                icon={<ArrowLeft />}
+                iconContainerStyle="items-center p-2.5 justify-center rounded-full border-2 border-charcoal-800"
+                size={24}
+                color={colors.white}
+                onPress={router.back}
+              />
 
-            <View className="ml-3 flex-row items-center">
-              <View className="mr-3 items-center justify-center rounded-full">
-                <Image
-                  source={require('../components/ui/assets/images/excuse-buster-robot.jpg')}
-                  className="size-[40] rounded-full"
-                />
-              </View>
-              <View>
-                <Text className="font-medium-poppins text-lg text-white">
-                  Excuse Buster
-                </Text>
-                <View className="flex-row items-center gap-2">
-                  <View className="size-2 rounded-full bg-success-400" />
-                  <Text className="font-medium-poppins text-xs text-white">
-                    Online
+              <View className="ml-3 flex-row items-center">
+                <View className="mr-3 items-center justify-center rounded-full">
+                  <Image
+                    source={require('../components/ui/assets/images/excuse-buster-robot.jpg')}
+                    className="size-[40] rounded-full"
+                  />
+                </View>
+                <View>
+                  <Text className="font-medium-poppins text-lg text-white">
+                    Excuse Buster
                   </Text>
+                  <View className="flex-row items-center gap-2">
+                    <View className="size-2 rounded-full bg-success-400" />
+                    <Text className="font-medium-poppins text-xs text-white">
+                      Online
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
-          </View>
 
-          <View className="-z-10 mb-4 flex-1 justify-end px-6">
-            {/* Main Content */}
-            <View className="mb-8 mt-16 items-center">
-              <Text className="mb-4 text-center font-medium-poppins text-lg text-white">
-                You're Tougher Than Your Excuse.
-              </Text>
-              <Text className="text-center text-base text-white">
-                What's holding you back today?
-              </Text>
-            </View>
-
-            {/* Excuse Buttons Grid */}
-            <View className="mb-6">
-              <View className="flex-row flex-wrap items-center justify-center">
-                {excuses.map((excuse, index) => (
-                  <SelectableChip
-                    key={excuse}
-                    title={excuse}
-                    isSelected={selectedExcuses.includes(excuse)}
-                    onPress={() => handleExcusePress(excuse)}
-                  />
-                ))}
+            <View className="-z-10 mb-4 flex-1 justify-end px-6">
+              {/* Main Content */}
+              <View className="mb-8 mt-16 items-center">
+                <Text className="mb-4 text-center font-medium-poppins text-lg text-white">
+                  You're Tougher Than Your Excuse.
+                </Text>
+                <Text className="text-center text-base text-white">
+                  What's holding you back today?
+                </Text>
               </View>
-            </View>
 
-            {/* Custom Input */}
-            <View className="mb-8">
-              <Input
-                value={customExcuse}
-                onChangeText={(text) => setCustomExcuse(text)}
-                placeholder="Type your excuse here..."
-                placeholderTextColor={colors.charcoal[300]}
-                className="w-full rounded-xl bg-gray-800 p-4 pt-3 text-base text-white dark:text-white"
-                multiline
-                textAlignVertical="top"
-                maxLength={200}
+              {/* Excuse Buttons Grid */}
+              <View className="mb-6">
+                <View className="flex-row flex-wrap items-center justify-center">
+                  {excuses.map((excuse, index) => (
+                    <SelectableChip
+                      key={excuse}
+                      title={excuse}
+                      isSelected={selectedExcuses.includes(excuse)}
+                      onPress={() => handleExcusePress(excuse)}
+                    />
+                  ))}
+                </View>
+              </View>
+
+              {/* Custom Input */}
+              <View className="mb-8">
+                <Input
+                  value={customExcuse}
+                  onChangeText={(text) => setCustomExcuse(text)}
+                  placeholder="Type your excuse here..."
+                  placeholderTextColor={colors.charcoal[300]}
+                  className="w-full rounded-xl bg-gray-800 p-4 pt-3 text-base text-white dark:text-white"
+                  multiline
+                  textAlignVertical="top"
+                  maxLength={700}
+                />
+              </View>
+
+              {/* Submit Button */}
+              <Button
+                label="Crush my excuse"
+                className="h-[45px] w-full rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
+                textClassName="text-white dark:text-white disabled:text-white font-medium-poppins"
+                onPress={handleSubmit}
+                disabled={!selectedExcuses.length && !customExcuse.length}
+                icon={<WandSparkle />}
               />
             </View>
-
-            {/* Submit Button */}
-            <Button
-              label="Crush my excuse"
-              className="h-[45px] w-full rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
-              textClassName="text-white dark:text-white disabled:text-white font-medium-poppins"
-              onPress={handleSubmit}
-              disabled={!selectedExcuses.length && !customExcuse.length}
-              icon={<WandSparkle />}
-            />
+            {/* </KeyboardAvoidingView> */}
           </View>
-        </KeyboardAvoidingView>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
+      {/* </KeyboardAvoidingView> */}
     </ScreenWrapper>
   );
 };

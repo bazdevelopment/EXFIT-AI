@@ -16,6 +16,7 @@ export interface ICreateLogRequestData {
   xpReward?: number; // Optional XP reward for the activity
   gemsReward?: number; // Optional Gems reward for the activity
   status?: 'active' | 'completed'; // For AI tasks, to indicate if it was completed or not
+  askCoach?: string;
 }
 
 export interface IUpdateLogRequestData {

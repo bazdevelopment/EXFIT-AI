@@ -1,4 +1,4 @@
 export interface IDailyCheckInStatus {
-  status: 'attended' | 'skipped';
   additionalClassname?: string;
+  statuses: ('active' | 'attended' | 'skipped' | 'completed')[];
 }

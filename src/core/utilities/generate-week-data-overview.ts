@@ -91,7 +91,8 @@ export const generateWeekDataOverview = ({
     if (logData && Array.isArray(logData) && logData.length > 0) {
       // Check if any activity has "attended" status
       const hasAttended = logData.some(
-        (activity: any) => activity.status === 'attended'
+        (activity: any) =>
+          activity.status === 'attended' || activity.status === 'completed'
       );
       if (hasAttended) {
         status = 'attended';
