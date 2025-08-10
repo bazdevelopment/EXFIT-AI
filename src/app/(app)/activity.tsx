@@ -378,11 +378,6 @@ const Activity = () => {
         />
       </Animated.View>
 
-      {/* <KeyboardAvoidingView
-        enabled
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      > */}
       <FlashList
         //! consider using RenderScrollComponent but be careful on opening "add activity" modal, the content has a weird behavior
         // renderScrollComponent={RenderScrollComponent}

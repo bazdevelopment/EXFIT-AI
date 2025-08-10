@@ -35,7 +35,7 @@ interface CreateLogRequestData {
   description?: string;
   status?: 'active' | 'completed' | 'attended' | 'skipped'; // For AI tasks, to indicate if it was completed or not
   // ... any other details from the client
-
+  askCoach?: string;
   timezone: string;
   language: string;
   linkedAiTaskId?: string;
@@ -59,6 +59,7 @@ interface ActivityLogDocument {
   description: string;
   excuseReason: string;
   notes: string;
+  askCoach: string;
 }
 
 // eslint-disable-next-line valid-jsdoc
@@ -196,6 +197,7 @@ const createActivityLogHandler = async (
         activityName: data.activityName || '',
         description: data.description || '',
         excuseReason: data.excuseReason || '',
+        askCoach: data.askCoach || '',
         notes: '',
         xpEarned: data.type === 'custom_ai_task' ? data.xpReward : xpAwarded,
         gemsEarned:

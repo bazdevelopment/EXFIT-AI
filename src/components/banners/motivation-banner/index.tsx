@@ -65,7 +65,8 @@ const MotivationBanner = ({
           </Text>
 
           <Text className="mt-2 text-sm text-gray-300">
-            Quick way to earn XP and gems—let’s go!
+            {/* Just one task to score XP and gems—do it now! */}
+            Pick a task, earn XP and gems—let’s move!
           </Text>
 
           <View className="mt-2">

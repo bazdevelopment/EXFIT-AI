@@ -112,7 +112,7 @@ export default function TabLayout() {
             marginBottom:
               DEVICE_TYPE.ANDROID &&
               isKeyboardVisible &&
-              segments.includes('activity')
+              (segments.includes('activity') || segments.includes('(app)'))
                 ? -300
                 : 0,
           },

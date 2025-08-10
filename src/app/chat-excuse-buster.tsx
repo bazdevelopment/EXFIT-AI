@@ -4,14 +4,9 @@ import { FlashList } from '@shopify/flash-list';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import {
-  ActivityIndicator,
-  Keyboard,
-  KeyboardAvoidingView,
-  TextInput,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Keyboard, TextInput, View } from 'react-native';
 import { type MessageType } from 'react-native-flash-message';
+import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 
 import { useCreateActivityLog } from '@/api/activity-logs/activity-logs.hooks';
 import {
@@ -187,7 +182,6 @@ const ChatExcuseBuster = () => {
     ],
     [conversation?.messages, pendingMessages]
   );
-
   useBackHandler(() => true);
 
   useEffect(() => {
@@ -256,9 +250,8 @@ const ChatExcuseBuster = () => {
   return (
     <ScreenWrapper>
       <KeyboardAvoidingView
-        behavior="padding"
+        behavior={DEVICE_TYPE.IOS ? 'padding' : undefined}
         className="flex-1"
-        keyboardVerticalOffset={DEVICE_TYPE.ANDROID ? 40 : 0}
       >
         <View className="-mt-4 flex-1">
           {/* Header */}
@@ -349,7 +342,7 @@ const ChatExcuseBuster = () => {
                 placeholderTextColor={colors.charcoal[300]}
                 keyboardAppearance="dark"
                 multiline
-                maxLength={150}
+                maxLength={700}
               />
             </View>
             <Icon

@@ -9,13 +9,14 @@ import Markdown from 'react-native-markdown-display';
 import { twMerge } from 'tailwind-merge';
 
 import { type ICreateLogRequestData } from '@/api/activity-logs/activity-logs.types';
-import { SoundOn, StopIcon } from '@/components/ui/assets/icons';
+import { CopyLink, SoundOn, StopIcon } from '@/components/ui/assets/icons';
 import CopyIcon from '@/components/ui/assets/icons/copy';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import { useClipboard } from '@/core/hooks/use-clipboard';
 import { getChatMessagesStyles } from '@/core/utilities/get-chat-messages.styles';
 
 import TaskCard from '../task-card';
+import Toast from '../toast';
 import { Button, colors, Image, Text } from '../ui';
 import { type IExcuseBusterMessage } from './chat-bubble-excuse-buster.interface';
 
@@ -50,7 +51,7 @@ export const ChatBubbleExcuseBuster = ({
   userGender: string;
 }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const { copyToClipboard } = useClipboard();
+  const { copiedText, copyToClipboard } = useClipboard();
   const [{ timeZone }] = getCalendars();
 
   const { language } = useSelectedLanguage();
@@ -102,11 +103,11 @@ export const ChatBubbleExcuseBuster = ({
           </Markdown>
 
           {message.content.challenge && (
-            <View className="mt-2">
+            <View className="mt-1">
               <Text className="font-bold-poppins">
                 How about pushing yourself a little with this challenge?
               </Text>
-              <Text className="font-bold-poppins">
+              <Text className="font-bold-poppins text-blue-400 dark:text-blue-400">
                 {message.content.challenge.title}
               </Text>
               <Markdown style={lightStyles}>
@@ -124,6 +125,7 @@ export const ChatBubbleExcuseBuster = ({
               durationMinutes={message.content.challenge.durationMinutes}
               description={message.content.challenge.description}
               isCreatingTaskPending={isCreatingTaskPending}
+              askCoach={message.content.askCoach}
               onCreateTask={() =>
                 onCreateTask({
                   language,
@@ -135,6 +137,7 @@ export const ChatBubbleExcuseBuster = ({
                   gemsReward: message?.content?.challenge?.rewards.gems,
                   xpReward: message?.content?.challenge?.rewards.xp,
                   description: message?.content?.challenge?.description,
+                  askCoach: message?.content?.askCoach,
                   status: 'active',
                 })
               }
@@ -146,16 +149,33 @@ export const ChatBubbleExcuseBuster = ({
               {/* Copy Button */}
               <TouchableOpacity
                 className="rounded-full bg-white/10 p-2"
-                onPress={() => copyToClipboard(message.content.responseText)}
+                onPress={() => {
+                  copyToClipboard(
+                    `${message.content.responseText}${message?.content?.challenge?.description ? `. ${message.content.challenge.description}` : ''}`
+                  );
+                  Toast.success('Copied! 📝', {
+                    duration: 3000,
+                    position: 'top-center',
+                    style: { top: 50 },
+                  });
+                }}
                 activeOpacity={0.7}
               >
-                <CopyIcon width={16} height={16} color={colors.white} />
+                {copiedText ? (
+                  <CopyLink width={16} height={16} color={colors.white} />
+                ) : (
+                  <CopyIcon width={16} height={16} color={colors.white} />
+                )}
               </TouchableOpacity>
 
               {/* Text to Speech Button */}
               {!!speak && (
                 <TouchableOpacity
-                  onPress={() => speak(message.content.responseText)}
+                  onPress={() =>
+                    speak(
+                      `${message.content.responseText}${message?.content?.challenge?.description ? `. ${message.content.challenge.description}` : ''}`
+                    )
+                  }
                   className="rounded-full bg-white/10 p-2"
                   activeOpacity={0.7}
                 >
@@ -174,7 +194,7 @@ export const ChatBubbleExcuseBuster = ({
                     source={require('assets/lottie/speaking-animation.json')}
                     autoPlay
                     loop
-                    style={{ width: 56, height: 20 }}
+                    style={{ width: 30, height: 25 }}
                   />
                 </View>
               )}
@@ -213,7 +233,7 @@ export const ChatBubbleExcuseBuster = ({
           </TouchableOpacity>
         )}
 
-        {!!message.content.buttons && (
+        {!!message.content.buttons && !message.content.challenge && (
           <View>
             {message.content.buttons.map((button) => (
               <Button
