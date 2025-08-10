@@ -18,16 +18,37 @@ import { getTranslation } from './translations';
 
 const db = admin.firestore();
 
+const responseGuidelinesImageScan = `You are Mojo, an AI coach specialized in the fitness industry and various sports. Your task is to analyze images related to fitness and sports, provide expert advice, and engage users in meaningful conversations about their fitness journey.
+
+1. Analyze the image and respond to the user's query as an expert in the fitness and sports domain. Provide comprehensive advice and actionable steps based on what you see in the image and the user's interests.
+
+2. Include relevant YouTube links that can be clickable and opened outside the browser as often as you can in this format: '[Check it now](https://m.youtube.com/results?search_query=your+search+terms+here)'. Clearly highlight the links so they stand out.
+
+3. Implement the following engagement strategy:
+   a. End with an open-ended, thoughtful question to encourage further conversation.
+   b. Suggest 2-3 next steps, related topics, or additional activities the user might explore. For example:
+      - "Would you like to explore a meal plan to support your training?"
+      - "Are you interested in mobility exercises to improve your performance?"
+      - "Do you want to dive into sport-specific injury prevention tips?"
+   c. Offer personalized options based on the user's interests to foster ongoing dialogue.
+
+4. Keep your response short, concise and to the point, while still providing valuable information and maintaining an engaging tone.
+
+Remember to maintain a friendly, encouraging tone throughout your response, as if you're a supportive coach guiding the user on their fitness journey. 
+IMPORTANT: KEEP THE RESPONSES SHORT
+`;
+
 const analyzeScanImageConversationHandler = async (req: Request, res: any) => {
   try {
     const { files, fields } = await processUploadedFile(req);
     const languageAbbreviation = req.headers['accept-language'];
 
-    const additionalLngPrompt = `THE LANGUAGE USED FOR RESPONSE SHOULD BE: ${LANGUAGES[languageAbbreviation as keyof typeof LANGUAGES]} FROM NOW ON.`;
+    const additionalLngPrompt = `YOUR DEFAULT LANGUAGE TO RESPOND IS: ${LANGUAGES[languageAbbreviation as keyof typeof LANGUAGES]}, BUT HOWEVER, IF THE USER REQUESTS A DIFFERENT LANGUAGE DURING THE CONVERSATION, SWITCH TO THAT LANGUAGE INSTEAD.`;
 
     const t = getTranslation(languageAbbreviation as string);
     const { userId, promptMessage } = fields;
     const [imageFile] = files;
+
     const userPromptInput = promptMessage
       ? `THE USER ASKED THIS: ${promptMessage}`
       : '';
@@ -83,7 +104,7 @@ const analyzeScanImageConversationHandler = async (req: Request, res: any) => {
 
     const base64String = convertBufferToBase64(imageFile.buf);
 
-    const conversationPrompt = `${additionalLngPrompt}.${userPromptInput}. ${process.env.IMAGE_ANALYZE_PROMPT}.`;
+    const conversationPrompt = `${responseGuidelinesImageScan}.${additionalLngPrompt}.${userPromptInput}. ${process.env.IMAGE_ANALYZE_PROMPT}.`;
 
     const imagePart = {
       inlineData: {

@@ -1,7 +1,9 @@
 /* eslint-disable max-lines-per-function */
 import { router } from 'expo-router';
+import { generateUniqueId } from 'functions/utilities/generate-unique-id';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
+import Markdown from 'react-native-markdown-display';
 
 import CustomAlert from '../custom-alert';
 import Icon from '../icon';
@@ -21,18 +23,20 @@ const TaskCard = ({
   status,
   onCreateTask,
   onCompleteTask,
+  description,
   className,
+  askCoach,
   isCreatingTaskPending,
 }: ITaskCardProps) => {
   const isTaskCompleted = status === 'completed';
+  const [isDescriptionExpanded, setIsDescriptionExpanded] =
+    React.useState(false);
 
+  const isDescriptionLong = !!description && description!.length > 100;
+  const hideDescriptionAndCoach = !!onCreateTask;
   // Placeholder for image loading error
   const handleImageError = () => {
-    // In React Native, you might replace the image source or show a default image
-    // For simplicity, we'll just log an error or use a local placeholder if available.
     console.error('Failed to load image for task:', activityName);
-    // A more robust solution would involve setting a state to change the image source
-    // For example: setFallbackImage(true); and then conditionally render a local image
   };
 
   const handleCompleteTask = async () => {
@@ -81,85 +85,208 @@ const TaskCard = ({
 
   return (
     <>
-      <TouchableOpacity
-        onPress={handleCompleteTask}
-        disabled={isTaskCompleted || !!onCreateTask}
-        className={`my-2 flex-row items-center rounded-xl shadow-lg ${className}`}
-        accessibilityLabel="Mark task as complete" // For accessibility in React Native
+      <View
+        className={`my-1.5 flex-row items-start rounded-xl shadow-lg ${className}`}
       >
-        {/* Task Image */}
-        <View className="mr-4 ">
+        {/* Left Column: Image + Duration + Help Link */}
+        <View className="mr-3 w-[50px] items-center">
           <Image
             source={require('../../components/ui/assets/images/task.png')}
-            alt={activityName} // 'alt' is not a prop for Image in React Native, but good for context
+            alt={activityName}
             style={{
-              width: 56,
-              height: 56,
+              width: 44,
+              height: 44,
               borderRadius: 8,
               resizeMode: 'cover',
             }}
             onError={handleImageError}
           />
+
+          {/* Help link under duration */}
+          {!hideDescriptionAndCoach && (
+            <TouchableOpacity
+              onPress={() =>
+                router.navigate({
+                  pathname: '/chat-screen',
+                  params: {
+                    conversationId: generateUniqueId(),
+                    mediaSource: '',
+                    mimeType: '',
+                    conversationMode: 'RANDOM_CONVERSATION',
+                    question: askCoach,
+                  },
+                })
+              }
+              className="mt-1"
+            >
+              <Text className="mt-1 text-center font-medium-poppins text-sm text-blue-400 dark:text-blue-400">
+                Ask Coach
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
 
-        {/* Task Details */}
-        <View className="grow flex-col justify-center">
-          <Text className="w-[90%] font-bold-poppins leading-tight text-white">
-            {activityName}
-          </Text>
-
-          <View className="mt-1.5 flex-row items-center gap-2 text-white">
-            <ClockIcon />
-            {/* text-gray-300 */}
-            <Text className="font-medium-poppins text-sm text-white">
-              {durationMinutes} min
+        {/* Main Content Area */}
+        <View className="flex-1">
+          {/* Header Row: Title */}
+          <View className="flex-row items-center justify-between">
+            <Text
+              className="flex-1 pr-2 font-bold-poppins text-base leading-tight text-white"
+              numberOfLines={2}
+            >
+              {activityName}
             </Text>
           </View>
 
-          <View className="mt-1.5 flex-row gap-4">
-            <View className="flex-row items-center gap-2">
-              <GemIcon width={20} height={20} />
-              <Text className="font-medium-poppins text-sm text-white dark:text-white">
+          {/* Rewards Row */}
+          <View className="mt-1 flex-row items-center gap-4">
+            {/* Task Duration  */}
+            <View className="flex-row items-center">
+              <ClockIcon width={14} height={14} />
+              <Text className="ml-1 font-medium-poppins text-sm text-white/90">
+                {durationMinutes}m
+              </Text>
+            </View>
+            <View className="flex-row items-center gap-1">
+              <GemIcon width={16} height={16} />
+              <Text className="font-medium-poppins text-sm text-white">
                 {gemsEarned}
               </Text>
             </View>
-            <View className="flex-row items-center gap-2">
-              <FlashIcon width={20} height={20} />
-              <Text className="font-medium-poppins text-sm text-white dark:text-white">
+            <View className="flex-row items-center gap-1">
+              <FlashIcon width={16} height={16} />
+              <Text className="font-medium-poppins text-sm text-white">
                 {xpEarned} XP
               </Text>
             </View>
           </View>
+
+          {/* Description (Compact Version) */}
+          {!!description && !hideDescriptionAndCoach && (
+            <View
+              className={`mt-1.5 rounded-md border-l-2 border-l-blue-400/50 bg-white/5 px-2 py-1 ${!hideDescriptionAndCoach && 'w-[110%]'}`}
+            >
+              {isDescriptionExpanded ? (
+                <Markdown style={lightStyles}>{description}</Markdown>
+              ) : (
+                <Text
+                  className="text-sm leading-relaxed text-gray-300"
+                  numberOfLines={1}
+                >
+                  {description}
+                </Text>
+              )}
+
+              {isDescriptionLong && (
+                <TouchableOpacity
+                  onPress={() =>
+                    setIsDescriptionExpanded(!isDescriptionExpanded)
+                  }
+                  className="mt-1 self-start"
+                  activeOpacity={0.7}
+                >
+                  <Text className="font-medium-poppins text-sm text-blue-400 dark:text-blue-400">
+                    {isDescriptionExpanded ? 'See Less' : 'See More'}
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          )}
         </View>
 
-        {/* Status Indicator / Action Button */}
-
-        <>
+        {/* Right Column: Clear Complete Button */}
+        <View className="items-center justify-center">
           {!onCreateTask &&
             (isTaskCompleted ? (
-              // If task is completed, render the CheckListIcon
-              <CheckListIcon />
-            ) : (
-              <View
-                className="flex size-7 items-center justify-center rounded-full border-2 border-gray-500"
-                accessibilityLabel="Mark task as complete" // For accessibility in React Native
-              >
-                {/* Empty circle for active task */}
+              <View className="rounded-full bg-green-500/20 p-2">
+                <CheckListIcon />
               </View>
+            ) : (
+              <TouchableOpacity
+                onPress={handleCompleteTask}
+                className="mr-1 rounded-full border-2 border-[#4E52FB] bg-[#4E52FB]/10 p-2.5"
+                activeOpacity={0.7}
+                accessibilityLabel="Mark task as complete"
+              >
+                <View className="size-4 rounded-full border-2 border-[#4E52FB]" />
+              </TouchableOpacity>
             ))}
-        </>
-      </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* Action Button - More Compact */}
       {!!onCreateTask && (
         <Button
           label="Accept challenge 🔥"
           loading={isCreatingTaskPending}
           variant="default"
-          className="h-[35px] w-full rounded-lg bg-[#3B82F6] pl-5 active:opacity-80 dark:bg-[#3B82F6]"
-          textClassName="text-base text-center text-white dark:text-white"
+          className="mt-3 h-[32px] w-full rounded-lg bg-[#3B82F6] active:opacity-80 dark:bg-[#3B82F6]"
+          textClassName="text-sm text-center text-white dark:text-white"
           onPress={onCreateTask}
         />
       )}
     </>
   );
 };
+
 export default TaskCard;
+
+const lightStyles = {
+  body: {
+    marginTop: -4,
+    marginBottom: -4,
+    fontSize: 12,
+    lineHeight: 18,
+    color: colors.white,
+  },
+  heading1: {
+    color: colors.white,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  heading2: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  heading3: {
+    color: colors.white,
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  paragraph: {
+    fontFamily: 'Font-Regular',
+    fontSize: 12,
+    marginBottom: 4,
+  },
+  list_item: {
+    fontFamily: 'Font-Regular',
+    fontSize: 12,
+    marginBottom: 3,
+  },
+  span: {
+    fontFamily: 'Font-Regular',
+    fontSize: 12,
+  },
+  strong: {
+    fontFamily: 'Font-Extra-Bold',
+    fontWeight: '800',
+    color: '#3195FD',
+  },
+  em: {
+    fontFamily: 'Font-Extra-Bold',
+    color: colors.white,
+  },
+  blockquote: {
+    borderLeftWidth: 3,
+    paddingLeft: 8,
+    color: '#4B5563',
+    fontStyle: 'italic',
+  },
+  code_inline: {
+    borderRadius: 3,
+    fontFamily: 'Font-Mono',
+    fontSize: 11,
+    color: '#111827',
+  },
+};

@@ -2,6 +2,7 @@
 import {
   BottomSheetScrollView,
   BottomSheetTextInput,
+  BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import dayjs from 'dayjs';
@@ -12,6 +13,7 @@ import HorizontalLine from '@/components/horizontal-line';
 import SelectableChip from '@/components/selectable-chip';
 import { Button, colors, Modal, Text } from '@/components/ui';
 import { PlusIcon } from '@/components/ui/assets/icons';
+import { DEVICE_TYPE } from '@/core';
 
 // --- TypeScript Interfaces ---
 
@@ -309,17 +311,21 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
     return !(hasActivity && hasDuration);
   }, [state]);
 
+  const Wrapper = DEVICE_TYPE.IOS ? React.Fragment : BottomSheetView;
+
   return (
-    <>
+    <Wrapper>
       <BlurView
         blurAmount={20}
         blurType="dark"
         style={StyleSheet.absoluteFill}
       />
+
       <BottomSheetScrollView
         className="flex-1 px-4"
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
+        contentContainerClassName={DEVICE_TYPE.ANDROID ? 'pb-[500px]' : ''} //!workaround to cover the entire bottom sheet with blur
       >
         <ModalHeader date={data?.dateKey} />
 
@@ -350,7 +356,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
           loading={isCreateActivityLogPending}
         />
       </BottomSheetScrollView>
-    </>
+    </Wrapper>
   );
 };
 
@@ -375,7 +381,9 @@ export const DailyCheckInModal = React.forwardRef<any, DailyCheckInModalProps>(
         index={0}
         // onDismiss={resetForm} // Also reset form when the modal is dismissed
         snapPoints={snapPoints}
-        backgroundStyle={{ backgroundColor: colors.transparent }}
+        backgroundStyle={{
+          backgroundColor: colors.transparent,
+        }}
       >
         {({ data }: ModalRenderProps = {}) => (
           // Render the stateful form content with a key to enable resets

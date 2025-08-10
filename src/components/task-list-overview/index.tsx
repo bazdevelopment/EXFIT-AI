@@ -34,7 +34,7 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
       className={additionalClassName}
     >
       {/* Header */}
-      <View className="mx-6 mb-3 flex-row items-center gap-4">
+      <View className="mx-3 mb-3 flex-row items-center gap-4">
         <Text className="font-extra-bold-poppins text-xl text-white">
           Today's tasks
         </Text>
@@ -92,7 +92,7 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
           {tasks.map((task: ITaskCardProps, index) => {
             const isLastItem = tasks.length - 1 === index;
             return (
-              <View key={task.id} className="px-5">
+              <View key={task.id} className="px-2.5">
                 <TaskCard
                   id={task.id}
                   activityName={task.activityName}
@@ -100,6 +100,8 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
                   xpEarned={task.xpEarned}
                   gemsEarned={task.gemsEarned}
                   onCompleteTask={() => onCompleteTask(task)}
+                  description={task.description}
+                  askCoach={task.askCoach}
                   status={task.status}
                   onSkipTask={onSkipTask}
                   timeZone={timeZone ?? 'UTC'}

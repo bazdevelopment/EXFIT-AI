@@ -4,6 +4,7 @@ interface Content {
   task?: IExcuseBusterTask;
   responseText: string;
   isFinalStep?: boolean;
+  askCoach?: string;
 }
 
 interface IContentButton {
@@ -17,6 +18,7 @@ interface Challenge {
   durationMinutes: number;
   rewards: Reward;
   title: string;
+  askCoach: string;
 }
 
 interface Reward {

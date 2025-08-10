@@ -13,7 +13,6 @@ import {
   useGetCalendarActivityLog,
   useUpdateActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
-import { useUpdateAiTaskNotes } from '@/api/ai-tasks/ai-tasks.hooks';
 import { useFetchUserNotifications } from '@/api/push-notifications/push-notifications.hooks';
 import { useOwnedPurchasedItems, useRepairStreak } from '@/api/shop/shop.hooks';
 import { useUser } from '@/api/user/user.hooks';
@@ -126,8 +125,6 @@ export default function Home() {
     lastTimeLostStreakTimestamp,
     lostStreakValue,
   });
-
-  const { mutate: onAddNotes } = useUpdateAiTaskNotes();
 
   // First, transform your array into an object with date keys
   const generatedWeekDataMapped = generatedWeekData.reduce((acc, record) => {
@@ -257,7 +254,9 @@ export default function Home() {
           ) : (
             <DailyCheckInStatus
               additionalClassname="mt-2"
-              status={currentWeekActivityLogs?.[currentActiveDay][0]?.status}
+              statuses={extractStatusesFromDay(
+                currentWeekActivityLogs?.[currentActiveDay]
+              )}
               onAddActivity={() =>
                 activityCompleteModal.present({
                   type: 'custom_activity',
@@ -304,67 +303,72 @@ export default function Home() {
             isUpgradeRequired={isUpgradeRequired}
           />
         </View>
-
-        <DailyCheckInModal
-          ref={activityCompleteModal.ref}
-          isCreateActivityLogPending={isCreateActivityLogPending}
-          onSubmit={({ durationMinutes, activityName, type, date }) =>
-            onCreateActivityLog({
-              language,
-              timezone: timeZone as string,
-              date,
-              type,
-              durationMinutes,
-              activityName,
-            }).then(() => {
-              activityCompleteModal.dismiss();
-            })
-          }
-        />
-        <NoActivityLogModal
-          ref={activitySkippedModal.ref}
-          isCreateActivityLogPending={isCreateActivityLogPending}
-          onGoToExcuseBuster={() => router.navigate('/excuse-buster')}
-          onSubmit={({ skipReason }) =>
-            onCreateActivityLog({
-              date: currentActiveDay,
-              timezone: timeZone as string,
-              language,
-              type: 'excuse_logged_daily_checkin',
-              excuseReason: skipReason ?? '',
-            }).then(() => {
-              activitySkippedModal.dismiss();
-            })
-          }
-        />
-        <DailyActivityModal
-          ref={dailyActivityModal.ref}
-          hasUserRepairStreakElixir={hasUserRepairStreakElixir}
-          isRepairStreakPending={isRepairStreakPending}
-          onRepairStreak={onRepairStreak}
-          onAddNotes={({ taskId, notes }) =>
-            onUpdateActivityLog({
-              language,
-              logId: taskId as string,
-              fieldsToUpdate: { notes },
-            }).then(() => {
-              Toast.success('Notes saved! 📝 All set.');
-            })
-          }
-          currentWeekActivityLogs={generatedWeekDataMapped}
-          onAddActivity={(date) =>
-            activityCompleteModal.present({
-              type: 'custom_activity',
-              date,
-            })
-          }
-        />
-
-        <ActivityLogSuccessModal
-          ref={activityLogSuccessModal.ref}
-          onCloseModal={activityLogSuccessModal.dismiss}
-        />
       </ScrollView>
+      <DailyCheckInModal
+        ref={activityCompleteModal.ref}
+        isCreateActivityLogPending={isCreateActivityLogPending}
+        onSubmit={({ durationMinutes, activityName, type, date }) =>
+          onCreateActivityLog({
+            language,
+            timezone: timeZone as string,
+            date,
+            type,
+            durationMinutes,
+            activityName,
+          }).then(() => {
+            activityCompleteModal.dismiss();
+          })
+        }
+      />
+      <NoActivityLogModal
+        ref={activitySkippedModal.ref}
+        isCreateActivityLogPending={isCreateActivityLogPending}
+        onGoToExcuseBuster={() => router.navigate('/excuse-buster')}
+        onSubmit={({ skipReason }) =>
+          onCreateActivityLog({
+            date: currentActiveDay,
+            timezone: timeZone as string,
+            language,
+            type: 'excuse_logged_daily_checkin',
+            excuseReason: skipReason ?? '',
+          }).then(() => {
+            activitySkippedModal.dismiss();
+          })
+        }
+      />
+      <DailyActivityModal
+        ref={dailyActivityModal.ref}
+        hasUserRepairStreakElixir={hasUserRepairStreakElixir}
+        isRepairStreakPending={isRepairStreakPending}
+        onRepairStreak={onRepairStreak}
+        onAddNotes={({ taskId, notes }) =>
+          onUpdateActivityLog({
+            language,
+            logId: taskId as string,
+            fieldsToUpdate: { notes },
+          }).then(() => {
+            Toast.success('Notes saved! 📝 All set.');
+          })
+        }
+        currentWeekActivityLogs={generatedWeekDataMapped}
+        onAddActivity={(date) =>
+          activityCompleteModal.present({
+            type: 'custom_activity',
+            date,
+          })
+        }
+      />
+
+      <ActivityLogSuccessModal
+        ref={activityLogSuccessModal.ref}
+        onCloseModal={activityLogSuccessModal.dismiss}
+      />
     </ScreenWrapper>
   );
 }
+
+const extractStatusesFromDay = (dayActivities: any[]) => {
+  return (
+    dayActivities?.map((activity) => activity?.status).filter(Boolean) || []
+  );
+};

@@ -10,18 +10,22 @@ import { Text } from '../ui';
 import { type IDailyCheckInStatus } from './daily-check-in-status.interface';
 
 const DailyCheckInStatus = ({
-  status,
+  statuses,
   additionalClassname,
   onAddActivity, // New prop for add button handler
 }: IDailyCheckInStatus & { onAddActivity?: () => void }) => {
   const { language } = useSelectedLanguage();
   const currentDay = getCurrentDay('MMM D', language);
-  const isAttended = status === 'attended' || status === 'completed';
-
+  const isAttended =
+    statuses.includes('attended') || statuses.includes('completed');
+  const isUnknownStatusYet = statuses.includes('active');
   // Dynamic gradient colors based on answer
-  const gradientColors = ['#10B981', '#059669', '#047857'];
-  // ? ['#10B981', '#059669', '#047857']
-  // : ['#f35252', '#f04343', '#e52e4d']; // Purple gradient for No
+  const gradientColors = isAttended
+    ? ['#10B981', '#059669', '#047857']
+    : isUnknownStatusYet
+      ? ['#6366F1', '#8B5CF6', '#A855F7']
+      : ['#10B981', '#059669', '#047857'];
+
   return (
     <View className={`mx-3 ${additionalClassname}`}>
       <LinearGradient
@@ -52,18 +56,24 @@ const DailyCheckInStatus = ({
               </View>
               <View>
                 <Text className="font-bold-poppins text-lg text-white">
-                  Daily check-in
+                  Daily Check-in
                 </Text>
                 {/* Status badge under the title */}
                 <View className="mt-0.5 flex-row items-center self-start rounded-full bg-white/25 px-2 py-0.5">
                   <Feather
-                    name={isAttended ? 'check' : 'x'}
+                    name={
+                      isAttended ? 'check' : isUnknownStatusYet ? 'clock' : 'x'
+                    }
                     size={12}
                     color="white"
                     style={{ marginRight: 4 }}
                   />
                   <Text className="font-bold-poppins text-xs text-white/90">
-                    {isAttended ? 'Attended' : 'Skipped'}
+                    {isAttended
+                      ? 'Attended'
+                      : isUnknownStatusYet
+                        ? 'Ready to start'
+                        : 'Skipped'}
                   </Text>
                 </View>
               </View>
@@ -85,7 +95,9 @@ const DailyCheckInStatus = ({
             <Text className="font-medium-poppins text-sm leading-5 text-white">
               {isAttended
                 ? "You showed up today, that's how progress is built. Keep going!"
-                : "The couch wins today… but tomorrow, you're making a comeback!"}
+                : isUnknownStatusYet
+                  ? 'Your journey starts with a single step. Ready to begin?'
+                  : "The couch wins today… but tomorrow, you're making a comeback!"}
             </Text>
           </View>
         </View>

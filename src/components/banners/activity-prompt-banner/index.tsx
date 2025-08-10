@@ -40,7 +40,7 @@ const ActivityPromptBanner = ({
               </View>
               <View className="flex-1">
                 <Text className="font-semibold-poppins text-white">
-                  Daily check-in
+                  Daily Check-in
                 </Text>
               </View>
             </View>
