@@ -6,6 +6,7 @@ import { GAMIFICATION_REWARDS_CONFIG } from 'functions/utilities/rewards-pricing
 import React from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 
+import { useGetCustomerInfo } from '@/api/subscription/subscription.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import Avatar from '@/components/avatar';
 import UpgradeBanner from '@/components/banners/upgrade-banner';
@@ -13,8 +14,8 @@ import ProgressBarLevel from '@/components/progress-bar-level';
 import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
 import StatsGrid from '@/components/stats-grid';
-import { Button, Text } from '@/components/ui';
-import { WarningIconRounded } from '@/components/ui/assets/icons';
+import { Button, colors, Text } from '@/components/ui';
+import { CheckIcon, WarningIconRounded } from '@/components/ui/assets/icons';
 import { useSelectedLanguage } from '@/core';
 import { calculateFreeTrialDays } from '@/core/utilities/calculate-free-trial-days';
 import { calculateLevel } from '@/core/utilities/calculate-level';
@@ -41,95 +42,124 @@ const ProfileHeader: React.FC<{
   onCreateAccount: () => void;
   onSettings: () => void;
   userInfo;
+  activeSubscription: string;
 }> = ({
   isTemporary,
   trialDaysLeft,
   onCreateAccount,
   onSettings,
   userInfo,
-}) => (
-  <View className="items-center">
-    <View className="relative">
-      <Avatar
-        imageUri={
-          userInfo.onboarding.gender === 'male'
-            ? require('../components/ui/assets/images/avatar-male.png')
-            : require('../components/ui/assets/images/avatar-female.png')
-        }
-        name={userInfo.userName}
-        size="medium"
-        showEditBadge={false}
-        showVerifiedBadge={!userInfo.isAnonymous}
-        editable={false}
-        creationDate={dayjs(userInfo.createdAt).format('MMMM YYYY')}
-      />
-    </View>
+  activeSubscription,
+}) => {
+  const activeSubscriptionLabel = activeSubscription?.includes('month')
+    ? 'Monthly Subscription'
+    : activeSubscription?.includes('year')
+      ? 'Yearly Subscription'
+      : '';
 
-    <View className="mt-4 flex-row items-center gap-2">
-      <View className="w-[45%] rounded-full border border-[#4E52FB] bg-transparent p-2.5">
-        <Text className="text-center text-sm text-white ">
-          {isTemporary ? 'Temporary account' : 'Permanent Account'}
-        </Text>
+  return (
+    <View className="items-center">
+      <View className="relative">
+        <Avatar
+          imageUri={
+            userInfo.onboarding.gender === 'male'
+              ? require('../components/ui/assets/images/avatar-male.png')
+              : require('../components/ui/assets/images/avatar-female.png')
+          }
+          name={userInfo.userName}
+          size="medium"
+          showEditBadge={false}
+          showVerifiedBadge={!userInfo.isAnonymous}
+          editable={false}
+          creationDate={dayjs(userInfo.createdAt).format('MMMM YYYY')}
+        />
       </View>
-      <LinearGradient
-        colors={['#FC9003', '#FF530C']}
-        start={{ x: 1, y: 0 }}
-        end={{ x: 0, y: 1 }}
-        style={{ borderRadius: 100, width: '45%' }}
-      >
-        <View className="flex-row items-center justify-center gap-2 rounded-full px-4 py-2">
-          <WarningIconRounded width={24} height={24} />
-          <Text className="font-semibold-poppins text-sm text-white">
-            Free Trial: {trialDaysLeft} days left
+
+      <View className="mt-4 flex-row items-center gap-2">
+        <View className="w-[45%] rounded-full border border-[#4E52FB] bg-transparent p-2.5">
+          <Text className="text-center text-sm text-white ">
+            {isTemporary ? 'Temporary account' : 'Permanent Account'}
           </Text>
         </View>
-      </LinearGradient>
-    </View>
+        {activeSubscription ? (
+          <LinearGradient
+            colors={['#10B981', '#059669']} // Green gradient for active subscription
+            start={{ x: 1, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            style={{ borderRadius: 100, width: '45%' }}
+          >
+            <View className="flex-row items-center justify-center gap-2 rounded-full px-4 py-2">
+              <CheckIcon color={colors.white} width={24} height={24} />
+              {/* Changed to check icon */}
+              <Text className="font-semibold-poppins text-sm text-white">
+                {activeSubscriptionLabel}
+              </Text>
+            </View>
+          </LinearGradient>
+        ) : (
+          <LinearGradient
+            colors={['#FC9003', '#FF530C']} // Keep existing orange gradient for free trial
+            start={{ x: 1, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            style={{ borderRadius: 100, width: '45%' }}
+          >
+            <View className="flex-row items-center justify-center gap-2 rounded-full px-4 py-2">
+              <WarningIconRounded width={24} height={24} />
+              {/* Keep warning icon */}
+              <Text className="font-semibold-poppins text-sm text-white">
+                Free Trial: {trialDaysLeft} days left
+              </Text>
+            </View>
+          </LinearGradient>
+        )}
+      </View>
 
-    {/* Banner with triangle pointer */}
-    <View className="relative mt-4 w-[90%]">
-      {/* Triangle pointing upward to temporary account */}
-      {isTemporary && (
-        <View
-          className="absolute -top-3 left-20 z-10"
-          style={{
-            width: 0,
-            height: 0,
-            borderLeftWidth: 10,
-            borderRightWidth: 10,
-            borderBottomWidth: 10,
-            borderLeftColor: 'transparent',
-            borderRightColor: 'transparent',
-            borderBottomColor: '#4E52FB',
-          }}
-        />
-      )}
-      {isTemporary && (
-        <LinearGradient
-          colors={['#4E52FB', '#2326EA']}
-          start={{ x: 1, y: 0 }}
-          end={{ x: 0, y: 1 }}
-          style={{ borderRadius: 20 }}
-        >
-          <View className="rounded-2xl p-4 pb-3">
-            <Text className="text-md mb-2 font-semibold-poppins text-white">
-              Secure and sync your progress with a permanent account.
-            </Text>
-            <Text className="font-medium-poppins text-sm text-white">
-              {`Win ⚡ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems!`}
-            </Text>
-            <Button
-              label="Create My Account"
-              className="mt-3 h-[34px] rounded-full bg-white active:opacity-90"
-              textClassName="text-black font-medium-poppins"
-              onPress={onCreateAccount}
-            />
-          </View>
-        </LinearGradient>
-      )}
+      {/* Banner with triangle pointer */}
+      <View className="relative mt-4 w-[90%]">
+        {/* Triangle pointing upward to temporary account */}
+        {isTemporary && (
+          <View
+            className="absolute -top-3 left-20 z-10"
+            style={{
+              width: 0,
+              height: 0,
+              borderLeftWidth: 10,
+              borderRightWidth: 10,
+              borderBottomWidth: 10,
+              borderLeftColor: 'transparent',
+              borderRightColor: 'transparent',
+              borderBottomColor: '#4E52FB',
+            }}
+          />
+        )}
+        {isTemporary && (
+          <LinearGradient
+            colors={['#4E52FB', '#2326EA']}
+            start={{ x: 1, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            style={{ borderRadius: 20 }}
+          >
+            <View className="rounded-2xl p-4 pb-3">
+              <Text className="text-md mb-2 font-semibold-poppins text-white">
+                Secure and sync your progress with a permanent account.
+              </Text>
+              <Text className="font-medium-poppins text-sm text-white">
+                {`Win ⚡ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems!`}
+              </Text>
+              <Button
+                label="Create My Account"
+                className="mt-3 h-[34px] rounded-full bg-white active:opacity-90"
+                textClassName="text-black font-medium-poppins"
+                onPress={onCreateAccount}
+              />
+            </View>
+          </LinearGradient>
+        )}
+      </View>
     </View>
-  </View>
-);
+  );
+};
+
 const _SectionHeader: React.FC<{
   title: string;
   onViewAll?: () => void;
@@ -148,12 +178,12 @@ const _SectionHeader: React.FC<{
 const ProfileScreen: React.FC = () => {
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
+  const { data: customerInfo } = useGetCustomerInfo();
   const daysLeft = calculateFreeTrialDays({
     endDateISO: userInfo.trial.endDateISO,
   });
 
   const isTemporaryAccount = userInfo.isAnonymous;
-
   const _badges = [
     { id: '1', title: 'Habit Hero', icon: '🤠', earned: true },
     { id: '2', title: 'Consistency Champ', icon: '💝', earned: true },
@@ -213,6 +243,11 @@ const ProfileScreen: React.FC = () => {
           onCreateAccount={handleCreateAccount}
           onSettings={handleSettings}
           userInfo={userInfo}
+          activeSubscription={
+            !!customerInfo?.activeSubscriptions?.length
+              ? customerInfo?.activeSubscriptions[0]
+              : undefined
+          }
         />
 
         <StatsGrid

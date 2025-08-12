@@ -211,7 +211,7 @@ const ChatExcuseBuster = () => {
         }
       }, 100);
     }
-  }, [lastUserMessageIndex]);
+  }, [messages.length, lastUserMessageIndex]);
 
   // Scroll to bottom when keyboard appears
   useEffect(() => {

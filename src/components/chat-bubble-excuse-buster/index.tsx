@@ -273,6 +273,7 @@ const getBubbleStyle = ({ isUser, message }) => {
 };
 
 export const MessageContainer = ({ children, isUser, message }) => {
+  const isMessageLong = message.content.length > 30;
   if (isUser) {
     return (
       <LinearGradient
@@ -283,9 +284,9 @@ export const MessageContainer = ({ children, isUser, message }) => {
           maxWidth: '90%',
           paddingHorizontal: 14,
           paddingVertical: 12,
-          borderRadius: 100,
+          borderRadius: isMessageLong ? 30 : 100,
           borderBottomRightRadius: 0,
-          borderTopRightRadius: DEVICE_TYPE.IOS ? 30 : 100,
+          borderTopRightRadius: isMessageLong ? 30 : DEVICE_TYPE.IOS ? 30 : 100,
         }}
       >
         {children}

@@ -140,7 +140,7 @@ export const useRestorePurchases = (
         Toast.success(translate('alerts.restorationSuccessful'));
 
         const fieldsToUpdate: Partial<IUserInfo> = {
-          isOnboarded: true,
+          // isOnboarded: true,
           isFreeTrialOngoing: !!customerInfo?.activeSubscriptions?.length
             ? false
             : true,
@@ -151,17 +151,17 @@ export const useRestorePurchases = (
             allPurchasedProductIdentifiersRevenue:
               customerInfo.allPurchasedProductIdentifiers,
             firstSeenRevenue: customerInfo.firstSeen,
+            //**!add a trial in the past for  monthy/yearly subscriptions */
+            trial: {
+              startDateISO: '2025-08-10T15:52:08.226Z',
+              endDateISO: '2025-08-10T15:52:08.226Z',
+            },
           }),
         };
 
         onSuccessRestoration(fieldsToUpdate);
 
-        queryClient.setQueryData(['user-info'], (oldData: IUserInfo) => ({
-          ...oldData,
-          isOnboarded: true,
-        }));
-
-        router.navigate('/(tabs)');
+        wait(2000).then(() => router.navigate('/(app)'));
       }
     },
     onError: (error) => {
@@ -176,6 +176,6 @@ export const useStartFreeTrial = createMutation<any, any, Error>({
   onSuccess: () => {
     queryClient.invalidateQueries({ queryKey: ['user-info'] });
     Toast.success(translate('alerts.subscriptionActivated'));
-    wait(3000).then(() => router.navigate('/(app)'));
+    wait(2000).then(() => router.navigate('/(app)'));
   },
 });

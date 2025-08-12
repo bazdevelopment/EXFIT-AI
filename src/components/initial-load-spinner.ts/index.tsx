@@ -30,7 +30,8 @@ const InitialLoadSpinner = () => {
         {/* Fading Loading Message */}
         <BounceLoader
           loadingMessages={LOADING_MESSAGES_INITIAL_APP_LOAD}
-          textClassName="text-white"
+          textClassName="text-white dark:text-white"
+          className="w-full"
         />
       </View>
     </ScreenWrapper>

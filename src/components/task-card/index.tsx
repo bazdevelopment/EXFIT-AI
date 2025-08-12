@@ -113,7 +113,7 @@ const TaskCard = ({
                     mediaSource: '',
                     mimeType: '',
                     conversationMode: 'RANDOM_CONVERSATION',
-                    question: askCoach,
+                    question: `${askCoach}\n${activityName}\n${description}`,
                   },
                 })
               }

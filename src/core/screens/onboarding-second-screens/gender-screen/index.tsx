@@ -21,7 +21,7 @@ export default function GenderSelectionScreen({
   collectedData,
 }: IGenderScreen) {
   const [selectedGender, setSelectedGender] = useState(
-    (collectedData.gender ?? 'male') as GenderType
+    (collectedData.gender || 'male') as GenderType
   );
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);

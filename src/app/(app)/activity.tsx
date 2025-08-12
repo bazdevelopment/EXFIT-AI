@@ -349,10 +349,10 @@ const Activity = () => {
           {
             backgroundColor: colors.black,
             zIndex: 100,
-            paddingTop: 50,
+            paddingTop: 40,
           },
         ]} // Ensure background covers content when sliding
-        className="absolute inset-x-0 top-0 w-full" // Use NativeWind classes for absolute positioning
+        className="absolute inset-x-0 w-full" // Use NativeWind classes for absolute positioning
       >
         <View className="px-6">
           <Text className="mb-2 font-bold-poppins text-3xl text-white">
@@ -399,7 +399,7 @@ const Activity = () => {
           // Crucial fix: Add headerHeight + REFRESH_CONTROL_OFFSET to paddingTop
           // This ensures enough space is reserved at the top for both the header
           // and the refresh spinner to be visible.
-          paddingTop: headerHeight - (DEVICE_TYPE.IOS ? 60 : 50),
+          paddingTop: headerHeight - (DEVICE_TYPE.IOS ? 60 : 25),
         }}
         keyExtractor={(item) =>
           `${item.id}-${item.records[0]?.activities?.length}-${JSON.stringify(item.records[0]?.activities)}`

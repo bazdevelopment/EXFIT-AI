@@ -61,8 +61,6 @@ export const updateAiTaskNotes = async (
       await firebaseCloudFunctionsInstance.httpsCallable('updateAiTaskNotes')(
         payload
       );
-    console.log('payload', payload);
-    console.log('data', data);
     return data as IUpdateTaskNotesResponse;
   } catch (error) {
     throw error;

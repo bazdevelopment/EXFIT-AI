@@ -25,6 +25,7 @@ import { SUBSCRIPTION_PLANS_PER_PLATFORM } from '@/constants/subscriptions';
 import { translate } from '@/core';
 import { calculateAnnualDiscount } from '@/core/utilities/calculate-annual-discout';
 import { updateUserAfterSelectingPlan } from '@/core/utilities/update-user-subscription-plan';
+import { wait } from '@/core/utilities/wait';
 
 const formatPaywallData = (offerings: any, showFreeTrialOffering: string) => {
   const paywallData = [];
@@ -161,12 +162,16 @@ const Paywall = () => {
         customerInfo: customerInfoAfterPurchase as CustomerInfo,
         onUpdateUser,
       });
+
+      wait(2000).then(() => router.navigate('/(app)'));
     }
   };
 
   return (
     // <SafeAreaView className="flex-1">
-    <View className="-mb-32 flex-1 bg-black pt-12">
+    <View
+      className={`-mb-32 flex-1 bg-black ${allowToNavigateBack === 'true' ? 'pt-12' : 'pt-16'}`}
+    >
       <FocusAwareStatusBar hidden />
 
       {/* Liquid Background Image */}
@@ -188,19 +193,21 @@ const Paywall = () => {
         showsVerticalScrollIndicator={false}
       >
         {/* Header */}
-        <View className="top-[5] flex-row justify-end p-4">
-          <TouchableOpacity
-            className="size-10 items-center justify-center"
-            onPress={() =>
-              allowToNavigateBack === 'true'
-                ? router.back()
-                : router.navigate('/(app)')
-            }
-            activeOpacity={0.7}
-          >
-            <CloseIcon color={colors.white} width={28} height={28} />
-          </TouchableOpacity>
-        </View>
+        {allowToNavigateBack === 'true' && (
+          <View className="top-[5] flex-row justify-end p-4">
+            <TouchableOpacity
+              className="size-10 items-center justify-center"
+              onPress={() =>
+                allowToNavigateBack === 'true'
+                  ? router.back()
+                  : router.navigate('/(app)')
+              }
+              activeOpacity={0.7}
+            >
+              <CloseIcon color={colors.white} width={28} height={28} />
+            </TouchableOpacity>
+          </View>
+        )}
 
         {/* Content */}
         <View className="px-6">
