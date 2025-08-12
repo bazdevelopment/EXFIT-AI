@@ -6,6 +6,7 @@ import { Animated, View } from 'react-native';
 
 import { Button, Text } from '@/components/ui';
 import { DEVICE_DIMENSIONS } from '@/constants/device-dimensions';
+import { DEVICE_TYPE } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
 
 import Toast from '../toast';
@@ -68,7 +69,7 @@ const CustomAlert = ({
         height: DEVICE_DIMENSIONS.DEVICE_HEIGHT,
         width: DEVICE_DIMENSIONS.DEVICE_WIDTH,
         opacity: fadeAnim,
-        // marginRight: DEVICE_TYPE.IOS ? -14 : 0,
+        backgroundColor: DEVICE_TYPE.ANDROID ? 'rgba(0, 0, 0, 0.6)' : undefined,
       }}
       className="absolute left-0 top-0 items-center justify-center"
     >
@@ -82,6 +83,7 @@ const CustomAlert = ({
           right: 0,
           bottom: 0,
         }}
+        enabled={DEVICE_TYPE.IOS} //!keep it only for ios, there are some issues on android
       />
 
       <Animated.View

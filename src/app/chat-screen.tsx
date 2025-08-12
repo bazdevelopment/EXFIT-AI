@@ -225,7 +225,7 @@ const ChatScreen = () => {
         }
       }, 100);
     }
-  }, [lastUserMessageIndex]);
+  }, [messages.length, lastUserMessageIndex]);
 
   // Scroll to bottom when keyboard appears
   useEffect(() => {
@@ -370,7 +370,7 @@ const ChatScreen = () => {
             <Icon
               onPress={() => handleSendMessage(userMessage)}
               icon={<PaperPlane />}
-              iconContainerStyle="rounded-2xl p-4 bg-[#4E52FB]"
+              iconContainerStyle="rounded-2xl p-4 bg-[#4E52FB] z-[100]"
               color={colors.transparent}
               size={21}
             />

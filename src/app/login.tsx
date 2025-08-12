@@ -118,7 +118,7 @@ export default function LoginScreen() {
         {/* Content */}
         <View className="flex-1 px-6">
           {/* Title */}
-          <Text className="mb-12 mt-4 text-center font-semibold-poppins text-3xl text-white dark:text-white">
+          <Text className="mb-12 mt-10 text-center font-semibold-poppins text-3xl text-white dark:text-white">
             Login
           </Text>
           {!!loginError && (
@@ -140,7 +140,7 @@ export default function LoginScreen() {
                 className="mr-3 dark:color-gray-300"
               />
               <Text className="ml-3 font-medium-poppins text-white dark:text-white">
-                Continue with username
+                Continue with Nickname
               </Text>
             </TouchableOpacity>
           )}

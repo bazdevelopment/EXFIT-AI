@@ -123,6 +123,7 @@ const sendUserPushNotification = async (
       title: data.title,
       body: data.body,
       data: data.data || {},
+      priority: 'high',
     }));
 
     const chunks = ExpoInstance.chunkPushNotifications(messages);

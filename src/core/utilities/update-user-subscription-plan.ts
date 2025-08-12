@@ -24,10 +24,6 @@ export const updateUserAfterSelectingPlan = async ({
   }) => Promise<void>;
 }) => {
   const fieldsToUpdate: Partial<IUserInfo> = {
-    isOnboarded: true,
-    ...(collectedData.preferredName && {
-      userName: collectedData.preferredName,
-    }),
     isFreeTrialOngoing: !!customerInfo?.activeSubscriptions?.length
       ? false
       : true,
@@ -38,6 +34,11 @@ export const updateUserAfterSelectingPlan = async ({
       allPurchasedProductIdentifiersRevenue:
         customerInfo.allPurchasedProductIdentifiers,
       firstSeenRevenue: customerInfo.firstSeen,
+      //**!add a trial in the past for  monthy/yearly subscriptions */
+      trial: {
+        startDateISO: '2025-08-10T15:52:08.226Z',
+        endDateISO: '2025-08-10T15:52:08.226Z',
+      },
     }),
   };
 

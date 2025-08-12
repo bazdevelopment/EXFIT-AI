@@ -1,10 +1,16 @@
 /* eslint-disable max-lines-per-function */
 import { LinearGradient } from 'expo-linear-gradient';
 import { getCalendars } from 'expo-localization';
-import { Link, router } from 'expo-router';
+import { router } from 'expo-router';
 import { firebaseAuth } from 'firebase/config';
 import React, { useState } from 'react';
-import { ImageBackground, Keyboard, View } from 'react-native';
+import {
+  ImageBackground,
+  Keyboard,
+  Linking,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardStickyView } from 'react-native-keyboard-controller';
 
@@ -122,22 +128,32 @@ export default function AnonymousLogin() {
                     <Text className="text-sm text-white">
                       {translate('rootLayout.screens.login.agreeingMessage')}{' '}
                     </Text>
-                    <Link
-                      href="/terms-of-service"
-                      className="text-sm text-primary-900"
+                    <TouchableOpacity
+                      onPress={() =>
+                        Linking.openURL(
+                          'https://exfitai-terms-conditions.netlify.app/'
+                        )
+                      }
                     >
-                      {translate('rootLayout.screens.login.termsAndConditions')}
-                    </Link>
+                      <Text className="text-sm text-blue-400 dark:text-blue-400">
+                        {translate(
+                          'rootLayout.screens.login.termsAndConditions'
+                        )}{' '}
+                      </Text>
+                    </TouchableOpacity>
                     <Text className="text-sm text-white">
                       {' '}
                       {translate('general.and')}{' '}
                     </Text>
-                    <Link
-                      href="/privacy-policy"
-                      className="text-sm text-primary-900"
+                    <TouchableOpacity
+                      onPress={() =>
+                        Linking.openURL('https://exfitai-privacy.netlify.app/')
+                      }
                     >
-                      {translate('rootLayout.screens.login.privacyPolicy')}
-                    </Link>
+                      <Text className="text-sm text-blue-400 dark:text-blue-400">
+                        {translate('rootLayout.screens.login.privacyPolicy')}{' '}
+                      </Text>
+                    </TouchableOpacity>
                   </View>
                   <View className="mt-6">
                     <Button

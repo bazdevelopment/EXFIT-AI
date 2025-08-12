@@ -24,7 +24,7 @@ const Wrapper = ({ children }: { children: React.ReactElement }) =>
       {children}
     </View>
   ) : (
-    <View className="">{children}</View>
+    <View className="rounded-xl bg-black/50 dark:bg-black/50">{children}</View>
   );
 
 const PricingOption = ({ plan, selectedPlan, onSelectOption, badge }) => {

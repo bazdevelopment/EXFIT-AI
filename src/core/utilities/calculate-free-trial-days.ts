@@ -10,7 +10,6 @@ export const calculateFreeTrialDays = ({
 
   // Calculate difference in days
   const remainingDays = endDate.diff(today, 'day');
-
   // Return remaining days, but not less than 0
   return Math.max(remainingDays, 0);
 };
