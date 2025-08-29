@@ -1,5 +1,6 @@
 import { type AxiosError } from 'axios';
 import { router } from 'expo-router';
+import { firebaseAuth } from 'firebase/config';
 import { GAMIFICATION_REWARDS_CONFIG } from 'functions/utilities/rewards-pricing';
 import { createMutation, createQuery } from 'react-query-kit';
 
@@ -14,6 +15,7 @@ import {
   createAnonymousAccount,
   createPermanentAccount,
   decrementNumberOfScans,
+  deleteAccount,
   getUserInfo,
   loginWithEmail,
   resetPassword,
@@ -232,5 +234,17 @@ export const useResetPassword = () => {
   return createMutation<{ success: boolean }, { email: string }, AxiosError>({
     mutationFn: (variables) => resetPassword(variables),
     onSuccess: () => {},
+  })();
+};
+
+export const useDeleteAccount = () => {
+  return createMutation<any, any, AxiosError>({
+    mutationFn: deleteAccount,
+    onSuccess: async () => {
+      Toast.success('Your account has been deleted successfuly!');
+      await firebaseAuth.signOut();
+      router.navigate('/welcome');
+      queryClient.clear(); // Clears all cached queries & mutations
+    },
   })();
 };

@@ -1481,6 +1481,8 @@ PODS:
     - ExpoModulesCore
   - ExpoSplashScreen (0.29.21):
     - ExpoModulesCore
+  - ExpoStoreReview (8.0.1):
+    - ExpoModulesCore
   - ExpoSystemUI (4.0.7):
     - ExpoModulesCore
   - EXUpdatesInterface (1.0.0):
@@ -3768,6 +3770,7 @@ DEPENDENCIES:
   - ExpoSharing (from `../node_modules/expo-sharing/ios`)
   - ExpoSpeech (from `../node_modules/expo-speech/ios`)
   - ExpoSplashScreen (from `../node_modules/expo-splash-screen/ios`)
+  - ExpoStoreReview (from `../node_modules/expo-store-review/ios`)
   - ExpoSystemUI (from `../node_modules/expo-system-ui/ios`)
   - EXUpdatesInterface (from `../node_modules/expo-updates-interface/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -3966,6 +3969,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-speech/ios"
   ExpoSplashScreen:
     :path: "../node_modules/expo-splash-screen/ios"
+  ExpoStoreReview:
+    :path: "../node_modules/expo-store-review/ios"
   ExpoSystemUI:
     :path: "../node_modules/expo-system-ui/ios"
   EXUpdatesInterface:
@@ -4174,6 +4179,7 @@ SPEC CHECKSUMS:
   ExpoSharing: 849a5ce9985c22598c16ec027e32969be8062e8e
   ExpoSpeech: f17507715159aac594682a91239c53ab4593329f
   ExpoSplashScreen: c64f3b577e1cb0b6a2f47d01c528ad7d80d9ae6a
+  ExpoStoreReview: 92ad323dd14485e7aa67d5b47248fb22876ffaee
   ExpoSystemUI: 36f50ee42da3e814bffd01ee38edcf3c7cc0015d
   EXUpdatesInterface: 7c977640bdd8b85833c19e3959ba46145c5719db
   FBLazyVector: be509404b5de73a64a74284edcaf73a5d1e128b1

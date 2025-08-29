@@ -233,6 +233,19 @@ export default function RootLayout() {
             }),
           }}
         />
+
+        <Stack.Screen
+          name="paywall-new"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            presentation: 'modal',
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
+          }}
+        />
         <Stack.Screen
           name="new-app-version"
           options={{

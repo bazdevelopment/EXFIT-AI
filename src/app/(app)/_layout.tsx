@@ -80,7 +80,6 @@ export default function TabLayout() {
   useEffect(() => {
     storeDeviceInfo();
   }, []);
-
   if (isConnected === false && isConnected !== null) return <NoInternet />;
 
   if (isPendingUserinfo || isPendingRevenueCatSdkInit)
@@ -102,9 +101,6 @@ export default function TabLayout() {
     return <Redirect href="/onboarding-second" />;
   }
 
-  if (!userInfo?.trial) {
-    return <Redirect href="/paywall" />;
-  }
   return (
     <SafeAreaView
       className="flex-1 bg-black"

@@ -29,7 +29,7 @@ const MotivationBanner = ({
               variant: 'default',
               onPress: () =>
                 router.push({
-                  pathname: '/paywall',
+                  pathname: '/paywall-new',
                   params: {
                     showFreeTrialOffering: 'false',
                     allowToNavigateBack: 'true',

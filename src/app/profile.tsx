@@ -17,7 +17,6 @@ import StatsGrid from '@/components/stats-grid';
 import { Button, colors, Text } from '@/components/ui';
 import { CheckIcon, WarningIconRounded } from '@/components/ui/assets/icons';
 import { useSelectedLanguage } from '@/core';
-import { calculateFreeTrialDays } from '@/core/utilities/calculate-free-trial-days';
 import { calculateLevel } from '@/core/utilities/calculate-level';
 
 // Types
@@ -38,14 +37,12 @@ interface InventoryItem {
 
 const ProfileHeader: React.FC<{
   isTemporary: boolean;
-  trialDaysLeft: number;
   onCreateAccount: () => void;
   onSettings: () => void;
   userInfo;
   activeSubscription: string;
 }> = ({
   isTemporary,
-  trialDaysLeft,
   onCreateAccount,
   onSettings,
   userInfo,
@@ -55,7 +52,9 @@ const ProfileHeader: React.FC<{
     ? 'Monthly Subscription'
     : activeSubscription?.includes('year')
       ? 'Yearly Subscription'
-      : '';
+      : activeSubscription?.includes('week')
+        ? 'Weekly Subscription'
+        : '';
 
   return (
     <View className="items-center">
@@ -107,7 +106,7 @@ const ProfileHeader: React.FC<{
               <WarningIconRounded width={24} height={24} />
               {/* Keep warning icon */}
               <Text className="font-semibold-poppins text-sm text-white">
-                Free Trial: {trialDaysLeft} days left
+                Free Trial
               </Text>
             </View>
           </LinearGradient>
@@ -179,9 +178,6 @@ const ProfileScreen: React.FC = () => {
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
   const { data: customerInfo } = useGetCustomerInfo();
-  const daysLeft = calculateFreeTrialDays({
-    endDateISO: userInfo.trial.endDateISO,
-  });
 
   const isTemporaryAccount = userInfo.isAnonymous;
   const _badges = [
@@ -218,7 +214,7 @@ const ProfileScreen: React.FC = () => {
 
   const handleUpgrade = () => {
     router.push({
-      pathname: '/paywall',
+      pathname: '/paywall-new',
       params: { showFreeTrialOffering: 'false', allowToNavigateBack: 'true' },
     });
   };
@@ -239,7 +235,6 @@ const ProfileScreen: React.FC = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <ProfileHeader
           isTemporary={isTemporaryAccount} // here we need a variable to check if the user created a permanent account or not
-          trialDaysLeft={daysLeft}
           onCreateAccount={handleCreateAccount}
           onSettings={handleSettings}
           userInfo={userInfo}

@@ -61,7 +61,10 @@ export default function OnboardingSecond() {
     }).then(() => {
       !isSecondOnboardingDone && setIsSecondOnboardingDone(true);
       // router.navigate('/(app)');
-      router.navigate('/paywall');
+      router.navigate({
+        pathname: '/paywall-new',
+        params: { allowAppAccess: true },
+      });
     });
   };
 
@@ -77,7 +80,10 @@ export default function OnboardingSecond() {
     }).then(() => {
       !isSecondOnboardingDone && setIsSecondOnboardingDone(true);
       // router.navigate('/(app)');
-      router.navigate('/paywall');
+      router.navigate({
+        pathname: '/paywall-new',
+        params: { allowAppAccess: true },
+      });
     });
   };
 

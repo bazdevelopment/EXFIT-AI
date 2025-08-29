@@ -12,7 +12,7 @@ const UpgradeBanner = ({
 }) => {
   const handleUpgrade = () => {
     router.push({
-      pathname: '/paywall',
+      pathname: '/paywall-new',
       params: { showFreeTrialOffering: 'false', allowToNavigateBack: 'true' },
     });
   };
