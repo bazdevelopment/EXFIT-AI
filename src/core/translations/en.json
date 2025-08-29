@@ -39,9 +39,16 @@
     "medicalDisclaimer": "Medical Disclaimer",
     "conversationHistory": "Conversation history",
     "freeTrial": "Free trial",
+    "free": "FREE",
     "completedScans": "Scans completed",
     "activeSubscription": "Subscription active",
     "askAssistant": "Ask AI assistant",
+    "then": "then",
+    "perWeek": "per week",
+    "perYear": "per year",
+    "perMonth": "per month",
+    "tryForFree": "Try For Free",
+    "unlockNow": "Unlock Now",
     "copyText": {
       "loading": "Copying...",
       "copied": "Copied!",
@@ -124,26 +131,33 @@
       },
       "paywallOnboarding": {
         "freeTierOfferings": {
-          "title": "Unlock Your Full Potential!",
-          "firstOffering": "Get full access to every feature — no limits",
-          "secondOffering": "Enjoy a 100% ad-free experience.",
-          "thirdOffering": "Unlimited AI scans, Excuse Buster, and AI Coach support.",
-          "fourthOffering": "Keep your progress synced with a permanent account across all devices."
+          "freeTrialEnabled": "Free Trial Enabled",
+          "heading": " Unlimited Access",
+          "title": "Unlock Premium Features Today!",
+          "firstOffering": "Access All Premium Features",
+          "secondOffering": "Ad-Free Experience",
+          "thirdOffering": "Unlimited AI scans for activity support",
+          "fourthOffering": "Unlimited chats with a 24/7 AI Fitness Coach"
         }
       },
       "paywallUpgradeScreen": {
-        "heading": "Unlock Premium Features Today! 🎉",
+        "heading": "Unlock Premium Features Today!",
         "firstOffering": {
           "title": "Start Free Trial",
-          "subtitle": "Enjoy your 7-day free trial – no payment"
+          "subtitle": "Enjoy {{freeScans}} free scans – no payment"
         },
         "secondOffering": {
-          "title": "Monthly",
+          "title": "Monthly Plan",
           "subtitle": "{{ price }}/month"
         },
         "thirdOffering": {
-          "title": "Yearly",
-          "subtitle": "Best deal: {{ price }}/year – save more!"
+          "title": "Yearly Plan",
+          "subtitle": "{{ price }} per year"
+        },
+        "fourthOffering": {
+          "title": "{{trialDays}}-Day Trial",
+          "subtitle": "{{ price }} per year",
+          "plan": "Weekly Plan"
         }
       },
       "newAppVersionScreen": {

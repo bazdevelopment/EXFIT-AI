@@ -339,7 +339,7 @@ const startFreeTrialHandler = async (
     // Check if the user is anonymous
     if (userData?.isAnonymous === true) {
       functions.logger.info(
-        `Starting 7-day trial for anonymous user ${userId}`,
+        `Starting 3-day trial for anonymous user ${userId}`,
       );
 
       // Check if trial already exists
@@ -353,7 +353,7 @@ const startFreeTrialHandler = async (
       }
 
       const now = new Date();
-      const trialEndDate = addDays(now, 7);
+      const trialEndDate = addDays(now, 3);
 
       // Prepare the trial data with ISO strings
       const trialData = {
@@ -398,8 +398,178 @@ const startFreeTrialHandler = async (
   }
 };
 
+const deleteUserAccount = async (
+  data: any,
+  context: functions.https.CallableContext,
+) => {
+  try {
+    // Verify user is authenticated
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        'unauthenticated',
+        'User must be authenticated to delete account',
+      );
+    }
+
+    const userId = context.auth.uid;
+    console.log(`Starting account deletion for user: ${userId}`);
+
+    // Start a batch operation for atomic deletion
+    const batch = db.batch();
+    let deletionCount = 0;
+
+    // 1. Delete activityLogs subcollection from users collection
+    try {
+      const activityLogsRef = db
+        .collection('users')
+        .doc(userId)
+        .collection('activityLogs');
+      const activityLogsSnapshot = await activityLogsRef.get();
+
+      if (!activityLogsSnapshot.empty) {
+        activityLogsSnapshot.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+          deletionCount++;
+        });
+        console.log(
+          `Marked ${activityLogsSnapshot.size} activityLogs for deletion`,
+        );
+      }
+    } catch (error) {
+      console.error('Error deleting activityLogs:', error);
+    }
+
+    // 2. Delete from conversationsExcuseBuster collection
+    try {
+      const conversationsQuery = await db
+        .collection('conversationsExcuseBuster')
+        .where('userId', '==', userId)
+        .get();
+
+      if (!conversationsQuery.empty) {
+        conversationsQuery.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+          deletionCount++;
+        });
+        console.log(
+          `Marked ${conversationsQuery.size} conversations for deletion`,
+        );
+      }
+    } catch (error) {
+      console.error('Error deleting conversations:', error);
+    }
+
+    // 3. Delete from interpretations collection
+    try {
+      const interpretationsQuery = await db
+        .collection('interpretations')
+        .where('userId', '==', userId)
+        .get();
+
+      if (!interpretationsQuery.empty) {
+        interpretationsQuery.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+          deletionCount++;
+        });
+        console.log(
+          `Marked ${interpretationsQuery.size} interpretations for deletion`,
+        );
+      }
+    } catch (error) {
+      console.error('Error deleting interpretations:', error);
+    }
+
+    // 4. Delete from mobileDevices collection
+    try {
+      const mobileDevicesQuery = await db
+        .collection('mobileDevices')
+        .where('userId', '==', userId)
+        .get();
+
+      if (!mobileDevicesQuery.empty) {
+        mobileDevicesQuery.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+          deletionCount++;
+        });
+        console.log(
+          `Marked ${mobileDevicesQuery.size} mobile devices for deletion`,
+        );
+      }
+    } catch (error) {
+      console.error('Error deleting mobile devices:', error);
+    }
+
+    // 5. Delete from notifications collection
+    try {
+      const notificationsQuery = await db
+        .collection('notifications')
+        .where('userId', '==', userId)
+        .get();
+
+      if (!notificationsQuery.empty) {
+        notificationsQuery.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+          deletionCount++;
+        });
+        console.log(`Marked notifications for deletion`);
+      }
+    } catch (error) {
+      console.error('Error deleting notifications:', error);
+    }
+
+    // 6. Delete the main user document from users collection
+    try {
+      const userDocRef = db.collection('users').doc(userId);
+      const userDoc = await userDocRef.get();
+
+      if (userDoc.exists) {
+        batch.delete(userDocRef);
+        deletionCount++;
+        console.log('Marked user document for deletion');
+      }
+    } catch (error) {
+      console.error('Error deleting user document:', error);
+    }
+
+    // Execute all deletions atomically
+    if (deletionCount > 0) {
+      await batch.commit();
+      console.log(
+        `Successfully deleted ${deletionCount} documents from Firestore`,
+      );
+    } else {
+      console.log('No documents found to delete');
+    }
+
+    // 7. Delete user from Firebase Auth (this should be done last)
+    try {
+      await admin.auth().deleteUser(userId);
+      console.log(`Successfully deleted user ${userId} from Firebase Auth`);
+    } catch (error) {
+      console.error('Error deleting user from Auth:', error);
+      throw new functions.https.HttpsError(
+        'internal',
+        'Failed to delete user authentication',
+      );
+    }
+
+    return {
+      success: true,
+      message: 'Account successfully deleted',
+      documentsDeleted: deletionCount,
+    };
+  } catch (error) {
+    console.error('Account deletion error:', error);
+    throw new functions.https.HttpsError(
+      'internal',
+      'Failed to delete account: ',
+    );
+  }
+};
+
 export {
   checkEmailExistsHandler,
+  deleteUserAccount,
   getUserInfo,
   loginUserAnonymouslyHandler,
   startFreeTrialHandler,

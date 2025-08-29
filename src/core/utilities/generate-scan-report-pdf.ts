@@ -60,7 +60,7 @@ export const generateScanReportPdf = ({
     <style>
           * { print-color-adjust:exact !important; }
         body {
-            font-family: Nunito-Sans, sans-serif;
+            font-family: poppins-Sans, sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;

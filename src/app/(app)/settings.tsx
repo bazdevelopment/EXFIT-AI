@@ -3,7 +3,7 @@ import { useScrollToTop } from '@react-navigation/native';
 import { router } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useRef } from 'react';
-import { Linking } from 'react-native';
+import { Alert, Linking } from 'react-native';
 
 import { useUploadPrivacyPolicy } from '@/api/privacy-policy/privacy-policy.hooks';
 import {
@@ -13,7 +13,7 @@ import {
 import { useAddFieldsToCollection } from '@/api/services/services.hooks';
 import { seedShopItems } from '@/api/shop/shop.requests';
 import { useUploadTermsOfService } from '@/api/terms-of-service/terms-of-service.hooks';
-import { useUpdateUser } from '@/api/user/user.hooks';
+import { useDeleteAccount, useUpdateUser } from '@/api/user/user.hooks';
 import { logout } from '@/api/user/user.requests';
 import UpgradeBanner from '@/components/banners/upgrade-banner';
 import CustomAlert from '@/components/custom-alert';
@@ -27,9 +27,11 @@ import { ThemeItem } from '@/components/settings/theme-item';
 import Toast from '@/components/toast';
 import { Button, colors, ScrollView, Text, View } from '@/components/ui';
 import { LogoutIcon, Rate } from '@/components/ui/assets/icons';
-import { translate, useSelectedLanguage } from '@/core';
+import { translate, useIsFirstTime, useSelectedLanguage } from '@/core';
 import { Env } from '@/core/env';
+import { useFirstOnboarding } from '@/core/hooks/use-first-onboarding';
 import useRemoteConfig from '@/core/hooks/use-remote-config';
+import { useSecondOnboarding } from '@/core/hooks/use-second-onboarding';
 import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 
 export default function Settings() {
@@ -56,6 +58,36 @@ export default function Settings() {
 
   const { mutate: onUploadTermsOfService } = useUploadTermsOfService();
   const { mutate: onUploadPrivacyPolicy } = useUploadPrivacyPolicy();
+  const { mutate: onDeleteAccount } = useDeleteAccount();
+
+  const [, setIsFirstTime] = useIsFirstTime();
+  const [, setIsFirstOnboardingDone] = useFirstOnboarding();
+  const [, setIsSecondOnboardingDone] = useSecondOnboarding();
+
+  const handleOnDeleteAccount = () => {
+    onDeleteAccount({});
+    setIsFirstTime(true);
+    setIsFirstOnboardingDone(false);
+    setIsSecondOnboardingDone(false);
+  };
+
+  const handleDeleteAccount = () => {
+    Alert.alert(
+      'Delete Account',
+      'Are you sure you want to delete your account? This action cannot be undone and will permanently remove all your data.',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete account',
+          style: 'destructive',
+          onPress: handleOnDeleteAccount,
+        },
+      ]
+    );
+  };
 
   const handleLogout = async () => {
     Toast.showCustomToast(
@@ -184,6 +216,17 @@ export default function Settings() {
               textClassName="font-medium-poppins text-base"
               iconPosition="left"
               onPress={handleLogout}
+            />
+
+            <Button
+              label="Deactivate & Delete Account"
+              icon={<LogoutIcon width={30} height={30} />}
+              loading={isPendingUpdateUser}
+              variant="destructive"
+              className="mt-4 h-[48px] rounded-full active:opacity-80"
+              textClassName="font-medium-poppins text-base"
+              iconPosition="left"
+              onPress={handleDeleteAccount}
             />
 
             {__DEV__ && ( //change the condition here so this will be available in dev/prod only for an admin account

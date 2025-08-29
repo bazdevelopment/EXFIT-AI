@@ -356,3 +356,17 @@ export const resetPassword = async ({
     return { success: true };
   }
 };
+
+export const deleteAccount = async () => {
+  try {
+    const onDeleteAccountPermanently =
+      firebaseCloudFunctionsInstance.httpsCallable(
+        'deleteUserAccountPermanently'
+      );
+    const { data } = await onDeleteAccountPermanently();
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -61,6 +61,9 @@ export const checkEmailExist = usCentralFunctions.https.onCall(
 export const startFreeTrial = usCentralFunctions.https.onCall(
   userFunctions.startFreeTrialHandler,
 );
+export const deleteUserAccountPermanently = usCentralFunctions.https.onCall(
+  userFunctions.deleteUserAccount,
+);
 
 /** ActivityLogs collection cloud functions  */
 
