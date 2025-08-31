@@ -19,7 +19,6 @@ import { useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
 import MotivationBanner from '@/components/banners/motivation-banner';
-import UpgradeBanner from '@/components/banners/upgrade-banner';
 import CalendarMiniView from '@/components/calendar-mini-view';
 import DailyCheckInStatus from '@/components/daily-check-in-status';
 import Greeting from '@/components/greeting';
@@ -215,7 +214,7 @@ export default function Home() {
           additionalClassName="ml-6 my-3"
           textClassName="text-white dark:text-white"
         />
-        {isUpgradeRequired && <UpgradeBanner />}
+        {/* {isUpgradeRequired && <UpgradeBanner />} */}
 
         <View className="mx-1 rounded-2xl bg-[#191A21] pb-2">
           {currentWeekActivityLogs && (

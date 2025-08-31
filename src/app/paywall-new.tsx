@@ -58,24 +58,24 @@ const formatPaywallData = (offerings: any) => {
     });
   }
 
-  if (offerings?.monthly?.product) {
-    paywallData.push({
-      id: offerings.monthly.product.identifier,
-      title: translate(
-        'rootLayout.screens.paywallUpgradeScreen.secondOffering.title'
-      ),
-      subtitle: translate(
-        'rootLayout.screens.paywallUpgradeScreen.secondOffering.subtitle',
-        {
-          price: offerings.monthly.product.priceString,
-        }
-      ),
-      price: offerings.monthly.product.priceString,
-      priceNumber: offerings.monthly.product.price,
-      currency: offerings.monthly.product.currencyCode,
-      type: 'MONTHLY',
-    });
-  }
+  // if (offerings?.monthly?.product) {
+  //   paywallData.push({
+  //     id: offerings.monthly.product.identifier,
+  //     title: translate(
+  //       'rootLayout.screens.paywallUpgradeScreen.secondOffering.title'
+  //     ),
+  //     subtitle: translate(
+  //       'rootLayout.screens.paywallUpgradeScreen.secondOffering.subtitle',
+  //       {
+  //         price: offerings.monthly.product.priceString,
+  //       }
+  //     ),
+  //     price: offerings.monthly.product.priceString,
+  //     priceNumber: offerings.monthly.product.price,
+  //     currency: offerings.monthly.product.currencyCode,
+  //     type: 'MONTHLY',
+  //   });
+  // }
 
   if (offerings?.weekly?.product) {
     paywallData.push({
@@ -304,8 +304,9 @@ const PaywallNew = () => {
         logEvent,
         setIsFirstTime,
       });
-      DEVICE_TYPE.IOS && router.dismiss();
+      console.log('ajunge aici');
       requestAppRatingWithDelay(3000);
+      DEVICE_TYPE.IOS && router.dismiss();
     }
   };
 
@@ -322,6 +323,7 @@ const PaywallNew = () => {
           <Icon
             size={28}
             containerStyle="right-4 top-3 self-end p-2 z-10"
+            color={isDark ? colors.charcoal[500] : colors.charcoal[300]}
             onPress={() => {
               if (allowAppAccess === 'true') {
                 updateUserAndNavigate({
@@ -334,18 +336,13 @@ const PaywallNew = () => {
                   setIsFirstTime,
                 });
                 DEVICE_TYPE.IOS && router.dismiss();
-                requestAppRatingWithDelay(3000);
+
                 return;
               }
 
               router.back();
             }}
-            icon={
-              <CloseIcon
-                strokeWidth={1.85}
-                color={isDark ? colors.charcoal[600] : colors.charcoal[300]}
-              />
-            }
+            icon={<CloseIcon strokeWidth={1.85} />}
           />
 
           {/* Content Container */}
@@ -387,7 +384,7 @@ const PaywallNew = () => {
                   onPress={() => handlePlanSelection('yearly')}
                 />
               )}
-              {monthlyOffering && (
+              {/* {monthlyOffering && (
                 <PricingCard
                   title={monthlyOffering.title}
                   subtitle={`${monthlyOffering.price} ${translate('general.perMonth')}`}
@@ -396,7 +393,7 @@ const PaywallNew = () => {
                   onPress={() => handlePlanSelection('monthly')}
                   isFree={false}
                 />
-              )}
+              )} */}
               {weeklyOffering && (
                 <PricingCard
                   title={weeklyOffering.title}
@@ -525,7 +522,7 @@ export const updateUserAndNavigate = async ({
         ...oldData,
         isOnboarded: true,
       }));
-      router.navigate('/(tabs)');
+      router.navigate('/(app)');
       setIsFirstTime(false);
       logEvent(
         `User ${userId} has been onboarded successfully and selected ${collectedData.selectedPackage} plan and is redirected to home screen`

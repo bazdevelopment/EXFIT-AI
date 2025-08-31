@@ -34,11 +34,6 @@ export const updateUserAfterSelectingPlan = async ({
       allPurchasedProductIdentifiersRevenue:
         customerInfo.allPurchasedProductIdentifiers,
       firstSeenRevenue: customerInfo.firstSeen,
-      //**!add a trial in the past for  monthy/yearly subscriptions */
-      trial: {
-        startDateISO: '2025-08-10T15:52:08.226Z',
-        endDateISO: '2025-08-10T15:52:08.226Z',
-      },
     }),
   };
 

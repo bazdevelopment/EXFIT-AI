@@ -6,14 +6,15 @@ import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { Button } from '@/components/ui';
 import { RatingIllustration } from '@/components/ui/assets/illustrations';
-import { STORE_URLS } from '@/constants/stores-urls';
 import { DEVICE_TYPE, translate } from '@/core';
 
 const Rate = () => {
   const handleFeedback = (isPositive: boolean) => {
     if (isPositive) {
       // Redirect happy users to the App Store
-      const storeUrl = DEVICE_TYPE.IOS ? STORE_URLS.IOS : STORE_URLS.ANDROID;
+      const storeUrl = DEVICE_TYPE.IOS
+        ? 'itms-apps://itunes.apple.com/app/viewContentsUserReviews/id6749510101?action=write-review'
+        : 'market://details?id=com.exfit&showAllReviews=true';
       Linking.openURL(storeUrl).catch((err) =>
         console.error('Error opening URL', err)
       );

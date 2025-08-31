@@ -7,7 +7,6 @@ import {
   useMarkNotificationAsRead,
 } from '@/api/push-notifications/push-notifications.hooks';
 import { useUser } from '@/api/user/user.hooks';
-import UpgradeBanner from '@/components/banners/upgrade-banner';
 import EdgeCaseTemplate from '@/components/edge-case-template';
 import { NotificationDetailsModal } from '@/components/modals/notification-details-modal';
 import NotificationGroup from '@/components/notifications/notification-group';
@@ -62,7 +61,6 @@ export default function NotificationsScreen() {
     <ScreenWrapper>
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <ScreenHeader title="Notifications" />
-        {isUpgradeRequired && <UpgradeBanner additionalClassName="mt-4 mb-0" />}
 
         {areUserNotificationsLoading ? (
           <SkeletonLoader />

@@ -2,7 +2,6 @@ import { router } from 'expo-router';
 import React from 'react';
 
 import { useOwnedPurchasedItems } from '@/api/shop/shop.hooks';
-import UpgradeBanner from '@/components/banners/upgrade-banner';
 import EdgeCaseTemplate from '@/components/edge-case-template';
 import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
@@ -11,17 +10,13 @@ import SkeletonLoader from '@/components/skeleton-loader';
 import { Button, colors, Text, View } from '@/components/ui';
 import { ArrowRight, ShopBasket } from '@/components/ui/assets/icons';
 import { ShoppingCartEmpty } from '@/components/ui/assets/illustrations/shopping-cart-empty';
-import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 
 const ShoppingCart = () => {
   const { data: ownPurchasedData, isLoading } = useOwnedPurchasedItems();
-  const { isUpgradeRequired } = useSubscriptionAlert();
 
   return (
     <ScreenWrapper>
       <ScreenHeader title="Items Owned" />
-
-      {isUpgradeRequired && <UpgradeBanner additionalClassName="mt-4 mb-0" />}
 
       {isLoading ? (
         <SkeletonLoader />

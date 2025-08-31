@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import type { ConfigContext, ExpoConfig } from '@expo/config';
 import type { AppIconBadgeConfig } from 'app-icon-badge/types';
 
@@ -39,6 +40,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   platforms: ['ios', 'android'],
 
   ios: {
+    appStoreUrl:
+      'https://apps.apple.com/us/app/exfit-ai-crush-your-excuses/id6749510101',
     supportsTablet: true,
     bundleIdentifier: Env.BUNDLE_ID,
     googleServicesFile: ClientEnv.GOOGLE_SERVICES_PLIST_PATH,
@@ -49,11 +52,30 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     config: {
       usesNonExemptEncryption: false, // Avoid the export compliance warning on the app store
     },
+    infoPlist: {
+      CFBundleAllowMixedLocalizations: true,
+      CFBundleLocalizations: [
+        'en', // English
+        // 'zh', // Chinese
+        // 'es', // Spanish
+        // 'hi', // Hindi
+        // 'ar', // Arabic
+        // 'pt', // Portuguese
+        // 'ru', // Russian
+        // 'ja', // Japanese
+        // 'ko', // Korean
+        // 'de', // German
+        // 'fr', // French
+        // 'ro', // Romanian
+      ],
+      CFBundleDevelopmentRegion: 'en', // Default language, adjust if needed
+    },
   },
   experiments: {
     typedRoutes: true,
   },
   android: {
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.exfit',
     googleServicesFile: ClientEnv.GOOGLE_SERVICES_JSON_PATH,
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
