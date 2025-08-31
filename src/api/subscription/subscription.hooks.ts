@@ -11,6 +11,7 @@ import { createMutation, createQuery } from 'react-query-kit';
 import Toast from '@/components/toast';
 import { translate } from '@/core';
 import { Env } from '@/core/env';
+import { requestAppRatingWithDelay } from '@/core/utilities/request-app-review';
 import { wait } from '@/core/utilities/wait';
 import { type IUserInfo } from '@/types/general-types';
 
@@ -43,12 +44,12 @@ export const usePurchaseSubscription = createMutation<
 >({
   mutationFn: async ({ packageIdentifier }: { packageIdentifier: string }) => {
     const offerings = await Purchases.getOfferings();
-    const monthlyAndAnnualOfferings = [
+    const weeklyAndAnnualOfferings = [
       ...(offerings.current?.annual ? [offerings.current.annual] : []),
-      ...(offerings.current?.monthly ? [offerings.current.monthly] : []),
+      ...(offerings.current?.weekly ? [offerings.current.weekly] : []),
     ];
 
-    const selectedPackage = monthlyAndAnnualOfferings.find(
+    const selectedPackage = weeklyAndAnnualOfferings.find(
       (pkg: PurchasesPackage) => pkg.product.identifier === packageIdentifier
     );
 
@@ -152,15 +153,11 @@ export const useRestorePurchases = (
               customerInfo.allPurchasedProductIdentifiers,
             firstSeenRevenue: customerInfo.firstSeen,
             //**!add a trial in the past for  monthy/yearly subscriptions */
-            trial: {
-              startDateISO: '2025-08-10T15:52:08.226Z',
-              endDateISO: '2025-08-10T15:52:08.226Z',
-            },
           }),
         };
 
         onSuccessRestoration(fieldsToUpdate);
-
+        requestAppRatingWithDelay(3000);
         wait(2000).then(() => router.navigate('/(app)'));
       }
     },

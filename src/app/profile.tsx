@@ -9,7 +9,6 @@ import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { useGetCustomerInfo } from '@/api/subscription/subscription.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import Avatar from '@/components/avatar';
-import UpgradeBanner from '@/components/banners/upgrade-banner';
 import ProgressBarLevel from '@/components/progress-bar-level';
 import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
@@ -287,8 +286,6 @@ const ProfileScreen: React.FC = () => {
             />
           ))}
         </ScrollView> */}
-
-        <UpgradeBanner />
       </ScrollView>
     </ScreenWrapper>
   );

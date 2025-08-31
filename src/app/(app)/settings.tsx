@@ -27,6 +27,7 @@ import { ThemeItem } from '@/components/settings/theme-item';
 import Toast from '@/components/toast';
 import { Button, colors, ScrollView, Text, View } from '@/components/ui';
 import { LogoutIcon, Rate } from '@/components/ui/assets/icons';
+import { DeactivateIcon } from '@/components/ui/assets/icons/deactivate-icon';
 import { translate, useIsFirstTime, useSelectedLanguage } from '@/core';
 import { Env } from '@/core/env';
 import { useFirstOnboarding } from '@/core/hooks/use-first-onboarding';
@@ -58,7 +59,8 @@ export default function Settings() {
 
   const { mutate: onUploadTermsOfService } = useUploadTermsOfService();
   const { mutate: onUploadPrivacyPolicy } = useUploadPrivacyPolicy();
-  const { mutate: onDeleteAccount } = useDeleteAccount();
+  const { mutate: onDeleteAccount, isPending: isPendingDeleteAccount } =
+    useDeleteAccount();
 
   const [, setIsFirstTime] = useIsFirstTime();
   const [, setIsFirstOnboardingDone] = useFirstOnboarding();
@@ -210,7 +212,6 @@ export default function Settings() {
             <Button
               label={translate('settings.logout')}
               icon={<LogoutIcon width={30} height={30} />}
-              loading={isPendingUpdateUser}
               variant="destructive"
               className="mt-4 h-[48px] rounded-full active:opacity-80"
               textClassName="font-medium-poppins text-base"
@@ -220,9 +221,11 @@ export default function Settings() {
 
             <Button
               label="Deactivate & Delete Account"
-              icon={<LogoutIcon width={30} height={30} />}
-              loading={isPendingUpdateUser}
-              variant="destructive"
+              icon={
+                <DeactivateIcon width={30} height={30} color={colors.white} />
+              }
+              loading={isPendingDeleteAccount}
+              variant="outline"
               className="mt-4 h-[48px] rounded-full active:opacity-80"
               textClassName="font-medium-poppins text-base"
               iconPosition="left"
