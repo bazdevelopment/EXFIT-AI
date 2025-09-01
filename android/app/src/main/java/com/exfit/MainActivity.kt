@@ -1,4 +1,4 @@
-package com.exfit.development
+package com.exfit
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

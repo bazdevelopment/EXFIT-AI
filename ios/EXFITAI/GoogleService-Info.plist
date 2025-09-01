@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>447041935659-1i3qtgggc1t7vimovd6ttft744crigvt.apps.googleusercontent.com</string>
+	<string>596558526481-v9f6g1b0vsks6d1td7s2q7v7h4a8qja2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.447041935659-1i3qtgggc1t7vimovd6ttft744crigvt</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>447041935659-pjto0qpnnffc3g910jh1hfo5v2g73i27.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.596558526481-v9f6g1b0vsks6d1td7s2q7v7h4a8qja2</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDxlmJkAOYRGhYJV-gIVVVPBbiz9GLYN_Y</string>
+	<string>AIzaSyB8fr0GvqY55y8YeKaW1zjKz9RWQYB-2D8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>447041935659</string>
+	<string>596558526481</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.exfit.development</string>
+	<string>com.exfit</string>
 	<key>PROJECT_ID</key>
-	<string>exfit-ai-dev-9d0fe</string>
+	<string>exfit-ai-prod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>exfit-ai-dev-9d0fe.firebasestorage.app</string>
+	<string>exfit-ai-prod.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:447041935659:ios:746020b8bba83c1c748d6e</string>
+	<string>1:596558526481:ios:e3674d8c819d62d91dd9b0</string>
 </dict>
 </plist>

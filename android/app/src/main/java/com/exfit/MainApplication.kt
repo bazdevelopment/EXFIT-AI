@@ -1,4 +1,4 @@
-package com.exfit.development
+package com.exfit
 
 import android.app.Application
 import android.content.res.Configuration
