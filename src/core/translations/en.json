@@ -202,8 +202,8 @@
       "generateReportScreen": {
         "title": "We appreciate your patience! Here’s your AI report. ",
         "userInput": "Your Submission",
-        "medicalReport": "Microscopy Report",
-        "report": "AI-Generated Microscopy Report",
+        "medicalReport": "Fitness Report",
+        "report": "AI-Generated Fitness Report",
         "conversationName": "Conversation name"
       },
       "verifyEmail": {
@@ -212,15 +212,7 @@
       "filePreviewScreen": {
         "generateReportButton": "Start Analysis"
       },
-      "disclaimerScreen": {
-        "heading": "Important Disclaimer",
-        "subheading": "EXFIT AI is designed for microscopy professionals, researchers, students, and enthusiasts",
-        "consentAgreement": "I have read and consent to the disclaimer.",
-        "firstConsent": "EXFIT AI does not provide health measurements, diagnoses, or treatment advice, nor is it intended for such purposes. Users of EXFIT AI must apply their clinical judgment and verify information from authoritative sources before making any clinical decisions.",
-        "secondConsent": "EXFIT AI is not a diagnostic tool, treatment platform, or a replacement for professional medical advice. It offers AI-generated insights to assist healthcare professionals in accessing medical knowledge and analyzing medical images and documents. EXFIT AI is an AI-driven informational and educational app designed more to support licensed healthcare professionals.",
-        "fourthConsent": "EXFIT AI is not classified as a medical device and does not claim regulatory approval. It is intended for educational and informational purposes to complement professional expertise.",
-        "fifthConsent": "EXFIT AI does not collect, store, or process personal or patient data. All user interactions are confidential and limited to the scope of the app."
-      },
+
       "contactUs": {
         "heading": "Feel free to email us directly, and our team will get back to you as soon as possible",
         "customerSupport": "Customer Support",
@@ -245,14 +237,6 @@
       },
       "finalReportHeader": {
         "message": "This is the report result!"
-      },
-      "uploadFile": {
-        "title": "Upload any microscopy sample for analysis",
-        "size": "Max: {{imageLimit}}MB (images), {{videoLimit}}MB (videos)",
-        "location": "Select from Gallery or Files",
-        "fileType": "PNG, JPG, PDF, or MP4",
-        "openCamera": "Open Camera & Take Photo",
-        "scanType": "Only microscopy samples allowed"
       }
     }
   },
@@ -358,7 +342,7 @@
       "label": "Tap To View"
     },
     "UpgradeBanner": {
-      "heading": "Upgrade Now",
+      "heading": "Upgrade Plan!",
       "subheading": "Unlock unlimited scans by upgrading your plan"
     },
     "PromptSection": {

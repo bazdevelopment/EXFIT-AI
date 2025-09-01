@@ -20,6 +20,7 @@ import {
   Button,
   CheckboxIcon,
   colors,
+  FocusAwareStatusBar,
   Image,
   Switch,
   Text,
@@ -170,7 +171,7 @@ const PricingCard = ({
           )}
           {isFree && (
             <View className="absolute -top-6 right-3 self-end rounded px-2 py-1">
-              <Text className="font-extra-bold-poppins text-xl text-black">
+              <Text className="font-bold-poppins text-xl text-black">
                 {translate('general.free')}
               </Text>
             </View>
@@ -220,6 +221,7 @@ const PaywallNew = () => {
   const [freeTrialEnabled, setFreeTrialEnabled] = useState(
     selectedPlan === 'weekly'
   );
+  console.log('selectedPlan boss', selectedPlan);
 
   // Handle switch toggle
   const handleSwitchToggle = (value: boolean) => {
@@ -286,9 +288,7 @@ const PaywallNew = () => {
     const packageIdentifier =
       selectedPlan === 'yearly'
         ? SUBSCRIPTION_PLANS_PER_PLATFORM?.YEARLY
-        : selectedPlan === 'monthly'
-          ? SUBSCRIPTION_PLANS_PER_PLATFORM?.MONTHLY
-          : SUBSCRIPTION_PLANS_PER_PLATFORM?.WEEKLY;
+        : SUBSCRIPTION_PLANS_PER_PLATFORM?.WEEKLY;
 
     const customerInfoAfterPurchase = await purchaseSubscription({
       packageIdentifier,
@@ -304,7 +304,6 @@ const PaywallNew = () => {
         logEvent,
         setIsFirstTime,
       });
-      console.log('ajunge aici');
       requestAppRatingWithDelay(3000);
       DEVICE_TYPE.IOS && router.dismiss();
     }
@@ -312,10 +311,14 @@ const PaywallNew = () => {
 
   return (
     <View className="flex-1 bg-white dark:bg-black">
+      <FocusAwareStatusBar hidden />
       <SafeAreaView className="flex-1">
         <ScrollView
           className="flex-1"
-          contentContainerStyle={{ paddingBottom: 100 }}
+          contentContainerStyle={{
+            paddingBottom: 100,
+            marginTop: DEVICE_TYPE.ANDROID ? 30 : 0,
+          }}
           showsVerticalScrollIndicator={false}
         >
           {/* Header */}
@@ -335,6 +338,7 @@ const PaywallNew = () => {
                   logEvent,
                   setIsFirstTime,
                 });
+                requestAppRatingWithDelay(3000);
                 DEVICE_TYPE.IOS && router.dismiss();
 
                 return;

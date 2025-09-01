@@ -17,24 +17,18 @@ const MotivationBanner = ({
 }) => {
   const handleNavigateToExcuseBuster = () => {
     if (isUpgradeRequired) {
+      //!give the user the change to use 2 conversations
       return Toast.showCustomToast(
         <CustomAlert
-          title={translate('general.attention')}
+          title={'Dear user,'}
           subtitle={
-            'Upgrade to premium to use this feature —  Enjoy advanced AI tools, exclusive features, and everything you need to stay ahead, all in one place.'
+            'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
           }
           buttons={[
             {
               label: translate('components.UpgradeBanner.heading'),
               variant: 'default',
-              onPress: () =>
-                router.push({
-                  pathname: '/paywall-new',
-                  params: {
-                    showFreeTrialOffering: 'false',
-                    allowToNavigateBack: 'true',
-                  },
-                }),
+              onPress: () => router.navigate('/paywall-new'),
               buttonTextClassName: 'dark:text-white',
               className:
                 'flex-1 rounded-xl h-[48] bg-primary-900 active:opacity-80 dark:bg-primary-900',

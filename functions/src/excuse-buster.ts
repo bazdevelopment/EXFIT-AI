@@ -249,6 +249,78 @@ const getExcuseBusterConversationHandler = async (
   }
 };
 
+const getAllUserExcuseBusterConversationsHandler = async (
+  data: { userId?: string; limit?: number; orderBy?: 'asc' | 'desc' },
+  context: any,
+) => {
+  // Ensure the user is authenticated
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      'unauthenticated',
+      'Authentication is required to fetch conversations.',
+    );
+  }
+
+  // Use the authenticated user's ID if no userId is provided
+  const targetUserId = data.userId || context.auth.uid;
+
+  // Ensure the user can only access their own conversations unless they're an admin
+  if (data.userId && data.userId !== context.auth.uid) {
+    // You can add admin check here if needed
+    // For now, users can only access their own conversations
+    throw new functions.https.HttpsError(
+      'permission-denied',
+      'You can only access your own conversations.',
+    );
+  }
+
+  // Set default limit and validate
+  const limit = data.limit || 100000;
+  const orderBy = data.orderBy === 'asc' ? 'asc' : 'desc';
+
+  try {
+    // Build the Firestore query
+    const query = admin
+      .firestore()
+      .collection('conversationsExcuseBuster')
+      .where('userId', '==', targetUserId)
+      .orderBy('createdAt', orderBy)
+      .limit(limit);
+
+    // Execute the query
+    const querySnapshot = await query.get();
+
+    // Check if any conversations exist
+    if (querySnapshot.empty) {
+      return {
+        success: true,
+        conversations: [],
+        count: 0,
+        message: 'No conversations found for this user.',
+      };
+    }
+
+    // Extract conversation data
+    const conversations = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // Return the conversations
+    return {
+      success: true,
+      conversations,
+      count: conversations.length,
+    };
+  } catch (error) {
+    console.error('Error fetching user conversations:', error);
+    throw new functions.https.HttpsError(
+      'internal',
+      'Internal Server Error while fetching conversations.',
+    );
+  }
+};
+
 const continueExcuseBusterConversation = async (
   data: {
     conversationId: string;
@@ -424,4 +496,8 @@ const continueExcuseBusterConversation = async (
   }
 };
 
-export { continueExcuseBusterConversation, getExcuseBusterConversationHandler };
+export {
+  continueExcuseBusterConversation,
+  getAllUserExcuseBusterConversationsHandler,
+  getExcuseBusterConversationHandler,
+};

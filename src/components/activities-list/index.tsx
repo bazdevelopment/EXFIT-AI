@@ -79,7 +79,7 @@ const ActivitiesList = ({
       {showHeading && (
         <View className="mb-3 flex-row items-center justify-between">
           <Text className="font-bold-poppins text-lg text-white">
-            Today's Activities
+            {`Today's Activities (${activities?.length})`}
           </Text>
           {isToday && (
             <TouchableOpacity

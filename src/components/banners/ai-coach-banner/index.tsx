@@ -10,29 +10,24 @@ import { translate } from '@/core';
 
 const AICoachBanner = ({
   containerClassName,
-  isUpgradeRequired,
+  showUpgradeBanner,
 }: {
   containerClassName?: string;
-  isUpgradeRequired: boolean;
+  showUpgradeBanner: boolean;
 }) => {
   const handleGoToChatScreen = () => {
-    if (isUpgradeRequired) {
+    if (showUpgradeBanner) {
       return Toast.showCustomToast(
         <CustomAlert
-          title={translate('general.attention')}
-          subtitle={translate('home.homeForeground.maxNumberOfScans')}
+          title={'Dear user,'}
+          subtitle={
+            'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
+          }
           buttons={[
             {
               label: translate('components.UpgradeBanner.heading'),
               variant: 'default',
-              onPress: () =>
-                router.push({
-                  pathname: '/paywall-new',
-                  params: {
-                    showFreeTrialOffering: 'false',
-                    allowToNavigateBack: 'true',
-                  },
-                }), // a small delay in mandatory for Toast, not sure why
+              onPress: () => router.navigate('/paywall-new'),
               buttonTextClassName: 'dark:text-white',
               className:
                 'flex-1 rounded-xl h-[48] bg-primary-900 active:opacity-80 dark:bg-primary-900',

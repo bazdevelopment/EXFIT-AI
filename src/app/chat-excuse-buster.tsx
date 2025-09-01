@@ -8,7 +8,10 @@ import { ActivityIndicator, Keyboard, TextInput, View } from 'react-native';
 import { type MessageType } from 'react-native-flash-message';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 
-import { useCreateActivityLog } from '@/api/activity-logs/activity-logs.hooks';
+import {
+  useCreateActivityLog,
+  useGetCalendarActivityLog,
+} from '@/api/activity-logs/activity-logs.hooks';
 import {
   useExcuseBusterConversation,
   useExcuseBusterConversationHistory,
@@ -19,15 +22,20 @@ import BounceLoader from '@/components/bounce-loader';
 import Branding from '@/components/branding';
 import ChatBubbleExcuseBuster from '@/components/chat-bubble-excuse-buster';
 import { type IExcuseBusterMessage } from '@/components/chat-bubble-excuse-buster/chat-bubble-excuse-buster.interface';
+import CustomAlert from '@/components/custom-alert';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
+import Toast from '@/components/toast';
 import TypingIndicator from '@/components/typing-indicator';
 import { colors, Image, Text } from '@/components/ui';
 import { ArrowLeft, PaperPlane } from '@/components/ui/assets/icons';
+import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
 import { LOADING_MESSAGES_CHATBOT } from '@/constants/loading-messages';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
+import useKeyboard from '@/core/hooks/use-keyboard';
 import { useTextToSpeech } from '@/core/hooks/use-text-to-speech';
+import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { checkIsVideo } from '@/core/utilities/check-is-video';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 import { generateUniqueId } from '@/core/utilities/generate-unique-id';
@@ -61,8 +69,16 @@ const ChatExcuseBuster = () => {
   } = useTextToSpeech({
     preferredGender: 'female',
   });
-
+  const {
+    currentYear,
+    currentMonthNumber,
+    startOfWeek,
+    endOfWeek,
+    currentDayNumber,
+  } = useWeekNavigation();
   const { colorScheme } = useColorScheme();
+  const { isKeyboardVisible } = useKeyboard();
+
   const isDark = colorScheme === 'dark';
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
@@ -72,6 +88,17 @@ const ChatExcuseBuster = () => {
     conversationId as string
   );
 
+  const { data: currentWeekActivityLogs } = useGetCalendarActivityLog({
+    startDate: startOfWeek,
+    endDate: endOfWeek,
+    language,
+  });
+
+  const todayDateKey = `${currentYear}-${currentMonthNumber}-${currentDayNumber}`;
+
+  const isActivitiesLimitReached =
+    currentWeekActivityLogs?.[todayDateKey]?.length >= MAX_DAILY_ACTIVITIES;
+
   const { sendMessage, isSending } = useExcuseBusterConversation(
     conversationId as string
   );
@@ -79,6 +106,30 @@ const ChatExcuseBuster = () => {
   const { mutateAsync: onCreateActivityLog, isPending: isCreatingTaskPending } =
     useCreateActivityLog({ onSuccess: () => router.navigate('/(app)') });
 
+  const onCreateTasks = (params) => {
+    if (isActivitiesLimitReached) {
+      return Toast.showCustomToast(
+        <CustomAlert
+          title={translate('general.attention')}
+          subtitle={`Whoa there, champ! Are you secretly training for the Olympics? You've already hit the ${MAX_DAILY_ACTIVITIES}-activity limit for today! 🏅. You can flex those muscles again tomorrow 💪!`}
+          buttons={[
+            {
+              label: 'OK',
+              variant: 'default',
+              onPress: Toast.dismiss,
+              buttonTextClassName: 'dark:text-white',
+              className:
+                'flex-1 rounded-xl h-[48] bg-primary-900 active:opacity-80 dark:bg-primary-900',
+            },
+          ]}
+        />,
+        {
+          duration: 10000000,
+        }
+      );
+    }
+    onCreateActivityLog(params);
+  };
   const handleSpeak = (messageId: string, text: string) => {
     if (currentlySpeakingId === messageId) {
       setCurrentlySpeakingId(null);
@@ -310,7 +361,7 @@ const ChatExcuseBuster = () => {
             keyExtractor={(item, index) => index.toString()}
             contentContainerStyle={{
               paddingHorizontal: 10,
-              paddingBottom: 8,
+              paddingBottom: isKeyboardVisible && DEVICE_TYPE.ANDROID ? 250 : 0,
             }}
             renderItem={({ item, index }) => (
               <ChatBubbleExcuseBuster
@@ -320,7 +371,7 @@ const ChatExcuseBuster = () => {
                 speak={(text) => handleSpeak(index.toString(), text)}
                 isSpeaking={currentlySpeakingId === index.toString()}
                 onSendMessage={handleSendMessage}
-                onCreateTask={onCreateActivityLog}
+                onCreateTask={onCreateTasks}
                 currentActiveDay={currentActiveDay}
                 isCreatingTaskPending={isCreatingTaskPending}
                 dayLabelTaskCard={dayLabelTaskCard}

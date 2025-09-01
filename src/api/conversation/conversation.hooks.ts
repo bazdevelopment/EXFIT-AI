@@ -5,6 +5,7 @@ import Toast from '@/components/toast';
 import { queryClient } from '../common';
 import {
   fetchConversation,
+  getAllUserConversations,
   sendConversationMessage,
 } from './conversation.requests';
 
@@ -14,6 +15,19 @@ export const useConversationHistory = (conversationId: string) => {
     fetcher: () => fetchConversation({ conversationId }),
     // enabled: false,
     // initialData: { messages: [] }, // Default initial data
+  })();
+};
+
+export const useGetAllUserConversations = ({
+  userId,
+  limit,
+}: {
+  userId: string;
+  limit: number;
+}) => {
+  return createQuery({
+    queryKey: ['allConversations', userId],
+    fetcher: () => getAllUserConversations({ userId, limit }),
   })();
 };
 

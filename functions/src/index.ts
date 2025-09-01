@@ -96,6 +96,10 @@ export const continueConversationV2 = usCentralFunctions.https.onRequest(
 export const getConversation = usCentralFunctions.https.onCall(
   conversationFunctions.getConversationHandler,
 );
+
+export const getAllUserConversations = usCentralFunctions.https.onCall(
+  conversationFunctions.getUserConversationsHandler,
+);
 /** excuse buster conversation collection cloud functions  */
 export const getExcuseBusterConversationMessages =
   usCentralFunctions.https.onCall(
@@ -103,6 +107,9 @@ export const getExcuseBusterConversationMessages =
   );
 export const continueExcuseBusterConversation = usCentralFunctions.https.onCall(
   excuseBusterFunctions.continueExcuseBusterConversation,
+);
+export const getAllExcuseBusterConversations = usCentralFunctions.https.onCall(
+  excuseBusterFunctions.getAllUserExcuseBusterConversationsHandler,
 );
 
 /** ai tasks cloud functions  */

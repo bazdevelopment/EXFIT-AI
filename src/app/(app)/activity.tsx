@@ -28,7 +28,6 @@ import {
 import { useOwnedPurchasedItems, useRepairStreak } from '@/api/shop/shop.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import ActivitiesList from '@/components/activities-list';
-import UpgradeBanner from '@/components/banners/upgrade-banner';
 import CustomAlert from '@/components/custom-alert';
 import { ActivityLogSuccessModal } from '@/components/modals/activity-log-success-modal';
 import { DailyCheckInModal } from '@/components/modals/daily-check-in-modal';
@@ -38,6 +37,7 @@ import Toast from '@/components/toast';
 import { colors, Image, Text, useModal } from '@/components/ui';
 import WeekBlock from '@/components/week-block';
 import { DATE_FORMAT } from '@/constants/date-format';
+import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
 import { DEVICE_TYPE } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useRefetchOnFocus } from '@/core/hooks/use-refetch-on-focus';
@@ -71,8 +71,9 @@ const Activity = () => {
     currentMonthNumber,
     startOfWeek,
     endOfWeek,
+    currentDay,
+    currentDayNumber,
   } = useWeekNavigation();
-
   const activityCompleteModal = useModal();
   const activityLogSuccessModal = useModal();
   const { data: userInfo } = useUser(language);
@@ -98,7 +99,7 @@ const Activity = () => {
     useOwnedPurchasedItems();
   // const today = getCurrentDay('YYYY-MM-DD', language);
   const { isUpgradeRequired } = useSubscriptionAlert();
-
+  const todayDateKey = `${currentYear}-${currentMonthNumber}-${currentDayNumber}`;
   const { data: currentWeekActivityLog, refetch: onRefetchActivityLog } =
     useGetCalendarActivityLog({
       startDate: startOfWeek,
@@ -106,6 +107,8 @@ const Activity = () => {
       language,
     });
 
+  const isActivitiesLimitReached =
+    currentWeekActivityLog?.[todayDateKey]?.length >= MAX_DAILY_ACTIVITIES;
   const { isRefetching, onRefetch } = useDelayedRefetch(() => {
     //add here logic to refetch
     onRefetchActivityLog();
@@ -130,7 +133,9 @@ const Activity = () => {
   );
   useScrollToTop(scrollViewRef);
   /**Trigger the refetch on focus to get the latest data */
-  useRefetchOnFocus(onRefetchActivityLog);
+  useRefetchOnFocus(() => {
+    onRefetchActivityLog();
+  });
 
   const onScrollToIndex = (record) => {
     const indexToScroll = findSectionIndexToScroll(
@@ -359,7 +364,6 @@ const Activity = () => {
             Schedule
           </Text>
         </View>
-        {isUpgradeRequired && <UpgradeBanner />}
 
         <WeekBlock
           className="px-4"
@@ -421,6 +425,7 @@ const Activity = () => {
       <DailyCheckInModal
         ref={activityCompleteModal.ref}
         isCreateActivityLogPending={isCreateActivityLogPending}
+        isActivitiesLimitReached={isActivitiesLimitReached}
         // activityLogs={}
         onSubmit={({ durationMinutes, activityName, type }) =>
           onCreateActivityLog({

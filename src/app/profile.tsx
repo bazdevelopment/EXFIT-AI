@@ -211,13 +211,6 @@ const ProfileScreen: React.FC = () => {
     // Show item details or use item
   };
 
-  const handleUpgrade = () => {
-    router.push({
-      pathname: '/paywall-new',
-      params: { showFreeTrialOffering: 'false', allowToNavigateBack: 'true' },
-    });
-  };
-
   const _handleViewAllBadges = () => {
     console.log('View all badges');
     // Navigate to badges screen

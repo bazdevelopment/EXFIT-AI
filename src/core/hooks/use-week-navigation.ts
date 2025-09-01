@@ -43,6 +43,7 @@ export const useWeekNavigation = () => {
   const segmentedDays = getSegmentedDays(weekDates);
   const interval = getWeekInterval(currentYear, weekNumber, language);
   const currentDay = getCurrentDay('ddd', language);
+  const currentDayNumber = getCurrentDay('DD', language);
 
   const { startOfWeek, endOfWeek } = getStartAndEndWeek(
     currentYear,
@@ -76,5 +77,6 @@ export const useWeekNavigation = () => {
     startOfWeek,
     endOfWeek,
     currentMonthNumber,
+    currentDayNumber,
   };
 };

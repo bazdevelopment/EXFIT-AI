@@ -5,6 +5,7 @@ import Toast from '@/components/toast';
 import { queryClient } from '../common';
 import {
   fetchExcuseBusterConversation,
+  getAllUserExcuseBusterConversations,
   sendExcuseBusterConversationMessage,
 } from './excuse-buster-conversation.requests';
 
@@ -36,4 +37,17 @@ export const useExcuseBusterConversation = (conversationId: string) => {
     sendMessage: sendMessageMutation.mutateAsync,
     isSending: sendMessageMutation.isPending,
   };
+};
+
+export const useGetAllExcuseBusterConversations = ({
+  userId,
+  limit,
+}: {
+  userId: string;
+  limit: number;
+}) => {
+  return createQuery({
+    queryKey: ['allConversationsExcuseBuster', userId],
+    fetcher: () => getAllUserExcuseBusterConversations({ userId, limit }),
+  })();
 };

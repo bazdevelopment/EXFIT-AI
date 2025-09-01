@@ -18,6 +18,23 @@ export const fetchConversation = async ({
   }
 };
 
+export const getAllUserConversations = async ({
+  userId,
+  limit,
+}: {
+  userId: string;
+  limit: number;
+}) => {
+  try {
+    const { data } = await firebaseCloudFunctionsInstance.httpsCallable(
+      'getAllUserConversations'
+    )({ userId, limit });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const sendConversationMessage = async ({
   userMessage,
   conversationId,

@@ -15,6 +15,26 @@ export const fetchExcuseBusterConversation = async ({
   }
 };
 
+export const getAllUserExcuseBusterConversations = async ({
+  userId,
+  limit,
+}: {
+  userId: string;
+  limit: number;
+}) => {
+  try {
+    const { data } = await firebaseCloudFunctionsInstance.httpsCallable(
+      'getAllExcuseBusterConversations'
+    )({
+      userId,
+      limit,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const sendExcuseBusterConversationMessage = async ({
   userMessage,
   conversationId,

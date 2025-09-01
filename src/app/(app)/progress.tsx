@@ -13,7 +13,6 @@ import {
 import { BarChart, LineChart, PieChart } from 'react-native-gifted-charts';
 
 import { useProgressData } from '@/api/progress/progress.hooks';
-import UpgradeBanner from '@/components/banners/upgrade-banner';
 import EdgeCaseTemplate from '@/components/edge-case-template';
 import FadeInView from '@/components/fade-in-view/fade-in-view';
 import ScreenWrapper from '@/components/screen-wrapper';
@@ -278,7 +277,6 @@ const EnhancedProgressScreen = () => {
         }
       >
         {/* Header */}
-        {isUpgradeRequired && <UpgradeBanner />}
 
         <View className="mt-2 px-6">
           <Text className="mb-2 font-bold-poppins text-3xl text-white">

@@ -8,9 +8,11 @@ import { Alert, Dimensions, Image, Linking, View } from 'react-native';
 import { useScanImage } from '@/api/scan/scan.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import CameraCaptureButton from '@/components/camera-capture-button';
+import CustomAlert from '@/components/custom-alert';
 import FadeInView from '@/components/fade-in-view/fade-in-view';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
+import Toast from '@/components/toast';
 import { Button, colors, Text } from '@/components/ui';
 import {
   ArrowLeft,
@@ -19,7 +21,9 @@ import {
   RetakeIcon,
   SettingsWheelIcon,
 } from '@/components/ui/assets/icons';
-import { DEVICE_TYPE, useSelectedLanguage } from '@/core';
+import { MAX_SCANS_FOR_FREE } from '@/constants/limits';
+import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
+import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { createFormDataImagePayload } from '@/core/utilities/create-form-data-image-payload';
 
 import { Camera as CameraIcon } from '../../components/ui/assets/icons';
@@ -37,6 +41,9 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
   const scanningLottieRef = useRef<LottieView>(null);
   const { language } = useSelectedLanguage();
   const { data: userInfo } = useUser(language);
+  const completedScans = userInfo?.completedScans || 0;
+
+  const { isUpgradeRequired } = useSubscriptionAlert();
 
   const onSuccess = ({ conversationId }: { conversationId: string }) => {
     retakePhoto();
@@ -68,6 +75,33 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
     // handleCloseScanningModal,
     // resetFlow,
   });
+
+  const handleScanImage = () => {
+    if (isUpgradeRequired && completedScans >= MAX_SCANS_FOR_FREE) {
+      return Toast.showCustomToast(
+        <CustomAlert
+          title={'Dear user,'}
+          subtitle={
+            'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
+          }
+          buttons={[
+            {
+              label: translate('components.UpgradeBanner.heading'),
+              variant: 'default',
+              onPress: () => router.navigate('/paywall-new'),
+              buttonTextClassName: 'dark:text-white',
+              className:
+                'flex-1 rounded-xl h-[48] bg-primary-900 active:opacity-80 dark:bg-primary-900',
+            },
+          ]}
+        />,
+        {
+          duration: 10000000,
+        }
+      );
+    }
+    onScanImage(imagePayload);
+  };
 
   useEffect(() => {
     (async () => {
@@ -156,7 +190,9 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
         />
       )}
 
-      <View className="absolute top-2 w-full flex-row items-center justify-between px-6 pt-14">
+      <View
+        className={`absolute top-2 w-full flex-row items-center justify-between px-6 ${DEVICE_TYPE.IOS ? 'pt-14' : 'pt-4'}`}
+      >
         <Icon
           size={24}
           containerStyle="rounded-full bg-charcoal-800/40 p-3"
@@ -208,7 +244,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
                 label={'Continue ✨'}
                 className="h-[40px] flex-1 rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
                 textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
-                onPress={() => onScanImage(imagePayload)}
+                onPress={handleScanImage}
                 disabled={isScanning}
               />
             </FadeInView>
@@ -222,7 +258,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
 export default Scan;
 
 const ScanningOverlay = ({ capturedImage, isScanning }) => (
-  <View className="absolute inset-0  items-center justify-center">
+  <View className="absolute inset-0 -top-10  items-center justify-center">
     {/* Scanning Frame */}
     <View className="relative">
       {/* Corner Brackets */}
@@ -244,7 +280,7 @@ const ScanningOverlay = ({ capturedImage, isScanning }) => (
         {/* Instructions */}
         {!capturedImage && !isScanning ? (
           <View className="-top-[80px] rounded-full bg-charcoal-800/40 p-2 ">
-            <Text className="text-center text-sm text-white">
+            <Text className="text-center font-medium-poppins text-sm text-white">
               You can scan anything related to your physical activity
             </Text>
           </View>

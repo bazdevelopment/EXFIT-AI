@@ -11,10 +11,7 @@ const UpgradeBanner = ({
   additionalClassName?: string;
 }) => {
   const handleUpgrade = () => {
-    router.push({
-      pathname: '/paywall-new',
-      params: { showFreeTrialOffering: 'false', allowToNavigateBack: 'true' },
-    });
+    router.navigate('/paywall-new');
   };
   return (
     <View className={`mx-4 mb-6 ${additionalClassName}`}>

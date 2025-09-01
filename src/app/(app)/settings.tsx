@@ -15,7 +15,6 @@ import { seedShopItems } from '@/api/shop/shop.requests';
 import { useUploadTermsOfService } from '@/api/terms-of-service/terms-of-service.hooks';
 import { useDeleteAccount, useUpdateUser } from '@/api/user/user.hooks';
 import { logout } from '@/api/user/user.requests';
-import UpgradeBanner from '@/components/banners/upgrade-banner';
 import CustomAlert from '@/components/custom-alert';
 import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
@@ -149,8 +148,6 @@ export default function Settings() {
       </View>
       <View className="flex-1">
         <ScrollView ref={scrollViewRef}>
-          {isUpgradeRequired && <UpgradeBanner />}
-
           <View className="mb-20 px-6">
             <ItemsContainer title="settings.generale">
               <Item

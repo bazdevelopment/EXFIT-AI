@@ -14,7 +14,6 @@ export const seedShopItems = async () => {
 
     return data;
   } catch (error) {
-    console.log('error here', error);
     throw error;
   }
 };
@@ -26,7 +25,6 @@ export const getShopItems = async (): Promise<IShopItems> => {
     const { data } = await handleGetShopItems();
     return data as IShopItems;
   } catch (error) {
-    console.log('error here', error);
     throw error;
   }
 };
@@ -39,7 +37,6 @@ export const fetchOwnedPurchasedItems =
       const { data } = await handleFetchOwnedItems();
       return data as IOwnedPurchaseItems;
     } catch (error) {
-      console.log('error here', error);
       throw error;
     }
   };
@@ -58,10 +55,8 @@ export const purchaseShopItem = async ({
       itemId,
       quantity,
     });
-    console.log('data here after purchase', data);
     return data as IPurchaseShopItemResponse;
   } catch (error) {
-    console.log('error here', error);
     throw error;
   }
 };
@@ -73,7 +68,6 @@ export const onStreakRepair = async () => {
     const { data } = await handleStreakRepair();
     return data;
   } catch (error) {
-    console.log('error onStreakRepair', error);
     throw error;
   }
 };

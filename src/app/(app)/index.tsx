@@ -1,6 +1,6 @@
 import { getCalendars } from 'expo-localization';
 import { router } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   RefreshControl,
   ScrollView,
@@ -13,6 +13,8 @@ import {
   useGetCalendarActivityLog,
   useUpdateActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
+import { useGetAllUserConversations } from '@/api/conversation/conversation.hooks';
+import { useGetAllExcuseBusterConversations } from '@/api/excuse-buster-conversation/excuse-buster-conversation.hooks';
 import { useFetchUserNotifications } from '@/api/push-notifications/push-notifications.hooks';
 import { useOwnedPurchasedItems, useRepairStreak } from '@/api/shop/shop.hooks';
 import { useUser } from '@/api/user/user.hooks';
@@ -20,6 +22,7 @@ import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
 import MotivationBanner from '@/components/banners/motivation-banner';
 import CalendarMiniView from '@/components/calendar-mini-view';
+import CustomAlert from '@/components/custom-alert';
 import DailyCheckInStatus from '@/components/daily-check-in-status';
 import Greeting from '@/components/greeting';
 import Icon from '@/components/icon';
@@ -34,18 +37,29 @@ import TaskListOverview from '@/components/task-list-overview';
 import Toast from '@/components/toast';
 import { colors, Image, useModal } from '@/components/ui';
 import { BellIcon, ShoppingCart } from '@/components/ui/assets/icons';
-import { DEVICE_TYPE, useSelectedLanguage } from '@/core';
+import {
+  MAX_AI_COACH_CONVERSATIONS_FOR_FREE,
+  MAX_DAILY_ACTIVITIES,
+  MAX_EXCUSE_BUSTER_CONVERSATIONS_FOR_FREE,
+  MAX_SCANS_FOR_FREE,
+  TOTAL_ACTIVITIES_PER_WEEK_FOR_FREE,
+} from '@/constants/limits';
+import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
+import { useRefetchOnFocus } from '@/core/hooks/use-refetch-on-focus';
 import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { avatars, type TAvatarGender } from '@/core/utilities/avatars';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 import { generateWeekDataOverview } from '@/core/utilities/generate-week-data-overview';
+import { requestAppRatingWithDelay } from '@/core/utilities/request-app-review';
 
 // eslint-disable-next-line max-lines-per-function
 export default function Home() {
   const { language } = useSelectedLanguage();
   const { data: userInfo, refetch: refetchUserInfo } = useUser(language);
+  const completedScans = userInfo?.completedScans || 0;
+
   const activityCompleteModal = useModal();
   const activitySkippedModal = useModal();
   const dailyActivityModal = useModal();
@@ -56,6 +70,22 @@ export default function Home() {
       userId: userInfo?.userId,
       language,
     })();
+  const { data: allConversations, refetch: refetchAllUsersConversations } =
+    useGetAllUserConversations({
+      userId: userInfo.userId,
+      limit: 10,
+    });
+
+  const {
+    data: excuseBusterConversations,
+    refetch: refetchAllExcuseBusterConversations,
+  } = useGetAllExcuseBusterConversations({
+    userId: userInfo.userId,
+    limit: 10,
+  });
+
+  const coachConversationsLength = allConversations?.count || 0;
+  const excuseBusterConversationsCount = excuseBusterConversations?.count || 0;
 
   const { data: ownPurchasedData, refetch: refetchOwnedShopItems } =
     useOwnedPurchasedItems();
@@ -84,6 +114,11 @@ export default function Home() {
   //   ? dayjs(userInfo?.gamification.lostStreakTimestamp).format('YYYY-MM-DD')
   //   : '';
 
+  useRefetchOnFocus(() => {
+    refetchAllExcuseBusterConversations();
+    refetchAllUsersConversations();
+  });
+
   const {
     segmentedDays,
     currentMonth,
@@ -93,6 +128,7 @@ export default function Home() {
     startOfWeek,
     endOfWeek,
     weekOffset,
+    currentDayNumber,
   } = useWeekNavigation();
   const {
     mutateAsync: onCreateActivityLog,
@@ -113,6 +149,15 @@ export default function Home() {
       endDate: endOfWeek,
       language,
     });
+
+  const todayDateKey = `${currentYear}-${currentMonthNumber}-${currentDayNumber}`;
+
+  const isActivitiesLimitReached =
+    currentWeekActivityLogs?.[todayDateKey]?.length >= MAX_DAILY_ACTIVITIES;
+
+  const totalActivitiesPerWeek = currentWeekActivityLogs
+    ? Object.values(currentWeekActivityLogs)?.filter(Boolean)?.flat()?.length
+    : 0;
 
   const generatedWeekData = generateWeekDataOverview({
     currentWeekActivityLog: currentWeekActivityLogs,
@@ -151,6 +196,21 @@ export default function Home() {
     refetchUserNotifications();
     refetchOwnedShopItems();
   });
+
+  /* *ask for rating */
+  useEffect(() => {
+    if (
+      completedScans === MAX_SCANS_FOR_FREE ||
+      excuseBusterConversationsCount === 5 ||
+      coachConversationsLength === 5
+    ) {
+      requestAppRatingWithDelay(1000);
+    }
+  }, [
+    completedScans,
+    coachConversationsLength,
+    excuseBusterConversationsCount,
+  ]);
 
   return (
     <ScreenWrapper>
@@ -214,7 +274,6 @@ export default function Home() {
           additionalClassName="ml-6 my-3"
           textClassName="text-white dark:text-white"
         />
-        {/* {isUpgradeRequired && <UpgradeBanner />} */}
 
         <View className="mx-1 rounded-2xl bg-[#191A21] pb-2">
           {currentWeekActivityLogs && (
@@ -256,12 +315,39 @@ export default function Home() {
               statuses={extractStatusesFromDay(
                 currentWeekActivityLogs?.[currentActiveDay]
               )}
-              onAddActivity={() =>
+              onAddActivity={() => {
+                if (
+                  isUpgradeRequired &&
+                  totalActivitiesPerWeek >= TOTAL_ACTIVITIES_PER_WEEK_FOR_FREE
+                ) {
+                  return Toast.showCustomToast(
+                    <CustomAlert
+                      title={'Dear user,'}
+                      subtitle={
+                        'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
+                      }
+                      buttons={[
+                        {
+                          label: translate('components.UpgradeBanner.heading'),
+                          variant: 'default',
+                          onPress: () => router.navigate('/paywall-new'),
+                          // a small delay in mandatory for Toast, not sure why
+                          buttonTextClassName: 'dark:text-white',
+                          className:
+                            'flex-1 rounded-xl h-[48] bg-primary-900 active:opacity-80 dark:bg-primary-900',
+                        },
+                      ]}
+                    />,
+                    {
+                      duration: 10000000,
+                    }
+                  );
+                }
                 activityCompleteModal.present({
                   type: 'custom_activity',
                   date: currentActiveDay,
-                })
-              }
+                });
+              }}
             />
           )}
 
@@ -295,16 +381,24 @@ export default function Home() {
         <View className="mx-2">
           <MotivationBanner
             containerClassName="mt-4"
-            isUpgradeRequired={isUpgradeRequired}
+            isUpgradeRequired={
+              isUpgradeRequired &&
+              excuseBusterConversationsCount >=
+                MAX_EXCUSE_BUSTER_CONVERSATIONS_FOR_FREE
+            }
           />
           <AICoachBanner
             containerClassName="mt-4"
-            isUpgradeRequired={isUpgradeRequired}
+            showUpgradeBanner={
+              isUpgradeRequired &&
+              coachConversationsLength >= MAX_AI_COACH_CONVERSATIONS_FOR_FREE
+            }
           />
         </View>
       </ScrollView>
       <DailyCheckInModal
         ref={activityCompleteModal.ref}
+        isActivitiesLimitReached={isActivitiesLimitReached}
         isCreateActivityLogPending={isCreateActivityLogPending}
         onSubmit={({ durationMinutes, activityName, type, date }) =>
           onCreateActivityLog({

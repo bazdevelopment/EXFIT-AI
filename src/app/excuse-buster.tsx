@@ -12,21 +12,22 @@ import { Button, colors, Image, Input, Text } from '@/components/ui';
 import { ArrowLeft, WandSparkle } from '@/components/ui/assets/icons';
 import { DEVICE_TYPE } from '@/core';
 
+const excuses = [
+  'Too tired',
+  'No time',
+  'Too sore',
+  'Gym is crowded',
+  'Not feeling it',
+  'Bad weather',
+  'Work is crazy',
+  "I'll start tomorrow",
+  'Don’t know what to do',
+  'No equipment',
+];
+
 const ExcuseBusterScreen = () => {
   const [selectedExcuses, setSelectedExcuses] = useState<string[]>([]);
   const [customExcuse, setCustomExcuse] = useState('');
-
-  const excuses = [
-    'Too tired',
-    'No time',
-    'Sore muscles',
-    'Gym too crowded',
-    'Not in the mood',
-    "It's raining",
-    'Feeling low',
-    'Busy with work',
-    "Don't know what to do",
-  ];
 
   const handleExcusePress = (excuse: string) => {
     if (selectedExcuses.includes(excuse)) {
@@ -81,7 +82,10 @@ const ExcuseBusterScreen = () => {
         className="flex-1"
         behavior={DEVICE_TYPE.IOS ? 'padding' : undefined}
       >
-        <ScrollView contentContainerClassName="flex-1">
+        <ScrollView
+          contentContainerClassName={`flex-1 `}
+          keyboardShouldPersistTaps="handled"
+        >
           <View className="flex-1">
             <View className="z-100 flex-row items-center bg-[#0a1420] p-4">
               <Icon

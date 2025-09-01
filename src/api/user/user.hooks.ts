@@ -8,7 +8,6 @@ import Toast from '@/components/toast';
 import { translate } from '@/core';
 import { Env } from '@/core/env';
 import { useCrashlytics } from '@/core/hooks/use-crashlytics';
-import { requestAppRatingWithDelay } from '@/core/utilities/request-app-review';
 import { wait } from '@/core/utilities/wait';
 
 import { queryClient } from '../common';
@@ -58,7 +57,7 @@ export const useCreateAnonymousAccount = (
       onSuccessHandler(data.user.uid);
       wait(2000).then(() => router.navigate('/(app)'));
       Toast.success(data.message);
-      requestAppRatingWithDelay(1000);
+      // requestAppRatingWithDelay(1000);
 
       //add a small delay to display the toast message
     },

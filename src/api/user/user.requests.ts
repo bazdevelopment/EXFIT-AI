@@ -253,8 +253,6 @@ export const createPermanentAccount = async ({
 
     return userCredential.user;
   } catch (error: any) {
-    console.log('error here boss', error);
-
     // Handle specific Firebase errors
     switch (error.code) {
       case 'auth/weak-password':

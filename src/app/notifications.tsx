@@ -17,13 +17,11 @@ import SkeletonLoader from '@/components/skeleton-loader';
 import { useModal } from '@/components/ui';
 import { NoNotification } from '@/components/ui/assets/illustrations';
 import { translate } from '@/core';
-import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 
 import dayjs from '../lib/dayjs';
 
 export default function NotificationsScreen() {
   const notificationModal = useModal();
-  const { isUpgradeRequired } = useSubscriptionAlert();
 
   const {
     i18n: { language },

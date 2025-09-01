@@ -2,19 +2,23 @@
 import {
   BottomSheetScrollView,
   BottomSheetTextInput,
-  BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import dayjs from 'dayjs';
 import React, { useCallback, useMemo, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
+import CustomAlert from '@/components/custom-alert';
 import HorizontalLine from '@/components/horizontal-line';
 import SelectableChip from '@/components/selectable-chip';
+import Toast from '@/components/toast';
 import { Button, colors, Modal, Text } from '@/components/ui';
 import { PlusIcon } from '@/components/ui/assets/icons';
-import { DEVICE_TYPE } from '@/core';
+import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
+import { DEVICE_TYPE, translate } from '@/core';
 
+const WrapperInput = DEVICE_TYPE.ANDROID ? TextInput : BottomSheetTextInput;
 // --- TypeScript Interfaces ---
 
 interface ActivityOption {
@@ -75,6 +79,7 @@ interface DurationSelectorProps {
 interface DailyCheckInModalProps {
   onSubmit?: (data: SubmitData) => void;
   isCreateActivityLogPending?: boolean;
+  isActivitiesLimitReached: boolean;
 }
 
 interface ModalRenderProps {
@@ -85,6 +90,7 @@ interface DailyCheckInFormProps {
   data?: ModalData;
   onFormSubmit: (data: SubmitData) => void;
   isCreateActivityLogPending?: boolean;
+  isActivitiesLimitReached: boolean;
 }
 
 // --- Helper Components (Unchanged) ---
@@ -135,7 +141,7 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({
     </View>
     {showCustomInput && (
       <View className="mt-4">
-        <BottomSheetTextInput
+        <WrapperInput
           keyboardAppearance="dark"
           placeholder="Enter custom activity"
           onChangeText={onCustomActivityChange}
@@ -181,7 +187,7 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
       />
     </View>
     {showCustomInput && (
-      <BottomSheetTextInput
+      <WrapperInput
         keyboardAppearance="dark"
         maxLength={3}
         placeholder="Enter duration (minutes)"
@@ -210,6 +216,7 @@ const initialState: ComponentState = {
 const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
   data,
   onFormSubmit,
+  isActivitiesLimitReached,
   isCreateActivityLogPending,
 }) => {
   const [state, setState] = useState<ComponentState>(initialState);
@@ -295,6 +302,27 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
   }, []);
 
   const handleSubmit = useCallback(() => {
+    if (isActivitiesLimitReached) {
+      return Toast.showCustomToast(
+        <CustomAlert
+          title={translate('general.attention')}
+          subtitle={`Whoa there, champ! Are you secretly training for the Olympics? You've already hit the ${MAX_DAILY_ACTIVITIES}-activity limit for today! 🏅. You can flex those muscles again tomorrow 💪!`}
+          buttons={[
+            {
+              label: 'OK',
+              variant: 'default',
+              onPress: Toast.dismiss,
+              buttonTextClassName: 'dark:text-white',
+              className:
+                'flex-1 rounded-xl h-[48] bg-primary-900 active:opacity-80 dark:bg-primary-900',
+            },
+          ]}
+        />,
+        {
+          duration: 10000000,
+        }
+      );
+    }
     const { activity, duration, customActivity, customDuration } = state;
     onFormSubmit({
       durationMinutes: duration || parseInt(customDuration, 10) || 0,
@@ -311,51 +339,50 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
     return !(hasActivity && hasDuration);
   }, [state]);
 
-  const Wrapper = DEVICE_TYPE.IOS ? React.Fragment : BottomSheetView;
+  const Wrapper = DEVICE_TYPE.IOS ? BottomSheetScrollView : ScrollView;
 
   return (
-    <Wrapper>
+    <Wrapper
+      className=""
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
+      contentContainerClassName={
+        DEVICE_TYPE.ANDROID ? 'pb-[400] px-4' : 'pb-[300] px-4'
+      } //!workaround to cover the entire bottom sheet with blur
+    >
       <BlurView
         blurAmount={20}
         blurType="dark"
         style={StyleSheet.absoluteFill}
       />
+      <ModalHeader date={data?.dateKey} />
 
-      <BottomSheetScrollView
-        className="flex-1 px-4"
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled"
-        contentContainerClassName={DEVICE_TYPE.ANDROID ? 'pb-[500px]' : ''} //!workaround to cover the entire bottom sheet with blur
-      >
-        <ModalHeader date={data?.dateKey} />
+      <ActivitySelector
+        activityOptions={activityOptions}
+        selectedActivity={state.activity}
+        onSelectActivity={handleSelectActivity}
+        onSelectCustom={handleSelectCustomActivity}
+        showCustomInput={state.showCustomActivity}
+        onCustomActivityChange={handleCustomActivityChange}
+      />
 
-        <ActivitySelector
-          activityOptions={activityOptions}
-          selectedActivity={state.activity}
-          onSelectActivity={handleSelectActivity}
-          onSelectCustom={handleSelectCustomActivity}
-          showCustomInput={state.showCustomActivity}
-          onCustomActivityChange={handleCustomActivityChange}
-        />
+      <DurationSelector
+        durationOptions={durationOptions}
+        selectedDuration={state.duration}
+        onSelectDuration={handleSelectDuration}
+        onSelectCustom={handleSelectCustomDuration}
+        showCustomInput={state.showCustomDuration}
+        onCustomDurationChange={handleCustomDurationChange}
+      />
 
-        <DurationSelector
-          durationOptions={durationOptions}
-          selectedDuration={state.duration}
-          onSelectDuration={handleSelectDuration}
-          onSelectCustom={handleSelectCustomDuration}
-          showCustomInput={state.showCustomDuration}
-          onCustomDurationChange={handleCustomDurationChange}
-        />
-
-        <Button
-          label="Add Activity"
-          className="h-[40px] w-full rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
-          textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
-          onPress={handleSubmit}
-          disabled={isSubmitDisabled || isCreateActivityLogPending}
-          loading={isCreateActivityLogPending}
-        />
-      </BottomSheetScrollView>
+      <Button
+        label="Add Activity"
+        className="h-[40px] w-full rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
+        textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
+        onPress={handleSubmit}
+        disabled={isSubmitDisabled || isCreateActivityLogPending}
+        loading={isCreateActivityLogPending}
+      />
     </Wrapper>
   );
 };
@@ -363,7 +390,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
 // --- Main Modal Component (Refactored) ---
 
 export const DailyCheckInModal = React.forwardRef<any, DailyCheckInModalProps>(
-  ({ onSubmit, isCreateActivityLogPending }, ref) => {
+  ({ onSubmit, isCreateActivityLogPending, isActivitiesLimitReached }, ref) => {
     const snapPoints = useMemo(() => ['85%', '92%'], []);
 
     // This handler calls the original onSubmit and then resets the form
@@ -391,6 +418,7 @@ export const DailyCheckInModal = React.forwardRef<any, DailyCheckInModalProps>(
             data={data}
             onFormSubmit={handleFormSubmit}
             isCreateActivityLogPending={isCreateActivityLogPending}
+            isActivitiesLimitReached={isActivitiesLimitReached}
           />
         )}
       </Modal>
