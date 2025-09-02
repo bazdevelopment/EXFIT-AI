@@ -31,8 +31,8 @@ const WelcomeScreen = () => {
             <FadeInView delay={200}>
               <View className="mb-6 mt-14 items-center justify-center rounded-3xl">
                 <Image
-                  source={require('assets/splash-icon.png')}
-                  className="size-[65px]"
+                  source={require('assets/splash-icon-2.png')}
+                  className="size-[100px]"
                 />
               </View>
             </FadeInView>
