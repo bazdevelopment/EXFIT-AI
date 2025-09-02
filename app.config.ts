@@ -30,7 +30,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: 'exfit-ai',
   version: Env.VERSION.toString(),
   orientation: 'portrait',
-  icon: './assets/icon.png',
+  icon: './assets/icon-2.png',
   userInterfaceStyle: 'dark',
   newArchEnabled: true,
   updates: {
@@ -79,8 +79,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.exfit',
     googleServicesFile: ClientEnv.GOOGLE_SERVICES_JSON_PATH,
     adaptiveIcon: {
-      foregroundImage: './assets/adaptive-icon.png',
-      backgroundColor: '#000000',
+      foregroundImage: './assets/adaptive-icon-2.png',
+      backgroundColor: '#3b82f6',
     },
     package: Env.PACKAGE,
     intentFilters: [
@@ -122,7 +122,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-notifications',
       {
-        icon: './assets/icon_notification_96x96.png',
+        icon: './assets/icon_notification_96x96_2.png',
         color: '#1d1e3c',
         defaultChannel: 'default',
       },
@@ -131,7 +131,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'expo-splash-screen',
       {
         backgroundColor: '#000000',
-        image: './assets/splash-icon.png',
+        image: './assets/splash-icon-2.png',
         imageWidth: 150,
       },
     ],
