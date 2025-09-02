@@ -1,20 +1,18 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { router, useLocalSearchParams } from 'expo-router';
-import React, { useEffect } from 'react';
+import { useLocalSearchParams } from 'expo-router';
+import React, { useEffect, useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { ScrollView, View } from 'react-native';
 
 import { useShopItems } from '@/api/shop/shop.hooks';
 import { useUser } from '@/api/user/user.hooks';
-import Icon from '@/components/icon';
 import { PurchaseItemModal } from '@/components/modals/purchase-item-modal';
 import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
 import SkeletonLoader from '@/components/skeleton-loader';
-import { colors, Image, Text, useModal } from '@/components/ui';
-import { ShoppingCart } from '@/components/ui/assets/icons';
+import { Image, Text, useModal } from '@/components/ui';
+import { DEVICE_DIMENSIONS } from '@/constants/device-dimensions';
 import { useSelectedLanguage } from '@/core';
-import getDeviceSizeCategory from '@/core/utilities/get-device-size-category';
 
 // mockData/shopData.ts
 
@@ -116,7 +114,7 @@ export const ShopItemCard: React.FC<ShopItemCardProps> = ({
   return (
     <TouchableOpacity
       onPress={() => onPress(item)}
-      className="h-[174] items-center justify-between rounded-2xl border border-gray-700 bg-[#191A21] p-4 transition-all duration-200 active:scale-95 dark:bg-[#191A21]"
+      className="h-[174] items-center justify-between rounded-2xl border border-blue-500 bg-[#191A21] p-4 transition-all duration-200 active:scale-95 dark:bg-[#191A21]"
       accessibilityLabel={`${item.name}, costs ${item.costInGems} gems`}
     >
       {/* Main Content */}
@@ -225,7 +223,22 @@ const ShopScreen = () => {
   const { data: userInfo } = useUser(language);
   const purchaseItemModal = useModal();
   const { displayProductName } = useLocalSearchParams();
-  const { isVerySmallDevice } = getDeviceSizeCategory();
+
+  const screenWidth = DEVICE_DIMENSIONS.DEVICE_WIDTH;
+  // Calculate items per row based on screen width
+  const itemsPerRow = useMemo(() => {
+    if (screenWidth < 350) return 1; // Very small phones
+    if (screenWidth < 400) return 2; // Small phones
+    return 3; // Normal phones and larger
+  }, [screenWidth]);
+
+  // Calculate item width with proper spacing
+  const itemWidth = useMemo(() => {
+    const padding = 20; // Assuming 16px padding on each side
+    const gaps = (itemsPerRow - 1) * 1; // 8px gap between items
+    const availableWidth = screenWidth - padding - gaps;
+    return `${(availableWidth / itemsPerRow / screenWidth) * 100}%`;
+  }, [screenWidth, itemsPerRow]);
 
   const shopItems = shopData?.items;
 
@@ -245,15 +258,15 @@ const ShopScreen = () => {
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <ScreenHeader
           title="Shop"
-          rightComponent={
-            <Icon
-              icon={<ShoppingCart />}
-              iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
-              size={20}
-              color={colors.white}
-              onPress={() => router.navigate('/shopping-cart')}
-            />
-          }
+          // rightComponent={
+          //   <Icon
+          //     icon={<ShoppingCart />}
+          //     iconContainerStyle="items-center p-2.5 self-start rounded-full border-2 border-charcoal-800"
+          //     size={20}
+          //     color={colors.white}
+          //     onPress={() => router.navigate('/shopping-cart')}
+          //   />
+          // }
         />
 
         <RewardBanner />
@@ -262,14 +275,17 @@ const ShopScreen = () => {
           <SkeletonLoader />
         ) : (
           <View className="mt-8 px-6 pb-8">
-            <Text className="mb-4 font-semibold-poppins text-xl text-white">
+            <Text className="mb-2 font-semibold-poppins text-xl text-white">
               Streak
             </Text>
             <View className="flex-row flex-wrap justify-between">
               {shopItems?.map((item, index) => (
                 <View
                   key={item.id}
-                  className={`mb-4 ${isVerySmallDevice ? 'w-[48%]' : 'w-[32%]'} `}
+                  className="mb-4"
+                  style={{
+                    width: itemWidth,
+                  }}
                 >
                   <ShopItemCard
                     item={item}

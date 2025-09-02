@@ -75,6 +75,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     typedRoutes: true,
   },
   android: {
+    softwareKeyboardLayoutMode: 'pan',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.exfit',
     googleServicesFile: ClientEnv.GOOGLE_SERVICES_JSON_PATH,
     adaptiveIcon: {

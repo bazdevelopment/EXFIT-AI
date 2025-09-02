@@ -301,7 +301,7 @@ const ChatExcuseBuster = () => {
   return (
     <ScreenWrapper>
       <KeyboardAvoidingView
-        behavior={DEVICE_TYPE.IOS ? 'padding' : undefined}
+        behavior={DEVICE_TYPE.IOS ? 'padding' : 'padding'}
         className="flex-1"
       >
         <View className="-mt-4 flex-1">
@@ -358,10 +358,11 @@ const ChatExcuseBuster = () => {
             ref={flashListRef}
             data={messages}
             extraData={isSpeaking || isCreatingTaskPending}
+            keyboardShouldPersistTaps="handled"
             keyExtractor={(item, index) => index.toString()}
             contentContainerStyle={{
               paddingHorizontal: 10,
-              paddingBottom: isKeyboardVisible && DEVICE_TYPE.ANDROID ? 250 : 0,
+              // paddingBottom: isKeyboardVisible && DEVICE_TYPE.ANDROID ? 250 : 0,
             }}
             renderItem={({ item, index }) => (
               <ChatBubbleExcuseBuster
@@ -383,6 +384,10 @@ const ChatExcuseBuster = () => {
           />
 
           {/* Input Area */}
+          {/* <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0} // Adjust if you have a tab bar
+        > */}
           <View className="w-full flex-row items-center justify-between gap-3 bg-black px-3 pb-2 pt-4 dark:border-blackEerie dark:bg-black">
             <View className="flex-1 rounded-2xl border border-white/20 bg-[#191A21] px-4 py-1">
               <TextInput
@@ -404,6 +409,7 @@ const ChatExcuseBuster = () => {
               size={21}
             />
           </View>
+          {/* </KeyboardAvoidingView> */}
         </View>
       </KeyboardAvoidingView>
     </ScreenWrapper>
