@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 
 import { Text } from '../ui';
 import { type ISelectableChip } from './selectable-chip.interface';
@@ -13,9 +13,14 @@ const SelectableChip = ({
   textClassName,
 }: ISelectableChip) => {
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
-      activeOpacity={0.7}
+      style={({ pressed }) => [
+        {
+          opacity: pressed ? 0.7 : 1,
+          zIndex: 1000,
+        },
+      ]}
       className={`
         mb-3 ml-3 flex-row items-center rounded-xl px-5 py-2
         ${isSelected ? 'bg-[#4E52FB]' : 'bg-[#191A21]'}
@@ -31,7 +36,7 @@ const SelectableChip = ({
       >
         {title}
       </Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

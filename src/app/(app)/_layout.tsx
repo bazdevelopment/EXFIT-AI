@@ -80,7 +80,7 @@ export default function TabLayout() {
   useEffect(() => {
     storeDeviceInfo();
   }, []);
-  
+
   if (isConnected === false && isConnected !== null) return <NoInternet />;
 
   if (isPendingUserinfo || isPendingRevenueCatSdkInit)

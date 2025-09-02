@@ -13,7 +13,7 @@ import {
   View,
 } from 'react-native';
 import { type MessageType } from 'react-native-flash-message';
-import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 
 import {
   useConversation,
@@ -31,7 +31,7 @@ import TypingIndicator from '@/components/typing-indicator';
 import { colors, Image, Text } from '@/components/ui';
 import { ArrowLeft, PaperPlane } from '@/components/ui/assets/icons';
 import { LOADING_MESSAGES_CHATBOT } from '@/constants/loading-messages';
-import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
 import useKeyboard from '@/core/hooks/use-keyboard';
 import { useTextToSpeech } from '@/core/hooks/use-text-to-speech';
@@ -276,10 +276,13 @@ const ChatScreen = () => {
 
   return (
     <ScreenWrapper>
-      <KeyboardAvoidingView
-        behavior={DEVICE_TYPE.IOS ? 'padding' : undefined}
-        className={`flex-1 `}
-        // ${isKeyboardVisible && DEVICE_TYPE.ANDROID ? 'pb-[300px]' : undefined}
+      <KeyboardAwareScrollView
+        contentContainerStyle={{
+          //   paddingBottom: isKeyboardVisible && DEVICE_TYPE.ANDROID ? 100 : 0,
+          flex: 1,
+        }}
+        keyboardShouldPersistTaps="handled"
+        // bottomOffset={500}
       >
         {/* <ScrollView
           contentContainerClassName="flex-1"
@@ -397,7 +400,7 @@ const ChatScreen = () => {
           />
         </View>
         {/* </ScrollView> */}
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     </ScreenWrapper>
   );
 };

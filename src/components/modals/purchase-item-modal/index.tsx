@@ -1,5 +1,8 @@
 /* eslint-disable max-lines-per-function */
-import { BottomSheetScrollView, type BottomSheetModal } from '@gorhom/bottom-sheet';
+import {
+  type BottomSheetModal,
+  BottomSheetScrollView,
+} from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import LottieView from 'lottie-react-native';
 import React, { useMemo } from 'react';

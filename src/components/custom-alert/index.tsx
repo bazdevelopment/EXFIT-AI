@@ -2,7 +2,7 @@
 import { BlurView } from '@react-native-community/blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useRef } from 'react';
-import { Animated, View } from 'react-native';
+import { Animated, Modal, View } from 'react-native';
 
 import { Button, Text } from '@/components/ui';
 import { DEVICE_DIMENSIONS } from '@/constants/device-dimensions';
@@ -63,7 +63,7 @@ const CustomAlert = ({
 
   if (!visible) return null;
 
-  return (
+  const alertContent = (
     <Animated.View
       style={{
         height: DEVICE_DIMENSIONS.DEVICE_HEIGHT,
@@ -145,6 +145,15 @@ const CustomAlert = ({
         </View>
       </Animated.View>
     </Animated.View>
+  );
+
+  // Conditionally wrap with Modal only for Android
+  return DEVICE_TYPE.ANDROID ? (
+    <Modal visible={visible} transparent>
+      {alertContent}
+    </Modal>
+  ) : (
+    alertContent
   );
 };
 

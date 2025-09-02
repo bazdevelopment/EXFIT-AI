@@ -5,8 +5,8 @@ import {
 } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import dayjs from 'dayjs';
-import React, { useCallback, useMemo, useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { Keyboard, StyleSheet, TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import CustomAlert from '@/components/custom-alert';
@@ -17,6 +17,7 @@ import { Button, colors, Modal, Text } from '@/components/ui';
 import { PlusIcon } from '@/components/ui/assets/icons';
 import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
 import { DEVICE_TYPE, translate } from '@/core';
+import { wait } from '@/core/utilities/wait';
 
 const WrapperInput = DEVICE_TYPE.ANDROID ? TextInput : BottomSheetTextInput;
 // --- TypeScript Interfaces ---
@@ -221,6 +222,8 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
 }) => {
   const [state, setState] = useState<ComponentState>(initialState);
 
+  const scrollViewRef = useRef<ScrollView>(null);
+
   const activityOptions = useMemo<ActivityOption[]>(
     () => [
       { id: 'gym', label: 'Gym' },
@@ -277,6 +280,12 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
       activity: '',
       showCustomActivity: true,
     }));
+    setTimeout(() => {
+      // Scroll to the custom activity input
+      if (scrollViewRef.current && DEVICE_TYPE.ANDROID) {
+        scrollViewRef.current.scrollTo({ y: 100, animated: true });
+      }
+    }, 100);
   }, []);
 
   const handleSelectCustomDuration = useCallback(() => {
@@ -285,6 +294,13 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
       duration: 0,
       showCustomDuration: true,
     }));
+
+    setTimeout(() => {
+      // Scroll to the custom duration input
+      if (scrollViewRef.current && DEVICE_TYPE.ANDROID) {
+        scrollViewRef.current.scrollTo({ y: 300, animated: true });
+      }
+    }, 100);
   }, []);
 
   const handleCustomActivityChange = useCallback((text: string) => {
@@ -294,7 +310,29 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
   const handleCustomDurationChange = useCallback((text: string) => {
     const sanitizedText = text.replace(/[^0-9]/g, '');
     if (Number(sanitizedText) > 360) {
-      alert('Selected duration cannot exceed 360 minutes');
+      Keyboard.dismiss();
+      wait(200).then(() =>
+        Toast.showCustomToast(
+          <CustomAlert
+            title="Attention"
+            subtitle={'Selected duration cannot exceed 360 minutes'}
+            buttons={[
+              {
+                label: 'Ok',
+                variant: 'default',
+                onPress: Toast.dismiss,
+                // a small delay in mandatory for Toast, not sure why
+                buttonTextClassName: 'dark:text-white',
+                className:
+                  'flex-1 rounded-xl h-[48] bg-primary-900 active:opacity-80 dark:bg-primary-900',
+              },
+            ]}
+          />,
+          {
+            duration: 10000000,
+          }
+        )
+      );
       setState((prev) => ({ ...prev, customDuration: '' }));
       return;
     }
@@ -306,7 +344,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
       return Toast.showCustomToast(
         <CustomAlert
           title={translate('general.attention')}
-          subtitle={`Whoa there, champ! Are you secretly training for the Olympics? You've already hit the ${MAX_DAILY_ACTIVITIES}-activity limit for today! 🏅. You can flex those muscles again tomorrow 💪!`}
+          subtitle={`Whoa there, champ! Are you secretly training for the Olympics? You've already hit the ${MAX_DAILY_ACTIVITIES}-activity for today! 🏅. You can flex those muscles again tomorrow 💪!`}
           buttons={[
             {
               label: 'OK',
@@ -342,7 +380,12 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
   const Wrapper = DEVICE_TYPE.IOS ? BottomSheetScrollView : ScrollView;
 
   return (
+    // <KeyboardAvoidingView
+    //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    //   style={{ flex: 1 }}
+    // >
     <Wrapper
+      ref={scrollViewRef}
       className=""
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
@@ -384,6 +427,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
         loading={isCreateActivityLogPending}
       />
     </Wrapper>
+    // </KeyboardAvoidingView>
   );
 };
 
@@ -391,7 +435,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
 
 export const DailyCheckInModal = React.forwardRef<any, DailyCheckInModalProps>(
   ({ onSubmit, isCreateActivityLogPending, isActivitiesLimitReached }, ref) => {
-    const snapPoints = useMemo(() => ['85%', '92%'], []);
+    const snapPoints = useMemo(() => ['90%', '96%'], []);
 
     // This handler calls the original onSubmit and then resets the form
     const handleFormSubmit = useCallback(

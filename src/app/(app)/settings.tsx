@@ -3,7 +3,7 @@ import { useScrollToTop } from '@react-navigation/native';
 import { router } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useRef } from 'react';
-import { Alert, Linking } from 'react-native';
+import { Linking } from 'react-native';
 
 import { useUploadPrivacyPolicy } from '@/api/privacy-policy/privacy-policy.hooks';
 import {
@@ -73,20 +73,31 @@ export default function Settings() {
   };
 
   const handleDeleteAccount = () => {
-    Alert.alert(
-      'Delete Account',
-      'Are you sure you want to delete your account? This action cannot be undone and will permanently remove all your data.',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Delete account',
-          style: 'destructive',
-          onPress: handleOnDeleteAccount,
-        },
-      ]
+    Toast.showCustomToast(
+      <CustomAlert
+        visible
+        title="Delete Account?"
+        subtitle="Are you sure you want to delete your account? This action cannot be undone and will permanently remove all your data."
+        buttons={[
+          {
+            label: 'Close',
+            variant: 'default',
+            onPress: () => Toast.dismiss(),
+            className:
+              'flex-1 rounded-full bg-transparent dark:bg-transparent border border-white dark:border-white h-[48]',
+            buttonTextClassName: 'text-white dark:text-white text-sm',
+          },
+          {
+            label: 'Delete',
+            variant: 'destructive',
+            className: 'h-[48] flex-1 rounded-full',
+            onPress: handleOnDeleteAccount,
+          },
+        ]}
+      />,
+      {
+        duration: 10000000,
+      }
     );
   };
 
