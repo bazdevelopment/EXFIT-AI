@@ -117,6 +117,7 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({
   onSelectCustom,
   showCustomInput,
   onCustomActivityChange,
+  onFocusInput,
 }) => (
   <>
     <Text className="mb-4 font-semibold-poppins text-lg text-white">
@@ -150,6 +151,7 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({
           className="rounded-xl border border-gray-600 bg-gray-700 px-4 py-3 text-base text-white"
           returnKeyType="done"
           autoFocus
+          onFocus={onFocusInput}
         />
       </View>
     )}
@@ -164,6 +166,7 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
   onSelectCustom,
   showCustomInput,
   onCustomDurationChange,
+  onFocusInput,
 }) => (
   <View className="mb-4">
     <Text className="mb-4 font-semibold-poppins text-lg text-white">
@@ -198,6 +201,7 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
         className="rounded-xl border border-gray-600 bg-gray-700 px-4 py-3 text-base text-white"
         returnKeyType="done"
         autoFocus
+        onFocus={onFocusInput}
       />
     )}
   </View>
@@ -283,7 +287,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
     setTimeout(() => {
       // Scroll to the custom activity input
       if (scrollViewRef.current && DEVICE_TYPE.ANDROID) {
-        scrollViewRef.current.scrollTo({ y: 100, animated: true });
+        scrollViewRef.current.scrollTo({ y: 200, animated: true });
       }
     }, 100);
   }, []);
@@ -298,7 +302,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
     setTimeout(() => {
       // Scroll to the custom duration input
       if (scrollViewRef.current && DEVICE_TYPE.ANDROID) {
-        scrollViewRef.current.scrollTo({ y: 300, animated: true });
+        scrollViewRef.current.scrollTo({ y: 400, animated: true });
       }
     }, 100);
   }, []);
@@ -379,6 +383,11 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
 
   const Wrapper = DEVICE_TYPE.IOS ? BottomSheetScrollView : ScrollView;
 
+  const onFocusInput = () => {
+    if (scrollViewRef.current && DEVICE_TYPE.ANDROID) {
+      scrollViewRef.current.scrollTo({ y: 300, animated: true });
+    }
+  };
   return (
     // <KeyboardAvoidingView
     //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -390,7 +399,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
       contentContainerClassName={
-        DEVICE_TYPE.ANDROID ? 'pb-[400] px-4' : 'pb-[300] px-4'
+        DEVICE_TYPE.ANDROID ? 'pb-[400] px-4' : 'pb-[200] px-4'
       } //!workaround to cover the entire bottom sheet with blur
     >
       <BlurView
@@ -407,6 +416,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
         onSelectCustom={handleSelectCustomActivity}
         showCustomInput={state.showCustomActivity}
         onCustomActivityChange={handleCustomActivityChange}
+        onFocusInput={onFocusInput}
       />
 
       <DurationSelector
@@ -416,6 +426,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
         onSelectCustom={handleSelectCustomDuration}
         showCustomInput={state.showCustomDuration}
         onCustomDurationChange={handleCustomDurationChange}
+        onFocusInput={onFocusInput}
       />
 
       <Button
