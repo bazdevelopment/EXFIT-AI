@@ -4,8 +4,10 @@
   <dict>
     <key>CADisableMinimumFrameDurationOnPhone</key>
     <true/>
+    <key>CFBundleAllowMixedLocalizations</key>
+    <true/>
     <key>CFBundleDevelopmentRegion</key>
-    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <string>en</string>
     <key>CFBundleDisplayName</key>
     <string>EXFIT AI</string>
     <key>CFBundleExecutable</key>
@@ -14,6 +16,10 @@
     <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
+    <key>CFBundleLocalizations</key>
+    <array>
+      <string>en</string>
+    </array>
     <key>CFBundleName</key>
     <string>$(PRODUCT_NAME)</string>
     <key>CFBundlePackageType</key>
@@ -28,13 +34,13 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>exfit-ai</string>
-          <string>com.exfit</string>
+          <string>com.exfit.development</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.googleusercontent.apps.596558526481-v9f6g1b0vsks6d1td7s2q7v7h4a8qja2</string>
+          <string>com.googleusercontent.apps.447041935659-1i3qtgggc1t7vimovd6ttft744crigvt</string>
         </array>
       </dict>
       <dict>
