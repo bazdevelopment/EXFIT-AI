@@ -1,6 +1,6 @@
 {
   "name": "exfit-ai",
-  "version": "25.8.30",
+  "version": "25.8.31",
   "private": true,
   "main": "expo-router/entry",
   "scripts": {
