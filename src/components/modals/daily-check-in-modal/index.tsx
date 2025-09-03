@@ -287,7 +287,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
     setTimeout(() => {
       // Scroll to the custom activity input
       if (scrollViewRef.current && DEVICE_TYPE.ANDROID) {
-        scrollViewRef.current.scrollTo({ y: 200, animated: true });
+        scrollViewRef.current.scrollTo({ y: 100, animated: true });
       }
     }, 100);
   }, []);
@@ -302,7 +302,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
     setTimeout(() => {
       // Scroll to the custom duration input
       if (scrollViewRef.current && DEVICE_TYPE.ANDROID) {
-        scrollViewRef.current.scrollTo({ y: 400, animated: true });
+        scrollViewRef.current.scrollTo({ y: 300, animated: true });
       }
     }, 100);
   }, []);
