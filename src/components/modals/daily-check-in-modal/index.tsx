@@ -131,6 +131,10 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({
           isSelected={selectedActivity === activity.label}
           className="border border-gray-600"
           onPress={() => onSelectActivity(activity.label)}
+          style={{
+            borderWidth: 1,
+            borderColor: colors.charcoal[600],
+          }}
         />
       ))}
       <SelectableChip
@@ -138,6 +142,10 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({
         title="Custom Activity"
         isSelected={showCustomInput}
         className="border border-gray-600"
+        style={{
+          borderWidth: 1,
+          borderColor: colors.charcoal[600],
+        }}
         onPress={onSelectCustom}
       />
     </View>
@@ -179,6 +187,11 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
           title={duration.label}
           isSelected={selectedDuration === duration.value}
           className="mb-2 mr-2 border border-gray-600"
+          style={{
+            // marginBottom: 6,
+            borderWidth: 1,
+            borderColor: colors.charcoal[600],
+          }}
           onPress={() => onSelectDuration(duration.value)}
         />
       ))}
@@ -187,6 +200,11 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
         title="Custom Duration"
         isSelected={showCustomInput}
         className="border border-gray-600"
+        style={{
+          // marginTop: 4,
+          borderWidth: 1,
+          borderColor: colors.charcoal[600],
+        }}
         onPress={onSelectCustom}
       />
     </View>
