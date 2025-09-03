@@ -1,42 +1,60 @@
+import { TouchableOpacity } from '@gorhom/bottom-sheet';
 import React from 'react';
-import { Pressable, View } from 'react-native';
+import { type TextStyle, View, type ViewStyle } from 'react-native';
 
 import { Text } from '../ui';
-import { type ISelectableChip } from './selectable-chip.interface';
+
+interface ISelectableChip {
+  title: string;
+  isSelected: boolean;
+  onPress: () => void;
+  icon?: React.ReactNode;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
+}
 
 const SelectableChip = ({
   title,
   isSelected,
   onPress,
   icon,
-  className,
-  textClassName,
+  style,
+  textStyle,
 }: ISelectableChip) => {
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={onPress}
-      style={({ pressed }) => [
+      style={[
         {
-          opacity: pressed ? 0.7 : 1,
-          zIndex: 1000,
+          marginBottom: 12,
+          marginLeft: 12,
+          flexDirection: 'row',
+          alignItems: 'center',
+          borderRadius: 8,
+          paddingHorizontal: 15,
+          paddingVertical: 5,
+          backgroundColor: isSelected ? '#4E52FB' : '#191A21',
         },
+        style,
       ]}
-      className={`
-        mb-3 ml-3 flex-row items-center rounded-xl px-5 py-2
-        ${isSelected ? 'bg-[#4E52FB]' : 'bg-[#191A21]'}
-        ${className}
-      `}
     >
-      {icon && <View className="mr-3">{icon}</View>}
-      <Text
-        className={`
-          text-center font-['Poppins-Medium'] text-sm text-white
-          ${textClassName}
-        `}
-      >
-        {title}
-      </Text>
-    </Pressable>
+      <>
+        {icon && <View style={{ marginRight: 8 }}>{icon}</View>}
+        <Text
+          style={[
+            {
+              textAlign: 'center',
+              fontFamily: 'Poppins-Medium',
+              fontSize: 14,
+              color: 'white',
+            },
+            textStyle,
+          ]}
+        >
+          {title}
+        </Text>
+      </>
+    </TouchableOpacity>
   );
 };
 
