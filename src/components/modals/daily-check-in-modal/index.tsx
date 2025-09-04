@@ -10,10 +10,11 @@ import { Keyboard, StyleSheet, TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import CustomAlert from '@/components/custom-alert';
+import CustomBottomSheetButton from '@/components/custom-bottom-sheet-button';
 import HorizontalLine from '@/components/horizontal-line';
 import SelectableChip from '@/components/selectable-chip';
 import Toast from '@/components/toast';
-import { Button, colors, Modal, Text } from '@/components/ui';
+import { colors, Modal, Text } from '@/components/ui';
 import { PlusIcon } from '@/components/ui/assets/icons';
 import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
 import { DEVICE_TYPE, translate } from '@/core';
@@ -447,13 +448,19 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
         onFocusInput={onFocusInput}
       />
 
-      <Button
+      {/* <Button
         label="Add Activity"
         className="h-[40px] w-full rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
         textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
         onPress={handleSubmit}
         disabled={isSubmitDisabled || isCreateActivityLogPending}
         loading={isCreateActivityLogPending}
+      /> */}
+      <CustomBottomSheetButton
+        onPress={handleSubmit}
+        loading={isCreateActivityLogPending}
+        disabled={isSubmitDisabled || isCreateActivityLogPending}
+        label="Add Activity"
       />
     </Wrapper>
     // </KeyboardAvoidingView>
