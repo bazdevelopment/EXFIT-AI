@@ -123,7 +123,7 @@ const Activity = () => {
     (event) => {
       const { height } = event.nativeEvent.layout;
       //trick to make sure that header height has the right value (sometimes it has a value and after a few ms it was updated with another value)
-      wait(600).then(() => {
+      wait(1000).then(() => {
         if (height > 0 && headerHeight === 0) {
           setHeaderHeight(height);
         }

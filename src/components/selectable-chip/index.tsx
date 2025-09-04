@@ -12,6 +12,9 @@ interface ISelectableChip {
   style?: ViewStyle;
   textStyle?: TextStyle;
 }
+/**
+ * !!very important here to use import { TouchableOpacity } from '@gorhom/bottom-sheet'; and not from react-native
+ */
 
 const SelectableChip = ({
   title,
