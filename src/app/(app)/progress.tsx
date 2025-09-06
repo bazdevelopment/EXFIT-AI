@@ -20,7 +20,6 @@ import SkeletonLoader from '@/components/skeleton-loader';
 import { colors, Text } from '@/components/ui';
 import { RetryIcon } from '@/components/ui/assets/icons';
 import { WarningIllustration } from '@/components/ui/assets/illustrations/warning';
-import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -221,7 +220,6 @@ const TabButton = ({
 
 const EnhancedProgressScreen = () => {
   const { data, isLoading, error, refetch } = useProgressData();
-  const { isUpgradeRequired } = useSubscriptionAlert();
 
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');

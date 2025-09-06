@@ -1,7 +1,5 @@
 /* eslint-disable max-lines-per-function */
 // Import  global CSS file
-import '../../global.css';
-
 import {
   Poppins_300Light,
   Poppins_400Regular,
@@ -23,9 +21,17 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { Toaster } from 'sonner-native';
 
 import { APIProvider } from '@/api';
-import { DEVICE_TYPE, hydrateAuth, loadSelectedTheme } from '@/core';
+import { DEVICE_TYPE, loadSelectedTheme } from '@/core';
 import usePushNotifications from '@/core/hooks/use-push-notifications';
 import { useThemeConfig } from '@/core/use-theme-config';
+
+function loadGlobalCSS() {
+  try {
+    require('../../global.css');
+  } catch (e) {}
+}
+
+loadGlobalCSS();
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -33,7 +39,7 @@ export const unstable_settings = {
   initialRouteName: '(app)',
 };
 
-hydrateAuth();
+// hydrateAuth();
 loadSelectedTheme();
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
