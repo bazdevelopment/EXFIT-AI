@@ -37,13 +37,7 @@ import TaskListOverview from '@/components/task-list-overview';
 import Toast from '@/components/toast';
 import { colors, Image, useModal } from '@/components/ui';
 import { BellIcon, ShoppingCart } from '@/components/ui/assets/icons';
-import {
-  MAX_AI_COACH_CONVERSATIONS_FOR_FREE,
-  MAX_DAILY_ACTIVITIES,
-  MAX_EXCUSE_BUSTER_CONVERSATIONS_FOR_FREE,
-  MAX_SCANS_FOR_FREE,
-  TOTAL_ACTIVITIES_PER_WEEK_FOR_FREE,
-} from '@/constants/limits';
+import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useRefetchOnFocus } from '@/core/hooks/use-refetch-on-focus';
@@ -200,7 +194,7 @@ export default function Home() {
   /* *ask for rating */
   useEffect(() => {
     if (
-      completedScans === MAX_SCANS_FOR_FREE ||
+      completedScans === userInfo.maxScansForFree ||
       excuseBusterConversationsCount === 5 ||
       coachConversationsLength === 5
     ) {
@@ -210,6 +204,7 @@ export default function Home() {
     completedScans,
     coachConversationsLength,
     excuseBusterConversationsCount,
+    userInfo.maxScansForFree,
   ]);
 
   return (
@@ -318,7 +313,8 @@ export default function Home() {
               onAddActivity={() => {
                 if (
                   isUpgradeRequired &&
-                  totalActivitiesPerWeek >= TOTAL_ACTIVITIES_PER_WEEK_FOR_FREE
+                  totalActivitiesPerWeek >=
+                    userInfo.totalActivitiesPerWeekForFree
                 ) {
                   return Toast.showCustomToast(
                     <CustomAlert
@@ -384,14 +380,15 @@ export default function Home() {
             isUpgradeRequired={
               isUpgradeRequired &&
               excuseBusterConversationsCount >=
-                MAX_EXCUSE_BUSTER_CONVERSATIONS_FOR_FREE
+                userInfo.maxExcuseBusterConversationsForFree
             }
           />
           <AICoachBanner
             containerClassName="mt-4"
             showUpgradeBanner={
               isUpgradeRequired &&
-              coachConversationsLength >= MAX_AI_COACH_CONVERSATIONS_FOR_FREE
+              coachConversationsLength >=
+                userInfo.maxAiCoachConversationsForFree
             }
           />
         </View>

@@ -16,12 +16,13 @@ import Toast from '@/components/toast';
 import { Button, colors, Text } from '@/components/ui';
 import {
   ArrowLeft,
+  CloseIcon,
   FlashCameraOff,
   FlashCameraOn,
   RetakeIcon,
+  RetryIcon,
   SettingsWheelIcon,
 } from '@/components/ui/assets/icons';
-import { MAX_SCANS_FOR_FREE } from '@/constants/limits';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { createFormDataImagePayload } from '@/core/utilities/create-form-data-image-payload';
@@ -69,15 +70,15 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
     mutate: onScanImage,
     error: errorAnalyzeImage,
     isPending: isScanning,
+    reset: resetOnScanImage,
   } = useScanImage({
     onSuccessCallback: onSuccess,
     language,
     // handleCloseScanningModal,
     // resetFlow,
   });
-
   const handleScanImage = () => {
-    if (isUpgradeRequired && completedScans >= MAX_SCANS_FOR_FREE) {
+    if (isUpgradeRequired && completedScans >= userInfo.maxScansForFree) {
       return Toast.showCustomToast(
         <CustomAlert
           title={'Dear user,'}
@@ -223,25 +224,27 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
 
       {/* Bottom Controls */}
       <View className="absolute inset-x-0 bottom-0 px-6 pb-8">
-        {!capturedImage ? (
-          // Capture Button
+        {/* Capture or Action Buttons */}
+        {!capturedImage && !errorAnalyzeImage && (
           <CameraCaptureButton
             additionalClassName="bottom-10"
             onPress={takePicture}
           />
-        ) : (
+        )}
+
+        {capturedImage && !errorAnalyzeImage && (
           <View className="bottom-10 flex-row items-center justify-between gap-4">
             <Button
               label="Retake"
               icon={<RetakeIcon width={22} height={22} />}
-              className="h-[40px] flex-1 rounded-xl disabled:bg-[#7A7A7A]  dark:bg-transparent"
+              className="h-[40px] flex-1 rounded-xl disabled:bg-[#7A7A7A] dark:bg-transparent"
               textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
               onPress={retakePhoto}
               disabled={isScanning}
             />
             <FadeInView delay={100} className="flex-1">
               <Button
-                label={'Continue ✨'}
+                label="Continue ✨"
                 className="h-[40px] flex-1 rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
                 textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
                 onPress={handleScanImage}
@@ -250,6 +253,44 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
             </FadeInView>
           </View>
         )}
+
+        {/* Error State */}
+        {errorAnalyzeImage && (
+          <View className="flex-column mt-10 gap-5">
+            <View className="justify-center gap-5">
+              <Button
+                variant="default"
+                label={translate('general.retry')}
+                onPress={handleScanImage}
+                className="h-12 min-w-[200] rounded-xl border-2 border-primary-900 bg-black active:opacity-80 dark:bg-black"
+                textClassName="text-white dark:text-white"
+                disabled={isScanning}
+                icon={<RetryIcon color={colors.white} width={18} height={18} />}
+              />
+              <Button
+                label={translate('general.close')}
+                onPress={() => {
+                  resetOnScanImage();
+                  setCapturedImage(null);
+                  router.back();
+                }}
+                variant="default"
+                className="w-[100] justify-center self-center rounded-full bg-black active:opacity-80 dark:bg-white"
+                textClassName="text-white dark:text-black"
+                disabled={isScanning}
+                icon={<CloseIcon color={colors.black} width={18} height={18} />}
+              />
+            </View>
+          </View>
+        )}
+
+        {/* Uncomment if needed
+  {error && (
+    <Text className="text-center text-danger-400 dark:text-danger-400">
+      {error.toString()}
+    </Text>
+  )}
+  */}
       </View>
     </View>
   );
@@ -281,7 +322,7 @@ const ScanningOverlay = ({ capturedImage, isScanning }) => (
         {!capturedImage && !isScanning ? (
           <View className="-top-[80px] rounded-full bg-charcoal-800/40 p-2 ">
             <Text className="text-center font-medium-poppins text-sm text-white">
-              You can scan anything related to your physical activity
+              You can scan anything related to your fitness activity
             </Text>
           </View>
         ) : isScanning ? (

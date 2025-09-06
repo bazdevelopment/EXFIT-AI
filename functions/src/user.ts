@@ -79,6 +79,10 @@ const loginUserAnonymouslyHandler = async (data: {
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         preferredLanguage: data.language || 'en', // Use the provided language or default to 'en'
         completedScans: 0, // Example field
+        maxScansForFree: 1,
+        maxAiCoachConversationsForFree: 1,
+        maxExcuseBusterConversationsForFree: 1,
+        totalActivitiesPerWeekForFree: 5,
         email: '',
         profilePictureUrl: '',
         onboarding: {
