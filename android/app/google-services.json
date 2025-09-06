@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "447041935659",
-    "project_id": "exfit-ai-dev-9d0fe",
-    "storage_bucket": "exfit-ai-dev-9d0fe.firebasestorage.app"
+    "project_number": "596558526481",
+    "project_id": "exfit-ai-prod",
+    "storage_bucket": "exfit-ai-prod.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:447041935659:android:17c3941a3ccd1e8c748d6e",
+        "mobilesdk_app_id": "1:596558526481:android:9b2bf00faf9e5ff01dd9b0",
         "android_client_info": {
-          "package_name": "com.exfit.development"
+          "package_name": "com.exfit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "447041935659-r52vkmto4df7cff9u4daln3sc3ksus6k.apps.googleusercontent.com",
+          "client_id": "596558526481-b2e8a7n07hf140f6t06f5e2a64os2c5i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBUNb3BdNpf5kOjyEMhP0fmuh7cRanhhIQ"
+          "current_key": "AIzaSyBp575zgtOxrVozFLRH3LjAGXajjmOMwOo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "447041935659-r52vkmto4df7cff9u4daln3sc3ksus6k.apps.googleusercontent.com",
+              "client_id": "596558526481-b2e8a7n07hf140f6t06f5e2a64os2c5i.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "447041935659-1i3qtgggc1t7vimovd6ttft744crigvt.apps.googleusercontent.com",
+              "client_id": "596558526481-eg1ppu2eov2rthp5fiepvinm6nqc3bur.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.exfit.development"
+                "bundle_id": "com.exfitai"
               }
             }
           ]

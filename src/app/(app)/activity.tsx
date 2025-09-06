@@ -41,7 +41,6 @@ import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
 import { DEVICE_TYPE } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useRefetchOnFocus } from '@/core/hooks/use-refetch-on-focus';
-import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { checkIsToday } from '@/core/utilities/date-time-helpers';
 import { formatDate } from '@/core/utilities/format-date';
@@ -98,7 +97,6 @@ const Activity = () => {
   const { data: ownPurchasedData, refetch: refetchOwnedShopItems } =
     useOwnedPurchasedItems();
   // const today = getCurrentDay('YYYY-MM-DD', language);
-  const { isUpgradeRequired } = useSubscriptionAlert();
   const todayDateKey = `${currentYear}-${currentMonthNumber}-${currentDayNumber}`;
   const { data: currentWeekActivityLog, refetch: onRefetchActivityLog } =
     useGetCalendarActivityLog({
