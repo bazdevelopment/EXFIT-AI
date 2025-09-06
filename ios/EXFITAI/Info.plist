@@ -34,13 +34,13 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>exfit-ai</string>
-          <string>com.exfit.development</string>
+          <string>com.exfit</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.googleusercontent.apps.447041935659-1i3qtgggc1t7vimovd6ttft744crigvt</string>
+          <string>com.googleusercontent.apps.596558526481-v9f6g1b0vsks6d1td7s2q7v7h4a8qja2</string>
         </array>
       </dict>
       <dict>
