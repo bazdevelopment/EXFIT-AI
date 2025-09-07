@@ -41,7 +41,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 
   ios: {
     appStoreUrl:
-      'https://apps.apple.com/us/app/exfit-ai-crush-your-excuses/id6749510101',
+      'https://apps.apple.com/us/app/fitness-ai-coach-exfit/id6749510101',
     supportsTablet: true,
     bundleIdentifier: Env.BUNDLE_ID,
     googleServicesFile: ClientEnv.GOOGLE_SERVICES_PLIST_PATH,

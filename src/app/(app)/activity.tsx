@@ -38,9 +38,10 @@ import { colors, Image, Text, useModal } from '@/components/ui';
 import WeekBlock from '@/components/week-block';
 import { DATE_FORMAT } from '@/constants/date-format';
 import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
-import { DEVICE_TYPE } from '@/core';
+import { DEVICE_TYPE, translate } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useRefetchOnFocus } from '@/core/hooks/use-refetch-on-focus';
+import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { checkIsToday } from '@/core/utilities/date-time-helpers';
 import { formatDate } from '@/core/utilities/format-date';
@@ -96,6 +97,8 @@ const Activity = () => {
 
   const { data: ownPurchasedData, refetch: refetchOwnedShopItems } =
     useOwnedPurchasedItems();
+  const { isUpgradeRequired } = useSubscriptionAlert();
+
   // const today = getCurrentDay('YYYY-MM-DD', language);
   const todayDateKey = `${currentYear}-${currentMonthNumber}-${currentDayNumber}`;
   const { data: currentWeekActivityLog, refetch: onRefetchActivityLog } =
@@ -158,6 +161,10 @@ const Activity = () => {
     (shopItem) => shopItem.id === 'STREAK_REVIVAL_ELIXIR'
   );
   const hasUserRepairStreakElixir = foundElixirShopItem?.quantity > 0;
+
+  const totalActivitiesPerWeek = currentWeekActivityLog
+    ? Object.values(currentWeekActivityLog)?.filter(Boolean)?.flat()?.length
+    : 0;
 
   const generatedWeekData = generateWeekDataOverview({
     currentWeekActivityLog,
@@ -319,6 +326,33 @@ const Activity = () => {
           showHeading={false}
           activities={data.activities}
           onAddActivity={() => {
+            if (
+              isUpgradeRequired &&
+              totalActivitiesPerWeek >= userInfo.totalActivitiesPerWeekForFree
+            ) {
+              return Toast.showCustomToast(
+                <CustomAlert
+                  title={'Dear user,'}
+                  subtitle={
+                    'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
+                  }
+                  buttons={[
+                    {
+                      label: translate('components.UpgradeBanner.heading'),
+                      variant: 'default',
+                      onPress: () => router.navigate('/paywall-new'),
+                      // a small delay in mandatory for Toast, not sure why
+                      buttonTextClassName: 'dark:text-white',
+                      className:
+                        'flex-1 rounded-xl h-[48] bg-primary-900 active:opacity-80 dark:bg-primary-900',
+                    },
+                  ]}
+                />,
+                {
+                  duration: 10000000,
+                }
+              );
+            }
             setCurrentActiveDay(formatDate(item.date, 'YYYY-MM-DD', language));
             activityCompleteModal.present({ type: 'custom_activity' });
           }}
