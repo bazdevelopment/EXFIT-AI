@@ -296,6 +296,35 @@ const Activity = () => {
           {isToday && (
             <TouchableOpacity
               onPress={() => {
+                if (
+                  isUpgradeRequired &&
+                  totalActivitiesPerWeek >=
+                    userInfo.totalActivitiesPerWeekForFree
+                ) {
+                  return Toast.showCustomToast(
+                    <CustomAlert
+                      title={'Dear user,'}
+                      subtitle={
+                        'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
+                      }
+                      buttons={[
+                        {
+                          label: translate('components.UpgradeBanner.heading'),
+                          variant: 'default',
+                          onPress: () => router.navigate('/paywall-new'),
+                          // a small delay in mandatory for Toast, not sure why
+                          buttonTextClassName: 'dark:text-white',
+                          className:
+                            'flex-1 rounded-xl h-[48] bg-primary-900 active:opacity-80 dark:bg-primary-900',
+                        },
+                      ]}
+                    />,
+                    {
+                      duration: 10000000,
+                    }
+                  );
+                }
+
                 setCurrentActiveDay(
                   formatDate(item.date, 'YYYY-MM-DD', language)
                 );
