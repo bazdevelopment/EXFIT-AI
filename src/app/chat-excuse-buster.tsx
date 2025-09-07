@@ -33,7 +33,6 @@ import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
 import { LOADING_MESSAGES_CHATBOT } from '@/constants/loading-messages';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
-import useKeyboard from '@/core/hooks/use-keyboard';
 import { useTextToSpeech } from '@/core/hooks/use-text-to-speech';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { checkIsVideo } from '@/core/utilities/check-is-video';
@@ -77,7 +76,6 @@ const ChatExcuseBuster = () => {
     currentDayNumber,
   } = useWeekNavigation();
   const { colorScheme } = useColorScheme();
-  const { isKeyboardVisible } = useKeyboard();
 
   const isDark = colorScheme === 'dark';
   const { language } = useSelectedLanguage();
@@ -303,6 +301,7 @@ const ChatExcuseBuster = () => {
       <KeyboardAvoidingView
         behavior={DEVICE_TYPE.IOS ? 'padding' : 'padding'}
         className="flex-1"
+        keyboardVerticalOffset={DEVICE_TYPE.IOS ? 0 : 20}
       >
         <View className="-mt-4 flex-1">
           {/* Header */}

@@ -1,7 +1,6 @@
 import { useIsFocused } from '@react-navigation/native';
 import * as React from 'react';
 import { Platform, StatusBar } from 'react-native';
-import { SystemBars } from 'react-native-edge-to-edge';
 
 import colors from './colors';
 
@@ -15,7 +14,7 @@ export const FocusAwareStatusBar = ({ hidden = false }: Props) => {
   return isFocused ? (
     <>
       <StatusBar translucent backgroundColor={colors.black} />
-      <SystemBars style="light" hidden={{ navigationBar: hidden }} />
+      {/* <SystemBars style="light" hidden={{ navigationBar: hidden }} /> */}
     </>
   ) : null;
 };

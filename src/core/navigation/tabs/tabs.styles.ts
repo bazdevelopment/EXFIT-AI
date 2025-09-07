@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { colors } from '@/components/ui';
+import { DEVICE_TYPE } from '@/core/utilities/device-type';
 
 export const getBottomTabBarStyle = (isDark: boolean) =>
   StyleSheet.create({
@@ -12,7 +13,7 @@ export const getBottomTabBarStyle = (isDark: boolean) =>
       justifyContent: 'center',
       alignSelf: 'center',
       width: '90%',
-      bottom: 30,
+      bottom: DEVICE_TYPE.IOS ? 30 : 0,
       height: 80,
       alignItems: 'center',
       shadowColor: colors.black,

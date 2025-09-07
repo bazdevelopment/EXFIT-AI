@@ -33,7 +33,6 @@ import { ArrowLeft, PaperPlane } from '@/components/ui/assets/icons';
 import { LOADING_MESSAGES_CHATBOT } from '@/constants/loading-messages';
 import { translate, useSelectedLanguage } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
-import useKeyboard from '@/core/hooks/use-keyboard';
 import { useTextToSpeech } from '@/core/hooks/use-text-to-speech';
 import { checkIsVideo } from '@/core/utilities/check-is-video';
 import { generateUniqueId } from '@/core/utilities/generate-unique-id';
@@ -79,7 +78,6 @@ const ChatScreen = () => {
   const isVideo = checkIsVideo(mimeType as string);
 
   const flashListRef = useRef<FlashList<MessageType>>(null);
-  const { isKeyboardVisible } = useKeyboard();
 
   const {
     speak,

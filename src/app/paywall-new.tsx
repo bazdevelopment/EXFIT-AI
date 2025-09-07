@@ -221,7 +221,6 @@ const PaywallNew = () => {
   const [freeTrialEnabled, setFreeTrialEnabled] = useState(
     selectedPlan === 'weekly'
   );
-  console.log('selectedPlan boss', selectedPlan);
 
   // Handle switch toggle
   const handleSwitchToggle = (value: boolean) => {
@@ -247,7 +246,7 @@ const PaywallNew = () => {
   const annualOffering = formattedOfferings?.find(
     (offering) => offering.type === 'ANNUAL'
   );
-  const monthlyOffering = formattedOfferings?.find(
+  const _monthlyOffering = formattedOfferings?.find(
     (offering) => offering.type === 'MONTHLY'
   );
 
