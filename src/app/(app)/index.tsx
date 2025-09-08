@@ -58,6 +58,11 @@ export default function Home() {
   const dailyActivityModal = useModal();
   const activityLogSuccessModal = useModal();
   const { isUpgradeRequired } = useSubscriptionAlert();
+  console.log('isUpgradeRequired', isUpgradeRequired);
+  console.log(
+    ' userInfo.totalActivitiesPerWeekForFree',
+    userInfo.maxExcuseBusterConversationsForFree
+  );
   const { data: userNotifications, refetch: refetchUserNotifications } =
     useFetchUserNotifications({
       userId: userInfo?.userId,
@@ -79,7 +84,7 @@ export default function Home() {
 
   const coachConversationsLength = allConversations?.count || 0;
   const excuseBusterConversationsCount = excuseBusterConversations?.count || 0;
-
+  console.log('excuseBusterConversationsCount', excuseBusterConversationsCount);
   const { data: ownPurchasedData, refetch: refetchOwnedShopItems } =
     useOwnedPurchasedItems();
 

@@ -16,7 +16,7 @@ const MotivationBanner = ({
   isUpgradeRequired: boolean;
 }) => {
   const handleNavigateToExcuseBuster = () => {
-    if (isUpgradeRequired) {
+    if (true) {
       //!give the user the change to use 2 conversations
       return Toast.showCustomToast(
         <CustomAlert
