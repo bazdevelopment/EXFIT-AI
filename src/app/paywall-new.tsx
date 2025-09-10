@@ -25,7 +25,7 @@ import {
   Switch,
   Text,
 } from '@/components/ui';
-import { CloseIcon } from '@/components/ui/assets/icons';
+import { CheckIcon, CloseIcon } from '@/components/ui/assets/icons';
 import { SUBSCRIPTION_PLANS_PER_PLATFORM } from '@/constants/subscriptions';
 import { DEVICE_TYPE, translate, useIsFirstTime } from '@/core';
 import { useCrashlytics } from '@/core/hooks/use-crashlytics';
@@ -59,24 +59,24 @@ const formatPaywallData = (offerings: any) => {
     });
   }
 
-  // if (offerings?.monthly?.product) {
-  //   paywallData.push({
-  //     id: offerings.monthly.product.identifier,
-  //     title: translate(
-  //       'rootLayout.screens.paywallUpgradeScreen.secondOffering.title'
-  //     ),
-  //     subtitle: translate(
-  //       'rootLayout.screens.paywallUpgradeScreen.secondOffering.subtitle',
-  //       {
-  //         price: offerings.monthly.product.priceString,
-  //       }
-  //     ),
-  //     price: offerings.monthly.product.priceString,
-  //     priceNumber: offerings.monthly.product.price,
-  //     currency: offerings.monthly.product.currencyCode,
-  //     type: 'MONTHLY',
-  //   });
-  // }
+  if (offerings?.monthly?.product) {
+    paywallData.push({
+      id: offerings.monthly.product.identifier,
+      title: translate(
+        'rootLayout.screens.paywallUpgradeScreen.secondOffering.title'
+      ),
+      subtitle: translate(
+        'rootLayout.screens.paywallUpgradeScreen.secondOffering.subtitle',
+        {
+          price: offerings.monthly.product.priceString,
+        }
+      ),
+      price: offerings.monthly.product.priceString,
+      priceNumber: offerings.monthly.product.price,
+      currency: offerings.monthly.product.currencyCode,
+      type: 'MONTHLY',
+    });
+  }
 
   if (offerings?.weekly?.product) {
     paywallData.push({
@@ -104,7 +104,7 @@ const formatPaywallData = (offerings: any) => {
 const FeatureRow = ({ icon, text }: { icon: string; text: string }) => (
   <View className="mb-3 flex-row items-center">
     <View className="mr-4 items-center justify-center rounded-full bg-blue-500 p-1">
-      <Ionicons name={icon as any} size={14} color="white" />
+      <CheckIcon color={colors.white} strokeWidth={3} width={14} height={14} />
     </View>
     <Text className="flex-1 font-medium-poppins text-lg">{text}</Text>
   </View>
@@ -192,7 +192,14 @@ const PricingCard = ({
             : 'border-gray-300 bg-white dark:bg-black'
         } items-center justify-center`}
       >
-        {isSelected && <Ionicons name="checkmark" size={16} color="white" />}
+        {isSelected && (
+          <CheckIcon
+            color={colors.white}
+            strokeWidth={3}
+            width={15}
+            height={15}
+          />
+        )}
       </View>
     </View>
   </TouchableOpacity>
@@ -246,7 +253,7 @@ const PaywallNew = () => {
   const annualOffering = formattedOfferings?.find(
     (offering) => offering.type === 'ANNUAL'
   );
-  const _monthlyOffering = formattedOfferings?.find(
+  const monthlyOffering = formattedOfferings?.find(
     (offering) => offering.type === 'MONTHLY'
   );
 
@@ -287,7 +294,9 @@ const PaywallNew = () => {
     const packageIdentifier =
       selectedPlan === 'yearly'
         ? SUBSCRIPTION_PLANS_PER_PLATFORM?.YEARLY
-        : SUBSCRIPTION_PLANS_PER_PLATFORM?.WEEKLY;
+        : selectedPlan === 'monthly'
+          ? SUBSCRIPTION_PLANS_PER_PLATFORM?.MONTHLY
+          : SUBSCRIPTION_PLANS_PER_PLATFORM?.WEEKLY;
 
     const customerInfoAfterPurchase = await purchaseSubscription({
       packageIdentifier,
@@ -387,7 +396,7 @@ const PaywallNew = () => {
                   onPress={() => handlePlanSelection('yearly')}
                 />
               )}
-              {/* {monthlyOffering && (
+              {monthlyOffering && (
                 <PricingCard
                   title={monthlyOffering.title}
                   subtitle={`${monthlyOffering.price} ${translate('general.perMonth')}`}
@@ -396,7 +405,7 @@ const PaywallNew = () => {
                   onPress={() => handlePlanSelection('monthly')}
                   isFree={false}
                 />
-              )} */}
+              )}
               {weeklyOffering && (
                 <PricingCard
                   title={weeklyOffering.title}

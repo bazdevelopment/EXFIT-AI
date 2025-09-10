@@ -76,7 +76,6 @@ export default function Home() {
     userId: userInfo.userId,
     limit: 10,
   });
-
   const coachConversationsLength = allConversations?.count || 0;
   const excuseBusterConversationsCount = excuseBusterConversations?.count || 0;
 

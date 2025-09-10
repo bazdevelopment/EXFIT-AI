@@ -24,11 +24,12 @@ import { APIProvider } from '@/api';
 import { DEVICE_TYPE, loadSelectedTheme } from '@/core';
 import usePushNotifications from '@/core/hooks/use-push-notifications';
 import { useThemeConfig } from '@/core/use-theme-config';
-
 function loadGlobalCSS() {
   try {
     require('../../global.css');
-  } catch (e) {}
+  } catch (error) {
+    console.log('error loading global css', error);
+  }
 }
 
 loadGlobalCSS();

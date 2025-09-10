@@ -51,7 +51,6 @@
   },
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.4.0",
-    "@expo/metro-runtime": "^5.0.4",
     "@gorhom/bottom-sheet": "^5.1.6",
     "@hookform/resolvers": "^3.9.0",
     "@react-native-community/blur": "^4.4.1",
