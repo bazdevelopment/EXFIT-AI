@@ -46,6 +46,7 @@ export const usePurchaseSubscription = createMutation<
     const offerings = await Purchases.getOfferings();
     const weeklyAndAnnualOfferings = [
       ...(offerings.current?.annual ? [offerings.current.annual] : []),
+      ...(offerings.current?.monthly ? [offerings.current.monthly] : []),
       ...(offerings.current?.weekly ? [offerings.current.weekly] : []),
     ];
 
