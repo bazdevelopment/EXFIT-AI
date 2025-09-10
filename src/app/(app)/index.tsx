@@ -65,7 +65,7 @@ export default function Home() {
     })();
   const { data: allConversations, refetch: refetchAllUsersConversations } =
     useGetAllUserConversations({
-      userId: userInfo.userId,
+      userId: userInfo?.userId,
       limit: 10,
     });
 
@@ -73,7 +73,7 @@ export default function Home() {
     data: excuseBusterConversations,
     refetch: refetchAllExcuseBusterConversations,
   } = useGetAllExcuseBusterConversations({
-    userId: userInfo.userId,
+    userId: userInfo?.userId,
     limit: 10,
   });
   const coachConversationsLength = allConversations?.count || 0;
