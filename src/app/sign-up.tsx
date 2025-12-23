@@ -99,7 +99,6 @@ export default function SignUpScreen({
       );
       return;
     }
-    console.log('SignUp data:', data, 'Accept terms:', acceptTerms);
     // onSubmit(data);
     createPermanentAccount({ email, password });
   };

@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
@@ -13,6 +14,7 @@ import {
   StreakFreeze,
   StreakIcon,
 } from '../ui/assets/icons';
+import { ChartIcon } from '../ui/assets/icons/chart';
 
 // Types
 type DateStatus =
@@ -119,11 +121,19 @@ const CalendarHeader = ({
 }) => {
   if (layout === 'horizontal') {
     return (
-      <Text
-        className={`font-semibold-poppins text-xl text-white ${showMonth || showYear ? ' ml-1.5' : ''}`}
-      >
-        {showMonth ? currentMonth : ''} {showYear ? currentYear : ''}
-      </Text>
+      <View className="flex-row items-center justify-between">
+        <Text
+          className={`font-semibold-poppins text-xl text-white ${showMonth || showYear ? ' ml-1.5' : ''}`}
+        >
+          {showMonth ? currentMonth : ''} {showYear ? currentYear : ''}
+        </Text>
+        <TouchableOpacity
+          className="mr-1 rounded-full bg-charcoal-900 p-2"
+          onPress={() => router.navigate('/progress')}
+        >
+          <ChartIcon width={22} height={22} color={colors.white} />
+        </TouchableOpacity>
+      </View>
     );
   }
 

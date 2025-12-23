@@ -17,6 +17,13 @@ import * as activityLogsFunctions from './activity-logs';
 import { admin } from './common';
 import * as conversationFunctions from './conversation';
 import * as excuseBusterFunctions from './excuse-buster';
+import {
+  addMacroEntryHandler,
+  deleteMacroEntryHandler,
+  getDailyMacrosHandler,
+  getMacroDateRangeHandler,
+  updateMacroEntryHandler,
+} from './macro';
 import * as progressFunctions from './progress';
 import * as pushNotificationsFunctions from './push-notifications';
 import * as scanImageFunctions from './scan';
@@ -100,6 +107,13 @@ export const getConversation = usCentralFunctions.https.onCall(
 export const getAllUserConversations = usCentralFunctions.https.onCall(
   conversationFunctions.getUserConversationsHandler,
 );
+
+export const sendChatMessage = usCentralFunctions.https.onCall(
+  conversationFunctions.sendChatMessageHandler,
+);
+export const getAllConversations = usCentralFunctions.https.onCall(
+  conversationFunctions.getAllConversationsHandler,
+);
 /** excuse buster conversation collection cloud functions  */
 export const getExcuseBusterConversationMessages =
   usCentralFunctions.https.onCall(
@@ -110,6 +124,26 @@ export const continueExcuseBusterConversation = usCentralFunctions.https.onCall(
 );
 export const getAllExcuseBusterConversations = usCentralFunctions.https.onCall(
   excuseBusterFunctions.getAllUserExcuseBusterConversationsHandler,
+);
+/** Macro cloud functions  */
+
+export const addMacroEntry =
+  usCentralFunctions.https.onCall(addMacroEntryHandler);
+
+export const updateMacroEntry = usCentralFunctions.https.onCall(
+  updateMacroEntryHandler,
+);
+
+export const deleteMacroEntry = usCentralFunctions.https.onCall(
+  deleteMacroEntryHandler,
+);
+
+export const getDailyMacros = usCentralFunctions.https.onCall(
+  getDailyMacrosHandler,
+);
+
+export const getMacroDateRange = usCentralFunctions.https.onCall(
+  getMacroDateRangeHandler,
 );
 
 /** ai tasks cloud functions  */

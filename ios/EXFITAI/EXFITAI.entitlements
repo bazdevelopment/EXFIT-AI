@@ -4,10 +4,5 @@
   <dict>
     <key>aps-environment</key>
     <string>development</string>
-    <key>com.apple.developer.associated-domains</key>
-    <array>
-      <string>applinks:exfit-ai-dev-9d0fe.firebaseapp.com</string>
-      <string>applinks:exfit-ai-dev-9d0fe.firebaseapp.com/scan</string>
-    </array>
   </dict>
 </plist>

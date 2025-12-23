@@ -37,7 +37,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     fallbackToCacheTimeout: 0,
   },
   assetBundlePatterns: ['**/*'],
-  platforms: ['ios', 'android'],
+  // platforms: ['ios', 'android'],
 
   ios: {
     appStoreUrl:
@@ -45,28 +45,51 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     supportsTablet: true,
     bundleIdentifier: Env.BUNDLE_ID,
     googleServicesFile: ClientEnv.GOOGLE_SERVICES_PLIST_PATH,
-    associatedDomains: [
-      'applinks:exfit-ai-dev-9d0fe.firebaseapp.com', // Important for iOS Universal Links
-      'applinks:exfit-ai-dev-9d0fe.firebaseapp.com/scan',
-    ],
+    // associatedDomains: [
+    //   'applinks:exfit-ai-dev-9d0fe.firebaseapp.com', // Important for iOS Universal Links
+    //   'applinks:exfit-ai-dev-9d0fe.firebaseapp.com/scan',
+    // ],
     config: {
       usesNonExemptEncryption: false, // Avoid the export compliance warning on the app store
     },
     infoPlist: {
       CFBundleAllowMixedLocalizations: true,
       CFBundleLocalizations: [
+        'de', // German
+        'tr', // Turkish
+        'fr', // French
+        'it', // Italian
+        'pt-PT', // Portuguese (Portugal)
+        'ar', // Arabic
+        'es-ES', // Spanish (Spain)
+        'es-MX', // Spanish (Mexico)
+        'hi', // Hindi
+        'ro', // Romanian
+        'uk', // Ukrainian
+        'ru', // Russian
+        'th', // Thai
+        'id', // Indonesian
+        'he', // Hebrew
+        'ja', // Japanese
+        'ko', // Korean
+        'zh', // Chinese (Simplified)
+        'no', // Norwegian
+        'pl', // Polish
+        'sv', // Swedish
         'en', // English
-        // 'zh', // Chinese
-        // 'es', // Spanish
-        // 'hi', // Hindi
-        // 'ar', // Arabic
-        // 'pt', // Portuguese
-        // 'ru', // Russian
-        // 'ja', // Japanese
-        // 'ko', // Korean
-        // 'de', // German
-        // 'fr', // French
-        // 'ro', // Romanian
+        'fr-CA', // French (Canada)
+        'pt-BR', // Portuguese (Brazil)
+        'vi', // Vietnamese
+        'nl', // Dutch
+        'cs', // Czech
+        'el', // Greek
+        'hu', // Hungarian
+        'ms', // Malay
+        'fi', // Finnish
+        'da', // Danish
+        'sk', // Slovak
+        'hr', // Croatian
+        'ca', // Catalan
       ],
       CFBundleDevelopmentRegion: 'en', // Default language, adjust if needed
     },
@@ -125,6 +148,23 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         icon: './assets/icon_notification_96x96_2.png',
         color: '#1d1e3c',
         defaultChannel: 'default',
+      },
+    ],
+    [
+      'expo-image-picker',
+      {
+        photosPermission:
+          'Allow $(PRODUCT_NAME) to access your photo library to upload media for AI analysis, providing insights and feedback for informational purposes.',
+        cameraPermission:
+          'Allow $(PRODUCT_NAME) to access your camera to capture images for AI-powered analysis, providing insights and feedback for informational purposes.',
+        //'Disables the microphone permission',
+        microphonePermission: false,
+      },
+    ],
+    [
+      'expo-document-picker',
+      {
+        iCloudContainerEnvironment: 'Production',
       },
     ],
     [

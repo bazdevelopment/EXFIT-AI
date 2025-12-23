@@ -15,6 +15,7 @@ import { BarChart, LineChart, PieChart } from 'react-native-gifted-charts';
 import { useProgressData } from '@/api/progress/progress.hooks';
 import EdgeCaseTemplate from '@/components/edge-case-template';
 import FadeInView from '@/components/fade-in-view/fade-in-view';
+import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
 import SkeletonLoader from '@/components/skeleton-loader';
 import { colors, Text } from '@/components/ui';
@@ -263,6 +264,8 @@ const EnhancedProgressScreen = () => {
   return (
     <ScreenWrapper>
       {/* Dark mode main background */}
+      <ScreenHeader title="Progress Dashboard" />
+
       <ScrollView
         className="flex-1"
         contentContainerStyle={{ paddingBottom: 32 }}
@@ -277,9 +280,6 @@ const EnhancedProgressScreen = () => {
         {/* Header */}
 
         <View className="mt-2 px-6">
-          <Text className="mb-2 font-bold-poppins text-3xl text-white">
-            Progress Dashboard
-          </Text>
           <Text className="font-medium-poppins text-base text-white opacity-90">
             Keep up the amazing work! 🚀
           </Text>

@@ -362,11 +362,12 @@ const PaywallNew = () => {
             {/* Fish Icon */}
             <View className="mb-4 items-center">
               <Image
-                source={require('../components/ui/assets/images/couple-exercise.png')}
+                source={require('../components/ui/assets/images/food-paywall.png')}
                 style={{
-                  width: 180,
-                  height: 120,
+                  width: 110,
+                  height: 110,
                 }}
+                contentFit="contain"
               />
             </View>
 

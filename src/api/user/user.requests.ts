@@ -225,7 +225,6 @@ export const createPermanentAccount = async ({
 
   // 1. Pre-check if email exists using our cloud function
   const data = await checkEmail({ email });
-  console.log('data check email', data);
 
   if (data.exists) {
     throw new Error('This email address is already in use.');

@@ -5,7 +5,13 @@ import { type ISvgProps } from '@/types/svg-types';
 import colors from '../../colors';
 
 export const ChevronLeftRounded = (props: ISvgProps) => (
-  <Svg xmlns="http://www.w3.org/2000/svg" width={33} height={33} fill="none">
+  <Svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={33}
+    height={33}
+    fill="none"
+    {...props}
+  >
     <Rect
       width={31}
       height={31}

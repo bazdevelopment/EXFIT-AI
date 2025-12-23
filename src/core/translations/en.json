@@ -38,6 +38,7 @@
     "restorePurchase": "Restore purchase",
     "medicalDisclaimer": "Medical Disclaimer",
     "conversationHistory": "Conversation history",
+    "analyzingMediaFilesPlaceholder": "Analyzing your nutrition...",
     "freeTrial": "Free trial",
     "free": "FREE",
     "completedScans": "Scans completed",
@@ -135,7 +136,7 @@
           "heading": " Unlimited Access",
           "title": "Unlock Premium Features Today!",
           "firstOffering": "Access All Premium Features",
-          "secondOffering": "Ad-Free Experience",
+          "secondOffering": "Unlimited Nutrition Advice",
           "thirdOffering": "Unlimited AI scans for activity support",
           "fourthOffering": "Unlimited chats with a 24/7 AI Fitness Coach"
         }

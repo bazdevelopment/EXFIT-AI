@@ -76,7 +76,6 @@ export default function LoginScreen() {
   } = useLogin();
 
   const handleLogin: SubmitHandler<FormType> = (data) => {
-    console.log('Login data:', data, 'Keep signed in:', keepSignedIn);
     onLogin(data);
   };
 

@@ -1,6 +1,7 @@
 import { getCalendars } from 'expo-localization';
 import { router } from 'expo-router';
-import React, { useEffect } from 'react';
+import { firebaseAuth } from 'firebase/config';
+import React, { useEffect, useState } from 'react';
 import {
   RefreshControl,
   ScrollView,
@@ -15,9 +16,10 @@ import {
 } from '@/api/activity-logs/activity-logs.hooks';
 import { useGetAllUserConversations } from '@/api/conversation/conversation.hooks';
 import { useGetAllExcuseBusterConversations } from '@/api/excuse-buster-conversation/excuse-buster-conversation.hooks';
+import { useGetDailyMacros } from '@/api/macro/macro.hooks';
 import { useFetchUserNotifications } from '@/api/push-notifications/push-notifications.hooks';
 import { useOwnedPurchasedItems, useRepairStreak } from '@/api/shop/shop.hooks';
-import { useUser } from '@/api/user/user.hooks';
+import { useUpdateUser, useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
 import MotivationBanner from '@/components/banners/motivation-banner';
@@ -35,6 +37,7 @@ import RewardsOverview from '@/components/rewards-overview';
 import ScreenWrapper from '@/components/screen-wrapper';
 import TaskListOverview from '@/components/task-list-overview';
 import Toast from '@/components/toast';
+import { TodayMacroView } from '@/components/today-macro-overview';
 import { colors, Image, useModal } from '@/components/ui';
 import { BellIcon, ShoppingCart } from '@/components/ui/assets/icons';
 import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
@@ -47,6 +50,8 @@ import { avatars, type TAvatarGender } from '@/core/utilities/avatars';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 import { generateWeekDataOverview } from '@/core/utilities/generate-week-data-overview';
 import { requestAppRatingWithDelay } from '@/core/utilities/request-app-review';
+
+import { GoalsModal } from '../macro-details-screen';
 
 // eslint-disable-next-line max-lines-per-function
 export default function Home() {
@@ -76,6 +81,9 @@ export default function Home() {
     userId: userInfo?.userId,
     limit: 10,
   });
+
+  const { mutateAsync: onUpdateUser, isPending: isPendingUpdateUser } =
+    useUpdateUser();
   const coachConversationsLength = allConversations?.count || 0;
   const excuseBusterConversationsCount = excuseBusterConversations?.count || 0;
 
@@ -133,7 +141,19 @@ export default function Home() {
       }),
   });
 
+  const { data: dailyMacros, refetch: refetchDailyMacros } = useGetDailyMacros({
+    date: currentActiveDay,
+  });
+
   const { mutateAsync: onUpdateActivityLog } = useUpdateActivityLog();
+
+  const [showGoalsModal, setShowGoalsModal] = useState(false);
+  const macroGoals = userInfo?.macroGoals || {
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+  };
 
   const { data: currentWeekActivityLogs, refetch: refetchActivityLog } =
     useGetCalendarActivityLog({
@@ -187,6 +207,7 @@ export default function Home() {
     refetchUserInfo();
     refetchUserNotifications();
     refetchOwnedShopItems();
+    refetchDailyMacros();
   });
 
   /* *ask for rating */
@@ -291,6 +312,25 @@ export default function Home() {
               lostStreakValue={lostStreakValue}
             />
           )}
+
+          <TodayMacroView
+            data={
+              !dailyMacros?.data
+                ? { calories: 0, carbs: 0, fat: 0, protein: 0 }
+                : dailyMacros.data.totals
+            }
+            goals={macroGoals}
+            onPress={() => router.navigate('/macro-details-screen')}
+            onEditGoals={() => setShowGoalsModal(true)}
+          />
+          <GoalsModal
+            visible={showGoalsModal}
+            goals={macroGoals}
+            onClose={() => setShowGoalsModal(false)}
+            onSave={onUpdateUser}
+            language={language}
+            userId={userInfo?.userId || firebaseAuth.currentUser?.uid}
+          />
           {!isDailyCheckInDone ? (
             <ActivityPromptBanner
               containerClassName="mt-2"

@@ -103,6 +103,12 @@ const loginUserAnonymouslyHandler = async (data: {
           streakRepairDates: [],
           streakResetDates: [],
         },
+        macroGoals: {
+          calories: 0,
+          protein: 0,
+          carbs: 0,
+          fat: 0,
+        },
       });
 
     isNewUser = true;
