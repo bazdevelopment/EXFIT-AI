@@ -6,7 +6,7 @@ import {
   Feed as FeedIcon,
   Settings,
 } from '@/components/ui/assets/icons';
-import ProgressIcon from '@/components/ui/assets/icons/progress';
+import { ChatIcon } from '@/components/ui/assets/icons/chat-icon';
 import ScanIcon from '@/components/ui/assets/icons/scan';
 import { translate } from '@/core/i18n';
 
@@ -25,6 +25,26 @@ export const tabScreens: ITabsNavigationScreen[] = [
   },
   {
     id: 2,
+    screenName: 'chat',
+    title: 'chat',
+    tabBarTestID: 'chat-tab',
+    icon: (color: string, focused: boolean) => (
+      <ChatIcon color={color} focused={focused} width={30} height={30} />
+    ),
+    header: false,
+  },
+  {
+    id: 4,
+    screenName: 'scan',
+    title: 'Scan',
+    tabBarTestID: 'scan-tab',
+    icon: (color: string, focused: boolean) => (
+      <ScanIcon color={colors.white} focused={focused} width={35} height={35} />
+    ),
+    header: false,
+  },
+  {
+    id: 3,
     screenName: 'activity',
     title: translate('activity.tab'),
     tabBarTestID: 'activity-tab',
@@ -33,26 +53,17 @@ export const tabScreens: ITabsNavigationScreen[] = [
     ),
     header: false,
   },
-  {
-    id: 3,
-    screenName: 'scan',
-    title: 'Scan',
-    tabBarTestID: 'scan-tab',
-    icon: (color: string, focused: boolean) => (
-      <ScanIcon color={colors.white} focused={focused} width={30} height={30} />
-    ),
-    header: false,
-  },
-  {
-    id: 4,
-    screenName: 'progress',
-    title: translate('progress.tab'),
-    tabBarTestID: 'progress-tab',
-    icon: (color: string, focused: boolean) => (
-      <ProgressIcon color={color} focused={focused} width={24} height={24} />
-    ),
-    header: false,
-  },
+
+  // {
+  //   id: 4,
+  //   screenName: 'progress',
+  //   title: translate('progress.tab'),
+  //   tabBarTestID: 'progress-tab',
+  //   icon: (color: string, focused: boolean) => (
+  //     <ProgressIcon color={color} focused={focused} width={24} height={24} />
+  //   ),
+  //   header: false,
+  // },
 
   {
     id: 5,

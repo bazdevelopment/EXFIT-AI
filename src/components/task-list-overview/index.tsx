@@ -3,6 +3,8 @@ import { getCalendars } from 'expo-localization';
 import React from 'react';
 import { View } from 'react-native';
 
+import { translate } from '@/core';
+
 import TaskCard from '../task-card';
 import { type ITaskCardProps } from '../task-card/task-card.interface';
 import { Text } from '../ui';
@@ -36,7 +38,7 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
       {/* Header */}
       <View className="mx-3 mb-3 flex-row items-center gap-4">
         <Text className="font-extra-bold-poppins text-xl text-white">
-          Today's tasks
+          {translate('components.TaskListOverview.heading')}
         </Text>
         {totalTasksCount > 0 && (
           <View className=" flex-row items-center">
@@ -44,7 +46,7 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
             {activeTasksCount === 0 && (
               <View className="rounded-full bg-green-500 px-4 py-1">
                 <Text className="font-bold-poppins text-sm text-white">
-                  Completed
+                  {translate('general.completed')}
                 </Text>
               </View>
             )}
@@ -52,7 +54,7 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
             {/* Text for active/inactive tasks */}
             <Text className="text-[#94a3b8]">
               {activeTasksCount > 0
-                ? `${activeTasksCount}/${totalTasksCount} active`
+                ? `${activeTasksCount}/${totalTasksCount} ${translate('general.active')}`
                 : ''}
             </Text>
           </View>
@@ -81,10 +83,10 @@ const TaskListOverview: React.FC<TaskListOverviewProps> = ({
               color: '#ffffff',
             }}
           >
-            No Tasks!
+            {translate('components.TaskListOverview.noTasks')}
           </Text>
           <Text style={{ marginTop: 4, fontSize: 14, color: '#94a3b8' }}>
-            Enjoy your free time.
+            {translate('components.TaskListOverview.enjoyFreeTime')}
           </Text>
         </View>
       ) : (

@@ -3,7 +3,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { SafeAreaView, ScrollView, TouchableOpacity, View } from 'react-native';
 import { type CustomerInfo } from 'react-native-purchases';
 
@@ -27,9 +26,13 @@ import {
 } from '@/components/ui';
 import { CheckIcon, CloseIcon } from '@/components/ui/assets/icons';
 import { SUBSCRIPTION_PLANS_PER_PLATFORM } from '@/constants/subscriptions';
-import { DEVICE_TYPE, translate, useIsFirstTime } from '@/core';
+import {
+  DEVICE_TYPE,
+  translate,
+  useIsFirstTime,
+  useSelectedLanguage,
+} from '@/core';
 import { useCrashlytics } from '@/core/hooks/use-crashlytics';
-import { requestAppRatingWithDelay } from '@/core/utilities/request-app-review';
 import { type CrashlyticsLogLevel } from '@/crashlytics/crashlytics.types';
 import { type IUserInfo } from '@/types/general-types';
 
@@ -206,9 +209,8 @@ const PricingCard = ({
 );
 
 const PaywallNew = () => {
-  const {
-    i18n: { language },
-  } = useTranslation();
+  const { language } = useSelectedLanguage();
+
   const { allowAppAccess = 'false' } = useLocalSearchParams();
 
   const { data: userInfo } = useUser(language);
@@ -267,7 +269,7 @@ const PaywallNew = () => {
   const features = [
     {
       title: translate(
-        'rootLayout.screens.paywallOnboarding.freeTierOfferings.firstOffering'
+        'rootLayout.screens.paywallOnboarding.freeTierOfferings.secondOffering'
       ),
       icon: <CheckboxIcon />,
     },
@@ -285,7 +287,7 @@ const PaywallNew = () => {
     },
     {
       title: translate(
-        'rootLayout.screens.paywallOnboarding.freeTierOfferings.secondOffering'
+        'rootLayout.screens.paywallOnboarding.freeTierOfferings.firstOffering'
       ),
       icon: <CheckboxIcon />,
     },
@@ -311,9 +313,10 @@ const PaywallNew = () => {
         onUpdateUser,
         logEvent,
         setIsFirstTime,
+        allowAppAccess,
       });
-      requestAppRatingWithDelay(3000);
-      DEVICE_TYPE.IOS && router.dismiss();
+
+      // requestAppRatingWithDelay(3000);
     }
   };
 
@@ -345,9 +348,10 @@ const PaywallNew = () => {
                   onUpdateUser,
                   logEvent,
                   setIsFirstTime,
+                  allowAppAccess,
                 });
-                requestAppRatingWithDelay(3000);
-                DEVICE_TYPE.IOS && router.dismiss();
+                // requestAppRatingWithDelay(3000);
+                // DEVICE_TYPE.IOS && router.dismiss();
 
                 return;
               }
@@ -362,11 +366,12 @@ const PaywallNew = () => {
             {/* Fish Icon */}
             <View className="mb-4 items-center">
               <Image
-                source={require('../components/ui/assets/images/couple-exercise.png')}
+                source={require('../components/ui/assets/images/food-paywall.png')}
                 style={{
-                  width: 180,
-                  height: 120,
+                  width: 110,
+                  height: 110,
                 }}
+                contentFit="contain"
               />
             </View>
 
@@ -505,6 +510,7 @@ export const updateUserAndNavigate = async ({
   onUpdateUser,
   logEvent,
   setIsFirstTime,
+  allowAppAccess,
 }: {
   userId: string;
   language: string;
@@ -512,6 +518,7 @@ export const updateUserAndNavigate = async ({
   customerInfo: CustomerInfo;
   setIsFirstTime: (value: boolean) => void;
   logEvent: (message: string, level?: CrashlyticsLogLevel) => Promise<void>;
+  allowAppAccess: string;
   onUpdateUser: ({
     language,
     userId,
@@ -534,10 +541,15 @@ export const updateUserAndNavigate = async ({
         ...oldData,
         isOnboarded: true,
       }));
-      router.navigate('/(app)');
+      if (allowAppAccess === 'false') {
+        router.back();
+      } else {
+        DEVICE_TYPE.IOS && router.dismiss(); //!important to do this, otherwise the screen gets hanged only on ios
+        router.navigate('/(app)');
+      }
       setIsFirstTime(false);
       logEvent(
-        `User ${userId} has been onboarded successfully and selected ${collectedData.selectedPackage} plan and is redirected to home screen`
+        `User ${userId} has been onboarded successfully and selected ${collectedData?.selectedPackage || ''} plan and is redirected to home screen`
       );
     })
     .catch((e) => {

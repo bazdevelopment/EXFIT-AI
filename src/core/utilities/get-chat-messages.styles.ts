@@ -46,17 +46,17 @@ export function getChatMessagesStyles(
       fontWeight: 'bold',
     },
     paragraph: {
-      fontFamily: 'Font-Regular',
+      fontFamily: 'Font-Medium',
       fontSize: 14,
       marginBottom: 8,
     },
     list_item: {
-      fontFamily: 'Font-Regular',
+      fontFamily: 'Font-Medium',
       fontSize: 14,
       marginBottom: 6,
     },
     span: {
-      fontFamily: 'Font-Regular',
+      fontFamily: 'Font-Medium',
       fontSize: 14,
     },
     strong: {
@@ -100,20 +100,20 @@ export function getChatMessagesStyles(
       fontWeight: '800',
     },
     paragraph: {
-      fontFamily: 'Font-Regular',
+      fontFamily: 'Font-Medium',
     },
     list_item: {
-      fontFamily: 'Font-Regular',
+      fontFamily: 'Font-Medium',
     },
     span: {
-      fontFamily: 'Font-Regular',
+      fontFamily: 'Font-Medium',
     },
     strong: {
       fontFamily: 'Font-Extra-Bold',
       fontWeight: '800',
     },
     em: {
-      fontFamily: 'Font-Regular',
+      fontFamily: 'Font-Medium',
       fontStyle: 'italic',
     },
   };

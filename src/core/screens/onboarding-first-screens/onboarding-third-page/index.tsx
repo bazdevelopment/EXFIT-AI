@@ -3,6 +3,7 @@ import { View } from 'react-native';
 
 import { OnboardingNavigation } from '@/components/onboarding-first-navigation';
 import { Button, Image, Text } from '@/components/ui';
+import { translate } from '@/core/i18n';
 
 import { type IOnboardingThirdPage } from './onboarding-third-page.interface';
 
@@ -36,7 +37,7 @@ const OnboardingThirdPage = ({
 
         <View className="absolute bottom-1/4 gap-4">
           <Text className="text-center font-semibold-poppins text-3xl leading-tight text-white">
-            Let AI detect gym equipment, exercise poses, and technique
+            {translate('onboarding.firstFlow.onboardingThirdPage.heading')}
           </Text>
         </View>
       </View>

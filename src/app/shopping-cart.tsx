@@ -10,13 +10,16 @@ import SkeletonLoader from '@/components/skeleton-loader';
 import { Button, colors, Text, View } from '@/components/ui';
 import { ArrowRight, ShopBasket } from '@/components/ui/assets/icons';
 import { ShoppingCartEmpty } from '@/components/ui/assets/illustrations/shopping-cart-empty';
+import { translate } from '@/core';
 
 const ShoppingCart = () => {
   const { data: ownPurchasedData, isLoading } = useOwnedPurchasedItems();
 
   return (
     <ScreenWrapper>
-      <ScreenHeader title="Items Owned" />
+      <ScreenHeader
+        title={translate('rootLayout.screens.shoppingCart.heading')}
+      />
 
       {isLoading ? (
         <SkeletonLoader />
@@ -30,7 +33,7 @@ const ShoppingCart = () => {
               <ShoppingPurchasedCard record={item} key={item.id} />
             ))}
             <Button
-              label="Equip More"
+              label={translate('rootLayout.screens.shoppingCart.equipMore')}
               icon={<ShopBasket color={colors.white} width={20} height={20} />}
               loading={false}
               className="mt-8 h-14 w-[90%] justify-center self-center rounded-full bg-[#4E52FB] active:opacity-85 dark:bg-[#4E52FB]"
@@ -42,11 +45,11 @@ const ShoppingCart = () => {
       ) : (
         <EdgeCaseTemplate
           image={<ShoppingCartEmpty />}
-          title="You Don't Own Any Items Yet!"
-          message="Head over to the shop and collect some exciting potions"
+          title={translate('rootLayout.screens.shoppingCart.noItems')}
+          message={translate('rootLayout.screens.shoppingCart.buyPotions')}
           additionalClassName="px-16 -top-[15%]"
           primaryAction={{
-            label: 'Go to shop',
+            label: translate('rootLayout.screens.shoppingCart.goToShop'),
             onPress: () => router.navigate('/shop'),
             variant: 'default',
             icon: <ArrowRight color={colors.black} width={18} height={18} />,

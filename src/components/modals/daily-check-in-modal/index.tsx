@@ -17,7 +17,7 @@ import Toast from '@/components/toast';
 import { colors, Modal, Text } from '@/components/ui';
 import { PlusIcon } from '@/components/ui/assets/icons';
 import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
-import { DEVICE_TYPE, translate } from '@/core';
+import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import { wait } from '@/core/utilities/wait';
 
 const WrapperInput = DEVICE_TYPE.ANDROID ? TextInput : BottomSheetTextInput;
@@ -97,19 +97,23 @@ interface DailyCheckInFormProps {
 
 // --- Helper Components (Unchanged) ---
 
-const ModalHeader: React.FC<ModalHeaderProps> = ({ date }) => (
-  <>
-    <Text className="mt-2 font-bold-poppins text-lg text-white">
-      {dayjs(date).format('dddd, MMMM D')}
-    </Text>
-    <View className="mt-2">
-      <Text className="font-medium-poppins text-base text-white">
-        What got you moving today? Log it to keep your momentum strong.
+const ModalHeader: React.FC<ModalHeaderProps> = ({ date }) => {
+  const { language } = useSelectedLanguage();
+
+  return (
+    <>
+      <Text className="mt-2 font-bold-poppins text-lg text-white">
+        {dayjs(date).locale(language).format('dddd, MMMM D')}
       </Text>
-    </View>
-    <HorizontalLine className="my-5" />
-  </>
-);
+      <View className="mt-2">
+        <Text className="font-medium-poppins text-base text-white">
+          {translate('components.DailyCheckInForm.modalHeading')}
+        </Text>
+      </View>
+      <HorizontalLine className="my-5" />
+    </>
+  );
+};
 
 const ActivitySelector: React.FC<ActivitySelectorProps> = ({
   activityOptions,
@@ -122,7 +126,7 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({
 }) => (
   <>
     <Text className="mb-4 font-semibold-poppins text-lg text-white">
-      Activity Type
+      {translate('components.ActivitySelector.title')}
     </Text>
     <View className="flex-row flex-wrap">
       {activityOptions.map((activity) => (
@@ -140,7 +144,7 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({
       ))}
       <SelectableChip
         icon={<PlusIcon />}
-        title="Custom Activity"
+        title={translate('components.ActivitySelector.customActivityLabel')}
         isSelected={showCustomInput}
         className="border border-gray-600"
         style={{
@@ -154,7 +158,7 @@ const ActivitySelector: React.FC<ActivitySelectorProps> = ({
       <View className="mt-4">
         <WrapperInput
           keyboardAppearance="dark"
-          placeholder="Enter custom activity"
+          placeholder={translate('components.ActivitySelector.customActivity')}
           onChangeText={onCustomActivityChange}
           placeholderTextColor={colors.charcoal[300]}
           className="rounded-xl border border-gray-600 bg-gray-700 px-4 py-3 text-base text-white"
@@ -179,7 +183,7 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
 }) => (
   <View className="mb-4">
     <Text className="mb-4 font-semibold-poppins text-lg text-white">
-      Duration
+      {translate('components.DurationSelector.heading')}
     </Text>
     <View className="mb-4 flex-row flex-wrap">
       {durationOptions.map((duration) => (
@@ -189,7 +193,6 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
           isSelected={selectedDuration === duration.value}
           className="mb-2 mr-2 border border-gray-600"
           style={{
-            // marginBottom: 6,
             borderWidth: 1,
             borderColor: colors.charcoal[600],
           }}
@@ -198,11 +201,10 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
       ))}
       <SelectableChip
         icon={<PlusIcon />}
-        title="Custom Duration"
+        title={translate('components.DurationSelector.customDurationLabel')}
         isSelected={showCustomInput}
         className="border border-gray-600"
         style={{
-          // marginTop: 4,
           borderWidth: 1,
           borderColor: colors.charcoal[600],
         }}
@@ -213,7 +215,7 @@ const DurationSelector: React.FC<DurationSelectorProps> = ({
       <WrapperInput
         keyboardAppearance="dark"
         maxLength={3}
-        placeholder="Enter duration (minutes)"
+        placeholder={translate('components.DurationSelector.customDuration')}
         onChangeText={onCustomDurationChange}
         placeholderTextColor={colors.charcoal[300]}
         keyboardType="numeric"
@@ -249,18 +251,18 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
 
   const activityOptions = useMemo<ActivityOption[]>(
     () => [
-      { id: 'gym', label: 'Gym' },
-      { id: 'yoga', label: 'Yoga' },
-      { id: 'running', label: 'Running' },
-      { id: 'walking', label: 'Walking' },
-      { id: 'cycling', label: 'Cycling' },
-      { id: 'dance', label: 'Dance' },
-      { id: 'stretching', label: 'Stretching' },
-      { id: 'swimming', label: 'Swimming' },
-      { id: 'hiking', label: 'Hiking' },
-      { id: 'pilates', label: 'Pilates' },
-      { id: 'climbing', label: 'Climbing' },
-      { id: 'skating', label: 'Skating' },
+      { id: 'gym', label: translate('activities.gym') },
+      { id: 'yoga', label: translate('activities.yoga') },
+      { id: 'running', label: translate('activities.running') },
+      { id: 'walking', label: translate('activities.walking') },
+      { id: 'cycling', label: translate('activities.cycling') },
+      { id: 'dance', label: translate('activities.dance') },
+      { id: 'stretching', label: translate('activities.stretching') },
+      { id: 'swimming', label: translate('activities.swimming') },
+      { id: 'hiking', label: translate('activities.hiking') },
+      { id: 'pilates', label: translate('activities.pilates') },
+      { id: 'climbing', label: translate('activities.climbing') },
+      { id: 'skating', label: translate('activities.skating') },
     ],
     []
   );
@@ -337,11 +339,11 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
       wait(200).then(() =>
         Toast.showCustomToast(
           <CustomAlert
-            title="Attention"
-            subtitle={'Selected duration cannot exceed 360 minutes'}
+            title={translate('general.attention')}
+            subtitle={translate('components.DailyCheckInForm.durationLonger')}
             buttons={[
               {
-                label: 'Ok',
+                label: translate('general.ok'),
                 variant: 'default',
                 onPress: Toast.dismiss,
                 // a small delay in mandatory for Toast, not sure why
@@ -367,10 +369,12 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
       return Toast.showCustomToast(
         <CustomAlert
           title={translate('general.attention')}
-          subtitle={`Whoa there, champ! Are you secretly training for the Olympics? You've already hit the ${MAX_DAILY_ACTIVITIES}-activity for today! 🏅. You can flex those muscles again tomorrow 💪!`}
+          subtitle={translate('components.DailyCheckInForm.activitiesLimit', {
+            MAX_DAILY_ACTIVITIES,
+          })}
           buttons={[
             {
-              label: 'OK',
+              label: translate('general.ok'),
               variant: 'default',
               onPress: Toast.dismiss,
               buttonTextClassName: 'dark:text-white',
@@ -460,7 +464,7 @@ const DailyCheckInForm: React.FC<DailyCheckInFormProps> = ({
         onPress={handleSubmit}
         loading={isCreateActivityLogPending}
         disabled={isSubmitDisabled || isCreateActivityLogPending}
-        label="Add Activity"
+        label={translate('components.DailyCheckInForm.addActivity')}
       />
     </Wrapper>
     // </KeyboardAvoidingView>

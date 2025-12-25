@@ -2,7 +2,6 @@ import { Ionicons } from '@expo/vector-icons';
 import dayjs from 'dayjs';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
-import { GAMIFICATION_REWARDS_CONFIG } from 'functions/utilities/rewards-pricing';
 import React from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 
@@ -13,9 +12,9 @@ import ProgressBarLevel from '@/components/progress-bar-level';
 import ScreenHeader from '@/components/screen-header';
 import ScreenWrapper from '@/components/screen-wrapper';
 import StatsGrid from '@/components/stats-grid';
-import { Button, colors, Text } from '@/components/ui';
+import { colors, Text } from '@/components/ui';
 import { CheckIcon, WarningIconRounded } from '@/components/ui/assets/icons';
-import { useSelectedLanguage } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 import { calculateLevel } from '@/core/utilities/calculate-level';
 
 // Types
@@ -38,7 +37,7 @@ const ProfileHeader: React.FC<{
   isTemporary: boolean;
   onCreateAccount: () => void;
   onSettings: () => void;
-  userInfo;
+  userInfo: any;
   activeSubscription: string;
 }> = ({
   isTemporary,
@@ -47,36 +46,42 @@ const ProfileHeader: React.FC<{
   userInfo,
   activeSubscription,
 }) => {
+  const { language } = useSelectedLanguage();
   const activeSubscriptionLabel = activeSubscription?.includes('month')
-    ? 'Monthly Subscription'
+    ? translate('rootLayout.screens.profile.subscriptions.monthly')
     : activeSubscription?.includes('year')
-      ? 'Yearly Subscription'
+      ? translate('rootLayout.screens.profile.subscriptions.yearly')
       : activeSubscription?.includes('week')
-        ? 'Weekly Subscription'
+        ? translate('rootLayout.screens.profile.subscriptions.weekly')
         : '';
 
   return (
     <View className="items-center">
       <View className="relative">
         <Avatar
-          imageUri={
-            userInfo.onboarding.gender === 'male'
-              ? require('../components/ui/assets/images/avatar-male.png')
-              : require('../components/ui/assets/images/avatar-female.png')
+          image={
+            require('../components/ui/assets/images/avatar-male.png')
+            // userInfo.onboarding.gender === 'male'
+            //   ? require('../components/ui/assets/images/avatar-male.png')
+            //   : require('../components/ui/assets/images/avatar-female.png')
           }
           name={userInfo.userName}
           size="medium"
           showEditBadge={false}
           showVerifiedBadge={!userInfo.isAnonymous}
           editable={false}
-          creationDate={dayjs(userInfo.createdAt).format('MMMM YYYY')}
+          creationDate={dayjs(userInfo.createdAt)
+            .locale(language)
+            .format('MMMM YYYY')}
         />
       </View>
 
       <View className="mt-4 flex-row items-center gap-2">
         <View className="w-[45%] rounded-full border border-[#4E52FB] bg-transparent p-2.5">
           <Text className="text-center text-sm text-white ">
-            {isTemporary ? 'Temporary account' : 'Permanent Account'}
+            {isTemporary
+              ? translate('rootLayout.screens.profile.temporaryAccount')
+              : translate('rootLayout.screens.profile.permanentAccount')}
           </Text>
         </View>
         {activeSubscription ? (
@@ -105,7 +110,7 @@ const ProfileHeader: React.FC<{
               <WarningIconRounded width={24} height={24} />
               {/* Keep warning icon */}
               <Text className="font-semibold-poppins text-sm text-white">
-                Free Trial
+                {translate('general.freeTrial')}
               </Text>
             </View>
           </LinearGradient>
@@ -115,7 +120,8 @@ const ProfileHeader: React.FC<{
       {/* Banner with triangle pointer */}
       <View className="relative mt-4 w-[90%]">
         {/* Triangle pointing upward to temporary account */}
-        {isTemporary && (
+        //!disable for now creating permanent accounts
+        {/* {isTemporary && (
           <View
             className="absolute -top-3 left-20 z-10"
             style={{
@@ -152,7 +158,7 @@ const ProfileHeader: React.FC<{
               />
             </View>
           </LinearGradient>
-        )}
+        )} */}
       </View>
     </View>
   );
@@ -223,7 +229,7 @@ const ProfileScreen: React.FC = () => {
 
   return (
     <ScreenWrapper>
-      <ScreenHeader title="Profile" />
+      <ScreenHeader title={translate('settings.profile')} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <ProfileHeader
           isTemporary={isTemporaryAccount} // here we need a variable to check if the user created a permanent account or not

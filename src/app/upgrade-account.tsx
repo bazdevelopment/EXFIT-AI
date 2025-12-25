@@ -8,6 +8,7 @@ import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { colors, Input, Text } from '@/components/ui';
 import { ArrowLeft } from '@/components/ui/assets/icons';
+import { translate } from '@/core';
 
 // --- The React Native Component ---
 const UpgradeAccountScreen = () => {
@@ -23,7 +24,10 @@ const UpgradeAccountScreen = () => {
   const handleUpgrade = () => {
     // Basic client-side validation
     if (!email || !password) {
-      Alert.alert('Error', 'Please enter both email and password.');
+      Alert.alert(
+        translate('general.error'),
+        translate('rootLayout.screens.upgradeAccount.emailPasswordRequired')
+      );
       return;
     }
     createPermanentAccount({ email, password });
@@ -43,22 +47,22 @@ const UpgradeAccountScreen = () => {
 
           <GradientText colors={['#3195FD', '#666AFF']} className="ml-4">
             <Text className="text-center text-2xl font-bold text-blue-400">
-              Excuse Buster
+              {translate('rootLayout.screens.excuseBuster.heading')}
             </Text>
           </GradientText>
         </View>
 
         <View className="justify-center p-5">
           <Text className="mb-2.5 text-center text-2xl font-bold">
-            Secure Your Progress
+            {translate('rootLayout.screens.upgradeAccount.secureProgress')}
           </Text>
           <Text className="mb-7.5 text-center text-base text-gray-500">
-            Create a permanent account to save your data across devices.
+            {translate('rootLayout.screens.upgradeAccount.permanentAccount')}
           </Text>
 
           <Input
             className="px-6 pb-4 pt-3 text-base text-white"
-            placeholder="Enter your email"
+            placeholder={translate('rootLayout.screens.login.emailPlaceholder')}
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
@@ -66,7 +70,7 @@ const UpgradeAccountScreen = () => {
           />
           <Input
             className="px-6 pb-4 pt-3 text-base text-white"
-            placeholder="Create a password"
+            placeholder={translate('rootLayout.screens.login.createPassword')}
             value={password}
             onChangeText={setPassword}
             secureTextEntry

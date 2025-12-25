@@ -5,9 +5,7 @@ import { useUpdateUser, useUser } from '@/api/user/user.hooks';
 import FlowModal from '@/components/flow-modal';
 import { useSelectedLanguage } from '@/core';
 import { useSecondOnboarding } from '@/core/hooks/use-second-onboarding';
-import ExperienceLevelScreen from '@/core/screens/onboarding-second-screens/experience-level-screen';
-import FitnessGoalScreen from '@/core/screens/onboarding-second-screens/fitness-goal-screen';
-import GenderSelectionScreen from '@/core/screens/onboarding-second-screens/gender-screen';
+import FreeTrialPreview from '@/core/screens/free-trial-preview-screen';
 
 export interface IOnboardingCollectedData {
   gender: string;
@@ -48,7 +46,6 @@ export default function OnboardingSecond() {
       onboarding: { ...collectedData, ...newCollectedData },
       isOnboarded: true,
     };
-
     setCollectedData((prevCollectedData) => ({
       ...prevCollectedData,
       ...newCollectedData,
@@ -97,9 +94,10 @@ export default function OnboardingSecond() {
       onSkip={onSkip}
       isSubmitOnboardingLoading={isSubmitOnboardingLoading}
     >
-      <GenderSelectionScreen />
+      {/* <GenderSelectionScreen />
       <FitnessGoalScreen />
-      <ExperienceLevelScreen />
+      <ExperienceLevelScreen /> */}
+      <FreeTrialPreview />
     </FlowModal>
   );
 }

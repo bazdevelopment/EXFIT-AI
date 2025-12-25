@@ -19,10 +19,8 @@ const AICoachBanner = ({
     if (showUpgradeBanner) {
       return Toast.showCustomToast(
         <CustomAlert
-          title={'Dear user,'}
-          subtitle={
-            'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
-          }
+          title={`${translate('general.dearUser')},`}
+          subtitle={translate('components.UpgradeBanner.upgradeMessage')}
           buttons={[
             {
               label: translate('components.UpgradeBanner.heading'),
@@ -62,17 +60,16 @@ const AICoachBanner = ({
         {/* Content */}
         <View className="flex-1">
           <Text className="text-md font-semibold-poppins text-white">
-            Got a Question? Just Ask.
+            {translate('components.AICoachBanner.title')}
           </Text>
 
           <Text className="mt-2 text-sm text-gray-300">
-            Master your fitness—ask about gym machines, poses, injuries, form,
-            training plans
+            {translate('components.AICoachBanner.subtitle')}
           </Text>
 
           <View className="mt-2">
             <Button
-              label="Chat with AI Coach"
+              label={translate('components.AICoachBanner.chat')}
               className="h-[34px] rounded-full bg-white active:bg-gray-200"
               textClassName="text-black font-medium-poppins"
               onPress={handleGoToChatScreen}

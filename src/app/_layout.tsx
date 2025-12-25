@@ -319,6 +319,28 @@ export default function RootLayout() {
             }),
           }}
         />
+        <Stack.Screen
+          name="macro-details-screen"
+          options={{
+            headerShown: false,
+            gestureEnabled: true,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
+          }}
+        />
+        <Stack.Screen
+          name="progress"
+          options={{
+            headerShown: false,
+            gestureEnabled: true,
+            ...(DEVICE_TYPE.IOS && {
+              animation: 'fade',
+              animationDuration: 500,
+            }),
+          }}
+        />
       </Stack>
     </Providers>
   );

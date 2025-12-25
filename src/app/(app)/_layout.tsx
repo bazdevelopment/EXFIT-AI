@@ -7,10 +7,7 @@ import { checkForAppUpdate } from 'firebase/remote-config';
 import { useColorScheme } from 'nativewind';
 import React, { useEffect } from 'react';
 
-import {
-  useGetCustomerInfo,
-  useInitializeRevenueCat,
-} from '@/api/subscription/subscription.hooks';
+import { useInitializeRevenueCat } from '@/api/subscription/subscription.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import CustomHeader from '@/components/cusom-header';
 import InitialLoadSpinner from '@/components/initial-load-spinner.ts';
@@ -29,7 +26,6 @@ import useKeyboard from '@/core/hooks/use-keyboard';
 import { usePushNotificationToken } from '@/core/hooks/use-push-notification-token';
 import useRemoteConfig from '@/core/hooks/use-remote-config';
 import { useSecondOnboarding } from '@/core/hooks/use-second-onboarding';
-import { useUpdateUserSubscription } from '@/core/hooks/use-update-user-subscription';
 import { tabScreens } from '@/core/navigation/tabs';
 import { type ITabsNavigationScreen } from '@/core/navigation/tabs/tabs.interface';
 import { getBottomTabBarStyle } from '@/core/navigation/tabs/tabs.styles';
@@ -44,7 +40,6 @@ export default function TabLayout() {
 
   const { language } = useSelectedLanguage();
   const { logEvent } = useCrashlytics();
-  const { data: customerInfo } = useGetCustomerInfo();
   const { storeDeviceInfo } = usePushNotificationToken();
   const { data: userInfo, isPending: isPendingUserinfo } = useUser(language);
   const addSelectionHapticEffect = useHaptic('selection');
@@ -62,8 +57,8 @@ export default function TabLayout() {
   const { isConnected } = useNetInfo();
   const { MINIMUM_VERSION_ALLOWED } = useRemoteConfig();
   checkForAppUpdate(MINIMUM_VERSION_ALLOWED);
-  //todo: make sure if it's good to update the user info that often with the subscription data, I did it now in case we need at some point the subscription details in the BE and ot be up to date in case the user cancel the subscription
-  useUpdateUserSubscription(customerInfo);
+  // //todo: make sure if it's good to update the user info that often with the subscription data, I did it now in case we need at some point the subscription details in the BE and ot be up to date in case the user cancel the subscription
+  // useUpdateUserSubscription(customerInfo);
 
   useEffect(() => {
     QuickActions.setItems<QuickActions.Action>([
@@ -95,7 +90,7 @@ export default function TabLayout() {
 
   if (!isLoggedIn) {
     logEvent(`User ${userInfo?.userId} is redirected to login screen`);
-    return <Redirect href="/login" />;
+    return <Redirect href="/anonymous-login" />;
   }
 
   if (!isSecondOnboardingDone) {

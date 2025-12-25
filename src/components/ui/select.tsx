@@ -8,6 +8,7 @@ import { useController } from 'react-hook-form';
 import { ActivityIndicator, View } from 'react-native';
 import { Pressable, type PressableProps } from 'react-native';
 import { StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
 import { tv } from 'tailwind-variants';
@@ -74,9 +75,8 @@ function keyExtractor(item: OptionType) {
 
 export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
   ({ options, onSelect, value, isPending, testID, heading }, ref) => {
-    const height =
-      options.length > 3 ? options.length * 70 : options.length * 70 + 150;
-    const snapPoints = React.useMemo(() => [height], [height]);
+    const height = '90%';
+    const snapPoints = React.useMemo(() => [height, '90%'], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === 'dark';
 
@@ -122,6 +122,7 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
           renderItem={renderSelectItem}
           testID={testID ? `${testID}-modal` : undefined}
           estimatedItemSize={52}
+          renderScrollComponent={ScrollView}
         />
       </Modal>
     );

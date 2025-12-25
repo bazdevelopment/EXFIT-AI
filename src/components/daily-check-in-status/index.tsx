@@ -3,7 +3,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
-import { useSelectedLanguage } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 
 import { Text } from '../ui';
@@ -56,7 +56,7 @@ const DailyCheckInStatus = ({
               </View>
               <View>
                 <Text className="font-bold-poppins text-lg text-white">
-                  Daily Check-in
+                  {translate('components.DailyCheckInStatus.dailyCheckIn')}
                 </Text>
                 {/* Status badge under the title */}
                 <View className="mt-0.5 flex-row items-center self-start rounded-full bg-white/25 px-2 py-0.5">
@@ -70,16 +70,15 @@ const DailyCheckInStatus = ({
                   />
                   <Text className="font-bold-poppins text-xs text-white/90">
                     {isAttended
-                      ? 'Attended'
+                      ? translate('general.attended')
                       : isUnknownStatusYet
-                        ? 'Ready to start'
-                        : 'Skipped'}
+                        ? translate('general.readyToStart')
+                        : translate('general.skipped')}
                   </Text>
                 </View>
               </View>
             </View>
 
-            {/* Add button */}
             {/* {isAttended &&  */}
             <TouchableOpacity
               onPress={onAddActivity}
@@ -94,10 +93,12 @@ const DailyCheckInStatus = ({
           <View className="mt-1">
             <Text className="font-medium-poppins text-sm leading-5 text-white">
               {isAttended
-                ? "You showed up today, that's how progress is built. Keep going!"
+                ? translate('components.DailyCheckInStatus.attendedMessage')
                 : isUnknownStatusYet
-                  ? 'Your journey starts with a single step. Ready to begin?'
-                  : "The couch wins today… but tomorrow, you're making a comeback!"}
+                  ? translate('components.DailyCheckInStatus.unknownMessage')
+                  : translate(
+                      'components.DailyCheckInStatus.notAttendedMessage'
+                    )}
             </Text>
           </View>
         </View>

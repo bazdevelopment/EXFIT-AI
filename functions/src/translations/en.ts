@@ -28,6 +28,11 @@ export const en: ITranslation = {
     successUpdatedUser: 'User updated successfully',
     updateUserError: 'Unable to update the user record. Please try again.',
   },
+  updateUserLanguage: {
+    updateSuccess: 'Successfully updated the language!',
+    updateError:
+      'An unexpected error occurred while updating the language. Please try again later',
+  },
   analyzeImage: {
     scanLimitReached:
       'You’ve reached the maximum number of scans allowed. Please upgrade your plan to continue using the service',

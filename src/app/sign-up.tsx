@@ -19,6 +19,7 @@ import {
   Text,
 } from '@/components/ui';
 import { ArrowLeft } from '@/components/ui/assets/icons';
+import { translate } from '@/core';
 
 const schema = z
   .object({
@@ -94,12 +95,11 @@ export default function SignUpScreen({
     const { email, password } = data;
     if (!acceptTerms) {
       Alert.alert(
-        'Terms Required',
-        'Please accept the terms of use and privacy policy to continue.'
+        translate('rootLayout.screens.signUp.acceptTerms.title'),
+        translate('rootLayout.screens.signUp.acceptTerms.subtitle')
       );
       return;
     }
-    console.log('SignUp data:', data, 'Accept terms:', acceptTerms);
     // onSubmit(data);
     createPermanentAccount({ email, password });
   };
@@ -134,7 +134,7 @@ export default function SignUpScreen({
         <View className="flex-1 px-6">
           {/* Title */}
           <Text className="mb-12 mt-4 text-center font-medium-poppins text-3xl text-white dark:text-white">
-            Sign Up
+            {translate('rootLayout.screens.signUp.heading')}
           </Text>
 
           {!!error && (
@@ -146,14 +146,16 @@ export default function SignUpScreen({
           {/* Email Input */}
           <View className="mb-4">
             <Text className="mb-2 font-medium-poppins text-white dark:text-white">
-              Email Address
+              {translate('rootLayout.screens.login.emailAddress')}
             </Text>
             <ControlledInput
               control={control}
               name="email"
               returnKeyType="done"
               testID="email-input"
-              placeholder="Enter your email"
+              placeholder={translate(
+                'rootLayout.screens.login.emailPlaceholder'
+              )}
               keyboardType="email-address"
               autoCapitalize="none"
               value={emailField.value}
@@ -166,7 +168,7 @@ export default function SignUpScreen({
           {/* Password Input */}
           <View className="mb-4">
             <Text className="mb-2 font-medium-poppins text-white dark:text-white">
-              Password
+              {translate('rootLayout.screens.login.password')}
             </Text>
             <View className="relative">
               <ControlledInput
@@ -198,7 +200,7 @@ export default function SignUpScreen({
           {/* Confirm Password Input */}
           <View className="mb-4">
             <Text className="mb-2 font-medium-poppins text-white dark:text-white">
-              Confirm Password
+              {translate('rootLayout.screens.login.confirmPassword')}
             </Text>
             <View className="relative">
               <ControlledInput
@@ -239,7 +241,7 @@ export default function SignUpScreen({
           />
 
           <Button
-            label="Sign Up"
+            label={translate('rootLayout.screens.signUp.heading')}
             className="h-14 w-full rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
             textClassName="text-base font-medium-poppins text-center text-white dark:text-white"
             iconPosition="left"
@@ -249,11 +251,11 @@ export default function SignUpScreen({
 
           <View className="flex-row items-center justify-center">
             <Text className="text-white dark:text-gray-300">
-              Have an account?{' '}
+              {translate('rootLayout.screens.signUp.haveAccount')}{' '}
             </Text>
             <TouchableOpacity onPress={handleSignInPress}>
               <Text className="font-medium-poppins text-blue-400 dark:text-blue-400">
-                Sign in here
+                {translate('rootLayout.screens.signUp.signInHere')}
               </Text>
             </TouchableOpacity>
           </View>

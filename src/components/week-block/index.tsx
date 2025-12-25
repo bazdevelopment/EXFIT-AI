@@ -1,13 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
 import { useGetCalendarActivityLog } from '@/api/activity-logs/activity-logs.hooks';
 import { useUser } from '@/api/user/user.hooks';
 import { translate, useSelectedLanguage } from '@/core';
 
 import CalendarMiniView from '../calendar-mini-view';
-import Icon from '../icon';
-import { colors, Text } from '../ui';
+import { Text } from '../ui';
 import { ChevronLeftRounded, ChevronRightRounded } from '../ui/assets/icons';
 import { type IWeekBlock } from './week-block.interface';
 
@@ -47,11 +46,12 @@ const WeekBlock = ({
       <View
         className={`mb-4 flex-row items-center justify-between ${className}`}
       >
-        <Icon
-          icon={<ChevronLeftRounded color={colors.white} />}
+        <TouchableOpacity
           onPress={() => changeWeekOffset('left')}
-          color={colors.white}
-        />
+          className="rounded-lg p-2"
+        >
+          <ChevronLeftRounded />
+        </TouchableOpacity>
 
         <View className="flex-1 items-center justify-center">
           <Text className="font-bold-poppins text-lg text-white">
@@ -61,11 +61,12 @@ const WeekBlock = ({
           <Text className="mt-1 font-medium-poppins text-base text-gray-200">{`${translate('components.WeekBlock.week')} ${weekNumber} - ${currentMonth} ${currentYear}`}</Text>
         </View>
 
-        <Icon
-          icon={<ChevronRightRounded />}
+        <TouchableOpacity
           onPress={() => changeWeekOffset('right')}
-          color={colors.white}
-        />
+          className="rounded-lg p-2"
+        >
+          <ChevronRightRounded />
+        </TouchableOpacity>
       </View>
       <CalendarMiniView
         containerClassName="px-4 mb-[-10px] top-[-25px] z-[-1]"
@@ -83,6 +84,7 @@ const WeekBlock = ({
         showYear={false}
         showMonth={false}
         showStreak={false}
+        showProgress={false}
       />
     </>
   );

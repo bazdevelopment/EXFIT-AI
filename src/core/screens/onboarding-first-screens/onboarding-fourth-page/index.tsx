@@ -4,6 +4,7 @@ import { ImageBackground, View } from 'react-native';
 
 import { OnboardingNavigation } from '@/components/onboarding-first-navigation';
 import { Button, Text } from '@/components/ui';
+import { translate } from '@/core/i18n';
 
 import { type IOnboardingFourthPage } from './onboarding-fourth-page.interface';
 
@@ -60,12 +61,11 @@ const OnboardingFourthPage = ({
 
       <View className="absolute bottom-52 gap-4 px-4">
         <Text className="text-center font-bold-poppins text-3xl leading-tight text-white">
-          Train. Earn. Level Up.
+          {translate('onboarding.firstFlow.onboardingFourthPage.headingOne')}
         </Text>
         {/* Subtitle */}
         <Text className="text-center font-primary-poppins text-base  text-white">
-          Score XP, collect gems, keep your streak alive, and unlock rewards for
-          showing up.
+          {translate('onboarding.firstFlow.onboardingFourthPage.headingTwo')}
         </Text>
       </View>
     </View>

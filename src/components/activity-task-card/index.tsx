@@ -4,7 +4,7 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { type ICreateTaskRequestData } from '@/api/ai-tasks/ai-tasks.types';
-import { useSelectedLanguage } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 
 import { type IExcuseBusterTask } from '../chat-bubble-excuse-buster/chat-bubble-excuse-buster.interface';
 import { Text } from '../ui';
@@ -45,7 +45,8 @@ const ActivityTaskCard = ({
             </View>
             <View className="flex-row items-center rounded-xl border-white/20 bg-white/10 px-3 py-1.5 shadow-lg">
               <Text className="text-sm font-bold text-white">
-                Win {currentStreaks} 🔥
+                {translate('components.ActivityTaskCard.win')} {currentStreaks}{' '}
+                🔥
               </Text>
             </View>
           </View>
@@ -64,7 +65,7 @@ const ActivityTaskCard = ({
                 <View className="mb-3 flex-row items-center gap-2">
                   <Feather name="clock" size={14} color="white" />
                   <Text className="text-sm font-semibold text-white">
-                    {task.durationMinutes} minutes
+                    {task.durationMinutes} {translate('general.minutes')}
                   </Text>
                 </View>
               )}
@@ -101,7 +102,7 @@ const ActivityTaskCard = ({
           >
             <View className="flex-row items-center justify-center px-4 py-3">
               <Text className="text-base font-bold tracking-wide text-white">
-                Accept challenge 🔥
+                {translate('components.ActivityTaskCard.acceptChallenge')}
               </Text>
             </View>
           </TouchableOpacity>

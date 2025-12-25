@@ -1,5 +1,7 @@
 import { View } from 'react-native';
 
+import { translate } from '@/core';
+
 import { colors, Image, Text } from '../ui';
 import { CheckIcon } from '../ui/assets/icons';
 
@@ -19,7 +21,7 @@ export const ShoppingPurchasedCard = ({ record }) => {
           </Text>
 
           <Text className="mb-2 text-base text-white opacity-90 dark:text-white">
-            Protect your streak if you miss a day of practice.
+            {translate('components.ShoppingPurchasedCard.heading')}
           </Text>
 
           {/* Status Badge */}
@@ -29,15 +31,15 @@ export const ShoppingPurchasedCard = ({ record }) => {
                 {record.quantity}
               </Text>
               <Text className="font-semibold-poppins text-sm text-white dark:text-white">
-                OWNED
+                {translate('components.ShoppingPurchasedCard.owned')}
               </Text>
             </View>
             <View className="flex-row items-center gap-2 self-start rounded-md bg-[#4E52FB] px-3 dark:bg-[#4E52FB]">
               <CheckIcon width={20} height={20} color={colors.white} />
               <Text className="font-semibold-poppins text-sm text-white dark:text-white">
                 {record.id === 'STREAK_REVIVAL_ELIXIR'
-                  ? 'MANUAL TRIGGER'
-                  : 'ACTIVATED'}
+                  ? translate('components.ShoppingPurchasedCard.manualTrigger')
+                  : translate('components.ShoppingPurchasedCard.activated')}
               </Text>
             </View>
             {/* <SelectableChip

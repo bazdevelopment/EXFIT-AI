@@ -10,7 +10,7 @@ import ScreenWrapper from '@/components/screen-wrapper';
 import SelectableButton from '@/components/selectable-button';
 import { Button, colors } from '@/components/ui';
 import { ArrowLeft, ArrowRight } from '@/components/ui/assets/icons';
-import { useSelectedLanguage } from '@/core/i18n';
+import { translate, useSelectedLanguage } from '@/core/i18n';
 
 import { type IFitnessGoalScreen } from './fitness-goal-screen.interface';
 
@@ -88,7 +88,7 @@ const FitnessGoalScreen = ({
         {/* Main Question */}
         <View className="mb-6 mt-8 px-4">
           <Text className="font-bold-poppins text-3xl text-white">
-            What's your fitness goal?
+            {translate('rootLayout.screens.fitnessGoalScreen.heading')}
           </Text>
         </View>
 
@@ -109,7 +109,7 @@ const FitnessGoalScreen = ({
       {/* Continue Button at the bottom */}
       <View className="bg-black px-4 py-6">
         <Button
-          label="Continue"
+          label={translate('general.continue')}
           icon={<ArrowRight color={colors.white} />}
           // withGradientBackground
           disabled={selectedGoals.length === 0}
@@ -122,7 +122,7 @@ const FitnessGoalScreen = ({
           }}
         />
         <Button
-          label="Skip"
+          label={translate('general.skip')}
           loading={isSubmitOnboardingLoading}
           className="mt-2 h-[50px] justify-center rounded-full bg-[#042140] dark:bg-[#042140]"
           textClassName="font-medium-poppins text-base text-center text-[#3195FD] dark:text-[#3195FD]"

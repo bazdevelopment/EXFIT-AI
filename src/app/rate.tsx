@@ -29,7 +29,7 @@ const Rate = () => {
 
   return (
     <ScreenWrapper>
-      <ScreenHeader title="Give us feedback" />
+      <ScreenHeader title={translate('settings.rate')} />
       <View className="flex-1 items-center justify-center">
         <EdgeCaseTemplate
           image={<RatingIllustration />}

@@ -16,7 +16,7 @@ import StreakWarning from '@/components/streak-warning';
 import Toast from '@/components/toast';
 import { Image, Modal, Text } from '@/components/ui';
 import { FlashIcon, GemIcon } from '@/components/ui/assets/icons';
-import { DEVICE_TYPE, useSelectedLanguage } from '@/core';
+import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import { checkIsToday } from '@/core/utilities/date-time-helpers';
 
 import dayjs from '../../../lib/dayjs';
@@ -60,11 +60,14 @@ export const DailyActivityModal = React.forwardRef<
                 className="size-[80]"
               />
             }
-            title="Streak Broke! Save it now!"
-            subtitle={`Buy a Streak Repair Elixir for ${elixirPrice} 💎 to bring back your lost streak.`}
+            title={translate('components.DailyActivityModal.streakBroken')}
+            subtitle={translate(
+              'components.DailyActivityModal.buyRepairStreak',
+              { elixirPrice }
+            )}
             buttons={[
               {
-                label: 'Let It Break',
+                label: translate('components.DailyActivityModal.loseStreak'),
                 variant: '',
                 onPress: () => Toast.dismiss(),
                 className:
@@ -72,7 +75,7 @@ export const DailyActivityModal = React.forwardRef<
                 buttonTextClassName: 'text-white dark:text-white text-sm',
               },
               {
-                label: 'Buy & Save Streak',
+                label: translate('components.DailyActivityModal.buyStreak'),
                 variant: '',
                 onPress: () => {
                   // router.navigate('/shop');
@@ -105,11 +108,16 @@ export const DailyActivityModal = React.forwardRef<
               className="size-[80]"
             />
           }
-          title="Streak in Peril! Revive It Now!"
-          subtitle={`Bring your ${lostStreakValue}-day streak back to life with the powerful Streak Repair Elixir!`}
+          title={translate('components.DailyActivityModal.streakRestore')}
+          subtitle={translate(
+            'components.DailyActivityModal.restorationStreak',
+            {
+              lostStreakValue,
+            }
+          )}
           buttons={[
             {
-              label: 'Let It Break',
+              label: translate('components.DailyActivityModal.loseStreak'),
               variant: '',
               onPress: () => Toast.dismiss(),
               className:
@@ -117,7 +125,7 @@ export const DailyActivityModal = React.forwardRef<
               buttonTextClassName: 'text-white dark:text-white text-sm',
             },
             {
-              label: 'Use Elixir',
+              label: translate('components.DailyActivityModal.applyElixir'),
               variant: '',
               onPress: onRepairStreak,
               buttonTextClassName:
@@ -191,7 +199,9 @@ export const DailyActivityModal = React.forwardRef<
 
                   {/* Title and Date */}
                   <Text className="mb-4 mt-[-10px] font-bold-poppins text-xl text-white">
-                    {dayjs(data.dateKey).format('dddd, MMMM D')}
+                    {dayjs(data.dateKey)
+                      .locale(language)
+                      .format('dddd, MMMM D')}
                   </Text>
                   <StreakWarning
                     isStreakReset={record?.isStreakReset}
@@ -236,7 +246,7 @@ export const DailyActivityModal = React.forwardRef<
                         {activities?.length || 0}
                       </Text>
                       <Text className="font-medium-poppins text-sm text-white">
-                        Activities
+                        {translate('general.activities')}
                       </Text>
                     </View>
                   </View>

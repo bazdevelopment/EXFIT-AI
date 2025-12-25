@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image, View } from 'react-native';
 
+import { translate } from '@/core';
+
 import { Button, colors, Text } from '../ui';
 import { StreakFreeze } from '../ui/assets/icons';
 import { type IStreakWarning } from './streak-warning.interface';
@@ -20,17 +22,17 @@ const StreakWarning = ({
         <View className="mb-2 flex-row items-center justify-center">
           <StreakFreeze width={40} height={40} />
           <Text className="font-bold-poppins text-lg text-red-300">
-            Streak freeze!
+            {translate('components.StreakWarning.streakFreeze')}
           </Text>
         </View>
         <Text className="text-center text-sm text-red-200">
-          Your streak was reset on this day.{' '}
-          {`${!isElixirUsageExpired ? 'Use your Streak Repair Elixir to keep your streak alive' : ''}`}
+          {translate('components.StreakWarning.streakResetNow')}{' '}
+          {`${!isElixirUsageExpired ? translate('components.StreakWarning.streakRepairUse') : ''}`}
         </Text>
 
         {!isElixirUsageExpired ? (
           <Button
-            label="Repair Streak"
+            label={translate('components.StreakWarning.repairStreak')}
             className="mt-4 w-full rounded-full active:opacity-80"
             onPress={onRepairStreak}
             textClassName="font-medium-poppins text-base"
@@ -39,8 +41,7 @@ const StreakWarning = ({
           />
         ) : (
           <Text className="mt-4 text-center text-sm text-red-200">
-            Your 48-hour streak repair window has expired! But hey, new streaks
-            mean new opportunities to beat your personal best.
+            {translate('components.StreakWarning.streakRepairExpired')}
           </Text>
         )}
       </View>
@@ -57,12 +58,11 @@ const StreakWarning = ({
             className="right-1 size-[32]"
           />
           <Text className="font-bold-poppins text-lg text-red-300">
-            Streak Freeze Potion Consumed!
+            {translate('components.StreakWarning.streakPotionConsumed')}
           </Text>
         </View>
         <Text className="text-center text-sm text-red-200">
-          Your Streak Freeze Potion kicked in and protected your streak. You're
-          still on fire!
+          {translate('components.StreakWarning.streakFreezeApplied')}
         </Text>
       </View>
     );
@@ -78,12 +78,11 @@ const StreakWarning = ({
             className="right-1 size-[32]"
           />
           <Text className="font-bold-poppins text-lg text-red-300">
-            Streak Repair Elixir Potion Kicked In!
+            {translate('components.StreakWarning.streakElixirApplied')}
           </Text>
         </View>
         <Text className="text-center text-sm">
-          You saved your Streak! Your Streak Freeze Potion kicked in and
-          protected your streak. You're still on fire!
+          {translate('components.StreakWarning.streakFreezePotionApplied')}
         </Text>
       </View>
     );

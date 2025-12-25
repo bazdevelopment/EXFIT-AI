@@ -73,7 +73,7 @@ export const useScanImage = ({
           closeButton: true,
           duration: 10000000,
           action: {
-            label: 'Ask AI assistant',
+            label: translate('general.askAssistant'),
             onClick: () => {
               Toast.dismiss();
               // handleCloseScanningModal();

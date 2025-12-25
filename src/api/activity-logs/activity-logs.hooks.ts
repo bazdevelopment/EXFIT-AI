@@ -2,6 +2,7 @@ import { type AxiosError } from 'axios';
 import { createMutation, createQuery } from 'react-query-kit';
 
 import Toast from '@/components/toast';
+import { translate } from '@/core';
 
 import { queryClient } from '../common';
 import {
@@ -30,7 +31,7 @@ export const useCreateActivityLog = ({ onSuccess }) =>
       });
     },
     onError: () => {
-      Toast.error('Error creating activity log');
+      Toast.error(translate('alerts.createActivityLogFailed'));
     },
   })();
 
@@ -44,7 +45,7 @@ export const useUpdateActivityLog = () =>
       queryClient.invalidateQueries({ queryKey: ['user-info'] });
     },
     onError: () => {
-      Toast.error('Error updating activity log');
+      Toast.error(translate('alerts.updateActivityLogFailed'));
     },
   })();
 

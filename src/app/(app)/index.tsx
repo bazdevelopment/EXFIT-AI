@@ -1,6 +1,7 @@
 import { getCalendars } from 'expo-localization';
 import { router } from 'expo-router';
-import React, { useEffect } from 'react';
+import { firebaseAuth } from 'firebase/config';
+import React, { useEffect, useState } from 'react';
 import {
   RefreshControl,
   ScrollView,
@@ -13,11 +14,15 @@ import {
   useGetCalendarActivityLog,
   useUpdateActivityLog,
 } from '@/api/activity-logs/activity-logs.hooks';
-import { useGetAllUserConversations } from '@/api/conversation/conversation.hooks';
+import {
+  useAllUserConversations,
+  useGetAllUserConversations,
+} from '@/api/conversation/conversation.hooks';
 import { useGetAllExcuseBusterConversations } from '@/api/excuse-buster-conversation/excuse-buster-conversation.hooks';
+import { useGetDailyMacros } from '@/api/macro/macro.hooks';
 import { useFetchUserNotifications } from '@/api/push-notifications/push-notifications.hooks';
 import { useOwnedPurchasedItems, useRepairStreak } from '@/api/shop/shop.hooks';
-import { useUser } from '@/api/user/user.hooks';
+import { useUpdateUser, useUser } from '@/api/user/user.hooks';
 import ActivityPromptBanner from '@/components/banners/activity-prompt-banner';
 import AICoachBanner from '@/components/banners/ai-coach-banner';
 import MotivationBanner from '@/components/banners/motivation-banner';
@@ -35,18 +40,22 @@ import RewardsOverview from '@/components/rewards-overview';
 import ScreenWrapper from '@/components/screen-wrapper';
 import TaskListOverview from '@/components/task-list-overview';
 import Toast from '@/components/toast';
+import { TodayMacroView } from '@/components/today-macro-overview';
 import { colors, Image, useModal } from '@/components/ui';
 import { BellIcon, ShoppingCart } from '@/components/ui/assets/icons';
 import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useRefetchOnFocus } from '@/core/hooks/use-refetch-on-focus';
+import useRemoteConfig from '@/core/hooks/use-remote-config';
 import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
-import { avatars, type TAvatarGender } from '@/core/utilities/avatars';
+import { avatars } from '@/core/utilities/avatars';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 import { generateWeekDataOverview } from '@/core/utilities/generate-week-data-overview';
 import { requestAppRatingWithDelay } from '@/core/utilities/request-app-review';
+
+import { GoalsModal } from '../macro-details-screen';
 
 // eslint-disable-next-line max-lines-per-function
 export default function Home() {
@@ -76,6 +85,9 @@ export default function Home() {
     userId: userInfo?.userId,
     limit: 10,
   });
+
+  const { mutateAsync: onUpdateUser, isPending: isPendingUpdateUser } =
+    useUpdateUser();
   const coachConversationsLength = allConversations?.count || 0;
   const excuseBusterConversationsCount = excuseBusterConversations?.count || 0;
 
@@ -133,7 +145,19 @@ export default function Home() {
       }),
   });
 
+  const { data: dailyMacros, refetch: refetchDailyMacros } = useGetDailyMacros({
+    date: currentActiveDay,
+  });
+
   const { mutateAsync: onUpdateActivityLog } = useUpdateActivityLog();
+
+  const [showGoalsModal, setShowGoalsModal] = useState(false);
+  const macroGoals = userInfo?.macroGoals || {
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+  };
 
   const { data: currentWeekActivityLogs, refetch: refetchActivityLog } =
     useGetCalendarActivityLog({
@@ -141,6 +165,13 @@ export default function Home() {
       endDate: endOfWeek,
       language,
     });
+
+  const {
+    MAX_CONVERSATIONS_ALLOWED_FREE_TRIAL,
+    TOTAL_FREE_ACTIVITIES_FREE_TRIAL,
+  } = useRemoteConfig();
+  const { data } = useAllUserConversations();
+  const conversationsCount = data?.count || 0;
 
   const todayDateKey = `${currentYear}-${currentMonthNumber}-${currentDayNumber}`;
 
@@ -187,23 +218,18 @@ export default function Home() {
     refetchUserInfo();
     refetchUserNotifications();
     refetchOwnedShopItems();
+    refetchDailyMacros();
   });
 
   /* *ask for rating */
   useEffect(() => {
     if (
-      completedScans === userInfo.maxScansForFree ||
-      excuseBusterConversationsCount === 5 ||
-      coachConversationsLength === 5
+      excuseBusterConversationsCount === 10 ||
+      coachConversationsLength === 10
     ) {
       requestAppRatingWithDelay(1000);
     }
-  }, [
-    completedScans,
-    coachConversationsLength,
-    excuseBusterConversationsCount,
-    userInfo.maxScansForFree,
-  ]);
+  }, [coachConversationsLength, excuseBusterConversationsCount]);
 
   return (
     <ScreenWrapper>
@@ -213,8 +239,8 @@ export default function Home() {
         <View className="flex-row items-center">
           <TouchableOpacity onPress={() => router.navigate('/profile')}>
             <Image
-              source={avatars[userInfo.onboarding.gender as TAvatarGender]}
-              className="mx-4 size-12  rounded-full bg-white/20" // Tailwind classes for styling the avatar
+              source={avatars['male']}
+              className="mx-4 size-12 rounded-full bg-white/20" // Tailwind classes for styling the avatar
               accessibilityLabel="User Avatar"
             />
           </TouchableOpacity>
@@ -291,6 +317,25 @@ export default function Home() {
               lostStreakValue={lostStreakValue}
             />
           )}
+
+          <TodayMacroView
+            data={
+              !dailyMacros?.data
+                ? { calories: 0, carbs: 0, fat: 0, protein: 0 }
+                : dailyMacros.data.totals
+            }
+            goals={macroGoals}
+            onPress={() => router.navigate('/macro-details-screen')}
+            onEditGoals={() => setShowGoalsModal(true)}
+          />
+          <GoalsModal
+            visible={showGoalsModal}
+            goals={macroGoals}
+            onClose={() => setShowGoalsModal(false)}
+            onSave={onUpdateUser}
+            language={language}
+            userId={userInfo?.userId || firebaseAuth.currentUser?.uid}
+          />
           {!isDailyCheckInDone ? (
             <ActivityPromptBanner
               containerClassName="mt-2"
@@ -311,15 +356,14 @@ export default function Home() {
               onAddActivity={() => {
                 if (
                   isUpgradeRequired &&
-                  totalActivitiesPerWeek >=
-                    userInfo.totalActivitiesPerWeekForFree
+                  totalActivitiesPerWeek >= TOTAL_FREE_ACTIVITIES_FREE_TRIAL
                 ) {
                   return Toast.showCustomToast(
                     <CustomAlert
-                      title={'Dear user,'}
-                      subtitle={
-                        'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
-                      }
+                      title={`${translate('general.dearUser')},`}
+                      subtitle={translate(
+                        'components.UpgradeBanner.upgradeMessage'
+                      )}
                       buttons={[
                         {
                           label: translate('components.UpgradeBanner.heading'),
@@ -377,16 +421,14 @@ export default function Home() {
             containerClassName="mt-4"
             isUpgradeRequired={
               isUpgradeRequired &&
-              excuseBusterConversationsCount >=
-                userInfo.maxExcuseBusterConversationsForFree
+              conversationsCount >= MAX_CONVERSATIONS_ALLOWED_FREE_TRIAL
             }
           />
           <AICoachBanner
             containerClassName="mt-4"
             showUpgradeBanner={
               isUpgradeRequired &&
-              coachConversationsLength >=
-                userInfo.maxAiCoachConversationsForFree
+              conversationsCount >= MAX_CONVERSATIONS_ALLOWED_FREE_TRIAL
             }
           />
         </View>
@@ -414,14 +456,12 @@ export default function Home() {
         onGoToExcuseBuster={() => {
           if (
             isUpgradeRequired &&
-            totalActivitiesPerWeek >= userInfo.totalActivitiesPerWeekForFree
+            totalActivitiesPerWeek >= TOTAL_FREE_ACTIVITIES_FREE_TRIAL
           ) {
             return Toast.showCustomToast(
               <CustomAlert
-                title={'Dear user,'}
-                subtitle={
-                  'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
-                }
+                title={`${translate('general.dearUser')},`}
+                subtitle={translate('components.UpgradeBanner.upgradeMessage')}
                 buttons={[
                   {
                     label: translate('components.UpgradeBanner.heading'),
@@ -465,21 +505,19 @@ export default function Home() {
             logId: taskId as string,
             fieldsToUpdate: { notes },
           }).then(() => {
-            Toast.success('Notes saved! 📝 All set.');
+            Toast.success(translate('alerts.notesSavedSuccess'));
           })
         }
         currentWeekActivityLogs={generatedWeekDataMapped}
         onAddActivity={(date) => {
           if (
             isUpgradeRequired &&
-            totalActivitiesPerWeek >= userInfo.totalActivitiesPerWeekForFree
+            totalActivitiesPerWeek >= TOTAL_FREE_ACTIVITIES_FREE_TRIAL
           ) {
             return Toast.showCustomToast(
               <CustomAlert
-                title={'Dear user,'}
-                subtitle={
-                  'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
-                }
+                title={`${translate('general.dearUser')},`}
+                subtitle={translate('components.UpgradeBanner.upgradeMessage')}
                 buttons={[
                   {
                     label: translate('components.UpgradeBanner.heading'),

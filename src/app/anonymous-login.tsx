@@ -49,6 +49,7 @@ export default function AnonymousLogin() {
       bottomOffset={300}
       contentContainerStyle={{
         flexGrow: 1, //!very important, do not change with flex:1
+        overflow: 'hidden',
       }}
       keyboardShouldPersistTaps="handled"
     >
@@ -103,7 +104,7 @@ export default function AnonymousLogin() {
                 keyboardType="default"
                 autoComplete={undefined}
                 autoCorrect={false}
-                // autoFocus
+                autoFocus
                 className="dark-blackEerie h-14 flex-1 rounded-xl border-2 border-neutral-700 bg-blackEerie px-3.5 font-primary-poppins text-white dark:border-neutral-700"
                 containerClassName="bg-blackEerie"
                 // icon={<UserIcon top={3} />}

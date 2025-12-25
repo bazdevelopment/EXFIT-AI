@@ -1,12 +1,16 @@
 /* eslint-disable max-lines-per-function */
 import { Camera, CameraView } from 'expo-camera';
 import { router } from 'expo-router';
+import { firebaseAuth } from 'firebase/config';
+import { generateUniqueId } from 'functions/utilities/generate-unique-id';
 import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { Alert, Dimensions, Image, Linking, View } from 'react-native';
 
-import { useScanImage } from '@/api/scan/scan.hooks';
-import { useUser } from '@/api/user/user.hooks';
+import {
+  useAllUserConversations,
+  useSendStreamingMessage,
+} from '@/api/conversation/conversation.hooks';
 import CameraCaptureButton from '@/components/camera-capture-button';
 import CustomAlert from '@/components/custom-alert';
 import FadeInView from '@/components/fade-in-view/fade-in-view';
@@ -24,8 +28,8 @@ import {
   SettingsWheelIcon,
 } from '@/components/ui/assets/icons';
 import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
+import useRemoteConfig from '@/core/hooks/use-remote-config';
 import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
-import { createFormDataImagePayload } from '@/core/utilities/create-form-data-image-payload';
 
 import { Camera as CameraIcon } from '../../components/ui/assets/icons';
 
@@ -37,14 +41,20 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [flashMode, setFlashMode] = useState('off');
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
-  // const [isScanning, setIsScanning] = useState(false);
+  const { language: appLanguage } = useSelectedLanguage();
+
   const cameraRef = useRef(null);
   const scanningLottieRef = useRef<LottieView>(null);
-  const { language } = useSelectedLanguage();
-  const { data: userInfo } = useUser(language);
-  const completedScans = userInfo?.completedScans || 0;
+
+  const { MAX_CONVERSATIONS_ALLOWED_FREE_TRIAL } = useRemoteConfig();
+
+  const { data } = useAllUserConversations();
+  const conversationsCount = data?.count || 0;
 
   const { isUpgradeRequired } = useSubscriptionAlert();
+  const userId = firebaseAuth.currentUser?.uid as string;
+
+  const conversationId = generateUniqueId();
 
   const onSuccess = ({ conversationId }: { conversationId: string }) => {
     retakePhoto();
@@ -52,39 +62,51 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
       pathname: '/chat-screen',
       params: {
         conversationId,
-        mediaSource: capturedImage,
+        mediaSource: capturedImage?.uri!,
         mimeType: 'image/jpeg',
         conversationMode: 'IMAGE_SCAN_CONVERSATION',
       },
     });
   };
 
-  const imagePayload = createFormDataImagePayload({
-    fileUri: capturedImage as string,
-    fileMimeType: 'image/jpeg',
-    promptMessage: '',
-    userId: userInfo.userId,
-  });
+  // const imagePayload = createFormDataImagePayload({
+  //   fileUri: capturedImage as string,
+  //   fileMimeType: 'image/jpeg',
+  //   promptMessage: '',
+  //   userId: userInfo.userId,
+  // });
+
+  // const {
+  //   mutate: onScanImage,
+  //   error: errorAnalyzeImage,
+  //   isPending: isScanning,
+  //   reset: resetOnScanImage,
+  // } = useScanImage({
+  //   onSuccessCallback: onSuccess,
+  //   language,
+  //   // handleCloseScanningModal,
+  //   // resetFlow,
+  // });
 
   const {
-    mutate: onScanImage,
-    error: errorAnalyzeImage,
+    mutateAsync: onScanImage,
     isPending: isScanning,
+    error: errorAnalyzeImage,
     reset: resetOnScanImage,
-  } = useScanImage({
-    onSuccessCallback: onSuccess,
-    language,
-    // handleCloseScanningModal,
-    // resetFlow,
+  } = useSendStreamingMessage({
+    onComplete: onSuccess,
+    onError: () => {},
   });
-  const handleScanImage = () => {
-    if (isUpgradeRequired && completedScans >= userInfo.maxScansForFree) {
+
+  const handleScanImage = async () => {
+    if (
+      isUpgradeRequired &&
+      conversationsCount >= MAX_CONVERSATIONS_ALLOWED_FREE_TRIAL
+    ) {
       return Toast.showCustomToast(
         <CustomAlert
-          title={'Dear user,'}
-          subtitle={
-            'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
-          }
+          title={`${translate('general.dearUser')},`}
+          subtitle={translate('components.UpgradeBanner.upgradeMessage')}
           buttons={[
             {
               label: translate('components.UpgradeBanner.heading'),
@@ -101,7 +123,34 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
         }
       );
     }
-    onScanImage(imagePayload);
+    // onScanImage(imagePayload);
+    await onScanImage({
+      //!! add a prompt in this screen
+      // userMessage: !!promptMessage?.trim()
+      //   ? promptMessage
+      //   : !!imageDataArray?.length
+      //     ? translate('general.analyzingMediaFilesPlaceholder')
+      //     : '',
+      userMessage: '', //!todo add a prompt input in this screen
+      conversationId,
+      userId,
+      history: [],
+      mediaFiles: [
+        {
+          uri: capturedImage?.uri || '',
+          mimeType: capturedImage?.fileMimeType || '',
+          fileName: capturedImage?.fileName || '',
+        },
+      ],
+
+      language: appLanguage,
+      onStream: (chunk: string) => {},
+      onComplete: (fullResponse: string) => {},
+      onError: (error: Error) => {
+        // console.error('Error sending message:', error);
+        Toast.error(translate('alerts.failedSendMessage'));
+      },
+    });
   };
 
   useEffect(() => {
@@ -119,9 +168,12 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
           base64: false,
           skipProcessing: false,
         });
-        setCapturedImage(photo.uri);
+        setCapturedImage(photo);
       } catch (error) {
-        Alert.alert('Error', 'Failed to take picture');
+        Alert.alert(
+          translate('general.error'),
+          translate('alerts.capturePictureFailed')
+        );
       }
     }
   };
@@ -137,7 +189,9 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
   if (hasPermission === null) {
     return (
       <View className="flex-1 items-center justify-center bg-black">
-        <Text className="text-white">Requesting camera permission...</Text>
+        <Text className="text-white">
+          {translate('rootLayout.screens.scan.requestPermission')}
+        </Text>
       </View>
     );
   }
@@ -148,10 +202,10 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
         <View className="flex-1 items-center justify-center px-6">
           <CameraIcon width={64} height={64} color="white" />
           <Text className="mt-4 text-center font-medium-poppins text-base text-white">
-            Camera access permission is required to use this feature
+            {translate('rootLayout.screens.scan.cameraPermission')}
           </Text>
           <Button
-            label="Open settings"
+            label={translate('general.openSettings')}
             icon={
               <SettingsWheelIcon width={22} height={22} color={colors.black} />
             }
@@ -165,7 +219,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
             disabled={isScanning}
           />
           <Button
-            label="Go back"
+            label={translate('general.goBack')}
             icon={<ArrowLeft width={22} height={22} color={colors.white} />}
             iconPosition="left"
             className="h-[40px] gap-2 rounded-xl active:opacity-80 disabled:bg-[#7A7A7A] dark:bg-transparent"
@@ -235,7 +289,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
         {capturedImage && !errorAnalyzeImage && (
           <View className="bottom-10 flex-row items-center justify-between gap-4">
             <Button
-              label="Retake"
+              label={translate('general.retake')}
               icon={<RetakeIcon width={22} height={22} />}
               className="h-[40px] flex-1 rounded-xl disabled:bg-[#7A7A7A] dark:bg-transparent"
               textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
@@ -244,7 +298,7 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
             />
             <FadeInView delay={100} className="flex-1">
               <Button
-                label="Continue ✨"
+                label={`${translate('general.scanNow')} ✨`}
                 className="h-[40px] flex-1 rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
                 textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
                 onPress={handleScanImage}
@@ -322,12 +376,14 @@ const ScanningOverlay = ({ capturedImage, isScanning }) => (
         {!capturedImage && !isScanning ? (
           <View className="-top-[80px] rounded-full bg-charcoal-800/40 p-2 ">
             <Text className="text-center font-medium-poppins text-sm text-white">
-              You can scan anything related to your fitness activity
+              {translate('rootLayout.screens.scan.scanAnything')}
             </Text>
           </View>
         ) : isScanning ? (
           <View className="-top-[80px] justify-center self-center rounded-full bg-charcoal-800/40 p-2 px-6">
-            <Text className="text-center text-sm text-white">Scanning...</Text>
+            <Text className="text-center text-sm text-white">
+              {translate('general.scanning')}
+            </Text>
           </View>
         ) : null}
         {/* Scanning Line Animation */}
@@ -350,9 +406,9 @@ const ScanningOverlay = ({ capturedImage, isScanning }) => (
       </View>
 
       {/* Captured Image */}
-      {capturedImage && (
+      {!!capturedImage?.uri && (
         <Image
-          source={{ uri: capturedImage }}
+          source={{ uri: capturedImage.uri }}
           className="absolute rounded-2xl"
           style={{ width: width * 0.75, height: height * 0.55 }}
           resizeMode="cover"

@@ -25,7 +25,7 @@ const ContactUs = () => {
 
   return (
     <ScreenWrapper>
-      <ScreenHeader title="Contact Us" />
+      <ScreenHeader title={translate('settings.contactUs')} />
 
       <View className="p-6">
         <Text className="mb-6 text-charcoal-600">

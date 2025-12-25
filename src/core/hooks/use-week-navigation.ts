@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { POSITIONS, type TPositions } from '@/constants/positions';
 import { type IDayOfWeek } from '@/types/date-time';
 
+import { useSelectedLanguage } from '../i18n';
 import {
   getCurrentDay,
   getCurrentMonth,
@@ -22,9 +22,7 @@ import {
 export const useWeekNavigation = () => {
   const [weekOffset, setWeekOffset] = useState<number>(0);
 
-  const {
-    i18n: { language },
-  } = useTranslation();
+  const { language } = useSelectedLanguage();
 
   const weekNumber: number = getWeekNumber(weekOffset, language);
   const currentYear = getYearFromWeekOffset(weekOffset, language);

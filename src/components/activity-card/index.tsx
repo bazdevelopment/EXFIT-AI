@@ -5,6 +5,8 @@ import React from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
 import Markdown from 'react-native-markdown-display';
 
+import { translate, useSelectedLanguage } from '@/core';
+
 import { colors, Text } from '../ui';
 import { FlashIcon, GemIcon } from '../ui/assets/icons';
 
@@ -67,6 +69,7 @@ const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
   const [isEditingNotes, setIsEditingNotes] = React.useState(false);
   const [notes, setNotes] = React.useState(activity.notes || '');
   const [tempNotes, setTempNotes] = React.useState(notes);
+  const { language } = useSelectedLanguage();
 
   const TextInputWrapper = showInModal ? BottomSheetTextInput : TextInput;
 
@@ -105,11 +108,14 @@ const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
           <View className="flex-1">
             <Text className="mb-1 font-bold-poppins text-base leading-tight text-white">
               {activity.activityName ||
-                (activity.status === 'skipped' ? 'Day Off' : '')}
+                (activity.status ===
+                translate('components.ActivityCard.activitySkipped')
+                  ? translate('components.ActivityCard.dayOff')
+                  : '')}
             </Text>
             <View className="mb-1 flex-row items-center">
               <Text className="mr-2 text-sm text-gray-300">
-                {dayjs(activity.createdAt).format('h:mm A')}
+                {dayjs(activity.createdAt).locale(language).format('h:mm A')}
               </Text>
               <View className="mr-2 size-1 rounded-full bg-gray-500" />
               <Text className="text-sm text-gray-300">
@@ -139,7 +145,7 @@ const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
       {hasDescription && (
         <View className="mb-3 rounded-lg border-l-2 border-l-blue-400/50 bg-white/5 p-2.5">
           <Text className="mb-1 font-bold-poppins text-sm tracking-wide text-blue-400/80">
-            Description
+            {translate('components.ActivityCard.description')}
           </Text>
           {isDescriptionExpanded ? (
             <Markdown style={lightStyles}>{activity.description}</Markdown>
@@ -159,7 +165,9 @@ const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
               activeOpacity={0.7}
             >
               <Text className="font-semibold-poppins text-sm text-blue-400">
-                {isDescriptionExpanded ? 'See less' : 'See more'}
+                {isDescriptionExpanded
+                  ? translate('general.seeLess')
+                  : translate('general.seeMore')}
               </Text>
             </TouchableOpacity>
           )}
@@ -168,7 +176,7 @@ const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
       {!!activity.excuseReason && (
         <View className="mb-3 rounded-lg border-l-2 border-l-red-400/50 bg-white/5 p-2.5">
           <Text className="mb-1 font-bold-poppins text-sm tracking-wide text-red-400/80">
-            Excuse Reason ⚠️
+            {translate('components.ActivityCard.excuseReason')}
           </Text>
 
           <Text
@@ -185,7 +193,7 @@ const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
         <View className="mb-3 rounded-lg border-l-2 border-l-green-400/50 bg-white/5 p-2.5">
           <View className="mb-2 flex-row items-center justify-between">
             <Text className="font-bold-poppins text-sm  text-green-400/80">
-              Your Notes 📝
+              {translate('components.ActivityCard.yourNotes')}
             </Text>
             {isEditingNotes ? (
               <View className="flex-row items-center gap-2">
@@ -195,7 +203,7 @@ const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
                   activeOpacity={0.7}
                 >
                   <Text className="font-medium-poppins text-sm text-white dark:text-white">
-                    Cancel
+                    {translate('general.cancel')}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -204,7 +212,7 @@ const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
                   activeOpacity={0.7}
                 >
                   <Text className="font-medium-poppins text-sm text-green-400 dark:text-green-400">
-                    Save
+                    {translate('general.save')}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -215,14 +223,16 @@ const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
                 activeOpacity={0.7}
               >
                 <Text className="font-medium-poppins text-sm text-green-400 dark:text-green-400">
-                  Edit
+                  {translate('general.edit')}
                 </Text>
               </TouchableOpacity>
             )}
           </View>
           {isEditingNotes ? (
             <TextInputWrapper
-              placeholder="E.g. Back and biceps workout, 3 supersets"
+              placeholder={translate(
+                'components.ActivityCard.notesPlaceholder'
+              )}
               placeholderTextColor={colors.charcoal[300]}
               className="min-h-[50px] rounded-md border border-gray-500/50 p-2 font-primary-poppins text-sm leading-relaxed text-white"
               multiline
@@ -264,7 +274,7 @@ const ActivityCard = ({ activity, onAddNotes, showInModal }) => {
             >
               <Text className="text-md">📝</Text>
               <Text className="font-medium-poppins text-sm text-green-400">
-                Add notes
+                {translate('components.ActivityCard.addNotes')}
               </Text>
             </TouchableOpacity>
           )}

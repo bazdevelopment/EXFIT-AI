@@ -8,7 +8,7 @@ import Greeting from '@/components/greeting';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { Button, colors, Text } from '@/components/ui';
 import { ArrowRight } from '@/components/ui/assets/icons';
-import { useSelectedLanguage } from '@/core/i18n';
+import { translate, useSelectedLanguage } from '@/core/i18n';
 
 import { type IGenderScreen } from './gender-screen.interface';
 
@@ -47,7 +47,7 @@ export default function GenderSelectionScreen({
         <View className="px-6">
           {/* Title */}
           <Text className="mb-12 mt-4 text-center font-semibold-poppins text-2xl text-white">
-            Select gender for a more tailored experience
+            {translate('rootLayout.screens.genderSelectionScreen.heading')}
           </Text>
         </View>
         <View className="gap-4 px-6">
@@ -70,7 +70,7 @@ export default function GenderSelectionScreen({
 
         <View className="mt-10 gap-2 px-6">
           <Button
-            label="Continue"
+            label={translate('general.continue')}
             icon={<ArrowRight color={colors.white} />}
             className="h-14 rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
             textClassName="text-white dark:text-white text-center font-medium-poppins"

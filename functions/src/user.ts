@@ -79,10 +79,6 @@ const loginUserAnonymouslyHandler = async (data: {
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         preferredLanguage: data.language || 'en', // Use the provided language or default to 'en'
         completedScans: 0, // Example field
-        maxScansForFree: 1,
-        maxAiCoachConversationsForFree: 1,
-        maxExcuseBusterConversationsForFree: 1,
-        totalActivitiesPerWeekForFree: 5,
         email: '',
         profilePictureUrl: '',
         onboarding: {
@@ -102,6 +98,12 @@ const loginUserAnonymouslyHandler = async (data: {
           streakFreezeUsageDates: [],
           streakRepairDates: [],
           streakResetDates: [],
+        },
+        macroGoals: {
+          calories: 0,
+          protein: 0,
+          carbs: 0,
+          fat: 0,
         },
       });
 
@@ -571,10 +573,48 @@ const deleteUserAccount = async (
   }
 };
 
+const handleUpdateUserLanguage = async (
+  data: { language: string },
+  context: any,
+) => {
+  let t;
+  try {
+    const { language } = data;
+    t = getTranslation(language);
+    // Ensure user is authenticated
+    if (!context.auth) {
+      throw new functions.https.HttpsError(
+        'unauthenticated',
+        t.common.noUserFound,
+      );
+    }
+    if (!language) {
+      throw new functions.https.HttpsError(
+        'invalid-argument',
+        'Language code is mandatory',
+      );
+    }
+    const uid = context.auth?.uid;
+    const userDoc = db.collection('users').doc(uid);
+
+    await userDoc.update({ preferredLanguage: language });
+
+    return { message: t.updateUserLanguage.updateSuccess, language };
+  } catch (error) {
+    t = t || getTranslation('en');
+
+    throw new functions.https.HttpsError(
+      'internal',
+      t.updateUserLanguage.updateError,
+    );
+  }
+};
+
 export {
   checkEmailExistsHandler,
   deleteUserAccount,
   getUserInfo,
+  handleUpdateUserLanguage,
   loginUserAnonymouslyHandler,
   startFreeTrialHandler,
   updateUserHandler,

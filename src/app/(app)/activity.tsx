@@ -5,7 +5,6 @@ import { getCalendars } from 'expo-localization';
 import { router } from 'expo-router';
 import { GAMIFICATION_REWARDS_CONFIG } from 'functions/utilities/rewards-pricing';
 import React, { useCallback, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   RefreshControl,
   type ScrollView,
@@ -38,9 +37,10 @@ import { colors, Image, Text, useModal } from '@/components/ui';
 import WeekBlock from '@/components/week-block';
 import { DATE_FORMAT } from '@/constants/date-format';
 import { MAX_DAILY_ACTIVITIES } from '@/constants/limits';
-import { DEVICE_TYPE, translate } from '@/core';
+import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import { useDelayedRefetch } from '@/core/hooks/use-delayed-refetch';
 import { useRefetchOnFocus } from '@/core/hooks/use-refetch-on-focus';
+import useRemoteConfig from '@/core/hooks/use-remote-config';
 import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { useWeekNavigation } from '@/core/hooks/use-week-navigation';
 import { checkIsToday } from '@/core/utilities/date-time-helpers';
@@ -54,9 +54,9 @@ const _RenderScrollComponent = React.forwardRef<ScrollView, ScrollViewProps>(
 
 const Activity = () => {
   const scrollViewRef = useRef<FlashList<any>>(null);
-  const {
-    i18n: { language },
-  } = useTranslation();
+
+  const { language } = useSelectedLanguage();
+
   const [{ timeZone }] = getCalendars();
 
   const {
@@ -107,6 +107,8 @@ const Activity = () => {
       endDate: endOfWeek,
       language,
     });
+
+  const { TOTAL_FREE_ACTIVITIES_FREE_TRIAL } = useRemoteConfig();
 
   const isActivitiesLimitReached =
     currentWeekActivityLog?.[todayDateKey]?.length >= MAX_DAILY_ACTIVITIES;
@@ -208,11 +210,13 @@ const Activity = () => {
               className="size-[80]"
             />
           }
-          title="Streak Broke! Save it now!"
-          subtitle={`Buy a Streak Repair Elixir for ${elixirPrice} 💎 to bring back your lost streak.`}
+          title={translate('components.DailyActivityModal.streakBroken')}
+          subtitle={translate('components.DailyActivityModal.buyRepairStreak', {
+            elixirPrice,
+          })}
           buttons={[
             {
-              label: 'Let It Break',
+              label: translate('components.DailyActivityModal.loseStreak'),
               variant: '',
               onPress: () => Toast.dismiss(),
               className:
@@ -220,7 +224,7 @@ const Activity = () => {
               buttonTextClassName: 'text-white dark:text-white text-sm',
             },
             {
-              label: 'Buy & Save Streak',
+              label: translate('components.DailyActivityModal.buyStreak'),
               variant: '',
               onPress: () => {
                 // router.navigate('/shop');
@@ -253,11 +257,13 @@ const Activity = () => {
             className="size-[80]"
           />
         }
-        title="Streak in Peril! Revive It Now!"
-        subtitle={`Bring your ${lostStreakValue}-day streak back to life with the powerful Streak Repair Elixir!`}
+        title={translate('components.DailyActivityModal.streakRestore')}
+        subtitle={translate('components.DailyActivityModal.restorationStreak', {
+          lostStreakValue,
+        })}
         buttons={[
           {
-            label: 'Let It Break',
+            label: translate('components.DailyActivityModal.loseStreak'),
             variant: '',
             onPress: () => Toast.dismiss(),
             className:
@@ -265,7 +271,7 @@ const Activity = () => {
             buttonTextClassName: 'text-white dark:text-white text-sm',
           },
           {
-            label: 'Use Elixir',
+            label: translate('components.DailyActivityModal.applyElixir'),
             variant: '',
             onPress: onRepairStreak,
             buttonTextClassName:
@@ -298,15 +304,14 @@ const Activity = () => {
               onPress={() => {
                 if (
                   isUpgradeRequired &&
-                  totalActivitiesPerWeek >=
-                    userInfo.totalActivitiesPerWeekForFree
+                  totalActivitiesPerWeek >= TOTAL_FREE_ACTIVITIES_FREE_TRIAL
                 ) {
                   return Toast.showCustomToast(
                     <CustomAlert
-                      title={'Dear user,'}
-                      subtitle={
-                        'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
-                      }
+                      title={`${translate('general.dearUser')},`}
+                      subtitle={translate(
+                        'components.UpgradeBanner.upgradeMessage'
+                      )}
                       buttons={[
                         {
                           label: translate('components.UpgradeBanner.heading'),
@@ -335,7 +340,7 @@ const Activity = () => {
               <Text className="font-medium-poppins text-xl text-white">+</Text>
               {/* <PlusIcon /> */}
               <Text className="ml-2 font-semibold-poppins text-sm text-white">
-                Add Activity
+                {translate('components.DailyCheckInForm.addActivity')}
               </Text>
             </TouchableOpacity>
           )}
@@ -357,14 +362,14 @@ const Activity = () => {
           onAddActivity={() => {
             if (
               isUpgradeRequired &&
-              totalActivitiesPerWeek >= userInfo.totalActivitiesPerWeekForFree
+              totalActivitiesPerWeek >= TOTAL_FREE_ACTIVITIES_FREE_TRIAL
             ) {
               return Toast.showCustomToast(
                 <CustomAlert
-                  title={'Dear user,'}
-                  subtitle={
-                    'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
-                  }
+                  title={`${translate('general.dearUser')},`}
+                  subtitle={translate(
+                    'components.UpgradeBanner.upgradeMessage'
+                  )}
                   buttons={[
                     {
                       label: translate('components.UpgradeBanner.heading'),
@@ -392,7 +397,7 @@ const Activity = () => {
               logId: taskId as string,
               fieldsToUpdate: { notes },
             }).then(() => {
-              Toast.success('Notes saved! 📝 All set.');
+              Toast.success(translate('alerts.notesSavedSuccess'));
             })
           }
         />
@@ -422,7 +427,7 @@ const Activity = () => {
       >
         <View className="px-6">
           <Text className="mb-2 font-bold-poppins text-3xl text-white">
-            Schedule
+            {translate('general.schedule')}
           </Text>
         </View>
 

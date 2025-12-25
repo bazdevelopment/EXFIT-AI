@@ -12,7 +12,7 @@ import { StyleSheet, View } from 'react-native';
 import HorizontalLine from '@/components/horizontal-line';
 import { Button, colors, Modal, Text } from '@/components/ui';
 import { DeadFaceEmoji, SmileEmoji } from '@/components/ui/assets/icons';
-import { DEVICE_TYPE } from '@/core';
+import { DEVICE_TYPE, translate } from '@/core';
 
 interface SkipReasonInputProps {
   onSubmit: (skipReason: string) => void;
@@ -34,23 +34,23 @@ const SkipReasonInput: React.FC<SkipReasonInputProps> = ({
       <HorizontalLine className="my-5" />
       <View>
         <Text className="font-medium-poppins text-lg text-white">
-          That's okay, just checking in.
+          {translate('components.SkipReasonInput.title')}
         </Text>
         <Text className="my-2 font-medium-poppins text-sm text-white">
-          Want to share why today didn't work out? No pressure.
+          {translate('components.SkipReasonInput.subtitle')}
         </Text>
         <BottomSheetTextInput
           keyboardAppearance="dark"
           value={skipReason}
           maxLength={300}
           onChangeText={setSkipReason}
-          placeholder="E.g. My cat ate my running shoes"
+          placeholder={translate('components.SkipReasonInput.skipPlaceholder')}
           placeholderTextColor={colors.charcoal[300]}
           className="my-3 h-[48px] rounded-xl border border-gray-600 bg-[#37393F] px-2 pb-1 text-base text-white"
           returnKeyType="done"
         />
         <Button
-          label="Skip today"
+          label={translate('components.SkipReasonInput.skipToday')}
           onPress={handleSubmit}
           loading={isLoading}
           className="mt-4 h-[44px] rounded-full disabled:bg-gray-500 disabled:opacity-60"
@@ -124,14 +124,14 @@ export const NoActivityLogModal = React.forwardRef<
           {/* Header */}
           <View className="mb-3 mt-4">
             <Text className="font-medium-poppins text-lg text-white">
-              Oh no! Don't Let the couch win today!
+              {translate('components.NoActivityLogModal.heading')}
             </Text>
           </View>
 
           {/* Motivation and Options */}
           <View className="mb-6">
             <Button
-              label="Crush my excuse"
+              label={translate('components.NoActivityLogModal.crushExcuse')}
               icon={<SmileEmoji />}
               className="h-[40px] w-full gap-2 rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
               textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
@@ -140,7 +140,7 @@ export const NoActivityLogModal = React.forwardRef<
             />
 
             <Button
-              label="Not today, maybe tomorrow..."
+              label={translate('components.NoActivityLogModal.skipToday')}
               icon={<DeadFaceEmoji />}
               className="h-[42px] w-full gap-3 rounded-full border-2 border-white/40 bg-transparent active:opacity-70 disabled:bg-[#7A7A7A] dark:bg-transparent"
               textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"

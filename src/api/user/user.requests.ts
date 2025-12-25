@@ -201,7 +201,7 @@ export const checkEmail = async ({ email }: { email: string }) => {
 
 export const logout = async () => {
   await firebaseAuth.signOut();
-  router.navigate('/login');
+  router.navigate('/anonymous-login');
   queryClient.clear(); // Clears all cached queries & mutations
   Toast.success(translate('alerts.loggedOutSuccess'));
 };
@@ -225,7 +225,6 @@ export const createPermanentAccount = async ({
 
   // 1. Pre-check if email exists using our cloud function
   const data = await checkEmail({ email });
-  console.log('data check email', data);
 
   if (data.exists) {
     throw new Error('This email address is already in use.');
