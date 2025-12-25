@@ -74,7 +74,12 @@ const NavigationButton = ({
   direction,
   className = '',
 }: NavigationButtonProps) => {
-  const icon = direction === 'left' ? <ArrowLeft /> : <ArrowRight />;
+  const icon =
+    direction === 'left' ? (
+      <ArrowLeft color={colors.white} />
+    ) : (
+      <ArrowRight color={colors.white} />
+    );
 
   return (
     <Icon

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import { translate } from '@/core';
 import { getDynamicGreeting } from '@/core/utilities/get-dynamic-greeting';
 
 import { Text } from '../ui';
@@ -12,7 +13,9 @@ const Greeting = ({
   additionalClassName,
   textClassName,
 }: IGreeting) => {
-  const mainMessage = showGreeting ? getDynamicGreeting() : 'Welcome';
+  const mainMessage = showGreeting
+    ? getDynamicGreeting()
+    : translate('general.welcomeMessage');
 
   return (
     <View className={`w-full flex-row items-center ${additionalClassName}`}>

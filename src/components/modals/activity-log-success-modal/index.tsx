@@ -10,6 +10,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Button, colors, Modal } from '@/components/ui';
 import { FlashIcon, GemIcon } from '@/components/ui/assets/icons';
+import { translate } from '@/core';
 
 interface ActivityLogSuccessModalProps {
   onCloseModal: () => void;
@@ -59,13 +60,14 @@ export const ActivityLogSuccessModal = React.forwardRef<
 
                 {/* Title */}
                 <Text className="mb-3 mt-2 text-center font-semibold-poppins text-2xl text-white">
-                  Great job!
+                  {translate('components.ActivityLogSuccessModal.heading')}
                 </Text>
 
                 {/* Subtitle */}
                 <Text className="mb-5 px-5 text-center font-primary-poppins text-base leading-5 text-white">
-                  You did it! One activity down, and you’ve unlocked your
-                  reward. Let’s keep the streak going!
+                  {/* You did it! One activity down, and you’ve unlocked your
+                  reward. Let’s keep the streak going! */}
+                  {translate('components.ActivityLogSuccessModal.unlockReward')}
                 </Text>
 
                 {/* Rewards */}
@@ -90,7 +92,7 @@ export const ActivityLogSuccessModal = React.forwardRef<
                 </View>
 
                 <Button
-                  label="Go back"
+                  label={translate('general.goBack')}
                   className="h-[40px] w-full rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
                   textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
                   onPress={onCloseModal}

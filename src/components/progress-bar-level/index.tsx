@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { Animated, View } from 'react-native';
 
+import { translate } from '@/core';
+
 import { Text } from '../ui';
 import { FlashIcon } from '../ui/assets/icons';
 import { LevelIcon } from '../ui/assets/icons/level';
@@ -47,7 +49,8 @@ const ProgressBarLevel: React.FC<{
           </View>
           <View className="flex-1">
             <Text className="mb-2 font-medium-poppins text-white">
-              🎉 Maximum Level Reached! Level {levelInfo.currentLevel}
+              {translate('components.ProgressBarLevel.heading')}{' '}
+              {levelInfo.currentLevel}
             </Text>
             <View className="h-3 rounded-full bg-gray-600">
               <View className="h-3 w-full rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600" />
@@ -68,7 +71,8 @@ const ProgressBarLevel: React.FC<{
           <View className="flex-row gap-1">
             <FlashIcon width={22} height={22} />
             <Text className="mb-2 font-medium-poppins text-white">
-              {levelInfo.xpToNextLevel.toLocaleString()} XP left to reach Level{' '}
+              {levelInfo.xpToNextLevel}{' '}
+              {translate('components.ProgressBarLevel.xpLeft')}{' '}
               {levelInfo.nextLevel}
             </Text>
           </View>

@@ -12,7 +12,7 @@ import ScreenWrapper from '@/components/screen-wrapper';
 import SkeletonLoader from '@/components/skeleton-loader';
 import { Image, Text, useModal } from '@/components/ui';
 import { DEVICE_DIMENSIONS } from '@/constants/device-dimensions';
-import { useSelectedLanguage } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 
 // mockData/shopData.ts
 
@@ -98,7 +98,7 @@ export const ShopItemCard: React.FC<ShopItemCardProps> = ({
 
         <View className="items-center rounded-full bg-gray-700 px-2 py-1.5 shadow-md">
           <Text className="font-primary-poppins text-xs text-red-400">
-            Unavailable
+            {translate('components.ShopItemCard.unavailable')}
           </Text>
           {item.unavailableReason && (
             <Text className="font-regular-poppins mt-0.5 text-[10px] text-gray-300">
@@ -115,7 +115,7 @@ export const ShopItemCard: React.FC<ShopItemCardProps> = ({
     <TouchableOpacity
       onPress={() => onPress(item)}
       className="h-[174] items-center justify-between rounded-2xl border border-blue-500 bg-[#191A21] p-4 transition-all duration-200 active:scale-95 dark:bg-[#191A21]"
-      accessibilityLabel={`${item.name}, costs ${item.costInGems} gems`}
+      accessibilityLabel={`${item.name}, ${translate('components.ShopItemCard.worth')} ${item.costInGems} gems`}
     >
       {/* Main Content */}
       <View className="flex-1 items-center justify-center">
@@ -132,7 +132,7 @@ export const ShopItemCard: React.FC<ShopItemCardProps> = ({
             <Text className="mr-1 text-lg text-blue-400">🔒</Text>
 
             <Text className="font-semibold-poppins text-xs text-white">
-              {item.quantity} equiped
+              {item.quantity} {translate('components.ShopItemCard.equiped')}
             </Text>
           </>
         ) : (
@@ -157,7 +157,9 @@ export const ShopHeader: React.FC<ShopHeaderProps> = ({ onBackPress }) => {
       <TouchableOpacity onPress={onBackPress} className="p-2">
         <Text className="text-xl text-white">←</Text>
       </TouchableOpacity>
-      <Text className="font-semibold-poppins text-xl text-white">Shop</Text>
+      <Text className="font-semibold-poppins text-xl text-white">
+        {translate('components.ShopItemCard.shop')}
+      </Text>
       <TouchableOpacity className="p-2">
         <Text className="text-xl text-white">🛒</Text>
       </TouchableOpacity>
@@ -177,13 +179,13 @@ export const RewardBanner: React.FC = () => {
         <View className="flex-row items-center justify-between">
           <View className="flex-1">
             <Text className="font-bold-poppins text-lg text-white">
-              You Earned It.
+              {translate('components.ShopItemCard.earnedId')}
             </Text>
             <Text className="font-bold-poppins text-lg text-white">
-              Now Treat Yourself!
+              {translate('components.ShopItemCard.treat')}
             </Text>
             <Text className="mt-1 text-sm text-white opacity-90">
-              Spend your Gems wisely, your fitness journey just got interesting.
+              {translate('components.ShopItemCard.spendGems')}
             </Text>
           </View>
           <Image
@@ -257,7 +259,7 @@ const ShopScreen = () => {
     <ScreenWrapper>
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <ScreenHeader
-          title="Shop"
+          title={translate('components.ShopItemCard.shop')}
           // rightComponent={
           //   <Icon
           //     icon={<ShoppingCart />}

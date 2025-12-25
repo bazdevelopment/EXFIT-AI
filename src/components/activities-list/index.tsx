@@ -3,6 +3,7 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { type IActivityLog } from '@/api/activity-logs/activity-logs.types';
+import { translate } from '@/core';
 
 import ActivityCard from '../activity-card';
 import { Button, Text } from '../ui';
@@ -41,17 +42,17 @@ const ActivitiesList = ({
       <View className="items-center rounded-xl bg-white/5 p-6">
         <Text className="p-3 text-5xl">🎯</Text>
         <Text className="font-semibold-poppins text-lg text-white">
-          No Activities Logged
+          {translate('components.ActivitiesList.noActivityFound')}
         </Text>
 
         {isToday && (
           <Text className="mt-2 text-center text-sm text-gray-400">
-            Add your first activity for today and begin earning gems and XP.
+            {translate('components.ActivitiesList.addFirstActivity')}
           </Text>
         )}
         {isToday && (
           <Button
-            label="Add Activity"
+            label={translate('components.ActivitiesList.addActivity')}
             variant="default"
             className="mt-4 h-[45px] w-full rounded-full bg-[#4E52FB] pl-5 active:bg-primary-700 dark:bg-[#4E52FB]"
             textClassName="text-base text-center  dark:text-white"
@@ -79,7 +80,7 @@ const ActivitiesList = ({
       {showHeading && (
         <View className="mb-3 flex-row items-center justify-between">
           <Text className="font-bold-poppins text-lg text-white">
-            {`Today's Activities (${activities?.length})`}
+            {`${translate('components.ActivitiesList.todayActivities')} (${activities?.length})`}
           </Text>
           {isToday && (
             <TouchableOpacity
@@ -89,7 +90,7 @@ const ActivitiesList = ({
               <Text className="font-medium-poppins text-xl text-white">+</Text>
               {/* <PlusIcon /> */}
               <Text className="ml-2 font-semibold-poppins text-sm text-white">
-                Add Activity
+                {translate('components.ActivitiesList.addActivity')}
               </Text>
             </TouchableOpacity>
           )}

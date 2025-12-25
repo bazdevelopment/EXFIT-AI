@@ -58,6 +58,10 @@ export const getUserInfo = usCentralFunctions.https.onCall(
   userFunctions.getUserInfo,
 );
 
+export const updatePreferredLanguage = usCentralFunctions.https.onCall(
+  userFunctions.handleUpdateUserLanguage,
+);
+
 export const updateUser = usCentralFunctions.https.onCall(
   userFunctions.updateUserHandler,
 );

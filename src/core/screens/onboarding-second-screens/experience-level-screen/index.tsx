@@ -9,7 +9,7 @@ import ScreenWrapper from '@/components/screen-wrapper';
 import SelectableButton from '@/components/selectable-button';
 import { Button, colors } from '@/components/ui';
 import { ArrowLeft, ArrowRight } from '@/components/ui/assets/icons';
-import { useSelectedLanguage } from '@/core/i18n';
+import { translate, useSelectedLanguage } from '@/core/i18n';
 
 import { type IExperienceLevelScreen } from './experience-level-screen.interface';
 
@@ -64,7 +64,7 @@ const ExperienceLevelScreen = ({
         {/* Main Question */}
         <View className="mb-6 mt-8 px-4">
           <Text className="font-bold-poppins text-3xl text-white">
-            How would you describe your fitness experience?
+            {translate('rootLayout.screens.experienceLevelScreen.heading')}
           </Text>
         </View>
 
@@ -85,7 +85,7 @@ const ExperienceLevelScreen = ({
       {/* Continue Button at the bottom */}
       <View className="bg-black px-4 py-6">
         <Button
-          label="Continue"
+          label={translate('general.continue')}
           icon={<ArrowRight color={colors.white} />}
           loading={isSubmitOnboardingLoading}
           disabled={!selectedLevel}
@@ -96,7 +96,7 @@ const ExperienceLevelScreen = ({
           }
         />
         <Button
-          label="Skip"
+          label={translate('general.skip')}
           loading={false}
           className="mt-2 h-[50px] justify-center rounded-full bg-[#042140] dark:bg-[#042140]"
           textClassName="font-medium-poppins text-base text-center text-[#3195FD] dark:text-[#3195FD]"

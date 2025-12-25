@@ -3,12 +3,12 @@ import { type BottomSheetModal } from '@gorhom/bottom-sheet';
 import { BlurView } from '@react-native-community/blur';
 import { useColorScheme } from 'nativewind';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
 import Icon from '@/components/icon';
 import { colors, Modal, Text } from '@/components/ui';
 import { CalendarIcon } from '@/components/ui/assets/icons';
+import { useSelectedLanguage } from '@/core';
 
 import dayjs from '../../../lib/dayjs';
 
@@ -22,9 +22,7 @@ export const NotificationDetailsModal = React.forwardRef<BottomSheetModal>(
     const snapPoints = React.useMemo(() => [height, '70%'], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === 'dark';
-    const {
-      i18n: { language },
-    } = useTranslation();
+    const { language } = useSelectedLanguage();
 
     return (
       <Modal

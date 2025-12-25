@@ -109,10 +109,12 @@ const ChatExcuseBuster = () => {
       return Toast.showCustomToast(
         <CustomAlert
           title={translate('general.attention')}
-          subtitle={`Whoa there, champ! Are you secretly training for the Olympics? You've already hit the ${MAX_DAILY_ACTIVITIES}-activity limit for today! 🏅. You can flex those muscles again tomorrow 💪!`}
+          subtitle={translate('components.DailyCheckInForm.activitiesLimit', {
+            MAX_DAILY_ACTIVITIES,
+          })}
           buttons={[
             {
-              label: 'OK',
+              label: translate('general.ok'),
               variant: 'default',
               onPress: Toast.dismiss,
               buttonTextClassName: 'dark:text-white',
@@ -323,7 +325,7 @@ const ChatExcuseBuster = () => {
               </View>
               <View>
                 <Text className="font-medium-poppins text-lg text-white">
-                  Excuse Buster
+                  {translate('rootLayout.screens.excuseBuster.heading')}
                 </Text>
                 <View className="flex-row items-center gap-2">
                   <View className="size-2 rounded-full bg-success-400" />
@@ -333,7 +335,7 @@ const ChatExcuseBuster = () => {
                     </Text>
                   ) : (
                     <Text className="font-medium-poppins text-xs text-white">
-                      Online
+                      {translate('general.online')}
                     </Text>
                   )}
                 </View>

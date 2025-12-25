@@ -3,6 +3,7 @@ import { router } from 'expo-router';
 import { createMutation, createQuery } from 'react-query-kit';
 
 import Toast from '@/components/toast';
+import { translate } from '@/core';
 
 import { queryClient } from '../common';
 import {
@@ -33,9 +34,7 @@ export const useCreateAiTask = (date: string) =>
       queryClient.invalidateQueries({
         queryKey: ['ai-tasks', date],
       });
-      Toast.success(
-        'Challenge accepted! 🔥 Now go crush it and earn those 🔥 rewards!'
-      );
+      Toast.success(translate('alerts.challengeAccepted'));
       router.navigate('/(app)');
     },
     onError: (error) => {
@@ -48,9 +47,7 @@ export const useUpdateAiTaskStatus = (date: string) =>
     {
       mutationFn: (variables) => updateAiTaskStatus(variables),
       onSuccess: (data) => {
-        Toast.success(
-          `Challenge Completed! 🔥 You new rewards balance was updated with 150🔥. Current Ballance: ${data.newBalance}`
-        );
+        Toast.success(translate('alerts.challengeCompleted'));
 
         queryClient.invalidateQueries({
           queryKey: ['ai-tasks', date],

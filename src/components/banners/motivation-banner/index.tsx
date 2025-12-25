@@ -20,10 +20,8 @@ const MotivationBanner = ({
       //!give the user the change to use 2 conversations
       return Toast.showCustomToast(
         <CustomAlert
-          title={'Dear user,'}
-          subtitle={
-            'Upgrade Your Plan to Unlock This Feature 🔓 — Enjoy powerful AI fitness tools, exclusive features, and all-in-one support to help you crush your goals and stay motivated! 💪'
-          }
+          title={`${translate('general.dearUser')},`}
+          subtitle={translate('components.UpgradeBanner.upgradeMessage')}
           buttons={[
             {
               label: translate('components.UpgradeBanner.heading'),
@@ -55,17 +53,17 @@ const MotivationBanner = ({
         {/* Content */}
         <View className="flex-1">
           <Text className="text-md font-semibold-poppins text-white">
-            No Motivation? Feeling off? Let's beat that excuse.
+            {translate('components.MotivationBanner.title')}
           </Text>
 
           <Text className="mt-2 text-sm text-gray-300">
             {/* Just one task to score XP and gems—do it now! */}
-            Pick a task, earn XP and gems—let’s move!
+            {translate('components.MotivationBanner.subtitle')}
           </Text>
 
           <View className="mt-2">
             <Button
-              label="Beat your excuse now!"
+              label={translate('components.MotivationBanner.beatExcuse')}
               className="h-[34px] rounded-full bg-white active:opacity-90"
               textClassName="text-black font-medium-poppins"
               onPress={handleNavigateToExcuseBuster}

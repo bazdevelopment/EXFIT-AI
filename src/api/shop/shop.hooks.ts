@@ -3,6 +3,7 @@ import { type AxiosError } from 'axios';
 import { createMutation, createQuery } from 'react-query-kit';
 
 import Toast from '@/components/toast';
+import { translate } from '@/core';
 
 import { queryClient } from '../common';
 import {
@@ -43,7 +44,7 @@ export const usePurchaseShopItem = () => {
       queryClient.invalidateQueries({ queryKey: ['user-info'] });
     },
     onError: (error) => {
-      Toast.error(error.message || 'Purchase failed. Please try again later.');
+      Toast.error(error.message || translate('alerts.purchaseFailed'));
       recordError(error, 'Error purchasing shop item');
     },
   })();
@@ -65,9 +66,7 @@ export const useRepairStreak = ({
       queryClient.invalidateQueries({ queryKey: ['user-info'] });
     },
     onError: (error) => {
-      Toast.error(
-        error.message || 'Failed to repair streak. Please try again later.'
-      );
+      Toast.error(error.message || translate('alerts.streakRepairFailed'));
       recordError(error, 'Error repairing streak');
     },
   })();

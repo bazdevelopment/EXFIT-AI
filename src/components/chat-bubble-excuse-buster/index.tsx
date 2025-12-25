@@ -105,7 +105,7 @@ export const ChatBubbleExcuseBuster = ({
           {message.content.challenge && (
             <View className="mt-1">
               <Text className="font-bold-poppins">
-                How about pushing yourself a little with this challenge?
+                {translate('components.ChatBubbleExcuse.heading')}
               </Text>
               <Text className="font-bold-poppins text-blue-400 dark:text-blue-400">
                 {message.content.challenge.title}
@@ -153,7 +153,7 @@ export const ChatBubbleExcuseBuster = ({
                   copyToClipboard(
                     `${message.content.responseText}${message?.content?.challenge?.description ? `. ${message.content.challenge.description}` : ''}`
                   );
-                  Toast.success('Copied! 📝', {
+                  Toast.success(translate('general.copyText.copied'), {
                     duration: 3000,
                     position: 'top-center',
                     style: { top: 50 },
@@ -239,7 +239,7 @@ export const ChatBubbleExcuseBuster = ({
               <Button
                 key={button.id}
                 variant="default"
-                label={`${button.text} ${button.isTextInputPrompt ? '(Type your input below)' : ''}`}
+                label={`${button.text} ${button.isTextInputPrompt ? translate('components.ChatBubbleExcuse.typeInput') : ''}`}
                 disabled={button.isTextInputPrompt}
                 // isTextInputPrompt={button.isTextInputPrompt}
                 textClassName={`font-medium-poppins ${button.isTextInputPrompt ? 'text-white dark:text-white text-sm' : ''} text-center`}

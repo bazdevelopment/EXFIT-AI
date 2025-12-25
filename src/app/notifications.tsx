@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native';
 
 import {
@@ -16,16 +15,14 @@ import ScreenWrapper from '@/components/screen-wrapper';
 import SkeletonLoader from '@/components/skeleton-loader';
 import { useModal } from '@/components/ui';
 import { NoNotification } from '@/components/ui/assets/illustrations';
-import { translate } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 
 import dayjs from '../lib/dayjs';
 
 export default function NotificationsScreen() {
   const notificationModal = useModal();
 
-  const {
-    i18n: { language },
-  } = useTranslation();
+  const { language } = useSelectedLanguage();
 
   const { data: userInfo } = useUser(language);
   const { data: userNotifications, isPending: areUserNotificationsLoading } =
@@ -58,7 +55,9 @@ export default function NotificationsScreen() {
   return (
     <ScreenWrapper>
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <ScreenHeader title="Notifications" />
+        <ScreenHeader
+          title={translate('rootLayout.screens.notifications.title')}
+        />
 
         {areUserNotificationsLoading ? (
           <SkeletonLoader />
@@ -68,7 +67,9 @@ export default function NotificationsScreen() {
             title={translate(
               'rootLayout.screens.notifications.noNotifications'
             )}
-            message="You have no notification right now. Come back later"
+            message={translate(
+              'rootLayout.screens.notifications.emptyNotifications'
+            )}
             additionalClassName="mt-[5%] px-16"
           />
         ) : (

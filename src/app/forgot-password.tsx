@@ -12,7 +12,7 @@ import Icon from '@/components/icon';
 import ScreenWrapper from '@/components/screen-wrapper';
 import { Button, colors, ControlledInput, Text } from '@/components/ui';
 import { ArrowLeft } from '@/components/ui/assets/icons';
-import { useSelectedLanguage } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 
 const schema = z.object({
   email: z
@@ -64,11 +64,11 @@ export default function ForgotPasswordScreen({
     data
   ) => {
     Alert.alert(
-      'Password Reset Sent',
-      'If an account with this email exists, we have sent you a password reset link.',
+      translate('rootLayout.screens.forgotPassword.alertTitle'),
+      translate('rootLayout.screens.forgotPassword.alertSubtitle'),
       [
         {
-          text: 'OK',
+          text: translate('general.ok'),
           onPress: () => onResetPassword(data),
         },
       ]
@@ -104,7 +104,7 @@ export default function ForgotPasswordScreen({
         <View className="flex-1 px-6">
           {/* Title */}
           <Text className="mb-6 mt-4 font-medium-poppins text-3xl text-white dark:text-white">
-            Forgot Password
+            {translate('rootLayout.screens.forgotPassword.heading')}
           </Text>
           {!!resetPasswordError && (
             <Text className="mb-5 text-center dark:text-red-400">
@@ -115,13 +115,13 @@ export default function ForgotPasswordScreen({
           {/* Description */}
           {isSuccess ? (
             <Text className="mb-12 font-medium-poppins text-base leading-6 text-success-400 dark:text-success-400">
-              Please check your email for a password reset link. If you don't
-              see it in your inbox, be sure to check your spam or junk folder.
+              {translate('rootLayout.screens.forgotPassword.verificationSent')}
             </Text>
           ) : (
             <Text className="mb-12 text-base leading-6 text-white dark:text-white">
-              Enter the email address registered with your account. We'll send
-              you a link to reset your password.
+              {translate(
+                'rootLayout.screens.forgotPassword.verificationHeading'
+              )}
             </Text>
           )}
 
@@ -131,8 +131,10 @@ export default function ForgotPasswordScreen({
               control={control}
               name="email"
               testID="email-input"
-              label="Email Address"
-              placeholder="Enter your email"
+              label={translate('rootLayout.screens.login.emailAddress')}
+              placeholder={translate(
+                'rootLayout.screens.login.emailPlaceholder'
+              )}
               keyboardType="email-address"
               autoCapitalize="none"
               value={emailField.value}
@@ -144,7 +146,7 @@ export default function ForgotPasswordScreen({
 
           {/* Submit Button */}
           <Button
-            label="Submit"
+            label={translate('general.submit')}
             className="h-14 w-full rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
             textClassName="text-base font-medium-poppins text-center text-white dark:text-white"
             iconPosition="left"
@@ -155,11 +157,11 @@ export default function ForgotPasswordScreen({
           {/* Login link */}
           <View className="flex-row justify-center">
             <Text className="text-white dark:text-white">
-              Remembered password?{' '}
+              {translate('rootLayout.screens.forgotPassword.rememberPassword')}{' '}
             </Text>
             <TouchableOpacity onPress={handleLoginPress}>
               <Text className="font-medium-poppins text-blue-400 dark:text-blue-400">
-                Login to your account
+                {translate('rootLayout.screens.forgotPassword.loginAccount')}
               </Text>
             </TouchableOpacity>
           </View>

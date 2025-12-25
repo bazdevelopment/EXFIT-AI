@@ -19,7 +19,7 @@ import {
   Text,
 } from '@/components/ui';
 import { ArrowLeft } from '@/components/ui/assets/icons';
-import { useSelectedLanguage } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 
 const schema = z.object({
   email: z
@@ -118,7 +118,7 @@ export default function LoginScreen() {
         <View className="flex-1 px-6">
           {/* Title */}
           <Text className="mb-12 mt-10 text-center font-semibold-poppins text-3xl text-white dark:text-white">
-            Login
+            {translate('rootLayout.screens.login.heading')}
           </Text>
           {!!loginError && (
             <Text className="mb-5 text-center dark:text-red-400">
@@ -139,7 +139,7 @@ export default function LoginScreen() {
                 className="mr-3 dark:color-gray-300"
               />
               <Text className="ml-3 font-medium-poppins text-white dark:text-white">
-                Continue with Nickname
+                {translate('rootLayout.screens.login.continueName')}
               </Text>
             </TouchableOpacity>
           )}
@@ -148,7 +148,7 @@ export default function LoginScreen() {
           <View className="my-8 flex-row items-center">
             <View className="h-px flex-1 bg-gray-300 dark:bg-gray-600" />
             <Text className="mx-4 font-primary-poppins text-white dark:text-white">
-              Do you have an account?
+              {translate('rootLayout.screens.login.existingAccount')}
             </Text>
             <View className="h-px flex-1 bg-gray-300 dark:bg-gray-600" />
           </View>
@@ -159,8 +159,10 @@ export default function LoginScreen() {
               control={control}
               name="email"
               testID="email-input"
-              label="Email Address"
-              placeholder="Enter your email"
+              label={translate('rootLayout.screens.login.emailAddress')}
+              placeholder={translate(
+                'rootLayout.screens.login.emailPlaceholder'
+              )}
               keyboardType="email-address"
               autoCapitalize="none"
               value={emailField.value}
@@ -174,11 +176,11 @@ export default function LoginScreen() {
           <View className="mb-2">
             <View className="mb-2 flex-row items-center justify-between">
               <Text className="font-medium-poppins text-white dark:text-white">
-                Password
+                {translate('rootLayout.screens.login.password')}
               </Text>
               <TouchableOpacity onPress={handleForgotPasswordPress}>
                 <Text className="font-medium-poppins text-blue-400 dark:text-blue-400">
-                  Forgot Password
+                  {translate('rootLayout.screens.login.password')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -214,13 +216,13 @@ export default function LoginScreen() {
             onChange={() => setKeepSignedIn(!keepSignedIn)}
             accessibilityLabel="agree"
             accessibilityHint="toggle Agree"
-            label="Keep me signed in"
+            label={translate('rootLayout.screens.login.keepSigned')}
             className="mb-6 mt-4"
           />
 
           {/* Login Button */}
           <Button
-            label="Login"
+            label={translate('rootLayout.screens.login.heading')}
             className="h-14 w-full rounded-full bg-[#4E52FB] dark:bg-[#4E52FB]"
             textClassName="text-base font-medium-poppins text-center text-white dark:text-white"
             iconPosition="left"

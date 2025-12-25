@@ -4,8 +4,8 @@ import React from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 
 import FadeInView from '@/components/fade-in-view/fade-in-view';
-import { Button, FocusAwareStatusBar, Image, Text } from '@/components/ui';
-import { useIsFirstTime } from '@/core';
+import { Button, FocusAwareStatusBar, Text } from '@/components/ui';
+import { DEVICE_TYPE, translate, useIsFirstTime } from '@/core';
 
 const WelcomeScreen = () => {
   const [_, setIsFirstTime] = useIsFirstTime();
@@ -15,7 +15,7 @@ const WelcomeScreen = () => {
       <FocusAwareStatusBar hidden />
 
       <ImageBackground
-        source={require('../components/ui/assets/images/welcome-image.jpg')}
+        source={require('../components/ui/assets/images/intro-image-3.png')}
         className="flex-1 justify-end"
         resizeMode="cover"
       >
@@ -27,39 +27,55 @@ const WelcomeScreen = () => {
         />
 
         <View className="flex-1 justify-between px-8 pb-12">
-          <View className="mt-[30%] flex-1 items-center justify-center">
-            <FadeInView delay={200}>
+          <View className="mt-[40%] flex-1 items-center justify-center">
+            {/* <FadeInView delay={200}>
               <View className="mb-6 mt-14 items-center justify-center rounded-3xl">
                 <Image
                   source={require('assets/splash-icon-2.png')}
                   className="size-[100px]"
                 />
               </View>
-            </FadeInView>
+            </FadeInView> */}
 
             <FadeInView delay={600}>
-              <Text className="mb-6 mt-5 text-center text-[35px]  leading-[52px] text-white">
-                It's{' '}
-                <Text className="text-[35px] text-[#3195FD] dark:text-[#3195FD]">
-                  you
-                </Text>{' '}
-                vs. your
-                {'\n'}
-                <Text className="text-[35px] text-[#3195FD] dark:text-[#3195FD]">
-                  potential
+              <View className={DEVICE_TYPE.IOS ? 'gap-5' : 'gap-10'}>
+                <Text className="text-center text-[35px] font-bold tracking-tight text-white dark:text-white">
+                  {translate('rootLayout.screens.welcome.count')}{' '}
+                  <Text className="text-xl text-[#3195FD]">
+                    {' '}
+                    {translate('rootLayout.screens.welcome.calories')}
+                  </Text>
                 </Text>
-              </Text>
+                <Text className="text-center text-[35px] font-bold tracking-tight text-white dark:text-white">
+                  {translate('rootLayout.screens.welcome.track')}{' '}
+                  <Text className="text-xl text-[#3195FD]">
+                    {translate('rootLayout.screens.welcome.activity')}
+                  </Text>
+                </Text>
+
+                <View className="h-[2px] w-12 self-center bg-[#3195FD]" />
+                <Text className="text-center text-[28px] font-light italic text-white">
+                  {translate('rootLayout.screens.welcome.with')}{' '}
+                  <Text className="text-xl font-black text-[#3195FD]">
+                    EXFIT AI
+                  </Text>
+                </Text>
+              </View>
             </FadeInView>
 
-            <FadeInView delay={800}>
-              <Text className="mt-4 text-center font-primary-poppins text-lg leading-7 text-white dark:text-white">
-                Let{' '}
-                <Text className="font-semibold-poppins text-lg text-[#3195FD] dark:text-[#3195FD]">
-                  EXFIT AI
-                </Text>{' '}
-                crush your excuses
-              </Text>
-            </FadeInView>
+            {/* <FadeInView delay={800}>
+              <View className="mt-4 justify-center gap-2 text-center font-primary-poppins text-lg leading-7 text-white">
+                <Text className="font-semibold-poppins text-lg text-white dark:text-white">
+                  Track Every Move.
+                </Text>
+                <Text className="font-semibold-poppins text-lg text-white dark:text-white">
+                  Count Every Calorie.
+                </Text>
+                <Text className="font-semibold-poppins text-lg text-white dark:text-white">
+                  Crush Every Excuse.
+                </Text>
+              </View>
+            </FadeInView> */}
           </View>
 
           <FadeInView delay={1000} className="w-full">
@@ -74,10 +90,10 @@ const WelcomeScreen = () => {
               }}
             /> */}
             <Button
-              label="Get Started"
+              label={translate('rootLayout.screens.welcome.startButton')}
               variant="default"
-              className="h-[50px] w-full rounded-full bg-[#3B82F6] pl-5 active:opacity-80 dark:bg-[#3B82F6]"
-              textClassName="text-base text-center text-white dark:text-white"
+              className="h-[52px] w-full rounded-full bg-[#3B82F6] pl-5 active:opacity-80 dark:bg-[#3B82F6]"
+              textClassName="text-lg text-center text-white dark:text-white"
               onPress={() => {
                 setIsFirstTime(false);
                 router.navigate('/onboarding-first');

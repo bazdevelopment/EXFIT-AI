@@ -43,6 +43,7 @@ import { DEVICE_TYPE, translate, useSelectedLanguage } from '@/core';
 import useBackHandler from '@/core/hooks/use-back-handler';
 import { useMediaPickerChat } from '@/core/hooks/use-media-picker-chat';
 import useRemoteConfig from '@/core/hooks/use-remote-config';
+import useSubscriptionAlert from '@/core/hooks/use-subscription-banner';
 import { useTextToSpeech } from '@/core/hooks/use-text-to-speech';
 import { checkIsVideo } from '@/core/utilities/check-is-video';
 import { generateUniqueId } from '@/core/utilities/generate-unique-id';
@@ -58,21 +59,21 @@ type MessageType = {
 };
 
 const RANDOM_QUESTIONS = [
-  '📸 Snap a photo of my meal and estimate calories & macros',
-  '🥗 Analyze this meal and tell me how to improve it for my goal',
-  '🧠 Build me a personalized workout based on my fitness level',
-  '🏋️ Recommend a workout I can do right now with no equipment',
-  '⏱ Create a 20-minute workout for a busy day',
-  '🔥 Suggest a fat-burning workout tailored to me',
-  '💪 Design a muscle-building plan for my body and goals',
-  '📊 Track my progress and show what I should improve next',
-  '🍽 Tell me what to eat today to hit my calorie and protein goals',
-  '🥚 Calculate my daily protein, carbs, and fats',
-  '🛒 Create a healthy grocery list based on my diet plan',
-  '😴 Adjust my workouts based on my sleep and recovery',
-  '📅 Build a weekly workout schedule I can stick to',
-  '⚡ Recommend a low-energy workout for today',
-  '🤕 Modify my workout if I’m sore or injured',
+  translate('rootLayout.screens.chat.randomQuestions.one'),
+  translate('rootLayout.screens.chat.randomQuestions.two'),
+  translate('rootLayout.screens.chat.randomQuestions.three'),
+  translate('rootLayout.screens.chat.randomQuestions.four'),
+  translate('rootLayout.screens.chat.randomQuestions.five'),
+  translate('rootLayout.screens.chat.randomQuestions.six'),
+  translate('rootLayout.screens.chat.randomQuestions.seven'),
+  translate('rootLayout.screens.chat.randomQuestions.eight'),
+  translate('rootLayout.screens.chat.randomQuestions.nine'),
+  translate('rootLayout.screens.chat.randomQuestions.ten'),
+  translate('rootLayout.screens.chat.randomQuestions.eleven'),
+  translate('rootLayout.screens.chat.randomQuestions.twelve'),
+  translate('rootLayout.screens.chat.randomQuestions.thirteen'),
+  translate('rootLayout.screens.chat.randomQuestions.fourteen'),
+  translate('rootLayout.screens.chat.randomQuestions.fifteen'),
 ];
 
 const ChatScreen = () => {
@@ -142,6 +143,7 @@ const ChatScreen = () => {
     onRemoveFile,
     onResetFiles,
   } = useMediaPickerChat({ onCloseModal: closePicker });
+  const { isUpgradeRequired } = useSubscriptionAlert();
 
   const {
     mutateAsync: sendStreamingMessage,
@@ -207,7 +209,7 @@ const ChatScreen = () => {
         },
         onError: (error: Error) => {
           // console.error('Error sending message:', error);
-          Toast.error('Failed to send message. Please try again.');
+          Toast.error(translate('alerts.chatMessageNotSent'));
         },
       });
       // Remove the pending message and add it to the conversation
@@ -266,7 +268,7 @@ const ChatScreen = () => {
         },
         onError: (error: Error) => {
           // console.error('Error sending message:', error);
-          Toast.error('Failed to send message. Please try again.');
+          Toast.error(translate('alerts.failedSendMessage'));
         },
       });
       // Remove the pending message and add it to the conversation
@@ -411,7 +413,7 @@ const ChatScreen = () => {
             </View>
             <View>
               <Text className="font-medium-poppins text-lg text-white">
-                Mojo - Your Fitness Coach
+                {`Mojo - ${translate('rootLayout.screens.chat.fitnessCoach')}`}
               </Text>
               <View className="flex-row items-center gap-2">
                 <View className="size-2 rounded-full bg-success-400" />
@@ -421,7 +423,7 @@ const ChatScreen = () => {
                   </Text>
                 ) : (
                   <Text className="font-medium-poppins text-xs text-white">
-                    Online
+                    {translate('general.online')}
                   </Text>
                 )}
               </View>
@@ -450,7 +452,7 @@ const ChatScreen = () => {
                 questions={randomQuestions}
                 onSelect={(question) => {
                   if (
-                    userInfo.isFreeTrialOngoing &&
+                    isUpgradeRequired &&
                     conversationsCount >= MAX_CONVERSATIONS_ALLOWED_FREE_TRIAL
                   ) {
                     return Toast.showCustomToast(
@@ -492,7 +494,7 @@ const ChatScreen = () => {
           keyboardShouldPersistTaps="handled"
           extraData={[
             isSpeaking,
-            userInfo?.isFreeTrialOngoing,
+            isUpgradeRequired,
             conversationsCount,
             isPendingStreamingMessage,
           ]} //triggers a reset          keyExtractor={(item, index) => index.toString()}
@@ -502,10 +504,12 @@ const ChatScreen = () => {
           }}
           renderItem={({ item, index }) => {
             const isAssistantMessage = item.role !== 'user';
+            const isFreeTrialLimitReached =
+              isUpgradeRequired &&
+              conversationsCount >= BLURRING_CONTENT_CONVERSATIONS_LIMIT;
+
             const shouldBlurMessage =
-              userInfo?.isFreeTrialOngoing &&
-              conversationsCount >= BLURRING_CONTENT_CONVERSATIONS_LIMIT &&
-              isAssistantMessage;
+              isFreeTrialLimitReached && isAssistantMessage && index >= 1;
             return (
               <ChatBubble
                 message={item}
@@ -540,7 +544,7 @@ const ChatScreen = () => {
               containerStyle="-left-2 border-white border-[1.5px] rounded-full"
               onPress={() => {
                 if (
-                  userInfo.isFreeTrialOngoing &&
+                  isUpgradeRequired &&
                   conversationsCount >= MAX_CONVERSATIONS_ALLOWED_FREE_TRIAL
                 ) {
                   return Toast.showCustomToast(
@@ -586,7 +590,7 @@ const ChatScreen = () => {
             <TouchableOpacity
               onPress={() => {
                 if (
-                  userInfo.isFreeTrialOngoing &&
+                  isUpgradeRequired &&
                   conversationsCount >= MAX_CONVERSATIONS_ALLOWED_FREE_TRIAL
                 ) {
                   /**

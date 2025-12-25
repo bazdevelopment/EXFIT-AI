@@ -4,6 +4,8 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, TouchableOpacity, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 
+import { translate } from '@/core';
+
 import { colors, Text } from '../ui';
 import { ChevronLeftIcon } from '../ui/assets/icons';
 import ScanIcon from '../ui/assets/icons/scan';
@@ -151,12 +153,14 @@ export const TodayMacroView = ({
       >
         <View className="mb-2.5 flex-row items-center justify-between">
           <View className="flex-row gap-1">
-            <Text className="font-bold-poppins text-lg">Today's Macros</Text>
+            <Text className="font-bold-poppins text-lg">
+              {translate('components.TodayMacroOverview.heading')}
+            </Text>
             <ChevronLeftIcon
               width={24}
               height={24}
               transform="rotate(180)"
-              color={colors.primary[600]}
+              color={colors.primary[400]}
             />
           </View>
           <TouchableOpacity
@@ -164,7 +168,7 @@ export const TodayMacroView = ({
             onPress={() => router.navigate('/scan')}
           >
             <Text className="font-semibold-poppins text-base text-gray-500 dark:text-primary-300">
-              Scan Meal
+              {translate('components.TodayMacroOverview.scanFood')}
             </Text>
             <ScanIcon color={colors.primary[500]} />
             {/* <ArrowRight color={colors.primary[300]} width={20} height={20} /> */}
@@ -213,7 +217,9 @@ export const TodayMacroView = ({
                 {/* <Text className="text-[10px] text-gray-400">cal</Text> */}
               </View>
             </View>
-            <Text className="w-[65%] text-center text-sm">Calories</Text>
+            <Text className="w-[65%] text-center text-sm">
+              {translate('components.TodayMacroOverview.calories')}
+            </Text>
           </Animated.View>
 
           <View className="flex-1 flex-row items-center justify-center pt-2.5">
@@ -221,21 +227,21 @@ export const TodayMacroView = ({
               value={data.protein}
               goal={goals.protein}
               color="#3B82F6"
-              label="Protein"
+              label={translate('components.TodayMacroOverview.protein')}
               delay={400}
             />
             <MacroCircle
               value={data.carbs}
               goal={goals.carbs}
               color="#F59E0B"
-              label="Carbs"
+              label={translate('components.TodayMacroOverview.carbs')}
               delay={500}
             />
             <MacroCircle
               value={data.fat}
               goal={goals.fat}
               color="#EF4444"
-              label="Fat"
+              label={translate('components.TodayMacroOverview.fat')}
               delay={600}
             />
           </View>
@@ -245,15 +251,15 @@ export const TodayMacroView = ({
           <View className="mt-2 overflow-hidden rounded-xl border-2 dark:from-blue-900/20 dark:to-purple-900/20">
             <View className="mb-2 flex-row items-center gap-2">
               <Text className="font-semibold-poppins text-sm uppercase text-gray-600 dark:text-white">
-                Daily Intake Goals
+                {translate('components.TodayMacroOverview.dailyIntakeGoals')}
               </Text>
               <TouchableOpacity
                 onPress={onEditGoals}
                 className="rounded-lg bg-white/80 px-2.5 py-1 dark:bg-gray-800/80"
                 activeOpacity={0.7}
               >
-                <Text className="font-medium-poppins text-sm text-blue-600 dark:text-blue-400">
-                  Change
+                <Text className="font-medium-poppins text-sm text-blue-600 dark:text-blue-200">
+                  {translate('general.change')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -263,7 +269,7 @@ export const TodayMacroView = ({
                   {goals.calories}
                 </Text>
                 <Text className="text-[10px] text-gray-600 dark:text-gray-400">
-                  Calories
+                  {translate('components.TodayMacroOverview.calories')}
                 </Text>
               </View>
               <View className="h-8 w-px bg-gray-200 dark:bg-gray-700" />
@@ -272,7 +278,7 @@ export const TodayMacroView = ({
                   {goals.protein}g
                 </Text>
                 <Text className="text-[10px] text-gray-600 dark:text-gray-400">
-                  Protein
+                  {translate('components.TodayMacroOverview.protein')}
                 </Text>
               </View>
               <View className="h-8 w-px bg-gray-200 dark:bg-gray-700" />
@@ -281,7 +287,7 @@ export const TodayMacroView = ({
                   {goals.carbs}g
                 </Text>
                 <Text className="text-[10px] text-gray-600 dark:text-gray-400">
-                  Carbs
+                  {translate('components.TodayMacroOverview.carbs')}
                 </Text>
               </View>
               <View className="h-8 w-px bg-gray-200 dark:bg-gray-700" />
@@ -290,7 +296,7 @@ export const TodayMacroView = ({
                   {goals.fat}g
                 </Text>
                 <Text className="text-[10px] text-gray-600 dark:text-gray-400">
-                  Fat
+                  {translate('components.TodayMacroOverview.fat')}
                 </Text>
               </View>
             </View>

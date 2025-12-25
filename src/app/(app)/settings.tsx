@@ -76,11 +76,11 @@ export default function Settings() {
     Toast.showCustomToast(
       <CustomAlert
         visible
-        title="Delete Account?"
-        subtitle="Are you sure you want to delete your account? This action cannot be undone and will permanently remove all your data."
+        title={translate('settings.deleteAccount')}
+        subtitle={translate('settings.deleteAccountQuestion')}
         buttons={[
           {
-            label: 'Close',
+            label: translate('general.close'),
             variant: 'default',
             onPress: () => Toast.dismiss(),
             className:
@@ -88,7 +88,7 @@ export default function Settings() {
             buttonTextClassName: 'text-white dark:text-white text-sm',
           },
           {
-            label: 'Delete',
+            label: translate('general.delete'),
             variant: 'destructive',
             className: 'h-[48] flex-1 rounded-full',
             onPress: handleOnDeleteAccount,
@@ -154,7 +154,7 @@ export default function Settings() {
       )} */}
       <View className="px-6">
         <Text className="mb-2 font-bold-poppins text-3xl text-white">
-          Settings
+          {translate('settings.tab')}
         </Text>
       </View>
       <View className="flex-1">
@@ -228,7 +228,7 @@ export default function Settings() {
             />
 
             <Button
-              label="Deactivate & Delete Account"
+              label={translate('settings.deactivateAccount')}
               icon={
                 <DeactivateIcon width={30} height={30} color={colors.white} />
               }
@@ -250,14 +250,14 @@ export default function Settings() {
                 </ItemsContainer>
 
                 <View>
-                  <ItemsContainer title="Utils">
+                  <ItemsContainer title="general.utils">
                     <Item
-                      text="Verify email"
+                      text="general.verifyEmail"
                       onPress={() => router.navigate('/verify-email')}
                     />
 
                     <Item
-                      text="Create permanent account"
+                      text="settings.permanentAccountCreate"
                       onPress={() => router.navigate('/upgrade-account')}
                     />
 

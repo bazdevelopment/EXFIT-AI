@@ -1,23 +1,64 @@
 {
   "onboarding": {
-    "message": "Welcome to EXFIT AI!"
+    "message": "Welcome to EXFIT AI!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Snap Your Meal & Track Calories",
+        "headingTwo": "Scan meals, talk to your AI Coach, and get daily challenges built for you"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Let AI Power Your Fitness",
+        "headingTwo": "Meet EXFIT AI, your smart sidekick to crush doubt, spark motivation, and keep you moving"
+      },
+      "onboardingThirdPage": {
+        "heading": "Let AI detect gym equipment, exercise poses, and technique"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Train. Earn. Level Up.",
+        "headingTwo": "Score XP, collect Gems, keep your Streak alive, and unlock rewards for showing up."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Gym",
+    "yoga": "Yoga",
+    "running": "Running",
+    "walking": "Walking",
+    "cycling": "Cycling",
+    "dance": "Dance",
+    "stretching": "Stretching",
+    "swimming": "Swimming",
+    "hiking": "Hiking",
+    "pilates": "Pilates",
+    "climbing": "Climbing",
+    "skating": "Skating"
   },
   "general": {
     "back": "Back",
     "welcome": "Hi",
     "welcomeBack": "Welcome Back!",
     "welcomeMessage": "Welcome!",
+    "goodMorning": "Good Morning",
+    "goodAfternoon": "Good Afternoon",
+    "goodEvening": "Good Evening",
     "continue": "Continue",
     "retry": "Retry",
+    "retake": "Retake",
+    "scanNow": "Scan Now",
+    "scanning": "Scanning...",
     "close": "Close",
     "gallery": "Gallery",
     "files": "Files",
     "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
     "delete": "Delete",
     "attention": "Attention!",
     "new": "New",
     "yes": "Yes",
+    "no": "No",
     "or": "or",
+    "change": "Change",
     "typing": "Typing...",
     "online": "Online",
     "chatbotPlaceholder": "Ask me anything...",
@@ -38,7 +79,7 @@
     "restorePurchase": "Restore purchase",
     "medicalDisclaimer": "Medical Disclaimer",
     "conversationHistory": "Conversation history",
-    "analyzingMediaFilesPlaceholder": "Analyzing your nutrition...",
+    "analyzingMediaFilesPlaceholder": "Analyzing Media Files...",
     "freeTrial": "Free trial",
     "free": "FREE",
     "completedScans": "Scans completed",
@@ -50,9 +91,28 @@
     "perMonth": "per month",
     "tryForFree": "Try For Free",
     "unlockNow": "Unlock Now",
+    "attended": "Attended",
+    "readyToStart": "Ready to start",
+    "skipped": "Skipped",
+    "completed": "Completed",
+    "purchase": "Purchase",
+    "active": "active",
+    "dearUser": "Dear user",
+    "ok": "Ok",
+    "activities": "Activities",
+    "seeLess": "See less",
+    "seeMore": "See more",
+    "goBack": "Go Back",
+    "schedule": "Schedule",
+    "utils": "Utils",
+    "verifyEmail": "Verify email",
+    "loading": "Loading...",
+    "error": "Error",
+    "minutes": "minutes",
+    "submit": "Submit",
     "copyText": {
       "loading": "Copying...",
-      "copied": "Copied!",
+      "copied": "Copied! 📝",
       "copy": "Copy Link"
     },
     "loadingMessages": {
@@ -71,7 +131,7 @@
       "loadingChatbot": {
         "first": "Mojo, your AI Coach is getting ready to assist you...",
         "second": "Hold on! Mojo is preparing your response...",
-        "third": "Thinking...your Mojo is on it!"
+        "third": "Thinking...Mojo is on it!"
       }
     }
   },
@@ -103,12 +163,50 @@
       "welcome": {
         "heading": "Welcome to EXFIT AI!",
         "startButton": "Let's get started!",
-        "accountButton": "I already have an account"
+        "accountButton": "I already have an account",
+        "count": "Count",
+        "calories": "Calories",
+        "track": "Track",
+        "activity": "Activity",
+        "with": "With"
       },
       "login": {
         "agreeingMessage": "By continuing, you agree to our",
         "termsAndConditions": "Terms & Conditions",
-        "privacyPolicy": "Privacy Policy"
+        "privacyPolicy": "Privacy Policy",
+        "heading": "Login",
+        "continueName": "Continue with Nickname",
+        "existingAccount": "Do you have an account?",
+        "emailAddress": "Email Address",
+        "emailPlaceholder": "Enter your email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "forgotPassword": "Forgot Password",
+        "keepSigned": "Keep me signed in",
+        "createPassword": "Create a password"
+      },
+      "signUp": {
+        "heading": "Sign Up",
+        "haveAccount": "Have an account?",
+        "signInHere": "Sign in here",
+        "acceptTerms": {
+          "title": "Terms Required",
+          "subtitle": "Please accept the terms of use and privacy policy to continue."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Forgot Password",
+        "verificationSent": "Please check your email for a password reset link. If you don't see it in your inbox, be sure to check your spam or junk folder.",
+        "verificationHeading": "Enter the email address registered with your account. We'll send you a link to reset your password.",
+        "rememberPassword": "Remembered password?",
+        "loginAccount": "Login to your account",
+        "alertTitle": "Password Reset Sent",
+        "alertSubtitle": "If an account with this email exists, we have sent you a password reset link."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Please enter both email and password.",
+        "secureProgress": "Secure Your Progress",
+        "permanentAccount": "Create a permanent account to save your data across devices."
       },
       "verifyAuthCode": {
         "verificationCodeHeading": "Enter your verification code sent via email. Please note, the code will expire in 5 minutes.",
@@ -122,31 +220,35 @@
         "preferredNameQuestion": "What should we call you?",
         "placeholderPreferredName": "E.g., Captain Cool, Queen Bee, or just Alex!"
       },
+      "experienceLevelScreen": {
+        "heading": "How would you describe your fitness experience?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "What's your fitness goal?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Select gender for a more tailored experience"
+      },
       "freeTrialPreview": {
         "heading": "Enjoy your free trial! 🎉",
-        "subheading": "Experience these amazing benefits during your free trial"
-      },
-      "scanInterpretation": {
-        "title": "Analysis result",
-        "headerBackTitle": "Reports"
+        "subheading": "Experience these amazing benefits during your free trial",
+        "review": "Meal scanning, calorie counter and fitness tracking simple and smart. Give it a try!",
+        "reviewTrust": "📈 Trusted by 7,512+ users"
       },
       "paywallOnboarding": {
         "freeTierOfferings": {
           "freeTrialEnabled": "Free Trial Enabled",
           "heading": " Unlimited Access",
           "title": "Unlock Premium Features Today!",
-          "firstOffering": "Access All Premium Features",
-          "secondOffering": "Unlimited Nutrition Advice",
-          "thirdOffering": "Unlimited AI scans for activity support",
-          "fourthOffering": "Unlimited chats with a 24/7 AI Fitness Coach"
+          "firstOffering": "Activity Tracker & Smart Nutrition Tips",
+          "secondOffering": "Unlimited Calorie & Macro Counter",
+          "thirdOffering": "Unlimited Food Scanner",
+          "fourthOffering": "Your AI Fitness Coach 24/7"
         }
       },
       "paywallUpgradeScreen": {
         "heading": "Unlock Premium Features Today!",
-        "firstOffering": {
-          "title": "Start Free Trial",
-          "subtitle": "Enjoy {{freeScans}} free scans – no payment"
-        },
+
         "secondOffering": {
           "title": "Monthly Plan",
           "subtitle": "{{ price }}/month"
@@ -163,12 +265,12 @@
       },
       "newAppVersionScreen": {
         "heading": "A new version of EXFIT AI is available",
-        "subheading": "Please update to the latest version to continue using the app",
+        "subheading": "Update to the latest version to continue enjoying all app features — it only takes 5 seconds!",
         "action": "Get it now!"
       },
       "rateAppScreen": {
         "heading": "Are you finding the app valuable and engaging?",
-        "like": "Yes, I like it! ❤️",
+        "like": "Yes, I like it!",
         "dislike": "Not really..."
       },
       "noInternetScreen": {
@@ -177,7 +279,8 @@
       },
       "notifications": {
         "title": "Notifications",
-        "noNotifications": "No Notifications Yet"
+        "noNotifications": "No Notifications Yet",
+        "emptyNotifications": "No new notifications for now. Check back soon."
       },
       "termsOfService": {
         "title": "Terms of Service"
@@ -198,7 +301,14 @@
       "profile": {
         "title": "Profile",
         "edit": "Edit Profile",
-        "placeholderPreferredName": "E.g., Captain Cool, Queen Bee, or just Alex!"
+        "placeholderPreferredName": "E.g., Captain Cool, Queen Bee, or just Alex!",
+        "subscriptions": {
+          "monthly": "Monthly Subscription",
+          "yearly": "Yearly Subscription",
+          "weekly": "Weekly Subscription"
+        },
+        "temporaryAccount": "Temporary account",
+        "permanentAccount": "Permanent account"
       },
       "generateReportScreen": {
         "title": "We appreciate your patience! Here’s your AI report. ",
@@ -213,11 +323,108 @@
       "filePreviewScreen": {
         "generateReportButton": "Start Analysis"
       },
-
       "contactUs": {
         "heading": "Feel free to email us directly, and our team will get back to you as soon as possible",
         "customerSupport": "Customer Support",
         "emailAddress": "Email Address"
+      },
+      "scan": {
+        "cameraPermission": "Camera access permission is required to use this feature",
+        "requestPermission": "Requesting camera permission...",
+        "scanAnything": "Scan Anything: Meals, Food, Gym Gear & More",
+        "askAssistant": "Ask your AI Fitness Coach"
+      },
+      "excuseBuster": {
+        "heading": "Excuse Buster",
+        "reasons": {
+          "one": "Feeling too tired",
+          "two": "No time available",
+          "three": "Too sore to exercise",
+          "four": "Gym is too crowded",
+          "five": "Not in the mood",
+          "six": "Bad weather outside",
+          "seven": "Work is hectic",
+          "eight": "I’ll start tomorrow",
+          "nine": "Unsure what to do",
+          "ten": "No equipment available"
+        },
+        "excuseMotivation": "You're Tougher Than Your Excuse.",
+        "excuseQuestion": "What's holding you back today?",
+        "typeExcuse": "Type your excuse here...",
+        "crushExcuse": "Crush my excuse"
+      },
+      "chat": {
+        "fitnessCoach": "Your Fitness Coach",
+        "randomQuestions": {
+          "one": "'📸 Snap a photo of my meal and estimate calories & macros',",
+          "two": "🥗 Analyze this meal and tell me how to improve it for my goal",
+          "three": "🧠 Build me a personalized workout based on my fitness level",
+          "four": "🏋️ Recommend a workout I can do right now with no equipment",
+          "five": "⏱ Create a 20-minute workout for a busy day",
+          "six": "🔥 Suggest a fat-burning workout tailored to me",
+          "seven": "💪 Design a muscle-building plan for my body and goals",
+          "eight": "📊 Track my progress and show what I should improve next",
+          "nine": "🍽 Tell me what to eat today to hit my calorie and protein goals",
+          "ten": "🥚 Calculate my daily protein, carbs, and fats",
+          "eleven": "🛒 Create a healthy grocery list based on my diet plan",
+          "twelve": "😴 Adjust my workouts based on my sleep and recovery",
+          "thirteen": "📅 Build a weekly workout schedule I can stick to",
+          "fourteen": "⚡ Recommend a low-energy workout for today",
+          "fifteen": "🤕 Modify my workout if I’m sore or injured"
+        }
+      },
+      "progress": {
+        "error": "Something went wrong",
+        "heading": "Progress Dashboard",
+        "subheading": "Keep up the amazing work! 🚀",
+        "weeklyGoals": "Weekly Goals",
+        "monthlyGoal": "Monthly Goal",
+        "insights": "Quick Insights",
+        "mostActive": "Most Active",
+        "peakTime": "Peak performance time",
+        "favoriteActivity": "Favorite Activity",
+        "choice": "Your go-to choice",
+        "weeklyChange": "Weekly Change",
+        "lastWeekXP": "vs last week",
+        "consistency": "Consistency",
+        "reliability": "reliability",
+        "overview": "Overview",
+        "performance": "Performance",
+        "trends": "Trends",
+        "lastSevenDays": "Last 7 days",
+        "thisWeek": "This Week's",
+        "activityFocus": "Activity Focus",
+        "distribution": "Distribution",
+        "history": "History",
+        "activities": "Activities",
+        "consistencyJourney": "Your consistency journey",
+        "bestDay": "Best Day",
+        "averageSession": "Avg Session",
+        "totalHours": "Total Hours",
+        "WeeklyComparisonXp": "Weekly Comparison",
+        "weeksComparison": "This week vs last week",
+        "thisWeeks": "This Week",
+        "lastWeek": "Last Week",
+        "activityPattern": "Activity Pattern",
+        "hoursBreakdown": "24-hour breakdown",
+        "monthlyActivity": "Monthly Activity",
+        "lastMonths": "Last 6 months",
+        "progression": "Progression",
+        "monthlyEarned": "Monthly earned",
+        "recentActivity": "Recent Activity",
+        "last30Days": "Last 30 days",
+        "outstanding": "Outstanding Progress!",
+        "activityReview": "You've completed {{totalActivities}} activities and earned {{totalXp}} XP total. Keep it up!",
+        "statistics": "Detailed Statistics",
+        "longest": "Longest",
+        "totalMonthActivities": "Physical Activities Completed This Month!"
+      },
+      "shoppingCart": {
+        "heading": "Items Owned",
+        "equipMore": "Equip More",
+        "noItems": "You Don't Own Any Items Yet!",
+        "goToShop": "Go to shop",
+        "buyPotions": "Head over to the shop and collect some exciting potions"
       }
     }
   },
@@ -226,41 +433,10 @@
     "subtitle": "Send a feedback before"
   },
 
-  "pdfPreview": {
-    "noEditorInstalled": "To preview the PDF, ensure you have a PDF viewer installed, like Adobe Acrobat Reader or Google PDF Viewer",
-    "conversationTitlePdf": "Conversation with your AI Coach"
+  "home": {
+    "tab": "Home"
   },
 
-  "flows": {
-    "createReport": {
-      "finalReportForeground": {
-        "message": "Thank you for your patience!"
-      },
-      "finalReportHeader": {
-        "message": "This is the report result!"
-      }
-    }
-  },
-  "home": {
-    "tab": "Home",
-    "homeForeground": {
-      "maxNumberOfScans": "You've reached your scan limit! Upgrade your plan now to unlock more scans. 🚀",
-      "heading": "Welcome to EXFIT AI!",
-      "subHeading": "Get AI-powered analysis of any microscopy samples in seconds"
-    },
-    "scanCategories": {
-      "heading": "Microscopy Reel"
-    },
-    "recentReports": {
-      "heading": "Recent Chats",
-      "noReports": "No chats to show yet!"
-    }
-  },
-  "reports": {
-    "tab": "History",
-    "noReportsAvailable": "No chat history available for this date",
-    "heading": "Chat History"
-  },
   "activity": {
     "tab": "Activity"
   },
@@ -275,18 +451,41 @@
     "about": "About",
     "app_name": "App Name",
     "languages": {
-      "arabic": "Arabic",
       "english": "English",
       "mandarin_chinese": "Chinese",
-      "spanish": "Spanish",
       "hindi": "Hindi",
-      "portuguese": "Portuguese",
-      "russian": "Russian",
-      "japanese": "Japanese",
-      "korean": "Korean",
-      "german": "German",
+      "spanish_spain": "Spanish (Spain)",
+      "spanish_mexico": "Spanish (Mexico)",
+      "arabic": "Arabic",
       "french": "French",
-      "romanian": "Romanian"
+      "french_canada": "French (Canada)",
+      "portuguese_brazil": "Portuguese (Brazil)",
+      "portuguese_portugal": "Portuguese (Portugal)",
+      "german": "German",
+      "japanese": "Japanese",
+      "russian": "Russian",
+      "korean": "Korean",
+      "italian": "Italian",
+      "turkish": "Turkish",
+      "vietnamese": "Vietnamese",
+      "polish": "Polish",
+      "ukrainian": "Ukrainian",
+      "romanian": "Romanian",
+      "dutch": "Dutch",
+      "czech": "Czech",
+      "greek": "Greek",
+      "swedish": "Swedish",
+      "hungarian": "Hungarian",
+      "thai": "Thai",
+      "hebrew": "Hebrew",
+      "indonesian": "Indonesian",
+      "malay": "Malay",
+      "finnish": "Finnish",
+      "danish": "Danish",
+      "norwegian": "Norwegian",
+      "slovak": "Slovak",
+      "croatian": "Croatian",
+      "catalan": "Catalan"
     },
     "generale": "General",
     "github": "Github",
@@ -314,7 +513,11 @@
     "devMode": {
       "title": "Developer mode",
       "componentsLibrary": "UI library"
-    }
+    },
+    "deleteAccount": "Delete account?",
+    "deleteAccountQuestion": "Are you sure you want to delete your account? This action cannot be undone and will permanently remove all your data.",
+    "deactivateAccount": "Deactivate & Delete Account",
+    "permanentAccountCreate": "Create permanent account"
   },
   "components": {
     "ReportCard": {
@@ -339,11 +542,49 @@
     "UploadFileOptionsModal": {
       "heading": "Choose a picture / video"
     },
+    "GoalsModal": {
+      "heading": "Change your daily intake goal",
+      "dailyCalories": "Daily Calories",
+      "saveGoals": "Save Goals"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Streak broken. Save now.",
+      "loseStreak": "Let It Break",
+      "buyStreak": "Buy & Save Streak",
+      "buyRepairStreak": "Buy a Streak Repair Elixir for {{elixirPrice}} 💎 to bring back your lost streak.",
+      "streakRestore": "Streak at risk — restore it now!",
+      "restorationStreak": "Bring your {{lostStreakValue}}-day streak back to life with the powerful Streak Repair Elixir!",
+      "applyElixir": "Apply Elixir Potion"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Purchase Complete",
+      "inventoryAdded": "has been added to your inventory. Keep up the great work!",
+      "purchaseFailed": "Purchase Failed",
+      "purchaseFailedMessage": "We couldn't process your purchase. Please check your gems balance and try again.",
+      "gemsBalance": "Oops, you don’t have enough gems"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Daily Check-in",
+      "bodyMovingQuestion": "Did you get your body moving today?"
+    },
     "TapToViewLabel": {
       "label": "Tap To View"
     },
     "UpgradeBanner": {
-      "heading": "Unlock Now!"
+      "heading": "Unlock Now!",
+      "upgradeMessage": "Unlock this feature 🔓 Enjoy AI calorie counting, macro tracking, and all-in-one support to help you reach your activity and fitness goals faster 💪",
+      "upgradeTo": "Upgrade to",
+      "moreBenefits": "AI features. All premium tools. All yours to stay on track."
+    },
+    "MotivationBanner": {
+      "title": "No Motivation? Feeling off? Let's beat that excuse.",
+      "subtitle": "Pick a task, earn XP and gems—let’s move!",
+      "beatExcuse": "Beat your excuse now!"
+    },
+    "AICoachBanner": {
+      "title": "Got a Question? Just Ask.",
+      "subtitle": "Master your fitness — ask about calories, nutrition, gym machines, poses, injuries, form, workout plans",
+      "chat": "Chat with AI Coach"
     },
     "PromptSection": {
       "message": "Your scan is ready! Now, what would you like to find out?",
@@ -355,11 +596,11 @@
       }
     },
     "PremiumFeaturesOverview": {
-      "first": "Get {{freeScans}} Free Scans",
-      "second": "Access to all premium features",
-      "third": "No ads"
+      "first": "Instant AI Meal Scanning — Track calories & macros in seconds",
+      "second": "24/7 AI Personal Trainer — Expert guidance, any time, anywhere",
+      "third": "Track your fitness activities like a pro",
+      "fourth": "Full Access To All Premium Features"
     },
-
     "Input": {
       "labels": {
         "nickname": "Nickname",
@@ -367,23 +608,126 @@
         "emailVerification": "Email Verification"
       }
     },
-    "ImageAnnotationStudio": {
-      "instructions": {
-        "title": "Instructions",
-        "first": "1. Tap the 'Add Square' button to create a selection square.",
-        "second": "2. Drag the square over your region of interest.",
-        "third": "3. Adjust the corners to precisely cover the region."
-      },
-      "OpenStudioSection": {
-        "openStudioButton": "Open Studio",
-        "editMore": "Edit More",
-        "continueEditing": "Continue editing your annotations?",
-        "highlightedRegionsCount": "You have {{highlightedRegions}} highlighted regions. Tap below to add more",
-        "highlightRegions": "Need to highlight regions of your microscopy image?"
-      },
-      "studioToolbar": {
-        "addSquare": "Add Square"
-      }
+    "TodayMacroOverview": {
+      "heading": "Today's Macros",
+      "scanFood": "Scan Food",
+      "calories": "Calories",
+      "fat": "Fat",
+      "carbs": "Carbs",
+      "protein": "Protein",
+      "dailyIntakeGoals": "Daily Intake Goals",
+      "percentage": "% of daily macro goal achieved",
+      "noMeals": "No meals logged",
+      "meals": "Meals",
+      "deleteMeal": "Delete Meal",
+      "deleteMealConfirm": "Are you sure you want to delete this meal? This action will impact your daily macro nutrients calculations.",
+      "macroJournal": "Macro Journal",
+      "noActivityRecorded": "No activity recorded for this week"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Daily Check-in",
+      "attendedMessage": "You showed up today, that's how progress is built. Keep going!",
+      "notAttendedMessage": "The couch wins today… but tomorrow, you're making a comeback!",
+      "unknownMessage": "Your journey starts with a single step. Ready to begin?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "The selected duration cannot be longer than 360 minutes",
+      "activitiesLimit": "Whoa there! Are you secretly training for the Olympics? You've already hit the {{MAX_DAILY_ACTIVITIES}}-activity for today! 🏅. You can flex those muscles again tomorrow 💪!",
+      "addActivity": "Add Activity",
+      "modalHeading": "What got you moving today? Log it and keep up the momentum"
+    },
+    "TaskListOverview": {
+      "heading": "Today's tasks",
+      "noTasks": "No Tasks!",
+      "enjoyFreeTime": "Enjoy your free time."
+    },
+    "ActivitySelector": {
+      "title": "Activity Type",
+      "customActivity": "Add your own activity",
+      "customActivityLabel": "Custom Activity"
+    },
+    "DurationSelector": {
+      "heading": "Duration",
+      "customDuration": "Enter duration (minutes)",
+      "customDurationLabel": "Custom Duration"
+    },
+    "NoActivityLogModal": {
+      "heading": "Oh no! Don't Let the couch win today!",
+      "crushExcuse": "Crush my excuse",
+      "skipToday": "Not today, maybe tomorrow..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Great job!",
+      "unlockReward": "You did it! One activity down, and you’ve unlocked your reward. Let’s keep the streak going!"
+    },
+    "SkipReasonInput": {
+      "title": "That's okay, just checking in.",
+      "subtitle": "Want to share why today didn't work out? No pressure.",
+      "skipPlaceholder": "E.g. My cat ate my running shoes",
+      "skipToday": "Skip today"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Streak freeze!",
+      "streakResetNow": "Your streak was reset today.",
+      "streakRepairUse": "Use your Streak Repair Elixir to keep your streak alive",
+      "streakRepairExpired": " Your 48-hour streak repair window has expired! But hey, new streaks mean new opportunities to beat your personal best.",
+      "repairStreak": "Repair Streak",
+      "streakPotionConsumed": "Streak Freeze Potion Consumed!",
+      "streakFreezeApplied": " Your Streak Freeze Potion kicked in and protected your streak. You're still on fire!",
+      "streakElixirApplied": "Streak Repair Elixir Potion Kicked In!",
+      "streakFreezePotionApplied": "You saved your Streak! Your Streak Freeze Potion kicked in and protected your streak. You're still on fire!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "No activity found",
+      "addFirstActivity": "Add your first activity to earn gems and XP.",
+      "addActivity": "Add Activity",
+      "todayActivities": "Today's Activities"
+    },
+    "ActivityCard": {
+      "activitySkipped": "skipped",
+      "dayOff": "Day Off",
+      "description": "Description",
+      "excuseReason": "Excuse Reason ⚠️",
+      "yourNotes": "Your Notes 📝",
+      "notesPlaceholder": "E.g. Back and biceps workout, 3 super sets",
+      "addNotes": "Add notes"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Photo Library",
+      "takePhoto": "Take Photo",
+      "chooseFile": "Choose File"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Maximum Level Reached! Level",
+      "xpLeft": "left to reach Level"
+    },
+    "ShopItemCard": {
+      "unavailable": "Unavailable",
+      "worth": "worth",
+      "equiped": "equiped",
+      "shop": "Shop",
+      "earnedId": "You Earned It.",
+      "treat": "Now Treat Yourself!",
+      "spendGems": "Spend your Gems wisely, your fitness journey just got interesting."
+    },
+    "ActivityTaskCard": {
+      "win": "Win",
+      "acceptChallenge": "Accept challenge 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "How about pushing yourself a little with this challenge?",
+      "typeInput": "(Type your input below)"
+    },
+    "MacroOverview": {
+      "analysis": "Analysis",
+      "macroAdded": "Macro Added",
+      "countToday": "Count for today"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Protect your streak if you miss a day of practice.",
+      "owned": "OWNED",
+      "manualTrigger": "MANUAL TRIGGER",
+      "activated": "ACTIVATED"
     }
   },
   "alerts": {
@@ -395,6 +739,7 @@
       "heading": "Enable Notifications",
       "subHeading": "Notifications are currently turned off. To stay updated, please enable them in your device settings."
     },
+    "notesSavedSuccess": "Notes saved! 📝 You’re all set.",
     "enableNotificationFailed": "Push notifications are disabled. Enable them in settings to receive important updates!",
     "enableNotificationError": "An error occurred while enabling notifications",
     "notificationDisabledSuccess": "Notifications disabled successfully.",
@@ -429,6 +774,29 @@
     "restorationSuccessful": "Restoration was successful! Enjoy!",
     "restorationError": "An error occurred while restoring the purchase.",
     "medicalDisclaimerAlert": "EXFIT AI app does not offer diagnoses, treatment recommendations, or any medical advice. Always seek guidance from a qualified healthcare professional for medical decisions.",
-    "scanLimitReached": "We're optimizing scan quality for you! You'll be able to scan again in around {{hours}} hours and {{minutes}} minutes. Have any questions about any microscopy topic? Ask our chat assistant while you wait!"
+    "scanLimitReached": "We're optimizing scan quality for you! You'll be able to scan again in around {{hours}} hours and {{minutes}} minutes. Have any questions about any microscopy topic? Ask our chat assistant while you wait!",
+    "chatAndMediaFilesLimit": "Dear user, upgrade your plan to enjoy unlimited calorie tracking, meal scans, fitness coaching, and more. 🔓",
+    "chatMessageNotSent": "Oops! Your message didn’t go through. Please try again",
+    "excusesLimit": "Oops, looks like you're trying to set a world record for excuses! 😅 Maximum 3 excuses allowed - pick your top 3 and let's get moving!",
+    "excuseMinimum": "Please choose at least one excuse or type your own.",
+    "createActivityLogFailed": "Failed to create activity log. Please try again.",
+    "updateActivityLogFailed": "Something went wrong while updating the activity log. Please try again.",
+    "challengeAccepted": "Challenge accepted! 🔥 Now go crush it and earn those rewards!",
+    "challengeCompleted": "Challenge Completed! 🔥 You new rewards balance was updated.",
+    "macroEntryRecorded": "Macro intake recorded - keep it up! 🥗",
+    "failedCreateMacroLog": "Oops! Macro log didn’t save. Please try again!",
+    "deleteMacroLog": "Oops! Couldn’t remove your macro log. Please try again!",
+    "deleteMacro": "Macro deleted—ready for your next entry!",
+    "chooseSubscriptionPlan": "Kindly choose a subscription plan to continue!",
+    "createPermanentAccountSuccess": "Your permanent account has been created! Your account is now secure. Oh, and you also received",
+    "loginSuccess": "Successfully logged in—let’s get moving!",
+    "accountDeleted": "Your account has been successfully deleted",
+    "purchaseFailed": "Purchase failed. Please try again.",
+    "streakRepairFailed": "Failed to repair streak. Please try again.",
+    "failedSendMessage": "Failed to send message. Please try again.",
+    "capturePictureFailed": "Something went wrong while taking the photo",
+    "multipleVideosNotAllowed": "For better accuracy, please upload only one video at a time.",
+    "mixedMediaNotAllowed": "Uploads must contain only images or only videos, not a mix of both.",
+    "mediaFilesUploadFiles": "There was an error uploading your media files. Please try again."
   }
 }

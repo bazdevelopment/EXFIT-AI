@@ -216,10 +216,7 @@ export const ChatBubble = ({
         {/* User Avatar */}
         {isUser && (
           <View className="ml-2 size-8 items-center justify-center rounded-full bg-charcoal-800">
-            <Image
-              source={avatars[userGender]}
-              className="size-8 rounded-full"
-            />
+            <Image source={avatars['male']} className="size-8 rounded-full" />
           </View>
         )}
         {/* Blur Overlay - only visible for specific message */}

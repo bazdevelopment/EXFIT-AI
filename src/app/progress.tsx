@@ -21,6 +21,7 @@ import SkeletonLoader from '@/components/skeleton-loader';
 import { colors, Text } from '@/components/ui';
 import { RetryIcon } from '@/components/ui/assets/icons';
 import { WarningIllustration } from '@/components/ui/assets/illustrations/warning';
+import { translate } from '@/core';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -246,11 +247,11 @@ const EnhancedProgressScreen = () => {
       <View className="flex-1 items-center justify-center gap-6 bg-black p-6">
         <EdgeCaseTemplate
           image={<WarningIllustration />}
-          title="Something went wrong"
+          title={translate('rootLayout.screens.progress.error')}
           // message="  Something went wrong"
           additionalClassName="px-16"
           primaryAction={{
-            label: 'Try again',
+            label: translate('general.tryAgain'),
             onPress: refetch,
             variant: 'default',
             icon: <RetryIcon color={colors.black} width={18} height={18} />,
@@ -264,7 +265,7 @@ const EnhancedProgressScreen = () => {
   return (
     <ScreenWrapper>
       {/* Dark mode main background */}
-      <ScreenHeader title="Progress Dashboard" />
+      <ScreenHeader title={translate('rootLayout.screens.progress.heading')} />
 
       <ScrollView
         className="flex-1"
@@ -281,13 +282,13 @@ const EnhancedProgressScreen = () => {
 
         <View className="mt-2 px-6">
           <Text className="font-medium-poppins text-base text-white opacity-90">
-            Keep up the amazing work! 🚀
+            {translate('rootLayout.screens.progress.subheading')}
           </Text>
 
           {/* Enhanced KPIs */}
           <View className="my-6 flex-row justify-between">
             <EnhancedKPICard
-              title="Current Streak"
+              title="Streak"
               value={data.kpis.currentStreak}
               icon="fire"
               unit="days"
@@ -295,7 +296,7 @@ const EnhancedProgressScreen = () => {
               delay={100}
             />
             <EnhancedKPICard
-              title="Total XP"
+              title="XP"
               value={data.kpis.totalXp.toLocaleString()}
               icon="rocket"
               color="#6366f1"
@@ -312,8 +313,8 @@ const EnhancedProgressScreen = () => {
 
           {/* Weekly Goal Progress */}
           <GradientCard
-            title="Weekly Goals"
-            subtitle={`${data.kpis.weeklyGoalProgress.toFixed(0)}% Complete`}
+            title={translate('rootLayout.screens.progress.weeklyGoals')}
+            subtitle={`${data.kpis.weeklyGoalProgress.toFixed(0)}% ${translate('general.completed')}`}
             delay={400}
           >
             <View className="mb-4 flex-row justify-between">
@@ -336,7 +337,9 @@ const EnhancedProgressScreen = () => {
                     style={{ width: `${data.kpis.monthlyGoalProgress}%` }}
                   />
                 </View>
-                <Text className="text-sm text-gray-300">Monthly Goal</Text>
+                <Text className="text-sm text-gray-300">
+                  {translate('rootLayout.screens.progress.monthlyGoal')}
+                </Text>
                 {/* Lighter text */}
               </View>
             </View>
@@ -346,37 +349,39 @@ const EnhancedProgressScreen = () => {
           <View className="mb-6 mt-4">
             <Text className="mb-3 font-semibold-poppins text-lg text-gray-100">
               {/* Light text */}
-              Quick Insights
+              {translate('rootLayout.screens.progress.insights')}
             </Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <InsightCard
                 icon="clock"
-                title="Most Active"
+                title={translate('rootLayout.screens.progress.mostActive')}
                 value={data.insights.mostProductiveHour}
-                subtitle="Peak performance time"
+                subtitle={translate('rootLayout.screens.progress.peakTime')}
                 color="#8b5cf6"
               />
               <InsightCard
                 icon="heart"
-                title="Favorite Activity"
+                title={translate(
+                  'rootLayout.screens.progress.favoriteActivity'
+                )}
                 value={data.insights.favoriteActivity}
-                subtitle="Your go-to choice"
+                subtitle={translate('rootLayout.screens.progress.choice')}
                 color="#ec4899"
               />
               <InsightCard
                 icon="chart-line"
-                title="Weekly Change"
+                title={translate('rootLayout.screens.progress.weeklyChange')}
                 value={`${data.insights.weeklyXpChange > 0 ? '+' : ''}${data.insights.weeklyXpChange.toFixed(1)}%`}
-                subtitle="XP vs last week"
+                subtitle={`XP ${translate('rootLayout.screens.progress.lastWeekXP')}`}
                 color={
                   data.insights.weeklyXpChange >= 0 ? '#10b981' : '#ef4444'
                 }
               />
               <InsightCard
                 icon="medal"
-                title="Consistency"
+                title={translate('rootLayout.screens.progress.consistency')}
                 value={`${data.insights.consistencyScore.toFixed(0)}%`}
-                subtitle="Streak reliability"
+                subtitle={`Streak ${translate('rootLayout.screens.progress.reliability')}`}
                 color="#f59e0b"
               />
             </ScrollView>
@@ -386,17 +391,17 @@ const EnhancedProgressScreen = () => {
           <View className="mb-4">
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <TabButton
-                title="Overview"
+                title={translate('rootLayout.screens.progress.overview')}
                 active={activeTab === 'overview'}
                 onPress={() => setActiveTab('overview')}
               />
               <TabButton
-                title="Performance"
+                title={translate('rootLayout.screens.progress.performance')}
                 active={activeTab === 'performance'}
                 onPress={() => setActiveTab('performance')}
               />
               <TabButton
-                title="Trends"
+                title={translate('rootLayout.screens.progress.trends')}
                 active={activeTab === 'trends'}
                 onPress={() => setActiveTab('trends')}
               />
@@ -408,8 +413,12 @@ const EnhancedProgressScreen = () => {
             <View className="overflow-hidden">
               {/* Weekly XP Chart */}
               <ChartCard
-                title="This Week's XP"
-                subtitle="Last 7 days"
+                title={`${translate(
+                  'rootLayout.screens.progress.thisWeek'
+                )} XP`}
+                subtitle={translate(
+                  'rootLayout.screens.progress.lastSevenDays'
+                )}
                 delay={500}
               >
                 <BarChart
@@ -481,8 +490,8 @@ const EnhancedProgressScreen = () => {
 
               {/* Activity Focus */}
               <ChartCard
-                title="Activity Focus"
-                subtitle="Distribution"
+                title={translate('rootLayout.screens.progress.activityFocus')}
+                subtitle={translate('rootLayout.screens.progress.distribution')}
                 delay={600}
               >
                 <View className="items-center py-4">
@@ -508,7 +517,7 @@ const EnhancedProgressScreen = () => {
                         </Text>
                         <Text className="text-xs text-white">
                           {/* Grayer text */}
-                          Activities
+                          {translate('rootLayout.screens.progress.activities')}
                         </Text>
                       </View>
                     )}
@@ -535,8 +544,10 @@ const EnhancedProgressScreen = () => {
 
               {/* Streak History */}
               <ChartCard
-                title="Streak History"
-                subtitle="Your consistency journey"
+                title={`Streak ${translate('rootLayout.screens.progress.history')}`}
+                subtitle={translate(
+                  'rootLayout.screens.progress.consistencyJourney'
+                )}
                 delay={700}
               >
                 <LineChart
@@ -629,19 +640,21 @@ const EnhancedProgressScreen = () => {
               <ChartCard title="Performance Stats" delay={500}>
                 <View className="flex-row justify-between gap-4">
                   <StatCard
-                    label="Best Day"
+                    label={translate('rootLayout.screens.progress.bestDay')}
                     value={`${data.performanceMetrics.bestDay.xp} XP`}
                     icon="trophy"
                     color="#f59e0b"
                   />
                   <StatCard
-                    label="Avg Session"
+                    label={translate(
+                      'rootLayout.screens.progress.averageSession'
+                    )}
                     value={`${data.performanceMetrics.averageSessionDuration}m`}
                     icon="clock"
                     color="#6366f1"
                   />
                   <StatCard
-                    label="Total Hours"
+                    label={translate('rootLayout.screens.progress.totalHours')}
                     value={`${Math.round(data.detailedStats.totalMinutesActive / 60)}h`}
                     icon="calendar"
                     color="#10b981"
@@ -652,8 +665,10 @@ const EnhancedProgressScreen = () => {
               {/* Weekly Comparison */}
               <View className="overflow-hidden">
                 <ChartCard
-                  title="Weekly Comparison (XP)"
-                  subtitle="This week vs last week"
+                  title={`${translate('rootLayout.screens.progress.WeeklyComparisonXp')} (XP)`}
+                  subtitle={translate(
+                    'rootLayout.screens.progress.weeksComparison'
+                  )}
                   delay={600}
                 >
                   <BarChart
@@ -757,13 +772,13 @@ const EnhancedProgressScreen = () => {
                     <View className="mx-4 flex-row items-center">
                       <View className="mr-2 size-3 rounded-full bg-indigo-500" />
                       <Text className="font-medium-poppins text-sm text-gray-300">
-                        This Week
+                        {translate('rootLayout.screens.progress.thisWeeks')}
                       </Text>
                     </View>
                     <View className="mx-4 flex-row items-center">
                       <View className="mr-2 size-3 rounded-full bg-gray-400" />
                       <Text className="font-medium-poppins text-sm text-gray-300">
-                        Last Week
+                        {translate('rootLayout.screens.progress.lastWeek')}
                       </Text>
                     </View>
                   </View>
@@ -771,7 +786,9 @@ const EnhancedProgressScreen = () => {
                   {/* Simple weekly totals */}
                   <View className="mx-4 mt-4 flex-row justify-between rounded-lg bg-gray-800/20 p-3">
                     <View className="items-center">
-                      <Text className="text-xs text-gray-400">This Week</Text>
+                      <Text className="text-xs text-gray-400">
+                        {translate('rootLayout.screens.progress.thisWeeks')}
+                      </Text>
                       <Text className="font-semibold-poppins text-lg text-indigo-400">
                         {data.weeklyComparisonChartData.reduce(
                           (sum, item) => sum + item.thisWeek,
@@ -780,7 +797,9 @@ const EnhancedProgressScreen = () => {
                       </Text>
                     </View>
                     <View className="items-center">
-                      <Text className="text-xs text-gray-400">Last Week</Text>
+                      <Text className="text-xs text-gray-400">
+                        {translate('rootLayout.screens.progress.lastWeek')}
+                      </Text>
                       <Text className="font-semibold-poppins text-lg text-gray-400">
                         {data.weeklyComparisonChartData.reduce(
                           (sum, item) => sum + (item.lastWeek || 0),
@@ -789,7 +808,9 @@ const EnhancedProgressScreen = () => {
                       </Text>
                     </View>
                     <View className="items-center">
-                      <Text className="text-xs text-gray-400">Change</Text>
+                      <Text className="text-xs text-gray-400">
+                        {translate('general.change')}
+                      </Text>
                       <Text
                         className={`font-semibold-poppins text-lg ${
                           data.weeklyComparisonChartData.reduce(
@@ -831,8 +852,12 @@ const EnhancedProgressScreen = () => {
               {/* Hourly Activity Pattern */}
               <View className="overflow-hidden">
                 <ChartCard
-                  title="Activity Pattern"
-                  subtitle="24-hour breakdown"
+                  title={translate(
+                    'rootLayout.screens.progress.activityPattern'
+                  )}
+                  subtitle={translate(
+                    'rootLayout.screens.progress.hoursBreakdown'
+                  )}
                   delay={700}
                 >
                   <BarChart
@@ -859,8 +884,8 @@ const EnhancedProgressScreen = () => {
             <View className="overflow-hidden">
               {/* Monthly Activity */}
               <ChartCard
-                title="Monthly Activity"
-                subtitle="Last 6 months"
+                title={translate('rootLayout.screens.progress.monthlyActivity')}
+                subtitle={translate('rootLayout.screens.progress.lastMonths')}
                 delay={500}
               >
                 <BarChart
@@ -929,8 +954,8 @@ const EnhancedProgressScreen = () => {
 
               {/* Monthly XP Trend */}
               <ChartCard
-                title="XP Progression"
-                subtitle="Monthly XP earned"
+                title={`XP ${translate('rootLayout.screens.progress.progression')}`}
+                subtitle={`${translate('rootLayout.screens.progress.monthlyEarned')} XP`}
                 delay={600}
               >
                 <LineChart
@@ -1020,8 +1045,8 @@ const EnhancedProgressScreen = () => {
 
               {/* XP Progress Over Time */}
               <ChartCard
-                title="Recent XP Activity"
-                subtitle="Last 30 days"
+                title={`${translate('rootLayout.screens.progress.recentActivity')} XP`}
+                subtitle={translate('rootLayout.screens.progress.last30Days')}
                 delay={700}
               >
                 <LineChart
@@ -1068,12 +1093,13 @@ const EnhancedProgressScreen = () => {
             </View>
             <View className="flex-1">
               <Text className="font-semibold-poppins text-lg text-white">
-                Outstanding Progress!
+                {translate('rootLayout.screens.progress.outstanding')}
               </Text>
               <Text className="text-sm text-white opacity-90">
-                You've completed {data.kpis.totalActivities} activities and
-                earned {data.kpis.totalXp.toLocaleString()} XP total. Keep it
-                up!
+                {translate('rootLayout.screens.progress.activityReview', {
+                  totalActivities: data.kpis.totalActivities,
+                  totalXp: data.kpis.totalXp.toLocaleString(),
+                })}
               </Text>
             </View>
           </View>
@@ -1082,7 +1108,7 @@ const EnhancedProgressScreen = () => {
           <View className="mb-6 mt-2">
             <Text className="mb-3 font-semibold-poppins text-lg text-gray-100">
               {/* Light text */}
-              Detailed Statistics
+              {translate('rootLayout.screens.progress.statistics')}
             </Text>
             <View className="flex-row justify-between">
               <View className="mr-2 flex-1 rounded-2xl border border-zinc-700 bg-white/10 p-4 shadow-md">
@@ -1091,7 +1117,9 @@ const EnhancedProgressScreen = () => {
                   {/* Slightly lighter indigo for contrast */}
                   {data.detailedStats.longestStreak}
                 </Text>
-                <Text className="text-sm text-gray-300">Longest Streak</Text>
+                <Text className="text-sm text-gray-300">
+                  {translate('rootLayout.screens.progress.longest')} Streak
+                </Text>
                 {/* Lighter text */}
               </View>
               <View className="ml-2 flex-1 rounded-2xl border border-zinc-700 bg-white/10 p-4 shadow-md">
@@ -1102,7 +1130,9 @@ const EnhancedProgressScreen = () => {
                 </Text>
                 <Text className="text-sm text-gray-300">
                   {/* Lighter text */}
-                  Physical Activities Completed This Month!
+                  {translate(
+                    'rootLayout.screens.progress.totalMonthActivities'
+                  )}
                 </Text>
               </View>
             </View>

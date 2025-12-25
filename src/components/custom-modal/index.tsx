@@ -50,7 +50,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
 
             <View className="flex-row">
               <Icon
-                icon={<CloseIcon />}
+                icon={<CloseIcon color={colors.primary[900]} />}
                 color={colors.primary[900]}
                 size={16}
                 containerStyle="bg-white rounded-full p-1"

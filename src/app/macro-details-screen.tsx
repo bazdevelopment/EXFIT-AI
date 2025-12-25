@@ -109,7 +109,7 @@ const MealCard = ({ meal, onDelete, order }) => {
       <View className="flex-row justify-between">
         <View className="flex-1 items-center">
           <Text className="font-semibold-poppins text-sm text-gray-500 dark:text-white">
-            Calories
+            {translate('components.TodayMacroOverview.calories')}
           </Text>
           <Text className="text-bas font-bold-poppins text-base text-gray-800">
             {meal.calories}
@@ -117,7 +117,7 @@ const MealCard = ({ meal, onDelete, order }) => {
         </View>
         <View className="flex-1 items-center">
           <Text className="font-semibold-poppins text-sm text-gray-500">
-            Protein
+            {translate('components.TodayMacroOverview.protein')}
           </Text>
           <Text className="font-bold-poppins text-base text-blue-600 dark:text-blue-400">
             {meal.protein}g
@@ -125,7 +125,7 @@ const MealCard = ({ meal, onDelete, order }) => {
         </View>
         <View className="flex-1 items-center">
           <Text className="font-semibold-poppins text-sm text-gray-500">
-            Carbs
+            {translate('components.TodayMacroOverview.carbs')}
           </Text>
           <Text className="font-bold-poppins text-base text-amber-600 dark:text-amber-600">
             {meal.carbs}g
@@ -133,7 +133,7 @@ const MealCard = ({ meal, onDelete, order }) => {
         </View>
         <View className="flex-1 items-center">
           <Text className="font-semibold-poppins text-base text-gray-500">
-            Fat
+            {translate('components.TodayMacroOverview.fat')}
           </Text>
           <Text className="text-bas font-bold-poppins text-red-500 dark:text-red-400">
             {meal.fat}g
@@ -147,6 +147,8 @@ const MealCard = ({ meal, onDelete, order }) => {
 const DayCard = ({ dayData, goals, onDeleteMeal }) => {
   const [expanded, setExpanded] = useState(false);
   const rotateValue = useRef(new Animated.Value(0)).current;
+
+  const { language } = useSelectedLanguage();
 
   const toggleExpand = () => {
     setExpanded(!expanded);
@@ -177,7 +179,7 @@ const DayCard = ({ dayData, goals, onDeleteMeal }) => {
           <View>
             <Text className="font-bold-poppins text-base text-gray-800 dark:text-white">
               {/* {dayData.date} */}
-              {dayjs(dayData.date).format('dddd, D MMMM')}
+              {dayjs(dayData.date).locale(language).format('dddd, D MMMM')}
             </Text>
           </View>
           <View className="flex-row items-center gap-2">
@@ -187,13 +189,13 @@ const DayCard = ({ dayData, goals, onDeleteMeal }) => {
             >
               {/* <Text className="text-3xl text-gray-400">⌄</Text> */}
               <Text className="rounded-full border-2 border-white px-3 py-1.5 text-xs">
-                See More
+                {translate('general.seeMore')}
               </Text>
             </View>
           </View>
         </View>
         <Text className="font-medium-poppins text-sm text-green-700 dark:text-white">
-          % of daily macro goal achieved
+          {translate('components.TodayMacroOverview.percentage')}
         </Text>
 
         {hasData && (
@@ -208,7 +210,7 @@ const DayCard = ({ dayData, goals, onDeleteMeal }) => {
                 {totals.calories}
               </Text>
               <Text className="font-semibold-poppins text-sm text-gray-400">
-                Calories
+                {translate('components.TodayMacroOverview.calories')}
               </Text>
             </View>
             <View className="items-center">
@@ -221,7 +223,7 @@ const DayCard = ({ dayData, goals, onDeleteMeal }) => {
                 {totals.protein}g
               </Text>
               <Text className="font-semibold-poppins text-sm text-gray-400">
-                Protein
+                {translate('components.TodayMacroOverview.protein')}
               </Text>
             </View>
             <View className="items-center">
@@ -234,7 +236,7 @@ const DayCard = ({ dayData, goals, onDeleteMeal }) => {
                 {totals.carbs}g
               </Text>
               <Text className="font-semibold-poppins text-sm text-gray-400 dark:text-white">
-                Carbs
+                {translate('components.TodayMacroOverview.carbs')}
               </Text>
             </View>
             <View className="items-center">
@@ -247,7 +249,7 @@ const DayCard = ({ dayData, goals, onDeleteMeal }) => {
                 {totals.fat}g
               </Text>
               <Text className="font-semibold-poppins text-sm text-gray-400">
-                Fat
+                {translate('components.TodayMacroOverview.fat')}
               </Text>
             </View>
           </View>
@@ -255,7 +257,7 @@ const DayCard = ({ dayData, goals, onDeleteMeal }) => {
 
         {!hasData && (
           <Text className="text-center text-sm text-gray-400">
-            No meals logged
+            {translate('components.TodayMacroOverview.noMeals')}
           </Text>
         )}
       </TouchableOpacity>
@@ -263,7 +265,8 @@ const DayCard = ({ dayData, goals, onDeleteMeal }) => {
       {expanded && hasData && (
         <View className="border-b border-gray-100 bg-gray-50 p-4 dark:bg-black">
           <Text className="font-semibold-poppins text-base uppercase text-gray-500">
-            Meals ({dayData.mealsCount})
+            {translate('components.TodayMacroOverview.meals')} (
+            {dayData.mealsCount})
           </Text>
           {dayData.meals.map((meal, index) => (
             <MealCard
@@ -316,7 +319,7 @@ export const GoalsModal = ({
           <View className="rounded-t-3xl bg-white p-6 pb-8 dark:bg-blackEerie">
             <View className="mb-6 flex-row items-center justify-between">
               <Text className="flex-1 font-bold-poppins text-lg text-gray-800">
-                Change your daily intake goal
+                {translate('components.GoalsModal.heading')}
               </Text>
               <TouchableOpacity
                 onPress={() => {
@@ -332,7 +335,7 @@ export const GoalsModal = ({
             {/* <ScrollView contentContainerClassName="pb-[200]"> */}
             <View className="mb-4">
               <Text className="mb-2 font-medium-poppins text-sm text-gray-700">
-                Daily Calories
+                {translate('components.GoalsModal.dailyCalories')}
               </Text>
               <TextInput
                 className="rounded-xl border border-gray-200 p-4 text-base text-red-200 dark:border-gray-600 dark:bg-black dark:text-white"
@@ -349,7 +352,7 @@ export const GoalsModal = ({
 
             <View className="mb-4">
               <Text className="mb-2 font-medium-poppins text-sm text-gray-700">
-                Protein (g)
+                {translate('components.TodayMacroOverview.protein')} (g)
               </Text>
               <TextInput
                 className="rounded-xl border border-gray-600 bg-gray-50 p-4 text-base dark:border-gray-600 dark:bg-black dark:text-white"
@@ -363,7 +366,7 @@ export const GoalsModal = ({
 
             <View className="mb-4">
               <Text className="mb-2 font-medium-poppins text-sm text-gray-700 dark:text-white">
-                Carbs (g)
+                {translate('components.TodayMacroOverview.carbs')} (g)
               </Text>
               <TextInput
                 className="rounded-xl border border-gray-600 bg-gray-50 p-4 text-base dark:border-gray-600 dark:bg-black dark:text-white"
@@ -377,7 +380,7 @@ export const GoalsModal = ({
 
             <View className="mb-6">
               <Text className="mb-2 font-medium-poppins text-sm text-gray-700">
-                Fat (g)
+                {translate('components.TodayMacroOverview.fat')} (g)
               </Text>
               <TextInput
                 className="rounded-xl border border-gray-600  bg-gray-50 p-4 text-base dark:border-gray-600 dark:bg-black dark:text-white"
@@ -395,7 +398,7 @@ export const GoalsModal = ({
               activeOpacity={0.8}
             >
               <Text className="text-center font-semibold-poppins text-base text-white">
-                Save Goals
+                {translate('components.GoalsModal.saveGoals')}
               </Text>
             </TouchableOpacity>
             {/* </ScrollView> */}
@@ -444,12 +447,12 @@ const MacroOverviewScreen = () => {
 
   const handleDeleteMeal = ({ mealId, date }) => {
     Alert.alert(
-      'Delete Meal',
-      'Are you sure you want to delete this meal? This action will impact your daily macronutrient calculations.',
+      translate('components.TodayMacroOverview.deleteMeal'),
+      translate('components.TodayMacroOverview.deleteMealConfirm'),
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: translate('general.cancel'), style: 'cancel' },
         {
-          text: 'Delete',
+          text: translate('general.delete'),
           style: 'destructive',
           onPress: () => onDeleteMacroEntry({ mealId, date }),
         },
@@ -461,7 +464,9 @@ const MacroOverviewScreen = () => {
   // if (!data) return;
   return (
     <ScreenWrapper>
-      <ScreenHeader title="Macro Journal" />
+      <ScreenHeader
+        title={translate('components.TodayMacroOverview.macroJournal')}
+      />
       {/* Header */}
       <View className="bg-white px-4 shadow-sm dark:bg-transparent">
         {/* Week Navigator */}
@@ -494,7 +499,9 @@ const MacroOverviewScreen = () => {
       <ScrollView className="flex-1 p-4">
         {isLoading ? (
           <View className="py-20">
-            <Text className="text-center text-gray-400">Loading...</Text>
+            <Text className="text-center text-gray-400">
+              {translate('general.loading')}
+            </Text>
           </View>
         ) : data && data.length > 0 ? (
           data.map((dayData) => (
@@ -508,7 +515,7 @@ const MacroOverviewScreen = () => {
         ) : (
           <View className="py-20">
             <Text className="text-center text-gray-400">
-              No data for this week
+              {translate('components.TodayMacroOverview.noActivityRecorded')}
             </Text>
           </View>
         )}

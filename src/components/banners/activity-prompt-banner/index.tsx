@@ -3,7 +3,7 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { Text } from '@/components/ui';
-import { useSelectedLanguage } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 
 const ActivityPromptBanner = ({
@@ -40,7 +40,7 @@ const ActivityPromptBanner = ({
               </View>
               <View className="flex-1">
                 <Text className="font-semibold-poppins text-white">
-                  Daily Check-in
+                  {translate('components.ActivityPromptBanner.dailyCheckIn')}
                 </Text>
               </View>
             </View>
@@ -48,7 +48,9 @@ const ActivityPromptBanner = ({
             {/* Middle Content */}
             <View className="mt-2">
               <Text className="font-medium-poppins text-base text-white">
-                Did you get your body moving today?
+                {translate(
+                  'components.ActivityPromptBanner.bodyMovingQuestion'
+                )}
               </Text>
             </View>
 
@@ -59,7 +61,7 @@ const ActivityPromptBanner = ({
                 onPress={onShowActivityCompleteModal}
               >
                 <Text className="font-semibold-poppins text-base text-white">
-                  Yes
+                  {translate('general.yes')}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -67,7 +69,7 @@ const ActivityPromptBanner = ({
                 onPress={onShowActivitySkippedModal}
               >
                 <Text className="font-semibold-poppins text-base text-white">
-                  No
+                  {translate('general.no')}
                 </Text>
               </TouchableOpacity>
             </View>

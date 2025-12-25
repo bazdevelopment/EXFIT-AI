@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { useCreateMacroEntry } from '@/api/macro/macro.hooks';
-import { useSelectedLanguage } from '@/core';
+import { translate, useSelectedLanguage } from '@/core';
 import { getCurrentDay } from '@/core/utilities/date-time-helpers';
 
 import { Text } from '../ui';
@@ -39,7 +39,7 @@ export const MacroOverview: React.FC<Props> = ({ metadata }) => {
             </View>
             <View className="flex-1">
               <Text className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Analysis
+                {translate('components.MacroOverview.analysis')}
               </Text>
               <Text className="text-lg font-bold text-slate-900 dark:text-slate-100">
                 {food.label}
@@ -51,26 +51,29 @@ export const MacroOverview: React.FC<Props> = ({ metadata }) => {
         {/* Macro Grid */}
         <View className="mb-4 flex-row justify-between rounded-2xl border border-slate-100 bg-white p-3 dark:border-slate-700 dark:bg-slate-800">
           <MacroItem
-            label="Calories"
-            value={food.calories + ' Kcal'}
+            label={translate('components.TodayMacroOverview.calories')}
+            value={
+              food.calories +
+              ` ${translate('components.TodayMacroOverview.calories')}`
+            }
             color="text-orange-600 dark:text-orange-400"
           />
           <View className="h-full w-px bg-slate-100 dark:bg-slate-700" />
 
           <MacroItem
-            label="Protein"
+            label={translate('components.TodayMacroOverview.protein')}
             value={`${food.protein}g`}
             color="text-blue-600 dark:text-blue-400"
           />
           <View className="h-full w-px bg-slate-100 dark:bg-slate-700" />
           <MacroItem
-            label="Carbs"
+            label={translate('components.TodayMacroOverview.carbs')}
             value={`${food.carbs}g`}
             color="text-green-600 dark:text-green-400"
           />
           <View className="h-full w-px bg-slate-100 dark:bg-slate-700" />
           <MacroItem
-            label="Fat"
+            label={translate('components.TodayMacroOverview.fat')}
             value={`${food.fat}g`}
             color="text-purple-600 dark:text-purple-400"
           />
@@ -91,7 +94,9 @@ export const MacroOverview: React.FC<Props> = ({ metadata }) => {
             <Plus width={20} height={20} color="white" />
           )}
           <Text className="ml-2 font-semibold text-white">
-            {isLogged ? 'Added to Log' : 'Count for today'}
+            {isLogged
+              ? translate('components.MacroOverview.macroAdded')
+              : translate('components.MacroOverview.countToday')}
           </Text>
         </TouchableOpacity>
       </View>

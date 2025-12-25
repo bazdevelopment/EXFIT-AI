@@ -78,10 +78,9 @@ const StreakDisplayHorizontal = ({
     <Text className="mt-2 font-bold-poppins text-lg text-orange-500 dark:text-orange-500">
       {currentStreak}
     </Text>
-    <Text className="font-bold-poppins text-orange-500 dark:text-orange-500">
-      days
-    </Text>
-
+    {/* <Text className="font-bold-poppins text-orange-500 dark:text-orange-500">
+      {translate('general.days')}
+    </Text> */}
     <Text className="font-medium-poppins text-white">streak</Text>
   </View>
 );
@@ -97,9 +96,9 @@ const StreakDisplayVertical = ({
       <StreakIcon width={40} height={40} />
     </View>
     <View>
-      <Text className="font-bold-poppins text-2xl text-orange-400">
+      {/* <Text className="font-bold-poppins text-2xl text-orange-400">
         {currentStreak} days
-      </Text>
+      </Text> */}
       <Text className="font-medium-poppins text-sm text-gray-400">streak</Text>
     </View>
   </View>
@@ -112,12 +111,14 @@ const CalendarHeader = ({
   showMonth,
   showYear,
   layout = 'vertical',
+  showProgress,
 }: {
   currentMonth?: string;
   currentYear?: number | string;
   showMonth?: boolean;
   showYear?: boolean;
   layout?: 'horizontal' | 'vertical';
+  showProgress: boolean;
 }) => {
   if (layout === 'horizontal') {
     return (
@@ -127,12 +128,14 @@ const CalendarHeader = ({
         >
           {showMonth ? currentMonth : ''} {showYear ? currentYear : ''}
         </Text>
-        <TouchableOpacity
-          className="mr-1 rounded-full bg-charcoal-900 p-2"
-          onPress={() => router.navigate('/progress')}
-        >
-          <ChartIcon width={22} height={22} color={colors.white} />
-        </TouchableOpacity>
+        {showProgress && (
+          <TouchableOpacity
+            className="mr-1 rounded-full bg-charcoal-900 p-2"
+            onPress={() => router.navigate('/progress')}
+          >
+            <ChartIcon width={22} height={22} color={colors.white} />
+          </TouchableOpacity>
+        )}
       </View>
     );
   }
@@ -297,6 +300,7 @@ const DayItem = ({
 const CalendarMiniView = ({
   showYear = false,
   showMonth = false,
+  showProgress = true,
   containerClassName = '',
   currentWeekActivityLog = {},
   segmentedDays = [],
@@ -344,6 +348,7 @@ const CalendarMiniView = ({
             currentYear={currentYear}
             showMonth={showMonth}
             showYear={showYear}
+            showProgress={showProgress}
             layout="horizontal"
           />
           <View className="flex-row justify-between">
@@ -388,6 +393,7 @@ const CalendarMiniView = ({
         currentYear={currentYear}
         showMonth={showMonth}
         showYear={showYear}
+        showProgress={showProgress}
         layout="vertical"
       />
 

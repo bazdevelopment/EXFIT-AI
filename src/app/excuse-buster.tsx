@@ -10,19 +10,20 @@ import ScreenWrapper from '@/components/screen-wrapper';
 import SelectableChip from '@/components/selectable-chip';
 import { Button, colors, Image, Input, Text } from '@/components/ui';
 import { ArrowLeft, WandSparkle } from '@/components/ui/assets/icons';
+import { translate } from '@/core';
 import useKeyboard from '@/core/hooks/use-keyboard';
 
 const excuses = [
-  'Too tired',
-  'No time',
-  'Too sore',
-  'Gym is crowded',
-  'Not feeling it',
-  'Bad weather',
-  'Work is crazy',
-  "I'll start tomorrow",
-  'Don’t know what to do',
-  'No equipment',
+  translate('rootLayout.screens.excuseBuster.reasons.one'),
+  translate('rootLayout.screens.excuseBuster.reasons.two'),
+  translate('rootLayout.screens.excuseBuster.reasons.three'),
+  translate('rootLayout.screens.excuseBuster.reasons.four'),
+  translate('rootLayout.screens.excuseBuster.reasons.five'),
+  translate('rootLayout.screens.excuseBuster.reasons.six'),
+  translate('rootLayout.screens.excuseBuster.reasons.seven'),
+  translate('rootLayout.screens.excuseBuster.reasons.eight'),
+  translate('rootLayout.screens.excuseBuster.reasons.nine'),
+  translate('rootLayout.screens.excuseBuster.reasons.ten'),
 ];
 
 const ExcuseBusterScreen = () => {
@@ -39,9 +40,7 @@ const ExcuseBusterScreen = () => {
       if (selectedExcuses.length < 3) {
         setSelectedExcuses([...selectedExcuses, excuse]);
       } else {
-        Alert.alert(
-          "Oops, looks like you're trying to set a world record for excuses! 😅 Maximum 3 excuses allowed - pick your top 3 and let's get moving!"
-        );
+        Alert.alert(translate('alerts.excusesLimit'));
       }
     }
   };
@@ -59,7 +58,7 @@ const ExcuseBusterScreen = () => {
     }
 
     if (allExcuses.length === 0) {
-      alert('Please select at least one excuse or enter a custom one!');
+      alert(translate('alerts.excuseMinimum'));
       return;
     }
 
@@ -115,12 +114,12 @@ const ExcuseBusterScreen = () => {
               </View>
               <View>
                 <Text className="font-medium-poppins text-lg text-white">
-                  Excuse Buster
+                  {translate('rootLayout.screens.excuseBuster.heading')}
                 </Text>
                 <View className="flex-row items-center gap-2">
                   <View className="size-2 rounded-full bg-success-400" />
                   <Text className="font-medium-poppins text-xs text-white">
-                    Online
+                    {translate('general.active')}
                   </Text>
                 </View>
               </View>
@@ -131,10 +130,10 @@ const ExcuseBusterScreen = () => {
             {/* Main Content */}
             <View className="mb-8 mt-16 items-center">
               <Text className="mb-4 text-center font-medium-poppins text-lg text-white">
-                You're Tougher Than Your Excuse.
+                {translate('rootLayout.screens.excuseBuster.excuseMotivation')}
               </Text>
               <Text className="text-center text-base text-white">
-                What's holding you back today?
+                {translate('rootLayout.screens.excuseBuster.excuseQuestion')}
               </Text>
             </View>
 
@@ -161,7 +160,9 @@ const ExcuseBusterScreen = () => {
               <Input
                 value={customExcuse}
                 onChangeText={(text) => setCustomExcuse(text)}
-                placeholder="Type your excuse here..."
+                placeholder={translate(
+                  'rootLayout.screens.excuseBuster.typeExcuse'
+                )}
                 placeholderTextColor={colors.charcoal[300]}
                 className="w-full rounded-xl bg-gray-800 p-4 pt-3 text-base text-white dark:text-white"
                 multiline
@@ -173,7 +174,7 @@ const ExcuseBusterScreen = () => {
 
             {/* Submit Button */}
             <Button
-              label="Crush my excuse"
+              label={translate('rootLayout.screens.excuseBuster.crushExcuse')}
               className="h-[45px] w-full rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
               textClassName="text-white dark:text-white disabled:text-white font-medium-poppins"
               onPress={handleSubmit}

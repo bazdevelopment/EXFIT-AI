@@ -11,7 +11,6 @@ import { createMutation, createQuery } from 'react-query-kit';
 import Toast from '@/components/toast';
 import { translate } from '@/core';
 import { Env } from '@/core/env';
-import { requestAppRatingWithDelay } from '@/core/utilities/request-app-review';
 import { wait } from '@/core/utilities/wait';
 import { type IUserInfo } from '@/types/general-types';
 
@@ -55,7 +54,7 @@ export const usePurchaseSubscription = createMutation<
     );
 
     if (!selectedPackage) {
-      return Toast.error('Kindly choose a subscription plan to continue!', {
+      return Toast.error(translate('alerts.chooseSubscriptionPlan'), {
         closeButton: true,
         duration: 10000000,
       });
@@ -158,7 +157,7 @@ export const useRestorePurchases = (
         };
 
         onSuccessRestoration(fieldsToUpdate);
-        requestAppRatingWithDelay(3000);
+        // requestAppRatingWithDelay(3000);
         wait(2000).then(() => router.navigate('/(app)'));
       }
     },

@@ -4,6 +4,7 @@ import { View } from 'react-native';
 
 import { Button, Text } from '@/components/ui';
 import { UpgradeProgress } from '@/components/ui/assets/icons/upgrade-progress';
+import { translate } from '@/core';
 
 const UpgradeBanner = ({
   additionalClassName,
@@ -20,16 +21,16 @@ const UpgradeBanner = ({
           <UpgradeProgress width={70} height={70} />
           <View className="ml-3 flex-1">
             <Text className="mb-1 font-bold-poppins text-lg text-white">
-              Upgrade to EXFIT AI PRO
+              {translate('components.UpgradeBanner.upgradeTo')} EXFIT AI PRO
             </Text>
             <Text className="font-medium-poppins text-sm text-green-100">
-              AI features. All premium tools. All yours to stay on track.
+              {translate('components.UpgradeBanner.moreBenefits')}
             </Text>
           </View>
         </View>
 
         <Button
-          label="Upgrade Now"
+          label={translate('general.unlockNow')}
           className="mt-3 h-[34px] rounded-full bg-white active:opacity-90"
           textClassName="text-black font-medium-poppins"
           onPress={handleUpgrade}

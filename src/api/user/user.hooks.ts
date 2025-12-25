@@ -136,7 +136,7 @@ export const useValidateAuthCode = () => {
   return createMutation<Response, IValidateAuthCode, AxiosError>({
     mutationFn: (variables) => validateVerificationCode(variables),
     onSuccess: () => {
-      router.navigate('/(tabs)');
+      router.navigate('/(app)');
       logEvent(
         'Authentication code has been validated and user is redirected to home or onboarding'
       );
@@ -207,7 +207,7 @@ export const useCreatePermanentAccount = () => {
     mutationFn: (variables) => createPermanentAccount(variables),
     onSuccess: () => {
       Toast.success(
-        `Your permanent account has been created! Your account is now secure. Oh, and you also received ⚡️ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems`
+        `${translate('alerts.createPermanentAccountSuccess')} ⚡️ ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.xp} XP & 💎 ${GAMIFICATION_REWARDS_CONFIG.eventRewards.permanent_account_creation.gems} gems`
       );
       queryClient.invalidateQueries({ queryKey: ['user-info'] });
 
@@ -227,7 +227,7 @@ export const useLogin = () => {
   return createMutation<any, { email: string; password: string }, AxiosError>({
     mutationFn: (variables) => signInUser(variables),
     onSuccess: () => {
-      Toast.success('Logged in successfully!');
+      Toast.success(translate('alerts.loginSuccess'));
       wait(2000).then(() => router.navigate('/(app)'));
     },
   })();
@@ -243,7 +243,7 @@ export const useDeleteAccount = () => {
   return createMutation<any, any, AxiosError>({
     mutationFn: deleteAccount,
     onSuccess: async () => {
-      Toast.success('Your account has been deleted successfuly!');
+      Toast.success(translate('alerts.accountDeleted'));
       await firebaseAuth.signOut();
       router.navigate('/welcome');
       queryClient.clear(); // Clears all cached queries & mutations

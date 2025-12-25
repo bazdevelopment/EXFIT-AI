@@ -2,6 +2,7 @@ import { type AxiosError } from 'axios';
 import { createMutation, createQuery } from 'react-query-kit';
 
 import Toast from '@/components/toast';
+import { translate } from '@/core';
 
 import { queryClient } from '../common';
 import {
@@ -24,11 +25,11 @@ export const useCreateMacroEntry = () =>
     {
       mutationFn: (variables) => createMacroEntryRequest(variables),
       onSuccess: (data) => {
-        Toast.success('Macro entry created successfully');
+        Toast.success(translate('alerts.macroEntryRecorded'));
         queryClient.invalidateQueries({ queryKey: ['daily-macros'] });
       },
       onError: () => {
-        Toast.error('Error creating macro log');
+        Toast.error(translate('alerts.failedCreateMacroLog'));
       },
     }
   )();
@@ -61,13 +62,13 @@ export const useDeleteMacroEntry = ({
   createMutation<ICreateMacroResponseData, IDeleteMacroEntry, AxiosError>({
     mutationFn: (variables) => deleteMacroEntry(variables),
     onSuccess: (data) => {
-      Toast.success('Macro entry deleted successfully');
+      Toast.success(translate('alerts.deleteMacro'));
       queryClient.invalidateQueries({ queryKey: ['daily-macros'] });
       queryClient.invalidateQueries({
         queryKey: ['daily-macros-by-range', startDate, endDate],
       });
     },
     onError: () => {
-      Toast.error('Error deleting  macro log');
+      Toast.error(translate('alerts.deleteMacroLog'));
     },
   })();

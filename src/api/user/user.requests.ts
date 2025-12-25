@@ -201,7 +201,7 @@ export const checkEmail = async ({ email }: { email: string }) => {
 
 export const logout = async () => {
   await firebaseAuth.signOut();
-  router.navigate('/login');
+  router.navigate('/anonymous-login');
   queryClient.clear(); // Clears all cached queries & mutations
   Toast.success(translate('alerts.loggedOutSuccess'));
 };

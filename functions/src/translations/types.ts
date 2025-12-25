@@ -30,6 +30,10 @@ export interface ITranslation {
     interpretationNotSaved: string;
     analysisCompleted: string;
   };
+  updateUserLanguage: {
+    updateSuccess: string;
+    updateError: string;
+  };
   continueConversation: {
     messagesLimit: string;
     conversationNotFound: string;

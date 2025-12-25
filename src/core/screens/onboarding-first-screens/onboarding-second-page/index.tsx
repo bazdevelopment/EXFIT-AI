@@ -4,6 +4,7 @@ import { ImageBackground, View } from 'react-native';
 
 import { OnboardingNavigation } from '@/components/onboarding-first-navigation';
 import { Button, Text } from '@/components/ui';
+import { translate } from '@/core/i18n';
 
 import { type IOnboardingSecondPage } from './onboarding-second-page.interface';
 
@@ -45,13 +46,16 @@ const OnboardingSecondPage = ({
 
             <View className="absolute bottom-40 gap-4">
               <Text className="text-center font-semibold-poppins text-4xl leading-tight text-white">
-                Your Excuse is the Real Enemy
+                {translate(
+                  'onboarding.firstFlow.onboardingSecondPage.headingOne'
+                )}
               </Text>
 
               {/* Subtitle */}
               <Text className="text-center font-primary-poppins text-base text-white">
-                Meet EXFIT AI, your smart sidekick to crush doubt, spark
-                motivation, and keep you moving
+                {translate(
+                  'onboarding.firstFlow.onboardingSecondPage.headingTwo'
+                )}
               </Text>
             </View>
           </View>
