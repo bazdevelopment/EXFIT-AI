@@ -78,7 +78,7 @@ const FitnessGoalScreen = ({
               onPress={goToPreviousScreen}
             />
 
-            <Greeting userName={userInfo.userName} showGreeting={false} />
+            <Greeting userName={userInfo?.userName} showGreeting={false} />
           </View>
           <View className="rounded-full bg-[#172554] px-3 py-1">
             <Text className="font-bold-poppins text-sm text-[#3195FD]">{`${currentScreenIndex + 1} of ${totalSteps}`}</Text>

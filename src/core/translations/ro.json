@@ -1,0 +1,800 @@
+{
+  "onboarding": {
+    "message": "Bun venit la EXFIT AI!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Fă o poză mesei tale și urmărește caloriile",
+        "headingTwo": "Scanează mese, vorbește cu Antrenorul tău AI și primește provocări zilnice create pentru tine"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Lasă AI-ul să-ți alimenteze fitness-ul",
+        "headingTwo": "Întâlnește EXFIT AI, partenerul tău inteligent pentru a învinge îndoielile, a aprinde motivația și a te menține în mișcare"
+      },
+      "onboardingThirdPage": {
+        "heading": "Lasă AI-ul să detecteze echipamentul de sală, pozițiile de exercițiu și tehnica"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Antrenează-te. Câștigă. Urcați nivelul.",
+        "headingTwo": "Adună XP, colectează Gems, păstrează-ți Streak-ul viu și deblochează recompense pentru participarea ta."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Sala de sport",
+    "yoga": "Yoga",
+    "running": "Alergare",
+    "walking": "Mers",
+    "cycling": "Ciclism",
+    "dance": "Dans",
+    "stretching": "Întindere",
+    "swimming": "Înot",
+    "hiking": "Drumeție",
+    "pilates": "Pilates",
+    "climbing": "Alpinism",
+    "skating": "Patinaj"
+  },
+  "general": {
+    "back": "Înapoi",
+    "welcome": "Salut",
+    "welcomeBack": "Bun venit înapoi!",
+    "welcomeMessage": "Bun venit!",
+    "goodMorning": "Bună dimineața",
+    "goodAfternoon": "Bună ziua",
+    "goodEvening": "Bună seara",
+    "continue": "Continuă",
+    "retry": "Reîncearcă",
+    "retake": "Refă",
+    "scanNow": "Scanează acum",
+    "scanning": "Scanare...",
+    "close": "Închide",
+    "gallery": "Galerie",
+    "files": "Fișiere",
+    "cancel": "Anulează",
+    "save": "Salvează",
+    "edit": "Editează",
+    "delete": "Șterge",
+    "attention": "Atenție!",
+    "new": "Nou",
+    "yes": "Da",
+    "no": "Nu",
+    "or": "sau",
+    "change": "Schimbă",
+    "typing": "Se scrie...",
+    "online": "Online",
+    "chatbotPlaceholder": "Întreabă-mă orice...",
+    "openSettings": "Deschide Setări",
+    "seeNotifications": "Vezi notificările",
+    "viewProfile": "Vezi profilul",
+    "upgradePlan": "Actualizează planul",
+    "download": "Descarcă",
+    "share": "Partajează",
+    "shareLink": "Partajează link",
+    "skip": "Sari peste",
+    "next": "Următorul",
+    "update": "Actualizează",
+    "tryAgain": "Încearcă din nou",
+    "createdAt": "Creat la",
+    "and": "și",
+    "saveDiscount": "ECONOMISEȘTE",
+    "restorePurchase": "Restaurează achiziția",
+    "medicalDisclaimer": "Declinare de responsabilitate medicală",
+    "conversationHistory": "Istoric conversații",
+    "analyzingMediaFilesPlaceholder": "Se analizează fișiere media...",
+    "freeTrial": "Proces gratuit",
+    "free": "GRATUIT",
+    "noPaymentNow": "Fără plată acum. Anulează oricând.",
+    "completedScans": "Scanări finalizate",
+    "activeSubscription": "Abonament activ",
+    "askAssistant": "Întreabă asistentul AI",
+    "then": "apoi",
+    "perWeek": "pe săptămână",
+    "perYear": "pe an",
+    "perMonth": "pe lună",
+    "tryForFree": "Încearcă gratuit",
+    "unlockNow": "Deblochează acum",
+    "attended": "A participat",
+    "readyToStart": "Gata de început",
+    "skipped": "Sărit peste",
+    "completed": "Finalizat",
+    "purchase": "Achiziționează",
+    "active": "activ",
+    "dearUser": "Dragă utilizator",
+    "ok": "Ok",
+    "activities": "Activități",
+    "seeLess": "Vezi mai puțin",
+    "seeMore": "Vezi mai mult",
+    "goBack": "Înapoi",
+    "schedule": "Program",
+    "utils": "Utilități",
+    "verifyEmail": "Verifică email",
+    "loading": "Se încarcă...",
+    "error": "Eroare",
+    "minutes": "minute",
+    "submit": "Trimite",
+    "copyText": {
+      "loading": "Se copiază...",
+      "copied": "Copiat! 📝",
+      "copy": "Copiază link"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "Se încarcă experiența ta personalizată...",
+        "second": "Se sincronizează sistemele...",
+        "third": "Se procesează datele tale...",
+        "fourth": "Aproape gata, doar un moment..."
+      },
+      "imageScanningLoading": {
+        "first": "Se scanează imaginea ta, te rugăm să aștepți...",
+        "second": "Se analizează detalii, acest lucru poate dura câteva momente...",
+        "third": "Se îmbunătățește acuratețea pentru cele mai bune rezultate...",
+        "fourth": "Aproape gata, se finalizează scanarea..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, Antrenorul tău AI se pregătește să te ajute...",
+        "second": "Așteaptă! Mojo îți pregătește răspunsul...",
+        "third": "Se gândește... Mojo se ocupă de asta!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Stai puțin!",
+    "goBackMessage": "Sigur dorești să te întorci?"
+  },
+  "internet": {
+    "noConnectionTitle": "Ești offline!",
+    "noConnectionMessage": "Activează datele mobile sau conectează-te la o rețea Wi-Fi. Sau fă o pauză și mergi la o plimbare!"
+  },
+  "uploadScan": {
+    "title": "Încarcă imagine",
+    "scanNow": "Scanează acum"
+  },
+  "weekDays": {
+    "today": "Astăzi",
+    "yesterday": "Ieri"
+  },
+  "auth": {
+    "verifyAuthCode": "Verifică codul de autentificare",
+    "verifyAuthCodeButton": "Verifică codul",
+    "authCodeHeading": "Cod de autentificare",
+    "loginViaEmailHeading": "Hai să te autentificăm. Te rugăm să introduci adresa de email pentru a continua.",
+    "emailAddress": "Email"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "Bun venit la EXFIT AI!",
+        "startButton": "Să începem!",
+        "accountButton": "Am deja un cont",
+        "count": "Numără",
+        "calories": "Calorii",
+        "track": "Urmărește",
+        "activity": "Activitate",
+        "with": "Cu"
+      },
+      "login": {
+        "agreeingMessage": "Prin continuare, ești de acord cu",
+        "termsAndConditions": "Termenii și Condițiile",
+        "privacyPolicy": "Politica de Confidențialitate",
+        "heading": "Autentificare",
+        "continueName": "Continuă cu porecla",
+        "existingAccount": "Ai un cont?",
+        "emailAddress": "Adresă email",
+        "emailPlaceholder": "Introdu adresa ta de email",
+        "password": "Parolă",
+        "confirmPassword": "Confirmă parola",
+        "forgotPassword": "Ai uitat parola?",
+        "keepSigned": "Păstrează-mă autentificat",
+        "createPassword": "Creează o parolă"
+      },
+      "signUp": {
+        "heading": "Înregistrare",
+        "haveAccount": "Ai un cont?",
+        "signInHere": "Autentifică-te aici",
+        "acceptTerms": {
+          "title": "Termeni obligatorii",
+          "subtitle": "Te rugăm să accepți termenii de utilizare și politica de confidențialitate pentru a continua."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Ai uitat parola",
+        "verificationSent": "Te rugăm să verifici emailul pentru un link de resetare a parolei. Dacă nu-l vezi în căsuța de intrare, verifică folderul de spam sau nedorite.",
+        "verificationHeading": "Introdu adresa de email înregistrată cu contul tău. Îți vom trimite un link pentru a reseta parola.",
+        "rememberPassword": "Ții minte parola?",
+        "loginAccount": "Autentifică-te în contul tău",
+        "alertTitle": "Resetarea parolei trimisă",
+        "alertSubtitle": "Dacă există un cont cu acest email, ți-am trimis un link de resetare a parolei."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Te rugăm să introduci atât emailul cât și parola.",
+        "secureProgress": "Securizează-ți progresul",
+        "permanentAccount": "Creează un cont permanent pentru a-ți salva datele pe toate dispozitivele."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "Introdu codul de verificare trimis prin email. Te rugăm să notezi că codul expiră în 5 minute.",
+        "verificationCodeSent": "Am trimis codul de verificare la",
+        "verificationCodeMissing": "Nu ai primit codul?",
+        "resendCode": "Retrimite codul",
+        "backToLogin": "Înapoi la Autentificare"
+      },
+      "namePreferenceScreen": {
+        "heading": "Să facem asta personal!",
+        "preferredNameQuestion": "Cum să te numim?",
+        "placeholderPreferredName": "Ex: Căpitanul Cool, Regina Albine, sau simplu Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Cum îți descrii experiența de fitness?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Care este obiectivul tău de fitness?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Selectează genul pentru o experiență mai personalizată"
+      },
+      "freeTrialPreview": {
+        "heading": "Bucură-te de perioada ta de probă gratuită! 🎉",
+        "subheading": "Experimentează aceste beneficii uimitoare în timpul perioadei tale de probă gratuită",
+        "review": "Scanare mese, contor calorii și urmărire fitness simplă și inteligentă. Încearcă!",
+        "reviewTrust": "📈 De încredere pentru 7.512+ utilizatori"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Perioadă de probă gratuită activată",
+          "heading": "Acces nelimitat",
+          "title": "Deblochează funcții premium astăzi!",
+          "firstOffering": "Urmărire Activitate & Sfaturi nutriționale inteligente",
+          "secondOffering": "Contor calorii și macronutrienți nelimitat",
+          "thirdOffering": "Scaner alimente nelimitat",
+          "fourthOffering": "Antrenorul tău AI Fitness 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Deblochează funcții premium astăzi!",
+        "secondOffering": {
+          "title": "Plan lunar",
+          "subtitle": "{{ price }}/lună"
+        },
+        "thirdOffering": {
+          "title": "Plan anual",
+          "subtitle": "{{ price }} pe an"
+        },
+        "fourthOffering": {
+          "title": "Perioadă de probă {{trialDays}} zile",
+          "subtitle": "{{ price }} pe an",
+          "plan": "Plan săptămânal"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "O nouă versiune a EXFIT AI este disponibilă",
+        "subheading": "Actualizează la ultima versiune pentru a continua să te bucuri de toate funcțiile aplicației — durează doar 5 secunde!",
+        "action": "Obține acum!"
+      },
+      "rateAppScreen": {
+        "heading": "Găsești aplicația valoroasă și captivantă?",
+        "like": "Da, îmi place!",
+        "dislike": "Nu prea..."
+      },
+      "noInternetScreen": {
+        "heading": "Ești offline",
+        "subheading": "Conexiunea ta pare instabilă. Te rugăm să verifici starea rețelei și să încerci din nou"
+      },
+      "notifications": {
+        "title": "Notificări",
+        "noNotifications": "Nicio notificare încă",
+        "emptyNotifications": "Nicio notificare nouă momentan. Verifică din nou curând."
+      },
+      "termsOfService": {
+        "title": "Termeni de serviciu"
+      },
+      "privacyPolicy": {
+        "title": "Politica de confidențialitate"
+      },
+      "share": {
+        "title": "Partajează",
+        "heading": "Partajează aplicația EXFIT AI",
+        "subheading": "Ajută-i pe alții să descopere aplicația EXFIT AI",
+        "scanMessage": "Scanează pentru a descărca aplicația",
+        "shareMessage": "sau partajează prin platforma ta preferată"
+      },
+      "rate": {
+        "title": "Dă-ne feedback!"
+      },
+      "profile": {
+        "title": "Profil",
+        "edit": "Editează profilul",
+        "placeholderPreferredName": "Ex: Căpitanul Cool, Regina Albine, sau simplu Alex!",
+        "subscriptions": {
+          "monthly": "Abonament lunar",
+          "yearly": "Abonament anual",
+          "weekly": "Abonament săptămânal"
+        },
+        "temporaryAccount": "Cont temporar",
+        "permanentAccount": "Cont permanent"
+      },
+      "generateReportScreen": {
+        "title": "Apreciem răbdarea ta! Iată raportul tău AI.",
+        "userInput": "Contribuția ta",
+        "medicalReport": "Raport fitness",
+        "report": "Raport fitness generat de AI",
+        "conversationName": "Nume conversație"
+      },
+      "verifyEmail": {
+        "heading": "Verifică email"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Începe analiza"
+      },
+      "contactUs": {
+        "heading": "Nu ezita să ne trimiți un email direct, iar echipa noastră te va contacta cât mai curând posibil",
+        "customerSupport": "Suport clienți",
+        "emailAddress": "Adresă email"
+      },
+      "scan": {
+        "cameraPermission": "Permisiunea de acces la cameră este necesară pentru a utiliza această funcție",
+        "requestPermission": "Se solicită permisiunea camerei...",
+        "scanAnything": "Scanează orice: Mese, Alimente, Echipament sală & Mai mult",
+        "askAssistant": "Întreabă-ți Antrenorul AI Fitness"
+      },
+      "excuseBuster": {
+        "heading": "Spărgător de scuze",
+        "reasons": {
+          "one": "Mă simt prea obosit",
+          "two": "Nu am timp disponibil",
+          "three": "Prea dureros pentru exercițiu",
+          "four": "Sala este prea aglomerată",
+          "five": "Nu am chef",
+          "six": "Vremea afară este proastă",
+          "seven": "Munca este agitată",
+          "eight": "O să încep mâine",
+          "nine": "Nu sunt sigur ce să fac",
+          "ten": "Nu există echipament disponibil"
+        },
+        "excuseMotivation": "Ești mai puternic decât scuza ta.",
+        "excuseQuestion": "Ce te reține astăzi?",
+        "typeExcuse": "Scrie-ți scuza aici...",
+        "crushExcuse": "Zdrobește-mi scuza"
+      },
+      "chat": {
+        "fitnessCoach": "Antrenorul tău de fitness",
+        "randomQuestions": {
+          "one": "'📸 Fă o poză mesei mele și estimează calorii și macronutrienți',",
+          "two": "🥗 Analizează această masă și spune-mi cum să o îmbunătățesc pentru obiectivul meu",
+          "three": "🧠 Creează-mi un antrenament personalizat bazat pe nivelul meu de fitness",
+          "four": "🏋️ Recomandă un antrenament pe care îl pot face acum fără echipament",
+          "five": "⏱ Creează un antrenament de 20 de minute pentru o zi aglomerată",
+          "six": "🔥 Sugerează un antrenament de ardere a grăsimilor adaptat pentru mine",
+          "seven": "💪 Proiectează un plan de construire a mușchilor pentru corpul și obiectivele mele",
+          "eight": "📊 Urmărește-mi progresul și arată ce ar trebui să îmbunătățesc în continuare",
+          "nine": "🍽 Spune-mi ce să mănânc astăzi pentru a-mi atinge obiectivele de calorii și proteine",
+          "ten": "🥚 Calculează-mi proteinele, carbohidrații și grăsimile zilnice",
+          "eleven": "🛒 Creează o listă de cumpărături sănătoasă bazată pe planul meu alimentar",
+          "twelve": "😴 Ajustează-mi antrenamentele bazat pe somnul și recuperarea mea",
+          "thirteen": "📅 Construiește un program de antrenament săptămânal pe care mă pot menține",
+          "fourteen": "⚡ Recomandă un antrenament cu energie scăzută pentru astăzi",
+          "fifteen": "🤕 Modifică-mi antrenamentul dacă sunt dureros sau accidentat"
+        }
+      },
+      "progress": {
+        "error": "Ceva nu a funcționat",
+        "heading": "Tablou de bord progres",
+        "subheading": "Continuă cu munca minunată! 🚀",
+        "weeklyGoals": "Obiective săptămânale",
+        "monthlyGoal": "Obiectiv lunar",
+        "insights": "Perspective rapide",
+        "mostActive": "Cel mai activ",
+        "peakTime": "Ora de performanță maximă",
+        "favoriteActivity": "Activitatea preferată",
+        "choice": "Alegerea ta preferată",
+        "weeklyChange": "Modificare săptămânală",
+        "lastWeekXP": "vs săptămâna trecută",
+        "consistency": "Consistență",
+        "reliability": "fiabilitate",
+        "overview": "Prezentare generală",
+        "performance": "Performanță",
+        "trends": "Trenduri",
+        "lastSevenDays": "Ultimele 7 zile",
+        "thisWeek": "Săptămâna aceasta",
+        "activityFocus": "Focus activități",
+        "distribution": "Distribuție",
+        "history": "Istoric",
+        "activities": "Activități",
+        "consistencyJourney": "Călătoria ta de consistență",
+        "bestDay": "Cea mai bună zi",
+        "averageSession": "Sesiune medie",
+        "totalHours": "Total ore",
+        "WeeklyComparisonXp": "Comparație săptămânală",
+        "weeksComparison": "Săptămâna aceasta vs săptămâna trecută",
+        "thisWeeks": "Săptămâna aceasta",
+        "lastWeek": "Săptămâna trecută",
+        "activityPattern": "Model activități",
+        "hoursBreakdown": "Defalcare 24 de ore",
+        "monthlyActivity": "Activitate lunară",
+        "lastMonths": "Ultimele 6 luni",
+        "progression": "Progresie",
+        "monthlyEarned": "Câștigat lunar",
+        "recentActivity": "Activitate recentă",
+        "last30Days": "Ultimele 30 de zile",
+        "outstanding": "Progres remarcabil!",
+        "activityReview": "Ai finalizat {{totalActivities}} activități și ai câștigat {{totalXp}} XP total. Continuă așa!",
+        "statistics": "Statistici detaliate",
+        "longest": "Cea mai lungă",
+        "totalMonthActivities": "Activități fizice finalizate în această lună!"
+      },
+      "shoppingCart": {
+        "heading": "Articole deținute",
+        "equipMore": "Echipează mai mult",
+        "noItems": "Nu deții încă niciun articol!",
+        "goToShop": "Mergi la magazin",
+        "buyPotions": "Du-te la magazin și adună niște poțiuni interesante"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Stai! Nu mă șterge!",
+    "subtitle": "Trimite feedback înainte"
+  },
+  "home": {
+    "tab": "Acasă"
+  },
+  "activity": {
+    "tab": "Activitate"
+  },
+  "progress": {
+    "tab": "Progres"
+  },
+  "settings": {
+    "tab": "Setări",
+    "profile": "Profil",
+    "shop": "Magazin",
+    "contactUs": "Contactează-ne",
+    "about": "Despre",
+    "app_name": "Nume aplicație",
+    "languages": {
+      "english": "Engleză",
+      "mandarin_chinese": "Chineză",
+      "hindi": "Hindi",
+      "spanish_spain": "Spaniolă (Spania)",
+      "spanish_mexico": "Spaniolă (Mexic)",
+      "arabic": "Arabă",
+      "french": "Franceză",
+      "french_canada": "Franceză (Canada)",
+      "portuguese_brazil": "Portugheză (Brazilia)",
+      "portuguese_portugal": "Portugheză (Portugalia)",
+      "german": "Germană",
+      "japanese": "Japoneză",
+      "russian": "Rusă",
+      "korean": "Coreeană",
+      "italian": "Italiană",
+      "turkish": "Turcă",
+      "vietnamese": "Vietnameză",
+      "polish": "Poloneză",
+      "ukrainian": "Ucraineană",
+      "romanian": "Română",
+      "dutch": "Olandeză",
+      "czech": "Cehă",
+      "greek": "Greacă",
+      "swedish": "Suedeză",
+      "hungarian": "Maghiară",
+      "thai": "Thai",
+      "hebrew": "Ebraică",
+      "indonesian": "Indoneziană",
+      "malay": "Malaeză",
+      "finnish": "Finlandeză",
+      "danish": "Daneză",
+      "norwegian": "Norvegiană",
+      "slovak": "Slovacă",
+      "croatian": "Croată",
+      "catalan": "Catalană"
+    },
+    "generale": "General",
+    "github": "Github",
+    "language": "Limbă",
+    "links": "Link-uri",
+    "logout": "Deconectare",
+    "more": "Mai mult",
+    "privacy": "Politica de confidențialitate",
+    "faq": "Întrebări frecvente",
+    "rate": "Dă-ne feedback",
+    "share": "Partajează",
+    "citations": "Citări pentru informații medicale",
+    "support": "Suport",
+    "support_us": "Sprijine-ne",
+    "terms": "Termeni de serviciu",
+    "theme": {
+      "dark": "Întunecat",
+      "light": "Luminos",
+      "system": "Sistem",
+      "title": "Temă"
+    },
+    "title": "Setări",
+    "version": "Versiune",
+    "website": "Site web",
+    "devMode": {
+      "title": "Mod dezvoltator",
+      "componentsLibrary": "Bibliotecă UI"
+    },
+    "deleteAccount": "Șterge cont?",
+    "deleteAccountQuestion": "Sigur dorești să-ți ștergi contul? Această acțiune nu poate fi anulată și va elimina permanent toate datele tale.",
+    "deactivateAccount": "Dezactivează și șterge cont",
+    "permanentAccountCreate": "Creează cont permanent"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Evaluare"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Care este motivul?",
+      "unnamedConversation": "Fără titlu",
+      "reportTitlePlaceholder": "Adaugă un titlu"
+    },
+    "WeekBlock": {
+      "week": "Săptămână"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Derulează în sus"
+    },
+    "FreeTierStatus": {
+      "heading": "Scanări gratuite",
+      "subheading": "Deblochează scanări nelimitate actualizând planul tău",
+      "action": "Actualizează"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Alege o imagine / videoclip"
+    },
+    "GoalsModal": {
+      "heading": "Schimbă-ți obiectivul de consum zilnic",
+      "dailyCalories": "Calorii zilnice",
+      "saveGoals": "Salvează obiective"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Secvență întreruptă. Salvează acum.",
+      "loseStreak": "Lasă să se rupă",
+      "buyStreak": "Cumpără și salvează secvența",
+      "buyRepairStreak": "Cumpără un Elixir de Reparare Secvență pentru {{elixirPrice}} 💎 pentru a-ți recupera secvența pierdută.",
+      "streakRestore": "Secvența în pericol — restaurează-o acum!",
+      "restorationStreak": "Aduceți-vă secvența de {{lostStreakValue}} zile înapoi la viață cu puternicul Elixir de Reparare Secvență!",
+      "applyElixir": "Aplică poțiunea de elixir"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Achiziție completă",
+      "inventoryAdded": "a fost adăugat în inventarul tău. Continuă cu treaba minunată!",
+      "purchaseFailed": "Achiziție eșuată",
+      "purchaseFailedMessage": "Nu am putut procesa achiziția ta. Te rugăm să verifici soldul gemurilor și să încerci din nou.",
+      "gemsBalance": "Ups, nu ai suficiente gemuri"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Check-in zilnic",
+      "bodyMovingQuestion": "Ți-ai mișcat corpul astăzi?"
+    },
+    "TapToViewLabel": {
+      "label": "Atinge pentru a vedea"
+    },
+    "UpgradeBanner": {
+      "heading": "Deblochează acum!",
+      "upgradeMessage": "Deblochează această funcție 🔓 Bucură-te de numărare calorii AI, urmărire macro și suport complet pentru a-ți atinge mai repede obiectivele de activitate și fitness 💪",
+      "upgradeTo": "Actualizează la",
+      "moreBenefits": "Funcții AI. Toate instrumentele premium. Toate ale tale pentru a rămâne pe drum."
+    },
+    "MotivationBanner": {
+      "title": "Fără motivație? Te simți prost? Să învingem acea scuză.",
+      "subtitle": "Alege o sarcină, câștigă XP și gemuri — hai să ne mișcăm!",
+      "beatExcuse": "Învinge-ți scuza acum!"
+    },
+    "AICoachBanner": {
+      "title": "Ai o întrebare? Doar întreabă.",
+      "subtitle": "Stăpânește-ți fitness-ul — întreabă despre calorii, nutriție, mașini de sală, poziții, accidentări, formă, planuri de antrenament",
+      "chat": "Vorbește cu Antrenorul AI"
+    },
+    "PromptSection": {
+      "message": "Scanarea ta este gata! Acum, ce ai dori să afli?",
+      "prompts": {
+        "first": "Ce tipuri de celule sau structuri sunt prezente în această imagine?",
+        "second": "Există anomalii sau patogeni în această probă?",
+        "third": "Care este originea sau starea probabilă a acestei probe?",
+        "fourth": "Ce perspective poți oferi din această imagine?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Scanare instantă mese AI — Urmărește calorii și macronutrienți în câteva secunde",
+      "second": "Antrenor personal AI 24/7 — Ghidare expert, oricând, oriunde",
+      "third": "Urmărește activitățile tale de fitness ca un profesionist",
+      "fourth": "Acces complet la toate funcțiile premium"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Poreclă",
+        "email": "Email",
+        "emailVerification": "Verificare email"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Macronutrienții de astăzi",
+      "scanFood": "Scanează alimente",
+      "calories": "Calorii",
+      "fat": "Grăsimi",
+      "carbs": "Carbohidrați",
+      "protein": "Proteine",
+      "dailyIntakeGoals": "Obiective de consum zilnic",
+      "percentage": "% din obiectivul macro zilnic atins",
+      "noMeals": "Nicio masă înregistrată",
+      "meals": "Mese",
+      "deleteMeal": "Șterge masa",
+      "deleteMealConfirm": "Sigur dorești să ștergi această masă? Această acțiune va afecta calculele tale de nutrienți macro zilnici.",
+      "macroJournal": "Jurnal macro",
+      "noActivityRecorded": "Nicio activitate înregistrată săptămâna aceasta"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Check-in zilnic",
+      "attendedMessage": "Ai participat astăzi, așa se construiește progresul. Continuă!",
+      "notAttendedMessage": "Canapeaua câștigă astăzi… dar mâine, te întorci!",
+      "unknownMessage": "Călătoria ta începe cu un singur pas. Gata de început?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "Durata selectată nu poate fi mai mare de 360 de minute",
+      "activitiesLimit": "Uau! Te antrenezi secret pentru Olimpiadă? Ai atins deja limita de {{MAX_DAILY_ACTIVITIES}} activități pentru astăzi! 🏅. Poți să-ți flexezi acei mușchi din nou mâine 💪!",
+      "addActivity": "Adaugă activitate",
+      "modalHeading": "Ce te-a mișcat astăzi? Înregistrează și păstrează impulsul"
+    },
+    "TaskListOverview": {
+      "heading": "Sarcinile de astăzi",
+      "noTasks": "Nicio sarcină!",
+      "enjoyFreeTime": "Bucură-te de timpul liber."
+    },
+    "ActivitySelector": {
+      "title": "Tip activitate",
+      "customActivity": "Adaugă propria ta activitate",
+      "customActivityLabel": "Activitate personalizată"
+    },
+    "DurationSelector": {
+      "heading": "Durată",
+      "customDuration": "Introdu durată (minute)",
+      "customDurationLabel": "Durată personalizată"
+    },
+    "NoActivityLogModal": {
+      "heading": "O, nu! Nu lăsa canapeaua să câștige astăzi!",
+      "crushExcuse": "Zdrobește-mi scuza",
+      "skipToday": "Nu astăzi, poate mâine..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Excelent!",
+      "unlockReward": "Ai reușit! O activitate finalizată și ai deblocat recompensa ta. Să păstrăm secvența!"
+    },
+    "SkipReasonInput": {
+      "title": "E în regulă, verific doar.",
+      "subtitle": "Vrei să împărtășești de ce nu a funcționat astăzi? Fără presiune.",
+      "skipPlaceholder": "Ex: Pisica mea a mâncat pantofii mei de alergat",
+      "skipToday": "Sari peste astăzi"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Înghețare secvență!",
+      "streakResetNow": "Secvența ta a fost resetată astăzi.",
+      "streakRepairUse": "Folosește-ți Elixirul de Reparare Secvență pentru a-ți menține secvența vie",
+      "streakRepairExpired": " Fereastra ta de reparare secvență de 48 de ore a expirat! Dar hei, secvențe noi înseamnă noi oportunități de a-ți depăși recordul personal.",
+      "repairStreak": "Repară secvența",
+      "streakPotionConsumed": "Poțiune de înghețare secvență consumată!",
+      "streakFreezeApplied": " Poțiunea ta de înghețare secvență a intrat în acțiune și ți-a protejat secvența. Ești încă în flăcări!",
+      "streakElixirApplied": "Poțiunea Elixir de Reparare Secvență a intrat în acțiune!",
+      "streakFreezePotionApplied": "Ți-ai salvat secvența! Poțiunea ta de înghețare secvență a intrat în acțiune și ți-a protejat secvența. Ești încă în flăcări!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Nicio activitate găsită",
+      "addFirstActivity": "Adaugă prima ta activitate pentru a câștiga gemuri și XP.",
+      "addActivity": "Adaugă activitate",
+      "todayActivities": "Activitățile de astăzi"
+    },
+    "ActivityCard": {
+      "activitySkipped": "sărită peste",
+      "dayOff": "Zi liberă",
+      "description": "Descriere",
+      "excuseReason": "Motiv scuză ⚠️",
+      "yourNotes": "Notele tale 📝",
+      "notesPlaceholder": "Ex: Antrenament spate și biceps, 3 super seturi",
+      "addNotes": "Adaugă note"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Bibliotecă foto",
+      "takePhoto": "Fă o poză",
+      "chooseFile": "Alege fișier"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Nivel maxim atins! Nivel",
+      "xpLeft": "rămas pentru a ajunge la nivelul"
+    },
+    "ShopItemCard": {
+      "unavailable": "Indisponibil",
+      "worth": "în valoare de",
+      "equiped": "echipat",
+      "shop": "Magazin",
+      "earnedId": "Ai câștigat-o.",
+      "treat": "Acum, răsfață-te!",
+      "spendGems": "Cheltuiește-ți gemurile cu înțelepciune, călătoria ta de fitness tocmai a devenit interesantă."
+    },
+    "ActivityTaskCard": {
+      "win": "Câștigă",
+      "acceptChallenge": "Acceptă provocarea 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "Ce zici să te provoci puțin cu această provocare?",
+      "typeInput": "(Introdu-ți input-ul mai jos)"
+    },
+    "MacroOverview": {
+      "analysis": "Analiză",
+      "macroAdded": "Macronutrienți adăugați",
+      "countToday": "Numără pentru astăzi"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Protejează-ți secvența dacă ratezi o zi de antrenament.",
+      "owned": "DEȚINUT",
+      "manualTrigger": "DECLANȘATOR MANUAL",
+      "activated": "ACTIVAT"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Ne pare rău, avem nevoie de permisiuni de cameră pentru ca acest lucru să funcționeze!",
+    "errorSelectingImagePicker": "Ceva nu a funcționat la selectarea imaginii. Te rugăm să încerci din nou.",
+    "errorSelectingDocumentPicker": "Ceva nu a funcționat la alegerea documentului. Te rugăm să încerci din nou.",
+    "errorTakingPicture": "Ceva nu a funcționat la realizarea fotografiei. Te rugăm să încerci din nou.",
+    "enableNotifications": {
+      "heading": "Activează notificările",
+      "subHeading": "Notificările sunt în prezent dezactivate. Pentru a rămâne la curent, te rugăm să le activezi în setările dispozitivului."
+    },
+    "notesSavedSuccess": "Note salvate! 📝 Totul este setat.",
+    "enableNotificationFailed": "Notificările push sunt dezactivate. Activează-le în setări pentru a primi actualizări importante!",
+    "enableNotificationError": "A apărut o eroare la activarea notificărilor",
+    "notificationDisabledSuccess": "Notificări dezactivate cu succes.",
+    "notificationDisabledRegisterError": "Nu s-a putut dezînregistra dispozitivul pentru notificări.",
+    "notificationDisabledError": "A apărut o eroare la dezactivarea notificărilor",
+    "checkNotificationStatusError": "Eroare la verificarea stării notificărilor.",
+    "projectIdNotFound": "ID-ul proiectului de notificare nu a fost găsit.",
+    "imageSizeLarge": "Imaginea este prea mare! Dimensiunea fișierului este {{fileSize}} MB, dar limita este {{imageLimit}} MB.",
+    "videoSizeLarge": "Videoclipul este prea mare! Dimensiunea fișierului este {{fileSize}} MB, dar limita este {{videoLimit}} MB.",
+    "loggedInSuccess": "Autentificare reușită",
+    "loggedOutSuccess": "Te-ai deconectat cu succes!",
+    "sendVerificationCodeError": "Eroare la trimiterea codului de verificare",
+    "validateAuthCodeError": "Eroare la validarea codului de autentificare",
+    "anonymousSignInError": "Eroare la autentificarea anonimă",
+    "emailLoginError": "Eroare la autentificare",
+    "preferredLanguageError": "Eroare la actualizarea limbii preferate a utilizatorului",
+    "sharingNotAvailable": "Partajarea nu este disponibilă momentan pe dispozitivul tău",
+    "sharingLinkError": "Nu s-a putut partaja linkul.",
+    "individualPushNotificationSuccess": "Notificări push individuale trimise cu succes!",
+    "globalPushNotificationSuccess": "Notificări push globale trimise cu succes! 🌍🚀",
+    "interpretationFieldsUpdateFail": "Nu s-au putut actualiza câmpurile de interpretare! ❌",
+    "deleteScanReportFail": "Nu se poate șterge raportul de scanare. Te rugăm să încerci din nou",
+    "onboardingUnsuccessful": "Onboarding nereușit. Te rugăm să încerci din nou",
+    "logoutUnsuccessful": "Deconectare nereușită. Te rugăm să încerci din nou",
+    "deleteScanReportQuestion": "Sigur dorești să ștergi permanent acest raport?",
+    "videoLimitExceeds": "Videoclipul tău depășește limita de {{videoSecondsLimit}} secunde. Te rugăm să-l trimezi și să-l încarci din nou",
+    "subscriptionActivated": "Abonamentul tău a fost activat cu succes! Bucură-te de beneficiile tale exclusive!",
+    "subscriptionCancelledByUser": "Ai anulat tranzacția. Simte-te liber să încerci din nou!",
+    "subscriptionActivationFailed": "Nu s-a putut activa abonamentul tău. Te rugăm să încerci din nou",
+    "logoutQuestion": "Sigur dorești să te deconectezi?",
+    "noSubscriptionToRestore": "Ups! Se pare că nu ai un abonament activ în acest moment. Pentru a continua să te bucuri de acces complet, te rugăm să alegi unul dintre planurile noastre de abonament.",
+    "restorationSuccessful": "Restaurarea a fost reușită! Bucură-te!",
+    "restorationError": "A apărut o eroare la restaurarea achiziției.",
+    "medicalDisclaimerAlert": "Aplicația EXFIT AI nu oferă diagnostice, recomandări de tratament sau orice sfaturi medicale. Caută întotdeauna îndrumarea unui profesionist medical calificat pentru decizii medicale.",
+    "scanLimitReached": "Optimizăm calitatea scanării pentru tine! Vei putea scana din nou în aproximativ {{hours}} ore și {{minutes}} minute. Ai întrebări despre vreun subiect de microscopie? Întreabă asistentul nostru de chat în timp ce aștepți!",
+    "chatAndMediaFilesLimit": "Dragă utilizator, actualizează-ți planul pentru a te bucura de urmărire nelimitată a caloriilor, scanări mese, antrenament fitness și mai mult. 🔓",
+    "chatMessageNotSent": "Ups! Mesajul tău nu a fost trimis. Te rugăm să încerci din nou",
+    "excusesLimit": "Ups, se pare că încerci să stabilești un record mondial de scuze! 😅 Maxim 3 scuze permise — alege-ți primele 3 și hai să ne mișcăm!",
+    "excuseMinimum": "Te rugăm să alegi cel puțin o scuză sau să scrii una proprie.",
+    "createActivityLogFailed": "Nu s-a putut crea jurnalul de activități. Te rugăm să încerci din nou.",
+    "updateActivityLogFailed": "Ceva nu a funcționat la actualizarea jurnalului de activități. Te rugăm să încerci din nou.",
+    "challengeAccepted": "Provocare acceptată! 🔥 Acum du-te și învinge-o și câștigă acele recompense!",
+    "challengeCompleted": "Provocare finalizată! 🔥 Soldul tău de recompense a fost actualizat.",
+    "macroEntryRecorded": "Intrare macro înregistrată - continuă așa! 🥗",
+    "failedCreateMacroLog": "Ups! Jurnalul macro nu s-a salvat. Te rugăm să încerci din nou!",
+    "deleteMacroLog": "Ups! Nu s-a putut elimina jurnalul tău macro. Te rugăm să încerci din nou!",
+    "deleteMacro": "Macro șters — gata pentru următoarea ta intrare!",
+    "chooseSubscriptionPlan": "Te rugăm să alegi un plan de abonament pentru a continua!",
+    "createPermanentAccountSuccess": "Contul tău permanent a fost creat! Contul tău este acum securizat. Oh, și ai primit și",
+    "loginSuccess": "Autentificare reușită — hai să ne mișcăm!",
+    "accountDeleted": "Contul tău a fost șters cu succes",
+    "purchaseFailed": "Achiziția a eșuat. Te rugăm să încerci din nou.",
+    "streakRepairFailed": "Nu s-a putut repara secvența. Te rugăm să încerci din nou.",
+    "failedSendMessage": "Nu s-a putut trimite mesajul. Te rugăm să încerci din nou.",
+    "capturePictureFailed": "Ceva nu a funcționat la realizarea fotografiei",
+    "multipleVideosNotAllowed": "Pentru o precizie mai bună, te rugăm să încarci doar un videoclip odată.",
+    "mixedMediaNotAllowed": "Încărcările trebuie să conțină doar imagini sau doar videoclipuri, nu un amestec de ambele.",
+    "mediaFilesUploadFiles": "A apărut o eroare la încărcarea fișierelor tale media. Te rugăm să încerci din nou."
+  }
+}

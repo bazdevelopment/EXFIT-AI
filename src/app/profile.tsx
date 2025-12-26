@@ -65,7 +65,7 @@ const ProfileHeader: React.FC<{
             //   ? require('../components/ui/assets/images/avatar-male.png')
             //   : require('../components/ui/assets/images/avatar-female.png')
           }
-          name={userInfo.userName}
+          name={userInfo?.userName}
           size="medium"
           showEditBadge={false}
           showVerifiedBadge={!userInfo.isAnonymous}
@@ -89,9 +89,12 @@ const ProfileHeader: React.FC<{
             colors={['#10B981', '#059669']} // Green gradient for active subscription
             start={{ x: 1, y: 0 }}
             end={{ x: 0, y: 1 }}
-            style={{ borderRadius: 100, width: '45%' }}
+            style={{
+              borderRadius: 100,
+              width: '45%',
+            }}
           >
-            <View className="flex-row items-center justify-center gap-2 rounded-full px-4 py-2">
+            <View className="flex-row items-center gap-2 self-center rounded-full px-4 py-2">
               <CheckIcon color={colors.white} width={24} height={24} />
               {/* Changed to check icon */}
               <Text className="font-semibold-poppins text-sm text-white">

@@ -1,0 +1,803 @@
+{
+  "onboarding": {
+    "message": "Selamat datang ke EXFIT AI!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Ambil Gambar Makanan & Jejaki Kalori",
+        "headingTwo": "Imbas makanan, bercakap dengan Jurulatih AI anda, dan dapatkan cabaran harian yang dibina untuk anda"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Biarkan AI Menggerakkan Kecergasan Anda",
+        "headingTwo": "Temuilah EXFIT AI, rakan pintar anda untuk menghancurkan keraguan, menyalakan motivasi, dan menjaga anda bergerak"
+      },
+      "onboardingThirdPage": {
+        "heading": "Biarkan AI mengesan peralatan gim, posisi senaman, dan teknik"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Latih. Dapatkan. Naik Taraf.",
+        "headingTwo": "Dapatkan XP, kumpulkan Gems, kekalkan Streak anda hidup, dan buka ganjaran untuk kehadiran anda."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Gim",
+    "yoga": "Yoga",
+    "running": "Larian",
+    "walking": "Berjalan",
+    "cycling": "Berbasikal",
+    "dance": "Tarian",
+    "stretching": "Regangan",
+    "swimming": "Renang",
+    "hiking": "Mendaki",
+    "pilates": "Pilates",
+    "climbing": "Memanjat",
+    "skating": "Meluncur"
+  },
+  "general": {
+    "back": "Kembali",
+    "welcome": "Hai",
+    "welcomeBack": "Selamat Kembali!",
+    "welcomeMessage": "Selamat Datang!",
+    "goodMorning": "Selamat Pagi",
+    "goodAfternoon": "Selamat Petang",
+    "goodEvening": "Selamat Malam",
+    "continue": "Teruskan",
+    "retry": "Cuba Semula",
+    "retake": "Ambil Semula",
+    "scanNow": "Imbas Sekarang",
+    "scanning": "Mengimbas...",
+    "close": "Tutup",
+    "gallery": "Galeri",
+    "files": "Fail",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "edit": "Edit",
+    "delete": "Padam",
+    "attention": "Perhatian!",
+    "new": "Baru",
+    "yes": "Ya",
+    "no": "Tidak",
+    "or": "atau",
+    "change": "Tukar",
+    "typing": "Menaip...",
+    "online": "Dalam Talian",
+    "chatbotPlaceholder": "Tanya saya apa-apa...",
+    "openSettings": "Buka Tetapan",
+    "seeNotifications": "Lihat Pemberitahuan",
+    "viewProfile": "Lihat Profil",
+    "upgradePlan": "Tingkatkan Pelan",
+    "download": "Muat Turun",
+    "share": "Kongsi",
+    "shareLink": "Kongsi Pautan",
+    "skip": "Langkau",
+    "next": "Seterusnya",
+    "update": "Kemaskini",
+    "tryAgain": "Cuba Semula",
+    "createdAt": "Dicipta Pada",
+    "and": "dan",
+    "saveDiscount": "JIMAT",
+    "restorePurchase": "Pulihkan Pembelian",
+    "medicalDisclaimer": "Penafian Perubatan",
+    "conversationHistory": "Sejarah Perbualan",
+    "analyzingMediaFilesPlaceholder": "Menganalisis Fail Media...",
+    "freeTrial": "Percubaan Percuma",
+    "free": "PERCUMA",
+    "noPaymentNow": "Tiada bayaran sekarang. Batal bila-bila masa.",
+    "completedScans": "Imbasan Selesai",
+    "activeSubscription": "Langganan Aktif",
+    "askAssistant": "Tanya Pembantu AI",
+    "then": "kemudian",
+    "perWeek": "seminggu",
+    "perYear": "setahun",
+    "perMonth": "sebulan",
+    "tryForFree": "Cuba Percuma",
+    "unlockNow": "Buka Kunci Sekarang",
+    "attended": "Hadir",
+    "readyToStart": "Sedia untuk Mula",
+    "skipped": "Dilangkau",
+    "completed": "Selesai",
+    "purchase": "Beli",
+    "active": "aktif",
+    "dearUser": "Pengguna yang dihormati",
+    "ok": "Ok",
+    "activities": "Aktiviti",
+    "seeLess": "Lihat Kurang",
+    "seeMore": "Lihat Lebih",
+    "goBack": "Kembali",
+    "schedule": "Jadual",
+    "utils": "Alatan",
+    "verifyEmail": "Sahkan E-mel",
+    "loading": "Memuatkan...",
+    "error": "Ralat",
+    "minutes": "minit",
+    "submit": "Hantar",
+    "copyText": {
+      "loading": "Menyalin...",
+      "copied": "Tersalin! 📝",
+      "copy": "Salin Pautan"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "Memuatkan pengalaman peribadi anda...",
+        "second": "Menyegerakkan sistem...",
+        "third": "Memproses data anda...",
+        "fourth": "Hampir siap, tunggu seketika..."
+      },
+      "imageScanningLoading": {
+        "first": "Mengimbas gambar anda, sila tunggu...",
+        "second": "Menganalisis butiran, ini mungkin mengambil masa sebentar...",
+        "third": "Meningkatkan ketepatan untuk hasil terbaik...",
+        "fourth": "Hampir siap, memuktamadkan imbasan..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, Jurulatih AI anda sedang bersedia untuk membantu anda...",
+        "second": "Tunggu! Mojo sedang menyediakan jawapan anda...",
+        "third": "Berfikir...Mojo sedang mengusahakannya!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Tunggu!",
+    "goBackMessage": "Adakah anda pasti mahu kembali?"
+  },
+  "internet": {
+    "noConnectionTitle": "Anda Luar Talian!",
+    "noConnectionMessage": "Hidupkan data mudah alih atau sambung ke Wi-Fi. Atau berehat seketika dan pergi berjalan-jalan!"
+  },
+  "uploadScan": {
+    "title": "Muat Naik Gambar",
+    "scanNow": "Imbas Sekarang"
+  },
+  "weekDays": {
+    "today": "Hari Ini",
+    "yesterday": "Semalam"
+  },
+  "auth": {
+    "verifyAuthCode": "Sahkan Kod Pengesahan",
+    "verifyAuthCodeButton": "Sahkan Kod",
+    "authCodeHeading": "Kod Pengesahan",
+    "loginViaEmailHeading": "Mari kita log masuk anda. Sila masukkan e-mel anda untuk teruskan.",
+    "emailAddress": "E-mel"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "Selamat datang ke EXFIT AI!",
+        "startButton": "Mari Mula!",
+        "accountButton": "Saya sudah ada akaun",
+        "count": "Kira",
+        "calories": "Kalori",
+        "track": "Jejak",
+        "activity": "Aktiviti",
+        "with": "Dengan"
+      },
+      "login": {
+        "agreeingMessage": "Dengan meneruskan, anda bersetuju dengan",
+        "termsAndConditions": "Terma & Syarat",
+        "privacyPolicy": "Dasar Privasi",
+        "heading": "Log Masuk",
+        "continueName": "Teruskan dengan Nama Samaran",
+        "existingAccount": "Adakah anda mempunyai akaun?",
+        "emailAddress": "Alamat E-mel",
+        "emailPlaceholder": "Masukkan e-mel anda",
+        "password": "Kata Laluan",
+        "confirmPassword": "Sahkan Kata Laluan",
+        "forgotPassword": "Lupa Kata Laluan",
+        "keepSigned": "Kekalkan saya log masuk",
+        "createPassword": "Buat kata laluan"
+      },
+      "signUp": {
+        "heading": "Daftar",
+        "haveAccount": "Sudah ada akaun?",
+        "signInHere": "Log masuk di sini",
+        "acceptTerms": {
+          "title": "Terma Diperlukan",
+          "subtitle": "Sila terima terma penggunaan dan dasar privasi untuk teruskan."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Lupa Kata Laluan",
+        "verificationSent": "Sila semak e-mel anda untuk pautan tetapan semula kata laluan. Jika anda tidak melihatnya dalam peti masuk anda, pastikan anda menyemak folder spam atau sampah anda.",
+        "verificationHeading": "Masukkan alamat e-mel yang didaftarkan dengan akaun anda. Kami akan menghantar pautan untuk menetapkan semula kata laluan anda.",
+        "rememberPassword": "Ingat kata laluan?",
+        "loginAccount": "Log masuk ke akaun anda",
+        "alertTitle": "Tetapan Semula Kata Laluan Dihantar",
+        "alertSubtitle": "Jika terdapat akaun dengan e-mel ini, kami telah menghantar pautan tetapan semula kata laluan kepada anda."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Sila masukkan kedua-dua e-mel dan kata laluan.",
+        "secureProgress": "Lindungi Kemajuan Anda",
+        "permanentAccount": "Buat akaun kekal untuk menyimpan data anda merentasi peranti."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "Masukkan kod pengesahan anda yang dihantar melalui e-mel. Sila ambil perhatian, kod akan tamat dalam 5 minit.",
+        "verificationCodeSent": "Kami telah menghantar kod pengesahan ke",
+        "verificationCodeMissing": "Tidak menerima kod?",
+        "resendCode": "Hantar kod semula",
+        "backToLogin": "Kembali ke Log Masuk"
+      },
+      "namePreferenceScreen": {
+        "heading": "Mari kita jadikannya peribadi!",
+        "preferredNameQuestion": "Apa nama panggilan yang sesuai untuk anda?",
+        "placeholderPreferredName": "Cth. Kapten Cool, Ratu Lebah, atau hanya Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Bagaimana anda akan menggambarkan pengalaman kecergasan anda?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Apakah matlamat kecergasan anda?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Pilih jantina untuk pengalaman yang lebih disesuaikan"
+      },
+      "freeTrialPreview": {
+        "heading": "Nikmati percubaan percuma anda! 🎉",
+        "subheading": "Alami faedah hebat ini semasa percubaan percuma anda",
+        "review": "Imbasan makanan, pengira kalori dan penjejakan kecergasan mudah dan pintar. Cubalah!",
+        "reviewTrust": "📈 Dipercayai oleh 7,512+ pengguna"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Percubaan Percuma Dihidupkan",
+          "heading": " Akses Tidak Terhad",
+          "title": "Buka Kunci Ciri Premium Hari Ini!",
+          "firstOffering": "Penjejak Aktiviti & Petua Pemakanan Pintar",
+          "secondOffering": "Pengira Kalori & Makro Tidak Terhad",
+          "thirdOffering": "Pengimbas Makanan Tidak Terhad",
+          "fourthOffering": "Jurulatih Kecergasan AI Anda 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Buka Kunci Ciri Premium Hari Ini!",
+
+        "secondOffering": {
+          "title": "Pelan Bulanan",
+          "subtitle": "{{ price }}/bulan"
+        },
+        "thirdOffering": {
+          "title": "Pelan Tahunan",
+          "subtitle": "{{ price }} setahun"
+        },
+        "fourthOffering": {
+          "title": "Percubaan {{trialDays}}-Hari",
+          "subtitle": "{{ price }} setahun",
+          "plan": "Pelan Mingguan"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "Versi baru EXFIT AI tersedia",
+        "subheading": "Kemas kini ke versi terkini untuk terus menikmati semua ciri aplikasi — hanya mengambil 5 saat!",
+        "action": "Dapatkannya sekarang!"
+      },
+      "rateAppScreen": {
+        "heading": "Adakah anda mendapati aplikasi ini bernilai dan menarik?",
+        "like": "Ya, saya sukakannya!",
+        "dislike": "Tidak begitu..."
+      },
+      "noInternetScreen": {
+        "heading": "Anda Luar Talian",
+        "subheading": "Sambungan anda kelihatan tidak stabil. Sila sahkan status rangkaian anda dan cuba lagi"
+      },
+      "notifications": {
+        "title": "Pemberitahuan",
+        "noNotifications": "Belum Ada Pemberitahuan",
+        "emptyNotifications": "Tiada pemberitahuan baharu buat masa ini. Sila semak sebentar lagi."
+      },
+      "termsOfService": {
+        "title": "Terma Perkhidmatan"
+      },
+      "privacyPolicy": {
+        "title": "Dasar Privasi"
+      },
+      "share": {
+        "title": "Kongsi",
+        "heading": "Kongsi Aplikasi EXFIT AI",
+        "subheading": "Bantu orang lain menemui Aplikasi EXFIT AI",
+        "scanMessage": "Imbas untuk muat turun aplikasi",
+        "shareMessage": "atau kongsi melalui platform kegemaran anda"
+      },
+      "rate": {
+        "title": "Berikan maklum balas kepada kami!"
+      },
+      "profile": {
+        "title": "Profil",
+        "edit": "Edit Profil",
+        "placeholderPreferredName": "Cth. Kapten Cool, Ratu Lebah, atau hanya Alex!",
+        "subscriptions": {
+          "monthly": "Langganan Bulanan",
+          "yearly": "Langganan Tahunan",
+          "weekly": "Langganan Mingguan"
+        },
+        "temporaryAccount": "Akaun sementara",
+        "permanentAccount": "Akaun kekal"
+      },
+      "generateReportScreen": {
+        "title": "Kami menghargai kesabaran anda! Inilah laporan AI anda. ",
+        "userInput": "Penyerahan Anda",
+        "medicalReport": "Laporan Kecergasan",
+        "report": "Laporan Kecergasan Dijana AI",
+        "conversationName": "Nama perbualan"
+      },
+      "verifyEmail": {
+        "heading": "Sahkan e-mel"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Mula Analisis"
+      },
+      "contactUs": {
+        "heading": "Jangan ragu untuk menghantar e-mel kepada kami secara langsung, dan pasukan kami akan menghubungi anda secepat mungkin",
+        "customerSupport": "Sokongan Pelanggan",
+        "emailAddress": "Alamat E-mel"
+      },
+      "scan": {
+        "cameraPermission": "Kebenaran akses kamera diperlukan untuk menggunakan ciri ini",
+        "requestPermission": "Meminta kebenaran kamera...",
+        "scanAnything": "Imbas Apa-apa: Makanan, Makanan, Peralatan Gim & Lain",
+        "askAssistant": "Tanya Jurulatih Kecergasan AI anda"
+      },
+      "excuseBuster": {
+        "heading": "Pemusnah Alasan",
+        "reasons": {
+          "one": "Terlalu letih",
+          "two": "Tiada masa",
+          "three": "Terlalu sakit untuk bersenam",
+          "four": "Gim terlalu sesak",
+          "five": "Tidak bermood",
+          "six": "Cuaca buruk di luar",
+          "seven": "Kerja sibuk",
+          "eight": "Saya akan mula esok",
+          "nine": "Tidak pasti apa yang perlu dilakukan",
+          "ten": "Tiada peralatan tersedia"
+        },
+        "excuseMotivation": "Anda Lebih Kuat Daripada Alasan Anda.",
+        "excuseQuestion": "Apa yang menghalang anda hari ini?",
+        "typeExcuse": "Taip alasan anda di sini...",
+        "crushExcuse": "Hancurkan alasan saya"
+      },
+      "chat": {
+        "fitnessCoach": "Jurulatih Kecergasan Anda",
+        "randomQuestions": {
+          "one": "'📸 Ambil gambar makanan saya dan anggar kalori & makro',",
+          "two": "🥗 Analisis makanan ini dan beritahu saya bagaimana memperbaikinya untuk matlamat saya",
+          "three": "🧠 Bina senaman peribadi untuk saya berdasarkan tahap kecergasan saya",
+          "four": "🏋️ Cadangkan senaman yang boleh saya lakukan sekarang tanpa peralatan",
+          "five": "⏱ Cipta senaman 20 minit untuk hari yang sibuk",
+          "six": "🔥 Cadangkan senaman pembakar lemak yang disesuaikan untuk saya",
+          "seven": "💪 Reka bentuk pelan pembinaan otot untuk badan dan matlamat saya",
+          "eight": "📊 Jejak kemajuan saya dan tunjukkan apa yang patut saya perbaiki seterusnya",
+          "nine": "🍽 Beritahu saya apa yang harus dimakan hari ini untuk mencapai matlamat kalori dan protein saya",
+          "ten": "🥚 Kira protein, karbohidrat, dan lemak harian saya",
+          "eleven": "🛒 Cipta senarai runcit sihat berdasarkan pelan diet saya",
+          "twelve": "😴 Laraskan senaman saya berdasarkan tidur dan pemulihan saya",
+          "thirteen": "📅 Bina jadual senaman mingguan yang boleh saya ikuti",
+          "fourteen": "⚡ Cadangkan senaman tenaga rendah untuk hari ini",
+          "fifteen": "🤕 Ubah suai senaman saya jika saya sakit atau cedera"
+        }
+      },
+      "progress": {
+        "error": "Sesuatu tidak kena",
+        "heading": "Papan Pemuka Kemajuan",
+        "subheading": "Teruskan usaha hebat! 🚀",
+        "weeklyGoals": "Matlamat Mingguan",
+        "monthlyGoal": "Matlamat Bulanan",
+        "insights": "Wawasan Pantas",
+        "mostActive": "Paling Aktif",
+        "peakTime": "Masa prestasi puncak",
+        "favoriteActivity": "Aktiviti Kegemaran",
+        "choice": "Pilihan anda",
+        "weeklyChange": "Perubahan Mingguan",
+        "lastWeekXP": "berbanding minggu lepas",
+        "consistency": "Konsistensi",
+        "reliability": "kebolehpercayaan",
+        "overview": "Gambaran Keseluruhan",
+        "performance": "Prestasi",
+        "trends": "Trend",
+        "lastSevenDays": "7 Hari Terakhir",
+        "thisWeek": "Minggu Ini",
+        "activityFocus": "Fokus Aktiviti",
+        "distribution": "Agihan",
+        "history": "Sejarah",
+        "activities": "Aktiviti",
+        "consistencyJourney": "Perjalanan konsistensi anda",
+        "bestDay": "Hari Terbaik",
+        "averageSession": "Purata Sesi",
+        "totalHours": "Jumlah Jam",
+        "WeeklyComparisonXp": "Perbandingan Mingguan",
+        "weeksComparison": "Minggu ini vs minggu lepas",
+        "thisWeeks": "Minggu Ini",
+        "lastWeek": "Minggu Lepas",
+        "activityPattern": "Corak Aktiviti",
+        "hoursBreakdown": "Pecahan 24 jam",
+        "monthlyActivity": "Aktiviti Bulanan",
+        "lastMonths": "6 Bulan Terakhir",
+        "progression": "Perkembangan",
+        "monthlyEarned": "Diperoleh bulanan",
+        "recentActivity": "Aktiviti Terkini",
+        "last30Days": "30 Hari Terakhir",
+        "outstanding": "Kemajuan Cemerlang!",
+        "activityReview": "Anda telah menyelesaikan {{totalActivities}} aktiviti dan memperoleh {{totalXp}} XP keseluruhan. Teruskan!",
+        "statistics": "Statistik Terperinci",
+        "longest": "Paling Lama",
+        "totalMonthActivities": "Aktiviti Fizikal Diselesaikan Bulan Ini!"
+      },
+      "shoppingCart": {
+        "heading": "Item Dimiliki",
+        "equipMore": "Lengkapkan Lagi",
+        "noItems": "Anda Belum Memiliki Sebarang Item!",
+        "goToShop": "Pergi ke Kedai",
+        "buyPotions": "Pergi ke kedai dan kumpulkan beberapa ramuan menarik"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Tunggu! Jangan Padam Saya!",
+    "subtitle": "Hantar maklum balas dahulu"
+  },
+
+  "home": {
+    "tab": "Laman Utama"
+  },
+
+  "activity": {
+    "tab": "Aktiviti"
+  },
+  "progress": {
+    "tab": "Kemajuan"
+  },
+  "settings": {
+    "tab": "Tetapan",
+    "profile": "Profil",
+    "shop": "Kedai",
+    "contactUs": "Hubungi Kami",
+    "about": "Tentang",
+    "app_name": "Nama Aplikasi",
+    "languages": {
+      "english": "Bahasa Inggeris",
+      "mandarin_chinese": "Bahasa Cina",
+      "hindi": "Hindi",
+      "spanish_spain": "Sepanyol (Sepanyol)",
+      "spanish_mexico": "Sepanyol (Mexico)",
+      "arabic": "Arab",
+      "french": "Perancis",
+      "french_canada": "Perancis (Kanada)",
+      "portuguese_brazil": "Portugis (Brazil)",
+      "portuguese_portugal": "Portugis (Portugal)",
+      "german": "Jerman",
+      "japanese": "Jepun",
+      "russian": "Rusia",
+      "korean": "Korea",
+      "italian": "Itali",
+      "turkish": "Turki",
+      "vietnamese": "Vietnam",
+      "polish": "Poland",
+      "ukrainian": "Ukraine",
+      "romanian": "Romania",
+      "dutch": "Belanda",
+      "czech": "Czech",
+      "greek": "Greek",
+      "swedish": "Sweden",
+      "hungarian": "Hungary",
+      "thai": "Thai",
+      "hebrew": "Ibrani",
+      "indonesian": "Indonesia",
+      "malay": "Melayu",
+      "finnish": "Finland",
+      "danish": "Denmark",
+      "norwegian": "Norway",
+      "slovak": "Slovak",
+      "croatian": "Croatia",
+      "catalan": "Catalan"
+    },
+    "generale": "Umum",
+    "github": "Github",
+    "language": "Bahasa",
+    "links": "Pautan",
+    "logout": "Log Keluar",
+    "more": "Lagi",
+    "privacy": "Dasar Privasi",
+    "faq": "Soalan Lazim",
+    "rate": "Berikan maklum balas kepada kami",
+    "share": "Kongsi",
+    "citations": "Petikan untuk maklumat perubatan",
+    "support": "Sokongan",
+    "support_us": "Sokong Kami",
+    "terms": "Terma Perkhidmatan",
+    "theme": {
+      "dark": "Gelap",
+      "light": "Terang",
+      "system": "Sistem",
+      "title": "Tema"
+    },
+    "title": "Tetapan",
+    "version": "Versi",
+    "website": "Laman Web",
+    "devMode": {
+      "title": "Mod pembangun",
+      "componentsLibrary": "Pustaka UI"
+    },
+    "deleteAccount": "Padam akaun?",
+    "deleteAccountQuestion": "Adakah anda pasti mahu memadam akaun anda? Tindakan ini tidak boleh dibuat asal dan akan memadamkan semua data anda secara kekal.",
+    "deactivateAccount": "Nyahaktif & Padam Akaun",
+    "permanentAccountCreate": "Buat akaun kekal"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Penarafan"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Apakah sebabnya?",
+      "unnamedConversation": "Tanpa tajuk",
+      "reportTitlePlaceholder": "Tambahkan tajuk"
+    },
+    "WeekBlock": {
+      "week": "Minggu"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Skrol ke Atas"
+    },
+    "FreeTierStatus": {
+      "heading": "Imbasan percuma",
+      "subheading": "Buka kunci imbasan tanpa had dengan menaik taraf pelan anda",
+      "action": "Tingkatkan"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Pilih gambar / video"
+    },
+    "GoalsModal": {
+      "heading": "Tukar matlamat pengambilan harian anda",
+      "dailyCalories": "Kalori Harian",
+      "saveGoals": "Simpan Matlamat"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Streak terputus. Simpan sekarang.",
+      "loseStreak": "Biarkan Ia Terputus",
+      "buyStreak": "Beli & Selamatkan Streak",
+      "buyRepairStreak": "Beli Elixir Pembaikan Streak untuk {{elixirPrice}} 💎 untuk mendapatkan kembali streak hilang anda.",
+      "streakRestore": "Streak berisiko — pulihkannya sekarang!",
+      "restorationStreak": "Hidupkan kembali streak {{lostStreakValue}}-hari anda dengan Elixir Pembaikan Streak yang berkuasa!",
+      "applyElixir": "Guna Ramuan Elixir"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Pembelian Selesai",
+      "inventoryAdded": "telah ditambahkan ke inventori anda. Teruskan usaha hebat!",
+      "purchaseFailed": "Pembelian Gagal",
+      "purchaseFailedMessage": "Kami tidak dapat memproses pembelian anda. Sila semak baki Gems anda dan cuba lagi.",
+      "gemsBalance": "Alamak, anda tidak mempunyai cukup Gems"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Daftar Masuk Harian",
+      "bodyMovingQuestion": "Adakah anda menggerakkan badan anda hari ini?"
+    },
+    "TapToViewLabel": {
+      "label": "Ketuk untuk Lihat"
+    },
+    "UpgradeBanner": {
+      "heading": "Buka Kunci Sekarang!",
+      "upgradeMessage": "Buka kunci ciri ini 🔓 Nikmati pengiraan kalori AI, penjejakan makro dan sokongan semua-dalam-satu untuk membantu anda mencapai aktiviti dan matlamat kecergasan dengan lebih pantas 💪",
+      "upgradeTo": "Tingkatkan ke",
+      "moreBenefits": "Ciri AI. Semua alat premium. Semua milik anda untuk kekal di landasan."
+    },
+    "MotivationBanner": {
+      "title": "Tiada Motivasi? Rasa tak bermaya? Mari kita kalahkan alasan itu.",
+      "subtitle": "Pilih tugas, dapatkan XP dan Gems — mari kita bergerak!",
+      "beatExcuse": "Kalahkan alasan anda sekarang!"
+    },
+    "AICoachBanner": {
+      "title": "Ada soalan? Tanya sahaja.",
+      "subtitle": "Kuasaikan kecergasan anda — tanya tentang kalori, pemakanan, mesin gim, pose, kecederaan, bentuk, pelan senaman",
+      "chat": "Berbual dengan Jurulatih AI"
+    },
+    "PromptSection": {
+      "message": "Imbasan anda sudah sedia! Sekarang, apa yang anda ingin ketahui?",
+      "prompts": {
+        "first": "Apakah jenis sel atau struktur yang terdapat dalam imej ini?",
+        "second": "Adakah sebarang ketidaknormalan atau patogen dalam sampel ini?",
+        "third": "Apakah asal-usul atau keadaan sampel ini yang mungkin?",
+        "fourth": "Apakah wawasan yang boleh anda berikan dari imej ini?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Imbasan Makanan AI Segera — Jejaki kalori & makro dalam beberapa saat",
+      "second": "Jurulatih Peribadi AI 24/7 — Panduan pakar, bila-bila masa, di mana sahaja",
+      "third": "Jejak aktiviti kecergasan anda seperti profesional",
+      "fourth": "Akses Penuh Kepada Semua Ciri Premium"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Nama Samaran",
+        "email": "E-mel",
+        "emailVerification": "Pengesahan E-mel"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Makro Hari Ini",
+      "scanFood": "Imbas Makanan",
+      "calories": "Kalori",
+      "fat": "Lemak",
+      "carbs": "Karbohidrat",
+      "protein": "Protein",
+      "dailyIntakeGoals": "Matlamat Pengambilan Harian",
+      "percentage": "% matlamat makro harian dicapai",
+      "noMeals": "Tiada makanan dicatat",
+      "meals": "Makanan",
+      "deleteMeal": "Padam Makanan",
+      "deleteMealConfirm": "Adakah anda pasti mahu memadam makanan ini? Tindakan ini akan menjejaskan pengiraan nutrien makro harian anda.",
+      "macroJournal": "Jurnal Makro",
+      "noActivityRecorded": "Tiada aktiviti direkodkan minggu ini"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Daftar Masuk Harian",
+      "attendedMessage": "Anda hadir hari ini, itulah bagaimana kemajuan dibina. Teruskan!",
+      "notAttendedMessage": "Sofa menang hari ini… tetapi esok, anda akan membuat kemunculan semula!",
+      "unknownMessage": "Perjalanan anda bermula dengan satu langkah. Sedia untuk bermula?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "Tempoh yang dipilih tidak boleh lebih lama daripada 360 minit",
+      "activitiesLimit": "Wah! Adakah anda sedang berlatih secara rahsia untuk Sukan Olimpik? Anda telah mencapai {{MAX_DAILY_ACTIVITIES}} aktiviti untuk hari ini! 🏅. Anda boleh menunjukkan otot-otot itu lagi esok 💪!",
+      "addActivity": "Tambah Aktiviti",
+      "modalHeading": "Apa yang membuatkan anda bergerak hari ini? Catatkannya dan kekalkan momentum"
+    },
+    "TaskListOverview": {
+      "heading": "Tugas Hari Ini",
+      "noTasks": "Tiada Tugas!",
+      "enjoyFreeTime": "Nikmati masa lapang anda."
+    },
+    "ActivitySelector": {
+      "title": "Jenis Aktiviti",
+      "customActivity": "Tambah aktiviti anda sendiri",
+      "customActivityLabel": "Aktiviti Tersuai"
+    },
+    "DurationSelector": {
+      "heading": "Tempoh",
+      "customDuration": "Masukkan tempoh (minit)",
+      "customDurationLabel": "Tempoh Tersuai"
+    },
+    "NoActivityLogModal": {
+      "heading": "Alamak! Jangan Biarkan Sofa Menang Hari Ini!",
+      "crushExcuse": "Hancurkan alasan saya",
+      "skipToday": "Bukan hari ini, mungkin esok..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Kerja hebat!",
+      "unlockReward": "Anda berjaya! Satu aktiviti selesai, dan anda telah membuka kunci ganjaran anda. Mari kekalkan streak!"
+    },
+    "SkipReasonInput": {
+      "title": "Tidak mengapa, hanya memeriksa.",
+      "subtitle": "Ingin berkongsi mengapa hari ini tidak berjaya? Tiada tekanan.",
+      "skipPlaceholder": "Cth. Kucing saya makan kasut larian saya",
+      "skipToday": "Langkau hari ini"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Streak beku!",
+      "streakResetNow": "Streak anda telah diset semula hari ini.",
+      "streakRepairUse": "Gunakan Elixir Pembaikan Streak anda untuk mengekalkan streak anda hidup",
+      "streakRepairExpired": " Tetingkap pembaikan streak 48 jam anda telah tamat! Tapi hei, streak baru bermakna peluang baru untuk mengalahkan rekod peribadi anda.",
+      "repairStreak": "Baiki Streak",
+      "streakPotionConsumed": "Ramuan Pembekuan Streak Dihabiskan!",
+      "streakFreezeApplied": " Ramuan Pembekuan Streak anda telah berkuat kuasa dan melindungi streak anda. Anda masih bersemangat!",
+      "streakElixirApplied": "Ramuan Elixir Pembaikan Streak Berkuat Kuasa!",
+      "streakFreezePotionApplied": "Anda Menyelamatkan Streak Anda! Ramuan Pembekuan Streak anda telah berkuat kuasa dan melindungi streak anda. Anda masih bersemangat!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Tiada aktiviti ditemui",
+      "addFirstActivity": "Tambah aktiviti pertama anda untuk memperoleh Gems dan XP.",
+      "addActivity": "Tambah Aktiviti",
+      "todayActivities": "Aktiviti Hari Ini"
+    },
+    "ActivityCard": {
+      "activitySkipped": "dilangkau",
+      "dayOff": "Hari Cuti",
+      "description": "Penerangan",
+      "excuseReason": "Sebab Alasan ⚠️",
+      "yourNotes": "Nota Anda 📝",
+      "notesPlaceholder": "Cth. Senaman belakang dan biceps, 3 superset",
+      "addNotes": "Tambah nota"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Pustaka Foto",
+      "takePhoto": "Ambil Gambar",
+      "chooseFile": "Pilih Fail"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Tahap Maksimum Dicapai! Tahap",
+      "xpLeft": "tinggal untuk mencapai Tahap"
+    },
+    "ShopItemCard": {
+      "unavailable": "Tidak Tersedia",
+      "worth": "bernilai",
+      "equiped": "dilengkapkan",
+      "shop": "Kedai",
+      "earnedId": "Anda Menghasilkannya.",
+      "treat": "Sekarang Layani Diri Anda!",
+      "spendGems": "Belanjakan Gems anda dengan bijak, perjalanan kecergasan anda baru saja menjadi menarik."
+    },
+    "ActivityTaskCard": {
+      "win": "Menang",
+      "acceptChallenge": "Terima cabaran 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "Bagaimana dengan mencabar diri sedikit dengan cabaran ini?",
+      "typeInput": "(Taip input anda di bawah)"
+    },
+    "MacroOverview": {
+      "analysis": "Analisis",
+      "macroAdded": "Makro Ditambah",
+      "countToday": "Kiraan untuk hari ini"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Lindungi streak anda jika anda terlepas hari latihan.",
+      "owned": "DIMILIKI",
+      "manualTrigger": "PENCETUS MANUAL",
+      "activated": "DIAKTIFKAN"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Maaf, kami memerlukan kebenaran kamera untuk membuat ini berfungsi!",
+    "errorSelectingImagePicker": "Sesuatu tidak kena semasa memilih gambar. Sila cuba lagi.",
+    "errorSelectingDocumentPicker": "Sesuatu tidak kena semasa memilih dokumen. Sila cuba lagi.",
+    "errorTakingPicture": "Sesuatu tidak kena semasa mengambil gambar. Sila cuba lagi.",
+    "enableNotifications": {
+      "heading": "Dayakan Pemberitahuan",
+      "subHeading": "Pemberitahuan kini dimatikan. Untuk kekal terkini, sila dayakan dalam tetapan peranti anda."
+    },
+    "notesSavedSuccess": "Nota disimpan! 📝 Semuanya sedia.",
+    "enableNotificationFailed": "Pemberitahuan push dimatikan. Dayakan dalam tetapan untuk menerima kemas kini penting!",
+    "enableNotificationError": "Berlaku ralat semasa mendayakan pemberitahuan",
+    "notificationDisabledSuccess": "Pemberitahuan dinyahdayakan berjaya.",
+    "notificationDisabledRegisterError": "Gagal menyahdaftar peranti untuk pemberitahuan.",
+    "notificationDisabledError": "Berlaku ralat semasa menyahdayakan pemberitahuan.",
+    "checkNotificationStatusError": "Ralat memeriksa status pemberitahuan.",
+    "projectIdNotFound": "ID projek pemberitahuan tidak ditemui.",
+    "imageSizeLarge": "Gambar terlalu besar! Saiz fail ialah {{fileSize}} MB, tetapi hadnya ialah {{imageLimit}} MB.",
+    "videoSizeLarge": "Video terlalu besar! Saiz fail ialah {{fileSize}} MB, tetapi hadnya ialah {{videoLimit}} MB.",
+    "loggedInSuccess": "Berjaya log masuk",
+    "loggedOutSuccess": "Anda telah berjaya log keluar!",
+    "sendVerificationCodeError": "Ralat semasa menghantar kod pengesahan",
+    "validateAuthCodeError": "Ralat semasa mengesahkan kod pengesahan",
+    "anonymousSignInError": "Ralat semasa log masuk secara tanpa nama",
+    "emailLoginError": "Ralat semasa log masuk",
+    "preferredLanguageError": "Ralat semasa mengemas kini bahasa pilihan pengguna",
+    "sharingNotAvailable": "Perkongsian tidak tersedia pada peranti anda buat masa ini",
+    "sharingLinkError": "Gagal berkongsi pautan.",
+    "individualPushNotificationSuccess": "Pemberitahuan push individu berjaya dihantar!",
+    "globalPushNotificationSuccess": "Pemberitahuan push global berjaya dihantar! 🌍🚀",
+    "interpretationFieldsUpdateFail": "Gagal mengemas kini bidang tafsiran! ❌",
+    "deleteScanReportFail": "Tidak dapat memadam laporan imbasan. Sila cuba lagi",
+    "onboardingUnsuccessful": "Onboarding tidak berjaya. Sila cuba lagi",
+    "logoutUnsuccessful": "Log keluar tidak berjaya. Sila cuba lagi",
+    "deleteScanReportQuestion": "Adakah anda pasti mahu memadam laporan ini secara kekal?",
+    "videoLimitExceeds": "Video anda melebihi had {{videoSecondsLimit}}-saat. Sila potong dan muat naik semula",
+    "subscriptionActivated": "Langganan anda telah berjaya diaktifkan! Nikmati faedah eksklusif anda!",
+    "subscriptionCancelledByUser": "Anda telah membatalkan transaksi. Jangan ragu untuk mencuba lagi!",
+    "subscriptionActivationFailed": "Gagal mengaktifkan langganan anda. Sila cuba lagi",
+    "logoutQuestion": "Adakah anda pasti mahu log keluar?",
+    "noSubscriptionToRestore": "Alamak! Nampaknya anda tidak mempunyai langganan aktif buat masa ini. Untuk terus menikmati akses penuh, sila pilih salah satu pelan langganan kami.",
+    "restorationSuccessful": "Pemulihan berjaya! Nikmati!",
+    "restorationError": "Berlaku ralat semasa memulihkan pembelian.",
+    "medicalDisclaimerAlert": "Aplikasi EXFIT AI tidak menawarkan diagnosis, cadangan rawatan, atau sebarang nasihat perubatan. Sentiasa dapatkan panduan daripada profesional penjagaan kesihatan yang berkelayakan untuk keputusan perubatan.",
+    "scanLimitReached": "Kami sedang mengoptimumkan kualiti imbasan untuk anda! Anda akan dapat mengimbas semula dalam kira-kira {{hours}} jam dan {{minutes}} minit. Ada soalan tentang topik mikroskopi? Tanya pembantu sembang kami sementara anda menunggu!",
+    "chatAndMediaFilesLimit": "Pengguna yang dihormati, tingkatkan pelan anda untuk menikmati penjejakan kalori tanpa had, imbasan makanan, bimbingan kecergasan dan banyak lagi. 🔓",
+    "chatMessageNotSent": "Alamak! Mesej anda tidak dihantar. Sila cuba lagi",
+    "excusesLimit": "Alamak, nampaknya anda cuba mencipta rekod dunia untuk alasan! 😅 Maksimum 3 alasan dibenarkan - pilih 3 teratas anda dan mari kita bergerak!",
+    "excuseMinimum": "Sila pilih sekurang-kurangnya satu alasan atau taip sendiri.",
+    "createActivityLogFailed": "Gagal mencipta log aktiviti. Sila cuba lagi.",
+    "updateActivityLogFailed": "Sesuatu tidak kena semasa mengemas kini log aktiviti. Sila cuba lagi.",
+    "challengeAccepted": "Cabaran diterima! 🔥 Sekarang pergi dan kalahkannya untuk memperoleh ganjaran itu!",
+    "challengeCompleted": "Cabaran Selesai! 🔥 Baki ganjaran baharu anda telah dikemas kini.",
+    "macroEntryRecorded": "Pengambilan makro direkodkan - teruskan! 🥗",
+    "failedCreateMacroLog": "Alamak! Log makro tidak disimpan. Sila cuba lagi!",
+    "deleteMacroLog": "Alamak! Tidak dapat membuang log makro anda. Sila cuba lagi!",
+    "deleteMacro": "Makro dipadam — sedia untuk entri seterusnya anda!",
+    "chooseSubscriptionPlan": "Sila pilih pelan langganan untuk teruskan!",
+    "createPermanentAccountSuccess": "Akaun kekal anda telah dicipta! Akaun anda kini selamat. Oh, dan anda juga menerima",
+    "loginSuccess": "Berjaya log masuk — mari kita bergerak!",
+    "accountDeleted": "Akaun anda telah berjaya dipadam",
+    "purchaseFailed": "Pembelian gagal. Sila cuba lagi.",
+    "streakRepairFailed": "Gagal membaiki streak. Sila cuba lagi.",
+    "failedSendMessage": "Gagal menghantar mesej. Sila cuba lagi.",
+    "capturePictureFailed": "Sesuatu tidak kena semasa mengambil gambar",
+    "multipleVideosNotAllowed": "Untuk ketepatan yang lebih baik, sila muat naik hanya satu video pada satu masa.",
+    "mixedMediaNotAllowed": "Muat naik mesti mengandungi hanya gambar atau hanya video, bukan campuran kedua-duanya.",
+    "mediaFilesUploadFiles": "Terdapat ralat memuat naik fail media anda. Sila cuba lagi."
+  }
+}

@@ -433,7 +433,7 @@ const continueExcuseBusterConversation = async (
        # User Information
         - User's Name: ${userData.userName || 'friend'}
         - User's Fitness Goals: ${(userData.onboarding?.fitnessGoals || ['general fitness']).join(', ')}
-        - User's gender is: ${userData.onboarding.gender}
+        - User's gender is: ${userData.onboarding.gender || 'not known'}
         - The user has completed the following fitness activities: ${activitiesNames}. Suggest a workout plan that avoids unnecessary repetition, combines complementary activities, and may include new ones.
 
        # Current User Message or Excuse

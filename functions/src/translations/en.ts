@@ -3,10 +3,14 @@ import { ITranslation } from './types';
 export const en: ITranslation = {
   common: {
     welcome: 'Welcome',
-    notAuthorized: 'You are not authorized to make this request. Please log in',
-    noUserFound: 'No user found. Please check your input and try again.',
+    error: 'An error occurred',
+    loading: 'Loading...',
+    noUserFound: 'You are not authorized to make this request. Please log in',
     userIdMissing:
       'It looks like the user id is missing. Please provide it to proceed',
+    scanLimitReached:
+      'You’ve reached the maximum number of scans allowed. Please upgrade your plan to continue using the service',
+    mandatoryLanguage: 'The language code is required',
   },
   loginUserAnonymously: {
     mandatoryUsername: "Choose a nickname and let's get started!",
@@ -45,7 +49,7 @@ export const en: ITranslation = {
   },
   continueConversation: {
     messagesLimit:
-      'Aria’s at full capacity! Upload another scan to keep getting analysis and insights',
+      'Mojo’s at full capacity! Upload another scan to keep getting analysis and insights',
     conversationNotFound: 'Unable to find the conversation',
     serviceIssueAi:
       'There seems to be an issue with the AI service. Please try again.',
@@ -77,4 +81,4 @@ export const en: ITranslation = {
     deviceTokenRequired: 'Providing a device token is mandatory.',
     generalError: 'Error storing device token',
   },
-};
+} as any;

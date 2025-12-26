@@ -412,14 +412,19 @@ const PaywallNew = () => {
                 />
               )}
               {weeklyOffering && (
-                <PricingCard
-                  title={weeklyOffering.title}
-                  subtitle={`${translate('general.then')} ${weeklyOffering.price} ${translate('general.perWeek')}`}
-                  price=""
-                  isSelected={selectedPlan === 'weekly'}
-                  onPress={() => handlePlanSelection('weekly')}
-                  isFree={true}
-                />
+                <>
+                  <PricingCard
+                    title={weeklyOffering.title}
+                    subtitle={`${translate('general.then')} ${weeklyOffering.price} ${translate('general.perWeek')}`}
+                    price=""
+                    isSelected={selectedPlan === 'weekly'}
+                    onPress={() => handlePlanSelection('weekly')}
+                    isFree={true}
+                  />
+                  <Text className="font-primary-nunito -top-2 ml-2 text-center text-sm text-gray-900">
+                    {translate('general.noPaymentNow')}
+                  </Text>
+                </>
               )}
             </View>
 

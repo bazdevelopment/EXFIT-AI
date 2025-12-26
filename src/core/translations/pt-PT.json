@@ -1,0 +1,800 @@
+{
+  "onboarding": {
+    "message": "Bem-vindo ao EXFIT AI!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Fotografe a Sua Refeição e Acompanhe Calorias",
+        "headingTwo": "Digitalize refeições, fale com o seu Treinador AI e receba desafios diários criados para si"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Deixe a AI Potenciar o Seu Fitness",
+        "headingTwo": "Conheça o EXFIT AI, o seu companheiro inteligente para combater dúvidas, acender motivação e mantê-lo em movimento"
+      },
+      "onboardingThirdPage": {
+        "heading": "Deixe a AI detetar equipamento de ginásio, posturas de exercício e técnica"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Treine. Ganhe. Suba de Nível.",
+        "headingTwo": "Obtenha XP, coleccione Gems, mantenha a sua Sequência viva e desbloqueie recompensas pela sua participação."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Ginásio",
+    "yoga": "Yoga",
+    "running": "Corrida",
+    "walking": "Caminhada",
+    "cycling": "Ciclismo",
+    "dance": "Dança",
+    "stretching": "Alongamento",
+    "swimming": "Natação",
+    "hiking": "Caminhada",
+    "pilates": "Pilates",
+    "climbing": "Escalada",
+    "skating": "Patinação"
+  },
+  "general": {
+    "back": "Voltar",
+    "welcome": "Olá",
+    "welcomeBack": "Bem-vindo de Volta!",
+    "welcomeMessage": "Bem-vindo!",
+    "goodMorning": "Bom Dia",
+    "goodAfternoon": "Boa Tarde",
+    "goodEvening": "Boa Noite",
+    "continue": "Continuar",
+    "retry": "Tentar Novamente",
+    "retake": "Capturar Novamente",
+    "scanNow": "Digitalizar Agora",
+    "scanning": "A digitalizar...",
+    "close": "Fechar",
+    "gallery": "Galeria",
+    "files": "Ficheiros",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "attention": "Atenção!",
+    "new": "Novo",
+    "yes": "Sim",
+    "no": "Não",
+    "or": "ou",
+    "change": "Alterar",
+    "typing": "A escrever...",
+    "online": "Online",
+    "chatbotPlaceholder": "Pergunte-me qualquer coisa...",
+    "openSettings": "Abrir Definições",
+    "seeNotifications": "Ver notificações",
+    "viewProfile": "Ver Perfil",
+    "upgradePlan": "Atualizar Plano",
+    "download": "Descarregar",
+    "share": "Partilhar",
+    "shareLink": "Partilhar Link",
+    "skip": "Saltar",
+    "next": "Seguinte",
+    "update": "Atualizar",
+    "tryAgain": "Tentar novamente",
+    "createdAt": "Criado em",
+    "and": "e",
+    "saveDiscount": "POUPAR",
+    "restorePurchase": "Restaurar compra",
+    "medicalDisclaimer": "Aviso Legal Médico",
+    "conversationHistory": "Histórico de conversas",
+    "analyzingMediaFilesPlaceholder": "A analisar ficheiros multimédia...",
+    "freeTrial": "Período experimental gratuito",
+    "free": "GRATUITO",
+    "noPaymentNow": "Sem pagamento agora. Cancele a qualquer momento.",
+    "completedScans": "Digitalizações concluídas",
+    "activeSubscription": "Subscrição ativa",
+    "askAssistant": "Pergunte ao assistente AI",
+    "then": "depois",
+    "perWeek": "por semana",
+    "perYear": "por ano",
+    "perMonth": "por mês",
+    "tryForFree": "Experimente Gratuitamente",
+    "unlockNow": "Desbloqueie Agora",
+    "attended": "Participou",
+    "readyToStart": "Pronto para começar",
+    "skipped": "Ignorado",
+    "completed": "Concluído",
+    "purchase": "Compra",
+    "active": "ativo",
+    "dearUser": "Caro utilizador",
+    "ok": "Ok",
+    "activities": "Atividades",
+    "seeLess": "Ver menos",
+    "seeMore": "Ver mais",
+    "goBack": "Voltar",
+    "schedule": "Horário",
+    "utils": "Utilitários",
+    "verifyEmail": "Verificar email",
+    "loading": "A carregar...",
+    "error": "Erro",
+    "minutes": "minutos",
+    "submit": "Submeter",
+    "copyText": {
+      "loading": "A copiar...",
+      "copied": "Copiado! 📝",
+      "copy": "Copiar Link"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "A carregar a sua experiência personalizada...",
+        "second": "A sincronizar sistemas...",
+        "third": "A processar os seus dados...",
+        "fourth": "Quase pronto, só um momento..."
+      },
+      "imageScanningLoading": {
+        "first": "A digitalizar a sua imagem, por favor aguarde...",
+        "second": "A analisar detalhes, isto pode demorar alguns momentos...",
+        "third": "A melhorar a precisão para os melhores resultados...",
+        "fourth": "Quase lá, a finalizar a digitalização..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, o seu Treinador AI está a preparar-se para o ajudar...",
+        "second": "Aguarde! O Mojo está a preparar a sua resposta...",
+        "third": "A pensar... O Mojo está a tratar disso!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Aguarde!",
+    "goBackMessage": "Tem a certeza que quer voltar?"
+  },
+  "internet": {
+    "noConnectionTitle": "Está offline!",
+    "noConnectionMessage": "Ligue os dados móveis ou conecte-se a uma rede Wi-Fi. Ou simplesmente faça uma pausa e vá dar uma caminhada!"
+  },
+  "uploadScan": {
+    "title": "Carregar imagem",
+    "scanNow": "Digitalizar agora"
+  },
+  "weekDays": {
+    "today": "Hoje",
+    "yesterday": "Ontem"
+  },
+  "auth": {
+    "verifyAuthCode": "Verificar código de autenticação",
+    "verifyAuthCodeButton": "Verificar código",
+    "authCodeHeading": "Código de autenticação",
+    "loginViaEmailHeading": "Vamos iniciar sessão. Por favor, introduza o seu email para continuar.",
+    "emailAddress": "Email"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "Bem-vindo ao EXFIT AI!",
+        "startButton": "Vamos começar!",
+        "accountButton": "Já tenho uma conta",
+        "count": "Contagem",
+        "calories": "Calorias",
+        "track": "Acompanhar",
+        "activity": "Atividade",
+        "with": "Com"
+      },
+      "login": {
+        "agreeingMessage": "Ao continuar, concorda com os nossos",
+        "termsAndConditions": "Termos e Condições",
+        "privacyPolicy": "Política de Privacidade",
+        "heading": "Iniciar Sessão",
+        "continueName": "Continuar com Alcunha",
+        "existingAccount": "Já tem uma conta?",
+        "emailAddress": "Endereço de Email",
+        "emailPlaceholder": "Introduza o seu email",
+        "password": "Palavra-passe",
+        "confirmPassword": "Confirmar Palavra-passe",
+        "forgotPassword": "Esqueceu a palavra-passe?",
+        "keepSigned": "Manter-me com sessão iniciada",
+        "createPassword": "Criar uma palavra-passe"
+      },
+      "signUp": {
+        "heading": "Registar",
+        "haveAccount": "Já tem uma conta?",
+        "signInHere": "Inicie sessão aqui",
+        "acceptTerms": {
+          "title": "Termos Obrigatórios",
+          "subtitle": "Por favor aceite os termos de uso e política de privacidade para continuar."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Esqueceu a Palavra-passe",
+        "verificationSent": "Por favor verifique o seu email para um link de redefinição de palavra-passe. Se não o vir na sua caixa de entrada, certifique-se de verificar a pasta de spam ou lixo eletrónico.",
+        "verificationHeading": "Introduza o endereço de email registado na sua conta. Enviar-lhe-emos um link para redefinir a sua palavra-passe.",
+        "rememberPassword": "Lembra-se da palavra-passe?",
+        "loginAccount": "Inicie sessão na sua conta",
+        "alertTitle": "Redefinição de Palavra-passe Enviada",
+        "alertSubtitle": "Se existir uma conta com este email, enviámos-lhe um link de redefinição de palavra-passe."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Por favor introduza tanto o email como a palavra-passe.",
+        "secureProgress": "Proteja o Seu Progresso",
+        "permanentAccount": "Crie uma conta permanente para guardar os seus dados em todos os dispositivos."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "Introduza o seu código de verificação enviado por email. Por favor note que o código expira em 5 minutos.",
+        "verificationCodeSent": "Enviamos o código de verificação para",
+        "verificationCodeMissing": "Não recebeu o código?",
+        "resendCode": "Reenviar código",
+        "backToLogin": "Voltar a Iniciar Sessão"
+      },
+      "namePreferenceScreen": {
+        "heading": "Vamos tornar isto pessoal!",
+        "preferredNameQuestion": "Como devemos chamar-lhe?",
+        "placeholderPreferredName": "Ex.: Capitão Fixe, Rainha Abelha, ou simplesmente Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Como descreveria a sua experiência de fitness?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Qual é o seu objetivo de fitness?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Selecione género para uma experiência mais personalizada"
+      },
+      "freeTrialPreview": {
+        "heading": "Desfrute do seu período experimental gratuito! 🎉",
+        "subheading": "Experimente estes benefícios incríveis durante o seu período experimental gratuito",
+        "review": "Digitalização de refeições, contador de calorias e acompanhamento de fitness simples e inteligente. Experimente!",
+        "reviewTrust": "📈 Confiado por 7.512+ utilizadores"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Período Experimental Gratuito Ativado",
+          "heading": "Acesso Ilimitado",
+          "title": "Desbloqueie Funcionalidades Premium Hoje!",
+          "firstOffering": "Monitor de Atividade & Dicas de Nutrição Inteligentes",
+          "secondOffering": "Contador de Calorias e Macronutrientes Ilimitado",
+          "thirdOffering": "Digitalizador de Alimentos Ilimitado",
+          "fourthOffering": "O seu Treinador de Fitness AI 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Desbloqueie Funcionalidades Premium Hoje!",
+        "secondOffering": {
+          "title": "Plano Mensal",
+          "subtitle": "{{ price }}/mês"
+        },
+        "thirdOffering": {
+          "title": "Plano Anual",
+          "subtitle": "{{ price }} por ano"
+        },
+        "fourthOffering": {
+          "title": "Período Experimental de {{trialDays}} Dias",
+          "subtitle": "{{ price }} por ano",
+          "plan": "Plano Semanal"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "Está disponível uma nova versão do EXFIT AI",
+        "subheading": "Atualize para a versão mais recente para continuar a desfrutar de todas as funcionalidades da app — demora apenas 5 segundos!",
+        "action": "Obtenha agora!"
+      },
+      "rateAppScreen": {
+        "heading": "Considera a app valiosa e cativante?",
+        "like": "Sim, gosto!",
+        "dislike": "Na verdade não..."
+      },
+      "noInternetScreen": {
+        "heading": "Está offline",
+        "subheading": "A sua ligação parece instável. Por favor verifique o estado da sua rede e tente novamente"
+      },
+      "notifications": {
+        "title": "Notificações",
+        "noNotifications": "Ainda Sem Notificações",
+        "emptyNotifications": "Nenhuma notificação nova por agora. Volte a verificar em breve."
+      },
+      "termsOfService": {
+        "title": "Termos de Serviço"
+      },
+      "privacyPolicy": {
+        "title": "Política de Privacidade"
+      },
+      "share": {
+        "title": "Partilhar",
+        "heading": "Partilhe a App EXFIT AI",
+        "subheading": "Ajude outros a descobrir a App EXFIT AI",
+        "scanMessage": "Digitalize para descarregar a app",
+        "shareMessage": "ou partilhe através da sua plataforma favorita"
+      },
+      "rate": {
+        "title": "Dê-nos o seu feedback!"
+      },
+      "profile": {
+        "title": "Perfil",
+        "edit": "Editar Perfil",
+        "placeholderPreferredName": "Ex.: Capitão Fixe, Rainha Abelha, ou simplesmente Alex!",
+        "subscriptions": {
+          "monthly": "Subscrição Mensal",
+          "yearly": "Subscrição Anual",
+          "weekly": "Subscrição Semanal"
+        },
+        "temporaryAccount": "Conta temporária",
+        "permanentAccount": "Conta permanente"
+      },
+      "generateReportScreen": {
+        "title": "Agradecemos a sua paciência! Aqui está o seu relatório AI.",
+        "userInput": "A Sua Submissão",
+        "medicalReport": "Relatório de Fitness",
+        "report": "Relatório de Fitness Gerado por AI",
+        "conversationName": "Nome da conversa"
+      },
+      "verifyEmail": {
+        "heading": "Verificar email"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Iniciar Análise"
+      },
+      "contactUs": {
+        "heading": "Sinta-se à vontade para nos enviar um email diretamente, e a nossa equipa responder-lhe-á assim que possível",
+        "customerSupport": "Apoio ao Cliente",
+        "emailAddress": "Endereço de Email"
+      },
+      "scan": {
+        "cameraPermission": "É necessária permissão de acesso à câmara para usar esta funcionalidade",
+        "requestPermission": "A solicitar permissão da câmara...",
+        "scanAnything": "Digitalize Qualquer Coisa: Refeições, Comida, Equipamento de Ginásio & Mais",
+        "askAssistant": "Pergunte ao seu Treinador de Fitness AI"
+      },
+      "excuseBuster": {
+        "heading": "Destruidor de Desculpas",
+        "reasons": {
+          "one": "Sinto-me demasiado cansado",
+          "two": "Não tenho tempo disponível",
+          "three": "Dorido demais para fazer exercício",
+          "four": "O ginásio está demasiado cheio",
+          "five": "Não estou com disposição",
+          "six": "Mau tempo lá fora",
+          "seven": "O trabalho está agitado",
+          "eight": "Começo amanhã",
+          "nine": "Não sei o que fazer",
+          "ten": "Não há equipamento disponível"
+        },
+        "excuseMotivation": "É Mais Resistente do que a Sua Desculpa.",
+        "excuseQuestion": "O que o está a impedir hoje?",
+        "typeExcuse": "Escreva a sua desculpa aqui...",
+        "crushExcuse": "Esmague a minha desculpa"
+      },
+      "chat": {
+        "fitnessCoach": "O Seu Treinador de Fitness",
+        "randomQuestions": {
+          "one": "'📸 Tire uma foto da minha refeição e estime calorias e macronutrientes',",
+          "two": "🥗 Analise esta refeição e diga-me como melhorá-la para o meu objetivo",
+          "three": "🧠 Crie-me um treino personalizado baseado no meu nível de fitness",
+          "four": "🏋️ Recomende um treino que possa fazer agora sem equipamento",
+          "five": "⏱ Crie um treino de 20 minutos para um dia ocupado",
+          "six": "🔥 Sugira um treino de queima de gordura adaptado a mim",
+          "seven": "💪 Desenhe um plano de construção muscular para o meu corpo e objetivos",
+          "eight": "📊 Acompanhe o meu progresso e mostre o que devo melhorar a seguir",
+          "nine": "🍽 Diga-me o que comer hoje para atingir os meus objetivos de calorias e proteína",
+          "ten": "🥚 Calcule a minha proteína, carboidratos e gorduras diárias",
+          "eleven": "🛒 Crie uma lista de compras saudável baseada no meu plano alimentar",
+          "twelve": "😴 Ajuste os meus treinos com base no meu sono e recuperação",
+          "thirteen": "📅 Crie um horário de treino semanal a que me possa manter",
+          "fourteen": "⚡ Recomende um treino de baixa energia para hoje",
+          "fifteen": "🤕 Modifique o meu treino se estiver dorido ou lesionado"
+        }
+      },
+      "progress": {
+        "error": "Algo correu mal",
+        "heading": "Painel de Progresso",
+        "subheading": "Continue com o excelente trabalho! 🚀",
+        "weeklyGoals": "Objetivos Semanais",
+        "monthlyGoal": "Objetivo Mensal",
+        "insights": "Visões Rápidas",
+        "mostActive": "Mais Ativo",
+        "peakTime": "Hora de pico de desempenho",
+        "favoriteActivity": "Atividade Favorita",
+        "choice": "A sua escolha preferida",
+        "weeklyChange": "Alteração Semanal",
+        "lastWeekXP": "vs semana passada",
+        "consistency": "Consistência",
+        "reliability": "fiabilidade",
+        "overview": "Visão Geral",
+        "performance": "Desempenho",
+        "trends": "Tendências",
+        "lastSevenDays": "Últimos 7 dias",
+        "thisWeek": "Esta Semana",
+        "activityFocus": "Foco de Atividade",
+        "distribution": "Distribuição",
+        "history": "Histórico",
+        "activities": "Atividades",
+        "consistencyJourney": "A sua jornada de consistência",
+        "bestDay": "Melhor Dia",
+        "averageSession": "Sessão Média",
+        "totalHours": "Total de Horas",
+        "WeeklyComparisonXp": "Comparação Semanal",
+        "weeksComparison": "Esta semana vs semana passada",
+        "thisWeeks": "Esta Semana",
+        "lastWeek": "Semana Passada",
+        "activityPattern": "Padrão de Atividade",
+        "hoursBreakdown": "Divisão de 24 horas",
+        "monthlyActivity": "Atividade Mensal",
+        "lastMonths": "Últimos 6 meses",
+        "progression": "Progressão",
+        "monthlyEarned": "Ganhos mensais",
+        "recentActivity": "Atividade Recente",
+        "last30Days": "Últimos 30 dias",
+        "outstanding": "Progresso Excecional!",
+        "activityReview": "Concluiu {{totalActivities}} atividades e ganhou {{totalXp}} XP no total. Continue assim!",
+        "statistics": "Estatísticas Detalhadas",
+        "longest": "Mais Longa",
+        "totalMonthActivities": "Atividades Físicas Concluídas Este Mês!"
+      },
+      "shoppingCart": {
+        "heading": "Itens Possuídos",
+        "equipMore": "Equipar Mais",
+        "noItems": "Ainda Não Possui Nenhum Item!",
+        "goToShop": "Ir para a loja",
+        "buyPotions": "Vá até à loja e colete algumas poções emocionantes"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Espere! Não me elimine!",
+    "subtitle": "Envie feedback antes"
+  },
+  "home": {
+    "tab": "Início"
+  },
+  "activity": {
+    "tab": "Atividade"
+  },
+  "progress": {
+    "tab": "Progresso"
+  },
+  "settings": {
+    "tab": "Definições",
+    "profile": "Perfil",
+    "shop": "Loja",
+    "contactUs": "Contacte-nos",
+    "about": "Acerca",
+    "app_name": "Nome da App",
+    "languages": {
+      "english": "Inglês",
+      "mandarin_chinese": "Chinês",
+      "hindi": "Hindi",
+      "spanish_spain": "Espanhol (Espanha)",
+      "spanish_mexico": "Espanhol (México)",
+      "arabic": "Árabe",
+      "french": "Francês",
+      "french_canada": "Francês (Canadá)",
+      "portuguese_brazil": "Português (Brasil)",
+      "portuguese_portugal": "Português (Portugal)",
+      "german": "Alemão",
+      "japanese": "Japonês",
+      "russian": "Russo",
+      "korean": "Coreano",
+      "italian": "Italiano",
+      "turkish": "Turco",
+      "vietnamese": "Vietnamita",
+      "polish": "Polaco",
+      "ukrainian": "Ucraniano",
+      "romanian": "Romeno",
+      "dutch": "Holandês",
+      "czech": "Checo",
+      "greek": "Grego",
+      "swedish": "Sueco",
+      "hungarian": "Húngaro",
+      "thai": "Tailandês",
+      "hebrew": "Hebraico",
+      "indonesian": "Indonésio",
+      "malay": "Malaio",
+      "finnish": "Finlandês",
+      "danish": "Dinamarquês",
+      "norwegian": "Norueguês",
+      "slovak": "Eslovaco",
+      "croatian": "Croata",
+      "catalan": "Catalão"
+    },
+    "generale": "Geral",
+    "github": "Github",
+    "language": "Idioma",
+    "links": "Links",
+    "logout": "Terminar Sessão",
+    "more": "Mais",
+    "privacy": "Política de Privacidade",
+    "faq": "FAQ",
+    "rate": "Dê-nos o seu feedback",
+    "share": "Partilhar",
+    "citations": "Citações para informações médicas",
+    "support": "Apoio",
+    "support_us": "Apoie-nos",
+    "terms": "Termos de Serviço",
+    "theme": {
+      "dark": "Escuro",
+      "light": "Claro",
+      "system": "Sistema",
+      "title": "Tema"
+    },
+    "title": "Definições",
+    "version": "Versão",
+    "website": "Site Web",
+    "devMode": {
+      "title": "Modo de programador",
+      "componentsLibrary": "Biblioteca de IU"
+    },
+    "deleteAccount": "Eliminar conta?",
+    "deleteAccountQuestion": "Tem a certeza que pretende eliminar a sua conta? Esta ação não pode ser desfeita e removerá permanentemente todos os seus dados.",
+    "deactivateAccount": "Desativar e Eliminar Conta",
+    "permanentAccountCreate": "Criar conta permanente"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Classificação"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Qual é o motivo?",
+      "unnamedConversation": "Sem título",
+      "reportTitlePlaceholder": "Adicionar um título"
+    },
+    "WeekBlock": {
+      "week": "Semana"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Rolar para o topo"
+    },
+    "FreeTierStatus": {
+      "heading": "Digitalizações gratuitas",
+      "subheading": "Desbloqueie digitalizações ilimitadas ao atualizar o seu plano",
+      "action": "Atualizar"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Escolha uma imagem / vídeo"
+    },
+    "GoalsModal": {
+      "heading": "Altere o seu objetivo de ingestão diária",
+      "dailyCalories": "Calorias Diárias",
+      "saveGoals": "Guardar Objetivos"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Sequência quebrada. Guarde agora.",
+      "loseStreak": "Deixar Quebrar",
+      "buyStreak": "Comprar e Guardar Sequência",
+      "buyRepairStreak": "Compre um Elixir de Reparação de Sequência por {{elixirPrice}} 💎 para recuperar a sua sequência perdida.",
+      "streakRestore": "Sequência em risco — restaure-a agora!",
+      "restorationStreak": "Tragam a vossa sequência de {{lostStreakValue}} dias de volta à vida com o poderoso Elixir de Reparação de Sequência!",
+      "applyElixir": "Aplicar Poção de Elixir"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Compra Concluída",
+      "inventoryAdded": "foi adicionado ao seu inventário. Continue com o excelente trabalho!",
+      "purchaseFailed": "Compra Falhada",
+      "purchaseFailedMessage": "Não conseguimos processar a sua compra. Por favor verifique o saldo das suas gems e tente novamente.",
+      "gemsBalance": "Ups, não tem gems suficientes"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Check-in Diário",
+      "bodyMovingQuestion": "Moveu o seu corpo hoje?"
+    },
+    "TapToViewLabel": {
+      "label": "Toque para Ver"
+    },
+    "UpgradeBanner": {
+      "heading": "Desbloqueie Agora!",
+      "upgradeMessage": "Desbloqueie esta funcionalidade 🔓 Desfrute de contagem de calorias AI, acompanhamento de macronutrientes e suporte completo para ajudá-lo a atingir os seus objetivos de atividade e fitness mais rapidamente 💪",
+      "upgradeTo": "Atualizar para",
+      "moreBenefits": "Funcionalidades AI. Todas as ferramentas premium. Tudo seu para se manter no caminho."
+    },
+    "MotivationBanner": {
+      "title": "Sem Motivação? Não se sente bem? Vamos vencer essa desculpa.",
+      "subtitle": "Escolha uma tarefa, ganhe XP e gems — vamos mover-nos!",
+      "beatExcuse": "Venca a sua desculpa agora!"
+    },
+    "AICoachBanner": {
+      "title": "Tem uma Pergunta? Apenas Pergunte.",
+      "subtitle": "Domine o seu fitness — pergunte sobre calorias, nutrição, máquinas de ginásio, posturas, lesões, forma, planos de treino",
+      "chat": "Converse com o Treinador AI"
+    },
+    "PromptSection": {
+      "message": "A sua digitalização está pronta! Agora, o que gostaria de saber?",
+      "prompts": {
+        "first": "Que tipos de células ou estruturas estão presentes nesta imagem?",
+        "second": "Existem anomalias ou patogénicos nesta amostra?",
+        "third": "Qual é a origem ou condição provável desta amostra?",
+        "fourth": "Que informações pode fornecer a partir desta imagem?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Digitalização Instantânea de Refeições AI — Acompanhe calorias e macronutrientes em segundos",
+      "second": "Treinador Pessoal AI 24/7 — Orientação de especialistas, a qualquer hora, em qualquer lugar",
+      "third": "Acompanhe as suas atividades de fitness como um profissional",
+      "fourth": "Acesso Total a Todas as Funcionalidades Premium"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Alcunha",
+        "email": "Email",
+        "emailVerification": "Verificação de Email"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Macronutrientes de Hoje",
+      "scanFood": "Digitalizar Comida",
+      "calories": "Calorias",
+      "fat": "Gordura",
+      "carbs": "Carboidratos",
+      "protein": "Proteína",
+      "dailyIntakeGoals": "Objetivos de Ingestão Diária",
+      "percentage": "% do objetivo diário de macronutrientes alcançado",
+      "noMeals": "Nenhuma refeição registada",
+      "meals": "Refeições",
+      "deleteMeal": "Eliminar Refeição",
+      "deleteMealConfirm": "Tem a certeza que pretende eliminar esta refeição? Esta ação afetará os seus cálculos de nutrientes macro diários.",
+      "macroJournal": "Diário de Macronutrientes",
+      "noActivityRecorded": "Nenhuma atividade registada esta semana"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Check-in Diário",
+      "attendedMessage": "Apareceu hoje, é assim que o progresso é construído. Continue!",
+      "notAttendedMessage": "O sofá vence hoje… mas amanhã, você regressa!",
+      "unknownMessage": "A sua jornada começa com um único passo. Pronto para começar?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "A duração selecionada não pode ser superior a 360 minutos",
+      "activitiesLimit": "Uau! Está a treinar secretamente para as Olimpíadas? Já atingiu o limite de {{MAX_DAILY_ACTIVITIES}} atividades para hoje! 🏅. Pode flexionar esses músculos novamente amanhã 💪!",
+      "addActivity": "Adicionar Atividade",
+      "modalHeading": "O que o fez mover-se hoje? Registe e mantenha o impulso"
+    },
+    "TaskListOverview": {
+      "heading": "Tarefas de Hoje",
+      "noTasks": "Sem Tarefas!",
+      "enjoyFreeTime": "Desfrute do seu tempo livre."
+    },
+    "ActivitySelector": {
+      "title": "Tipo de Atividade",
+      "customActivity": "Adicione a sua própria atividade",
+      "customActivityLabel": "Atividade Personalizada"
+    },
+    "DurationSelector": {
+      "heading": "Duração",
+      "customDuration": "Introduza duração (minutos)",
+      "customDurationLabel": "Duração Personalizada"
+    },
+    "NoActivityLogModal": {
+      "heading": "Oh não! Não Deixe o Sofá Vencer Hoje!",
+      "crushExcuse": "Esmague a minha desculpa",
+      "skipToday": "Hoje não, talvez amanhã..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Bom Trabalho!",
+      "unlockReward": "Conseguiu! Uma atividade feita, e desbloqueou a sua recompensa. Vamos manter a sequência!"
+    },
+    "SkipReasonInput": {
+      "title": "Está bem, estou apenas a verificar.",
+      "subtitle": "Quer partilhar porque é que hoje não funcionou? Sem pressão.",
+      "skipPlaceholder": "Ex.: O meu gato comeu os meus sapatos de corrida",
+      "skipToday": "Ignorar Hoje"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Congelamento de sequência!",
+      "streakResetNow": "A sua sequência foi redefinida hoje.",
+      "streakRepairUse": "Use o seu Elixir de Reparação de Sequência para manter a sua sequência viva",
+      "streakRepairExpired": " A sua janela de reparação de sequência de 48 horas expirou! Mas ei, novas sequências significam novas oportunidades para bater o seu recorde pessoal.",
+      "repairStreak": "Reparar Sequência",
+      "streakPotionConsumed": "Poção de Congelamento de Sequência Consumida!",
+      "streakFreezeApplied": " A sua Poção de Congelamento de Sequência ativou e protegeu a sua sequência. Ainda está em chamas!",
+      "streakElixirApplied": "Poção de Elixir de Reparação de Sequência Ativada!",
+      "streakFreezePotionApplied": "Salvou a Sua Sequência! A sua Poção de Congelamento de Sequência ativou e protegeu a sua sequência. Ainda está em chamas!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Nenhuma atividade encontrada",
+      "addFirstActivity": "Adicione a sua primeira atividade para ganhar gems e XP.",
+      "addActivity": "Adicionar Atividade",
+      "todayActivities": "Atividades de Hoje"
+    },
+    "ActivityCard": {
+      "activitySkipped": "ignorada",
+      "dayOff": "Dia de Descanso",
+      "description": "Descrição",
+      "excuseReason": "Motivo da Desculpa ⚠️",
+      "yourNotes": "As Suas Notas 📝",
+      "notesPlaceholder": "Ex.: Treino de costas e bíceps, 3 super séries",
+      "addNotes": "Adicionar notas"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Biblioteca de Fotos",
+      "takePhoto": "Tirar Foto",
+      "chooseFile": "Escolher Ficheiro"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Nível Máximo Alcançado! Nível",
+      "xpLeft": "faltam para alcançar o Nível"
+    },
+    "ShopItemCard": {
+      "unavailable": "Indisponível",
+      "worth": "no valor de",
+      "equiped": "equipado",
+      "shop": "Loja",
+      "earnedId": "Ganhou-o.",
+      "treat": "Agora Mime-se!",
+      "spendGems": "Gaste as suas Gems sabiamente, a sua jornada de fitness acabou de ficar interessante."
+    },
+    "ActivityTaskCard": {
+      "win": "Ganhar",
+      "acceptChallenge": "Aceitar desafio 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "Que tal desafiar-se um pouco com este desafio?",
+      "typeInput": "(Introduza o seu input abaixo)"
+    },
+    "MacroOverview": {
+      "analysis": "Análise",
+      "macroAdded": "Macronutriente Adicionado",
+      "countToday": "Contar para hoje"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Proteja a sua sequência se perder um dia de treino.",
+      "owned": "POSSUÍDO",
+      "manualTrigger": "ATIVAÇÃO MANUAL",
+      "activated": "ATIVADO"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Desculpe, precisamos de permissões da câmara para que isto funcione!",
+    "errorSelectingImagePicker": "Algo correu mal ao selecionar a imagem. Por favor tente novamente.",
+    "errorSelectingDocumentPicker": "Algo correu mal ao escolher o documento. Por favor tente novamente.",
+    "errorTakingPicture": "Algo correu mal ao tirar a foto. Por favor tente novamente.",
+    "enableNotifications": {
+      "heading": "Ativar Notificações",
+      "subHeading": "As notificações estão atualmente desligadas. Para se manter atualizado, por favor ative-as nas definições do seu dispositivo."
+    },
+    "notesSavedSuccess": "Notas guardadas! 📝 Está tudo definido.",
+    "enableNotificationFailed": "As notificações push estão desativadas. Ative-as nas definições para receber atualizações importantes!",
+    "enableNotificationError": "Ocorreu um erro ao ativar notificações",
+    "notificationDisabledSuccess": "Notificações desativadas com sucesso.",
+    "notificationDisabledRegisterError": "Falha ao cancelar o registo do dispositivo para notificações.",
+    "notificationDisabledError": "Ocorreu um erro ao desativar notificações",
+    "checkNotificationStatusError": "Erro a verificar o estado das notificações.",
+    "projectIdNotFound": "ID do projeto de notificação não encontrado.",
+    "imageSizeLarge": "A imagem é demasiado grande! O tamanho do ficheiro é {{fileSize}} MB, mas o limite é {{imageLimit}} MB.",
+    "videoSizeLarge": "O vídeo é demasiado grande! O tamanho do ficheiro é {{fileSize}} MB, mas o limite é {{videoLimit}} MB.",
+    "loggedInSuccess": "Sessão iniciada com sucesso",
+    "loggedOutSuccess": "Terminou a sessão com sucesso!",
+    "sendVerificationCodeError": "Erro ao enviar código de verificação",
+    "validateAuthCodeError": "Erro ao validar código de autenticação",
+    "anonymousSignInError": "Erro ao iniciar sessão anonimamente",
+    "emailLoginError": "Erro ao iniciar sessão",
+    "preferredLanguageError": "Erro ao atualizar o idioma preferido do utilizador",
+    "sharingNotAvailable": "A partilha não está disponível no seu dispositivo atualmente",
+    "sharingLinkError": "Falha ao partilhar o link.",
+    "individualPushNotificationSuccess": "Notificações push individuais enviadas com sucesso!",
+    "globalPushNotificationSuccess": "Notificações push globais enviadas com sucesso! 🌍🚀",
+    "interpretationFieldsUpdateFail": "Falha ao atualizar campos de interpretação! ❌",
+    "deleteScanReportFail": "Não é possível eliminar o relatório de digitalização. Por favor tente novamente",
+    "onboardingUnsuccessful": "Integração sem sucesso. Por favor tente novamente",
+    "logoutUnsuccessful": "Término de sessão sem sucesso. Por favor tente novamente",
+    "deleteScanReportQuestion": "Tem a certeza que deseja eliminar permanentemente este relatório?",
+    "videoLimitExceeds": "O seu vídeo excede o limite de {{videoSecondsLimit}} segundos. Por favor corte-o e recarregue",
+    "subscriptionActivated": "A sua subscrição foi ativada com sucesso! Desfrute dos seus benefícios exclusivos!",
+    "subscriptionCancelledByUser": "Cancelou a transação. Sinta-se à vontade para tentar novamente!",
+    "subscriptionActivationFailed": "Falha ao ativar a sua subscrição. Por favor tente novamente",
+    "logoutQuestion": "Tem a certeza que quer terminar sessão?",
+    "noSubscriptionToRestore": "Ups! Parece que não tem uma subscrição ativa neste momento. Para continuar a desfrutar de acesso total, por favor escolha um dos nossos planos de subscrição.",
+    "restorationSuccessful": "A restauração foi bem-sucedida! Desfrute!",
+    "restorationError": "Ocorreu um erro ao restaurar a compra.",
+    "medicalDisclaimerAlert": "A aplicação EXFIT AI não oferece diagnósticos, recomendações de tratamento ou qualquer aconselhamento médico. Procure sempre orientação de um profissional de saúde qualificado para decisões médicas.",
+    "scanLimitReached": "Estamos a otimizar a qualidade de digitalização para si! Poderá digitalizar novamente em cerca de {{hours}} horas e {{minutes}} minutos. Tem perguntas sobre algum tópico de microscopia? Pergunte ao nosso assistente de chat enquanto espera!",
+    "chatAndMediaFilesLimit": "Caro utilizador, atualize o seu plano para desfrutar de acompanhamento de calorias ilimitado, digitalizações de refeições, treino de fitness e muito mais. 🔓",
+    "chatMessageNotSent": "Ups! A sua mensagem não foi enviada. Por favor tente novamente",
+    "excusesLimit": "Ups, parece que está a tentar estabelecer um recorde mundial de desculpas! 😅 Máximo de 3 desculpas permitidas - escolha as suas 3 principais e vamos mover-nos!",
+    "excuseMinimum": "Por favor escolha pelo menos uma desculpa ou escreva a sua própria.",
+    "createActivityLogFailed": "Falha ao criar registo de atividade. Por favor tente novamente.",
+    "updateActivityLogFailed": "Algo correu mal ao atualizar o registo de atividade. Por favor tente novamente.",
+    "challengeAccepted": "Desafio aceite! 🔥 Agora vá e supere-o e ganhe essas recompensas!",
+    "challengeCompleted": "Desafio Concluído! 🔥 O seu novo saldo de recompensas foi atualizado.",
+    "macroEntryRecorded": "Registo de ingestão de macronutrientes - continue assim! 🥗",
+    "failedCreateMacroLog": "Ups! O registo de macronutrientes não foi guardado. Por favor tente novamente!",
+    "deleteMacroLog": "Ups! Não foi possível remover o seu registo de macronutrientes. Por favor tente novamente!",
+    "deleteMacro": "Macronutriente eliminado — pronto para a sua próxima entrada!",
+    "chooseSubscriptionPlan": "Por favor escolha um plano de subscrição para continuar!",
+    "createPermanentAccountSuccess": "A sua conta permanente foi criada! A sua conta está agora segura. Ah, e também recebeu",
+    "loginSuccess": "Sessão iniciada com sucesso — vamos começar a mover-nos!",
+    "accountDeleted": "A sua conta foi eliminada com sucesso",
+    "purchaseFailed": "A compra falhou. Por favor tente novamente.",
+    "streakRepairFailed": "Falha ao reparar a sequência. Por favor tente novamente.",
+    "failedSendMessage": "Falha ao enviar mensagem. Por favor tente novamente.",
+    "capturePictureFailed": "Algo correu mal ao tirar a foto",
+    "multipleVideosNotAllowed": "Para melhor precisão, por favor carregue apenas um vídeo de cada vez.",
+    "mixedMediaNotAllowed": "Os carregamentos devem conter apenas imagens ou apenas vídeos, não uma mistura de ambos.",
+    "mediaFilesUploadFiles": "Ocorreu um erro ao carregar os seus ficheiros multimédia. Por favor tente novamente."
+  }
+}

@@ -139,7 +139,7 @@ const getUserInfo = async (data: { language: string }, context: any) => {
 
     // Ensure user is authenticated
     if (!context.auth) {
-      return throwHttpsError('unauthenticated', t.common.notAuthorized);
+      return throwHttpsError('unauthenticated', t.common.noUserFound);
     }
     const userId = context.auth?.uid;
     const userInfoData = await getUserInfoById(userId, data.language);

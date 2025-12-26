@@ -53,7 +53,7 @@ const ExperienceLevelScreen = ({
               onPress={goToPreviousScreen}
             />
 
-            <Greeting userName={userInfo.userName} showGreeting={false} />
+            <Greeting userName={userInfo?.userName} showGreeting={false} />
           </View>
 
           <View className="rounded-full bg-[#172554] px-3 py-1">

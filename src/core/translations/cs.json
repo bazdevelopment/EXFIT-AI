@@ -1,0 +1,803 @@
+{
+  "onboarding": {
+    "message": "Vítejte v EXFIT AI!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Vyfoťte své jídlo a sledujte kalorie",
+        "headingTwo": "Skenujte jídla, mluvte se svým AI trenérem a získejte každodenní výzvy vytvořené pro vás"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Nechte AI pohánět vaši kondici",
+        "headingTwo": "Seznamte se s EXFIT AI, vaším chytrým parťákem na překonání pochybností, rozdmýchání motivace a udržení v pohybu"
+      },
+      "onboardingThirdPage": {
+        "heading": "Nechte AI detekovat vybavení posilovny, cviky a techniku"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Trénujte. Získávejte. Postupujte výše.",
+        "headingTwo": "Získávejte XP, sbírejte Gems, udržujte svůj Streak naživu a odemkněte odměny za vaši účast."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Posilovna",
+    "yoga": "Jóga",
+    "running": "Běh",
+    "walking": "Chůze",
+    "cycling": "Cyklistika",
+    "dance": "Tanec",
+    "stretching": "Protahování",
+    "swimming": "Plavání",
+    "hiking": "Turistika",
+    "pilates": "Pilates",
+    "climbing": "Lezení",
+    "skating": "Bruslení"
+  },
+  "general": {
+    "back": "Zpět",
+    "welcome": "Ahoj",
+    "welcomeBack": "Vítejte zpět!",
+    "welcomeMessage": "Vítejte!",
+    "goodMorning": "Dobré ráno",
+    "goodAfternoon": "Dobré odpoledne",
+    "goodEvening": "Dobrý večer",
+    "continue": "Pokračovat",
+    "retry": "Zkusit znovu",
+    "retake": "Vyfotit znovu",
+    "scanNow": "Skenovat nyní",
+    "scanning": "Skenování...",
+    "close": "Zavřít",
+    "gallery": "Galerie",
+    "files": "Soubory",
+    "cancel": "Zrušit",
+    "save": "Uložit",
+    "edit": "Upravit",
+    "delete": "Smazat",
+    "attention": "Pozor!",
+    "new": "Nový",
+    "yes": "Ano",
+    "no": "Ne",
+    "or": "nebo",
+    "change": "Změnit",
+    "typing": "Psaní...",
+    "online": "Online",
+    "chatbotPlaceholder": "Zeptejte se mě na cokoliv...",
+    "openSettings": "Otevřít nastavení",
+    "seeNotifications": "Zobrazit oznámení",
+    "viewProfile": "Zobrazit profil",
+    "upgradePlan": "Upgradovat plán",
+    "download": "Stáhnout",
+    "share": "Sdílet",
+    "shareLink": "Sdílet odkaz",
+    "skip": "Přeskočit",
+    "next": "Další",
+    "update": "Aktualizovat",
+    "tryAgain": "Zkusit znovu",
+    "createdAt": "Vytvořeno",
+    "and": "a",
+    "saveDiscount": "UŠETŘIT",
+    "restorePurchase": "Obnovit nákup",
+    "medicalDisclaimer": "Zdravotní omezení odpovědnosti",
+    "conversationHistory": "Historie konverzací",
+    "analyzingMediaFilesPlaceholder": "Analýza mediálních souborů...",
+    "freeTrial": "Zkušební verze zdarma",
+    "free": "ZDARMA",
+    "noPaymentNow": "Žádná platba nyní. Zrušit kdykoli.",
+    "completedScans": "Dokončené skeny",
+    "activeSubscription": "Aktivní předplatné",
+    "askAssistant": "Zeptejte se AI asistenta",
+    "then": "poté",
+    "perWeek": "týdně",
+    "perYear": "ročně",
+    "perMonth": "měsíčně",
+    "tryForFree": "Vyzkoušet zdarma",
+    "unlockNow": "Odemknout nyní",
+    "attended": "Zúčastněno",
+    "readyToStart": "Připraveno začít",
+    "skipped": "Přeskočeno",
+    "completed": "Dokončeno",
+    "purchase": "Nákup",
+    "active": "aktivní",
+    "dearUser": "Vážený uživateli",
+    "ok": "Ok",
+    "activities": "Aktivity",
+    "seeLess": "Zobrazit méně",
+    "seeMore": "Zobrazit více",
+    "goBack": "Jít zpět",
+    "schedule": "Rozvrh",
+    "utils": "Nástroje",
+    "verifyEmail": "Ověřit email",
+    "loading": "Načítání...",
+    "error": "Chyba",
+    "minutes": "minut",
+    "submit": "Odeslat",
+    "copyText": {
+      "loading": "Kopírování...",
+      "copied": "Zkopírováno! 📝",
+      "copy": "Kopírovat odkaz"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "Načítání vašeho personalizovaného zážitku...",
+        "second": "Synchronizace systémů...",
+        "third": "Zpracování vašich dat...",
+        "fourth": "Téměř hotovo, jen chvilku..."
+      },
+      "imageScanningLoading": {
+        "first": "Skenování vašeho obrázku, prosím vydržte...",
+        "second": "Analýza detailů, může to chvíli trvat...",
+        "third": "Zlepšování přesnosti pro nejlepší výsledky...",
+        "fourth": "Téměř hotovo, dokončování skenu..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, váš AI trenér se připravuje na pomoc...",
+        "second": "Vydržte! Mojo připravuje vaši odpověď...",
+        "third": "Přemýšlím... Mojo na tom pracuje!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Vydržte!",
+    "goBackMessage": "Jste si jisti, že se chcete vrátit?"
+  },
+  "internet": {
+    "noConnectionTitle": "Jste offline!",
+    "noConnectionMessage": "Zapněte mobilní data nebo se připojte k Wi-Fi. Nebo si jen dejte pauzu a jděte na procházku!"
+  },
+  "uploadScan": {
+    "title": "Nahrát obrázek",
+    "scanNow": "Skenovat nyní"
+  },
+  "weekDays": {
+    "today": "Dnes",
+    "yesterday": "Včera"
+  },
+  "auth": {
+    "verifyAuthCode": "Ověřit ověřovací kód",
+    "verifyAuthCodeButton": "Ověřit kód",
+    "authCodeHeading": "Ověřovací kód",
+    "loginViaEmailHeading": "Pojďme vás přihlásit. Pro pokračování zadejte svůj email.",
+    "emailAddress": "Email"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "Vítejte v EXFIT AI!",
+        "startButton": "Pojďme začít!",
+        "accountButton": "Už mám účet",
+        "count": "Počet",
+        "calories": "Kalorie",
+        "track": "Sledovat",
+        "activity": "Aktivita",
+        "with": "S"
+      },
+      "login": {
+        "agreeingMessage": "Pokračováním souhlasíte s našimi",
+        "termsAndConditions": "Podmínkami služby",
+        "privacyPolicy": "Zásadami ochrany osobních údajů",
+        "heading": "Přihlášení",
+        "continueName": "Pokračovat s přezdívkou",
+        "existingAccount": "Máte účet?",
+        "emailAddress": "Emailová adresa",
+        "emailPlaceholder": "Zadejte svůj email",
+        "password": "Heslo",
+        "confirmPassword": "Potvrdit heslo",
+        "forgotPassword": "Zapomenuté heslo",
+        "keepSigned": "Zůstat přihlášen",
+        "createPassword": "Vytvořit heslo"
+      },
+      "signUp": {
+        "heading": "Registrace",
+        "haveAccount": "Máte účet?",
+        "signInHere": "Přihlaste se zde",
+        "acceptTerms": {
+          "title": "Vyžadovány podmínky",
+          "subtitle": "Pro pokračování prosím přijměte podmínky použití a zásady ochrany osobních údajů."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Zapomenuté heslo",
+        "verificationSent": "Zkontrolujte prosím svůj email pro odkaz na obnovení hesla. Pokud ho nevidíte ve své doručené poště, podívejte se do složky spam nebo nevyžádané pošty.",
+        "verificationHeading": "Zadejte emailovou adresu registrovanou u vašeho účtu. Pošleme vám odkaz pro obnovení hesla.",
+        "rememberPassword": "Pamatujete si heslo?",
+        "loginAccount": "Přihlásit se do svého účtu",
+        "alertTitle": "Odesláno obnovení hesla",
+        "alertSubtitle": "Pokud existuje účet s tímto emailem, poslali jsme vám odkaz pro obnovení hesla."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Zadejte prosím email i heslo.",
+        "secureProgress": "Zabezpečte svůj pokrok",
+        "permanentAccount": "Vytvořte si trvalý účet pro uložení dat napříč zařízeními."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "Zadejte svůj ověřovací kód zaslaný emailem. Upozorňujeme, že kód vyprší za 5 minut.",
+        "verificationCodeSent": "Odeslali jsme ověřovací kód na",
+        "verificationCodeMissing": "Nedostali jste kód?",
+        "resendCode": "Znovu odeslat kód",
+        "backToLogin": "Zpět na přihlášení"
+      },
+      "namePreferenceScreen": {
+        "heading": "Pojďme to udělat osobní!",
+        "preferredNameQuestion": "Jak bychom vás měli oslovovat?",
+        "placeholderPreferredName": "Např. Kapitán Cool, Královna Včel, nebo jen Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Jak byste popsali svou úroveň kondice?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Jaký je váš cíl v oblasti kondice?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Vyberte pohlaví pro více přizpůsobený zážitek"
+      },
+      "freeTrialPreview": {
+        "heading": "Užijte si svou zkušební verzi zdarma! 🎉",
+        "subheading": "Během své zkušební verze zažijte tyto úžasné výhody",
+        "review": "Skenování jídla, počítání kalorií a sledování kondice jednoduše a chytře. Vyzkoušejte to!",
+        "reviewTrust": "📈 Důvěřuje 7 512+ uživatelů"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Zkušební verze zdarma povolena",
+          "heading": " Neomezený přístup",
+          "title": "Odemkněte prémiové funkce dnes!",
+          "firstOffering": "Sledovač aktivit a chytré výživové tipy",
+          "secondOffering": "Neomezený počítadlo kalorií a makroživin",
+          "thirdOffering": "Neomezený skener jídla",
+          "fourthOffering": "Váš AI fitness trenér 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Odemkněte prémiové funkce dnes!",
+
+        "secondOffering": {
+          "title": "Měsíční plán",
+          "subtitle": "{{ price }}/měsíc"
+        },
+        "thirdOffering": {
+          "title": "Roční plán",
+          "subtitle": "{{ price }} ročně"
+        },
+        "fourthOffering": {
+          "title": "{{trialDays}}-denní zkušební verze",
+          "subtitle": "{{ price }} ročně",
+          "plan": "Týdenní plán"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "Je k dispozici nová verze EXFIT AI",
+        "subheading": "Aktualizujte na nejnovější verzi, abyste i nadále využívali všechny funkce aplikace — trvá to jen 5 sekund!",
+        "action": "Získejte ji nyní!"
+      },
+      "rateAppScreen": {
+        "heading": "Připadá vám aplikace cenná a poutavá?",
+        "like": "Ano, líbí se mi!",
+        "dislike": "Ne tak docela..."
+      },
+      "noInternetScreen": {
+        "heading": "Jste offline",
+        "subheading": "Vaše připojení se zdá být nestabilní. Zkontrolujte prosím stav své sítě a zkuste to znovu"
+      },
+      "notifications": {
+        "title": "Oznámení",
+        "noNotifications": "Zatím žádná oznámení",
+        "emptyNotifications": "Prozatím žádná nová oznámení. Zkontrolujte to brzy."
+      },
+      "termsOfService": {
+        "title": "Podmínky služby"
+      },
+      "privacyPolicy": {
+        "title": "Zásady ochrany osobních údajů"
+      },
+      "share": {
+        "title": "Sdílet",
+        "heading": "Sdílejte aplikaci EXFIT AI",
+        "subheading": "Pomozte ostatním objevit aplikaci EXFIT AI",
+        "scanMessage": "Naskenujte pro stažení aplikace",
+        "shareMessage": "nebo sdílejte přes svou oblíbenou platformu"
+      },
+      "rate": {
+        "title": "Dejte nám zpětnou vazbu!"
+      },
+      "profile": {
+        "title": "Profil",
+        "edit": "Upravit profil",
+        "placeholderPreferredName": "Např. Kapitán Cool, Královna Včel, nebo jen Alex!",
+        "subscriptions": {
+          "monthly": "Měsíční předplatné",
+          "yearly": "Roční předplatné",
+          "weekly": "Týdenní předplatné"
+        },
+        "temporaryAccount": "Dočasný účet",
+        "permanentAccount": "Trvalý účet"
+      },
+      "generateReportScreen": {
+        "title": "Oceňujeme vaši trpělivost! Zde je vaše AI zpráva. ",
+        "userInput": "Vaše odevzdání",
+        "medicalReport": "Fitness zpráva",
+        "report": "AI generovaná fitness zpráva",
+        "conversationName": "Název konverzace"
+      },
+      "verifyEmail": {
+        "heading": "Ověřit email"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Spustit analýzu"
+      },
+      "contactUs": {
+        "heading": "Neváhejte nám napsat email přímo a náš tým vám odpoví co nejdříve",
+        "customerSupport": "Zákaznická podpora",
+        "emailAddress": "Emailová adresa"
+      },
+      "scan": {
+        "cameraPermission": "Pro použití této funkce je vyžadován přístup k fotoaparátu",
+        "requestPermission": "Vyžádání oprávnění k fotoaparátu...",
+        "scanAnything": "Skenujte cokoliv: Jídla, Potraviny, Vybavení do posilovny a další",
+        "askAssistant": "Zeptejte se svého AI fitness trenéra"
+      },
+      "excuseBuster": {
+        "heading": "Ničitel výmluv",
+        "reasons": {
+          "one": "Cítím se příliš unavený/á",
+          "two": "Nemám čas",
+          "three": "Příliš mě bolí na cvičení",
+          "four": "Posilovna je příliš plná",
+          "five": "Nemám náladu",
+          "six": "Venku je špatné počasí",
+          "seven": "Práce je hektická",
+          "eight": "Začnu zítra",
+          "nine": "Nevím, co dělat",
+          "ten": "Nemám vybavení k dispozici"
+        },
+        "excuseMotivation": "Jste tvrdší než vaše výmluva.",
+        "excuseQuestion": "Co vás dnes brzdí?",
+        "typeExcuse": "Napište svou výmluvu zde...",
+        "crushExcuse": "Rozdrť mou výmluvu"
+      },
+      "chat": {
+        "fitnessCoach": "Váš fitness trenér",
+        "randomQuestions": {
+          "one": "'📸 Vyfoťte mé jídlo a odhadněte kalorie a makroživiny',",
+          "two": "🥗 Analyzujte toto jídlo a řekněte mi, jak ho zlepšit pro můj cíl",
+          "three": "🧠 Sestavte mi personalizovaný trénink na základě mé úrovně kondice",
+          "four": "🏋️ Doporučte trénink, který můžu udělat hned teď bez vybavení",
+          "five": "⏱ Vytvořte 20minutový trénink na rušný den",
+          "six": "🔥 Navrhněte trénink na spalování tuků šitý na míru pro mě",
+          "seven": "💪 Navrhněte plán na budování svalů pro mé tělo a cíle",
+          "eight": "📊 Sledujte můj pokrok a ukažte mi, co bych měl/a zlepšit dál",
+          "nine": "🍽 Řekněte mi, co mám dnes jíst, abych dosáhl/a svých kalorických a proteinových cílů",
+          "ten": "🥚 Spočítejte můj denní příjem bílkovin, sacharidů a tuků",
+          "eleven": "🛒 Vytvořte zdravý nákupní seznam na základě mého dietního plánu",
+          "twelve": "😴 Upravte mé tréninky na základě mého spánku a regenerace",
+          "thirteen": "📅 Vytvořte týdenní tréninkový plán, kterého se mohu držet",
+          "fourteen": "⚡ Doporučte trénink s nízkou energií na dnešek",
+          "fifteen": "🤕 Upravte můj trénink, pokud mě bolí nebo jsem zraněný/á"
+        }
+      },
+      "progress": {
+        "error": "Něco se pokazilo",
+        "heading": "Nástěnka pokroku",
+        "subheading": "Pokračujte v úžasné práci! 🚀",
+        "weeklyGoals": "Týdenní cíle",
+        "monthlyGoal": "Měsíční cíl",
+        "insights": "Rychlé poznatky",
+        "mostActive": "Nejaktivnější",
+        "peakTime": "Čas špičkového výkonu",
+        "favoriteActivity": "Oblíbená aktivita",
+        "choice": "Vaše volba",
+        "weeklyChange": "Týdenní změna",
+        "lastWeekXP": "oproti minulému týdnu",
+        "consistency": "Konzistence",
+        "reliability": "spolehlivost",
+        "overview": "Přehled",
+        "performance": "Výkon",
+        "trends": "Trendy",
+        "lastSevenDays": "Posledních 7 dní",
+        "thisWeek": "Tento týden",
+        "activityFocus": "Zaměření na aktivitu",
+        "distribution": "Rozložení",
+        "history": "Historie",
+        "activities": "Aktivity",
+        "consistencyJourney": "Vaše cesta konzistence",
+        "bestDay": "Nejlepší den",
+        "averageSession": "Průměrná relace",
+        "totalHours": "Celkové hodiny",
+        "WeeklyComparisonXp": "Týdenní porovnání",
+        "weeksComparison": "Tento týden vs minulý týden",
+        "thisWeeks": "Tento týden",
+        "lastWeek": "Minulý týden",
+        "activityPattern": "Vzor aktivit",
+        "hoursBreakdown": "Členění po 24 hodinách",
+        "monthlyActivity": "Měsíční aktivita",
+        "lastMonths": "Posledních 6 měsíců",
+        "progression": "Progrese",
+        "monthlyEarned": "Měsíčně získané",
+        "recentActivity": "Nedávná aktivita",
+        "last30Days": "Posledních 30 dní",
+        "outstanding": "Vynikající pokrok!",
+        "activityReview": "Dokončili jste {{totalActivities}} aktivit a celkem jste získali {{totalXp}} XP. Pokračujte!",
+        "statistics": "Podrobné statistiky",
+        "longest": "Nejdelší",
+        "totalMonthActivities": "Fyzické aktivity dokončené tento měsíc!"
+      },
+      "shoppingCart": {
+        "heading": "Vlastněné předměty",
+        "equipMore": "Vybavit více",
+        "noItems": "Zatím nevlastníte žádné předměty!",
+        "goToShop": "Jít do obchodu",
+        "buyPotions": "Přejděte do obchodu a získejte nějaké vzrušující lektvary"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Počkejte! Nemažte mě!",
+    "subtitle": "Nejdříve pošlete zpětnou vazbu"
+  },
+
+  "home": {
+    "tab": "Domů"
+  },
+
+  "activity": {
+    "tab": "Aktivita"
+  },
+  "progress": {
+    "tab": "Pokrok"
+  },
+  "settings": {
+    "tab": "Nastavení",
+    "profile": "Profil",
+    "shop": "Obchod",
+    "contactUs": "Kontaktujte nás",
+    "about": "O aplikaci",
+    "app_name": "Název aplikace",
+    "languages": {
+      "english": "Angličtina",
+      "mandarin_chinese": "Čínština",
+      "hindi": "Hindština",
+      "spanish_spain": "Španělština (Španělsko)",
+      "spanish_mexico": "Španělština (Mexiko)",
+      "arabic": "Arabština",
+      "french": "Francouzština",
+      "french_canada": "Francouzština (Kanada)",
+      "portuguese_brazil": "Portugalština (Brazílie)",
+      "portuguese_portugal": "Portugalština (Portugalsko)",
+      "german": "Němčina",
+      "japanese": "Japonština",
+      "russian": "Ruština",
+      "korean": "Korejština",
+      "italian": "Italština",
+      "turkish": "Turečtina",
+      "vietnamese": "Vietnamština",
+      "polish": "Polština",
+      "ukrainian": "Ukrajinština",
+      "romanian": "Rumunština",
+      "dutch": "Nizozemština",
+      "czech": "Čeština",
+      "greek": "Řečtina",
+      "swedish": "Švédština",
+      "hungarian": "Maďarština",
+      "thai": "Thajština",
+      "hebrew": "Hebrejština",
+      "indonesian": "Indonéština",
+      "malay": "Malajština",
+      "finnish": "Finština",
+      "danish": "Dánština",
+      "norwegian": "Norština",
+      "slovak": "Slovenština",
+      "croatian": "Chorvatština",
+      "catalan": "Katalánština"
+    },
+    "generale": "Obecné",
+    "github": "Github",
+    "language": "Jazyk",
+    "links": "Odkazy",
+    "logout": "Odhlásit se",
+    "more": "Více",
+    "privacy": "Zásady ochrany osobních údajů",
+    "faq": "Často kladené otázky",
+    "rate": "Dejte nám zpětnou vazbu",
+    "share": "Sdílet",
+    "citations": "Citace pro lékařské informace",
+    "support": "Podpora",
+    "support_us": "Podpořte nás",
+    "terms": "Podmínky služby",
+    "theme": {
+      "dark": "Tmavý",
+      "light": "Světlý",
+      "system": "Systém",
+      "title": "Motiv"
+    },
+    "title": "Nastavení",
+    "version": "Verze",
+    "website": "Webové stránky",
+    "devMode": {
+      "title": "Režim vývojáře",
+      "componentsLibrary": "Knihovna UI"
+    },
+    "deleteAccount": "Smazat účet?",
+    "deleteAccountQuestion": "Jste si jisti, že chcete smazat svůj účet? Tato akce nelze vrátit a trvale odstraní všechna vaše data.",
+    "deactivateAccount": "Deaktivovat a smazat účet",
+    "permanentAccountCreate": "Vytvořit trvalý účet"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Hodnocení"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Jaký je důvod?",
+      "unnamedConversation": "Nepojmenované",
+      "reportTitlePlaceholder": "Přidat název"
+    },
+    "WeekBlock": {
+      "week": "Týden"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Posunout nahoru"
+    },
+    "FreeTierStatus": {
+      "heading": "Bezplatné skeny",
+      "subheading": "Odemkněte neomezené skeny upgradováním vašeho plánu",
+      "action": "Upgradovat"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Vyberte obrázek / video"
+    },
+    "GoalsModal": {
+      "heading": "Změňte svůj denní příjemový cíl",
+      "dailyCalories": "Denní kalorie",
+      "saveGoals": "Uložit cíle"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Streak přerušen. Uložte nyní.",
+      "loseStreak": "Nechat přerušit",
+      "buyStreak": "Koupit a zachránit Streak",
+      "buyRepairStreak": "Kupte si Elixír pro opravu Streaku za {{elixirPrice}} 💎, abyste získali zpět svůj ztracený streak.",
+      "streakRestore": "Streak v ohrožení — obnovte jej nyní!",
+      "restorationStreak": "Vraťte svůj {{lostStreakValue}}-denní streak zpět k životu s mocným Elixírem pro opravu Streaku!",
+      "applyElixir": "Aplikovat Elixír"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Nákup dokončen",
+      "inventoryAdded": "byl přidán do vašeho inventáře. Pokračujte v skvělé práci!",
+      "purchaseFailed": "Nákup se nezdařil",
+      "purchaseFailedMessage": "Nemohli jsme zpracovat váš nákup. Zkontrolujte prosím svůj zůstatek Gemů a zkuste to znovu.",
+      "gemsBalance": "Jejda, nemáte dostatek Gemů"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Denní přihlášení",
+      "bodyMovingQuestion": "Dostali jste dnes své tělo do pohybu?"
+    },
+    "TapToViewLabel": {
+      "label": "Klepněte pro zobrazení"
+    },
+    "UpgradeBanner": {
+      "heading": "Odemknout nyní!",
+      "upgradeMessage": "Odemkněte tuto funkci 🔓 Užijte si AI počítání kalorií, sledování makroživin a komplexní podporu, která vám pomůže dosáhnout vašich aktivit a fitness cílů rychleji 💪",
+      "upgradeTo": "Upgradovat na",
+      "moreBenefits": "AI funkce. Všechny prémiové nástroje. Všechny jsou vaše, abyste zůstali na cestě."
+    },
+    "MotivationBanner": {
+      "title": "Žádná motivace? Necítíte se dobře? Pojďme porazit tuto výmluvu.",
+      "subtitle": "Vyberte úkol, získejte XP a Gems — pojďme se hýbat!",
+      "beatExcuse": "Porazte svou výmluvu nyní!"
+    },
+    "AICoachBanner": {
+      "title": "Máte otázku? Stačí se zeptat.",
+      "subtitle": "Ovládněte svou kondici — ptejte se na kalorie, výživu, stroje v posilovně, pozice, zranění, formu, tréninkové plány",
+      "chat": "Chatujte s AI trenérem"
+    },
+    "PromptSection": {
+      "message": "Váš sken je připraven! Co byste nyní chtěli zjistit?",
+      "prompts": {
+        "first": "Jaké typy buněk nebo struktury jsou na tomto obrázku přítomny?",
+        "second": "Jsou v tomto vzorku nějaké abnormality nebo patogeny?",
+        "third": "Jaký je pravděpodobný původ nebo stav tohoto vzorku?",
+        "fourth": "Jaké poznatky můžete z tohoto obrázku poskytnout?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Okamžité AI skenování jídla — Sledujte kalorie a makroživiny během sekund",
+      "second": "24/7 AI osobní trenér — Odborné vedení, kdykoliv, kdekoliv",
+      "third": "Sledujte své fitness aktivity jako profesionál",
+      "fourth": "Plný přístup ke všem prémiovým funkcím"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Přezdívka",
+        "email": "Email",
+        "emailVerification": "Ověření emailu"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Dnešní makroživiny",
+      "scanFood": "Skenovat jídlo",
+      "calories": "Kalorie",
+      "fat": "Tuky",
+      "carbs": "Sacharidy",
+      "protein": "Bílkoviny",
+      "dailyIntakeGoals": "Denní příjmové cíle",
+      "percentage": "% denního makro cíle dosaženo",
+      "noMeals": "Žádná jídla zaznamenána",
+      "meals": "Jídla",
+      "deleteMeal": "Smazat jídlo",
+      "deleteMealConfirm": "Jste si jisti, že chcete smazat toto jídlo? Tato akce ovlivní výpočty vašich denních makroživin.",
+      "macroJournal": "Makro deník",
+      "noActivityRecorded": "Tento týden nebyla zaznamenána žádná aktivita"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Denní přihlášení",
+      "attendedMessage": "Dnes jste se ukázali, tak se buduje pokrok. Pokračujte!",
+      "notAttendedMessage": "Dnes vyhrává pohovka... ale zítra se vrátíte!",
+      "unknownMessage": "Vaše cesta začíná jediným krokem. Připraveni začít?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "Vybraná doba nesmí být delší než 360 minut",
+      "activitiesLimit": "Páni! Trénujete tajně na olympiádu? Dnes jste již dosáhli {{MAX_DAILY_ACTIVITIES}} aktivit! 🏅. Můžete své svaly opět zatížit zítra 💪!",
+      "addActivity": "Přidat aktivitu",
+      "modalHeading": "Co vás dnes dostalo do pohybu? Zaznamenejte to a udržte si hybnost"
+    },
+    "TaskListOverview": {
+      "heading": "Dnešní úkoly",
+      "noTasks": "Žádné úkoly!",
+      "enjoyFreeTime": "Užijte si svůj volný čas."
+    },
+    "ActivitySelector": {
+      "title": "Typ aktivity",
+      "customActivity": "Přidejte svou vlastní aktivitu",
+      "customActivityLabel": "Vlastní aktivita"
+    },
+    "DurationSelector": {
+      "heading": "Doba trvání",
+      "customDuration": "Zadejte dobu trvání (minuty)",
+      "customDurationLabel": "Vlastní doba trvání"
+    },
+    "NoActivityLogModal": {
+      "heading": "Ach ne! Nenechte dnes pohovku vyhrát!",
+      "crushExcuse": "Rozdrť mou výmluvu",
+      "skipToday": "Ne dnes, možná zítra..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Skvělá práce!",
+      "unlockReward": "Dokázali jste to! Jedna aktivita hotová a odemkli jste si odměnu. Pokračujme v udržování streaků!"
+    },
+    "SkipReasonInput": {
+      "title": "To je v pořádku, jen se kontroluji.",
+      "subtitle": "Chcete se podělit o to, proč dnes nevyšlo? Žádný nátlak.",
+      "skipPlaceholder": "Např. Moje kočka snědla mé běžecké boty",
+      "skipToday": "Přeskočit dnešek"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Zmražení streaků!",
+      "streakResetNow": "Váš streak byl dnes resetován.",
+      "streakRepairUse": "Použijte svůj Elixír pro opravu Streaku, abyste udrželi svůj streak naživu",
+      "streakRepairExpired": " Vaše 48hodinové okno pro opravu streaků vypršelo! Ale hej, nové streaky znamenají nové příležitosti k překonání vašeho osobního rekordu.",
+      "repairStreak": "Opravit Streak",
+      "streakPotionConsumed": "Lektvar zmražení Streaku spotřebován!",
+      "streakFreezeApplied": " Váš Lektvar zmražení Streaku se aktivoval a ochránil váš streak. Stále jste v ohni!",
+      "streakElixirApplied": "Lektvar pro opravu Streaku se aktivoval!",
+      "streakFreezePotionApplied": "Zachránili jste svůj Streak! Váš Lektvar zmražení Streaku se aktivoval a ochránil váš streak. Stále jste v ohni!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Nenalezena žádná aktivita",
+      "addFirstActivity": "Přidejte svou první aktivitu, abyste získali Gems a XP.",
+      "addActivity": "Přidat aktivitu",
+      "todayActivities": "Dnešní aktivity"
+    },
+    "ActivityCard": {
+      "activitySkipped": "přeskočeno",
+      "dayOff": "Den volna",
+      "description": "Popis",
+      "excuseReason": "Důvod výmluvy ⚠️",
+      "yourNotes": "Vaše poznámky 📝",
+      "notesPlaceholder": "Např. Trénink zad a bicepsů, 3 supersérie",
+      "addNotes": "Přidat poznámky"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Knihovna fotografií",
+      "takePhoto": "Vyfotit",
+      "chooseFile": "Vybrat soubor"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Dosaženo maximální úrovně! Úroveň",
+      "xpLeft": "zbývá k dosažení úrovně"
+    },
+    "ShopItemCard": {
+      "unavailable": "Nedostupné",
+      "worth": "v hodnotě",
+      "equiped": "vybaveno",
+      "shop": "Obchod",
+      "earnedId": "Zasloužili jste si to.",
+      "treat": "Nyní se odměňte!",
+      "spendGems": "Utraťte své Gems moudře, vaše fitness cesta se právě stala zajímavou."
+    },
+    "ActivityTaskCard": {
+      "win": "Vyhrát",
+      "acceptChallenge": "Přijmout výzvu 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "Co takhle se trochu překonat touto výzvou?",
+      "typeInput": "(Napište svůj vstup níže)"
+    },
+    "MacroOverview": {
+      "analysis": "Analýza",
+      "macroAdded": "Makroživiny přidány",
+      "countToday": "Počet pro dnešek"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Chraňte svůj streak, pokud vynecháte den cvičení.",
+      "owned": "VLASTNĚNO",
+      "manualTrigger": "MANUÁLNÍ SPUŠTĚNÍ",
+      "activated": "AKTIVOVÁNO"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Promiňte, potřebujeme oprávnění fotoaparátu, aby to fungovalo!",
+    "errorSelectingImagePicker": "Při výběru obrázku se něco pokazilo. Zkuste to prosím znovu.",
+    "errorSelectingDocumentPicker": "Při výběru dokumentu se něco pokazilo. Zkuste to prosím znovu.",
+    "errorTakingPicture": "Při pořizování fotografie se něco pokazilo. Zkuste to prosím znovu.",
+    "enableNotifications": {
+      "heading": "Povolit oznámení",
+      "subHeading": "Oznámení jsou aktuálně vypnutá. Chcete-li zůstat informováni, povolte je prosím v nastavení zařízení."
+    },
+    "notesSavedSuccess": "Poznámky uloženy! 📝 Vše je připraveno.",
+    "enableNotificationFailed": "Push oznámení jsou vypnutá. Povolte je v nastavení, abyste dostávali důležité aktualizace!",
+    "enableNotificationError": "Při povolování oznámení došlo k chybě",
+    "notificationDisabledSuccess": "Oznámení úspěšně zakázána.",
+    "notificationDisabledRegisterError": "Nepodařilo se odregistrovat zařízení pro oznámení.",
+    "notificationDisabledError": "Při zakazování oznámení došlo k chybě.",
+    "checkNotificationStatusError": "Chyba při kontrole stavu oznámení.",
+    "projectIdNotFound": "ID projektu oznámení nebylo nalezeno.",
+    "imageSizeLarge": "Obrázek je příliš velký! Velikost souboru je {{fileSize}} MB, ale limit je {{imageLimit}} MB.",
+    "videoSizeLarge": "Video je příliš velké! Velikost souboru je {{fileSize}} MB, ale limit je {{videoLimit}} MB.",
+    "loggedInSuccess": "Úspěšně přihlášeno",
+    "loggedOutSuccess": "Úspěšně jste se odhlásili!",
+    "sendVerificationCodeError": "Chyba při odesílání ověřovacího kódu",
+    "validateAuthCodeError": "Chyba při ověřování ověřovacího kódu",
+    "anonymousSignInError": "Chyba při anonymním přihlášení",
+    "emailLoginError": "Chyba při přihlašování",
+    "preferredLanguageError": "Chyba při aktualizaci preferovaného jazyka uživatele",
+    "sharingNotAvailable": "Sdílení není na vašem zařízení v současnosti k dispozici",
+    "sharingLinkError": "Nepodařilo se sdílet odkaz.",
+    "individualPushNotificationSuccess": "Individuální push oznámení úspěšně odeslána!",
+    "globalPushNotificationSuccess": "Globální push oznámení úspěšně odeslána! 🌍🚀",
+    "interpretationFieldsUpdateFail": "Aktualizace interpretačních polí selhala! ❌",
+    "deleteScanReportFail": "Nelze smazat skenovací zprávu. Zkuste to prosím znovu",
+    "onboardingUnsuccessful": "Úvodní proces byl neúspěšný. Zkuste to prosím znovu",
+    "logoutUnsuccessful": "Odhlášení bylo neúspěšné. Zkuste to prosím znovu",
+    "deleteScanReportQuestion": "Jste si jisti, že chcete tuto zprávu trvale smazat?",
+    "videoLimitExceeds": "Vaše video překračuje limit {{videoSecondsLimit}} sekund. Zkrátte jej prosím a znovu nahrajte",
+    "subscriptionActivated": "Vaše předplatné bylo úspěšně aktivováno! Užijte si své exkluzivní výhody!",
+    "subscriptionCancelledByUser": "Zrušili jste transakci. Nebojte se to zkusit znovu!",
+    "subscriptionActivationFailed": "Aktivace vašeho předplatného selhala. Zkuste to prosím znovu",
+    "logoutQuestion": "Jste si jisti, že se chcete odhlásit?",
+    "noSubscriptionToRestore": "Jejda! Zdá se, že v současnosti nemáte aktivní předplatné. Chcete-li i nadále využívat plný přístup, vyberte si prosím jeden z našich předplatných plánů.",
+    "restorationSuccessful": "Obnovení bylo úspěšné! Užijte si to!",
+    "restorationError": "Při obnovování nákupu došlo k chybě.",
+    "medicalDisclaimerAlert": "Aplikace EXFIT AI nenabízí diagnózy, doporučení léčby ani žádné lékařské rady. Při lékařských rozhodnutích vždy vyhledejte radu kvalifikovaného zdravotnického pracovníka.",
+    "scanLimitReached": "Optimalizujeme pro vás kvalitu skenování! Budete moci skenovat znovu přibližně za {{hours}} hodin a {{minutes}} minut. Máte nějaké otázky ohledně mikroskopických témat? Zeptejte se našeho chatovacího asistenta, zatímco čekáte!",
+    "chatAndMediaFilesLimit": "Vážený uživateli, upgradujte svůj plán, abyste si mohli užívat neomezené sledování kalorií, skenování jídel, fitness koučování a další. 🔓",
+    "chatMessageNotSent": "Jejda! Vaše zpráva neprošla. Zkuste to prosím znovu",
+    "excusesLimit": "Jejda, vypadá to, že se snažíte vytvořit světový rekord ve výmluvách! 😅 Povoleno je maximálně 3 výmluvy - vyberte své top 3 a pojďme se hýbat!",
+    "excuseMinimum": "Vyberte prosím alespoň jednu výmluvu nebo napište svou vlastní.",
+    "createActivityLogFailed": "Vytvoření záznamu aktivity selhalo. Zkuste to prosím znovu.",
+    "updateActivityLogFailed": "Při aktualizaci záznamu aktivity se něco pokazilo. Zkuste to prosím znovu.",
+    "challengeAccepted": "Výzva přijata! 🔥 Nyní ji rozdrťte a získejte odměny!",
+    "challengeCompleted": "Výzva dokončena! 🔥 Váš nový zůstatek odměn byl aktualizován.",
+    "macroEntryRecorded": "Příjem makroživin zaznamenán - pokračujte! 🥗",
+    "failedCreateMacroLog": "Jejda! Makro záznam se neuložil. Zkuste to prosím znovu!",
+    "deleteMacroLog": "Jejda! Nepodařilo se odstranit váš makro záznam. Zkuste to prosím znovu!",
+    "deleteMacro": "Makro smazáno — připraveno na váš další záznam!",
+    "chooseSubscriptionPlan": "Pro pokračování prosím vyberte předplatný plán!",
+    "createPermanentAccountSuccess": "Váš trvalý účet byl vytvořen! Váš účet je nyní zabezpečen. A mimochodem, také jste obdrželi",
+    "loginSuccess": "Úspěšně přihlášeno — pojďme se hýbat!",
+    "accountDeleted": "Váš účet byl úspěšně smazán",
+    "purchaseFailed": "Nákup selhal. Zkuste to prosím znovu.",
+    "streakRepairFailed": "Oprava streaků selhala. Zkuste to prosím znovu.",
+    "failedSendMessage": "Odeslání zprávy selhalo. Zkuste to prosím znovu.",
+    "capturePictureFailed": "Při pořizování fotografie se něco pokazilo",
+    "multipleVideosNotAllowed": "Pro lepší přesnost nahrajte prosím pouze jedno video najednou.",
+    "mixedMediaNotAllowed": "Nahrávky musí obsahovat pouze obrázky nebo pouze videa, ne směs obojího.",
+    "mediaFilesUploadFiles": "Při nahrávání vašich mediálních souborů došlo k chybě. Zkuste to prosím znovu."
+  }
+}

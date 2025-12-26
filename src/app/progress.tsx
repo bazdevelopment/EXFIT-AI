@@ -222,7 +222,7 @@ const TabButton = ({
 
 const EnhancedProgressScreen = () => {
   const { data, isLoading, error, refetch } = useProgressData();
-
+  // const { isUpgradeRequired } = useSubscriptionAlert();
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -266,6 +266,7 @@ const EnhancedProgressScreen = () => {
     <ScreenWrapper>
       {/* Dark mode main background */}
       <ScreenHeader title={translate('rootLayout.screens.progress.heading')} />
+      {/* {isUpgradeRequired && <UpgradeBanner />} */}
 
       <ScrollView
         className="flex-1"
