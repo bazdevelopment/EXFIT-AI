@@ -79,7 +79,7 @@ const createActivityLogHandler = async (
 
   // 1. --- AUTHENTICATION & VALIDATION ---
   if (!context.auth) {
-    throwHttpsError('unauthenticated', t.common.notAuthorized);
+    throwHttpsError('unauthenticated', t.common.noUserFound);
   }
   const userId = context.auth.uid;
   functions.logger.info(`Creating log for user: ${userId}`, { data });
@@ -290,7 +290,7 @@ const getCalendarActivityLogHandler = async (
 
   // 1. --- Authentication & Authorization Check ---
   if (!context.auth || !context.auth.uid) {
-    throwHttpsError('unauthenticated', t.common.notAuthorized);
+    throwHttpsError('unauthenticated', t.common.noUserFound);
   }
   const userId = context.auth.uid;
 
@@ -421,7 +421,7 @@ const updateActivityLogHandler = async (
 
   // 1. --- AUTHENTICATION & VALIDATION ---
   if (!context.auth) {
-    throwHttpsError('unauthenticated', t.common.notAuthorized);
+    throwHttpsError('unauthenticated', t.common.noUserFound);
   }
   const userId = context.auth.uid;
 

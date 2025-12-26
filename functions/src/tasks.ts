@@ -248,7 +248,7 @@ const updateAiTasksStatusHandler = async (
 
   // 1. --- AUTHENTICATION & VALIDATION ---
   if (!context.auth) {
-    throwHttpsError('unauthenticated', t.common.notAuthorized);
+    throwHttpsError('unauthenticated', t.common.noUserFound);
   }
   const userId = context.auth.uid;
 

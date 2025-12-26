@@ -1,28 +1,43 @@
 export interface ITranslation {
   common: {
     welcome: string;
-    notAuthorized: string;
-    userIdMissing: string;
-    noUserFound: string;
-  };
-  loginUserAnonymously: {
-    mandatoryUsername: string;
-    accountCreated: string;
-    userLoggedIn: string;
     error: string;
+    loading: string;
+    noUserFound: string;
+    userIdMissing: string;
+    scanLimitReached: string;
+    mandatoryLanguage: string;
+    // notAuthorized: string;
   };
-  getUserInfo: {
-    successGetInfo: string;
-    errorGetInfo: string;
+  auth: {
+    signIn: string;
+    signUp: string;
   };
-  getUserInfoById: {
-    noUserInfoData: string;
-    getUserFetchError: string;
+  loginUserViaEmail: {
+    mandatoryEmail: string;
+    invalidEmail: string;
+    accountCreated: string;
+    verificationCodeSent: string;
+    internalError: string;
   };
-  updateUser: {
-    successUpdatedUser: string;
-    updateUserError: string;
+  sendEmailVerification: {
+    emailMandatory: string;
+    emailUsed: string;
+    userNotFound: string;
+    verificationCodeSent: string;
+    generalError: string;
   };
+
+  verifyAuthenticationCode: {
+    authCodeMandatory: string;
+    emailAddressMandatory: string;
+    userNotFound: string;
+    invalidAuthCode: string;
+    authCodeExpired: string;
+    authCodeVerified: string;
+    generalError: string;
+  };
+
   analyzeImage: {
     scanLimitReached: string;
     imageMissing: string;
@@ -30,16 +45,86 @@ export interface ITranslation {
     interpretationNotSaved: string;
     analysisCompleted: string;
   };
+
+  analyzeVideo: {
+    noVideoFound: string;
+    uploadVideoStorageError: string;
+    interpretationNotSaved: string;
+    analysisCompleted: string;
+  };
+
+  incrementUsersScans: {
+    incrementSuccessScan: string;
+    generalError: string;
+  };
+
+  decrementUserScans: {
+    decrementSuccessScan: string;
+    decrementErrorScan: string;
+    generalError: string;
+  };
+
+  getUserInfo: {
+    successGetInfo: string;
+    errorGetInfo: string;
+  };
+
+  getUserInfoById: {
+    noUserInfoData: string;
+    getUserFetchError: string;
+  };
+
+  updateUserSubscription: {
+    subscribeSuccess: string;
+    updateSubscriptionError: string;
+  };
+  updateUser: {
+    successUpdatedUser: string;
+    updateUserError: string;
+  };
+
   updateUserLanguage: {
     updateSuccess: string;
     updateError: string;
   };
-  continueConversation: {
-    messagesLimit: string;
-    conversationNotFound: string;
-    serviceIssueAi: string;
-    noResponseAiService: string;
+
+  updateScanInterpretation: {
+    success: string;
+    generalError: string;
+    paramsRequired: string;
   };
+
+  deleteScanInterpretation: {
+    success: string;
+    documentIdRequired: string;
+    generalError: string;
+  };
+
+  getInterpretationByDate: {
+    startEndDateRequired: string;
+    startDatePriority: string;
+    generalError: string;
+  };
+
+  getInterpretationByDocumentId: {
+    paramsRequired: string;
+    noDocIdFound: string;
+    success: string;
+    generalError: string;
+  };
+
+  getRecentInterpretation: {
+    limitRequired: string;
+    noInterpretationFound: string;
+    success: string;
+    generalError: string;
+    generalErrorAdditional: string;
+  };
+  storeDeviceToken: {
+    deviceTokenRequired: string;
+    generalError: string;
+  };
+
   sendGlobalPushNotifications: {
     requiredParams: string;
     generalError: string;
@@ -52,16 +137,37 @@ export interface ITranslation {
     deviceIdentified: string;
     generalError: string;
   };
+
   getUserNotification: {
     generalError: string;
     generalErrorAdditional: string;
   };
+
+  getScanCategories: {
+    noCategoryFound: string;
+    generalError: string;
+  };
+
+  uploadScanCategories: {
+    successfullyUploaded: string;
+    generalError: string;
+  };
+
   sendUserNotification: {
     noTokenFound: string;
     generalError: string;
   };
-  storeDeviceToken: {
-    deviceTokenRequired: string;
-    generalError: string;
+  loginUserAnonymously: {
+    mandatoryUsername: string;
+    accountCreated: string;
+    userLoggedIn: string;
+    error: string;
   };
+  continueConversation: {
+    messagesLimit: string;
+    conversationNotFound: string;
+    serviceIssueAi: string;
+    noResponseAiService: string;
+  };
+  // Add more sections as needed
 }

@@ -26,7 +26,7 @@ export function getChatMessagesStyles(
     body: {
       marginTop: -7,
       marginBottom: -7,
-      fontSize: 14,
+      fontSize: 15.5,
       lineHeight: 22,
       color: baseTextColor,
     },
@@ -47,22 +47,22 @@ export function getChatMessagesStyles(
     },
     paragraph: {
       fontFamily: 'Font-Medium',
-      fontSize: 14,
+      fontSize: 15.5,
       marginBottom: 8,
     },
     list_item: {
       fontFamily: 'Font-Medium',
-      fontSize: 14,
+      fontSize: 15.5,
       marginBottom: 6,
     },
     span: {
       fontFamily: 'Font-Medium',
-      fontSize: 14,
+      fontSize: 15.5,
     },
     strong: {
       fontFamily: 'Font-Extra-Bold',
       fontWeight: '800',
-      color: '#3195FD', // Highlight bold text with a strong color like amber
+      color: colors.white, // Highlight bold text with a strong color like amber
     },
     em: {
       fontFamily: 'Font-Extra-Bold',
@@ -78,7 +78,7 @@ export function getChatMessagesStyles(
       // backgroundColor: '#F3F4F6',
       borderRadius: 4,
       fontFamily: 'Font-Mono',
-      fontSize: 13,
+      fontSize: 15.5,
       color: '#111827',
     },
   };
@@ -87,7 +87,7 @@ export function getChatMessagesStyles(
     body: {
       marginTop: -7,
       marginBottom: -7,
-      fontSize: 14,
+      fontSize: 15.5,
       lineHeight: 22,
       color: darkTextColor,
     },
@@ -111,6 +111,7 @@ export function getChatMessagesStyles(
     strong: {
       fontFamily: 'Font-Extra-Bold',
       fontWeight: '800',
+      color: colors.white, // Highlight bold text with a strong color like amber
     },
     em: {
       fontFamily: 'Font-Medium',

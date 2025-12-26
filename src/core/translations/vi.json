@@ -1,0 +1,800 @@
+{
+  "onboarding": {
+    "message": "Chào mừng đến với EXFIT AI!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Chụp ảnh bữa ăn và theo dõi calo",
+        "headingTwo": "Quét bữa ăn, trò chuyện với Huấn luyện viên AI của bạn và nhận thử thách hàng ngày được thiết kế riêng cho bạn"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Để AI thúc đẩy thể lực của bạn",
+        "headingTwo": "Gặp gỡ EXFIT AI, người bạn đồng hành thông minh để chiến thắng nghi ngờ, thổi bùng động lực và giữ bạn luôn vận động"
+      },
+      "onboardingThirdPage": {
+        "heading": "Để AI phát hiện thiết bị phòng gym, tư thế tập và kỹ thuật"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Tập luyện. Kiếm điểm. Tăng cấp.",
+        "headingTwo": "Kiếm XP, thu thập Gems, duy trì Streak của bạn và mở khóa phần thưởng cho sự tham gia của bạn."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Phòng gym",
+    "yoga": "Yoga",
+    "running": "Chạy bộ",
+    "walking": "Đi bộ",
+    "cycling": "Đạp xe",
+    "dance": "Khiêu vũ",
+    "stretching": "Giãn cơ",
+    "swimming": "Bơi lội",
+    "hiking": "Đi bộ đường dài",
+    "pilates": "Pilates",
+    "climbing": "Leo núi",
+    "skating": "Trượt băng"
+  },
+  "general": {
+    "back": "Quay lại",
+    "welcome": "Xin chào",
+    "welcomeBack": "Chào mừng trở lại!",
+    "welcomeMessage": "Chào mừng!",
+    "goodMorning": "Chào buổi sáng",
+    "goodAfternoon": "Chào buổi chiều",
+    "goodEvening": "Chào buổi tối",
+    "continue": "Tiếp tục",
+    "retry": "Thử lại",
+    "retake": "Chụp lại",
+    "scanNow": "Quét ngay",
+    "scanning": "Đang quét...",
+    "close": "Đóng",
+    "gallery": "Thư viện",
+    "files": "Tệp",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "attention": "Chú ý!",
+    "new": "Mới",
+    "yes": "Có",
+    "no": "Không",
+    "or": "hoặc",
+    "change": "Thay đổi",
+    "typing": "Đang nhập...",
+    "online": "Trực tuyến",
+    "chatbotPlaceholder": "Hỏi tôi bất cứ điều gì...",
+    "openSettings": "Mở Cài đặt",
+    "seeNotifications": "Xem thông báo",
+    "viewProfile": "Xem hồ sơ",
+    "upgradePlan": "Nâng cấp gói",
+    "download": "Tải xuống",
+    "share": "Chia sẻ",
+    "shareLink": "Chia sẻ liên kết",
+    "skip": "Bỏ qua",
+    "next": "Tiếp theo",
+    "update": "Cập nhật",
+    "tryAgain": "Thử lại",
+    "createdAt": "Được tạo lúc",
+    "and": "và",
+    "saveDiscount": "TIẾT KIỆM",
+    "restorePurchase": "Khôi phục mua hàng",
+    "medicalDisclaimer": "Tuyên bố miễn trừ y tế",
+    "conversationHistory": "Lịch sử trò chuyện",
+    "analyzingMediaFilesPlaceholder": "Đang phân tích tệp đa phương tiện...",
+    "freeTrial": "Dùng thử miễn phí",
+    "free": "MIỄN PHÍ",
+    "noPaymentNow": "Không thanh toán bây giờ. Hủy bất kỳ lúc nào.",
+    "completedScans": "Lần quét đã hoàn thành",
+    "activeSubscription": "Gói đăng ký đang hoạt động",
+    "askAssistant": "Hỏi trợ lý AI",
+    "then": "sau đó",
+    "perWeek": "mỗi tuần",
+    "perYear": "mỗi năm",
+    "perMonth": "mỗi tháng",
+    "tryForFree": "Dùng thử miễn phí",
+    "unlockNow": "Mở khóa ngay",
+    "attended": "Đã tham gia",
+    "readyToStart": "Sẵn sàng bắt đầu",
+    "skipped": "Đã bỏ qua",
+    "completed": "Đã hoàn thành",
+    "purchase": "Mua hàng",
+    "active": "đang hoạt động",
+    "dearUser": "Người dùng thân mến",
+    "ok": "Ok",
+    "activities": "Hoạt động",
+    "seeLess": "Xem ít hơn",
+    "seeMore": "Xem thêm",
+    "goBack": "Quay lại",
+    "schedule": "Lịch trình",
+    "utils": "Tiện ích",
+    "verifyEmail": "Xác minh email",
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "minutes": "phút",
+    "submit": "Gửi",
+    "copyText": {
+      "loading": "Đang sao chép...",
+      "copied": "Đã sao chép! 📝",
+      "copy": "Sao chép liên kết"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "Đang tải trải nghiệm cá nhân hóa của bạn...",
+        "second": "Đang đồng bộ hóa hệ thống...",
+        "third": "Đang xử lý dữ liệu của bạn...",
+        "fourth": "Gần xong, chỉ một chút nữa..."
+      },
+      "imageScanningLoading": {
+        "first": "Đang quét hình ảnh của bạn, vui lòng chờ...",
+        "second": "Đang phân tích chi tiết, việc này có thể mất một lúc...",
+        "third": "Đang nâng cao độ chính xác cho kết quả tốt nhất...",
+        "fourth": "Gần xong, đang hoàn tất quá trình quét..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, Huấn luyện viên AI của bạn đang chuẩn bị để hỗ trợ bạn...",
+        "second": "Chờ chút! Mojo đang chuẩn bị câu trả lời của bạn...",
+        "third": "Đang suy nghĩ... Mojo đang xử lý!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Chờ chút!",
+    "goBackMessage": "Bạn có chắc chắn muốn quay lại không?"
+  },
+  "internet": {
+    "noConnectionTitle": "Bạn đang ngoại tuyến!",
+    "noConnectionMessage": "Bật dữ liệu di động hoặc kết nối với Wi-Fi. Hoặc chỉ cần nghỉ ngơi và đi dạo!"
+  },
+  "uploadScan": {
+    "title": "Tải lên hình ảnh",
+    "scanNow": "Quét ngay"
+  },
+  "weekDays": {
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua"
+  },
+  "auth": {
+    "verifyAuthCode": "Xác minh mã xác thực",
+    "verifyAuthCodeButton": "Xác minh mã",
+    "authCodeHeading": "Mã xác thực",
+    "loginViaEmailHeading": "Hãy đăng nhập cho bạn. Vui lòng nhập email của bạn để tiếp tục.",
+    "emailAddress": "Email"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "Chào mừng đến với EXFIT AI!",
+        "startButton": "Hãy bắt đầu!",
+        "accountButton": "Tôi đã có tài khoản",
+        "count": "Đếm",
+        "calories": "Calo",
+        "track": "Theo dõi",
+        "activity": "Hoạt động",
+        "with": "Với"
+      },
+      "login": {
+        "agreeingMessage": "Bằng cách tiếp tục, bạn đồng ý với",
+        "termsAndConditions": "Điều khoản và Điều kiện",
+        "privacyPolicy": "Chính sách quyền riêng tư",
+        "heading": "Đăng nhập",
+        "continueName": "Tiếp tục với biệt danh",
+        "existingAccount": "Bạn đã có tài khoản?",
+        "emailAddress": "Địa chỉ email",
+        "emailPlaceholder": "Nhập email của bạn",
+        "password": "Mật khẩu",
+        "confirmPassword": "Xác nhận mật khẩu",
+        "forgotPassword": "Quên mật khẩu?",
+        "keepSigned": "Giữ tôi đăng nhập",
+        "createPassword": "Tạo mật khẩu"
+      },
+      "signUp": {
+        "heading": "Đăng ký",
+        "haveAccount": "Đã có tài khoản?",
+        "signInHere": "Đăng nhập tại đây",
+        "acceptTerms": {
+          "title": "Yêu cầu điều khoản",
+          "subtitle": "Vui lòng chấp nhận điều khoản sử dụng và chính sách quyền riêng tư để tiếp tục."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Quên mật khẩu",
+        "verificationSent": "Vui lòng kiểm tra email của bạn để nhận liên kết đặt lại mật khẩu. Nếu bạn không thấy nó trong hộp thư đến, hãy kiểm tra thư mục spam hoặc thư rác.",
+        "verificationHeading": "Nhập địa chỉ email đã đăng ký với tài khoản của bạn. Chúng tôi sẽ gửi cho bạn một liên kết để đặt lại mật khẩu.",
+        "rememberPassword": "Nhớ mật khẩu?",
+        "loginAccount": "Đăng nhập vào tài khoản của bạn",
+        "alertTitle": "Đã gửi đặt lại mật khẩu",
+        "alertSubtitle": "Nếu có tài khoản với email này, chúng tôi đã gửi cho bạn liên kết đặt lại mật khẩu."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Vui lòng nhập cả email và mật khẩu.",
+        "secureProgress": "Bảo vệ tiến trình của bạn",
+        "permanentAccount": "Tạo tài khoản vĩnh viễn để lưu dữ liệu của bạn trên mọi thiết bị."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "Nhập mã xác minh của bạn được gửi qua email. Lưu ý rằng mã sẽ hết hạn sau 5 phút.",
+        "verificationCodeSent": "Chúng tôi đã gửi mã xác minh đến",
+        "verificationCodeMissing": "Không nhận được mã?",
+        "resendCode": "Gửi lại mã",
+        "backToLogin": "Quay lại đăng nhập"
+      },
+      "namePreferenceScreen": {
+        "heading": "Hãy làm điều này mang tính cá nhân!",
+        "preferredNameQuestion": "Chúng tôi nên gọi bạn là gì?",
+        "placeholderPreferredName": "Ví dụ: Captain Cool, Queen Bee, hoặc chỉ Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Bạn sẽ mô tả kinh nghiệm thể dục của mình như thế nào?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Mục tiêu thể dục của bạn là gì?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Chọn giới tính để có trải nghiệm được cá nhân hóa hơn"
+      },
+      "freeTrialPreview": {
+        "heading": "Tận hưởng thời gian dùng thử miễn phí của bạn! 🎉",
+        "subheading": "Trải nghiệm những lợi ích tuyệt vời này trong thời gian dùng thử miễn phí của bạn",
+        "review": "Quét bữa ăn, đếm calo và theo dõi thể dục đơn giản và thông minh. Hãy thử ngay!",
+        "reviewTrust": "📈 Được tin tưởng bởi 7,512+ người dùng"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Đã bật dùng thử miễn phí",
+          "heading": "Truy cập không giới hạn",
+          "title": "Mở khóa tính năng cao cấp hôm nay!",
+          "firstOffering": "Theo dõi hoạt động & Mẹo dinh dưỡng thông minh",
+          "secondOffering": "Bộ đếm calo và dinh dưỡng đa lượng không giới hạn",
+          "thirdOffering": "Máy quét thực phẩm không giới hạn",
+          "fourthOffering": "Huấn luyện viên thể dục AI của bạn 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Mở khóa tính năng cao cấp hôm nay!",
+        "secondOffering": {
+          "title": "Gói hàng tháng",
+          "subtitle": "{{ price }}/tháng"
+        },
+        "thirdOffering": {
+          "title": "Gói hàng năm",
+          "subtitle": "{{ price }} mỗi năm"
+        },
+        "fourthOffering": {
+          "title": "Dùng thử {{trialDays}} ngày",
+          "subtitle": "{{ price }} mỗi năm",
+          "plan": "Gói hàng tuần"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "Phiên bản mới của EXFIT AI đã có sẵn",
+        "subheading": "Cập nhật lên phiên bản mới nhất để tiếp tục tận hưởng tất cả tính năng của ứng dụng — chỉ mất 5 giây!",
+        "action": "Nhận ngay!"
+      },
+      "rateAppScreen": {
+        "heading": "Bạn có thấy ứng dụng có giá trị và hấp dẫn không?",
+        "like": "Có, tôi thích nó!",
+        "dislike": "Không hẳn..."
+      },
+      "noInternetScreen": {
+        "heading": "Bạn đang ngoại tuyến",
+        "subheading": "Kết nối của bạn có vẻ không ổn định. Vui lòng kiểm tra trạng thái mạng và thử lại"
+      },
+      "notifications": {
+        "title": "Thông báo",
+        "noNotifications": "Chưa có thông báo nào",
+        "emptyNotifications": "Hiện chưa có thông báo mới. Hãy kiểm tra lại sau."
+      },
+      "termsOfService": {
+        "title": "Điều khoản dịch vụ"
+      },
+      "privacyPolicy": {
+        "title": "Chính sách quyền riêng tư"
+      },
+      "share": {
+        "title": "Chia sẻ",
+        "heading": "Chia sẻ ứng dụng EXFIT AI",
+        "subheading": "Giúp người khác khám phá ứng dụng EXFIT AI",
+        "scanMessage": "Quét để tải xuống ứng dụng",
+        "shareMessage": "hoặc chia sẻ qua nền tảng yêu thích của bạn"
+      },
+      "rate": {
+        "title": "Cho chúng tôi phản hồi!"
+      },
+      "profile": {
+        "title": "Hồ sơ",
+        "edit": "Chỉnh sửa hồ sơ",
+        "placeholderPreferredName": "Ví dụ: Captain Cool, Queen Bee, hoặc chỉ Alex!",
+        "subscriptions": {
+          "monthly": "Đăng ký hàng tháng",
+          "yearly": "Đăng ký hàng năm",
+          "weekly": "Đăng ký hàng tuần"
+        },
+        "temporaryAccount": "Tài khoản tạm thời",
+        "permanentAccount": "Tài khoản vĩnh viễn"
+      },
+      "generateReportScreen": {
+        "title": "Chúng tôi đánh giá cao sự kiên nhẫn của bạn! Đây là báo cáo AI của bạn.",
+        "userInput": "Bài nộp của bạn",
+        "medicalReport": "Báo cáo thể dục",
+        "report": "Báo cáo thể dục được tạo bởi AI",
+        "conversationName": "Tên cuộc trò chuyện"
+      },
+      "verifyEmail": {
+        "heading": "Xác minh email"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Bắt đầu phân tích"
+      },
+      "contactUs": {
+        "heading": "Đừng ngần ngại gửi email trực tiếp cho chúng tôi và đội ngũ của chúng tôi sẽ liên hệ lại với bạn sớm nhất có thể",
+        "customerSupport": "Hỗ trợ khách hàng",
+        "emailAddress": "Địa chỉ email"
+      },
+      "scan": {
+        "cameraPermission": "Cần quyền truy cập camera để sử dụng tính năng này",
+        "requestPermission": "Đang yêu cầu quyền camera...",
+        "scanAnything": "Quét bất cứ thứ gì: Bữa ăn, Thực phẩm, Thiết bị phòng gym & Hơn thế nữa",
+        "askAssistant": "Hỏi Huấn luyện viên thể dục AI của bạn"
+      },
+      "excuseBuster": {
+        "heading": "Máy đập tan lý do",
+        "reasons": {
+          "one": "Cảm thấy quá mệt mỏi",
+          "two": "Không có thời gian",
+          "three": "Quá đau để tập thể dục",
+          "four": "Phòng gym quá đông",
+          "five": "Không có tâm trạng",
+          "six": "Thời tiết bên ngoài xấu",
+          "seven": "Công việc bận rộn",
+          "eight": "Tôi sẽ bắt đầu vào ngày mai",
+          "nine": "Không chắc nên làm gì",
+          "ten": "Không có thiết bị sẵn có"
+        },
+        "excuseMotivation": "Bạn cứng rắn hơn lý do của bạn.",
+        "excuseQuestion": "Điều gì đang cản trở bạn hôm nay?",
+        "typeExcuse": "Nhập lý do của bạn ở đây...",
+        "crushExcuse": "Nghiền nát lý do của tôi"
+      },
+      "chat": {
+        "fitnessCoach": "Huấn luyện viên thể dục của bạn",
+        "randomQuestions": {
+          "one": "'📸 Chụp ảnh bữa ăn của tôi và ước tính calo & dinh dưỡng đa lượng',",
+          "two": "🥗 Phân tích bữa ăn này và cho tôi biết cách cải thiện nó cho mục tiêu của tôi",
+          "three": "🧠 Xây dựng cho tôi một buổi tập cá nhân hóa dựa trên trình độ thể dục của tôi",
+          "four": "🏋️ Đề xuất một buổi tập tôi có thể làm ngay bây giờ mà không cần thiết bị",
+          "five": "⏱ Tạo buổi tập 20 phút cho một ngày bận rộn",
+          "six": "🔥 Đề xuất buổi tập đốt mỡ được điều chỉnh cho tôi",
+          "seven": "💪 Thiết kế kế hoạch xây dựng cơ bắp cho cơ thể và mục tiêu của tôi",
+          "eight": "📊 Theo dõi tiến trình của tôi và cho biết tôi nên cải thiện gì tiếp theo",
+          "nine": "🍽 Cho tôi biết nên ăn gì hôm nay để đạt mục tiêu calo và protein",
+          "ten": "🥚 Tính toán protein, carb và chất béo hàng ngày của tôi",
+          "eleven": "🛒 Tạo danh sách mua sắm lành mạnh dựa trên kế hoạch ăn uống của tôi",
+          "twelve": "😴 Điều chỉnh buổi tập của tôi dựa trên giấc ngủ và phục hồi",
+          "thirteen": "📅 Xây dựng lịch tập hàng tuần mà tôi có thể tuân thủ",
+          "fourteen": "⚡ Đề xuất buổi tập năng lượng thấp cho hôm nay",
+          "fifteen": "🤕 Điều chỉnh buổi tập của tôi nếu tôi bị đau hoặc chấn thương"
+        }
+      },
+      "progress": {
+        "error": "Đã xảy ra lỗi",
+        "heading": "Bảng điều khiển tiến trình",
+        "subheading": "Tiếp tục công việc tuyệt vời! 🚀",
+        "weeklyGoals": "Mục tiêu hàng tuần",
+        "monthlyGoal": "Mục tiêu hàng tháng",
+        "insights": "Thông tin nhanh",
+        "mostActive": "Hoạt động nhiều nhất",
+        "peakTime": "Thời gian đỉnh cao hiệu suất",
+        "favoriteActivity": "Hoạt động yêu thích",
+        "choice": "Lựa chọn ưa thích của bạn",
+        "weeklyChange": "Thay đổi hàng tuần",
+        "lastWeekXP": "so với tuần trước",
+        "consistency": "Tính nhất quán",
+        "reliability": "độ tin cậy",
+        "overview": "Tổng quan",
+        "performance": "Hiệu suất",
+        "trends": "Xu hướng",
+        "lastSevenDays": "7 ngày qua",
+        "thisWeek": "Tuần này",
+        "activityFocus": "Trọng tâm hoạt động",
+        "distribution": "Phân phối",
+        "history": "Lịch sử",
+        "activities": "Hoạt động",
+        "consistencyJourney": "Hành trình nhất quán của bạn",
+        "bestDay": "Ngày tốt nhất",
+        "averageSession": "Buổi tập trung bình",
+        "totalHours": "Tổng số giờ",
+        "WeeklyComparisonXp": "So sánh hàng tuần",
+        "weeksComparison": "Tuần này so với tuần trước",
+        "thisWeeks": "Tuần này",
+        "lastWeek": "Tuần trước",
+        "activityPattern": "Mô hình hoạt động",
+        "hoursBreakdown": "Phân tích 24 giờ",
+        "monthlyActivity": "Hoạt động hàng tháng",
+        "lastMonths": "6 tháng qua",
+        "progression": "Tiến triển",
+        "monthlyEarned": "Kiếm được hàng tháng",
+        "recentActivity": "Hoạt động gần đây",
+        "last30Days": "30 ngày qua",
+        "outstanding": "Tiến triển xuất sắc!",
+        "activityReview": "Bạn đã hoàn thành {{totalActivities}} hoạt động và kiếm được {{totalXp}} XP tổng cộng. Hãy tiếp tục!",
+        "statistics": "Thống kê chi tiết",
+        "longest": "Dài nhất",
+        "totalMonthActivities": "Hoạt động thể chất đã hoàn thành trong tháng này!"
+      },
+      "shoppingCart": {
+        "heading": "Vật phẩm sở hữu",
+        "equipMore": "Trang bị thêm",
+        "noItems": "Bạn chưa sở hữu vật phẩm nào!",
+        "goToShop": "Đến cửa hàng",
+        "buyPotions": "Đến cửa hàng và thu thập những lọ thuốc thú vị"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Chờ đã! Đừng xóa tôi!",
+    "subtitle": "Gửi phản hồi trước"
+  },
+  "home": {
+    "tab": "Trang chủ"
+  },
+  "activity": {
+    "tab": "Hoạt động"
+  },
+  "progress": {
+    "tab": "Tiến trình"
+  },
+  "settings": {
+    "tab": "Cài đặt",
+    "profile": "Hồ sơ",
+    "shop": "Cửa hàng",
+    "contactUs": "Liên hệ chúng tôi",
+    "about": "Giới thiệu",
+    "app_name": "Tên ứng dụng",
+    "languages": {
+      "english": "Tiếng Anh",
+      "mandarin_chinese": "Tiếng Trung",
+      "hindi": "Tiếng Hindi",
+      "spanish_spain": "Tiếng Tây Ban Nha (Tây Ban Nha)",
+      "spanish_mexico": "Tiếng Tây Ban Nha (Mexico)",
+      "arabic": "Tiếng Ả Rập",
+      "french": "Tiếng Pháp",
+      "french_canada": "Tiếng Pháp (Canada)",
+      "portuguese_brazil": "Tiếng Bồ Đào Nha (Brazil)",
+      "portuguese_portugal": "Tiếng Bồ Đào Nha (Bồ Đào Nha)",
+      "german": "Tiếng Đức",
+      "japanese": "Tiếng Nhật",
+      "russian": "Tiếng Nga",
+      "korean": "Tiếng Hàn",
+      "italian": "Tiếng Ý",
+      "turkish": "Tiếng Thổ Nhĩ Kỳ",
+      "vietnamese": "Tiếng Việt",
+      "polish": "Tiếng Ba Lan",
+      "ukrainian": "Tiếng Ukraina",
+      "romanian": "Tiếng Romania",
+      "dutch": "Tiếng Hà Lan",
+      "czech": "Tiếng Séc",
+      "greek": "Tiếng Hy Lạp",
+      "swedish": "Tiếng Thụy Điển",
+      "hungarian": "Tiếng Hungary",
+      "thai": "Tiếng Thái",
+      "hebrew": "Tiếng Do Thái",
+      "indonesian": "Tiếng Indonesia",
+      "malay": "Tiếng Mã Lai",
+      "finnish": "Tiếng Phần Lan",
+      "danish": "Tiếng Đan Mạch",
+      "norwegian": "Tiếng Na Uy",
+      "slovak": "Tiếng Slovak",
+      "croatian": "Tiếng Croatia",
+      "catalan": "Tiếng Catalan"
+    },
+    "generale": "Chung",
+    "github": "Github",
+    "language": "Ngôn ngữ",
+    "links": "Liên kết",
+    "logout": "Đăng xuất",
+    "more": "Thêm",
+    "privacy": "Chính sách quyền riêng tư",
+    "faq": "Câu hỏi thường gặp",
+    "rate": "Cho chúng tôi phản hồi",
+    "share": "Chia sẻ",
+    "citations": "Trích dẫn thông tin y tế",
+    "support": "Hỗ trợ",
+    "support_us": "Hỗ trợ chúng tôi",
+    "terms": "Điều khoản dịch vụ",
+    "theme": {
+      "dark": "Tối",
+      "light": "Sáng",
+      "system": "Hệ thống",
+      "title": "Chủ đề"
+    },
+    "title": "Cài đặt",
+    "version": "Phiên bản",
+    "website": "Trang web",
+    "devMode": {
+      "title": "Chế độ nhà phát triển",
+      "componentsLibrary": "Thư viện UI"
+    },
+    "deleteAccount": "Xóa tài khoản?",
+    "deleteAccountQuestion": "Bạn có chắc chắn muốn xóa tài khoản của mình không? Hành động này không thể hoàn tác và sẽ xóa vĩnh viễn tất cả dữ liệu của bạn.",
+    "deactivateAccount": "Vô hiệu hóa và xóa tài khoản",
+    "permanentAccountCreate": "Tạo tài khoản vĩnh viễn"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Đánh giá"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Lý do là gì?",
+      "unnamedConversation": "Không tên",
+      "reportTitlePlaceholder": "Thêm tiêu đề"
+    },
+    "WeekBlock": {
+      "week": "Tuần"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Cuộn lên đầu"
+    },
+    "FreeTierStatus": {
+      "heading": "Lần quét miễn phí",
+      "subheading": "Mở khóa lần quét không giới hạn bằng cách nâng cấp gói của bạn",
+      "action": "Nâng cấp"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Chọn ảnh / video"
+    },
+    "GoalsModal": {
+      "heading": "Thay đổi mục tiêu hấp thụ hàng ngày của bạn",
+      "dailyCalories": "Calo hàng ngày",
+      "saveGoals": "Lưu mục tiêu"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Streak bị hỏng. Lưu ngay.",
+      "loseStreak": "Để nó bị hỏng",
+      "buyStreak": "Mua và lưu streak",
+      "buyRepairStreak": "Mua Thuốc tiên sửa streak với giá {{elixirPrice}} 💎 để lấy lại streak đã mất của bạn.",
+      "streakRestore": "Streak đang gặp nguy hiểm — khôi phục ngay!",
+      "restorationStreak": "Mang streak {{lostStreakValue}} ngày của bạn trở lại với sức mạnh của Thuốc tiên sửa streak!",
+      "applyElixir": "Áp dụng lọ thuốc tiên"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Mua hàng hoàn tất",
+      "inventoryAdded": "đã được thêm vào kho đồ của bạn. Tiếp tục công việc tuyệt vời!",
+      "purchaseFailed": "Mua hàng thất bại",
+      "purchaseFailedMessage": "Chúng tôi không thể xử lý giao dịch mua của bạn. Vui lòng kiểm tra số dư gems và thử lại.",
+      "gemsBalance": "Rất tiếc, bạn không có đủ gems"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Check-in hàng ngày",
+      "bodyMovingQuestion": "Bạn có vận động cơ thể hôm nay không?"
+    },
+    "TapToViewLabel": {
+      "label": "Chạm để xem"
+    },
+    "UpgradeBanner": {
+      "heading": "Mở khóa ngay!",
+      "upgradeMessage": "Mở khóa tính năng này 🔓 Tận hưởng đếm calo AI, theo dõi dinh dưỡng đa lượng và hỗ trợ toàn diện để giúp bạn đạt mục tiêu hoạt động và thể dục nhanh hơn 💪",
+      "upgradeTo": "Nâng cấp lên",
+      "moreBenefits": "Tính năng AI. Tất cả công cụ cao cấp. Tất cả là của bạn để giữ đúng hướng."
+    },
+    "MotivationBanner": {
+      "title": "Không có động lực? Cảm thấy không ổn? Hãy đánh bại lý do đó.",
+      "subtitle": "Chọn một nhiệm vụ, kiếm XP và gems — hãy vận động!",
+      "beatExcuse": "Đánh bại lý do của bạn ngay!"
+    },
+    "AICoachBanner": {
+      "title": "Có câu hỏi? Cứ hỏi.",
+      "subtitle": "Làm chủ thể dục của bạn — hỏi về calo, dinh dưỡng, máy tập, tư thế, chấn thương, hình thức, kế hoạch tập luyện",
+      "chat": "Trò chuyện với Huấn luyện viên AI"
+    },
+    "PromptSection": {
+      "message": "Lần quét của bạn đã sẵn sàng! Bây giờ, bạn muốn tìm hiểu điều gì?",
+      "prompts": {
+        "first": "Có những loại tế bào hoặc cấu trúc nào trong hình ảnh này?",
+        "second": "Có bất thường hoặc mầm bệnh nào trong mẫu này không?",
+        "third": "Nguồn gốc hoặc tình trạng có thể có của mẫu này là gì?",
+        "fourth": "Bạn có thể cung cấp thông tin gì từ hình ảnh này?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Quét bữa ăn AI tức thì — Theo dõi calo và dinh dưỡng đa lượng trong vài giây",
+      "second": "Huấn luyện viên cá nhân AI 24/7 — Hướng dẫn chuyên gia, bất cứ lúc nào, bất cứ đâu",
+      "third": "Theo dõi hoạt động thể dục của bạn như một chuyên gia",
+      "fourth": "Truy cập đầy đủ vào tất cả tính năng cao cấp"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Biệt danh",
+        "email": "Email",
+        "emailVerification": "Xác minh email"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Dinh dưỡng đa lượng hôm nay",
+      "scanFood": "Quét thực phẩm",
+      "calories": "Calo",
+      "fat": "Chất béo",
+      "carbs": "Carb",
+      "protein": "Protein",
+      "dailyIntakeGoals": "Mục tiêu hấp thụ hàng ngày",
+      "percentage": "% mục tiêu dinh dưỡng đa lượng hàng ngày đạt được",
+      "noMeals": "Không có bữa ăn nào được ghi lại",
+      "meals": "Bữa ăn",
+      "deleteMeal": "Xóa bữa ăn",
+      "deleteMealConfirm": "Bạn có chắc chắn muốn xóa bữa ăn này không? Hành động này sẽ ảnh hưởng đến tính toán dinh dưỡng đa lượng hàng ngày của bạn.",
+      "macroJournal": "Nhật ký dinh dưỡng đa lượng",
+      "noActivityRecorded": "Không có hoạt động nào được ghi lại trong tuần này"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Check-in hàng ngày",
+      "attendedMessage": "Bạn đã xuất hiện hôm nay, đó là cách tiến bộ được xây dựng. Hãy tiếp tục!",
+      "notAttendedMessage": "Ghế sofa thắng hôm nay… nhưng ngày mai, bạn sẽ trở lại!",
+      "unknownMessage": "Hành trình của bạn bắt đầu bằng một bước duy nhất. Sẵn sàng bắt đầu?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "Thời lượng đã chọn không thể dài hơn 360 phút",
+      "activitiesLimit": "Chà! Bạn đang bí mật tập luyện cho Thế vận hội? Bạn đã đạt giới hạn {{MAX_DAILY_ACTIVITIES}} hoạt động cho hôm nay! 🏅. Bạn có thể thử lại những cơ bắp đó vào ngày mai 💪!",
+      "addActivity": "Thêm hoạt động",
+      "modalHeading": "Điều gì khiến bạn vận động hôm nay? Ghi lại và giữ đà"
+    },
+    "TaskListOverview": {
+      "heading": "Nhiệm vụ hôm nay",
+      "noTasks": "Không có nhiệm vụ!",
+      "enjoyFreeTime": "Tận hưởng thời gian rảnh của bạn."
+    },
+    "ActivitySelector": {
+      "title": "Loại hoạt động",
+      "customActivity": "Thêm hoạt động của riêng bạn",
+      "customActivityLabel": "Hoạt động tùy chỉnh"
+    },
+    "DurationSelector": {
+      "heading": "Thời lượng",
+      "customDuration": "Nhập thời lượng (phút)",
+      "customDurationLabel": "Thời lượng tùy chỉnh"
+    },
+    "NoActivityLogModal": {
+      "heading": "Ôi không! Đừng để ghế sofa thắng hôm nay!",
+      "crushExcuse": "Nghiền nát lý do của tôi",
+      "skipToday": "Không phải hôm nay, có thể ngày mai..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Làm tốt lắm!",
+      "unlockReward": "Bạn đã làm được! Một hoạt động hoàn thành và bạn đã mở khóa phần thưởng của mình. Hãy giữ streak!"
+    },
+    "SkipReasonInput": {
+      "title": "Không sao đâu, tôi chỉ kiểm tra.",
+      "subtitle": "Muốn chia sẻ tại sao hôm nay không ổn? Không có áp lực.",
+      "skipPlaceholder": "Ví dụ: Mèo của tôi ăn giày chạy của tôi",
+      "skipToday": "Bỏ qua hôm nay"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Đóng băng streak!",
+      "streakResetNow": "Streak của bạn đã được đặt lại hôm nay.",
+      "streakRepairUse": "Sử dụng Thuốc tiên sửa streak của bạn để giữ streak sống",
+      "streakRepairExpired": " Cửa sổ sửa streak 48 giờ của bạn đã hết hạn! Nhưng này, streak mới có nghĩa là cơ hội mới để đánh bại kỷ lục cá nhân của bạn.",
+      "repairStreak": "Sửa streak",
+      "streakPotionConsumed": "Lọ thuốc đóng băng streak đã được sử dụng!",
+      "streakFreezeApplied": " Lọ thuốc đóng băng streak của bạn đã kích hoạt và bảo vệ streak của bạn. Bạn vẫn đang cháy!",
+      "streakElixirApplied": "Lọ thuốc tiên sửa streak đã kích hoạt!",
+      "streakFreezePotionApplied": "Bạn đã cứu streak của mình! Lọ thuốc đóng băng streak của bạn đã kích hoạt và bảo vệ streak của bạn. Bạn vẫn đang cháy!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Không tìm thấy hoạt động",
+      "addFirstActivity": "Thêm hoạt động đầu tiên của bạn để kiếm gems và XP.",
+      "addActivity": "Thêm hoạt động",
+      "todayActivities": "Hoạt động hôm nay"
+    },
+    "ActivityCard": {
+      "activitySkipped": "đã bỏ qua",
+      "dayOff": "Ngày nghỉ",
+      "description": "Mô tả",
+      "excuseReason": "Lý do ⚠️",
+      "yourNotes": "Ghi chú của bạn 📝",
+      "notesPlaceholder": "Ví dụ: Tập lưng và bắp tay, 3 super set",
+      "addNotes": "Thêm ghi chú"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Thư viện ảnh",
+      "takePhoto": "Chụp ảnh",
+      "chooseFile": "Chọn tệp"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Đã đạt cấp độ tối đa! Cấp độ",
+      "xpLeft": "còn lại để đạt cấp độ"
+    },
+    "ShopItemCard": {
+      "unavailable": "Không có sẵn",
+      "worth": "trị giá",
+      "equiped": "đã trang bị",
+      "shop": "Cửa hàng",
+      "earnedId": "Bạn đã kiếm được nó.",
+      "treat": "Bây giờ hãy chiều chuộng bản thân!",
+      "spendGems": "Chi tiêu gems của bạn một cách khôn ngoan, hành trình thể dục của bạn vừa trở nên thú vị."
+    },
+    "ActivityTaskCard": {
+      "win": "Thắng",
+      "acceptChallenge": "Chấp nhận thử thách 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "Thử thách bản thân một chút với thử thách này thì sao?",
+      "typeInput": "(Nhập input của bạn bên dưới)"
+    },
+    "MacroOverview": {
+      "analysis": "Phân tích",
+      "macroAdded": "Đã thêm dinh dưỡng đa lượng",
+      "countToday": "Đếm cho hôm nay"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Bảo vệ streak của bạn nếu bạn bỏ lỡ một ngày tập luyện.",
+      "owned": "SỞ HỮU",
+      "manualTrigger": "KÍCH HOẠT THỦ CÔNG",
+      "activated": "ĐÃ KÍCH HOẠT"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Xin lỗi, chúng tôi cần quyền truy cập camera để tính năng này hoạt động!",
+    "errorSelectingImagePicker": "Đã xảy ra lỗi khi chọn hình ảnh. Vui lòng thử lại.",
+    "errorSelectingDocumentPicker": "Đã xảy ra lỗi khi chọn tài liệu. Vui lòng thử lại.",
+    "errorTakingPicture": "Đã xảy ra lỗi khi chụp ảnh. Vui lòng thử lại.",
+    "enableNotifications": {
+      "heading": "Bật thông báo",
+      "subHeading": "Thông báo hiện đang tắt. Để cập nhật, vui lòng bật chúng trong cài đặt thiết bị của bạn."
+    },
+    "notesSavedSuccess": "Đã lưu ghi chú! 📝 Tất cả đã sẵn sàng.",
+    "enableNotificationFailed": "Thông báo push bị tắt. Bật chúng trong cài đặt để nhận cập nhật quan trọng!",
+    "enableNotificationError": "Đã xảy ra lỗi khi bật thông báo",
+    "notificationDisabledSuccess": "Đã tắt thông báo thành công.",
+    "notificationDisabledRegisterError": "Không thể hủy đăng ký thiết bị cho thông báo.",
+    "notificationDisabledError": "Đã xảy ra lỗi khi tắt thông báo",
+    "checkNotificationStatusError": "Lỗi kiểm tra trạng thái thông báo.",
+    "projectIdNotFound": "Không tìm thấy ID dự án thông báo.",
+    "imageSizeLarge": "Hình ảnh quá lớn! Kích thước tệp là {{fileSize}} MB, nhưng giới hạn là {{imageLimit}} MB.",
+    "videoSizeLarge": "Video quá lớn! Kích thước tệp là {{fileSize}} MB, nhưng giới hạn là {{videoLimit}} MB.",
+    "loggedInSuccess": "Đăng nhập thành công",
+    "loggedOutSuccess": "Bạn đã đăng xuất thành công!",
+    "sendVerificationCodeError": "Lỗi khi gửi mã xác minh",
+    "validateAuthCodeError": "Lỗi khi xác thực mã xác thực",
+    "anonymousSignInError": "Lỗi đăng nhập ẩn danh",
+    "emailLoginError": "Lỗi khi đăng nhập",
+    "preferredLanguageError": "Lỗi khi cập nhật ngôn ngữ ưa thích của người dùng",
+    "sharingNotAvailable": "Chia sẻ hiện không khả dụng trên thiết bị của bạn",
+    "sharingLinkError": "Không thể chia sẻ liên kết.",
+    "individualPushNotificationSuccess": "Đã gửi thông báo push cá nhân thành công!",
+    "globalPushNotificationSuccess": "Đã gửi thông báo push toàn cầu thành công! 🌍🚀",
+    "interpretationFieldsUpdateFail": "Không thể cập nhật trường diễn giải! ❌",
+    "deleteScanReportFail": "Không thể xóa báo cáo quét. Vui lòng thử lại",
+    "onboardingUnsuccessful": "Onboarding không thành công. Vui lòng thử lại",
+    "logoutUnsuccessful": "Đăng xuất không thành công. Vui lòng thử lại",
+    "deleteScanReportQuestion": "Bạn có chắc chắn muốn xóa vĩnh viễn báo cáo này không?",
+    "videoLimitExceeds": "Video của bạn vượt quá giới hạn {{videoSecondsLimit}} giây. Vui lòng cắt và tải lên lại",
+    "subscriptionActivated": "Đăng ký của bạn đã được kích hoạt thành công! Tận hưởng các lợi ích độc quyền của bạn!",
+    "subscriptionCancelledByUser": "Bạn đã hủy giao dịch. Hãy thử lại!",
+    "subscriptionActivationFailed": "Không thể kích hoạt đăng ký của bạn. Vui lòng thử lại",
+    "logoutQuestion": "Bạn có chắc chắn muốn đăng xuất không?",
+    "noSubscriptionToRestore": "Rất tiếc! Có vẻ như bạn không có đăng ký hoạt động vào lúc này. Để tiếp tục tận hưởng quyền truy cập đầy đủ, vui lòng chọn một trong các gói đăng ký của chúng tôi.",
+    "restorationSuccessful": "Khôi phục thành công! Tận hưởng!",
+    "restorationError": "Đã xảy ra lỗi khi khôi phục giao dịch mua.",
+    "medicalDisclaimerAlert": "Ứng dụng EXFIT AI không cung cấp chẩn đoán, đề xuất điều trị hoặc bất kỳ lời khuyên y tế nào. Luôn tìm kiếm hướng dẫn từ chuyên gia y tế có trình độ cho các quyết định y tế.",
+    "scanLimitReached": "Chúng tôi đang tối ưu hóa chất lượng quét cho bạn! Bạn sẽ có thể quét lại sau khoảng {{hours}} giờ và {{minutes}} phút. Có câu hỏi về chủ đề kính hiển vi nào? Hỏi trợ lý trò chuyện của chúng tôi trong khi chờ đợi!",
+    "chatAndMediaFilesLimit": "Người dùng thân mến, nâng cấp gói của bạn để tận hưởng theo dõi calo không giới hạn, quét bữa ăn, huấn luyện thể dục và hơn thế nữa. 🔓",
+    "chatMessageNotSent": "Rất tiếc! Tin nhắn của bạn không được gửi. Vui lòng thử lại",
+    "excusesLimit": "Rất tiếc, có vẻ như bạn đang cố gắng lập kỷ lục thế giới về lý do! 😅 Tối đa 3 lý do được phép — chọn 3 lý do hàng đầu của bạn và hãy vận động!",
+    "excuseMinimum": "Vui lòng chọn ít nhất một lý do hoặc nhập lý do của riêng bạn.",
+    "createActivityLogFailed": "Không thể tạo nhật ký hoạt động. Vui lòng thử lại.",
+    "updateActivityLogFailed": "Đã xảy ra lỗi khi cập nhật nhật ký hoạt động. Vui lòng thử lại.",
+    "challengeAccepted": "Đã chấp nhận thử thách! 🔥 Bây giờ hãy vượt qua nó và kiếm những phần thưởng đó!",
+    "challengeCompleted": "Thử thách hoàn thành! 🔔 Số dư phần thưởng mới của bạn đã được cập nhật.",
+    "macroEntryRecorded": "Đã ghi nhận hấp thụ dinh dưỡng đa lượng - hãy tiếp tục! 🥗",
+    "failedCreateMacroLog": "Rất tiếc! Không lưu được nhật ký dinh dưỡng đa lượng. Vui lòng thử lại!",
+    "deleteMacroLog": "Rất tiếc! Không thể xóa nhật ký dinh dưỡng đa lượng của bạn. Vui lòng thử lại!",
+    "deleteMacro": "Đã xóa dinh dưỡng đa lượng — sẵn sàng cho mục nhập tiếp theo của bạn!",
+    "chooseSubscriptionPlan": "Vui lòng chọn gói đăng ký để tiếp tục!",
+    "createPermanentAccountSuccess": "Tài khoản vĩnh viễn của bạn đã được tạo! Tài khoản của bạn hiện đã an toàn. Ồ, và bạn cũng nhận được",
+    "loginSuccess": "Đăng nhập thành công — hãy bắt đầu vận động!",
+    "accountDeleted": "Tài khoản của bạn đã bị xóa thành công",
+    "purchaseFailed": "Mua hàng thất bại. Vui lòng thử lại.",
+    "streakRepairFailed": "Không thể sửa streak. Vui lòng thử lại.",
+    "failedSendMessage": "Không thể gửi tin nhắn. Vui lòng thử lại.",
+    "capturePictureFailed": "Đã xảy ra lỗi khi chụp ảnh",
+    "multipleVideosNotAllowed": "Để chính xác hơn, vui lòng chỉ tải lên một video mỗi lần.",
+    "mixedMediaNotAllowed": "Các tải lên phải chỉ chứa hình ảnh hoặc chỉ video, không phải hỗn hợp cả hai.",
+    "mediaFilesUploadFiles": "Đã xảy ra lỗi khi tải lên tệp đa phương tiện của bạn. Vui lòng thử lại."
+  }
+}

@@ -1,0 +1,800 @@
+{
+  "onboarding": {
+    "message": "ברוכים הבאים ל-EXFIT AI!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "צלמו את הארוחה שלכם ועקבו אחר הקלוריות",
+        "headingTwo": "סרקו ארוחות, דברו עם המאמן הבינה המלאכותית שלכם וקבלו אתגרים יומיים שתוכננו עבורכם"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "תנו לבינה המלאכותית להניע את הכושר שלכם",
+        "headingTwo": "פגשו את EXFIT AI, השותף החכם שלכם להתגבר על ספק, להצית מוטיבציה ולהשאיר אתכם בתנועה"
+      },
+      "onboardingThirdPage": {
+        "heading": "תנו לבינה המלאכותית לזהות ציוד כושר, תנוחות תרגיל וטכניקה"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "תאמנו. הרוויחו. עלו רמה.",
+        "headingTwo": "הרוויחו XP, אספו Gems, שמרו על ה-Streak שלכם בחיים ופתחו פרסים על ההשתתפות שלכם."
+      }
+    }
+  },
+  "activities": {
+    "gym": "מכון כושר",
+    "yoga": "יוגה",
+    "running": "ריצה",
+    "walking": "הליכה",
+    "cycling": "רכיבה על אופניים",
+    "dance": "ריקוד",
+    "stretching": "מתיחה",
+    "swimming": "שחייה",
+    "hiking": "טיול רגלי",
+    "pilates": "פילאטיס",
+    "climbing": "טיפוס",
+    "skating": "החלקה"
+  },
+  "general": {
+    "back": "חזרה",
+    "welcome": "היי",
+    "welcomeBack": "ברוכים השבים!",
+    "welcomeMessage": "ברוכים הבאים!",
+    "goodMorning": "בוקר טוב",
+    "goodAfternoon": "צהריים טובים",
+    "goodEvening": "ערב טוב",
+    "continue": "המשך",
+    "retry": "נסה שוב",
+    "retake": "צלם שוב",
+    "scanNow": "סרוק עכשיו",
+    "scanning": "סריקה...",
+    "close": "סגור",
+    "gallery": "גלריה",
+    "files": "קבצים",
+    "cancel": "ביטול",
+    "save": "שמור",
+    "edit": "ערוך",
+    "delete": "מחק",
+    "attention": "תשומת לב!",
+    "new": "חדש",
+    "yes": "כן",
+    "no": "לא",
+    "or": "או",
+    "change": "שנה",
+    "typing": "הקלדה...",
+    "online": "מקוון",
+    "chatbotPlaceholder": "שאל אותי כל דבר...",
+    "openSettings": "פתח הגדרות",
+    "seeNotifications": "ראה התראות",
+    "viewProfile": "צפה בפרופיל",
+    "upgradePlan": "שדרג תוכנית",
+    "download": "הורד",
+    "share": "שתף",
+    "shareLink": "שתף קישור",
+    "skip": "דלג",
+    "next": "הבא",
+    "update": "עדכן",
+    "tryAgain": "נסה שוב",
+    "createdAt": "נוצר ב-",
+    "and": "ו-",
+    "saveDiscount": "חסכון",
+    "restorePurchase": "שחזר רכישה",
+    "medicalDisclaimer": "הבהרה רפואית",
+    "conversationHistory": "היסטוריית שיחות",
+    "analyzingMediaFilesPlaceholder": "מנתח קבצי מדיה...",
+    "freeTrial": "ניסיון חינם",
+    "free": "חינם",
+    "noPaymentNow": "אין תשלום עכשיו. אפשר לבטל בכל עת.",
+    "completedScans": "סריקות שהושלמו",
+    "activeSubscription": "מינוי פעיל",
+    "askAssistant": "שאל את עוזר הבינה המלאכותית",
+    "then": "אז",
+    "perWeek": "לשבוע",
+    "perYear": "לשנה",
+    "perMonth": "לחודש",
+    "tryForFree": "נסה בחינם",
+    "unlockNow": "בטל נעילה עכשיו",
+    "attended": "השתתף",
+    "readyToStart": "מוכן להתחיל",
+    "skipped": "דולג",
+    "completed": "הושלם",
+    "purchase": "רכישה",
+    "active": "פעיל",
+    "dearUser": "משתמש יקר",
+    "ok": "אוקיי",
+    "activities": "פעילויות",
+    "seeLess": "ראה פחות",
+    "seeMore": "ראה עוד",
+    "goBack": "חזור",
+    "schedule": "לוח זמנים",
+    "utils": "כלים",
+    "verifyEmail": "אמת אימייל",
+    "loading": "טוען...",
+    "error": "שגיאה",
+    "minutes": "דקות",
+    "submit": "שלח",
+    "copyText": {
+      "loading": "מעתיק...",
+      "copied": "הועתק! 📝",
+      "copy": "העתק קישור"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "טוען את החוויה האישית שלך...",
+        "second": "מסנכרן מערכות...",
+        "third": "מעבד את הנתונים שלך...",
+        "fourth": "כמעט מוכן, רק רגע..."
+      },
+      "imageScanningLoading": {
+        "first": "סורק את תמונתך, אנא המתן...",
+        "second": "מנתח פרטים, זה עשוי להימשך כמה רגעים...",
+        "third": "משפר דיוק לתוצאות הטובות ביותר...",
+        "fourth": "כמעט סיימנו, מסיים את הסריקה..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, מאמן הבינה המלאכותית שלך מתכונן לעזור לך...",
+        "second": "המתן! Mojo מכין את התשובה שלך...",
+        "third": "חושב... Mojo על זה!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "חכה רגע!",
+    "goBackMessage": "האם אתה בטוח שברצונך לחזור?"
+  },
+  "internet": {
+    "noConnectionTitle": "אתה במצב לא מקוון!",
+    "noConnectionMessage": "הפעל נתונים ניידים או התחבר ל-Wi-Fi. או פשוט קח הפסקה וצא להליכה!"
+  },
+  "uploadScan": {
+    "title": "העלה תמונה",
+    "scanNow": "סרוק עכשיו"
+  },
+  "weekDays": {
+    "today": "היום",
+    "yesterday": "אתמול"
+  },
+  "auth": {
+    "verifyAuthCode": "אמת קוד אימות",
+    "verifyAuthCodeButton": "אמת קוד",
+    "authCodeHeading": "קוד אימות",
+    "loginViaEmailHeading": "בואו נרשום אתכם. אנא הזן את האימייל שלך כדי להמשיך.",
+    "emailAddress": "אימייל"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "ברוכים הבאים ל-EXFIT AI!",
+        "startButton": "בואו נתחיל!",
+        "accountButton": "כבר יש לי חשבון",
+        "count": "ספירה",
+        "calories": "קלוריות",
+        "track": "עקוב",
+        "activity": "פעילות",
+        "with": "עם"
+      },
+      "login": {
+        "agreeingMessage": "בהמשך השימוש, אתה מסכים ל-",
+        "termsAndConditions": "תנאים והגבלות",
+        "privacyPolicy": "מדיניות פרטיות",
+        "heading": "התחברות",
+        "continueName": "המשך עם כינוי",
+        "existingAccount": "יש לך חשבון?",
+        "emailAddress": "כתובת אימייל",
+        "emailPlaceholder": "הזן את האימייל שלך",
+        "password": "סיסמה",
+        "confirmPassword": "אשר סיסמה",
+        "forgotPassword": "שכחת סיסמה?",
+        "keepSigned": "שמור אותי מחובר",
+        "createPassword": "צור סיסמה"
+      },
+      "signUp": {
+        "heading": "הרשמה",
+        "haveAccount": "יש לך חשבון?",
+        "signInHere": "היכנס כאן",
+        "acceptTerms": {
+          "title": "נדרשים תנאים",
+          "subtitle": "אנא אשר את תנאי השימוש ומדיניות הפרטיות כדי להמשיך."
+        }
+      },
+      "forgotPassword": {
+        "heading": "שכחת סיסמה",
+        "verificationSent": "אנא בדוק את האימייל שלך לקבלת קישור לאיפוס סיסמה. אם אינך רואה אותו בתיבת הדואר הנכנס שלך, ודא לבדוק בתיקיית הספאם או דואר הזבל.",
+        "verificationHeading": "הזן את כתובת האימייל הרשומה בחשבונך. נשלח לך קישור לאיפוס הסיסמה שלך.",
+        "rememberPassword": "זוכר את הסיסמה?",
+        "loginAccount": "התחבר לחשבונך",
+        "alertTitle": "איפוס סיסמה נשלח",
+        "alertSubtitle": "אם קיים חשבון עם אימייל זה, שלחנו לך קישור לאיפוס סיסמה."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "אנא הזן גם אימייל וגם סיסמה.",
+        "secureProgress": "אבטח את ההתקדמות שלך",
+        "permanentAccount": "צור חשבון קבוע כדי לשמור את הנתונים שלך בכל המכשירים."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "הזן את קוד האימות שנשלח בדואר אלקטרוני. שים לב, הקוד יפוג תוך 5 דקות.",
+        "verificationCodeSent": "שלחנו את קוד האימות ל-",
+        "verificationCodeMissing": "לא קיבלת את הקוד?",
+        "resendCode": "שלח קוד מחדש",
+        "backToLogin": "חזור להתחברות"
+      },
+      "namePreferenceScreen": {
+        "heading": "בואו נעשה את זה אישי!",
+        "preferredNameQuestion": "איך נקרא לך?",
+        "placeholderPreferredName": "למשל, קפטן מגניב, מלכת הדבורים, או פשוט אלקס!"
+      },
+      "experienceLevelScreen": {
+        "heading": "איך היית מתאר את ניסיון הכושר שלך?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "מהו מטרת הכושר שלך?"
+      },
+      "genderSelectionScreen": {
+        "heading": "בחר מין לחוויה מותאמת יותר"
+      },
+      "freeTrialPreview": {
+        "heading": "תהנה מניסיון החינם שלך! 🎉",
+        "subheading": "חווה את היתרונות המדהימים האלה במהלך הניסיון החינמי שלך",
+        "review": "סריקת ארוחות, מונה קלוריות ומעקב כושר פשוט וחכם. נסה את זה!",
+        "reviewTrust": "📈 נתמך על ידי 7,512+ משתמשים"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "ניסיון חינם מופעל",
+          "heading": "גישה בלתי מוגבלת",
+          "title": "בטל נעילה לתכונות פרימיום היום!",
+          "firstOffering": "מעקב פעילות וטיפים תזונתיים חכמים",
+          "secondOffering": "מונה קלוריות ומאקרו בלתי מוגבל",
+          "thirdOffering": "סורק מזון בלתי מוגבל",
+          "fourthOffering": "מאמן הכושר הבינה המלאכותית שלך 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "בטל נעילה לתכונות פרימיום היום!",
+        "secondOffering": {
+          "title": "תוכנית חודשית",
+          "subtitle": "{{ price }}/חודש"
+        },
+        "thirdOffering": {
+          "title": "תוכנית שנתית",
+          "subtitle": "{{ price }} לשנה"
+        },
+        "fourthOffering": {
+          "title": "ניסיון {{trialDays}}-יום",
+          "subtitle": "{{ price }} לשנה",
+          "plan": "תוכנית שבועית"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "גרסה חדשה של EXFIT AI זמינה",
+        "subheading": "עדכן לגרסה האחרונה כדי להמשיך ליהנות מכל תכונות האפליקציה — זה לוקח רק 5 שניות!",
+        "action": "קבל את זה עכשיו!"
+      },
+      "rateAppScreen": {
+        "heading": "האם אתה מוצא את האפליקציה בעלת ערך ומרתקת?",
+        "like": "כן, אני אוהב את זה!",
+        "dislike": "לא ממש..."
+      },
+      "noInternetScreen": {
+        "heading": "אתה במצב לא מקוון",
+        "subheading": "החיבור שלך נראה לא יציב. אנא ודא את מצב הרשת שלך ונסה שוב"
+      },
+      "notifications": {
+        "title": "התראות",
+        "noNotifications": "אין עדיין התראות",
+        "emptyNotifications": "אין התראות חדשות כרגע. בדוק שוב בקרוב."
+      },
+      "termsOfService": {
+        "title": "תנאי שירות"
+      },
+      "privacyPolicy": {
+        "title": "מדיניות פרטיות"
+      },
+      "share": {
+        "title": "שתף",
+        "heading": "שתף את אפליקציית EXFIT AI",
+        "subheading": "עזור לאחרים לגלות את אפליקציית EXFIT AI",
+        "scanMessage": "סרוק כדי להוריד את האפליקציה",
+        "shareMessage": "או שתף דרך הפלטפורמה המועדפת עליך"
+      },
+      "rate": {
+        "title": "תן לנו משוב!"
+      },
+      "profile": {
+        "title": "פרופיל",
+        "edit": "ערוך פרופיל",
+        "placeholderPreferredName": "למשל, קפטן מגניב, מלכת הדבורים, או פשוט אלקס!",
+        "subscriptions": {
+          "monthly": "מינוי חודשי",
+          "yearly": "מינוי שנתי",
+          "weekly": "מינוי שבועי"
+        },
+        "temporaryAccount": "חשבון זמני",
+        "permanentAccount": "חשבון קבוע"
+      },
+      "generateReportScreen": {
+        "title": "אנו מעריכים את סבלנותך! הנה דוח הבינה המלאכותית שלך.",
+        "userInput": "ההגשה שלך",
+        "medicalReport": "דוח כושר",
+        "report": "דוח כושר שנוצר על ידי בינה מלאכותית",
+        "conversationName": "שם השיחה"
+      },
+      "verifyEmail": {
+        "heading": "אמת אימייל"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "התחל ניתוח"
+      },
+      "contactUs": {
+        "heading": "אל תהסס לשלוח לנו אימייל ישירות, והצוות שלנו יחזור אליך בהקדם האפשרי",
+        "customerSupport": "תמיכה ללקוחות",
+        "emailAddress": "כתובת אימייל"
+      },
+      "scan": {
+        "cameraPermission": "נדרש הרשאה לגישה למצלמה כדי להשתמש בתכונה זו",
+        "requestPermission": "מבקש הרשאת מצלמה...",
+        "scanAnything": "סרוק כל דבר: ארוחות, מזון, ציוד כושר ועוד",
+        "askAssistant": "שאל את מאמן הכושר הבינה המלאכותית שלך"
+      },
+      "excuseBuster": {
+        "heading": "מחסל תירוצים",
+        "reasons": {
+          "one": "מרגישים עייפים מדי",
+          "two": "אין זמן פנוי",
+          "three": "כואב מדי להתאמן",
+          "four": "מכון הכושר צפוף מדי",
+          "five": "לא במצב רוח",
+          "six": "מזג אוויר גרוע בחוץ",
+          "seven": "העבודה עמוסה",
+          "eight": "אתחיל מחר",
+          "nine": "לא בטוח מה לעשות",
+          "ten": "אין ציוד זמין"
+        },
+        "excuseMotivation": "אתה קשוח יותר מהתירוץ שלך.",
+        "excuseQuestion": "מה מחזיק אותך היום?",
+        "typeExcuse": "הקלד את התירוץ שלך כאן...",
+        "crushExcuse": "רסק את התירוץ שלי"
+      },
+      "chat": {
+        "fitnessCoach": "מאמן הכושר שלך",
+        "randomQuestions": {
+          "one": "'📸 צלם תמונה של הארוחה שלי והערך קלוריות ומאקרו',",
+          "two": "🥗 נתח את הארוחה הזו ואמור לי איך לשפר אותה למטרה שלי",
+          "three": "🧠 בנה לי אימון מותאם אישית לפי רמת הכושר שלי",
+          "four": "🏋️ המלץ על אימון שאני יכול לעשות עכשיו בלי ציוד",
+          "five": "⏱ צור אימון של 20 דקות ליום עמוס",
+          "six": "🔥 הצע אימון שריפת שומן מותאם עבורי",
+          "seven": "💪 תכנן תוכנית בניית שרירים לגוף ולמטרות שלי",
+          "eight": "📊 עקוב אחר ההתקדמות שלי והראה מה עלי לשפר לאחר מכן",
+          "nine": "🍽 אמור לי מה לאכול היום כדי לעמוד ביעדי הקלוריות והחלבון שלי",
+          "ten": "🥚 חשב את החלבון, הפחמימות והשומנים היומיים שלי",
+          "eleven": "🛒 צור רשימת קניות בריאה לפי תוכנית הדיאטה שלי",
+          "twelve": "😴 התאם את האימונים שלי לפי השינה וההתאוששות שלי",
+          "thirteen": "📅 בנה לוח זמנים שבועי לאימונים שאוכל להתמיד בו",
+          "fourteen": "⚡ המלץ על אימון אנרגיה נמוכה להיום",
+          "fifteen": "🤕 שנה את האימון שלי אם אני כואב או פצוע"
+        }
+      },
+      "progress": {
+        "error": "משהו השתבש",
+        "heading": "לוח מחווני התקדמות",
+        "subheading": "המשך בעבודה המדהימה! 🚀",
+        "weeklyGoals": "יעדים שבועיים",
+        "monthlyGoal": "יעד חודשי",
+        "insights": "תובנות מהירות",
+        "mostActive": "הפעיל ביותר",
+        "peakTime": "שעת שיא ביצועים",
+        "favoriteActivity": "פעילות מועדפת",
+        "choice": "הבחירה המועדפת שלך",
+        "weeklyChange": "שינוי שבועי",
+        "lastWeekXP": "לעומת השבוע שעבר",
+        "consistency": "עקביות",
+        "reliability": "אמינות",
+        "overview": "סקירה כללית",
+        "performance": "ביצועים",
+        "trends": "מגמות",
+        "lastSevenDays": "7 הימים האחרונים",
+        "thisWeek": "השבוע הזה",
+        "activityFocus": "מיקוד פעילות",
+        "distribution": "התפלגות",
+        "history": "היסטוריה",
+        "activities": "פעילויות",
+        "consistencyJourney": "מסע העקביות שלך",
+        "bestDay": "היום הטוב ביותר",
+        "averageSession": "ממוצע פגישה",
+        "totalHours": "סה\"כ שעות",
+        "WeeklyComparisonXp": "השוואה שבועית",
+        "weeksComparison": "השבוע הזה לעומת השבוע שעבר",
+        "thisWeeks": "השבוע הזה",
+        "lastWeek": "השבוע שעבר",
+        "activityPattern": "דפוס פעילות",
+        "hoursBreakdown": "פילוח 24 שעות",
+        "monthlyActivity": "פעילות חודשית",
+        "lastMonths": "6 החודשים האחרונים",
+        "progression": "התקדמות",
+        "monthlyEarned": "הרוויח חודשי",
+        "recentActivity": "פעילות אחרונה",
+        "last30Days": "30 הימים האחרונים",
+        "outstanding": "התקדמות מצוינת!",
+        "activityReview": "סיימת {{totalActivities}} פעילויות והרווחת {{totalXp}} XP בסך הכל. המשך כך!",
+        "statistics": "סטטיסטיקות מפורטות",
+        "longest": "הארוך ביותר",
+        "totalMonthActivities": "פעילויות פיזיות שהושלמו החודש!"
+      },
+      "shoppingCart": {
+        "heading": "פריטים בבעלותך",
+        "equipMore": "צייד עוד",
+        "noItems": "עדיין אין לך פריטים!",
+        "goToShop": "לך לחנות",
+        "buyPotions": "לך לחנות ואסוף שיקויים מרגשים"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "חכה! אל תמחק אותי!",
+    "subtitle": "שלח משוב לפני"
+  },
+  "home": {
+    "tab": "בית"
+  },
+  "activity": {
+    "tab": "פעילות"
+  },
+  "progress": {
+    "tab": "התקדמות"
+  },
+  "settings": {
+    "tab": "הגדרות",
+    "profile": "פרופיל",
+    "shop": "חנות",
+    "contactUs": "צור קשר",
+    "about": "אודות",
+    "app_name": "שם האפליקציה",
+    "languages": {
+      "english": "אנגלית",
+      "mandarin_chinese": "סינית",
+      "hindi": "הינדי",
+      "spanish_spain": "ספרדית (ספרד)",
+      "spanish_mexico": "ספרדית (מקסיקו)",
+      "arabic": "ערבית",
+      "french": "צרפתית",
+      "french_canada": "צרפתית (קנדה)",
+      "portuguese_brazil": "פורטוגזית (ברזיל)",
+      "portuguese_portugal": "פורטוגזית (פורטוגל)",
+      "german": "גרמנית",
+      "japanese": "יפנית",
+      "russian": "רוסית",
+      "korean": "קוריאנית",
+      "italian": "איטלקית",
+      "turkish": "טורקית",
+      "vietnamese": "וייטנאמית",
+      "polish": "פולנית",
+      "ukrainian": "אוקראינית",
+      "romanian": "רומנית",
+      "dutch": "הולנדית",
+      "czech": "צ'כית",
+      "greek": "יוונית",
+      "swedish": "שוודית",
+      "hungarian": "הונגרית",
+      "thai": "תאית",
+      "hebrew": "עברית",
+      "indonesian": "אינדונזית",
+      "malay": "מלאית",
+      "finnish": "פינית",
+      "danish": "דנית",
+      "norwegian": "נורווגית",
+      "slovak": "סלובקית",
+      "croatian": "קרואטית",
+      "catalan": "קטלאנית"
+    },
+    "generale": "כללי",
+    "github": "Github",
+    "language": "שפה",
+    "links": "קישורים",
+    "logout": "התנתק",
+    "more": "עוד",
+    "privacy": "מדיניות פרטיות",
+    "faq": "שאלות נפוצות",
+    "rate": "תן לנו משוב",
+    "share": "שתף",
+    "citations": "ציטוטים למידע רפואי",
+    "support": "תמיכה",
+    "support_us": "תמכו בנו",
+    "terms": "תנאי שירות",
+    "theme": {
+      "dark": "כהה",
+      "light": "בהיר",
+      "system": "מערכת",
+      "title": "ערכת נושא"
+    },
+    "title": "הגדרות",
+    "version": "גרסה",
+    "website": "אתר אינטרנט",
+    "devMode": {
+      "title": "מצב מפתח",
+      "componentsLibrary": "ספריית ממשק משתמש"
+    },
+    "deleteAccount": "מחק חשבון?",
+    "deleteAccountQuestion": "האם אתה בטוח שברצונך למחוק את חשבונך? פעולה זו אינה ניתנת לביטול ותמחק לצמיתות את כל הנתונים שלך.",
+    "deactivateAccount": "השבת ומחק חשבון",
+    "permanentAccountCreate": "צור חשבון קבוע"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "דירוג"
+    },
+    "ScanReportCard": {
+      "promptMessage": "מה הסיבה?",
+      "unnamedConversation": "ללא שם",
+      "reportTitlePlaceholder": "הוסף כותרת"
+    },
+    "WeekBlock": {
+      "week": "שבוע"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "גלול למעלה"
+    },
+    "FreeTierStatus": {
+      "heading": "סריקות חינם",
+      "subheading": "בטל נעילה לסריקות בלתי מוגבלות על ידי שדרוג התוכנית שלך",
+      "action": "שדרג"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "בחר תמונה / סרטון"
+    },
+    "GoalsModal": {
+      "heading": "שנה את יעד הצריכה היומי שלך",
+      "dailyCalories": "קלוריות יומיות",
+      "saveGoals": "שמור יעדים"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "סטריק נשבר. שמור עכשיו.",
+      "loseStreak": "הרשה לו להישבר",
+      "buyStreak": "קנה ושמור סטריק",
+      "buyRepairStreak": "קנה שיקוי תיקון סטריק עבור {{elixirPrice}} 💎 כדי להחזיר את הסטריק האבוד שלך.",
+      "streakRestore": "הסטריק בסכנה — שחזר אותו עכשיו!",
+      "restorationStreak": "החזירו את הסטריק של {{lostStreakValue}} הימים שלכם לחיים עם שיקוי תיקון הסטריק החזק!",
+      "applyElixir": "החל שיקוי אליקסיר"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "הרכישה הושלמה",
+      "inventoryAdded": "נוסף למלאי שלך. המשך בעבודה המעולה!",
+      "purchaseFailed": "הרכישה נכשלה",
+      "purchaseFailedMessage": "לא הצלחנו לעבד את הרכישה שלך. אנא בדוק את יתרת הג'מס שלך ונסה שוב.",
+      "gemsBalance": "אופס, אין לך מספיק ג'מס"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "רישום יומי",
+      "bodyMovingQuestion": "האם הנעת את הגוף שלך היום?"
+    },
+    "TapToViewLabel": {
+      "label": "הקש כדי לצפות"
+    },
+    "UpgradeBanner": {
+      "heading": "בטל נעילה עכשיו!",
+      "upgradeMessage": "בטל נעילה לתכונה זו 🔓 תהנה מספירת קלוריות בינה מלאכותית, מעקב מאקרו ותמיכה מקיפה כדי לעזור לך להגיע ליעדי הפעילות והכושר שלך מהר יותר 💪",
+      "upgradeTo": "שדרג ל-",
+      "moreBenefits": "תכונות בינה מלאכותית. כל הכלים הפרימיום. כולם שלך להישאר במסלול."
+    },
+    "MotivationBanner": {
+      "title": "אין מוטיבציה? לא מרגיש טוב? בואו ננצח את התירוץ הזה.",
+      "subtitle": "בחר משימה, הרוויח XP וג'מס — בואו נזוז!",
+      "beatExcuse": "נצח את התירוץ שלך עכשיו!"
+    },
+    "AICoachBanner": {
+      "title": "יש שאלה? פשוט שאל.",
+      "subtitle": "שלוט בכושר שלך — שאל על קלוריות, תזונה, מכונות כושר, תנוחות, פציעות, טכניקה, תוכניות אימון",
+      "chat": "שוחח עם מאמן הבינה המלאכותית"
+    },
+    "PromptSection": {
+      "message": "הסריקה שלך מוכנה! עכשיו, מה תרצה לדעת?",
+      "prompts": {
+        "first": "אילו סוגי תאים או מבנים קיימים בתמונה זו?",
+        "second": "האם יש אנומליות או פתוגנים בדגימה זו?",
+        "third": "מה מקור או המצב הסביר של דגימה זו?",
+        "fourth": "אילו תובנות אתה יכול לספק מתמונה זו?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "סריקת ארוחות מיידית באמצעות בינה מלאכותית — עקוב אחר קלוריות ומאקרו תוך שניות",
+      "second": "מאמן כושר אישי בינה מלאכותית 24/7 — הדרכה מומחית, בכל זמן, בכל מקום",
+      "third": "עקוב אחר פעילויות הכושר שלך כמו מקצוען",
+      "fourth": "גישה מלאה לכל התכונות הפרימיום"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "כינוי",
+        "email": "אימייל",
+        "emailVerification": "אימות אימייל"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "המאקרו של היום",
+      "scanFood": "סרוק מזון",
+      "calories": "קלוריות",
+      "fat": "שומן",
+      "carbs": "פחמימות",
+      "protein": "חלבון",
+      "dailyIntakeGoals": "יעדי צריכה יומיים",
+      "percentage": "% מיעד המאקרו היומי שהושג",
+      "noMeals": "אין ארוחות שנרשמו",
+      "meals": "ארוחות",
+      "deleteMeal": "מחק ארוחה",
+      "deleteMealConfirm": "האם אתה בטוח שברצונך למחוק ארוחה זו? פעולה זו תשפיע על חישובי חומרי המזון היומיים שלך.",
+      "macroJournal": "יומן מאקרו",
+      "noActivityRecorded": "לא נרשמה פעילות השבוע"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "רישום יומי",
+      "attendedMessage": "הופעת היום, כך בונים התקדמות. המשך כך!",
+      "notAttendedMessage": "הספה מנצחת היום... אבל מחר, תחזור!",
+      "unknownMessage": "המסע שלך מתחיל בצעד בודד. מוכן להתחיל?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "המשך שנבחר לא יכול להיות ארוך מ-360 דקות",
+      "activitiesLimit": "וואו! אתה מתאמן בסתר לאולימפיאדה? כבר הגעת למגבלת {{MAX_DAILY_ACTIVITIES}} הפעילויות להיום! 🏅. תוכל למתוח את השרירים האלה שוב מחר 💪!",
+      "addActivity": "הוסף פעילות",
+      "modalHeading": "מה גרם לך לזוז היום? רשם את זה ושמור על המומנטום"
+    },
+    "TaskListOverview": {
+      "heading": "משימות היום",
+      "noTasks": "אין משימות!",
+      "enjoyFreeTime": "תהנה מהזמן הפנוי שלך."
+    },
+    "ActivitySelector": {
+      "title": "סוג פעילות",
+      "customActivity": "הוסף את הפעילות שלך",
+      "customActivityLabel": "פעילות מותאמת אישית"
+    },
+    "DurationSelector": {
+      "heading": "משך",
+      "customDuration": "הזן משך (דקות)",
+      "customDurationLabel": "משך מותאם אישית"
+    },
+    "NoActivityLogModal": {
+      "heading": "אוי לא! אל תתן לספה לנצח היום!",
+      "crushExcuse": "רסק את התירוץ שלי",
+      "skipToday": "לא היום, אולי מחר..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "עבודה טובה!",
+      "unlockReward": "עשית את זה! פעילות אחת הושלמה, וביטלת את הנעילה של הפרס שלך. בואו נמשיך את הסטריק!"
+    },
+    "SkipReasonInput": {
+      "title": "זה בסדר, רק בודק.",
+      "subtitle": "רוצה לשתף מדוע היום לא הסתדר? אין לחץ.",
+      "skipPlaceholder": "למשל, החתול שלי אכל את נעלי הריצה שלי",
+      "skipToday": "דלג על היום"
+    },
+    "StreakWarning": {
+      "streakFreeze": "הקפאת סטריק!",
+      "streakResetNow": "הסטריק שלך אופס היום.",
+      "streakRepairUse": "השתמש בשיקוי תיקון הסטריק שלך כדי לשמור על הסטריק שלך בחיים",
+      "streakRepairExpired": " חלון תיקון הסטריק של 48 השעות שלך פג! אבל היי, סטריקים חדשים פירושם הזדמנויות חדשות לנצח את השיא האישי שלך.",
+      "repairStreak": "תקן סטריק",
+      "streakPotionConsumed": "שיקוי הקפאת סטריק נצרך!",
+      "streakFreezeApplied": " שיקוי הקפאת הסטריק שלך נכנס לפעולה והגן על הסטריק שלך. אתה עדיין לוהט!",
+      "streakElixirApplied": "שיקוי תיקון סטריק נכנס לפעולה!",
+      "streakFreezePotionApplied": "הצלת את הסטריק שלך! שיקוי הקפאת הסטריק שלך נכנס לפעולה והגן על הסטריק שלך. אתה עדיין לוהט!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "לא נמצאה פעילות",
+      "addFirstActivity": "הוסף את הפעילות הראשונה שלך כדי להרוויח ג'מס ו-XP.",
+      "addActivity": "הוסף פעילות",
+      "todayActivities": "פעילויות היום"
+    },
+    "ActivityCard": {
+      "activitySkipped": "דולג",
+      "dayOff": "יום חופש",
+      "description": "תיאור",
+      "excuseReason": "סיבת תירוץ ⚠️",
+      "yourNotes": "ההערות שלך 📝",
+      "notesPlaceholder": "למשל, אימון גב וזרוע, 3 סופר סטים",
+      "addNotes": "הוסף הערות"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "ספריית תמונות",
+      "takePhoto": "צלם תמונה",
+      "chooseFile": "בחר קובץ"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 הגעת לרמה המקסימלית! רמה",
+      "xpLeft": "נותרו כדי להגיע לרמה"
+    },
+    "ShopItemCard": {
+      "unavailable": "לא זמין",
+      "worth": "בשווי",
+      "equiped": "מצויד",
+      "shop": "חנות",
+      "earnedId": "הרווחת את זה.",
+      "treat": "עכשיו תפנק את עצמך!",
+      "spendGems": "הוצא את הג'מס שלך בחוכמה, מסע הכושר שלך הפך מעניין."
+    },
+    "ActivityTaskCard": {
+      "win": "נצח",
+      "acceptChallenge": "קבל אתגר 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "מה דעתך לדחוף את עצמך קצת עם האתגר הזה?",
+      "typeInput": "(הקלד את הקלט שלך למטה)"
+    },
+    "MacroOverview": {
+      "analysis": "ניתוח",
+      "macroAdded": "מאקרו נוסף",
+      "countToday": "ספירה להיום"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "הגן על הסטריק שלך אם תפספס יום אימון.",
+      "owned": "בבעלות",
+      "manualTrigger": "הפעלה ידנית",
+      "activated": "מופעל"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "סליחה, אנחנו צריכים הרשאות מצלמה כדי שזה יעבוד!",
+    "errorSelectingImagePicker": "משהו השתבש בבחירת התמונה. אנא נסה שוב.",
+    "errorSelectingDocumentPicker": "משהו השתבש בבחירת המסמך. אנא נסה שוב.",
+    "errorTakingPicture": "משהו השתבש בצילום התמונה. אנא נסה שוב.",
+    "enableNotifications": {
+      "heading": "הפעל התראות",
+      "subHeading": "ההתראות כבויות כרגע. כדי להישאר מעודכן, אנא הפעל אותן בהגדרות המכשיר שלך."
+    },
+    "notesSavedSuccess": "ההערות נשמרו! 📝 הכל מוכן.",
+    "enableNotificationFailed": "התראות push כבויות. הפעל אותן בהגדרות כדי לקבל עדכונים חשובים!",
+    "enableNotificationError": "אירעה שגיאה בהפעלת ההתראות",
+    "notificationDisabledSuccess": "ההתראות כובו בהצלחה.",
+    "notificationDisabledRegisterError": "נכשל בביטול רישום המכשיר להתראות.",
+    "notificationDisabledError": "אירעה שגיאה בכיבוי ההתראות",
+    "checkNotificationStatusError": "שגיאה בבדיקת מצב ההתראות.",
+    "projectIdNotFound": "מזהה פרויקט התראות לא נמצא.",
+    "imageSizeLarge": "התמונה גדולה מדי! גודל הקובץ הוא {{fileSize}} MB, אבל המגבלה היא {{imageLimit}} MB.",
+    "videoSizeLarge": "הסרטון גדול מדי! גודל הקובץ הוא {{fileSize}} MB, אבל המגבלה היא {{videoLimit}} MB.",
+    "loggedInSuccess": "התחברת בהצלחה",
+    "loggedOutSuccess": "התנתקת בהצלחה!",
+    "sendVerificationCodeError": "שגיאה בשליחת קוד אימות",
+    "validateAuthCodeError": "שגיאה באימות קוד אימות",
+    "anonymousSignInError": "שגיאה בהתחברות אנונימית",
+    "emailLoginError": "שגיאה בהתחברות",
+    "preferredLanguageError": "שגיאה בעדכון שפת המשתמש המועדפת",
+    "sharingNotAvailable": "שיתוף לא זמין כרגע במכשיר שלך",
+    "sharingLinkError": "נכשל בשיתוף הקישור.",
+    "individualPushNotificationSuccess": "התראות push אישיות נשלחו בהצלחה!",
+    "globalPushNotificationSuccess": "התראות push גלובליות נשלחו בהצלחה! 🌍🚀",
+    "interpretationFieldsUpdateFail": "נכשל בעדכון שדות פרשנות! ❌",
+    "deleteScanReportFail": "לא ניתן למחוק את דוח הסריקה. אנא נסה שוב",
+    "onboardingUnsuccessful": "העלייה לסיפון לא הצליחה. אנא נסה שוב",
+    "logoutUnsuccessful": "ההתנתקות לא הצליחה. אנא נסה שוב",
+    "deleteScanReportQuestion": "האם אתה בטוח שברצונך למחוק דוח זה לצמיתות?",
+    "videoLimitExceeds": "הסרטון שלך חורג ממגבלת ה-{{videoSecondsLimit}} שניות. אנא חתוך אותו והעלה מחדש",
+    "subscriptionActivated": "המינוי שלך הופעל בהצלחה! תיהנה מהיתרונות הבלעדיים שלך!",
+    "subscriptionCancelledByUser": "ביטלת את העסקה. אל תהסס לנסות שוב!",
+    "subscriptionActivationFailed": "נכשל בהפעלת המינוי שלך. אנא נסה שוב",
+    "logoutQuestion": "האם אתה בטוח שברצונך להתנתק?",
+    "noSubscriptionToRestore": "אופס! נראה שאין לך מינוי פעיל כרגע. כדי להמשיך ליהנות מגישה מלאה, אנא בחר אחת מתוכניות המינוי שלנו.",
+    "restorationSuccessful": "השחזור הצליח! תהנה!",
+    "restorationError": "אירעה שגיאה בשחזור הרכישה.",
+    "medicalDisclaimerAlert": "אפליקציית EXFIT AI אינה מציעה אבחונים, המלצות טיפול או ייעוץ רפואי כלשהו. תמיד פנה להדרכת איש מקצוע רפואי מוסמך להחלטות רפואיות.",
+    "scanLimitReached": "אנו משפרים את איכות הסריקה עבורך! תוכל לסרוק שוב בעוד כ-{{hours}} שעות ו-{{minutes}} דקות. יש לך שאלות על נושא מיקרוסקופיה כלשהו? שאל את עוזר הצ'אט שלנו בזמן שאתה מחכה!",
+    "chatAndMediaFilesLimit": "משתמש יקר, שדרג את התוכנית שלך כדי ליהנות ממעקב קלוריות בלתי מוגבל, סריקות ארוחות, אימון כושר ועוד. 🔓",
+    "chatMessageNotSent": "אופס! ההודעה שלך לא עברה. אנא נסה שוב",
+    "excusesLimit": "אופס, נראה שאתה מנסה לקבוע שיא עולם בתירוצים! 😅 מותר עד 3 תירוצים - בחר את 3 המובילים שלך ובואו נזוז!",
+    "excuseMinimum": "אנא בחר לפחות תירוץ אחד או הקלד את שלך.",
+    "createActivityLogFailed": "נכשל ביצירת רישום פעילות. אנא נסה שוב.",
+    "updateActivityLogFailed": "משהו השתבש בעדכון רישום הפעילות. אנא נסה שוב.",
+    "challengeAccepted": "אתגר התקבל! 🔥 עכשיו לך רסק אותו והרוויח את הפרסים האלה!",
+    "challengeCompleted": "אתגר הושלם! 🔥 יתרת הפרסים החדשה שלך עודכנה.",
+    "macroEntryRecorded": "רישום מאקרו נרשם - המשך כך! 🥗",
+    "failedCreateMacroLog": "אופס! רישום המאקרו לא נשמר. אנא נסה שוב!",
+    "deleteMacroLog": "אופס! לא הצלחנו להסיר את רישום המאקרו שלך. אנא נסה שוב!",
+    "deleteMacro": "מאקרו נמחק — מוכן לרישום הבא שלך!",
+    "chooseSubscriptionPlan": "אנא בחר תוכנית מינוי כדי להמשיך!",
+    "createPermanentAccountSuccess": "החשבון הקבוע שלך נוצר! החשבון שלך מאובטח כעת. אה, וגם קיבלת",
+    "loginSuccess": "התחברת בהצלחה — בואו נזוז!",
+    "accountDeleted": "החשבון שלך נמחק בהצלחה",
+    "purchaseFailed": "הרכישה נכשלה. אנא נסה שוב.",
+    "streakRepairFailed": "נכשל בתיקון הסטריק. אנא נסה שוב.",
+    "failedSendMessage": "נכשל בשליחת ההודעה. אנא נסה שוב.",
+    "capturePictureFailed": "משהו השתבש בצילום התמונה",
+    "multipleVideosNotAllowed": "לתוצאות טובות יותר, אנא העלה רק סרטון אחד בכל פעם.",
+    "mixedMediaNotAllowed": "העלאות חייבות להכיל רק תמונות או רק סרטונים, לא ערבוב של שניהם.",
+    "mediaFilesUploadFiles": "אירעה שגיאה בהעלאת קבצי המדיה שלך. אנא נסה שוב."
+  }
+}

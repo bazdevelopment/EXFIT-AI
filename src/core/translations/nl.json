@@ -1,0 +1,803 @@
+{
+  "onboarding": {
+    "message": "Welkom bij EXFIT AI!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Maak een foto van je maaltijd en volg calorieën",
+        "headingTwo": "Scan maaltijden, praat met je AI-coach en krijg dagelijkse uitdagingen gemaakt voor jou"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Laat AI je fitness verbeteren",
+        "headingTwo": "Ontmoet EXFIT AI, je slimme sidekick om twijfel te overwinnen, motivatie aan te wakkeren en je in beweging te houden"
+      },
+      "onboardingThirdPage": {
+        "heading": "Laat AI gymapparatuur, oefeningen en techniek detecteren"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Train. Verdien. Level omhoog.",
+        "headingTwo": "Verdien XP, verzamel Edelstenen, houd je Reeks in leven en ontgrendel beloningen voor je inzet."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Sportschool",
+    "yoga": "Yoga",
+    "running": "Hardlopen",
+    "walking": "Wandelen",
+    "cycling": "Fietsen",
+    "dance": "Dans",
+    "stretching": "Rekken",
+    "swimming": "Zwemmen",
+    "hiking": "Wandelen",
+    "pilates": "Pilates",
+    "climbing": "Klimmen",
+    "skating": "Schaatsen"
+  },
+  "general": {
+    "back": "Terug",
+    "welcome": "Hallo",
+    "welcomeBack": "Welkom terug!",
+    "welcomeMessage": "Welkom!",
+    "goodMorning": "Goedemorgen",
+    "goodAfternoon": "Goedemiddag",
+    "goodEvening": "Goedenavond",
+    "continue": "Doorgaan",
+    "retry": "Opnieuw proberen",
+    "retake": "Opnieuw nemen",
+    "scanNow": "Nu scannen",
+    "scanning": "Scannen...",
+    "close": "Sluiten",
+    "gallery": "Galerij",
+    "files": "Bestanden",
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "edit": "Bewerken",
+    "delete": "Verwijderen",
+    "attention": "Attentie!",
+    "new": "Nieuw",
+    "yes": "Ja",
+    "no": "Nee",
+    "or": "of",
+    "change": "Wijzigen",
+    "typing": "Typen...",
+    "online": "Online",
+    "chatbotPlaceholder": "Vraag me iets...",
+    "openSettings": "Instellingen openen",
+    "seeNotifications": "Meldingen bekijken",
+    "viewProfile": "Profiel bekijken",
+    "upgradePlan": "Upgrade abonnement",
+    "download": "Downloaden",
+    "share": "Delen",
+    "shareLink": "Link delen",
+    "skip": "Overslaan",
+    "next": "Volgende",
+    "update": "Bijwerken",
+    "tryAgain": "Opnieuw proberen",
+    "createdAt": "Aangemaakt op",
+    "and": "en",
+    "saveDiscount": "BESPAAR",
+    "restorePurchase": "Aankoop herstellen",
+    "medicalDisclaimer": "Medische disclaimer",
+    "conversationHistory": "Gespreksgeschiedenis",
+    "analyzingMediaFilesPlaceholder": "Media bestanden analyseren...",
+    "freeTrial": "Gratis proefperiode",
+    "free": "GRATIS",
+    "noPaymentNow": "Geen betaling nu. Annuleer op elk moment.",
+    "completedScans": "Scans voltooid",
+    "activeSubscription": "Abonnement actief",
+    "askAssistant": "Vraag AI-assistent",
+    "then": "dan",
+    "perWeek": "per week",
+    "perYear": "per jaar",
+    "perMonth": "per maand",
+    "tryForFree": "Gratis uitproberen",
+    "unlockNow": "Nu ontgrendelen",
+    "attended": "Deelgenomen",
+    "readyToStart": "Klaar om te starten",
+    "skipped": "Overgeslagen",
+    "completed": "Voltooid",
+    "purchase": "Kopen",
+    "active": "actief",
+    "dearUser": "Beste gebruiker",
+    "ok": "Ok",
+    "activities": "Activiteiten",
+    "seeLess": "Minder zien",
+    "seeMore": "Meer zien",
+    "goBack": "Ga terug",
+    "schedule": "Planning",
+    "utils": "Hulpmiddelen",
+    "verifyEmail": "E-mail verifiëren",
+    "loading": "Laden...",
+    "error": "Fout",
+    "minutes": "minuten",
+    "submit": "Verzenden",
+    "copyText": {
+      "loading": "Kopiëren...",
+      "copied": "Gekopieerd! 📝",
+      "copy": "Link kopiëren"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "Je persoonlijke ervaring laden...",
+        "second": "Systemen synchroniseren...",
+        "third": "Je gegevens verwerken...",
+        "fourth": "Bijna klaar, een momentje..."
+      },
+      "imageScanningLoading": {
+        "first": "Je afbeelding scannen, even geduld...",
+        "second": "Details analyseren, dit kan even duren...",
+        "third": "Nauwkeurigheid verbeteren voor de beste resultaten...",
+        "fourth": "Bijna klaar, scan afronden..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, je AI-coach maakt zich klaar om je te helpen...",
+        "second": "Wacht even! Mojo bereidt je antwoord voor...",
+        "third": "Denken... Mojo is ermee bezig!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Wacht even!",
+    "goBackMessage": "Weet je zeker dat je terug wilt gaan?"
+  },
+  "internet": {
+    "noConnectionTitle": "Je bent offline!",
+    "noConnectionMessage": "Zet mobiele data aan of verbind met Wi-Fi. Of neem gewoon even pauze en ga een wandeling maken!"
+  },
+  "uploadScan": {
+    "title": "Afbeelding uploaden",
+    "scanNow": "Nu scannen"
+  },
+  "weekDays": {
+    "today": "Vandaag",
+    "yesterday": "Gisteren"
+  },
+  "auth": {
+    "verifyAuthCode": "Verifieer authenticatiecode",
+    "verifyAuthCodeButton": "Verifieer code",
+    "authCodeHeading": "Authenticatiecode",
+    "loginViaEmailHeading": "Laten we je inloggen. Voer je e-mailadres in om door te gaan.",
+    "emailAddress": "E-mail"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "Welkom bij EXFIT AI!",
+        "startButton": "Laten we beginnen!",
+        "accountButton": "Ik heb al een account",
+        "count": "Tel",
+        "calories": "Calorieën",
+        "track": "Volgen",
+        "activity": "Activiteit",
+        "with": "Met"
+      },
+      "login": {
+        "agreeingMessage": "Door verder te gaan ga je akkoord met onze",
+        "termsAndConditions": "Algemene voorwaarden",
+        "privacyPolicy": "Privacybeleid",
+        "heading": "Inloggen",
+        "continueName": "Doorgaan met Bijnaam",
+        "existingAccount": "Heb je een account?",
+        "emailAddress": "E-mailadres",
+        "emailPlaceholder": "Voer je e-mail in",
+        "password": "Wachtwoord",
+        "confirmPassword": "Bevestig wachtwoord",
+        "forgotPassword": "Wachtwoord vergeten",
+        "keepSigned": "Houd me ingelogd",
+        "createPassword": "Maak een wachtwoord"
+      },
+      "signUp": {
+        "heading": "Registreren",
+        "haveAccount": "Heb je een account?",
+        "signInHere": "Log hier in",
+        "acceptTerms": {
+          "title": "Voorwaarden vereist",
+          "subtitle": "Accepteer de gebruiksvoorwaarden en het privacybeleid om door te gaan."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Wachtwoord vergeten",
+        "verificationSent": "Controleer je e-mail voor een link om je wachtwoord opnieuw in te stellen. Als je deze niet in je inbox ziet, controleer dan je spam- of ongewenste e-mailmap.",
+        "verificationHeading": "Voer het e-mailadres in dat bij je account hoort. We sturen je een link om je wachtwoord opnieuw in te stellen.",
+        "rememberPassword": "Wachtwoord onthouden?",
+        "loginAccount": "Inloggen op je account",
+        "alertTitle": "Wachtwoord reset verzonden",
+        "alertSubtitle": "Als er een account met dit e-mailadres bestaat, hebben we je een wachtwoord resetlink gestuurd."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Voer zowel e-mail als wachtwoord in.",
+        "secureProgress": "Beveilig je vooruitgang",
+        "permanentAccount": "Maak een permanent account om je gegevens op alle apparaten op te slaan."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "Voer je verificatiecode in die via e-mail is verzonden. Let op, de code verloopt over 5 minuten.",
+        "verificationCodeSent": "We hebben de verificatiecode verzonden naar",
+        "verificationCodeMissing": "Geen code ontvangen?",
+        "resendCode": "Code opnieuw verzenden",
+        "backToLogin": "Terug naar Inloggen"
+      },
+      "namePreferenceScreen": {
+        "heading": "Laten we dit persoonlijk maken!",
+        "preferredNameQuestion": "Hoe moeten we je noemen?",
+        "placeholderPreferredName": "Bijv., Captain Cool, Queen Bee, of gewoon Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Hoe zou je je fitnesservaring beschrijven?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Wat is je fitnessdoel?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Selecteer geslacht voor een meer gepersonaliseerde ervaring"
+      },
+      "freeTrialPreview": {
+        "heading": "Geniet van je gratis proefperiode! 🎉",
+        "subheading": "Ervaar deze geweldige voordelen tijdens je gratis proefperiode",
+        "review": "Maaltijdscannen, calorieënteller en fitnesstracker eenvoudig en slim. Probeer het eens!",
+        "reviewTrust": "📈 Vertrouwd door 7.512+ gebruikers"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Gratis proefperiode ingeschakeld",
+          "heading": " Onbeperkte toegang",
+          "title": "Ontgrendel Premium functies vandaag!",
+          "firstOffering": "Activiteitentracker & Slimme voedingsadviezen",
+          "secondOffering": "Onbeperkte calorie & macro teller",
+          "thirdOffering": "Onbeperkte voedingsscanner",
+          "fourthOffering": "Je AI Fitness Coach 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Ontgrendel Premium functies vandaag!",
+
+        "secondOffering": {
+          "title": "Maandabonnement",
+          "subtitle": "{{ price }}/maand"
+        },
+        "thirdOffering": {
+          "title": "Jaarabonnement",
+          "subtitle": "{{ price }} per jaar"
+        },
+        "fourthOffering": {
+          "title": "{{trialDays}}-daagse proefperiode",
+          "subtitle": "{{ price }} per jaar",
+          "plan": "Weekabonnement"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "Een nieuwe versie van EXFIT AI is beschikbaar",
+        "subheading": "Update naar de nieuwste versie om alle appfuncties te blijven gebruiken — het duurt maar 5 seconden!",
+        "action": "Haal het nu!"
+      },
+      "rateAppScreen": {
+        "heading": "Vind je de app waardevol en boeiend?",
+        "like": "Ja, ik vind het leuk!",
+        "dislike": "Niet echt..."
+      },
+      "noInternetScreen": {
+        "heading": "Je bent offline",
+        "subheading": "Je verbinding lijkt onstabiel. Controleer je netwerkstatus en probeer opnieuw"
+      },
+      "notifications": {
+        "title": "Meldingen",
+        "noNotifications": "Nog geen meldingen",
+        "emptyNotifications": "Geen nieuwe meldingen voor nu. Kom later terug."
+      },
+      "termsOfService": {
+        "title": "Servicevoorwaarden"
+      },
+      "privacyPolicy": {
+        "title": "Privacybeleid"
+      },
+      "share": {
+        "title": "Delen",
+        "heading": "Deel EXFIT AI App",
+        "subheading": "Help anderen EXFIT AI App te ontdekken",
+        "scanMessage": "Scan om de app te downloaden",
+        "shareMessage": "of deel via je favoriete platform"
+      },
+      "rate": {
+        "title": "Geef ons feedback!"
+      },
+      "profile": {
+        "title": "Profiel",
+        "edit": "Profiel bewerken",
+        "placeholderPreferredName": "Bijv., Captain Cool, Queen Bee, of gewoon Alex!",
+        "subscriptions": {
+          "monthly": "Maandelijks abonnement",
+          "yearly": "Jaarlijks abonnement",
+          "weekly": "Wekelijks abonnement"
+        },
+        "temporaryAccount": "Tijdelijk account",
+        "permanentAccount": "Permanent account"
+      },
+      "generateReportScreen": {
+        "title": "We waarderen je geduld! Hier is je AI-rapport. ",
+        "userInput": "Je inzending",
+        "medicalReport": "Fitnessrapport",
+        "report": "AI-gegenereerd fitnessrapport",
+        "conversationName": "Gespreksnaam"
+      },
+      "verifyEmail": {
+        "heading": "E-mail verifiëren"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Start analyse"
+      },
+      "contactUs": {
+        "heading": "Stuur ons gerust direct een e-mail en ons team neemt zo snel mogelijk contact met je op",
+        "customerSupport": "Klantenservice",
+        "emailAddress": "E-mailadres"
+      },
+      "scan": {
+        "cameraPermission": "Voor deze functie is cameratoegang vereist",
+        "requestPermission": "Cameratoestemming aanvragen...",
+        "scanAnything": "Scan van alles: Maaltijden, Voedsel, Gymapparatuur & Meer",
+        "askAssistant": "Vraag je AI Fitness Coach"
+      },
+      "excuseBuster": {
+        "heading": "Excusesmoordenaar",
+        "reasons": {
+          "one": "Voel me te moe",
+          "two": "Geen tijd beschikbaar",
+          "three": "Te veel spierpijn om te sporten",
+          "four": "Sportschool is te druk",
+          "five": "Niet in de stemming",
+          "six": "Slecht weer buiten",
+          "seven": "Werk is hectisch",
+          "eight": "Ik begin morgen",
+          "nine": "Weet niet wat te doen",
+          "ten": "Geen apparatuur beschikbaar"
+        },
+        "excuseMotivation": "Je bent sterker dan je excuus.",
+        "excuseQuestion": "Wat houdt je vandaag tegen?",
+        "typeExcuse": "Typ je excuus hier...",
+        "crushExcuse": "Vernietig mijn excuus"
+      },
+      "chat": {
+        "fitnessCoach": "Je Fitness Coach",
+        "randomQuestions": {
+          "one": "'📸 Maak een foto van mijn maaltijd en schat calorieën & macro's',",
+          "two": "🥗 Analyseer deze maaltijd en vertel me hoe ik deze kan verbeteren voor mijn doel",
+          "three": "🧠 Bouw een persoonlijke workout op basis van mijn fitnessniveau",
+          "four": "🏋️ Adviseer een workout die ik nu zonder apparatuur kan doen",
+          "five": "⏱ Maak een 20-minuten workout voor een drukke dag",
+          "six": "🔥 Stel een vetverbrandende workout voor die op mij is afgestemd",
+          "seven": "💪 Ontwerp een spieropbouwplan voor mijn lichaam en doelen",
+          "eight": "📊 Volg mijn voortgang en laat zien wat ik vervolgens moet verbeteren",
+          "nine": "🍽 Vertel me wat ik vandaag moet eten om mijn calorie- en eiwitdoelen te halen",
+          "ten": "🥚 Bereken mijn dagelijkse eiwitten, koolhydraten en vetten",
+          "eleven": "🛒 Maak een gezonde boodschappenlijst op basis van mijn dieetplan",
+          "twelve": "😴 Pas mijn workouts aan op basis van mijn slaap en herstel",
+          "thirteen": "📅 Bouw een wekelijks workoutschema dat ik kan volhouden",
+          "fourteen": "⚡ Adviseer een low-energy workout voor vandaag",
+          "fifteen": "🤕 Pas mijn workout aan als ik spierpijn of een blessure heb"
+        }
+      },
+      "progress": {
+        "error": "Er is iets misgegaan",
+        "heading": "Voortgangsdashboard",
+        "subheading": "Ga door met het geweldige werk! 🚀",
+        "weeklyGoals": "Wekelijkse doelen",
+        "monthlyGoal": "Maandelijks doel",
+        "insights": "Snelle inzichten",
+        "mostActive": "Meest actief",
+        "peakTime": "Piekprestatietijd",
+        "favoriteActivity": "Favoriete activiteit",
+        "choice": "Jouw vaste keuze",
+        "weeklyChange": "Wekelijkse verandering",
+        "lastWeekXP": "vs vorige week",
+        "consistency": "Consistentie",
+        "reliability": "betrouwbaarheid",
+        "overview": "Overzicht",
+        "performance": "Prestatie",
+        "trends": "Trends",
+        "lastSevenDays": "Afgelopen 7 dagen",
+        "thisWeek": "Deze week",
+        "activityFocus": "Activiteitenfocus",
+        "distribution": "Distributie",
+        "history": "Geschiedenis",
+        "activities": "Activiteiten",
+        "consistencyJourney": "Je consistentiereis",
+        "bestDay": "Beste dag",
+        "averageSession": "Gem. sessie",
+        "totalHours": "Totale uren",
+        "WeeklyComparisonXp": "Wekelijkse vergelijking",
+        "weeksComparison": "Deze week vs vorige week",
+        "thisWeeks": "Deze week",
+        "lastWeek": "Vorige week",
+        "activityPattern": "Activiteitenpatroon",
+        "hoursBreakdown": "24-uurs verdeling",
+        "monthlyActivity": "Maandelijkse activiteit",
+        "lastMonths": "Afgelopen 6 maanden",
+        "progression": "Voortgang",
+        "monthlyEarned": "Maandelijks verdiend",
+        "recentActivity": "Recente activiteit",
+        "last30Days": "Afgelopen 30 dagen",
+        "outstanding": "Uitstekende voortgang!",
+        "activityReview": "Je hebt {{totalActivities}} activiteiten voltooid en in totaal {{totalXp}} XP verdiend. Ga zo door!",
+        "statistics": "Gedetailleerde statistieken",
+        "longest": "Langste",
+        "totalMonthActivities": "Fysieke activiteiten deze maand voltooid!"
+      },
+      "shoppingCart": {
+        "heading": "Verworven items",
+        "equipMore": "Meer uitrusten",
+        "noItems": "Je hebt nog geen items!",
+        "goToShop": "Ga naar winkel",
+        "buyPotions": "Ga naar de winkel en verzamel spannende drankjes"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Wacht! Verwijder me niet!",
+    "subtitle": "Stuur eerst feedback"
+  },
+
+  "home": {
+    "tab": "Home"
+  },
+
+  "activity": {
+    "tab": "Activiteit"
+  },
+  "progress": {
+    "tab": "Voortgang"
+  },
+  "settings": {
+    "tab": "Instellingen",
+    "profile": "Profiel",
+    "shop": "Winkel",
+    "contactUs": "Neem contact op",
+    "about": "Over",
+    "app_name": "App naam",
+    "languages": {
+      "english": "Engels",
+      "mandarin_chinese": "Chinees",
+      "hindi": "Hindi",
+      "spanish_spain": "Spaans (Spanje)",
+      "spanish_mexico": "Spaans (Mexico)",
+      "arabic": "Arabisch",
+      "french": "Frans",
+      "french_canada": "Frans (Canada)",
+      "portuguese_brazil": "Portugees (Brazilië)",
+      "portuguese_portugal": "Portugees (Portugal)",
+      "german": "Duits",
+      "japanese": "Japans",
+      "russian": "Russisch",
+      "korean": "Koreaans",
+      "italian": "Italiaans",
+      "turkish": "Turks",
+      "vietnamese": "Vietnamees",
+      "polish": "Pools",
+      "ukrainian": "Oekraïens",
+      "romanian": "Roemeens",
+      "dutch": "Nederlands",
+      "czech": "Tsjechisch",
+      "greek": "Grieks",
+      "swedish": "Zweeds",
+      "hungarian": "Hongaars",
+      "thai": "Thais",
+      "hebrew": "Hebreeuws",
+      "indonesian": "Indonesisch",
+      "malay": "Maleis",
+      "finnish": "Fins",
+      "danish": "Deens",
+      "norwegian": "Noors",
+      "slovak": "Slowaaks",
+      "croatian": "Kroatisch",
+      "catalan": "Catalaans"
+    },
+    "generale": "Algemeen",
+    "github": "Github",
+    "language": "Taal",
+    "links": "Links",
+    "logout": "Uitloggen",
+    "more": "Meer",
+    "privacy": "Privacybeleid",
+    "faq": "FAQ",
+    "rate": "Geef ons feedback",
+    "share": "Delen",
+    "citations": "Citaten voor medische informatie",
+    "support": "Ondersteuning",
+    "support_us": "Steun ons",
+    "terms": "Servicevoorwaarden",
+    "theme": {
+      "dark": "Donker",
+      "light": "Licht",
+      "system": "Systeem",
+      "title": "Thema"
+    },
+    "title": "Instellingen",
+    "version": "Versie",
+    "website": "Website",
+    "devMode": {
+      "title": "Ontwikkelaarsmodus",
+      "componentsLibrary": "UI bibliotheek"
+    },
+    "deleteAccount": "Account verwijderen?",
+    "deleteAccountQuestion": "Weet je zeker dat je je account wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt en zal al je gegevens permanent verwijderen.",
+    "deactivateAccount": "Account deactiveren en verwijderen",
+    "permanentAccountCreate": "Maak een permanent account"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Beoordeling"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Wat is de reden?",
+      "unnamedConversation": "Naamloos",
+      "reportTitlePlaceholder": "Voeg een titel toe"
+    },
+    "WeekBlock": {
+      "week": "Week"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Scroll naar boven"
+    },
+    "FreeTierStatus": {
+      "heading": "Gratis scans",
+      "subheading": "Ontgrendel onbeperkte scans door je abonnement te upgraden",
+      "action": "Upgrade"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Kies een afbeelding / video"
+    },
+    "GoalsModal": {
+      "heading": "Wijzig je dagelijkse inname doel",
+      "dailyCalories": "Dagelijkse calorieën",
+      "saveGoals": "Doelen opslaan"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Reeks verbroken. Nu opslaan.",
+      "loseStreak": "Laat het breken",
+      "buyStreak": "Koop en red reeks",
+      "buyRepairStreak": "Koop een Reekshersteldrank voor {{elixirPrice}} 💎 om je verloren reeks terug te brengen.",
+      "streakRestore": "Reeks in gevaar — herstel nu!",
+      "restorationStreak": "Breng je {{lostStreakValue}}-daagse reeks terug tot leven met de krachtige Reekshersteldrank!",
+      "applyElixir": "Elixirdrank toepassen"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Aankoop voltooid",
+      "inventoryAdded": "is toegevoegd aan je inventaris. Ga door met het goede werk!",
+      "purchaseFailed": "Aankoop mislukt",
+      "purchaseFailedMessage": "We konden je aankoop niet verwerken. Controleer je edelstenensaldo en probeer opnieuw.",
+      "gemsBalance": "Oeps, je hebt niet genoeg edelstenen"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Dagelijkse check-in",
+      "bodyMovingQuestion": "Heb je vandaag bewogen?"
+    },
+    "TapToViewLabel": {
+      "label": "Tik om te bekijken"
+    },
+    "UpgradeBanner": {
+      "heading": "Ontgrendel nu!",
+      "upgradeMessage": "Ontgrendel deze functie 🔓 Geniet van AI-calorieëntelling, macro tracking en all-in-one ondersteuning om je sneller je activiteits- en fitnessdoelen te helpen bereiken 💪",
+      "upgradeTo": "Upgrade naar",
+      "moreBenefits": "AI-functies. Alle premium tools. Allemaal van jou om op koers te blijven."
+    },
+    "MotivationBanner": {
+      "title": "Geen motivatie? Voel je niet lekker? Laten we dat excuus verslaan.",
+      "subtitle": "Kies een taak, verdien XP en edelstenen — laten we bewegen!",
+      "beatExcuse": "Versla je excuus nu!"
+    },
+    "AICoachBanner": {
+      "title": "Een vraag? Vraag het gewoon.",
+      "subtitle": "Beheers je fitness — vraag over calorieën, voeding, gymapparatuur, houdingen, blessures, techniek, trainingsschema's",
+      "chat": "Chat met AI Coach"
+    },
+    "PromptSection": {
+      "message": "Je scan is klaar! Wat wil je nu weten?",
+      "prompts": {
+        "first": "Welke celtypen of structuren zijn aanwezig in deze afbeelding?",
+        "second": "Zijn er afwijkingen of ziekteverwekkers in dit monster?",
+        "third": "Wat is de waarschijnlijke oorsprong of conditie van dit monster?",
+        "fourth": "Welke inzichten kun je uit deze afbeelding geven?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Directe AI-maaltijdscan — Volg calorieën & macro's in seconden",
+      "second": "24/7 AI Persoonlijke Trainer — Deskundige begeleiding, altijd en overal",
+      "third": "Volg je fitnessactiviteiten als een professional",
+      "fourth": "Volledige toegang tot alle premiumfuncties"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Bijnaam",
+        "email": "E-mail",
+        "emailVerification": "E-mailverificatie"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Dagelijkse macro's",
+      "scanFood": "Scan voedsel",
+      "calories": "Calorieën",
+      "fat": "Vet",
+      "carbs": "Koolhydraten",
+      "protein": "Eiwit",
+      "dailyIntakeGoals": "Dagelijkse inname doelen",
+      "percentage": "% van dagelijks macro doel behaald",
+      "noMeals": "Geen maaltijden gelogd",
+      "meals": "Maaltijden",
+      "deleteMeal": "Maaltijd verwijderen",
+      "deleteMealConfirm": "Weet je zeker dat je deze maaltijd wilt verwijderen? Deze actie beïnvloedt je dagelijkse macronutriëntberekeningen.",
+      "macroJournal": "Macro dagboek",
+      "noActivityRecorded": "Geen activiteit geregistreerd deze week"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Dagelijkse check-in",
+      "attendedMessage": "Je was er vandaag bij, zo wordt vooruitgang geboekt. Ga zo door!",
+      "notAttendedMessage": "De bank wint vandaag… maar morgen maak je een comeback!",
+      "unknownMessage": "Je reis begint met een enkele stap. Klaar om te beginnen?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "De geselecteerde duur mag niet langer zijn dan 360 minuten",
+      "activitiesLimit": "Wacht even! Train je stiekem voor de Olympische Spelen? Je hebt vandaag al de limiet van {{MAX_DAILY_ACTIVITIES}} activiteiten bereikt! 🏅. Je kunt die spieren morgen weer flexen 💪!",
+      "addActivity": "Activiteit toevoegen",
+      "modalHeading": "Wat heeft je vandaag in beweging gezet? Log het en houd de vaart erin"
+    },
+    "TaskListOverview": {
+      "heading": "Taken van vandaag",
+      "noTasks": "Geen taken!",
+      "enjoyFreeTime": "Geniet van je vrije tijd."
+    },
+    "ActivitySelector": {
+      "title": "Activiteitstype",
+      "customActivity": "Voeg je eigen activiteit toe",
+      "customActivityLabel": "Aangepaste activiteit"
+    },
+    "DurationSelector": {
+      "heading": "Duur",
+      "customDuration": "Voer duur in (minuten)",
+      "customDurationLabel": "Aangepaste duur"
+    },
+    "NoActivityLogModal": {
+      "heading": "Oh nee! Laat de bank niet vandaag winnen!",
+      "crushExcuse": "Vernietig mijn excuus",
+      "skipToday": "Niet vandaag, misschien morgen..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Goed gedaan!",
+      "unlockReward": "Je hebt het gedaan! Eén activiteit voltooid en je hebt je beloning ontgrendeld. Laten we de reeks gaande houden!"
+    },
+    "SkipReasonInput": {
+      "title": "Dat is oké, even checken.",
+      "subtitle": "Wil je delen waarom vandaag niet lukte? Geen druk.",
+      "skipPlaceholder": "Bijv. Mijn kat heeft mijn hardloopschoenen opgegeten",
+      "skipToday": "Vandaag overslaan"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Reeks bevriezing!",
+      "streakResetNow": "Je reeks is vandaag gereset.",
+      "streakRepairUse": "Gebruik je Reekshersteldrank om je reeks in leven te houden",
+      "streakRepairExpired": " Je 48-uurs reeksherstelvenster is verlopen! Maar hé, nieuwe reeksen betekenen nieuwe kansen om je persoonlijke record te verbeteren.",
+      "repairStreak": "Reeks herstellen",
+      "streakPotionConsumed": "Reeksvriesdrank verbruikt!",
+      "streakFreezeApplied": " Je Reeksvriesdrank is geactiveerd en heeft je reeks beschermd. Je bent nog steeds aan het knallen!",
+      "streakElixirApplied": "Reekshersteldrank geactiveerd!",
+      "streakFreezePotionApplied": "Je hebt je reeks gered! Je Reeksvriesdrank is geactiveerd en heeft je reeks beschermd. Je bent nog steeds aan het knallen!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Geen activiteit gevonden",
+      "addFirstActivity": "Voeg je eerste activiteit toe om edelstenen en XP te verdienen.",
+      "addActivity": "Activiteit toevoegen",
+      "todayActivities": "Activiteiten van vandaag"
+    },
+    "ActivityCard": {
+      "activitySkipped": "overgeslagen",
+      "dayOff": "Rustdag",
+      "description": "Beschrijving",
+      "excuseReason": "Excuus reden ⚠️",
+      "yourNotes": "Je notities 📝",
+      "notesPlaceholder": "Bijv. Rug- en biceps workout, 3 supersets",
+      "addNotes": "Notities toevoegen"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Fotobibliotheek",
+      "takePhoto": "Foto maken",
+      "chooseFile": "Bestand kiezen"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Maximaal niveau bereikt! Niveau",
+      "xpLeft": "over om Niveau te bereiken"
+    },
+    "ShopItemCard": {
+      "unavailable": "Niet beschikbaar",
+      "worth": "waarde",
+      "equiped": "uitgerust",
+      "shop": "Winkel",
+      "earnedId": "Je hebt het verdiend.",
+      "treat": "Trakteer jezelf nu!",
+      "spendGems": "Geef je edelstenen wijs uit, je fitnessreis is net interessant geworden."
+    },
+    "ActivityTaskCard": {
+      "win": "Win",
+      "acceptChallenge": "Accepteer uitdaging 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "Wat dacht je van jezelf een beetje uitdagen met deze uitdaging?",
+      "typeInput": "(Typ je invoer hieronder)"
+    },
+    "MacroOverview": {
+      "analysis": "Analyse",
+      "macroAdded": "Macro toegevoegd",
+      "countToday": "Tel voor vandaag"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Bescherm je reeks als je een dag training mist.",
+      "owned": "BEZETEN",
+      "manualTrigger": "HANDMATIGE ACTIVERING",
+      "activated": "GEACTIVEERD"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Sorry, we hebben cameratoestemming nodig om dit te laten werken!",
+    "errorSelectingImagePicker": "Er ging iets mis bij het selecteren van de afbeelding. Probeer het opnieuw.",
+    "errorSelectingDocumentPicker": "Er ging iets mis bij het kiezen van het document. Probeer het opnieuw.",
+    "errorTakingPicture": "Er ging iets mis bij het maken van de foto. Probeer het opnieuw.",
+    "enableNotifications": {
+      "heading": "Meldingen inschakelen",
+      "subHeading": "Meldingen zijn momenteel uitgeschakeld. Schakel ze in je apparaatinstellingen in om op de hoogte te blijven."
+    },
+    "notesSavedSuccess": "Notities opgeslagen! 📝 Je bent helemaal klaar.",
+    "enableNotificationFailed": "Pushmeldingen zijn uitgeschakeld. Schakel ze in de instellingen in om belangrijke updates te ontvangen!",
+    "enableNotificationError": "Er is een fout opgetreden bij het inschakelen van meldingen",
+    "notificationDisabledSuccess": "Meldingen succesvol uitgeschakeld.",
+    "notificationDisabledRegisterError": "Apparaat voor meldingen kon niet worden uitgeschreven.",
+    "notificationDisabledError": "Er is een fout opgetreden bij het uitschakelen van meldingen.",
+    "checkNotificationStatusError": "Fout bij controleren meldingenstatus.",
+    "projectIdNotFound": "Meldingenproject-ID niet gevonden.",
+    "imageSizeLarge": "Afbeelding is te groot! Bestandsgrootte is {{fileSize}} MB, maar de limiet is {{imageLimit}} MB.",
+    "videoSizeLarge": "Video is te groot! Bestandsgrootte is {{fileSize}} MB, maar de limiet is {{videoLimit}} MB.",
+    "loggedInSuccess": "Succesvol ingelogd",
+    "loggedOutSuccess": "Je bent succesvol uitgelogd!",
+    "sendVerificationCodeError": "Fout bij verzenden verificatiecode",
+    "validateAuthCodeError": "Fout bij valideren authenticatiecode",
+    "anonymousSignInError": "Fout bij anoniem inloggen",
+    "emailLoginError": "Fout bij inloggen",
+    "preferredLanguageError": "Fout bij updaten voorkeurstaal gebruiker",
+    "sharingNotAvailable": "Delen is momenteel niet beschikbaar op je apparaat",
+    "sharingLinkError": "Kon link niet delen.",
+    "individualPushNotificationSuccess": "Individuele pushmeldingen succesvol verzonden!",
+    "globalPushNotificationSuccess": "Globale pushmeldingen succesvol verzonden! 🌍🚀",
+    "interpretationFieldsUpdateFail": "Kon interpretatievelden niet updaten! ❌",
+    "deleteScanReportFail": "Kon scanrapport niet verwijderen. Probeer opnieuw",
+    "onboardingUnsuccessful": "Onboarding niet succesvol. Probeer opnieuw",
+    "logoutUnsuccessful": "Uitloggen niet succesvol. Probeer opnieuw",
+    "deleteScanReportQuestion": "Weet je zeker dat je dit rapport permanent wilt verwijderen?",
+    "videoLimitExceeds": "Je video overschrijdt de limiet van {{videoSecondsLimit}} seconden. Knip het bij en upload opnieuw",
+    "subscriptionActivated": "Je abonnement is succesvol geactiveerd! Geniet van je exclusieve voordelen!",
+    "subscriptionCancelledByUser": "Je hebt de transactie geannuleerd. Voel je vrij om opnieuw te proberen!",
+    "subscriptionActivationFailed": "Kon je abonnement niet activeren. Probeer opnieuw",
+    "logoutQuestion": "Weet je zeker dat je wilt uitloggen?",
+    "noSubscriptionToRestore": "Oeps! Het lijkt erop dat je momenteel geen actief abonnement hebt. Om volledige toegang te blijven genieten, kies een van onze abonnementsopties.",
+    "restorationSuccessful": "Herstel was succesvol! Geniet ervan!",
+    "restorationError": "Er is een fout opgetreden bij het herstellen van de aankoop.",
+    "medicalDisclaimerAlert": "EXFIT AI-app biedt geen diagnoses, behandeladviezen of medisch advies. Raadpleeg altijd een gekwalificeerde zorgprofessional voor medische beslissingen.",
+    "scanLimitReached": "We optimaliseren de scankwaliteit voor je! Je kunt over ongeveer {{hours}} uur en {{minutes}} minuten weer scannen. Vragen over een microscopie-onderwerp? Vraag onze chatassistent terwijl je wacht!",
+    "chatAndMediaFilesLimit": "Beste gebruiker, upgrade je abonnement om onbeperkte calorietracking, maaltijdscans, fitnesscoaching en meer te genieten. 🔓",
+    "chatMessageNotSent": "Oeps! Je bericht is niet verzonden. Probeer het opnieuw",
+    "excusesLimit": "Oeps, het lijkt erop dat je een wereldrecord voor excuses probeert te zetten! 😅 Maximaal 3 excuses toegestaan — kies je top 3 en laten we bewegen!",
+    "excuseMinimum": "Kies minimaal één excuus of typ je eigen.",
+    "createActivityLogFailed": "Kon activiteitenlogboek niet aanmaken. Probeer opnieuw.",
+    "updateActivityLogFailed": "Er ging iets mis bij het updaten van het activiteitenlogboek. Probeer opnieuw.",
+    "challengeAccepted": "Uitdaging geaccepteerd! 🔥 Ga het nu verslaan en verdien die beloningen!",
+    "challengeCompleted": "Uitdaging voltooid! 🔥 Je nieuwe beloningssaldo is bijgewerkt.",
+    "macroEntryRecorded": "Macro-inname geregistreerd — ga zo door! 🥗",
+    "failedCreateMacroLog": "Oeps! Macro-logboek niet opgeslagen. Probeer opnieuw!",
+    "deleteMacroLog": "Oeps! Kon je macro-logboek niet verwijderen. Probeer opnieuw!",
+    "deleteMacro": "Macro verwijderd — klaar voor je volgende invoer!",
+    "chooseSubscriptionPlan": "Kies een abonnementsoptie om door te gaan!",
+    "createPermanentAccountSuccess": "Je permanente account is aangemaakt! Je account is nu beveiligd. Oh, en je hebt ook ontvangen",
+    "loginSuccess": "Succesvol ingelogd — laten we bewegen!",
+    "accountDeleted": "Je account is succesvol verwijderd",
+    "purchaseFailed": "Aankoop mislukt. Probeer opnieuw.",
+    "streakRepairFailed": "Kon reeks niet herstellen. Probeer opnieuw.",
+    "failedSendMessage": "Kon bericht niet verzenden. Probeer opnieuw.",
+    "capturePictureFailed": "Er ging iets mis bij het maken van de foto",
+    "multipleVideosNotAllowed": "Voor betere nauwkeurigheid, upload slechts één video per keer.",
+    "mixedMediaNotAllowed": "Uploads moeten alleen afbeeldingen of alleen video's bevatten, geen mix van beide.",
+    "mediaFilesUploadFiles": "Er was een fout bij het uploaden van je mediabestanden. Probeer opnieuw."
+  }
+}

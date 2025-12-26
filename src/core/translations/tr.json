@@ -1,0 +1,800 @@
+{
+  "onboarding": {
+    "message": "EXFIT AI'ya Hoş Geldiniz!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Yemeğinizin Fotoğrafını Çekin & Kalorileri Takip Edin",
+        "headingTwo": "Yemekleri tarayın, AI Koç'unuzla konuşun ve size özel hazırlanan günlük görevleri alın"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Fitnessınızı AI ile Güçlendirin",
+        "headingTwo": "Şüpheleri yok etmek, motivasyonu ateşlemek ve sizi hareket halinde tutmak için akıllı yardımcınız EXFIT AI ile tanışın"
+      },
+      "onboardingThirdPage": {
+        "heading": "AI'nın spor ekipmanlarını, egzersiz pozlarını ve tekniği tespit etmesine izin verin"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Antrenman Yap. Kazan. Seviye Atla.",
+        "headingTwo": "XP puanı kazanın, Mücevherler toplayın, Serinizi canlı tutun ve katılımınız için ödüllerin kilidini açın."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Spor Salonu",
+    "yoga": "Yoga",
+    "running": "Koşu",
+    "walking": "Yürüyüş",
+    "cycling": "Bisiklet",
+    "dance": "Dans",
+    "stretching": "Esneme",
+    "swimming": "Yüzme",
+    "hiking": "Doğa Yürüyüşü",
+    "pilates": "Pilates",
+    "climbing": "Tırmanış",
+    "skating": "Paten"
+  },
+  "general": {
+    "back": "Geri",
+    "welcome": "Merhaba",
+    "welcomeBack": "Tekrar Hoş Geldiniz!",
+    "welcomeMessage": "Hoş Geldiniz!",
+    "goodMorning": "Günaydın",
+    "goodAfternoon": "Tünaydın",
+    "goodEvening": "İyi Akşamlar",
+    "continue": "Devam Et",
+    "retry": "Tekrar Dene",
+    "retake": "Yeniden Çek",
+    "scanNow": "Hemen Tara",
+    "scanning": "Taranıyor...",
+    "close": "Kapat",
+    "gallery": "Galeri",
+    "files": "Dosyalar",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "attention": "Dikkat!",
+    "new": "Yeni",
+    "yes": "Evet",
+    "no": "Hayır",
+    "or": "veya",
+    "change": "Değiştir",
+    "typing": "Yazıyor...",
+    "online": "Çevrimiçi",
+    "chatbotPlaceholder": "Bana her şeyi sorabilirsin...",
+    "openSettings": "Ayarları Aç",
+    "seeNotifications": "Bildirimleri Gör",
+    "viewProfile": "Profili Görüntüle",
+    "upgradePlan": "Planı Yükselt",
+    "download": "İndir",
+    "share": "Paylaş",
+    "shareLink": "Bağlantıyı Paylaş",
+    "skip": "Atla",
+    "next": "İleri",
+    "update": "Güncelle",
+    "tryAgain": "Tekrar Dene",
+    "createdAt": "Oluşturulma Tarihi",
+    "and": "ve",
+    "saveDiscount": "KAYDET",
+    "restorePurchase": "Satın Alımı Geri Yükle",
+    "medicalDisclaimer": "Tıbbi Sorumluluk Reddi",
+    "conversationHistory": "Sohbet Geçmişi",
+    "analyzingMediaFilesPlaceholder": "Medya Dosyaları Analiz Ediliyor...",
+    "freeTrial": "Ücretsiz deneme",
+    "free": "ÜCRETSİZ",
+    "noPaymentNow": "Şimdi ödeme yok. İstediğiniz zaman iptal edin.",
+    "completedScans": "Tamamlanan taramalar",
+    "activeSubscription": "Aktif abonelik",
+    "askAssistant": "AI asistanına sor",
+    "then": "sonra",
+    "perWeek": "haftada",
+    "perYear": "yılda",
+    "perMonth": "ayda",
+    "tryForFree": "Ücretsiz Dene",
+    "unlockNow": "Şimdi Kilidi Aç",
+    "attended": "Katılım Sağlandı",
+    "readyToStart": "Başlamaya Hazır",
+    "skipped": "Atlandı",
+    "completed": "Tamamlandı",
+    "purchase": "Satın Al",
+    "active": "aktif",
+    "dearUser": "Sayın kullanıcı",
+    "ok": "Tamam",
+    "activities": "Aktiviteler",
+    "seeLess": "Daha Az Gör",
+    "seeMore": "Daha Fazla Gör",
+    "goBack": "Geri Dön",
+    "schedule": "Program",
+    "utils": "Araçlar",
+    "verifyEmail": "E-postayı doğrula",
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "minutes": "dakika",
+    "submit": "Gönder",
+    "copyText": {
+      "loading": "Kopyalanıyor...",
+      "copied": "Kopyalandı! 📝",
+      "copy": "Bağlantıyı Kopyala"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "Kişiselleştirilmiş deneyiminiz yükleniyor...",
+        "second": "Sistemler senkronize ediliyor...",
+        "third": "Verileriniz işleniyor...",
+        "fourth": "Neredeyse hazır, bir dakika lütfen..."
+      },
+      "imageScanningLoading": {
+        "first": "Mikro görüntünüz taranıyor, lütfen bekleyin...",
+        "second": "Detaylar analiz ediliyor, bu biraz zaman alabilir...",
+        "third": "En iyi sonuçlar için doğruluk artırılıyor...",
+        "fourth": "Neredeyse tamam, tarama sonlandırılıyor..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, AI Koç'unuz size yardımcı olmak için hazırlanıyor...",
+        "second": "Bekleyin! Mojo yanıtınızı hazırlıyor...",
+        "third": "Düşünüyor... Mojo üzerinde çalışıyor!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Bekleyin!",
+    "goBackMessage": "Geri dönmek istediğinizden emin misiniz?"
+  },
+  "internet": {
+    "noConnectionTitle": "Çevrimdışısınız!",
+    "noConnectionMessage": "Mobil veriyi açın veya bir Wi-Fi'a bağlanın. Ya da sadece bir mola verin ve yürüyüşe çıkın!"
+  },
+  "uploadScan": {
+    "title": "Görsel yükle",
+    "scanNow": "Şimdi tara"
+  },
+  "weekDays": {
+    "today": "Bugün",
+    "yesterday": "Dün"
+  },
+  "auth": {
+    "verifyAuthCode": "Kimlik doğrulama kodunu doğrula",
+    "verifyAuthCodeButton": "Kodu doğrula",
+    "authCodeHeading": "Kimlik doğrulama kodu",
+    "loginViaEmailHeading": "Giriş yapmanıza yardımcı olalım. Lütfen devam etmek için e-postanızı girin.",
+    "emailAddress": "E-posta"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "EXFIT AI'ya Hoş Geldiniz!",
+        "startButton": "Hadi Başlayalım!",
+        "accountButton": "Zaten bir hesabım var",
+        "count": "Say",
+        "calories": "Kalori",
+        "track": "Takip Et",
+        "activity": "Aktivite",
+        "with": "ile"
+      },
+      "login": {
+        "agreeingMessage": "Devam ederek, bizim",
+        "termsAndConditions": "Hüküm ve Koşulları",
+        "privacyPolicy": "Gizlilik Politikası",
+        "heading": "Giriş Yap",
+        "continueName": "Takma Ad ile Devam Et",
+        "existingAccount": "Bir hesabınız var mı?",
+        "emailAddress": "E-posta Adresi",
+        "emailPlaceholder": "E-postanızı girin",
+        "password": "Şifre",
+        "confirmPassword": "Şifreyi Onayla",
+        "forgotPassword": "Şifremi Unuttum",
+        "keepSigned": "Beni oturum açık tut",
+        "createPassword": "Bir şifre oluştur"
+      },
+      "signUp": {
+        "heading": "Kayıt Ol",
+        "haveAccount": "Hesabınız var mı?",
+        "signInHere": "Buradan giriş yapın",
+        "acceptTerms": {
+          "title": "Şartlar Gerekli",
+          "subtitle": "Devam etmek için lütfen kullanım şartlarını ve gizlilik politikasını kabul edin."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Şifremi Unuttum",
+        "verificationSent": "Lütfen şifre sıfırlama bağlantısı için e-postanızı kontrol edin. Gelen kutunuzda görmüyorsanız, spam veya istenmeyen posta klasörünüzü kontrol ettiğinizden emin olun.",
+        "verificationHeading": "Hesabınızla kayıtlı e-posta adresini girin. Size şifrenizi sıfırlamanız için bir bağlantı göndereceğiz.",
+        "rememberPassword": "Şifrenizi hatırladınız mı?",
+        "loginAccount": "Hesabınıza giriş yapın",
+        "alertTitle": "Şifre Sıfırlama Gönderildi",
+        "alertSubtitle": "Bu e-posta ile bir hesap varsa, size bir şifre sıfırlama bağlantısı gönderdik."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Lütfen hem e-posta hem de şifreyi girin.",
+        "secureProgress": "İlerlemenizi Güvence Altına Alın",
+        "permanentAccount": "Verilerinizi cihazlar arasında kaydetmek için kalıcı bir hesap oluşturun."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "E-posta ile gönderilen doğrulama kodunuzu girin. Lütfen unutmayın, kod 5 dakika içinde geçerliliğini yitirecek.",
+        "verificationCodeSent": "Doğrulama kodunu şu adrese gönderdik",
+        "verificationCodeMissing": "Kodu almadınız mı?",
+        "resendCode": "Kodu yeniden gönder",
+        "backToLogin": "Giriş Yap'a Geri Dön"
+      },
+      "namePreferenceScreen": {
+        "heading": "Bunu kişiselleştirelim!",
+        "preferredNameQuestion": "Size nasıl hitap edelim?",
+        "placeholderPreferredName": "Örn., Kaptan Cool, Kraliçe Arı ya da sadece Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Fitness deneyiminizi nasıl tanımlarsınız?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Fitness hedefiniz nedir?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Daha kişiselleştirilmiş bir deneyim için cinsiyeti seçin"
+      },
+      "freeTrialPreview": {
+        "heading": "Ücretsiz denemenizin tadını çıkarın! 🎉",
+        "subheading": "Ücretsiz denemeniz sırasında bu harika avantajları deneyimleyin",
+        "review": "Yemek tarama, kalori sayacı ve fitness takibi basit ve akıllı. Bir deneyin!",
+        "reviewTrust": "📈 7.512'den fazla kullanıcı tarafından güvenilen"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Ücretsiz Deneme Etkin",
+          "heading": " Sınırsız Erişim",
+          "title": "Premium Özelliklerin Kilidini Bugün Açın!",
+          "firstOffering": "Aktivite Takipçisi ve Akıllı Beslenme İpuçları",
+          "secondOffering": "Sınırsız Kalori ve Makro Sayacı",
+          "thirdOffering": "Sınırsız Yemek Tarayıcı",
+          "fourthOffering": "7/24 AI Fitness Koçunuz"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Premium Özelliklerin Kilidini Bugün Açın!",
+        "secondOffering": {
+          "title": "Aylık Plan",
+          "subtitle": "{{ price }}/ay"
+        },
+        "thirdOffering": {
+          "title": "Yıllık Plan",
+          "subtitle": "{{ price }} yılda"
+        },
+        "fourthOffering": {
+          "title": "{{trialDays}}-Günlük Deneme",
+          "subtitle": "{{ price }} yılda",
+          "plan": "Haftalık Plan"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "EXFIT AI'ın yeni bir sürümü mevcut",
+        "subheading": "Tüm uygulama özelliklerinden yararlanmaya devam etmek için en son sürüme güncelleyin — bu sadece 5 saniyenizi alır!",
+        "action": "Hemen alın!"
+      },
+      "rateAppScreen": {
+        "heading": "Uygulamayı değerli ve ilgi çekici buluyor musunuz?",
+        "like": "Evet, beğendim!",
+        "dislike": "Pek sayılmaz..."
+      },
+      "noInternetScreen": {
+        "heading": "Çevrimdışısınız",
+        "subheading": "Bağlantınız kararsız görünüyor. Lütfen ağ durumunuzu kontrol edin ve tekrar deneyin"
+      },
+      "notifications": {
+        "title": "Bildirimler",
+        "noNotifications": "Henüz Bildirim Yok",
+        "emptyNotifications": "Şu anda yeni bildirim yok. Yakında tekrar kontrol edin."
+      },
+      "termsOfService": {
+        "title": "Hizmet Şartları"
+      },
+      "privacyPolicy": {
+        "title": "Gizlilik Politikası"
+      },
+      "share": {
+        "title": "Paylaş",
+        "heading": "EXFIT AI Uygulamasını Paylaş",
+        "subheading": "Başkalarının EXFIT AI Uygulamasını keşfetmesine yardımcı olun",
+        "scanMessage": "Uygulamayı indirmek için tara",
+        "shareMessage": "veya favori platformunuz aracılığıyla paylaşın"
+      },
+      "rate": {
+        "title": "Bize geri bildirim verin!"
+      },
+      "profile": {
+        "title": "Profil",
+        "edit": "Profili Düzenle",
+        "placeholderPreferredName": "Örn., Kaptan Cool, Kraliçe Arı ya da sadece Alex!",
+        "subscriptions": {
+          "monthly": "Aylık Abonelik",
+          "yearly": "Yıllık Abonelik",
+          "weekly": "Haftalık Abonelik"
+        },
+        "temporaryAccount": "Geçici hesap",
+        "permanentAccount": "Kalıcı hesap"
+      },
+      "generateReportScreen": {
+        "title": "Sabrınız için teşekkür ederiz! İşte AI raporunuz. ",
+        "userInput": "Gönderiminiz",
+        "medicalReport": "Fitness Raporu",
+        "report": "AI Tarafından Oluşturulan Fitness Raporu",
+        "conversationName": "Sohbet adı"
+      },
+      "verifyEmail": {
+        "heading": "E-postayı doğrula"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Analizi Başlat"
+      },
+      "contactUs": {
+        "heading": "Bize doğrudan e-posta göndermekten çekinmeyin, ekibimiz en kısa sürede size geri dönecektir",
+        "customerSupport": "Müşteri Desteği",
+        "emailAddress": "E-posta Adresi"
+      },
+      "scan": {
+        "cameraPermission": "Bu özelliği kullanmak için kamera erişim izni gereklidir",
+        "requestPermission": "Kamera izni isteniyor...",
+        "scanAnything": "Her Şeyi Tara: Yemekler, Yiyecekler, Spor Ekipmanları ve Dahası",
+        "askAssistant": "AI Fitness Koç'unuza Sorun"
+      },
+      "excuseBuster": {
+        "heading": "Bahane Yok Edici",
+        "reasons": {
+          "one": "Çok yorgun hissediyorum",
+          "two": "Zamanım yok",
+          "three": "Egzersiz yapamayacak kadar ağrılıyım",
+          "four": "Spor salonu çok kalabalık",
+          "five": "Keyfim yok",
+          "six": "Dışarısı hava kötü",
+          "seven": "İş yoğun",
+          "eight": "Yarın başlayacağım",
+          "nine": "Ne yapacağımdan emin değilim",
+          "ten": "Ekipman yok"
+        },
+        "excuseMotivation": "Bahaneinizden Daha Güçlüsünüz.",
+        "excuseQuestion": "Bugün sizi ne engelliyor?",
+        "typeExcuse": "Bahaneinizi buraya yazın...",
+        "crushExcuse": "Bahaneimi yok et"
+      },
+      "chat": {
+        "fitnessCoach": "Fitness Koçunuz",
+        "randomQuestions": {
+          "one": "'📸 Yemeğimin fotoğrafını çek ve kalori & makro tahmini yap',",
+          "two": "🥗 Bu yemeği analiz et ve hedefim için nasıl geliştirebileceğimi söyle",
+          "three": "🧠 Fitness seviyeme göre kişiselleştirilmiş bir antrenman planı oluştur",
+          "four": "🏋️ Şu anda ekipmansız yapabileceğim bir antrenman öner",
+          "five": "⏱ Yoğun bir gün için 20 dakikalık bir antrenman oluştur",
+          "six": "🔥 Bana özel yağ yakıcı bir antrenman öner",
+          "seven": "💪 Vücudum ve hedeflerim için kas geliştirme planı tasarla",
+          "eight": "📊 İlerlememi takip et ve sonra neyi geliştirmem gerektiğini göster",
+          "nine": "🍽 Bugün kalori ve protein hedeflerime ulaşmak için ne yemeliyim söyle",
+          "ten": "🥚 Günlük protein, karbonhidrat ve yağ ihtiyacımı hesapla",
+          "eleven": "🛒 Diyet planıma göre sağlıklı bir alışveriş listesi oluştur",
+          "twelve": "😴 Uyku ve toparlanmama göre antrenmanlarımı ayarla",
+          "thirteen": "📅 Bağlı kalabileceğim haftalık bir antrenman programı oluştur",
+          "fourteen": "⚡ Bugün için düşük enerjili bir antrenman öner",
+          "fifteen": "🤕 Ağrılı veya sakatlığım varsa antrenmanımı değiştir"
+        }
+      },
+      "progress": {
+        "error": "Bir şeyler yanlış gitti",
+        "heading": "İlerleme Panosu",
+        "subheading": "Harika iş çıkarmaya devam edin! 🚀",
+        "weeklyGoals": "Haftalık Hedefler",
+        "monthlyGoal": "Aylık Hedef",
+        "insights": "Hızlı Öngörüler",
+        "mostActive": "En Aktif",
+        "peakTime": "Zirve performans zamanı",
+        "favoriteActivity": "Favori Aktivite",
+        "choice": "Tercihiniz",
+        "weeklyChange": "Haftalık Değişim",
+        "lastWeekXP": "geçen haftaya karşı",
+        "consistency": "Tutarlılık",
+        "reliability": "güvenilirlik",
+        "overview": "Genel Bakış",
+        "performance": "Performans",
+        "trends": "Eğilimler",
+        "lastSevenDays": "Son 7 gün",
+        "thisWeek": "Bu Haftanın",
+        "activityFocus": "Aktivite Odağı",
+        "distribution": "Dağılım",
+        "history": "Geçmiş",
+        "activities": "Aktiviteler",
+        "consistencyJourney": "Tutarlılık yolculuğunuz",
+        "bestDay": "En İyi Gün",
+        "averageSession": "Ort. Seans",
+        "totalHours": "Toplam Saat",
+        "WeeklyComparisonXp": "Haftalık Karşılaştırma",
+        "weeksComparison": "Bu hafta vs geçen hafta",
+        "thisWeeks": "Bu Hafta",
+        "lastWeek": "Geçen Hafta",
+        "activityPattern": "Aktivite Örüntüsü",
+        "hoursBreakdown": "24 saatlik dağılım",
+        "monthlyActivity": "Aylık Aktivite",
+        "lastMonths": "Son 6 ay",
+        "progression": "İlerleme",
+        "monthlyEarned": "Aylık kazanılan",
+        "recentActivity": "Son Aktivite",
+        "last30Days": "Son 30 gün",
+        "outstanding": "Olağanüstü İlerleme!",
+        "activityReview": "{{totalActivities}} aktivite tamamladınız ve toplam {{totalXp}} XP kazandınız. Devam edin!",
+        "statistics": "Detaylı İstatistikler",
+        "longest": "En Uzun",
+        "totalMonthActivities": "Bu Ay Tamamlanan Fiziksel Aktiviteler!"
+      },
+      "shoppingCart": {
+        "heading": "Sahip Olunan Eşyalar",
+        "equipMore": "Daha Fazla Donat",
+        "noItems": "Henüz Hiç Eşyanız Yok!",
+        "goToShop": "Mağazaya git",
+        "buyPotions": "Mağazaya gidin ve heyecan verici iksirler toplayın"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Bekleyin! Beni silmeyin!",
+    "subtitle": "Önce bir geri bildirim gönderin"
+  },
+  "home": {
+    "tab": "Ana Sayfa"
+  },
+  "activity": {
+    "tab": "Aktivite"
+  },
+  "progress": {
+    "tab": "İlerleme"
+  },
+  "settings": {
+    "tab": "Ayarlar",
+    "profile": "Profil",
+    "shop": "Mağaza",
+    "contactUs": "Bize Ulaşın",
+    "about": "Hakkında",
+    "app_name": "Uygulama Adı",
+    "languages": {
+      "english": "İngilizce",
+      "mandarin_chinese": "Çince",
+      "hindi": "Hintçe",
+      "spanish_spain": "İspanyolca (İspanya)",
+      "spanish_mexico": "İspanyolca (Meksika)",
+      "arabic": "Arapça",
+      "french": "Fransızca",
+      "french_canada": "Fransızca (Kanada)",
+      "portuguese_brazil": "Portekizce (Brezilya)",
+      "portuguese_portugal": "Portekizce (Portekiz)",
+      "german": "Almanca",
+      "japanese": "Japonca",
+      "russian": "Rusça",
+      "korean": "Korece",
+      "italian": "İtalyanca",
+      "turkish": "Türkçe",
+      "vietnamese": "Vietnamca",
+      "polish": "Lehçe",
+      "ukrainian": "Ukraynaca",
+      "romanian": "Romence",
+      "dutch": "Felemenkçe",
+      "czech": "Çekçe",
+      "greek": "Yunanca",
+      "swedish": "İsveççe",
+      "hungarian": "Macarca",
+      "thai": "Tayca",
+      "hebrew": "İbranice",
+      "indonesian": "Endonezce",
+      "malay": "Malayca",
+      "finnish": "Fince",
+      "danish": "Danca",
+      "norwegian": "Norveççe",
+      "slovak": "Slovakça",
+      "croatian": "Hırvatça",
+      "catalan": "Katalanca"
+    },
+    "generale": "Genel",
+    "github": "Github",
+    "language": "Dil",
+    "links": "Bağlantılar",
+    "logout": "Çıkış Yap",
+    "more": "Daha Fazla",
+    "privacy": "Gizlilik Politikası",
+    "faq": "SSS",
+    "rate": "Bize geri bildirim verin",
+    "share": "Paylaş",
+    "citations": "Tıbbi bilgi için alıntılar",
+    "support": "Destek",
+    "support_us": "Bizi Destekleyin",
+    "terms": "Hizmet Şartları",
+    "theme": {
+      "dark": "Koyu",
+      "light": "Açık",
+      "system": "Sistem",
+      "title": "Tema"
+    },
+    "title": "Ayarlar",
+    "version": "Sürüm",
+    "website": "Web Sitesi",
+    "devMode": {
+      "title": "Geliştirici modu",
+      "componentsLibrary": "UI kütüphanesi"
+    },
+    "deleteAccount": "Hesabı sil?",
+    "deleteAccountQuestion": "Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz ve tüm verilerinizi kalıcı olarak kaldıracaktır.",
+    "deactivateAccount": "Hesabı Devre Dışı Bırak ve Sil",
+    "permanentAccountCreate": "Kalıcı hesap oluştur"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Derecelendirme"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Sebebi nedir?",
+      "unnamedConversation": "Başlıksız",
+      "reportTitlePlaceholder": "Bir başlık ekleyin"
+    },
+    "WeekBlock": {
+      "week": "Hafta"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Yukarı Kaydır"
+    },
+    "FreeTierStatus": {
+      "heading": "Ücretsiz taramalar",
+      "subheading": "Planınızı yükselterek sınırsız taramanın kilidini açın",
+      "action": "Yükselt"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Bir resim / video seçin"
+    },
+    "GoalsModal": {
+      "heading": "Günlük alım hedefinizi değiştirin",
+      "dailyCalories": "Günlük Kalori",
+      "saveGoals": "Hedefleri Kaydet"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Seri bozuldu. Şimdi kaydedin.",
+      "loseStreak": "Bozulsun",
+      "buyStreak": "Satın Al & Seriyi Kurtar",
+      "buyRepairStreak": "Kaybolan serinizi geri getirmek için {{elixirPrice}} 💎 karşılığında bir Seri Onarım İksiri satın alın.",
+      "streakRestore": "Seri risk altında — hemen onarın!",
+      "restorationStreak": "Güçlü Seri Onarım İksiri ile {{lostStreakValue}} günlük serinizi yeniden canlandırın!",
+      "applyElixir": "İksir İksirini Uygula"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Satın Alma Tamamlandı",
+      "inventoryAdded": "envanterinize eklendi. Harika işe devam edin!",
+      "purchaseFailed": "Satın Alma Başarısız",
+      "purchaseFailedMessage": "Satın alımınızı işleyemedik. Lütfen mücevher bakiyenizi kontrol edin ve tekrar deneyin.",
+      "gemsBalance": "Ups, yeterli mücevheriniz yok"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Günlük Kontrol",
+      "bodyMovingQuestion": "Bugün vücudunuzu hareket ettirdiniz mi?"
+    },
+    "TapToViewLabel": {
+      "label": "Görüntülemek için dokunun"
+    },
+    "UpgradeBanner": {
+      "heading": "Şimdi Kilidi Aç!",
+      "upgradeMessage": "Bu özelliğin kilidini açın 🔓 AI kalori sayımı, makro takibi ve aktivite ve fitness hedeflerinize daha hızlı ulaşmanıza yardımcı olacak hepsi bir arada destekten yararlanın 💪",
+      "upgradeTo": "Şuna yükseltin",
+      "moreBenefits": "AI özellikleri. Tüm premium araçlar. Rotanızda kalmak için hepsi sizin."
+    },
+    "MotivationBanner": {
+      "title": "Motivasyonunuz mu Yok? Keyfiniz mi Kaçtı? Hadi o bahaneyi yok edelim.",
+      "subtitle": "Bir görev seçin, XP ve mücevher kazanın—hadi hareket edelim!",
+      "beatExcuse": "Bahaneinizi şimdi yok edin!"
+    },
+    "AICoachBanner": {
+      "title": "Bir Sorunuz mu Var? Sadece Sorun.",
+      "subtitle": "Fitnessınıza hakim olun — kaloriler, beslenme, spor aletleri, pozlar, sakatlıklar, form, antrenman planları hakkında sorun",
+      "chat": "AI Koç ile Sohbet Et"
+    },
+    "PromptSection": {
+      "message": "Taramınız hazır! Şimdi, ne öğrenmek istersiniz?",
+      "prompts": {
+        "first": "Bu görüntüde hangi hücre tipleri veya yapılar mevcut?",
+        "second": "Bu örnekte herhangi bir anormallik veya patojen var mı?",
+        "third": "Bu örneğin muhtemel kökeni veya durumu nedir?",
+        "fourth": "Bu görüntüden hangi içgörüleri sağlayabilirsiniz?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Anlık AI Yemek Tarama — Saniyeler içinde kalori ve makroları takip edin",
+      "second": "7/24 AI Kişisel Antrenör — Uzman rehberlik, her zaman, her yerde",
+      "third": "Fitness aktivitelerinizi bir profesyonel gibi takip edin",
+      "fourth": "Tüm Premium Özelliklere Tam Erişim"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Takma Ad",
+        "email": "E-posta",
+        "emailVerification": "E-posta Doğrulama"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Bugünün Makroları",
+      "scanFood": "Yiyecek Tara",
+      "calories": "Kalori",
+      "fat": "Yağ",
+      "carbs": "Karbonhidrat",
+      "protein": "Protein",
+      "dailyIntakeGoals": "Günlük Alım Hedefleri",
+      "percentage": "% günlük makro hedefine ulaşıldı",
+      "noMeals": "Kayıtlı yemek yok",
+      "meals": "Yemekler",
+      "deleteMeal": "Yemeği Sil",
+      "deleteMealConfirm": "Bu yemeği silmek istediğinizden emin misiniz? Bu işlem günlük makro besin hesaplamalarınızı etkileyecektir.",
+      "macroJournal": "Makro Günlüğü",
+      "noActivityRecorded": "Bu hafta için kayıtlı aktivite yok"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Günlük Kontrol",
+      "attendedMessage": "Bugün buradasınız, işte ilerleme böyle inşa edilir. Devam edin!",
+      "notAttendedMessage": "Kanepe bugün kazandı… ama yarın, geri dönüş yapacaksınız!",
+      "unknownMessage": "Yolculuğunuz tek bir adımla başlar. Başlamaya hazır mısınız?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "Seçilen süre 360 dakikadan uzun olamaz",
+      "activitiesLimit": "Vay canına! Gizlice Olimpiyatlar için mi antrenman yapıyorsunuz? Zaten bugün için maksimum {{MAX_DAILY_ACTIVITIES}} aktivite sınırına ulaştınız! 🏅. Bu kasları yarın tekrar esnetebilirsiniz 💪!",
+      "addActivity": "Aktivite Ekle",
+      "modalHeading": "Bugün sizi ne hareket ettirdi? Kaydedin ve momentumunuzu koruyun"
+    },
+    "TaskListOverview": {
+      "heading": "Bugünün görevleri",
+      "noTasks": "Görev Yok!",
+      "enjoyFreeTime": "Boş zamanınızın tadını çıkarın."
+    },
+    "ActivitySelector": {
+      "title": "Aktivite Türü",
+      "customActivity": "Kendi aktivitenizi ekleyin",
+      "customActivityLabel": "Özel Aktivite"
+    },
+    "DurationSelector": {
+      "heading": "Süre",
+      "customDuration": "Süre girin (dakika)",
+      "customDurationLabel": "Özel Süre"
+    },
+    "NoActivityLogModal": {
+      "heading": "Oh hayır! Bugün kanepenin kazanmasına izin vermeyin!",
+      "crushExcuse": "Bahaneimi yok et",
+      "skipToday": "Bugün değil, belki yarın..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Harika iş!",
+      "unlockReward": "Başardınız! Bir aktivite tamamlandı ve ödülünüzün kilidini açtınız. Seriyi devam ettirelim!"
+    },
+    "SkipReasonInput": {
+      "title": "Sorun değil, sadece kontrol ediyorum.",
+      "subtitle": "Bugünün neden işe yaramadığını paylaşmak ister misiniz? Zorunluluk yok.",
+      "skipPlaceholder": "Örn. Kedim koşu ayakkabılarımı yedi",
+      "skipToday": "Bugünü atla"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Seri dondurma!",
+      "streakResetNow": "Seriniz bugün sıfırlandı.",
+      "streakRepairUse": "Serinizi canlı tutmak için Seri Onarım İksirinizi kullanın",
+      "streakRepairExpired": " 48 saatlik seri onarım pencereniz doldu! Ama hey, yeni seriler kişisel en iyi derecenizi yeniden kırma fırsatları demektir.",
+      "repairStreak": "Seriyi Onar",
+      "streakPotionConsumed": "Seri Dondurma İksiri Tüketildi!",
+      "streakFreezeApplied": " Seri Dondurma İksiriniz devreye girdi ve serinizi korudu. Hala harika gidiyorsunuz!",
+      "streakElixirApplied": "Seri Onarım İksiri İksiri Devreye Girdi!",
+      "streakFreezePotionApplied": "Serinizi Kurtardınız! Seri Dondurma İksiriniz devreye girdi ve serinizi korudu. Hala harika gidiyorsunuz!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Aktivite bulunamadı",
+      "addFirstActivity": "Mücevher ve XP kazanmak için ilk aktivitenizi ekleyin.",
+      "addActivity": "Aktivite Ekle",
+      "todayActivities": "Bugünün Aktiviteleri"
+    },
+    "ActivityCard": {
+      "activitySkipped": "atlandı",
+      "dayOff": "İzin Günü",
+      "description": "Açıklama",
+      "excuseReason": "Bahane Sebebi ⚠️",
+      "yourNotes": "Notlarınız 📝",
+      "notesPlaceholder": "Örn. Sırt ve pazı antrenmanı, 3 süper set",
+      "addNotes": "Not ekle"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Fotoğraf Kütüphanesi",
+      "takePhoto": "Fotoğraf Çek",
+      "chooseFile": "Dosya Seç"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Maksimum Seviyeye Ulaşıldı! Seviye",
+      "xpLeft": "Seviye'ye ulaşmak için kalan"
+    },
+    "ShopItemCard": {
+      "unavailable": "Mevcut değil",
+      "worth": "değer",
+      "equiped": "donatıldı",
+      "shop": "Mağaza",
+      "earnedId": "Bunu Hak Ettiniz.",
+      "treat": "Şimdi Kendinizi Ödüllendirin!",
+      "spendGems": "Mücevherlerinizi akıllıca harcayın, fitness yolculuğunuz artık daha ilginç."
+    },
+    "ActivityTaskCard": {
+      "win": "Kazan",
+      "acceptChallenge": "Görevi kabul et 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "Bu görevle kendinizi biraz zorlamaya ne dersiniz?",
+      "typeInput": "(Girdinizi aşağıya yazın)"
+    },
+    "MacroOverview": {
+      "analysis": "Analiz",
+      "macroAdded": "Makro Eklendi",
+      "countToday": "Bugün için sayı"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Bir gün antrenman kaçırırsanız serinizi koruyun.",
+      "owned": "SAHİP OLUNAN",
+      "manualTrigger": "MANUEL TETİKLEYİCİ",
+      "activated": "AKTİF EDİLDİ"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Üzgünüz, bunun çalışması için kamera izinlerine ihtiyacımız var!",
+    "errorSelectingImagePicker": "Görsel seçilirken bir şeyler yanlış gitti. Lütfen tekrar deneyin.",
+    "errorSelectingDocumentPicker": "Belge seçilirken bir şeyler yanlış gitti. Lütfen tekrar deneyin.",
+    "errorTakingPicture": "Fotoğraf çekilirken bir şeyler yanlış gitti. Lütfen tekrar deneyin.",
+    "enableNotifications": {
+      "heading": "Bildirimleri Etkinleştir",
+      "subHeading": "Bildirimler şu anda kapalı. Güncel kalmak için lütfen cihaz ayarlarınızdan etkinleştirin."
+    },
+    "notesSavedSuccess": "Notlar kaydedildi! 📝 Hazırsınız.",
+    "enableNotificationFailed": "Push bildirimleri devre dışı. Önemli güncellemeleri almak için ayarlardan etkinleştirin!",
+    "enableNotificationError": "Bildirimler etkinleştirilirken bir hata oluştu",
+    "notificationDisabledSuccess": "Bildirimler başarıyla devre dışı bırakıldı.",
+    "notificationDisabledRegisterError": "Bildirimler için cihazın kaydı kaldırılamadı.",
+    "notificationDisabledError": "Bildirimler devre dışı bırakılırken bir hata oluştu.",
+    "checkNotificationStatusError": "Bildirim durumu kontrol edilirken hata.",
+    "projectIdNotFound": "Bildirim proje ID'si bulunamadı.",
+    "imageSizeLarge": "Görsel çok büyük! Dosya boyutu {{fileSize}} MB, ancak sınır {{imageLimit}} MB.",
+    "videoSizeLarge": "Video çok büyük! Dosya boyutu {{fileSize}} MB, ancak sınır {{videoLimit}} MB.",
+    "loggedInSuccess": "Başarıyla giriş yapıldı",
+    "loggedOutSuccess": "Başarıyla çıkış yaptınız!",
+    "sendVerificationCodeError": "Doğrulama kodu gönderilirken hata",
+    "validateAuthCodeError": "Kimlik doğrulama kodu doğrulanırken hata",
+    "anonymousSignInError": "Anonim giriş yapılırken hata",
+    "emailLoginError": "Giriş yapılırken hata",
+    "preferredLanguageError": "Kullanıcının tercih edilen dili güncellenirken hata",
+    "sharingNotAvailable": "Paylaşım şu anda cihazınızda mevcut değil",
+    "sharingLinkError": "Bağlantı paylaşılamadı.",
+    "individualPushNotificationSuccess": "Bireysel push bildirimleri başarıyla gönderildi!",
+    "globalPushNotificationSuccess": "Küresel push bildirimleri başarıyla gönderildi! 🌍🚀",
+    "interpretationFieldsUpdateFail": "Yorumlama alanları güncellenemedi! ❌",
+    "deleteScanReportFail": "Tarama raporu silinemedi. Lütfen tekrar deneyin",
+    "onboardingUnsuccessful": "Hoş geldiniz işlemi başarısız oldu. Lütfen tekrar deneyin",
+    "logoutUnsuccessful": "Çıkış başarısız oldu. Lütfen tekrar deneyin",
+    "deleteScanReportQuestion": "Bu raporu kalıcı olarak silmek istediğinizden emin misiniz?",
+    "videoLimitExceeds": "Videonuz {{videoSecondsLimit}} saniyelik sınırı aşıyor. Lütfen kırpın ve yeniden yükleyin",
+    "subscriptionActivated": "Aboneliğiniz başarıyla etkinleştirildi! Özel avantajlarınızın tadını çıkarın!",
+    "subscriptionCancelledByUser": "İşlemi iptal ettiniz. Tekrar denemekten çekinmeyin!",
+    "subscriptionActivationFailed": "Aboneliğiniz etkinleştirilemedi. Lütfen tekrar deneyin",
+    "logoutQuestion": "Çıkış yapmak istediğinizden emin misiniz?",
+    "noSubscriptionToRestore": "Ups! Şu anda aktif bir aboneliğiniz yok gibi görünüyor. Tam erişimden yararlanmaya devam etmek için lütfen abonelik planlarımızdan birini seçin.",
+    "restorationSuccessful": "Geri yükleme başarılı oldu! Keyfini çıkarın!",
+    "restorationError": "Satın alım geri yüklenirken bir hata oluştu.",
+    "medicalDisclaimerAlert": "EXFIT AI uygulaması teşhis, tedavi önerisi veya herhangi bir tıbbi tavsiye sunmaz. Tıbbi kararlar için daima nitelikli bir sağlık uzmanından rehberlik alın.",
+    "scanLimitReached": "Sizin için tarama kalitesini optimize ediyoruz! Yaklaşık {{hours}} saat {{minutes}} dakika sonra tekrar tarama yapabileceksiniz. Mikroskopi konusu hakkında herhangi bir sorunuz var mı? Beklerken sohbet asistanımıza sorun!",
+    "chatAndMediaFilesLimit": "Sayın kullanıcı, sınırsız kalori takibi, yemek tarama, fitness koçluğu ve daha fazlasının keyfini çıkarmak için planınızı yükseltin. 🔓",
+    "chatMessageNotSent": "Ups! Mesajınız iletilemedi. Lütfen tekrar deneyin",
+    "excusesLimit": "Ups, görünüşe göre bahane konusunda dünya rekoru kırmaya çalışıyorsunuz! 😅 Maksimum 3 bahane kabul ediliyor - ilk 3'ünüzü seçin ve harekete geçelim!",
+    "excuseMinimum": "Lütfen en az bir bahane seçin veya kendiniz yazın.",
+    "createActivityLogFailed": "Aktivite günlüğü oluşturulamadı. Lütfen tekrar deneyin.",
+    "updateActivityLogFailed": "Aktivite günlüğü güncellenirken bir şeyler yanlış gitti. Lütfen tekrar deneyin.",
+    "challengeAccepted": "Görev kabul edildi! 🔥 Şimdi gidin onu yok edin ve o ödülleri kazanın!",
+    "challengeCompleted": "Görev Tamamlandı! 🔥 Yeni ödül bakiyeniz güncellendi.",
+    "macroEntryRecorded": "Makro alımı kaydedildi - devam edin! 🥗",
+    "failedCreateMacroLog": "Ups! Makro günlüğü kaydedilmedi. Lütfen tekrar deneyin!",
+    "deleteMacroLog": "Ups! Makro günlüğünüz kaldırılamadı. Lütfen tekrar deneyin!",
+    "deleteMacro": "Makro silindi—bir sonraki girişiniz için hazırsınız!",
+    "chooseSubscriptionPlan": "Devam etmek için lütfen bir abonelik planı seçin!",
+    "createPermanentAccountSuccess": "Kalıcı hesabınız oluşturuldu! Hesabınız artık güvende. Oh, ayrıca aldınız",
+    "loginSuccess": "Başarıyla giriş yapıldı—hadi harekete geçelim!",
+    "accountDeleted": "Hesabınız başarıyla silindi",
+    "purchaseFailed": "Satın alma başarısız oldu. Lütfen tekrar deneyin.",
+    "streakRepairFailed": "Seri onarılamadı. Lütfen tekrar deneyin.",
+    "failedSendMessage": "Mesaj gönderilemedi. Lütfen tekrar deneyin.",
+    "capturePictureFailed": "Fotoğraf çekilirken bir şeyler yanlış gitti",
+    "multipleVideosNotAllowed": "Daha iyi doğruluk için lütfen aynı anda yalnızca bir video yükleyin.",
+    "mixedMediaNotAllowed": "Yüklemeler yalnızca resimlerden veya yalnızca videolardan oluşmalıdır, ikisinin karışımı değil.",
+    "mediaFilesUploadFiles": "Medya dosyalarınız yüklenirken bir hata oluştu. Lütfen tekrar deneyin."
+  }
+}

@@ -425,6 +425,8 @@ const Activity = () => {
         ]} // Ensure background covers content when sliding
         className="absolute inset-x-0 w-full" // Use NativeWind classes for absolute positioning
       >
+        {/* {isUpgradeRequired && <UpgradeBanner />} */}
+
         <View className="px-6">
           <Text className="mb-2 font-bold-poppins text-3xl text-white">
             {translate('general.schedule')}

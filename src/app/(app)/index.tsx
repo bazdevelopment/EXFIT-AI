@@ -148,7 +148,6 @@ export default function Home() {
   const { data: dailyMacros, refetch: refetchDailyMacros } = useGetDailyMacros({
     date: currentActiveDay,
   });
-
   const { mutateAsync: onUpdateActivityLog } = useUpdateActivityLog();
 
   const [showGoalsModal, setShowGoalsModal] = useState(false);
@@ -289,7 +288,7 @@ export default function Home() {
       >
         <Greeting
           showGreeting
-          userName={userInfo.userName}
+          userName={userInfo?.userName}
           additionalClassName="ml-6 my-3"
           textClassName="text-white dark:text-white"
         />

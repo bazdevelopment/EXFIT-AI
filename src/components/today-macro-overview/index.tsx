@@ -152,7 +152,7 @@ export const TodayMacroView = ({
         activeOpacity={0.7}
       >
         <View className="mb-2.5 flex-row items-center justify-between">
-          <View className="flex-row gap-1">
+          <View className="w-2/5 flex-row gap-1">
             <Text className="font-bold-poppins text-lg">
               {translate('components.TodayMacroOverview.heading')}
             </Text>
@@ -164,14 +164,14 @@ export const TodayMacroView = ({
             />
           </View>
           <TouchableOpacity
-            className="flex-row items-center gap-2"
+            style={{ flex: 0.8 }}
+            className="flex-row items-center justify-end gap-2"
             onPress={() => router.navigate('/scan')}
           >
-            <Text className="font-semibold-poppins text-base text-gray-500 dark:text-primary-300">
+            <Text className="-mr-2 w-[70%] text-center font-semibold-poppins text-base text-gray-500 dark:text-primary-300">
               {translate('components.TodayMacroOverview.scanFood')}
             </Text>
             <ScanIcon color={colors.primary[500]} />
-            {/* <ArrowRight color={colors.primary[300]} width={20} height={20} /> */}
           </TouchableOpacity>
         </View>
 

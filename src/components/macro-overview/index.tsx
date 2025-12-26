@@ -115,11 +115,11 @@ const MacroItem = ({
   value: string;
   color: string;
 }) => (
-  <View className="flex-1 items-center">
-    <Text className="mb-1 text-[10px] font-bold uppercase text-slate-400">
+  <View className="items-between flex-column flex-1 justify-between">
+    <Text className="mb-1 text-center text-[10px] font-bold uppercase text-slate-400">
       {label}
     </Text>
-    <Text className={`font-bold ${color}`}>{value}</Text>
+    <Text className={`text-center font-bold ${color}`}>{value}</Text>
   </View>
 );
 

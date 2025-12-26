@@ -1,0 +1,803 @@
+{
+  "onboarding": {
+    "message": "Benvingut/da a EXFIT AI!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Fes una foto del teu àpat i fes el seguiment de les calories",
+        "headingTwo": "Escaneja àpats, parla amb el teu Entrenador d'IA i obtén reptes diaris creats per a tu"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Deixa que la IA impulsi la teva forma física",
+        "headingTwo": "Coneix EXFIT AI, el teu company intel·ligent per superar els dubtes, encendre la motivació i mantenir-te en moviment"
+      },
+      "onboardingThirdPage": {
+        "heading": "Deixa que la IA detecti equips de gimnàs, postes d'exercici i tècnica"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Entrena. Guanya. Puja de nivell.",
+        "headingTwo": "Acumula XP, recull Gemmes, mantén viva la teva Ratxa i desbloqueja recompenses per presentar-te."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Gimnàs",
+    "yoga": "Ioga",
+    "running": "Córrer",
+    "walking": "Caminar",
+    "cycling": "Ciclisme",
+    "dance": "Dansa",
+    "stretching": "Estiraments",
+    "swimming": "Natació",
+    "hiking": "Senderisme",
+    "pilates": "Pilates",
+    "climbing": "Escalada",
+    "skating": "Patinatge"
+  },
+  "general": {
+    "back": "Enrere",
+    "welcome": "Hola",
+    "welcomeBack": "Benvingut/da de nou!",
+    "welcomeMessage": "Benvingut/da!",
+    "goodMorning": "Bon dia",
+    "goodAfternoon": "Bona tarda",
+    "goodEvening": "Bona nit",
+    "continue": "Continua",
+    "retry": "Torna-ho a provar",
+    "retake": "Torna a fer",
+    "scanNow": "Escaneja ara",
+    "scanning": "Escanejant...",
+    "close": "Tanca",
+    "gallery": "Galeria",
+    "files": "Fitxers",
+    "cancel": "Cancel·la",
+    "save": "Desa",
+    "edit": "Edita",
+    "delete": "Elimina",
+    "attention": "Atenció!",
+    "new": "Nou",
+    "yes": "Sí",
+    "no": "No",
+    "or": "o",
+    "change": "Canvia",
+    "typing": "Escrivint...",
+    "online": "En línia",
+    "chatbotPlaceholder": "Pregunta'm el que vulguis...",
+    "openSettings": "Obre la configuració",
+    "seeNotifications": "Veure notificacions",
+    "viewProfile": "Veure perfil",
+    "upgradePlan": "Millora el pla",
+    "download": "Descarrega",
+    "share": "Comparteix",
+    "shareLink": "Comparteix l'enllaç",
+    "skip": "Omet",
+    "next": "Següent",
+    "update": "Actualitza",
+    "tryAgain": "Torna-ho a provar",
+    "createdAt": "Creat el",
+    "and": "i",
+    "saveDiscount": "ESTALVIA",
+    "restorePurchase": "Restaura la compra",
+    "medicalDisclaimer": "Descàrrega de responsabilitat mèdica",
+    "conversationHistory": "Historial de converses",
+    "analyzingMediaFilesPlaceholder": "Analitzant fitxers multimèdia...",
+    "freeTrial": "Prova gratuïta",
+    "free": "GRATUÏT",
+    "noPaymentNow": "Sense pagament ara. Cancel·la en qualsevol moment.",
+    "completedScans": "Escaneigs completats",
+    "activeSubscription": "Subscripció activa",
+    "askAssistant": "Pregunta a l'assistent d'IA",
+    "then": "després",
+    "perWeek": "per setmana",
+    "perYear": "per any",
+    "perMonth": "per mes",
+    "tryForFree": "Prova-ho gratuïtament",
+    "unlockNow": "Desbloqueja ara",
+    "attended": "Assistit",
+    "readyToStart": "A punt per començar",
+    "skipped": "Omat",
+    "completed": "Completat",
+    "purchase": "Compra",
+    "active": "actiu",
+    "dearUser": "Estimat/ada usuari/ària",
+    "ok": "D'acord",
+    "activities": "Activitats",
+    "seeLess": "Veure'n menys",
+    "seeMore": "Veure'n més",
+    "goBack": "Torna enrere",
+    "schedule": "Planificació",
+    "utils": "Utilitats",
+    "verifyEmail": "Verifica el correu electrònic",
+    "loading": "Carregant...",
+    "error": "Error",
+    "minutes": "minuts",
+    "submit": "Envia",
+    "copyText": {
+      "loading": "Copiant...",
+      "copied": "Copiat! 📝",
+      "copy": "Copia l'enllaç"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "Carregant la teva experiència personalitzada...",
+        "second": "Sincronitzant sistemes...",
+        "third": "Processant les teves dades...",
+        "fourth": "Gairebé llest, només un moment..."
+      },
+      "imageScanningLoading": {
+        "first": "Escanejant la teva imatge, si us plau, espera...",
+        "second": "Analitzant detalls, això pot trigar un moment...",
+        "third": "Millorant la precisió per als millors resultats...",
+        "fourth": "Gairebé allà, finalitzant l'escaneig..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, el teu Entrenador d'IA s'està preparant per ajudar-te...",
+        "second": "Espera! Mojo està preparant la teva resposta...",
+        "third": "Pensant... Mojo s'hi posa!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Espera!",
+    "goBackMessage": "Estàs segur/segura que vols tornar enrere?"
+  },
+  "internet": {
+    "noConnectionTitle": "Estàs fora de línia!",
+    "noConnectionMessage": "Activa les dades mòbils o connecta't a un Wi-Fi. O simplement fes una pausa i fes una passejada!"
+  },
+  "uploadScan": {
+    "title": "Puja una imatge",
+    "scanNow": "Escaneja ara"
+  },
+  "weekDays": {
+    "today": "Avui",
+    "yesterday": "Ahir"
+  },
+  "auth": {
+    "verifyAuthCode": "Verifica el codi d'autenticació",
+    "verifyAuthCodeButton": "Verifica el codi",
+    "authCodeHeading": "Codi d'autenticació",
+    "loginViaEmailHeading": "Iniciem la teva sessió. Si us plau, introdueix el teu correu electrònic per continuar.",
+    "emailAddress": "Correu electrònic"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "Benvingut/da a EXFIT AI!",
+        "startButton": "Comencem!",
+        "accountButton": "Ja tinc un compte",
+        "count": "Compta",
+        "calories": "Calories",
+        "track": "Fes seguiment",
+        "activity": "Activitat",
+        "with": "Amb"
+      },
+      "login": {
+        "agreeingMessage": "En continuar, acceptes els nostres",
+        "termsAndConditions": "Termes i Condicions",
+        "privacyPolicy": "Política de Privadesa",
+        "heading": "Inici de sessió",
+        "continueName": "Continua amb el Sobrenom",
+        "existingAccount": "Tens un compte?",
+        "emailAddress": "Adreça de correu electrònic",
+        "emailPlaceholder": "Introdueix el teu correu electrònic",
+        "password": "Contrasenya",
+        "confirmPassword": "Confirma la contrasenya",
+        "forgotPassword": "Has oblidat la contrasenya",
+        "keepSigned": "Mantén-me la sessió iniciada",
+        "createPassword": "Crea una contrasenya"
+      },
+      "signUp": {
+        "heading": "Registre",
+        "haveAccount": "Tens un compte?",
+        "signInHere": "Inicia sessió aquí",
+        "acceptTerms": {
+          "title": "Termes Requerits",
+          "subtitle": "Si us plau, accepta els termes d'ús i la política de privadesa per continuar."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Contrasenya oblidada",
+        "verificationSent": "Si us plau, comprova el teu correu electrònic per a l'enllaç de restabliment de contrasenya. Si no el veus a la safata d'entrada, assegura't de comprovar la carpeta de correu brossa o spam.",
+        "verificationHeading": "Introdueix l'adreça de correu electrònic registrada al teu compte. T'enviarem un enllaç per restablir la teva contrasenya.",
+        "rememberPassword": "T'has recordat de la contrasenya?",
+        "loginAccount": "Inicia sessió al teu compte",
+        "alertTitle": "Restabliment de contrasenya enviat",
+        "alertSubtitle": "Si existeix un compte amb aquest correu electrònic, t'hem enviat un enllaç per restablir la contrasenya."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Si us plau, introdueix tant el correu electrònic com la contrasenya.",
+        "secureProgress": "Assegura el teu progrés",
+        "permanentAccount": "Crea un compte permanent per desar les teves dades entre dispositius."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "Introdueix el teu codi de verificació enviat per correu electrònic. Tingues en compte, el codi expirarà en 5 minuts.",
+        "verificationCodeSent": "Hem enviat el codi de verificació a",
+        "verificationCodeMissing": "No has rebut el codi?",
+        "resendCode": "Reenvia el codi",
+        "backToLogin": "Torna a Iniciar Sessió"
+      },
+      "namePreferenceScreen": {
+        "heading": "Fem-ho personal!",
+        "preferredNameQuestion": "Com t'hauríem d'anomenar?",
+        "placeholderPreferredName": "P. ex., Capità Guai, Reina Abella, o simplement l'Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Com descriuries la teva experiència en fitness?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Quin és el teu objectiu de fitness?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Selecciona el gènere per a una experiència més personalitzada"
+      },
+      "freeTrialPreview": {
+        "heading": "Gaudeix de la teva prova gratuïta! 🎉",
+        "subheading": "Experimenta aquests beneficis increïbles durant la teva prova gratuïta",
+        "review": "Escaneig d'àpats, comptador de calories i seguiment de fitness senzill i intel·ligent. Prova-ho!",
+        "reviewTrust": "📈 Confiat per més de 7,512 usuaris"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Prova gratuïta activada",
+          "heading": " Accés il·limitat",
+          "title": "Desbloqueja les funcions Premium Avui!",
+          "firstOffering": "Seguiment d'activitats i consells nutricionals intel·ligents",
+          "secondOffering": "Comptador de calories i macronutrients il·limitat",
+          "thirdOffering": "Escàner d'aliments il·limitat",
+          "fourthOffering": "El teu Entrenador de Fitness d'IA 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Desbloqueja les funcions Premium Avui!",
+
+        "secondOffering": {
+          "title": "Pla mensual",
+          "subtitle": "{{ price }}/mes"
+        },
+        "thirdOffering": {
+          "title": "Pla anual",
+          "subtitle": "{{ price }} per any"
+        },
+        "fourthOffering": {
+          "title": "Prova de {{trialDays}} dies",
+          "subtitle": "{{ price }} per any",
+          "plan": "Pla setmanal"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "Hi ha una nova versió d'EXFIT AI disponible",
+        "subheading": "Actualitza a l'última versió per continuar gaudint de totes les funcions de l'aplicació — només triga 5 segons!",
+        "action": "Obtén-la ara!"
+      },
+      "rateAppScreen": {
+        "heading": "Trobas l'aplicació valuosa i atractiva?",
+        "like": "Sí, m'agrada!",
+        "dislike": "No gaire..."
+      },
+      "noInternetScreen": {
+        "heading": "Estàs fora de línia",
+        "subheading": "La teva connexió sembla inestable. Si us plau, verifica l'estat de la xarxa i torna-ho a provar"
+      },
+      "notifications": {
+        "title": "Notificacions",
+        "noNotifications": "Encara cap notificació",
+        "emptyNotifications": "Cap notificació nova per ara. Torna a comprovar aviat."
+      },
+      "termsOfService": {
+        "title": "Termes del Servei"
+      },
+      "privacyPolicy": {
+        "title": "Política de Privadesa"
+      },
+      "share": {
+        "title": "Comparteix",
+        "heading": "Comparteix l'aplicació EXFIT AI",
+        "subheading": "Ajuda altres a descobrir l'aplicació EXFIT AI",
+        "scanMessage": "Escaneja per descarregar l'aplicació",
+        "shareMessage": "o comparteix per la teva plataforma preferida"
+      },
+      "rate": {
+        "title": "Dóna'ns la teva opinió!"
+      },
+      "profile": {
+        "title": "Perfil",
+        "edit": "Edita el perfil",
+        "placeholderPreferredName": "P. ex., Capità Guai, Reina Abella, o simplement l'Alex!",
+        "subscriptions": {
+          "monthly": "Subscripció mensual",
+          "yearly": "Subscripció anual",
+          "weekly": "Subscripció setmanal"
+        },
+        "temporaryAccount": "Compte temporal",
+        "permanentAccount": "Compte permanent"
+      },
+      "generateReportScreen": {
+        "title": "Agraïm la teva paciència! Aquí tens el teu informe d'IA. ",
+        "userInput": "La teva tramesa",
+        "medicalReport": "Informe de Fitness",
+        "report": "Informe de Fitness generat per IA",
+        "conversationName": "Nom de la conversa"
+      },
+      "verifyEmail": {
+        "heading": "Verifica el correu electrònic"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Inicia l'anàlisi"
+      },
+      "contactUs": {
+        "heading": "No dubtis a escriure'ns directament, i el nostre equip et respondrà tan aviat com sigui possible",
+        "customerSupport": "Suport al client",
+        "emailAddress": "Adreça de correu electrònic"
+      },
+      "scan": {
+        "cameraPermission": "Es requereix permís d'accés a la càmera per utilitzar aquesta funció",
+        "requestPermission": "Sol·licitant permís de càmera...",
+        "scanAnything": "Escaneja qualsevol cosa: Àpats, Aliments, Equip de Gimnàs i Més",
+        "askAssistant": "Pregunta al teu Entrenador de Fitness d'IA"
+      },
+      "excuseBuster": {
+        "heading": "Aixafa-excuses",
+        "reasons": {
+          "one": "Em sento massa cansat/da",
+          "two": "No tinc temps disponible",
+          "three": "Massa dolor per fer exercici",
+          "four": "El gimnàs està massa ple",
+          "five": "No estic d'humor",
+          "six": "Fa mal temps fora",
+          "seven": "La feina és una bogeria",
+          "eight": "Començaré demà",
+          "nine": "No estic segur/segura de què fer",
+          "ten": "No tinc equip disponible"
+        },
+        "excuseMotivation": "Ets més fort/forta que la teva excusa.",
+        "excuseQuestion": "Què t'està frenant avui?",
+        "typeExcuse": "Escriu la teva excusa aquí...",
+        "crushExcuse": "Aixafa la meva excusa"
+      },
+      "chat": {
+        "fitnessCoach": "El teu Entrenador de Fitness",
+        "randomQuestions": {
+          "one": "'📸 Fes una foto del meu àpat i estima les calories i macronutrients',",
+          "two": "🥗 Analitza aquest àpat i digues-me com millorar-lo per al meu objectiu",
+          "three": "🧠 Crea'm un entrenament personalitzat basat en el meu nivell de fitness",
+          "four": "🏋️ Recomana'm un entrenament que pugui fer ara mateix sense equip",
+          "five": "⏱ Crea un entrenament de 20 minuts per a un dia atrafegat",
+          "six": "🔥 Suggerix un entrenament per cremar greix adaptat a mi",
+          "seven": "💪 Dissenya un pla per augmentar la massa muscular per al meu cos i objectius",
+          "eight": "📊 Fes seguiment del meu progrés i mostra què hauria de millorar després",
+          "nine": "🍽 Digues-me què he de menjar avui per assolir els meus objectius de calories i proteïnes",
+          "ten": "🥚 Calcula la meva proteïna, hidrats de carboni i greixos diaris",
+          "eleven": "🛒 Crea una llista de compra saludable basada en el meu pla dietètic",
+          "twelve": "😴 Ajusta els meus entrenaments basant-me en el meu son i recuperació",
+          "thirteen": "📅 Crea una planificació setmanal d'entrenament que pugui seguir",
+          "fourteen": "⚡ Recomana un entrenament de baixa energia per avui",
+          "fifteen": "🤕 Modifica el meu entrenament si tinc dolor o estic lesionat/da"
+        }
+      },
+      "progress": {
+        "error": "Alguna cosa ha anat malament",
+        "heading": "Tauler de Progrés",
+        "subheading": "Continua amb la feina increïble! 🚀",
+        "weeklyGoals": "Objectius Setmanals",
+        "monthlyGoal": "Objectiu Mensual",
+        "insights": "Apunts Ràpids",
+        "mostActive": "Més Actiu",
+        "peakTime": "Hora de màxim rendiment",
+        "favoriteActivity": "Activitat Favorita",
+        "choice": "La teva elecció preferida",
+        "weeklyChange": "Canvi Setmanal",
+        "lastWeekXP": "vs la setmana passada",
+        "consistency": "Constància",
+        "reliability": "fiabilitat",
+        "overview": "Visió general",
+        "performance": "Rendiment",
+        "trends": "Tendències",
+        "lastSevenDays": "Últims 7 dies",
+        "thisWeek": "Aquesta setmana",
+        "activityFocus": "Focus d'activitat",
+        "distribution": "Distribució",
+        "history": "Historial",
+        "activities": "Activitats",
+        "consistencyJourney": "El teu viatge de constància",
+        "bestDay": "Millor Dia",
+        "averageSession": "Mitjana de sessió",
+        "totalHours": "Hores totals",
+        "WeeklyComparisonXp": "Comparativa Setmanal",
+        "weeksComparison": "Aquesta setmana vs la setmana passada",
+        "thisWeeks": "Aquesta setmana",
+        "lastWeek": "La setmana passada",
+        "activityPattern": "Patró d'activitat",
+        "hoursBreakdown": "Desglossament de 24 hores",
+        "monthlyActivity": "Activitat mensual",
+        "lastMonths": "Últims 6 mesos",
+        "progression": "Progressió",
+        "monthlyEarned": "Guanyat mensualment",
+        "recentActivity": "Activitat recent",
+        "last30Days": "Últims 30 dies",
+        "outstanding": "Progrés excepcional!",
+        "activityReview": "Has completat {{totalActivities}} activitats i has guanyat {{totalXp}} XP en total. Continua així!",
+        "statistics": "Estadístiques detallades",
+        "longest": "Més llarg",
+        "totalMonthActivities": "Activitats físiques completades aquest mes!"
+      },
+      "shoppingCart": {
+        "heading": "Articles posseïts",
+        "equipMore": "Equipa més",
+        "noItems": "Encara no tens cap article!",
+        "goToShop": "Ves a la botiga",
+        "buyPotions": "Passa per la botiga i recull pocions emocionants"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Espera! No em suprimeixis!",
+    "subtitle": "Envia un comentari abans"
+  },
+
+  "home": {
+    "tab": "Inici"
+  },
+
+  "activity": {
+    "tab": "Activitat"
+  },
+  "progress": {
+    "tab": "Progrés"
+  },
+  "settings": {
+    "tab": "Configuració",
+    "profile": "Perfil",
+    "shop": "Botiga",
+    "contactUs": "Contacta'ns",
+    "about": "Quant a",
+    "app_name": "Nom de l'aplicació",
+    "languages": {
+      "english": "Anglès",
+      "mandarin_chinese": "Xinès",
+      "hindi": "Hindi",
+      "spanish_spain": "Espanyol (Espanya)",
+      "spanish_mexico": "Espanyol (Mèxic)",
+      "arabic": "Àrab",
+      "french": "Francès",
+      "french_canada": "Francès (Canadà)",
+      "portuguese_brazil": "Portuguès (Brasil)",
+      "portuguese_portugal": "Portuguès (Portugal)",
+      "german": "Alemany",
+      "japanese": "Japonès",
+      "russian": "Rus",
+      "korean": "Coreà",
+      "italian": "Italià",
+      "turkish": "Turc",
+      "vietnamese": "Vietnamita",
+      "polish": "Polonès",
+      "ukrainian": "Ucraïnès",
+      "romanian": "Romanès",
+      "dutch": "Neerlandès",
+      "czech": "Txec",
+      "greek": "Grec",
+      "swedish": "Suec",
+      "hungarian": "Hongarès",
+      "thai": "Tai",
+      "hebrew": "Hebreu",
+      "indonesian": "Indonesi",
+      "malay": "Malai",
+      "finnish": "Finès",
+      "danish": "Danès",
+      "norwegian": "Noruec",
+      "slovak": "Eslovac",
+      "croatian": "Croat",
+      "catalan": "Català"
+    },
+    "generale": "General",
+    "github": "Github",
+    "language": "Idioma",
+    "links": "Enllaços",
+    "logout": "Tanca la sessió",
+    "more": "Més",
+    "privacy": "Política de Privadesa",
+    "faq": "PMF",
+    "rate": "Dóna'ns la teva opinió",
+    "share": "Comparteix",
+    "citations": "Cites per a informació mèdica",
+    "support": "Suport",
+    "support_us": "Suporta'ns",
+    "terms": "Termes del Servei",
+    "theme": {
+      "dark": "Fosc",
+      "light": "Clar",
+      "system": "Sistema",
+      "title": "Tema"
+    },
+    "title": "Configuració",
+    "version": "Versió",
+    "website": "Lloc web",
+    "devMode": {
+      "title": "Mode desenvolupador",
+      "componentsLibrary": "Llibreria d'UI"
+    },
+    "deleteAccount": "Eliminar compte?",
+    "deleteAccountQuestion": "Estàs segur/segura que vols eliminar el teu compte? Aquesta acció no es pot desfer i eliminarà permanentment totes les teves dades.",
+    "deactivateAccount": "Desactiva i elimina el compte",
+    "permanentAccountCreate": "Crea un compte permanent"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Valoració"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Quina és la raó?",
+      "unnamedConversation": "Sense títol",
+      "reportTitlePlaceholder": "Afegeix un títol"
+    },
+    "WeekBlock": {
+      "week": "Setmana"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Desplaça't a dalt"
+    },
+    "FreeTierStatus": {
+      "heading": "Escaneigs gratuïts",
+      "subheading": "Desbloqueja escaneigs il·limitats millorant el teu pla",
+      "action": "Millora"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Tria una imatge / vídeo"
+    },
+    "GoalsModal": {
+      "heading": "Canvia el teu objectiu d'ingesta diària",
+      "dailyCalories": "Calories diàries",
+      "saveGoals": "Desa els objectius"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Ratxa trencada. Desa ara.",
+      "loseStreak": "Deixa que es trenqui",
+      "buyStreak": "Compra i salva la ratxa",
+      "buyRepairStreak": "Compra un Elixir de Reparació de Ratxa per {{elixirPrice}} 💎 per recuperar la ratxa perduda.",
+      "streakRestore": "La ratxa està en risc — restaura-la ara!",
+      "restorationStreak": "Torna a la vida la teva ratxa de {{lostStreakValue}} dies amb el potent Elixir de Reparació de Ratxa!",
+      "applyElixir": "Aplica la poció d'elixir"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Compra completada",
+      "inventoryAdded": "s'ha afegit al teu inventari. Continua amb la gran feina!",
+      "purchaseFailed": "Compra fallida",
+      "purchaseFailedMessage": "No hem pogut processar la teva compra. Si us plau, comprova el saldo de gemmes i torna-ho a provar.",
+      "gemsBalance": "Vaja, no tens gemmes suficients"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Registre diari",
+      "bodyMovingQuestion": "Has fet moure el cos avui?"
+    },
+    "TapToViewLabel": {
+      "label": "Toca per veure"
+    },
+    "UpgradeBanner": {
+      "heading": "Desbloqueja ara!",
+      "upgradeMessage": "Desbloqueja aquesta funció 🔓 Gaudeix del recompte de calories per IA, seguiment de macronutrients i suport integral per ajudar-te a assolir els teus objectius d'activitat i fitness més ràpid 💪",
+      "upgradeTo": "Millora a",
+      "moreBenefits": "Funcions d'IA. Totes les eines premium. Tot per a tu per mantenir-te en el camí."
+    },
+    "MotivationBanner": {
+      "title": "Sense motivació? Et sents estrany/estranya? Aixafem aquesta excusa.",
+      "subtitle": "Tria una tasca, guanya XP i gemmes — anem a moure'ns!",
+      "beatExcuse": "Aixafa la teva excusa ara!"
+    },
+    "AICoachBanner": {
+      "title": "Tens alguna pregunta? Només pregunta.",
+      "subtitle": "Domina el teu fitness — pregunta sobre calories, nutrició, màquines de gimnàs, postures, lesions, tècnica, plans d'entrenament",
+      "chat": "Xateja amb l'Entrenador d'IA"
+    },
+    "PromptSection": {
+      "message": "El teu escaneig està llest! Ara, què t'agradaria saber?",
+      "prompts": {
+        "first": "Quins tipus cel·lulars o estructures estan presents en aquesta imatge?",
+        "second": "Hi ha alguna anomalia o patogen en aquesta mostra?",
+        "third": "Quina és la probable procedència o condició d'aquesta mostra?",
+        "fourth": "Quins coneixements pots proporcionar a partir d'aquesta imatge?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Escaneig d'àpats per IA instantani — Fes seguiment de calories i macronutrients en segons",
+      "second": "Entrenador personal d'IA 24/7 — Orientació expert, en qualsevol moment, a qualsevol lloc",
+      "third": "Fes el seguiment de les teves activitats de fitness com un professional",
+      "fourth": "Accés complet a totes les funcions premium"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Sobrenom",
+        "email": "Correu electrònic",
+        "emailVerification": "Verificació de correu electrònic"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Macronutrients d'avui",
+      "scanFood": "Escaneja aliments",
+      "calories": "Calories",
+      "fat": "Greix",
+      "carbs": "Hidrats de carboni",
+      "protein": "Proteïna",
+      "dailyIntakeGoals": "Objectius d'ingesta diària",
+      "percentage": "% de l'objectiu diari de macronutrients assolit",
+      "noMeals": "Cap àpat registrat",
+      "meals": "Àpats",
+      "deleteMeal": "Elimina àpat",
+      "deleteMealConfirm": "Estàs segur/segura que vols eliminar aquest àpat? Aquesta acció afectarà els càlculs dels teus nutrients diaris.",
+      "macroJournal": "Diari de macronutrients",
+      "noActivityRecorded": "Cap activitat registrada aquesta setmana"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Registre diari",
+      "attendedMessage": "T'has presentat avui, així és com es construeix el progrés. Continua així!",
+      "notAttendedMessage": "El sofà guanya avui… però demà, faràs una reaparició!",
+      "unknownMessage": "El teu viatge comença amb un sol pas. A punt per començar?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "La durada seleccionada no pot ser més llarga de 360 minuts",
+      "activitiesLimit": "Ei, espera! Estàs entrenant en secret per als Jocs Olímpics? Ja has assolit el límit de {{MAX_DAILY_ACTIVITIES}} activitats per avui! 🏅. Pots flexionar aquests músculs de nou demà 💪!",
+      "addActivity": "Afegeix activitat",
+      "modalHeading": "Què t'ha fet moure avui? Registra-ho i mantén el ritme"
+    },
+    "TaskListOverview": {
+      "heading": "Tasques d'avui",
+      "noTasks": "Cap tasca!",
+      "enjoyFreeTime": "Gaudeix del teu temps lliure."
+    },
+    "ActivitySelector": {
+      "title": "Tipus d'activitat",
+      "customActivity": "Afegeix la teva pròpia activitat",
+      "customActivityLabel": "Activitat personalitzada"
+    },
+    "DurationSelector": {
+      "heading": "Durada",
+      "customDuration": "Introdueix la durada (minuts)",
+      "customDurationLabel": "Durada personalitzada"
+    },
+    "NoActivityLogModal": {
+      "heading": "Oh no! No deixis que el sofà guanyi avui!",
+      "crushExcuse": "Aixafa la meva excusa",
+      "skipToday": "Avui no, potser demà..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Gran feina!",
+      "unlockReward": "Ho has fet! Una activitat completada, i has desbloquejat la teva recompensa. Continuem amb la ratxa!"
+    },
+    "SkipReasonInput": {
+      "title": "No passa res, només et faig un seguiment.",
+      "subtitle": "Vols compartir per què avui no ha funcionat? Sense pressió.",
+      "skipPlaceholder": "P. ex. El meu gat s'ha menjat les meves sabates de córrer",
+      "skipToday": "Omet avui"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Congelació de ratxa!",
+      "streakResetNow": "La teva ratxa s'ha restablert avui.",
+      "streakRepairUse": "Utilitza el teu Elixir de Reparació de Ratxa per mantenir viva la teva ratxa",
+      "streakRepairExpired": " La teua finestra de reparació de ratxa de 48 hores ha expirat! Però ei, noves ratxes signifiquen noves oportunitats per superar la teua millor marca personal.",
+      "repairStreak": "Repara la ratxa",
+      "streakPotionConsumed": "Poció de congelació de ratxa consumida!",
+      "streakFreezeApplied": " La teva poció de congelació de ratxa s'ha activat i ha protegit la teva ratxa. Encara estàs a la llarga!",
+      "streakElixirApplied": "Poció d'Elixir de Reparació de Ratxa activada!",
+      "streakFreezePotionApplied": "Has salvat la teva ratxa! La teva poció de congelació de ratxa s'ha activat i ha protegit la teva ratxa. Encara estàs a la llarga!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Cap activitat trobada",
+      "addFirstActivity": "Afegeix la teva primera activitat per guanyar gemmes i XP.",
+      "addActivity": "Afegeix activitat",
+      "todayActivities": "Activitats d'avui"
+    },
+    "ActivityCard": {
+      "activitySkipped": "omès",
+      "dayOff": "Dia lliure",
+      "description": "Descripció",
+      "excuseReason": "Raó de l'excusa ⚠️",
+      "yourNotes": "Les teves notes 📝",
+      "notesPlaceholder": "P. ex. Entrenament d'esquena i bíceps, 3 super sèries",
+      "addNotes": "Afegeix notes"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Biblioteca de fotos",
+      "takePhoto": "Fes una foto",
+      "chooseFile": "Tria un fitxer"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Nivell màxim assolit! Nivell",
+      "xpLeft": "restants per assolir el Nivell"
+    },
+    "ShopItemCard": {
+      "unavailable": "No disponible",
+      "worth": "valor",
+      "equiped": "equipat",
+      "shop": "Botiga",
+      "earnedId": "Te l'has guanyat.",
+      "treat": "Ara dóna-t'hi un gust!",
+      "spendGems": "Gasta les teves gemmes amb saviesa, el teu viatge de fitness acaba de tornar-se interessant."
+    },
+    "ActivityTaskCard": {
+      "win": "Guanya",
+      "acceptChallenge": "Accepta el repte 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "I si et superes una mica amb aquest repte?",
+      "typeInput": "(Escriu la teva entrada a sota)"
+    },
+    "MacroOverview": {
+      "analysis": "Anàlisi",
+      "macroAdded": "Macronutrient afegit",
+      "countToday": "Compta per avui"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Protegeix la teva ratxa si et perds un dia de pràctica.",
+      "owned": "POSSEÏT",
+      "manualTrigger": "ACTIVACIÓ MANUAL",
+      "activated": "ACTIVAT"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Ho sentim, necessitem permisos de càmera perquè això funcioni!",
+    "errorSelectingImagePicker": "Alguna cosa ha anat malament en seleccionar la imatge. Si us plau, torna-ho a provar.",
+    "errorSelectingDocumentPicker": "Alguna cosa ha anat malament en triar el document. Si us plau, torna-ho a provar.",
+    "errorTakingPicture": "Alguna cosa ha anat malament en fer la foto. Si us plau, torna-ho a provar.",
+    "enableNotifications": {
+      "heading": "Activa les notificacions",
+      "subHeading": "Les notificacions estan desactivades actualment. Per estar actualitzat/da, si us plau, activa-les a la configuració del teu dispositiu."
+    },
+    "notesSavedSuccess": "Notes desades! 📝 Tot llest.",
+    "enableNotificationFailed": "Les notificacions push estan desactivades. Activa-les a la configuració per rebre actualitzacions importants!",
+    "enableNotificationError": "S'ha produït un error en activar les notificacions",
+    "notificationDisabledSuccess": "Notificacions desactivades amb èxit.",
+    "notificationDisabledRegisterError": "No s'ha pogut cancel·lar el registre del dispositiu per a notificacions.",
+    "notificationDisabledError": "S'ha produït un error en desactivar les notificacions.",
+    "checkNotificationStatusError": "Error en comprovar l'estat de les notificacions.",
+    "projectIdNotFound": "ID del projecte de notificació no trobat.",
+    "imageSizeLarge": "La imatge és massa gran! La mida del fitxer és {{fileSize}} MB, però el límit és {{imageLimit}} MB.",
+    "videoSizeLarge": "El vídeo és massa gran! La mida del fitxer és {{fileSize}} MB, però el límit és {{videoLimit}} MB.",
+    "loggedInSuccess": "Sessió iniciada amb èxit",
+    "loggedOutSuccess": "Has tancat la sessió amb èxit!",
+    "sendVerificationCodeError": "Error en enviar el codi de verificació",
+    "validateAuthCodeError": "Error en validar el codi d'autenticació",
+    "anonymousSignInError": "Error en iniciar sessió de forma anònima",
+    "emailLoginError": "Error en iniciar sessió",
+    "preferredLanguageError": "Error en actualitzar l'idioma preferit de l'usuari",
+    "sharingNotAvailable": "La compartició no està disponible actualment al teu dispositiu",
+    "sharingLinkError": "No s'ha pogut compartir l'enllaç.",
+    "individualPushNotificationSuccess": "Notificacions push individuals enviades amb èxit!",
+    "globalPushNotificationSuccess": "Notificacions push globals enviades amb èxit! 🌍🚀",
+    "interpretationFieldsUpdateFail": "No s'han pogut actualitzar els camps d'interpretació! ❌",
+    "deleteScanReportFail": "No s'ha pogut eliminar l'informe d'escaneig. Si us plau, torna-ho a provar",
+    "onboardingUnsuccessful": "Onboarding sense èxit. Si us plau, torna-ho a provar",
+    "logoutUnsuccessful": "Tancament de sessió sense èxit. Si us plau, torna-ho a provar",
+    "deleteScanReportQuestion": "Estàs segur/segura que vols eliminar permanentment aquest informe?",
+    "videoLimitExceeds": "El teu vídeo supera el límit de {{videoSecondsLimit}} segons. Si us plau, retalla'l i torna a pujar-lo",
+    "subscriptionActivated": "La teva subscripció s'ha activat amb èxit! Gaudeix dels teus beneficis exclusius!",
+    "subscriptionCancelledByUser": "Has cancel·lat la transacció. No dubtis a tornar-ho a provar!",
+    "subscriptionActivationFailed": "No s'ha pogut activar la teva subscripció. Si us plau, torna-ho a provar",
+    "logoutQuestion": "Estàs segur/segura que vols tancar la sessió?",
+    "noSubscriptionToRestore": "Vaja! Sembla que no tens una subscripció activa en aquest moment. Per continuar gaudint d'accés complet, si us plau, tria un dels nostres plans de subscripció.",
+    "restorationSuccessful": "La restauració ha tingut èxit! Gaudeix!",
+    "restorationError": "S'ha produït un error en restaurar la compra.",
+    "medicalDisclaimerAlert": "L'aplicació EXFIT AI no ofereix diagnòstics, recomanacions de tractament o cap consell mèdic. Cerca sempre l'orientació d'un professional de la salut qualificat per a decisions mèdiques.",
+    "scanLimitReached": "Estem optimitzant la qualitat d'escaneig per a tu! Podràs tornar a escanejar en aproximadament {{hours}} hores i {{minutes}} minuts. Tens alguna pregunta sobre qualsevol tema de microscòpia? Pregunta al nostre assistent de xat mentre esperes!",
+    "chatAndMediaFilesLimit": "Estimat/ada usuari/ària, millora el teu pla per gaudir de seguiment de calories il·limitat, escaneig d'àpats, entrenament de fitness i més. 🔓",
+    "chatMessageNotSent": "Vaja! El teu missatge no s'ha enviat. Si us plau, torna-ho a provar",
+    "excusesLimit": "Vaja, sembla que estàs intentant establir un rècord mundial d'excuses! 😅 Màxim 3 excuses permeses - tria les teves 3 favorites i anem a moure'ns!",
+    "excuseMinimum": "Si us plau, tria almenys una excusa o escriu la teva pròpia.",
+    "createActivityLogFailed": "No s'ha pogut crear el registre d'activitat. Si us plau, torna-ho a provar.",
+    "updateActivityLogFailed": "Alguna cosa ha anat malament en actualitzar el registre d'activitat. Si us plau, torna-ho a provar.",
+    "challengeAccepted": "Repte acceptat! 🔥 Ara ves i aixafera'l i guanya aquestes recompenses!",
+    "challengeCompleted": "Repte completat! 🔥 El teu nou saldo de recompenses s'ha actualitzat.",
+    "macroEntryRecorded": "Registre d'ingesta de macronutrients - continua així! 🥗",
+    "failedCreateMacroLog": "Vaja! El registre de macronutrients no s'ha desat. Si us plau, torna-ho a provar!",
+    "deleteMacroLog": "Vaja! No s'ha pogut eliminar el teu registre de macronutrients. Si us plau, torna-ho a provar!",
+    "deleteMacro": "Macronutrient eliminat — a punt per a la teva propera entrada!",
+    "chooseSubscriptionPlan": "Si us plau, tria un pla de subscripció per continuar!",
+    "createPermanentAccountSuccess": "S'ha creat el teu compte permanent! El teu compte ara és segur. Oh, i també has rebut",
+    "loginSuccess": "Sessió iniciada amb èxit — anem a moure'ns!",
+    "accountDeleted": "El teu compte s'ha eliminat amb èxit",
+    "purchaseFailed": "Compra fallida. Si us plau, torna-ho a provar.",
+    "streakRepairFailed": "No s'ha pogut reparar la ratxa. Si us plau, torna-ho a provar.",
+    "failedSendMessage": "No s'ha pogut enviar el missatge. Si us plau, torna-ho a provar.",
+    "capturePictureFailed": "Alguna cosa ha anat malament en fer la foto",
+    "multipleVideosNotAllowed": "Per a una millor precisió, si us plau, penja només un vídeo alhora.",
+    "mixedMediaNotAllowed": "Les pujades han de contenir només imatges o només vídeos, no una barreja de tots dos.",
+    "mediaFilesUploadFiles": "Hi ha hagut un error en penjar els teus fitxers multimèdia. Si us plau, torna-ho a provar."
+  }
+}

@@ -1,0 +1,803 @@
+{
+  "onboarding": {
+    "message": "Velkommen til EXFIT AI!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Tag et billede af din måltid og track kalorier",
+        "headingTwo": "Scan måltider, tal med din AI-træner, og få daglige udfordringer bygget til dig"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Lad AI drive din fitness",
+        "headingTwo": "Mød EXFIT AI, din smarte sidekick til at knuse tvivl, tænde motivation og holde dig i bevægelse"
+      },
+      "onboardingThirdPage": {
+        "heading": "Lad AI detektere fitnessudstyr, øvelsesstillinger og teknik"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Træn. Tjen. Level op.",
+        "headingTwo": "Optjen XP, saml Gems, hold din Streak i live, og lås belønninger op for at møde op."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Gym",
+    "yoga": "Yoga",
+    "running": "Løb",
+    "walking": "Gåtur",
+    "cycling": "Cykling",
+    "dance": "Dans",
+    "stretching": "Stræk",
+    "swimming": "Svømning",
+    "hiking": "Vandring",
+    "pilates": "Pilates",
+    "climbing": "Klatre",
+    "skating": "Skøjte"
+  },
+  "general": {
+    "back": "Tilbage",
+    "welcome": "Hej",
+    "welcomeBack": "Velkommen tilbage!",
+    "welcomeMessage": "Velkommen!",
+    "goodMorning": "God morgen",
+    "goodAfternoon": "God eftermiddag",
+    "goodEvening": "God aften",
+    "continue": "Fortsæt",
+    "retry": "Prøv igen",
+    "retake": "Tag igen",
+    "scanNow": "Scan nu",
+    "scanning": "Scanner...",
+    "close": "Luk",
+    "gallery": "Galleri",
+    "files": "Filer",
+    "cancel": "Annuller",
+    "save": "Gem",
+    "edit": "Rediger",
+    "delete": "Slet",
+    "attention": "Opmærksomhed!",
+    "new": "Ny",
+    "yes": "Ja",
+    "no": "Nej",
+    "or": "eller",
+    "change": "Skift",
+    "typing": "Skriver...",
+    "online": "Online",
+    "chatbotPlaceholder": "Spørg mig om hvad som helst...",
+    "openSettings": "Åbn indstillinger",
+    "seeNotifications": "Se notifikationer",
+    "viewProfile": "Se profil",
+    "upgradePlan": "Opgrader plan",
+    "download": "Download",
+    "share": "Del",
+    "shareLink": "Del link",
+    "skip": "Spring over",
+    "next": "Næste",
+    "update": "Opdater",
+    "tryAgain": "Prøv igen",
+    "createdAt": "Oprettet den",
+    "and": "og",
+    "saveDiscount": "SPAR",
+    "restorePurchase": "Gendan køb",
+    "medicalDisclaimer": "Medicinsk ansvarsfraskrivelse",
+    "conversationHistory": "Samtalehistorik",
+    "analyzingMediaFilesPlaceholder": "Analyserer mediefiler...",
+    "freeTrial": "Gratis prøveperiode",
+    "free": "GRATIS",
+    "noPaymentNow": "Ingen betaling nu. Annuller når som helst.",
+    "completedScans": "Scans fuldført",
+    "activeSubscription": "Abonnement aktivt",
+    "askAssistant": "Spørg AI-assistent",
+    "then": "så",
+    "perWeek": "per uge",
+    "perYear": "per år",
+    "perMonth": "per måned",
+    "tryForFree": "Prøv gratis",
+    "unlockNow": "Lås op nu",
+    "attended": "Deltog",
+    "readyToStart": "Klar til at starte",
+    "skipped": "Sprunget over",
+    "completed": "Fuldført",
+    "purchase": "Køb",
+    "active": "aktiv",
+    "dearUser": "Kære bruger",
+    "ok": "Ok",
+    "activities": "Aktiviteter",
+    "seeLess": "Se mindre",
+    "seeMore": "Se mere",
+    "goBack": "Gå tilbage",
+    "schedule": "Tidsplan",
+    "utils": "Værktøjer",
+    "verifyEmail": "Bekræft email",
+    "loading": "Indlæser...",
+    "error": "Fejl",
+    "minutes": "minutter",
+    "submit": "Indsend",
+    "copyText": {
+      "loading": "Kopierer...",
+      "copied": "Kopieret! 📝",
+      "copy": "Kopier link"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "Indlæser din personlige oplevelse...",
+        "second": "Synkroniserer systemer...",
+        "third": "Behandler dine data...",
+        "fourth": "Næsten klar, bare et øjeblik..."
+      },
+      "imageScanningLoading": {
+        "first": "Scanner dit billede, vent venligst...",
+        "second": "Analyserer detaljer, dette kan tage et øjeblik...",
+        "third": "Forbedrer nøjagtighed for de bedste resultater...",
+        "fourth": "Næsten der, afslutter scanningen..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, din AI-træner forbereder sig på at hjælpe dig...",
+        "second": "Vent! Mojo forbereder dit svar...",
+        "third": "Tænker... Mojo er på sagen!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Vent lidt!",
+    "goBackMessage": "Er du sikker på, at du vil gå tilbage?"
+  },
+  "internet": {
+    "noConnectionTitle": "Du er offline!",
+    "noConnectionMessage": "Tænd mobildata eller tilslut til Wi-Fi. Eller tag bare en pause og gå en tur!"
+  },
+  "uploadScan": {
+    "title": "Upload billede",
+    "scanNow": "Scan nu"
+  },
+  "weekDays": {
+    "today": "I dag",
+    "yesterday": "I går"
+  },
+  "auth": {
+    "verifyAuthCode": "Bekræft godkendelseskode",
+    "verifyAuthCodeButton": "Bekræft kode",
+    "authCodeHeading": "Godkendelseskode",
+    "loginViaEmailHeading": "Lad os få dig logget ind. Indtast venligst din email for at fortsætte.",
+    "emailAddress": "Email"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "Velkommen til EXFIT AI!",
+        "startButton": "Lad os komme i gang!",
+        "accountButton": "Jeg har allerede en konto",
+        "count": "Tæl",
+        "calories": "Kalorier",
+        "track": "Track",
+        "activity": "Aktivitet",
+        "with": "Med"
+      },
+      "login": {
+        "agreeingMessage": "Ved at fortsætte accepterer du vores",
+        "termsAndConditions": "Vilkår og Betingelser",
+        "privacyPolicy": "Privatlivspolitik",
+        "heading": "Login",
+        "continueName": "Fortsæt med Kaldenavn",
+        "existingAccount": "Har du en konto?",
+        "emailAddress": "Emailadresse",
+        "emailPlaceholder": "Indtast din email",
+        "password": "Adgangskode",
+        "confirmPassword": "Bekræft adgangskode",
+        "forgotPassword": "Glemt adgangskode",
+        "keepSigned": "Hold mig logget ind",
+        "createPassword": "Opret en adgangskode"
+      },
+      "signUp": {
+        "heading": "Tilmeld",
+        "haveAccount": "Har du en konto?",
+        "signInHere": "Log ind her",
+        "acceptTerms": {
+          "title": "Vilkår kræves",
+          "subtitle": "Accepter venligst brugsbetingelserne og privatlivspolitikken for at fortsætte."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Glemt adgangskode",
+        "verificationSent": "Tjek venligst din email for et link til nulstilling af adgangskode. Hvis du ikke kan se det i din indbakke, så tjek venligst din spam- eller junkmail-mappe.",
+        "verificationHeading": "Indtast den emailadresse, der er registreret på din konto. Vi sender dig et link til at nulstille din adgangskode.",
+        "rememberPassword": "Husker du adgangskoden?",
+        "loginAccount": "Log ind på din konto",
+        "alertTitle": "Nulstilling af adgangskode sendt",
+        "alertSubtitle": "Hvis der findes en konto med denne email, har vi sendt dig et link til nulstilling af adgangskode."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Indtast venligst både email og adgangskode.",
+        "secureProgress": "Sikre din fremskridt",
+        "permanentAccount": "Opret en permanent konto for at gemme dine data på tværs af enheder."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "Indtast din verifikationskode sendt via email. Bemærk venligst, at koden udløber om 5 minutter.",
+        "verificationCodeSent": "Vi har sendt verifikationskoden til",
+        "verificationCodeMissing": "Fik du ikke koden?",
+        "resendCode": "Gensend kode",
+        "backToLogin": "Tilbage til Log ind"
+      },
+      "namePreferenceScreen": {
+        "heading": "Lad os gøre dette personligt!",
+        "preferredNameQuestion": "Hvad skal vi kalde dig?",
+        "placeholderPreferredName": "F.eks., Captain Cool, Queen Bee, eller bare Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Hvordan vil du beskrive din fitness-erfaring?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Hvad er dit fitness-mål?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Vælg køn for en mere skræddersyet oplevelse"
+      },
+      "freeTrialPreview": {
+        "heading": "Nyd din gratis prøveperiode! 🎉",
+        "subheading": "Oplev disse fantastiske fordele under din gratis prøveperiode",
+        "review": "Måltidsscanning, kalorietæller og fitness-tracker enkel og smart. Prøv det!",
+        "reviewTrust": "📈 Stolt af 7.512+ brugere"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Gratis prøveperiode aktiveret",
+          "heading": " Ubegrænset adgang",
+          "title": "Lås premium-funktioner op i dag!",
+          "firstOffering": "Aktivitets-tracker & Smarte ernæringsråd",
+          "secondOffering": "Ubegrænset kalorie- & makrotæller",
+          "thirdOffering": "Ubegrænset madscanner",
+          "fourthOffering": "Din AI-fitness-træner 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Lås premium-funktioner op i dag!",
+
+        "secondOffering": {
+          "title": "Månedsplan",
+          "subtitle": "{{ price }}/måned"
+        },
+        "thirdOffering": {
+          "title": "Årlig plan",
+          "subtitle": "{{ price }} per år"
+        },
+        "fourthOffering": {
+          "title": "{{trialDays}}-dages prøveperiode",
+          "subtitle": "{{ price }} per år",
+          "plan": "Ugeplan"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "En ny version af EXFIT AI er tilgængelig",
+        "subheading": "Opdater til den seneste version for at fortsætte med at nyde alle app-funktioner — det tager kun 5 sekunder!",
+        "action": "Hent den nu!"
+      },
+      "rateAppScreen": {
+        "heading": "Finder du appen værdifuld og engagerende?",
+        "like": "Ja, jeg kan lide den!",
+        "dislike": "Ikke rigtig..."
+      },
+      "noInternetScreen": {
+        "heading": "Du er offline",
+        "subheading": "Din forbindelse ser ud til at være ustabil. Bekræft venligst din netværksstatus og prøv igen"
+      },
+      "notifications": {
+        "title": "Notifikationer",
+        "noNotifications": "Ingen notifikationer endnu",
+        "emptyNotifications": "Ingen nye notifikationer for nu. Tjek tilbage snart."
+      },
+      "termsOfService": {
+        "title": "Servicevilkår"
+      },
+      "privacyPolicy": {
+        "title": "Privatlivspolitik"
+      },
+      "share": {
+        "title": "Del",
+        "heading": "Del EXFIT AI App",
+        "subheading": "Hjælp andre med at opdage EXFIT AI App",
+        "scanMessage": "Scan for at downloade appen",
+        "shareMessage": "eller del via din foretrukne platform"
+      },
+      "rate": {
+        "title": "Giv os en tilbagemelding!"
+      },
+      "profile": {
+        "title": "Profil",
+        "edit": "Rediger profil",
+        "placeholderPreferredName": "F.eks., Captain Cool, Queen Bee, eller bare Alex!",
+        "subscriptions": {
+          "monthly": "Månedligt abonnement",
+          "yearly": "Årligt abonnement",
+          "weekly": "Ugentligt abonnement"
+        },
+        "temporaryAccount": "Midlertidig konto",
+        "permanentAccount": "Permanent konto"
+      },
+      "generateReportScreen": {
+        "title": "Vi sætter pris på din tålmodighed! Her er din AI-rapport. ",
+        "userInput": "Din indsendelse",
+        "medicalReport": "Fitness-rapport",
+        "report": "AI-genereret fitness-rapport",
+        "conversationName": "Samtalenavn"
+      },
+      "verifyEmail": {
+        "heading": "Bekræft email"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Start analyse"
+      },
+      "contactUs": {
+        "heading": "Du er velkommen til at skrive til os direkte, og vores team vil vende tilbage til dig så hurtigt som muligt",
+        "customerSupport": "Kundesupport",
+        "emailAddress": "Emailadresse"
+      },
+      "scan": {
+        "cameraPermission": "Kameratilladelse er påkrævet for at bruge denne funktion",
+        "requestPermission": "Anmoder om kameratilladelse...",
+        "scanAnything": "Scan hvad som helst: Måltider, Mad, Fitnessudstyr & Mere",
+        "askAssistant": "Spørg din AI-fitness-træner"
+      },
+      "excuseBuster": {
+        "heading": "Undskyldningsknuser",
+        "reasons": {
+          "one": "Føler mig for træt",
+          "two": "Ingen tid til rådighed",
+          "three": "For øm til at træne",
+          "four": "Fitnesscentret er for proppet",
+          "five": "Ikke i humør",
+          "six": "Dårligt vejr udenfor",
+          "seven": "Arbejdet er hektisk",
+          "eight": "Jeg starter i morgen",
+          "nine": "Usikker på hvad jeg skal gøre",
+          "ten": "Intet udstyr tilgængeligt"
+        },
+        "excuseMotivation": "Du er stærkere end din undskyldning.",
+        "excuseQuestion": "Hvad holder dig tilbage i dag?",
+        "typeExcuse": "Skriv din undskyldning her...",
+        "crushExcuse": "Knus min undskyldning"
+      },
+      "chat": {
+        "fitnessCoach": "Din Fitness-træner",
+        "randomQuestions": {
+          "one": "'📸 Tag et billede af mit måltid og estimer kalorier & makroer',",
+          "two": "🥗 Analyser dette måltid og fortæl mig, hvordan jeg kan forbedre det for mit mål",
+          "three": "🧠 Byg en personlig træningsplan baseret på min fitness-niveau",
+          "four": "🏋️ Anbefal en træning, jeg kan lave lige nu uden udstyr",
+          "five": "⏱ Lav en 20-minutters træning til en travl dag",
+          "six": "🔥 Foreslå en fedtforbrændende træning skræddersyet til mig",
+          "seven": "💪 Design en muskelopbygningsplan for min krop og mål",
+          "eight": "📊 Track mine fremskridt og vis, hvad jeg skal forbedre næste gang",
+          "nine": "🍽 Fortæl mig, hvad jeg skal spise i dag for at nå mine kalorie- og proteinmål",
+          "ten": "🥚 Beregn mit daglige protein, kulhydrater og fedt",
+          "eleven": "🛒 Lav en sund indkøbsliste baseret på min kostplan",
+          "twelve": "😴 Juster mine træninger baseret på min søvn og restitution",
+          "thirteen": "📅 Byg en ugentlig træningsplan, jeg kan holde fast i",
+          "fourteen": "⚡ Anbefal en lavenergitræning til i dag",
+          "fifteen": "🤕 Tilpas min træning, hvis jeg er øm eller skadet"
+        }
+      },
+      "progress": {
+        "error": "Noget gik galt",
+        "heading": "Fremskridtsdashboard",
+        "subheading": "Fortsæt det fantastiske arbejde! 🚀",
+        "weeklyGoals": "Ugentlige mål",
+        "monthlyGoal": "Månedligt mål",
+        "insights": "Hurtige indsigter",
+        "mostActive": "Mest aktiv",
+        "peakTime": "Top præstationstid",
+        "favoriteActivity": "Foretrukne aktivitet",
+        "choice": "Dit go-to valg",
+        "weeklyChange": "Ugentlig ændring",
+        "lastWeekXP": "vs sidste uge",
+        "consistency": "Konsistens",
+        "reliability": "pålidelighed",
+        "overview": "Oversigt",
+        "performance": "Præstation",
+        "trends": "Tendenser",
+        "lastSevenDays": "Sidste 7 dage",
+        "thisWeek": "Denne uges",
+        "activityFocus": "Aktivitetsfokus",
+        "distribution": "Fordeling",
+        "history": "Historik",
+        "activities": "Aktiviteter",
+        "consistencyJourney": "Din konsistensrejse",
+        "bestDay": "Bedste dag",
+        "averageSession": "Gns. session",
+        "totalHours": "Samlede timer",
+        "WeeklyComparisonXp": "Ugentlig sammenligning",
+        "weeksComparison": "Denne uge vs sidste uge",
+        "thisWeeks": "Denne uge",
+        "lastWeek": "Sidste uge",
+        "activityPattern": "Aktivitetsmønster",
+        "hoursBreakdown": "24-timers opdeling",
+        "monthlyActivity": "Månedlig aktivitet",
+        "lastMonths": "Sidste 6 måneder",
+        "progression": "Fremgang",
+        "monthlyEarned": "Månedlig optjent",
+        "recentActivity": "Nylig aktivitet",
+        "last30Days": "Sidste 30 dage",
+        "outstanding": "Fremragende fremskridt!",
+        "activityReview": "Du har fuldført {{totalActivities}} aktiviteter og optjent {{totalXp}} XP i alt. Bliv ved!",
+        "statistics": "Detaljerede statistikker",
+        "longest": "Længste",
+        "totalMonthActivities": "Fysiske aktiviteter fuldført denne måned!"
+      },
+      "shoppingCart": {
+        "heading": "Ejer genstande",
+        "equipMore": "Udrust mere",
+        "noItems": "Du ejer ingen genstande endnu!",
+        "goToShop": "Gå til butikken",
+        "buyPotions": "Gå hen til butikken og saml nogle spændende portioner"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Vent! Slet mig ikke!",
+    "subtitle": "Send en tilbagemelding først"
+  },
+
+  "home": {
+    "tab": "Hjem"
+  },
+
+  "activity": {
+    "tab": "Aktivitet"
+  },
+  "progress": {
+    "tab": "Fremskridt"
+  },
+  "settings": {
+    "tab": "Indstillinger",
+    "profile": "Profil",
+    "shop": "Butik",
+    "contactUs": "Kontakt os",
+    "about": "Om",
+    "app_name": "App-navn",
+    "languages": {
+      "english": "Engelsk",
+      "mandarin_chinese": "Kinesisk",
+      "hindi": "Hindi",
+      "spanish_spain": "Spansk (Spanien)",
+      "spanish_mexico": "Spansk (Mexico)",
+      "arabic": "Arabisk",
+      "french": "Fransk",
+      "french_canada": "Fransk (Canada)",
+      "portuguese_brazil": "Portugisisk (Brasilien)",
+      "portuguese_portugal": "Portugisisk (Portugal)",
+      "german": "Tysk",
+      "japanese": "Japansk",
+      "russian": "Russisk",
+      "korean": "Koreansk",
+      "italian": "Italiensk",
+      "turkish": "Tyrkisk",
+      "vietnamese": "Vietnamesisk",
+      "polish": "Polsk",
+      "ukrainian": "Ukrainsk",
+      "romanian": "Rumænsk",
+      "dutch": "Hollandsk",
+      "czech": "Tjekkisk",
+      "greek": "Græsk",
+      "swedish": "Svensk",
+      "hungarian": "Ungarsk",
+      "thai": "Thai",
+      "hebrew": "Hebraisk",
+      "indonesian": "Indonesisk",
+      "malay": "Malaysisk",
+      "finnish": "Finsk",
+      "danish": "Dansk",
+      "norwegian": "Norsk",
+      "slovak": "Slovakisk",
+      "croatian": "Kroatisk",
+      "catalan": "Catalansk"
+    },
+    "generale": "Generelt",
+    "github": "Github",
+    "language": "Sprog",
+    "links": "Links",
+    "logout": "Log ud",
+    "more": "Mere",
+    "privacy": "Privatlivspolitik",
+    "faq": "FAQ",
+    "rate": "Giv os en tilbagemelding",
+    "share": "Del",
+    "citations": "Citationer til medicinsk information",
+    "support": "Support",
+    "support_us": "Støt os",
+    "terms": "Servicevilkår",
+    "theme": {
+      "dark": "Mørk",
+      "light": "Lys",
+      "system": "System",
+      "title": "Tema"
+    },
+    "title": "Indstillinger",
+    "version": "Version",
+    "website": "Hjemmeside",
+    "devMode": {
+      "title": "Udviklertilstand",
+      "componentsLibrary": "UI-bibliotek"
+    },
+    "deleteAccount": "Slet konto?",
+    "deleteAccountQuestion": "Er du sikker på, at du vil slette din konto? Denne handling kan ikke fortrydes og vil permanent fjerne alle dine data.",
+    "deactivateAccount": "Deaktiver & Slet konto",
+    "permanentAccountCreate": "Opret permanent konto"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Vurdering"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Hvad er grunden?",
+      "unnamedConversation": "Unavngivet",
+      "reportTitlePlaceholder": "Tilføj en titel"
+    },
+    "WeekBlock": {
+      "week": "Uge"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Rul til toppen"
+    },
+    "FreeTierStatus": {
+      "heading": "Gratis scans",
+      "subheading": "Lås ubegrænsede scans op ved at opgradere din plan",
+      "action": "Opgrader"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Vælg et billede / video"
+    },
+    "GoalsModal": {
+      "heading": "Skift dit daglige indtagsmål",
+      "dailyCalories": "Daglige kalorier",
+      "saveGoals": "Gem mål"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Streak brudt. Gem nu.",
+      "loseStreak": "Lad det gå i stykker",
+      "buyStreak": "Køb & Gem streak",
+      "buyRepairStreak": "Køb en Streak Repair Elixir for {{elixirPrice}} 💎 for at bringe din mistede streak tilbage.",
+      "streakRestore": "Streak i fare — gendan den nu!",
+      "restorationStreak": "Bring din {{lostStreakValue}}-dages streak tilbage til live med den kraftfulde Streak Repair Elixir!",
+      "applyElixir": "Anvend eliksirportion"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Køb fuldført",
+      "inventoryAdded": "er blevet tilføjet til dit lager. Fortsæt det gode arbejde!",
+      "purchaseFailed": "Køb mislykkedes",
+      "purchaseFailedMessage": "Vi kunne ikke behandle dit køb. Tjek venligst din gems-saldo og prøv igen.",
+      "gemsBalance": "Ups, du har ikke nok gems"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Dagligt check-in",
+      "bodyMovingQuestion": "Fik du din krop i bevægelse i dag?"
+    },
+    "TapToViewLabel": {
+      "label": "Tryk for at se"
+    },
+    "UpgradeBanner": {
+      "heading": "Lås op nu!",
+      "upgradeMessage": "Lås denne funktion op 🔓 Nyd AI-kalorietælling, makrotracking og alt-i-en support til at hjælpe dig med at nå dine aktivitets- og fitness-mål hurtigere 💪",
+      "upgradeTo": "Opgrader til",
+      "moreBenefits": "AI-funktioner. Alle premium-værktøjer. Alle dine for at holde dig på sporet."
+    },
+    "MotivationBanner": {
+      "title": "Ingen motivation? Føler dig off? Lad os slå den undskyldning.",
+      "subtitle": "Vælg en opgave, tjen XP og gems — lad os komme i gang!",
+      "beatExcuse": "Slå din undskyldning nu!"
+    },
+    "AICoachBanner": {
+      "title": "Har du et spørgsmål? Bare spørg.",
+      "subtitle": "Mester din fitness — spørg om kalorier, ernæring, fitnessmaskiner, stillinger, skader, form, træningsplaner",
+      "chat": "Chat med AI-træner"
+    },
+    "PromptSection": {
+      "message": "Din scanning er klar! Nu, hvad vil du gerne finde ud af?",
+      "prompts": {
+        "first": "Hvilke celletyper eller strukturer er til stede i dette billede?",
+        "second": "Er der nogen unormaliteter eller patogener i denne prøve?",
+        "third": "Hvad er den sandsynlige oprindelse eller tilstand af denne prøve?",
+        "fourth": "Hvilke indsigter kan du give fra dette billede?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Øjeblikkelig AI-måltidsscanning — Track kalorier & makroer på sekunder",
+      "second": "24/7 AI-personlig træner — Ekspertvejledning, når som helst, hvor som helst",
+      "third": "Track dine fitnessaktiviteter som en professionel",
+      "fourth": "Fuld adgang til alle premium-funktioner"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Kaldenavn",
+        "email": "Email",
+        "emailVerification": "Emailbekræftelse"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Dagens makroer",
+      "scanFood": "Scan mad",
+      "calories": "Kalorier",
+      "fat": "Fedt",
+      "carbs": "Kulhydrater",
+      "protein": "Protein",
+      "dailyIntakeGoals": "Daglige indtagsmål",
+      "percentage": "% af dagligt makro-mål opnået",
+      "noMeals": "Ingen måltider logget",
+      "meals": "Måltider",
+      "deleteMeal": "Slet måltid",
+      "deleteMealConfirm": "Er du sikker på, at du vil slette dette måltid? Denne handling vil påvirke dine daglige makronæringsstoffers beregninger.",
+      "macroJournal": "Makrojournal",
+      "noActivityRecorded": "Ingen aktivitet registreret denne uge"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Dagligt check-in",
+      "attendedMessage": "Du mødte op i dag, det er sådan, fremskridt bygges. Bliv ved!",
+      "notAttendedMessage": "Sofæn vinder i dag… men i morgen kommer du tilbage!",
+      "unknownMessage": "Din rejse starter med et enkelt skridt. Klar til at begynde?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "Den valgte varighed kan ikke være længere end 360 minutter",
+      "activitiesLimit": "Whoa der! Træner du hemmeligt til OL? Du har allerede ramt {{MAX_DAILY_ACTIVITIES}}-aktivitetsgrænsen for i dag! 🏅. Du kan spænde de muskler igen i morgen 💪!",
+      "addActivity": "Tilføj aktivitet",
+      "modalHeading": "Hvad fik dig i bevægelse i dag? Log det og hold momentummet"
+    },
+    "TaskListOverview": {
+      "heading": "Dagens opgaver",
+      "noTasks": "Ingen opgaver!",
+      "enjoyFreeTime": "Nyd din fritid."
+    },
+    "ActivitySelector": {
+      "title": "Aktivitetstype",
+      "customActivity": "Tilføj din egen aktivitet",
+      "customActivityLabel": "Brugerdefineret aktivitet"
+    },
+    "DurationSelector": {
+      "heading": "Varighed",
+      "customDuration": "Indtast varighed (minutter)",
+      "customDurationLabel": "Brugerdefineret varighed"
+    },
+    "NoActivityLogModal": {
+      "heading": "Åh nej! Lad ikke sofæn vinde i dag!",
+      "crushExcuse": "Knus min undskyldning",
+      "skipToday": "Ikke i dag, måske i morgen..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Godt klaret!",
+      "unlockReward": "Du gjorde det! En aktivitet ned, og du har låst din belønning op. Lad os holde streaken i gang!"
+    },
+    "SkipReasonInput": {
+      "title": "Det er okay, bare tjekker ind.",
+      "subtitle": "Vil du dele, hvorfor i dag ikke fungerede? Intet pres.",
+      "skipPlaceholder": "F.eks. Min kat spiste mine løbesko",
+      "skipToday": "Spring i dag over"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Streak-frys!",
+      "streakResetNow": "Din streak blev nulstillet i dag.",
+      "streakRepairUse": "Brug din Streak Repair Elixir for at holde din streak i live",
+      "streakRepairExpired": " Dit 48-timers streak-reparationsvindue er udløbet! Men hey, nye streaks betyder nye muligheder for at slå din personlige rekord.",
+      "repairStreak": "Reparer streak",
+      "streakPotionConsumed": "Streak Freeze Portion forbruget!",
+      "streakFreezeApplied": " Din Streak Freeze Portion kicked in and protected your streak. Du er stadig på farten!",
+      "streakElixirApplied": "Streak Repair Elixir Portion kicked in!",
+      "streakFreezePotionApplied": "Du reddede din Streak! Din Streak Freeze Portion kicked in and protected your streak. Du er stadig på farten!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Ingen aktivitet fundet",
+      "addFirstActivity": "Tilføj din første aktivitet for at tjene gems og XP.",
+      "addActivity": "Tilføj aktivitet",
+      "todayActivities": "Dagens aktiviteter"
+    },
+    "ActivityCard": {
+      "activitySkipped": "sprunget over",
+      "dayOff": "Fridag",
+      "description": "Beskrivelse",
+      "excuseReason": "Undskyldningsgrund ⚠️",
+      "yourNotes": "Dine noter 📝",
+      "notesPlaceholder": "F.eks. Ryg og biceps træning, 3 supersæt",
+      "addNotes": "Tilføj noter"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Fotobibliotek",
+      "takePhoto": "Tag billede",
+      "chooseFile": "Vælg fil"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Maksimalt niveau nået! Niveau",
+      "xpLeft": "tilbage for at nå Niveau"
+    },
+    "ShopItemCard": {
+      "unavailable": "Utilgængelig",
+      "worth": "værd",
+      "equiped": "udstyret",
+      "shop": "Butik",
+      "earnedId": "Du fortjente det.",
+      "treat": "Nu forkæl dig selv!",
+      "spendGems": "Brug dine Gems klogt, din fitnessrejse blev lige interessant."
+    },
+    "ActivityTaskCard": {
+      "win": "Vind",
+      "acceptChallenge": "Acceptér udfordring 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "Hvad med at presse dig selv lidt med denne udfordring?",
+      "typeInput": "(Indtast dit input nedenfor)"
+    },
+    "MacroOverview": {
+      "analysis": "Analyse",
+      "macroAdded": "Makro tilføjet",
+      "countToday": "Tæl for i dag"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Beskyt din streak, hvis du går glip af en dags træning.",
+      "owned": "EJES",
+      "manualTrigger": "MANUEL UDLØSER",
+      "activated": "AKTIVERET"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Beklager, vi har brug for kameratilladelser for at få dette til at fungere!",
+    "errorSelectingImagePicker": "Noget gik galt ved valg af billede. Prøv venligst igen.",
+    "errorSelectingDocumentPicker": "Noget gik galt ved valg af dokument. Prøv venligst igen.",
+    "errorTakingPicture": "Noget gik galt ved tagning af foto. Prøv venligst igen.",
+    "enableNotifications": {
+      "heading": "Aktiver notifikationer",
+      "subHeading": "Notifikationer er i øjeblikket slået fra. For at holde dig opdateret, aktiver dem venligst i dine enhedsindstillinger."
+    },
+    "notesSavedSuccess": "Noter gemt! 📝 Du er klar.",
+    "enableNotificationFailed": "Push-notifikationer er deaktiveret. Aktiver dem i indstillingerne for at modtage vigtige opdateringer!",
+    "enableNotificationError": "Der opstod en fejl ved aktivering af notifikationer",
+    "notificationDisabledSuccess": "Notifikationer deaktiveret succesfuldt.",
+    "notificationDisabledRegisterError": "Kunne ikke fjerne enhedsregistrering for notifikationer.",
+    "notificationDisabledError": "Der opstod en fejl ved deaktivering af notifikationer.",
+    "checkNotificationStatusError": "Fejl ved kontrol af notifikationsstatus.",
+    "projectIdNotFound": "Notifikationsprojekt-ID ikke fundet.",
+    "imageSizeLarge": "Billedet er for stort! Filstørrelsen er {{fileSize}} MB, men grænsen er {{imageLimit}} MB.",
+    "videoSizeLarge": "Videoen er for stor! Filstørrelsen er {{fileSize}} MB, men grænsen er {{videoLimit}} MB.",
+    "loggedInSuccess": "Logget ind succesfuldt",
+    "loggedOutSuccess": "Du er logget ud succesfuldt!",
+    "sendVerificationCodeError": "Fejl ved afsendelse af verifikationskode",
+    "validateAuthCodeError": "Fejl ved validering af godkendelseskode",
+    "anonymousSignInError": "Fejl ved anonym indlogning",
+    "emailLoginError": "Fejl ved indlogning",
+    "preferredLanguageError": "Fejl ved opdatering af brugerens foretrukne sprog",
+    "sharingNotAvailable": "Deling er i øjeblikket ikke tilgængelig på din enhed",
+    "sharingLinkError": "Kunne ikke dele link.",
+    "individualPushNotificationSuccess": "Individuelle push-notifikationer sendt succesfuldt!",
+    "globalPushNotificationSuccess": "Globale push-notifikationer sendt succesfuldt! 🌍🚀",
+    "interpretationFieldsUpdateFail": "Kunne ikke opdatere fortolkningsfelter! ❌",
+    "deleteScanReportFail": "Kunne ikke slette scan-rapporten. Prøv venligst igen",
+    "onboardingUnsuccessful": "Onboarding mislykkedes. Prøv venligst igen",
+    "logoutUnsuccessful": "Logud mislykkedes. Prøv venligst igen",
+    "deleteScanReportQuestion": "Er du sikker på, at du permanent vil slette denne rapport?",
+    "videoLimitExceeds": "Din video overskrider {{videoSecondsLimit}}-sekunders grænsen. Trim den venligst og upload igen",
+    "subscriptionActivated": "Dit abonnement er blevet aktiveret succesfuldt! Nyd dine eksklusive fordele!",
+    "subscriptionCancelledByUser": "Du har annulleret transaktionen. Du er velkommen til at prøve igen!",
+    "subscriptionActivationFailed": "Kunne ikke aktivere dit abonnement. Prøv venligst igen",
+    "logoutQuestion": "Er du sikker på, at du vil logge ud?",
+    "noSubscriptionToRestore": "Ups! Det ser ud til, at du ikke har et aktivt abonnement i øjeblikket. For at fortsætte med at nyde fuld adgang, vælg venligst en af vores abonnementsplaner.",
+    "restorationSuccessful": "Gendanelse var succesfuld! Nyd!",
+    "restorationError": "Der opstod en fejl under gendanelsen af købet.",
+    "medicalDisclaimerAlert": "EXFIT AI-appen giver ikke diagnoser, behandlingsanbefalinger eller nogen medicinsk rådgivning. Søg altid vejledning fra en kvalificeret sundhedsprofessionel for medicinske beslutninger.",
+    "scanLimitReached": "Vi optimerer skanningskvaliteten for dig! Du vil være i stand til at scanne igen om cirka {{hours}} timer og {{minutes}} minutter. Har du nogle spørgsmål om noget mikroskopitema? Spørg vores chat-assistent mens du venter!",
+    "chatAndMediaFilesLimit": "Kære bruger, opgrader din plan for at nyde ubegrænset kalorietracking, måltidsscanning, fitness-coaching og mere. 🔓",
+    "chatMessageNotSent": "Ups! Din besked blev ikke sendt. Prøv venligst igen",
+    "excusesLimit": "Ups, det ser ud til, at du prøver at sætte en verdensrekord i undskyldninger! 😅 Maksimum 3 undskyldninger tilladt — vælg dine top 3 og lad os komme i gang!",
+    "excuseMinimum": "Vælg venligst mindst én undskyldning eller skriv din egen.",
+    "createActivityLogFailed": "Kunne ikke oprette aktivitetslog. Prøv venligst igen.",
+    "updateActivityLogFailed": "Noget gik galt ved opdatering af aktivitetsloggen. Prøv venligst igen.",
+    "challengeAccepted": "Udfordring accepteret! 🔥 Gå nu ud og knus den og optjen de belønninger!",
+    "challengeCompleted": "Udfordring fuldført! 🔥 Din nye belønningssaldo er blevet opdateret.",
+    "macroEntryRecorded": "Makroindtag registreret - fortsæt med det gode arbejde! 🥗",
+    "failedCreateMacroLog": "Ups! Makrolog blev ikke gemt. Prøv venligst igen!",
+    "deleteMacroLog": "Ups! Kunne ikke fjerne din makrolog. Prøv venligst igen!",
+    "deleteMacro": "Makro slettet — klar til din næste indtastning!",
+    "chooseSubscriptionPlan": "Vælg venligst en abonnementsplan for at fortsætte!",
+    "createPermanentAccountSuccess": "Din permanente konto er blevet oprettet! Din konto er nu sikker. Åh, og du modtog også",
+    "loginSuccess": "Logget ind succesfuldt — lad os komme i gang!",
+    "accountDeleted": "Din konto er blevet slettet succesfuldt",
+    "purchaseFailed": "Køb mislykkedes. Prøv venligst igen.",
+    "streakRepairFailed": "Kunne ikke reparere streak. Prøv venligst igen.",
+    "failedSendMessage": "Kunne ikke sende besked. Prøv venligst igen.",
+    "capturePictureFailed": "Noget gik galt ved tagning af billedet",
+    "multipleVideosNotAllowed": "For bedre nøjagtighed, upload venligst kun én video ad gangen.",
+    "mixedMediaNotAllowed": "Uploads skal kun indeholde billeder eller kun videoer, ikke en blanding af begge.",
+    "mediaFilesUploadFiles": "Der opstod en fejl ved upload af dine mediefiler. Prøv venligst igen."
+  }
+}

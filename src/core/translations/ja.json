@@ -1,0 +1,800 @@
+{
+  "onboarding": {
+    "message": "EXFIT AIへようこそ！",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "食事を撮影してカロリーをトラッキング",
+        "headingTwo": "食事をスキャンし、AIコーチと話し、あなたのために作られた毎日のチャレンジを受け取ろう"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "AIがあなたのフィットネスを強化",
+        "headingTwo": "EXFIT AIに出会おう。あなたのスマートな相棒が、疑念を打ち砕き、やる気を引き出し、動き続けるサポートをします"
+      },
+      "onboardingThirdPage": {
+        "heading": "AIにジム機器、エクササイズのポーズ、テクニックを検出してもらいましょう"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "トレーニング。獲得。レベルアップ。",
+        "headingTwo": "XPを獲得し、Gemsを集め、Streakを維持し、参加することで報酬をアンロックしよう。"
+      }
+    }
+  },
+  "activities": {
+    "gym": "ジム",
+    "yoga": "ヨガ",
+    "running": "ランニング",
+    "walking": "ウォーキング",
+    "cycling": "サイクリング",
+    "dance": "ダンス",
+    "stretching": "ストレッチ",
+    "swimming": "水泳",
+    "hiking": "ハイキング",
+    "pilates": "ピラティス",
+    "climbing": "クライミング",
+    "skating": "スケート"
+  },
+  "general": {
+    "back": "戻る",
+    "welcome": "こんにちは",
+    "welcomeBack": "おかえりなさい！",
+    "welcomeMessage": "ようこそ！",
+    "goodMorning": "おはようございます",
+    "goodAfternoon": "こんにちは",
+    "goodEvening": "こんばんは",
+    "continue": "続ける",
+    "retry": "再試行",
+    "retake": "再撮影",
+    "scanNow": "今すぐスキャン",
+    "scanning": "スキャン中...",
+    "close": "閉じる",
+    "gallery": "ギャラリー",
+    "files": "ファイル",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "edit": "編集",
+    "delete": "削除",
+    "attention": "注意！",
+    "new": "新規",
+    "yes": "はい",
+    "no": "いいえ",
+    "or": "または",
+    "change": "変更",
+    "typing": "入力中...",
+    "online": "オンライン",
+    "chatbotPlaceholder": "何でも聞いてください...",
+    "openSettings": "設定を開く",
+    "seeNotifications": "通知を表示",
+    "viewProfile": "プロフィールを表示",
+    "upgradePlan": "プランをアップグレード",
+    "download": "ダウンロード",
+    "share": "共有",
+    "shareLink": "リンクを共有",
+    "skip": "スキップ",
+    "next": "次へ",
+    "update": "更新",
+    "tryAgain": "もう一度試す",
+    "createdAt": "作成日時",
+    "and": "と",
+    "saveDiscount": "節約",
+    "restorePurchase": "購入を復元",
+    "medicalDisclaimer": "医療免責事項",
+    "conversationHistory": "会話履歴",
+    "analyzingMediaFilesPlaceholder": "メディアファイルを分析中...",
+    "freeTrial": "無料トライアル",
+    "free": "無料",
+    "noPaymentNow": "今は支払い不要。いつでもキャンセルできます。",
+    "completedScans": "完了したスキャン",
+    "activeSubscription": "アクティブなサブスクリプション",
+    "askAssistant": "AIアシスタントに質問",
+    "then": "その後",
+    "perWeek": "週ごと",
+    "perYear": "年ごと",
+    "perMonth": "月ごと",
+    "tryForFree": "無料で試す",
+    "unlockNow": "今すぐアンロック",
+    "attended": "参加済み",
+    "readyToStart": "開始準備完了",
+    "skipped": "スキップ済み",
+    "completed": "完了",
+    "purchase": "購入",
+    "active": "アクティブ",
+    "dearUser": "ユーザー様",
+    "ok": "OK",
+    "activities": "アクティビティ",
+    "seeLess": "表示を減らす",
+    "seeMore": "もっと見る",
+    "goBack": "戻る",
+    "schedule": "スケジュール",
+    "utils": "ユーティリティ",
+    "verifyEmail": "メールを確認",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "minutes": "分",
+    "submit": "送信",
+    "copyText": {
+      "loading": "コピー中...",
+      "copied": "コピーしました！ 📝",
+      "copy": "リンクをコピー"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "パーソナライズされたエクスペリエンスを読み込み中...",
+        "second": "システムを同期中...",
+        "third": "データを処理中...",
+        "fourth": "ほぼ完了です、少々お待ちください..."
+      },
+      "imageScanningLoading": {
+        "first": "画像をスキャン中、お待ちください...",
+        "second": "詳細を分析中、しばらくお待ちください...",
+        "third": "最適な結果のために精度を向上中...",
+        "fourth": "もう少しで完了です、スキャンを最終処理中..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo、あなたのAIコーチが準備中です...",
+        "second": "少々お待ちください！Mojoが回答を準備中です...",
+        "third": "考え中...Mojoが処理中です！"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "少々お待ちください！",
+    "goBackMessage": "本当に戻ってもよろしいですか？"
+  },
+  "internet": {
+    "noConnectionTitle": "オフラインです！",
+    "noConnectionMessage": "モバイルデータをオンにするか、Wi-Fiに接続してください。または、休憩して散歩に出かけましょう！"
+  },
+  "uploadScan": {
+    "title": "画像をアップロード",
+    "scanNow": "今すぐスキャン"
+  },
+  "weekDays": {
+    "today": "今日",
+    "yesterday": "昨日"
+  },
+  "auth": {
+    "verifyAuthCode": "認証コードを確認",
+    "verifyAuthCodeButton": "コードを確認",
+    "authCodeHeading": "認証コード",
+    "loginViaEmailHeading": "サインインしましょう。続行するにはメールアドレスを入力してください。",
+    "emailAddress": "メール"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "EXFIT AIへようこそ！",
+        "startButton": "始めましょう！",
+        "accountButton": "すでにアカウントを持っています",
+        "count": "カウント",
+        "calories": "カロリー",
+        "track": "トラッキング",
+        "activity": "アクティビティ",
+        "with": "で"
+      },
+      "login": {
+        "agreeingMessage": "続行することで、以下の内容に同意したものとみなされます",
+        "termsAndConditions": "利用規約",
+        "privacyPolicy": "プライバシーポリシー",
+        "heading": "ログイン",
+        "continueName": "ニックネームで続行",
+        "existingAccount": "アカウントをお持ちですか？",
+        "emailAddress": "メールアドレス",
+        "emailPlaceholder": "メールアドレスを入力",
+        "password": "パスワード",
+        "confirmPassword": "パスワードの確認",
+        "forgotPassword": "パスワードをお忘れですか？",
+        "keepSigned": "ログイン状態を保持",
+        "createPassword": "パスワードを作成"
+      },
+      "signUp": {
+        "heading": "サインアップ",
+        "haveAccount": "アカウントをお持ちですか？",
+        "signInHere": "こちらからログイン",
+        "acceptTerms": {
+          "title": "規約の同意が必要です",
+          "subtitle": "続行するには利用規約とプライバシーポリシーに同意してください。"
+        }
+      },
+      "forgotPassword": {
+        "heading": "パスワードをお忘れですか",
+        "verificationSent": "パスワードリセットリンクのメールを確認してください。受信トレイに表示されない場合は、スパムや迷惑メールフォルダを確認してください。",
+        "verificationHeading": "アカウントに登録されたメールアドレスを入力してください。パスワードリセットリンクを送信します。",
+        "rememberPassword": "パスワードを思い出しましたか？",
+        "loginAccount": "アカウントにログイン",
+        "alertTitle": "パスワードリセット送信完了",
+        "alertSubtitle": "このメールアドレスでアカウントが存在する場合、パスワードリセットリンクを送信しました。"
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "メールアドレスとパスワードの両方を入力してください。",
+        "secureProgress": "進捗を保護",
+        "permanentAccount": "デバイス間でデータを保存するために、永続的なアカウントを作成してください。"
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "メールで送信された確認コードを入力してください。コードは5分で期限切れになることに注意してください。",
+        "verificationCodeSent": "確認コードを送信しました：",
+        "verificationCodeMissing": "コードが届きませんか？",
+        "resendCode": "コードを再送信",
+        "backToLogin": "ログインに戻る"
+      },
+      "namePreferenceScreen": {
+        "heading": "パーソナライズしましょう！",
+        "preferredNameQuestion": "どのようにお呼びすればよろしいですか？",
+        "placeholderPreferredName": "例：キャプテン・クール、クイーン・ビー、または単にアレックス！"
+      },
+      "experienceLevelScreen": {
+        "heading": "あなたのフィットネス経験をどのように説明しますか？"
+      },
+      "fitnessGoalScreen": {
+        "heading": "あなたのフィットネス目標は何ですか？"
+      },
+      "genderSelectionScreen": {
+        "heading": "よりパーソナライズされた体験のために性別を選択してください"
+      },
+      "freeTrialPreview": {
+        "heading": "無料トライアルをお楽しみください！🎉",
+        "subheading": "無料トライアル期間中にこれらの素晴らしい特典をお楽しみください",
+        "review": "食事スキャン、カロリーカウンター、フィットネストラッキングがシンプルでスマートです。ぜひお試しください！",
+        "reviewTrust": "📈 7,512人以上のユーザーに信頼されています"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "無料トライアル有効",
+          "heading": "無制限アクセス",
+          "title": "プレミアム機能を今すぐアンロック！",
+          "firstOffering": "アクティビティトラッキング＆スマート栄養アドバイス",
+          "secondOffering": "無制限カロリー＆マクロカウンター",
+          "thirdOffering": "無制限食事スキャナー",
+          "fourthOffering": "24時間年中無休のAIフィットネスコーチ"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "プレミアム機能を今すぐアンロック！",
+        "secondOffering": {
+          "title": "月間プラン",
+          "subtitle": "{{ price }}/月"
+        },
+        "thirdOffering": {
+          "title": "年間プラン",
+          "subtitle": "{{ price }} 年ごと"
+        },
+        "fourthOffering": {
+          "title": "{{trialDays}}日間トライアル",
+          "subtitle": "{{ price }} 年ごと",
+          "plan": "週間プラン"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "EXFIT AIの新しいバージョンが利用可能です",
+        "subheading": "アプリのすべての機能を引き続きお楽しみいただくために、最新バージョンにアップデートしてください — わずか5秒で完了します！",
+        "action": "今すぐ入手！"
+      },
+      "rateAppScreen": {
+        "heading": "このアプリは価値があり魅力的だと思いますか？",
+        "like": "はい、気に入っています！",
+        "dislike": "あまり..."
+      },
+      "noInternetScreen": {
+        "heading": "オフラインです",
+        "subheading": "接続が不安定なようです。ネットワークの状態を確認してもう一度お試しください"
+      },
+      "notifications": {
+        "title": "通知",
+        "noNotifications": "通知はまだありません",
+        "emptyNotifications": "現在新しい通知はありません。また後で確認してください。"
+      },
+      "termsOfService": {
+        "title": "利用規約"
+      },
+      "privacyPolicy": {
+        "title": "プライバシーポリシー"
+      },
+      "share": {
+        "title": "共有",
+        "heading": "EXFIT AIアプリを共有",
+        "subheading": "他の人にEXFIT AIアプリを発見してもらいましょう",
+        "scanMessage": "アプリをダウンロードするためにスキャン",
+        "shareMessage": "またはお好きなプラットフォームで共有"
+      },
+      "rate": {
+        "title": "フィードバックをお願いします！"
+      },
+      "profile": {
+        "title": "プロフィール",
+        "edit": "プロフィールを編集",
+        "placeholderPreferredName": "例：キャプテン・クール、クイーン・ビー、または単にアレックス！",
+        "subscriptions": {
+          "monthly": "月間サブスクリプション",
+          "yearly": "年間サブスクリプション",
+          "weekly": "週間サブスクリプション"
+        },
+        "temporaryAccount": "一時アカウント",
+        "permanentAccount": "永続アカウント"
+      },
+      "generateReportScreen": {
+        "title": "お待たせしました！こちらがあなたのAIレポートです。",
+        "userInput": "あなたの提出内容",
+        "medicalReport": "フィットネスレポート",
+        "report": "AI生成フィットネスレポート",
+        "conversationName": "会話名"
+      },
+      "verifyEmail": {
+        "heading": "メールを確認"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "分析を開始"
+      },
+      "contactUs": {
+        "heading": "お気軽に直接メールでお問い合わせください。当社チームができるだけ早くご連絡いたします",
+        "customerSupport": "カスタマーサポート",
+        "emailAddress": "メールアドレス"
+      },
+      "scan": {
+        "cameraPermission": "この機能を使用するにはカメラへのアクセス許可が必要です",
+        "requestPermission": "カメラの許可をリクエスト中...",
+        "scanAnything": "何でもスキャン：食事、食品、ジムギアなど",
+        "askAssistant": "AIフィットネスコーチに質問"
+      },
+      "excuseBuster": {
+        "heading": "言い訳バスター",
+        "reasons": {
+          "one": "とても疲れている",
+          "two": "時間がない",
+          "three": "運動するには痛みすぎる",
+          "four": "ジムが混雑しすぎている",
+          "five": "気分が乗らない",
+          "six": "外の天気が悪い",
+          "seven": "仕事が忙しい",
+          "eight": "明日始める",
+          "nine": "何をすればいいかわからない",
+          "ten": "利用可能な機器がない"
+        },
+        "excuseMotivation": "あなたは言い訳より強いはずです。",
+        "excuseQuestion": "今日は何が邪魔していますか？",
+        "typeExcuse": "言い訳をここに入力...",
+        "crushExcuse": "私の言い訳を粉砕"
+      },
+      "chat": {
+        "fitnessCoach": "あなたのフィットネスコーチ",
+        "randomQuestions": {
+          "one": "'📸 食事の写真を撮ってカロリーとマクロを推定',",
+          "two": "🥗 この食事を分析し、目標達成のために改善方法を教えてください",
+          "three": "🧠 フィットネスレベルに基づいてパーソナライズされたワークアウトを作成してください",
+          "four": "🏋️ 今すぐ機器なしでできるワークアウトを提案してください",
+          "five": "⏱ 忙しい日のための20分間ワークアウトを作成してください",
+          "six": "🔥 私に合わせた脂肪燃焼ワークアウトを提案してください",
+          "seven": "💪 私の体と目標に合わせた筋肉増強プランを設計してください",
+          "eight": "📊 進捗を追跡し、次に改善すべき点を示してください",
+          "nine": "🍽 今日何を食べればカロリーとタンパク質の目標を達成できるか教えてください",
+          "ten": "🥚 毎日のタンパク質、炭水化物、脂質を計算してください",
+          "eleven": "🛒 食事プランに基づいた健康的な買い物リストを作成してください",
+          "twelve": "😴 睡眠と回復に基づいてワークアウトを調整してください",
+          "thirteen": "📅 継続できる週間ワークアウトスケジュールを作成してください",
+          "fourteen": "⚡ 今日のための低エネルギーなワークアウトを提案してください",
+          "fifteen": "🤕 痛みや怪我がある場合、ワークアウトを変更してください"
+        }
+      },
+      "progress": {
+        "error": "問題が発生しました",
+        "heading": "進捗ダッシュボード",
+        "subheading": "素晴らしい仕事を続けましょう！🚀",
+        "weeklyGoals": "週間目標",
+        "monthlyGoal": "月間目標",
+        "insights": "クイックインサイト",
+        "mostActive": "最もアクティブ",
+        "peakTime": "ピークパフォーマンス時間",
+        "favoriteActivity": "お気に入りのアクティビティ",
+        "choice": "あなたの選択肢",
+        "weeklyChange": "週間変化",
+        "lastWeekXP": "先週との比較",
+        "consistency": "一貫性",
+        "reliability": "信頼性",
+        "overview": "概要",
+        "performance": "パフォーマンス",
+        "trends": "トレンド",
+        "lastSevenDays": "過去7日間",
+        "thisWeek": "今週の",
+        "activityFocus": "アクティビティフォーカス",
+        "distribution": "分布",
+        "history": "履歴",
+        "activities": "アクティビティ",
+        "consistencyJourney": "あなたの一貫性の旅",
+        "bestDay": "ベストデイ",
+        "averageSession": "平均セッション",
+        "totalHours": "合計時間",
+        "WeeklyComparisonXp": "週間比較",
+        "weeksComparison": "今週 vs 先週",
+        "thisWeeks": "今週",
+        "lastWeek": "先週",
+        "activityPattern": "アクティビティパターン",
+        "hoursBreakdown": "24時間内訳",
+        "monthlyActivity": "月間アクティビティ",
+        "lastMonths": "過去6ヶ月",
+        "progression": "進行状況",
+        "monthlyEarned": "月間獲得",
+        "recentActivity": "最近のアクティビティ",
+        "last30Days": "過去30日間",
+        "outstanding": "優れた進捗！",
+        "activityReview": "{{totalActivities}} のアクティビティを完了し、合計 {{totalXp}} XP を獲得しました。その調子で続けましょう！",
+        "statistics": "詳細統計",
+        "longest": "最長",
+        "totalMonthActivities": "今月完了した身体活動！"
+      },
+      "shoppingCart": {
+        "heading": "所有アイテム",
+        "equipMore": "もっと装備",
+        "noItems": "まだアイテムを所有していません！",
+        "goToShop": "ショップへ行く",
+        "buyPotions": "ショップに行ってエキサイティングなポーションを集めましょう"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "待ってください！削除しないで！",
+    "subtitle": "前にフィードバックを送信"
+  },
+  "home": {
+    "tab": "ホーム"
+  },
+  "activity": {
+    "tab": "アクティビティ"
+  },
+  "progress": {
+    "tab": "進捗"
+  },
+  "settings": {
+    "tab": "設定",
+    "profile": "プロフィール",
+    "shop": "ショップ",
+    "contactUs": "お問い合わせ",
+    "about": "について",
+    "app_name": "アプリ名",
+    "languages": {
+      "english": "英語",
+      "mandarin_chinese": "中国語",
+      "hindi": "ヒンディー語",
+      "spanish_spain": "スペイン語（スペイン）",
+      "spanish_mexico": "スペイン語（メキシコ）",
+      "arabic": "アラビア語",
+      "french": "フランス語",
+      "french_canada": "フランス語（カナダ）",
+      "portuguese_brazil": "ポルトガル語（ブラジル）",
+      "portuguese_portugal": "ポルトガル語（ポルトガル）",
+      "german": "ドイツ語",
+      "japanese": "日本語",
+      "russian": "ロシア語",
+      "korean": "韓国語",
+      "italian": "イタリア語",
+      "turkish": "トルコ語",
+      "vietnamese": "ベトナム語",
+      "polish": "ポーランド語",
+      "ukrainian": "ウクライナ語",
+      "romanian": "ルーマニア語",
+      "dutch": "オランダ語",
+      "czech": "チェコ語",
+      "greek": "ギリシャ語",
+      "swedish": "スウェーデン語",
+      "hungarian": "ハンガリー語",
+      "thai": "タイ語",
+      "hebrew": "ヘブライ語",
+      "indonesian": "インドネシア語",
+      "malay": "マレー語",
+      "finnish": "フィンランド語",
+      "danish": "デンマーク語",
+      "norwegian": "ノルウェー語",
+      "slovak": "スロバキア語",
+      "croatian": "クロアチア語",
+      "catalan": "カタロニア語"
+    },
+    "generale": "一般",
+    "github": "Github",
+    "language": "言語",
+    "links": "リンク",
+    "logout": "ログアウト",
+    "more": "その他",
+    "privacy": "プライバシーポリシー",
+    "faq": "よくある質問",
+    "rate": "フィードバックをお願いします",
+    "share": "共有",
+    "citations": "医療情報の引用",
+    "support": "サポート",
+    "support_us": "私たちを支援",
+    "terms": "利用規約",
+    "theme": {
+      "dark": "ダーク",
+      "light": "ライト",
+      "system": "システム",
+      "title": "テーマ"
+    },
+    "title": "設定",
+    "version": "バージョン",
+    "website": "ウェブサイト",
+    "devMode": {
+      "title": "開発者モード",
+      "componentsLibrary": "UIライブラリ"
+    },
+    "deleteAccount": "アカウントを削除しますか？",
+    "deleteAccountQuestion": "本当にアカウントを削除してもよろしいですか？この操作は元に戻せず、すべてのデータが永久に削除されます。",
+    "deactivateAccount": "アカウントを無効化して削除",
+    "permanentAccountCreate": "永続アカウントを作成"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "評価"
+    },
+    "ScanReportCard": {
+      "promptMessage": "理由は何ですか？",
+      "unnamedConversation": "無題",
+      "reportTitlePlaceholder": "タイトルを追加"
+    },
+    "WeekBlock": {
+      "week": "週"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "トップにスクロール"
+    },
+    "FreeTierStatus": {
+      "heading": "無料スキャン",
+      "subheading": "プランをアップグレードして無制限スキャンをアンロック",
+      "action": "アップグレード"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "画像/動画を選択"
+    },
+    "GoalsModal": {
+      "heading": "毎日の摂取目標を変更",
+      "dailyCalories": "毎日のカロリー",
+      "saveGoals": "目標を保存"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "連続記録が途切れました。今すぐ保存。",
+      "loseStreak": "途切れさせる",
+      "buyStreak": "購入して連続記録を保存",
+      "buyRepairStreak": "{{elixirPrice}} 💎 で連続記録修復エリクサーを購入して失った連続記録を取り戻しましょう。",
+      "streakRestore": "連続記録が危機に — 今すぐ復元！",
+      "restorationStreak": "強力な連続記録修復エリクサーで {{lostStreakValue}} 日間の連続記録を生き返らせましょう！",
+      "applyElixir": "エリクサーポーションを適用"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "購入完了",
+      "inventoryAdded": "があなたのインベントリに追加されました。その調子で続けましょう！",
+      "purchaseFailed": "購入失敗",
+      "purchaseFailedMessage": "購入を処理できませんでした。ジェムの残高を確認して、もう一度お試しください。",
+      "gemsBalance": "おっと、ジェムが足りません"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "毎日チェックイン",
+      "bodyMovingQuestion": "今日は体を動かしましたか？"
+    },
+    "TapToViewLabel": {
+      "label": "タップして表示"
+    },
+    "UpgradeBanner": {
+      "heading": "今すぐアンロック！",
+      "upgradeMessage": "この機能をアンロック 🔓 AIカロリーカウント、マクロトラッキング、アクティビティとフィットネス目標をより早く達成するための包括的なサポートをお楽しみください 💪",
+      "upgradeTo": "にアップグレード",
+      "moreBenefits": "AI機能。すべてのプレミアムツール。すべてがあなたのものです。"
+    },
+    "MotivationBanner": {
+      "title": "やる気が出ない？調子が悪い？その言い訳を打ち負かそう。",
+      "subtitle": "タスクを選び、XPとジェムを獲得 — 動きましょう！",
+      "beatExcuse": "今すぐ言い訳を打ち負かす"
+    },
+    "AICoachBanner": {
+      "title": "質問がありますか？聞いてください。",
+      "subtitle": "フィットネスをマスター — カロリー、栄養、ジム機器、ポーズ、怪我、フォーム、ワークアウトプランについて質問",
+      "chat": "AIコーチとチャット"
+    },
+    "PromptSection": {
+      "message": "スキャンが完了しました！何を知りたいですか？",
+      "prompts": {
+        "first": "この画像にはどのような細胞タイプや構造が存在しますか？",
+        "second": "このサンプルに異常や病原体はありますか？",
+        "third": "このサンプルの可能性のある起源や状態は何ですか？",
+        "fourth": "この画像からどのような洞察が得られますか？"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "瞬時AI食事スキャン — 数秒でカロリーとマクロを追跡",
+      "second": "24時間年中無休AIパーソナルトレーナー — 専門家のガイダンス、いつでも、どこでも",
+      "third": "プロのようにフィットネスアクティビティを追跡",
+      "fourth": "すべてのプレミアム機能へのフルアクセス"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "ニックネーム",
+        "email": "メール",
+        "emailVerification": "メール確認"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "今日のマクロ",
+      "scanFood": "食品をスキャン",
+      "calories": "カロリー",
+      "fat": "脂質",
+      "carbs": "炭水化物",
+      "protein": "タンパク質",
+      "dailyIntakeGoals": "毎日の摂取目標",
+      "percentage": "毎日のマクロ目標達成率 %",
+      "noMeals": "記録された食事はありません",
+      "meals": "食事",
+      "deleteMeal": "食事を削除",
+      "deleteMealConfirm": "本当にこの食事を削除しますか？この操作は毎日のマクロ栄養素計算に影響します。",
+      "macroJournal": "マクロジャーナル",
+      "noActivityRecorded": "今週はアクティビティが記録されていません"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "毎日チェックイン",
+      "attendedMessage": "今日は参加しました、それが進歩の築き方です。続けましょう！",
+      "notAttendedMessage": "今日はソファの勝ち…でも明日はカムバックします！",
+      "unknownMessage": "あなたの旅は一歩から始まります。始める準備はできましたか？"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "選択した時間は360分を超えることはできません",
+      "activitiesLimit": "おっと！密かにオリンピックのトレーニングをしていますか？今日すでに {{MAX_DAILY_ACTIVITIES}} アクティビティの上限に達しました！🏅。明日再び筋肉を動かせます 💪！",
+      "addActivity": "アクティビティを追加",
+      "modalHeading": "今日は何があなたを動かしましたか？記録して勢いを維持しましょう"
+    },
+    "TaskListOverview": {
+      "heading": "今日のタスク",
+      "noTasks": "タスクなし！",
+      "enjoyFreeTime": "自由な時間をお楽しみください。"
+    },
+    "ActivitySelector": {
+      "title": "アクティビティタイプ",
+      "customActivity": "自分自身のアクティビティを追加",
+      "customActivityLabel": "カスタムアクティビティ"
+    },
+    "DurationSelector": {
+      "heading": "期間",
+      "customDuration": "期間を入力（分）",
+      "customDurationLabel": "カスタム期間"
+    },
+    "NoActivityLogModal": {
+      "heading": "あらら！今日はソファに負けないで！",
+      "crushExcuse": "私の言い訳を粉砕",
+      "skipToday": "今日はやめよう、明日はできるかも..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "よくできました！",
+      "unlockReward": "やりました！1つのアクティビティを完了し、報酬をアンロックしました。連続記録を続けましょう！"
+    },
+    "SkipReasonInput": {
+      "title": "大丈夫です、ただ確認しています。",
+      "subtitle": "今日うまくいかなかった理由を共有しますか？プレッシャーはありません。",
+      "skipPlaceholder": "例：猫が私のランニングシューズを食べた",
+      "skipToday": "今日をスキップ"
+    },
+    "StreakWarning": {
+      "streakFreeze": "連続記録凍結！",
+      "streakResetNow": "連続記録が今日リセットされました。",
+      "streakRepairUse": "連続記録修復エリクサーを使用して連続記録を維持",
+      "streakRepairExpired": "48時間の連続記録修復期間が終了しました！でもね、新しい連続記録はあなたの自己ベストを更新する新しい機会です。",
+      "repairStreak": "連続記録を修復",
+      "streakPotionConsumed": "連続記録凍結ポーション消費完了！",
+      "streakFreezeApplied": "連続記録凍結ポーションが発動し、連続記録を保護しました。あなたはまだ燃えています！",
+      "streakElixirApplied": "連続記録修復エリクサーポーション発動！",
+      "streakFreezePotionApplied": "連続記録を救いました！連続記録凍結ポーションが発動し、連続記録を保護しました。あなたはまだ燃えています！"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "アクティビティが見つかりません",
+      "addFirstActivity": "最初のアクティビティを追加してジェムとXPを獲得しましょう。",
+      "addActivity": "アクティビティを追加",
+      "todayActivities": "今日のアクティビティ"
+    },
+    "ActivityCard": {
+      "activitySkipped": "スキップ済み",
+      "dayOff": "休暇日",
+      "description": "説明",
+      "excuseReason": "言い訳の理由 ⚠️",
+      "yourNotes": "あなたのメモ 📝",
+      "notesPlaceholder": "例：背中と上腕二頭筋のワークアウト、3スーパーセット",
+      "addNotes": "メモを追加"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "写真ライブラリ",
+      "takePhoto": "写真を撮る",
+      "chooseFile": "ファイルを選択"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 最大レベル到達！レベル",
+      "xpLeft": "レベル到達まで残り"
+    },
+    "ShopItemCard": {
+      "unavailable": "利用不可",
+      "worth": "価値",
+      "equiped": "装備済み",
+      "shop": "ショップ",
+      "earnedId": "あなたはそれを獲得しました。",
+      "treat": "今、自分を甘やかしましょう！",
+      "spendGems": "ジェムを賢く使って、あなたのフィットネスの旅をさらに面白くしましょう。"
+    },
+    "ActivityTaskCard": {
+      "win": "獲得",
+      "acceptChallenge": "チャレンジを受ける 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "このチャレンジで少し自分を奮い立たせてみませんか？",
+      "typeInput": "（以下に入力を入力）"
+    },
+    "MacroOverview": {
+      "analysis": "分析",
+      "macroAdded": "マクロ追加済み",
+      "countToday": "今日のカウント"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "練習を1日休んでも連続記録を保護します。",
+      "owned": "所有済み",
+      "manualTrigger": "手動トリガー",
+      "activated": "アクティベート済み"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "すみません、これを使用するにはカメラの許可が必要です！",
+    "errorSelectingImagePicker": "画像の選択中に問題が発生しました。もう一度お試しください。",
+    "errorSelectingDocumentPicker": "ドキュメントの選択中に問題が発生しました。もう一度お試しください。",
+    "errorTakingPicture": "写真の撮影中に問題が発生しました。もう一度お試しください。",
+    "enableNotifications": {
+      "heading": "通知を有効にする",
+      "subHeading": "通知は現在オフになっています。最新情報を得るには、デバイスの設定で有効にしてください。"
+    },
+    "notesSavedSuccess": "メモが保存されました！ 📝 すべて設定されています。",
+    "enableNotificationFailed": "プッシュ通知が無効になっています。重要な更新を受け取るには設定で有効にしてください！",
+    "enableNotificationError": "通知の有効化中にエラーが発生しました",
+    "notificationDisabledSuccess": "通知が正常に無効化されました。",
+    "notificationDisabledRegisterError": "通知のデバイス登録解除に失敗しました。",
+    "notificationDisabledError": "通知の無効化中にエラーが発生しました",
+    "checkNotificationStatusError": "通知ステータスの確認中にエラーが発生しました。",
+    "projectIdNotFound": "通知プロジェクトIDが見つかりません。",
+    "imageSizeLarge": "画像が大きすぎます！ファイルサイズは {{fileSize}} MB ですが、制限は {{imageLimit}} MB です。",
+    "videoSizeLarge": "動画が大きすぎます！ファイルサイズは {{fileSize}} MB ですが、制限は {{videoLimit}} MB です。",
+    "loggedInSuccess": "ログインに成功しました",
+    "loggedOutSuccess": "正常にログアウトしました！",
+    "sendVerificationCodeError": "確認コードの送信中にエラーが発生しました",
+    "validateAuthCodeError": "認証コードの検証中にエラーが発生しました",
+    "anonymousSignInError": "匿名サインインエラー",
+    "emailLoginError": "サインイン中にエラーが発生しました",
+    "preferredLanguageError": "ユーザーの優先言語の更新中にエラーが発生しました",
+    "sharingNotAvailable": "現在お使いのデバイスでは共有できません",
+    "sharingLinkError": "リンクの共有に失敗しました。",
+    "individualPushNotificationSuccess": "個別プッシュ通知が正常に送信されました！",
+    "globalPushNotificationSuccess": "グローバルプッシュ通知が正常に送信されました！🌍🚀",
+    "interpretationFieldsUpdateFail": "解釈フィールドの更新に失敗しました！❌",
+    "deleteScanReportFail": "スキャンレポートを削除できません。もう一度お試しください",
+    "onboardingUnsuccessful": "オンボーディングが失敗しました。もう一度お試しください",
+    "logoutUnsuccessful": "ログアウトに失敗しました。もう一度お試しください",
+    "deleteScanReportQuestion": "このレポートを完全に削除してもよろしいですか？",
+    "videoLimitExceeds": "動画が {{videoSecondsLimit}} 秒の制限を超えています。トリミングして再アップロードしてください",
+    "subscriptionActivated": "サブスクリプションが正常にアクティベートされました！限定特典をお楽しみください！",
+    "subscriptionCancelledByUser": "トランザクションをキャンセルしました。自由に再試行してください！",
+    "subscriptionActivationFailed": "サブスクリプションのアクティベートに失敗しました。もう一度お試しください",
+    "logoutQuestion": "本当にログアウトしますか？",
+    "noSubscriptionToRestore": "おっと！現在アクティブなサブスクリプションがないようです。フルアクセスを引き続きお楽しみいただくには、サブスクリプションプランのいずれかを選択してください。",
+    "restorationSuccessful": "復元が成功しました！お楽しみください！",
+    "restorationError": "購入の復元中にエラーが発生しました。",
+    "medicalDisclaimerAlert": "EXFIT AIアプリは、診断、治療の推奨、または医療アドバイスを提供しません。医療上の決定については、常に資格のある医療専門家の指導を求めてください。",
+    "scanLimitReached": "スキャン品質を最適化中です！約 {{hours}} 時間 {{minutes}} 分後に再度スキャンできるようになります。顕微鏡に関する質問がありますか？待っている間にチャットアシスタントに聞いてみましょう！",
+    "chatAndMediaFilesLimit": "ユーザー様、カロリートラッキング、食事スキャン、フィットネスコーチングなどの無制限アクセスをお楽しみいただくにはプランをアップグレードしてください。🔓",
+    "chatMessageNotSent": "おっと！メッセージが送信されませんでした。もう一度お試しください",
+    "excusesLimit": "おっと、言い訳の世界記録を樹立しようとしていますか！😅 最大3つの言い訳まで許可されています — トップ3を選んで動きましょう！",
+    "excuseMinimum": "少なくとも1つの言い訳を選択するか、自分で入力してください。",
+    "createActivityLogFailed": "アクティビティログの作成に失敗しました。もう一度お試しください。",
+    "updateActivityLogFailed": "アクティビティログの更新中に問題が発生しました。もう一度お試しください。",
+    "challengeAccepted": "チャレンジを受諾しました！🔥 今すぐそれを乗り越えて報酬を獲得しましょう！",
+    "challengeCompleted": "チャレンジ完了！🔥 新しい報酬残高が更新されました。",
+    "macroEntryRecorded": "マクロ摂取が記録されました — その調子で続けましょう！🥗",
+    "failedCreateMacroLog": "おっと！マクロログが保存されませんでした。もう一度お試しください！",
+    "deleteMacroLog": "おっと！マクロログを削除できませんでした。もう一度お試しください！",
+    "deleteMacro": "マクロが削除されました — 次のエントリーの準備ができています！",
+    "chooseSubscriptionPlan": "続行するにはサブスクリプションプランを選択してください！",
+    "createPermanentAccountSuccess": "永続アカウントが作成されました！アカウントは安全です。あ、それにあなたは受け取りました",
+    "loginSuccess": "正常にログインしました — 動きましょう！",
+    "accountDeleted": "アカウントが正常に削除されました",
+    "purchaseFailed": "購入に失敗しました。もう一度お試しください。",
+    "streakRepairFailed": "連続記録の修復に失敗しました。もう一度お試しください。",
+    "failedSendMessage": "メッセージの送信に失敗しました。もう一度お試しください。",
+    "capturePictureFailed": "写真の撮影中に問題が発生しました",
+    "multipleVideosNotAllowed": "精度向上のため、一度に1つの動画のみアップロードしてください。",
+    "mixedMediaNotAllowed": "アップロードには画像のみ、または動画のみを含める必要があり、両方を混ぜることはできません。",
+    "mediaFilesUploadFiles": "メディアファイルのアップロード中にエラーが発生しました。もう一度お試しください。"
+  }
+}

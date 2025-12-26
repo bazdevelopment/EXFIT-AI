@@ -1,0 +1,803 @@
+{
+  "onboarding": {
+    "message": "Tervetuloa EXFIT AI:hin!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Ota kuva ateriastasi & seuraa kaloreita",
+        "headingTwo": "Skannaa aterioita, keskustele tekoälyvalmentajasi kanssa ja saat päivittäisiä haasteita, jotka on rakennettu sinulle"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Anna tekoälyn voimistaa kuntoasi",
+        "headingTwo": "Tutustu EXFIT AI:hin, älykkääseen kumppaniisi, joka murskaa epäilyt, sytyttää motivaation ja pitää sinut liikkeessä"
+      },
+      "onboardingThirdPage": {
+        "heading": "Anna tekoälyn tunnistaa kuntosalilaitteet, harjoitusasentot ja tekniikka"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Harjoittele. Ansaitse. Nouse tasoja.",
+        "headingTwo": "Kerää XP-pisteitä, kerää Gems-timantteja, pidä Streak-sarjasi elossa ja avaa palkintoja saapumisestasi."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Kuntosali",
+    "yoga": "Jooga",
+    "running": "Juoksu",
+    "walking": "Kävely",
+    "cycling": "Pyöräily",
+    "dance": "Tanssi",
+    "stretching": "Venyttely",
+    "swimming": "Uinti",
+    "hiking": "Vaellus",
+    "pilates": "Pilates",
+    "climbing": "Kiipeily",
+    "skating": "Luistelu"
+  },
+  "general": {
+    "back": "Takaisin",
+    "welcome": "Hei",
+    "welcomeBack": "Tervetuloa takaisin!",
+    "welcomeMessage": "Tervetuloa!",
+    "goodMorning": "Hyvää huomenta",
+    "goodAfternoon": "Hyvää päivää",
+    "goodEvening": "Hyvää iltaa",
+    "continue": "Jatka",
+    "retry": "Yritä uudelleen",
+    "retake": "Ota uudelleen",
+    "scanNow": "Skannaa nyt",
+    "scanning": "Skannataan...",
+    "close": "Sulje",
+    "gallery": "Galleria",
+    "files": "Tiedostot",
+    "cancel": "Peruuta",
+    "save": "Tallenna",
+    "edit": "Muokkaa",
+    "delete": "Poista",
+    "attention": "Huomio!",
+    "new": "Uusi",
+    "yes": "Kyllä",
+    "no": "Ei",
+    "or": "tai",
+    "change": "Vaihda",
+    "typing": "Kirjoitetaan...",
+    "online": "Online",
+    "chatbotPlaceholder": "Kysy minulta mitä tahansa...",
+    "openSettings": "Avaa asetukset",
+    "seeNotifications": "Näytä ilmoitukset",
+    "viewProfile": "Näytä profiili",
+    "upgradePlan": "Päivitä suunnitelma",
+    "download": "Lataa",
+    "share": "Jaa",
+    "shareLink": "Jaa linkki",
+    "skip": "Ohita",
+    "next": "Seuraava",
+    "update": "Päivitä",
+    "tryAgain": "Yritä uudelleen",
+    "createdAt": "Luotu",
+    "and": "ja",
+    "saveDiscount": "TALLENNA",
+    "restorePurchase": "Palauta osto",
+    "medicalDisclaimer": "Lääketieteellinen vastuuvapauslauseke",
+    "conversationHistory": "Keskusteluhistoria",
+    "analyzingMediaFilesPlaceholder": "Analysoidaan mediatiedostoja...",
+    "freeTrial": "Ilmainen kokeilu",
+    "free": "ILMAINEN",
+    "noPaymentNow": "Ei maksua nyt. Peruuta milloin tahansa.",
+    "completedScans": "Skannaukset suoritettu",
+    "activeSubscription": "Tilaus aktiivinen",
+    "askAssistant": "Kysy tekoälyavustajalta",
+    "then": "sitten",
+    "perWeek": "viikossa",
+    "perYear": "vuodessa",
+    "perMonth": "kuukaudessa",
+    "tryForFree": "Kokeile ilmaiseksi",
+    "unlockNow": "Avaa nyt",
+    "attended": "Osallistunut",
+    "readyToStart": "Valmis aloittamaan",
+    "skipped": "Ohitettu",
+    "completed": "Valmis",
+    "purchase": "Osto",
+    "active": "aktiivinen",
+    "dearUser": "Hyvä käyttäjä",
+    "ok": "Ok",
+    "activities": "Aktiviteetit",
+    "seeLess": "Näytä vähemmän",
+    "seeMore": "Näytä enemmän",
+    "goBack": "Palaa takaisin",
+    "schedule": "Aikataulu",
+    "utils": "Työkalut",
+    "verifyEmail": "Vahvista sähköposti",
+    "loading": "Ladataan...",
+    "error": "Virhe",
+    "minutes": "minuuttia",
+    "submit": "Lähetä",
+    "copyText": {
+      "loading": "Kopioidaan...",
+      "copied": "Kopioitu! 📝",
+      "copy": "Kopioi linkki"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "Ladataan personoitua kokemustasi...",
+        "second": "Synkronoidaan järjestelmiä...",
+        "third": "Käsitellään tietojasi...",
+        "fourth": "Melkein valmis, vain hetki..."
+      },
+      "imageScanningLoading": {
+        "first": "Skannataan kuvaasi, odota hetki...",
+        "second": "Analysoidaan yksityiskohtia, tämä voi kestää hetken...",
+        "third": "Parannetaan tarkkuutta parhaita tuloksia varten...",
+        "fourth": "Melkein valmis, viimeistellään skannausta..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, tekoälyvalmentajasi valmistautuu auttamaan sinua...",
+        "second": "Odota! Mojo valmistelee vastaustasi...",
+        "third": "Ajatellaan...Mojo hoitaa asian!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Odota!",
+    "goBackMessage": "Oletko varma, että haluat palata takaisin?"
+  },
+  "internet": {
+    "noConnectionTitle": "Olet offline-tilassa!",
+    "noConnectionMessage": "Käynnistä mobiilidata tai yhdistä Wi-Fiin. Tai ota vain tauko ja lähde kävelylle!"
+  },
+  "uploadScan": {
+    "title": "Lataa kuva",
+    "scanNow": "Skannaa nyt"
+  },
+  "weekDays": {
+    "today": "Tänään",
+    "yesterday": "Eilen"
+  },
+  "auth": {
+    "verifyAuthCode": "Vahvista todennuskoodi",
+    "verifyAuthCodeButton": "Vahvista koodi",
+    "authCodeHeading": "Todennuskoodi",
+    "loginViaEmailHeading": "Aloitetaan kirjautuminen. Anna sähköpostiosoitteesi jatkaaksesi.",
+    "emailAddress": "Sähköposti"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "Tervetuloa EXFIT AI:hin!",
+        "startButton": "Aloitetaan!",
+        "accountButton": "Minulla on jo tili",
+        "count": "Laske",
+        "calories": "Kalorit",
+        "track": "Seuraa",
+        "activity": "Aktiviteetti",
+        "with": "Kanssa"
+      },
+      "login": {
+        "agreeingMessage": "Jatkamalla hyväksyt",
+        "termsAndConditions": "Käyttöehdot",
+        "privacyPolicy": "Tietosuojakäytäntö",
+        "heading": "Kirjaudu sisään",
+        "continueName": "Jatka lempinimellä",
+        "existingAccount": "Onko sinulla tiliä?",
+        "emailAddress": "Sähköpostiosoite",
+        "emailPlaceholder": "Anna sähköpostiosoitteesi",
+        "password": "Salasana",
+        "confirmPassword": "Vahvista salasana",
+        "forgotPassword": "Unohdin salasanan",
+        "keepSigned": "Pidä minut kirjautuneena",
+        "createPassword": "Luo salasana"
+      },
+      "signUp": {
+        "heading": "Rekisteröidy",
+        "haveAccount": "Onko sinulla tiliä?",
+        "signInHere": "Kirjaudu sisään täältä",
+        "acceptTerms": {
+          "title": "Ehdot vaaditaan",
+          "subtitle": "Hyväksy käyttöehdot ja tietosuojakäytäntö jatkaaksesi."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Unohdin salasanan",
+        "verificationSent": "Tarkista sähköpostisi salasanan palautuslinkkiä varten. Jos et näe sitä saapuneissa, tarkista roskaposti- tai häirikkösähköpostikansio.",
+        "verificationHeading": "Anna tilillesi rekisteröity sähköpostiosoite. Lähetämme sinulle linkin salasanan palauttamiseen.",
+        "rememberPassword": "Muistitko salasanan?",
+        "loginAccount": "Kirjaudu tilillesi",
+        "alertTitle": "Salasanan palautus lähetetty",
+        "alertSubtitle": "Jos tiliä tällä sähköpostiosoitteella on olemassa, olemme lähettäneet sinulle salasanan palautuslinkin."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Anna sekä sähköposti että salasana.",
+        "secureProgress": "Suojaa edistymisesi",
+        "permanentAccount": "Luo pysyvä tili tallentaaksesi tietosi laitteiden välillä."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "Anna sähköpostitse lähetetty vahvistuskoodisi. Huomaa, että koodi vanhenee 5 minuutissa.",
+        "verificationCodeSent": "Olemme lähettäneet vahvistuskoodin osoitteeseen",
+        "verificationCodeMissing": "Etkö saanut koodia?",
+        "resendCode": "Lähetä koodi uudelleen",
+        "backToLogin": "Takaisin kirjautumiseen"
+      },
+      "namePreferenceScreen": {
+        "heading": "Tehdään tästä henkilökohtaista!",
+        "preferredNameQuestion": "Miten meidän tulisi kutsua sinua?",
+        "placeholderPreferredName": "Esim. Captain Cool, Queen Bee, tai vain Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Miten kuvailisit kunto-osaamistasi?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Mikä on kuntotavoitteesi?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Valitse sukupuoli räätälöidylle kokemukselle"
+      },
+      "freeTrialPreview": {
+        "heading": "Nauti ilmaisesta kokeilustasi! 🎉",
+        "subheading": "Koe nämä upeat edut ilmaisen kokeilusi aikana",
+        "review": "Aterioiden skannaus, kalorilaskuri ja kuntoilun seuranta yksinkertaisesti ja älykkäästi. Kokeile sitä!",
+        "reviewTrust": "📈 Luotettu yli 7 512 käyttäjältä"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Ilmainen kokeilu käytössä",
+          "heading": " Rajoittamaton pääsy",
+          "title": "Avaa Premium-ominaisuudet tänään!",
+          "firstOffering": "Aktiviteettiseuranta & Älykkäät ravintovinkit",
+          "secondOffering": "Rajoittamaton kalori- & makrolaskuri",
+          "thirdOffering": "Rajoittamaton ruokaskanneri",
+          "fourthOffering": "Tekoälykuntovalmentajasi 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Avaa Premium-ominaisuudet tänään!",
+
+        "secondOffering": {
+          "title": "Kuukausisuunnitelma",
+          "subtitle": "{{ price }}/kuukausi"
+        },
+        "thirdOffering": {
+          "title": "Vuosittainen suunnitelma",
+          "subtitle": "{{ price }} vuodessa"
+        },
+        "fourthOffering": {
+          "title": "{{trialDays}}-päivän kokeilu",
+          "subtitle": "{{ price }} vuodessa",
+          "plan": "Viikkosuunnitelma"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "EXFIT AI:n uusi versio on saatavilla",
+        "subheading": "Päivitä uusimpaan versioon jatkaaksesi kaikkien sovelluksen ominaisuuksien käyttöä — se kestää vain 5 sekuntia!",
+        "action": "Hae se nyt!"
+      },
+      "rateAppScreen": {
+        "heading": "Koetko sovelluksen arvokkaaksi ja kiinnostavaksi?",
+        "like": "Kyllä, pidän siitä!",
+        "dislike": "Ei oikeastaan..."
+      },
+      "noInternetScreen": {
+        "heading": "Olet offline-tilassa",
+        "subheading": "Yhteytesi näyttää olevan epävakaa. Tarkista verkkotilasi ja yritä uudelleen"
+      },
+      "notifications": {
+        "title": "Ilmoitukset",
+        "noNotifications": "Ei vielä ilmoituksia",
+        "emptyNotifications": "Ei uusia ilmoituksia tällä hetkellä. Tule takaisin pian."
+      },
+      "termsOfService": {
+        "title": "Käyttöehdot"
+      },
+      "privacyPolicy": {
+        "title": "Tietosuojakäytäntö"
+      },
+      "share": {
+        "title": "Jaa",
+        "heading": "Jaa EXFIT AI -sovellus",
+        "subheading": "Auta muita löytämään EXFIT AI -sovellus",
+        "scanMessage": "Skannaa ladataksesi sovelluksen",
+        "shareMessage": "tai jaa suosikkialustasi kautta"
+      },
+      "rate": {
+        "title": "Anna meille palautetta!"
+      },
+      "profile": {
+        "title": "Profiili",
+        "edit": "Muokkaa profiilia",
+        "placeholderPreferredName": "Esimerkiksi Captain Cool, Queen Bee tai vain Alex!",
+        "subscriptions": {
+          "monthly": "Kuukausitilaus",
+          "yearly": "Vuositilaus",
+          "weekly": "Viikkotilaus"
+        },
+        "temporaryAccount": "Väliaikainen tili",
+        "permanentAccount": "Pysyvä tili"
+      },
+      "generateReportScreen": {
+        "title": "Arvostamme kärsivällisyyttäsi! Tässä on tekoälyraporttisi. ",
+        "userInput": "Lähetyksesi",
+        "medicalReport": "Kuntoraportti",
+        "report": "Tekoälyn luoma kuntoraportti",
+        "conversationName": "Keskustelun nimi"
+      },
+      "verifyEmail": {
+        "heading": "Vahvista sähköposti"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Aloita analyysi"
+      },
+      "contactUs": {
+        "heading": "Voit vapaasti lähettää meille sähköpostia suoraan, ja tiimimme vastaa sinulle mahdollisimman pian",
+        "customerSupport": "Asiakastuki",
+        "emailAddress": "Sähköpostiosoite"
+      },
+      "scan": {
+        "cameraPermission": "Kameran käyttöoikeus vaaditaan tämän ominaisuuden käyttöön",
+        "requestPermission": "Pyydetään kameran käyttöoikeutta...",
+        "scanAnything": "Skannaa mitä tahansa: Aterioita, Ruokaa, Kuntosalilaitteita & Lisää",
+        "askAssistant": "Kysy tekoälykuntovalmentajaltasi"
+      },
+      "excuseBuster": {
+        "heading": "Tekosyiden murskaaja",
+        "reasons": {
+          "one": "Tunnen oloni liian väsyneeksi",
+          "two": "Ei aikaa käytettävissä",
+          "three": "Liian kipeä liikkuakseni",
+          "four": "Kuntosali on liian täynnä",
+          "five": "Ei mieliala kohdallaan",
+          "six": "Huono sää ulkona",
+          "seven": "Työt ovat kiireiset",
+          "eight": "Aloitan huomenna",
+          "nine": "Epävarma mitä tehdä",
+          "ten": "Ei laitteita saatavilla"
+        },
+        "excuseMotivation": "Olet kovempi kuin tekosyysi.",
+        "excuseQuestion": "Mikä estää sinua tänään?",
+        "typeExcuse": "Kirjoita tekosyysi tähän...",
+        "crushExcuse": "Murskaa tekosyyni"
+      },
+      "chat": {
+        "fitnessCoach": "Kuntovalmentajasi",
+        "randomQuestions": {
+          "one": "'📸 Ota kuva ateriastani ja arvioi kalorit ja makrot',",
+          "two": "🥗 Analysoi tämä ateria ja kerro miten parantaa sitä tavoitteeni saavuttamiseksi",
+          "three": "🧠 Luo minulle personoitu harjoitusohjelma kunto-tasosi perusteella",
+          "four": "🏋️ Suosittele harjoitusta, jonka voin tehdä heti ilman välineitä",
+          "five": "⏱ Luo 20 minuutin harjoitus kiireiselle päivälle",
+          "six": "🔥 Ehdota rasvanpolttoharjoitusta, joka on räätälöity minulle",
+          "seven": "💪 Suunnittele lihaskasvatusohjelma keholleni ja tavoitteilleni",
+          "eight": "📊 Seuraa edistymistäni ja näytä mitä minun tulisi parantaa seuraavaksi",
+          "nine": "🍽 Kerro mitä minun tulisi syödä tänään päästäkseni kalori- ja proteiinitavoitteisiini",
+          "ten": "🥚 Laske päivittäiset proteiini-, hiilihydraatti- ja rasvatarpeeni",
+          "eleven": "🛒 Luo terveellinen ruokakauppalista ruokavaliosuunnitelmani perusteella",
+          "twelve": "😴 Säädä harjoituksiani unen ja toipumisen perusteella",
+          "thirteen": "📅 Luo viikkokohtainen harjoitusaikataulu, jota pystyn noudattamaan",
+          "fourteen": "⚡ Suosittele matalaenergiaharjoitus tälle päivälle",
+          "fifteen": "🤕 Muokkaa harjoitustani, jos minulla on kipua tai vamma"
+        }
+      },
+      "progress": {
+        "error": "Jokin meni pieleen",
+        "heading": "Edistymisen kojelauta",
+        "subheading": "Jatka upeaa työtä! 🚀",
+        "weeklyGoals": "Viikkotavoitteet",
+        "monthlyGoal": "Kuukausitavoite",
+        "insights": "Nopeat oivallukset",
+        "mostActive": "Aktiivein",
+        "peakTime": "Huippusuoritusaika",
+        "favoriteActivity": "Suosikkiaktiviteetti",
+        "choice": "Ensivalintasi",
+        "weeklyChange": "Viikkovaihtelu",
+        "lastWeekXP": "vs viime viikko",
+        "consistency": "Jatkuvuus",
+        "reliability": "luotettavuus",
+        "overview": "Yleiskatsaus",
+        "performance": "Suorituskyky",
+        "trends": "Trendit",
+        "lastSevenDays": "Viimeiset 7 päivää",
+        "thisWeek": "Tämän viikon",
+        "activityFocus": "Aktiviteetin painopiste",
+        "distribution": "Jakautuminen",
+        "history": "Historia",
+        "activities": "Aktiviteetit",
+        "consistencyJourney": "Jatkuvuusmatkasi",
+        "bestDay": "Paras päivä",
+        "averageSession": "Keskim. istunto",
+        "totalHours": "Tunnit yhteensä",
+        "WeeklyComparisonXp": "Viikkovertailu",
+        "weeksComparison": "Tämä viikko vs viime viikko",
+        "thisWeeks": "Tämä viikko",
+        "lastWeek": "Viime viikko",
+        "activityPattern": "Aktiviteettimalli",
+        "hoursBreakdown": "24 tunnin jakautuma",
+        "monthlyActivity": "Kuukausittainen aktiviteetti",
+        "lastMonths": "Viimeiset 6 kuukautta",
+        "progression": "Kehitys",
+        "monthlyEarned": "Kuukausittain ansaittu",
+        "recentActivity": "Viimeaikainen aktiviteetti",
+        "last30Days": "Viimeiset 30 päivää",
+        "outstanding": "Erinomainen edistyminen!",
+        "activityReview": "Olet suorittanut {{totalActivities}} aktiviteettia ja ansainnut yhteensä {{totalXp}} XP-pistettä. Jatka samaan malliin!",
+        "statistics": "Yksityiskohtaiset tilastot",
+        "longest": "Pisin",
+        "totalMonthActivities": "Fyysisiä aktiviteetteja suoritettu tässä kuussa!"
+      },
+      "shoppingCart": {
+        "heading": "Omistetut esineet",
+        "equipMore": "Varusta lisää",
+        "noItems": "Sinulla ei ole vielä yhtään esinettä!",
+        "goToShop": "Mene kauppaan",
+        "buyPotions": "Mene kauppaan ja kerää jännittäviä rohtoja"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Odota! Älä poista minua!",
+    "subtitle": "Lähetä palaute ensin"
+  },
+
+  "home": {
+    "tab": "Koti"
+  },
+
+  "activity": {
+    "tab": "Aktiviteetti"
+  },
+  "progress": {
+    "tab": "Edistyminen"
+  },
+  "settings": {
+    "tab": "Asetukset",
+    "profile": "Profiili",
+    "shop": "Kauppa",
+    "contactUs": "Ota meihin yhteyttä",
+    "about": "Tietoja",
+    "app_name": "Sovelluksen nimi",
+    "languages": {
+      "english": "Englanti",
+      "mandarin_chinese": "Kiina",
+      "hindi": "Hindi",
+      "spanish_spain": "Espanja (Espanja)",
+      "spanish_mexico": "Espanja (Meksiko)",
+      "arabic": "Arabia",
+      "french": "Ranska",
+      "french_canada": "Ranska (Kanada)",
+      "portuguese_brazil": "Portugali (Brasilia)",
+      "portuguese_portugal": "Portugali (Portugali)",
+      "german": "Saksa",
+      "japanese": "Japani",
+      "russian": "Venäjä",
+      "korean": "Korea",
+      "italian": "Italia",
+      "turkish": "Turkki",
+      "vietnamese": "Vietnam",
+      "polish": "Puola",
+      "ukrainian": "Ukraina",
+      "romanian": "Romania",
+      "dutch": "Hollanti",
+      "czech": "Tšekki",
+      "greek": "Kreikka",
+      "swedish": "Ruotsi",
+      "hungarian": "Unkari",
+      "thai": "Thai",
+      "hebrew": "Heprea",
+      "indonesian": "Indonesia",
+      "malay": "Malaiji",
+      "finnish": "Suomi",
+      "danish": "Tanska",
+      "norwegian": "Norja",
+      "slovak": "Slovakki",
+      "croatian": "Kroatia",
+      "catalan": "Katalaani"
+    },
+    "generale": "Yleinen",
+    "github": "Github",
+    "language": "Kieli",
+    "links": "Linkit",
+    "logout": "Kirjaudu ulos",
+    "more": "Lisää",
+    "privacy": "Tietosuojakäytäntö",
+    "faq": "UKK",
+    "rate": "Anna meille palautetta",
+    "share": "Jaa",
+    "citations": "Lähteet lääketieteelliselle tiedolle",
+    "support": "Tuki",
+    "support_us": "Tue meitä",
+    "terms": "Käyttöehdot",
+    "theme": {
+      "dark": "Tumma",
+      "light": "Vaalea",
+      "system": "Järjestelmä",
+      "title": "Teema"
+    },
+    "title": "Asetukset",
+    "version": "Versio",
+    "website": "Verkkosivusto",
+    "devMode": {
+      "title": "Kehittäjätila",
+      "componentsLibrary": "UI-kirjasto"
+    },
+    "deleteAccount": "Poista tili?",
+    "deleteAccountQuestion": "Oletko varma, että haluat poistaa tilisi? Tätä toimintoa ei voi peruuttaa ja se poistaa kaikki tietosi pysyvästi.",
+    "deactivateAccount": "Deaktivoi ja poista tili",
+    "permanentAccountCreate": "Luo pysyvä tili"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Arviointi"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Mikä on syy?",
+      "unnamedConversation": "Nimetön",
+      "reportTitlePlaceholder": "Lisää otsikko"
+    },
+    "WeekBlock": {
+      "week": "Viikko"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Vieritä ylös"
+    },
+    "FreeTierStatus": {
+      "heading": "Ilmaiset skannaukset",
+      "subheading": "Avaa rajoittamattomat skannaukset päivittämällä suunnitelmasi",
+      "action": "Päivitä"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Valitse kuva / video"
+    },
+    "GoalsModal": {
+      "heading": "Vaihda päivittäinen saantitavoitteesi",
+      "dailyCalories": "Päivittäiset kalorit",
+      "saveGoals": "Tallenna tavoitteet"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Streak rikottu. Tallenna nyt.",
+      "loseStreak": "Anna sen rikkoutua",
+      "buyStreak": "Osta & tallenna Streak",
+      "buyRepairStreak": "Osta Streak-korjausrohto {{elixirPrice}} 💎:lla saadaksesi menetetyn streakisi takaisin.",
+      "streakRestore": "Streak vaarassa — palauta se nyt!",
+      "restorationStreak": "Tuomaan {{lostStreakValue}}-päivän streakisi takaisin henkiin voimakkaalla Streak-korjausrohdolla!",
+      "applyElixir": "Käytä rohto"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Osto valmis",
+      "inventoryAdded": "on lisätty varastoosi. Jatka upeaa työtä!",
+      "purchaseFailed": "Osto epäonnistui",
+      "purchaseFailedMessage": "Emme voineet käsitellä ostostasi. Tarkista Gems-saldosi ja yritä uudelleen.",
+      "gemsBalance": "Hups, sinulla ei ole tarpeeksi Gems-timantteja"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Päivittäinen check-in",
+      "bodyMovingQuestion": "Saitko kehosi liikkeelle tänään?"
+    },
+    "TapToViewLabel": {
+      "label": "Napauta nähdäksesi"
+    },
+    "UpgradeBanner": {
+      "heading": "Avaa nyt!",
+      "upgradeMessage": "Avaa tämä ominaisuus 🔓 Nauti tekoälyn kalorilaskennasta, makroseurannasta ja kaikenkattavasta tuesta, joka auttaa sinua saavuttamaan aktiviteetti- ja kuntotavoitteesi nopeammin 💪",
+      "upgradeTo": "Päivitä",
+      "moreBenefits": "Tekoälyominaisuudet. Kaikki premium-työkalut. Kaikki sinun pysyäksesi radalla."
+    },
+    "MotivationBanner": {
+      "title": "Ei motivaatiota? Etkö tunne olosi hyväksi? Lyödään se tekosyy.",
+      "subtitle": "Valitse tehtävä, ansaitse XP:tä ja Gems-timantteja — liikkeelle!",
+      "beatExcuse": "Voita tekosyysi nyt!"
+    },
+    "AICoachBanner": {
+      "title": "Onko sinulla kysymys? Kysy vain.",
+      "subtitle": "Hallitse kuntosi — kysy kaloreista, ravinnosta, kuntosalilaitteista, asennoista, vammoista, muodosta, harjoitusohjelmista",
+      "chat": "Keskustele tekoälyvalmentajan kanssa"
+    },
+    "PromptSection": {
+      "message": "Skannauksesi on valmis! Mitä haluaisit nyt tietää?",
+      "prompts": {
+        "first": "Mitä solutyyppejä tai rakenteita tässä kuvassa on?",
+        "second": "Onko tässä näytteessä poikkeavuuksia tai patogeeneja?",
+        "third": "Mikä on tämän näytteen todennäköinen alkuperä tai tila?",
+        "fourth": "Mitä oivalluksia voit antaa tästä kuvasta?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Välitön tekoälyaterioiden skannaus — Seuraa kaloreita ja makroja sekunneissa",
+      "second": "24/7 tekoälyhenkilökohtainen valmentaja — Asiantuntijaohjausta milloin tahansa, missä tahansa",
+      "third": "Seuraa kuntotoimintojasi kuin ammattilainen",
+      "fourth": "Täysi pääsy kaikkiin premium-ominaisuuksiin"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Lempinimi",
+        "email": "Sähköposti",
+        "emailVerification": "Sähköpostin vahvistus"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Tämän päivän makrot",
+      "scanFood": "Skannaa ruokaa",
+      "calories": "Kalorit",
+      "fat": "Rasva",
+      "carbs": "Hiilihydraatit",
+      "protein": "Proteiini",
+      "dailyIntakeGoals": "Päivittäiset saantitavoitteet",
+      "percentage": "% päivittäisestä makrotavoitteesta saavutettu",
+      "noMeals": "Ei kirjattuja aterioita",
+      "meals": "Ateriat",
+      "deleteMeal": "Poista ateria",
+      "deleteMealConfirm": "Oletko varma, että haluat poistaa tämän aterian? Tämä vaikuttaa päivittäisiin makroravintoaineiden laskelmiisi.",
+      "macroJournal": "Makropäiväkirja",
+      "noActivityRecorded": "Tälle viikolle ei ole kirjattu aktiviteetteja"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Päivittäinen check-in",
+      "attendedMessage": "Tulit paikalle tänään, siten edistymistä rakennetaan. Jatka samaan malliin!",
+      "notAttendedMessage": "Sohva voittaa tänään… mutta huomenna teet paluun!",
+      "unknownMessage": "Matkasi alkaa yhdellä askeleella. Valmis aloittamaan?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "Valittu kesto ei voi olla pidempi kuin 360 minuuttia",
+      "activitiesLimit": "Vau siellä! Harjoitteletko salaa olympialaisia varten? Olet jo saavuttanut {{MAX_DAILY_ACTIVITIES}} aktiviteetin tänään! 🏅. Voit näyttää niitä lihaksia uudelleen huomenna 💪!",
+      "addActivity": "Lisää aktiviteetti",
+      "modalHeading": "Mikä sai sinut liikkeelle tänään? Kirjaa se ja pidä vauhti yllä"
+    },
+    "TaskListOverview": {
+      "heading": "Tämän päivän tehtävät",
+      "noTasks": "Ei tehtäviä!",
+      "enjoyFreeTime": "Nauti vapaa-ajastasi."
+    },
+    "ActivitySelector": {
+      "title": "Aktiviteettityyppi",
+      "customActivity": "Lisää oma aktiviteettisi",
+      "customActivityLabel": "Mukautettu aktiviteetti"
+    },
+    "DurationSelector": {
+      "heading": "Kesto",
+      "customDuration": "Anna kesto (minuutteina)",
+      "customDurationLabel": "Mukautettu kesto"
+    },
+    "NoActivityLogModal": {
+      "heading": "Voi ei! Älä anna sohvan voittaa tänään!",
+      "crushExcuse": "Murskaa tekosyyni",
+      "skipToday": "Ei tänään, ehkä huomenna..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Hienoa työtä!",
+      "unlockReward": "Sinä teit sen! Yksi aktiviteetti suoritettu ja olet avannut palkintosi. Pidetään streak yllä!"
+    },
+    "SkipReasonInput": {
+      "title": "Se on ok, tarkistan vain.",
+      "subtitle": "Haluatko kertoa, miksi tänään ei toiminut? Ei paineita.",
+      "skipPlaceholder": "Esim. Kissani söi juoksukengät",
+      "skipToday": "Ohita tänään"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Streak-jäädytys!",
+      "streakResetNow": "Streakisi nollattiin tänään.",
+      "streakRepairUse": "Käytä Streak-korjausrohtoasi pitääksesi streakisi elossa",
+      "streakRepairExpired": " 48 tunnin streak-korjausikkunasi on päättynyt! Mutta hei, uudet streakit tarkoittavat uusia mahdollisuuksia päihittää henkilökohtainen parhaasi.",
+      "repairStreak": "Korjaa Streak",
+      "streakPotionConsumed": "Streak-jäädytysrohto käytetty!",
+      "streakFreezeApplied": " Streak-jäädytysrohtosi toimi ja suojasi streakisi. Olet edelleen tulessa!",
+      "streakElixirApplied": "Streak-korjausrohto toimi!",
+      "streakFreezePotionApplied": "Pelastit Streakisi! Streak-jäädytysrohtosi toimi ja suojasi streakisi. Olet edelleen tulessa!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Ei aktiviteetteja löytynyt",
+      "addFirstActivity": "Lisää ensimmäinen aktiviteettisi ansaitaksesi Gems-timantteja ja XP-pisteitä.",
+      "addActivity": "Lisää aktiviteetti",
+      "todayActivities": "Tämän päivän aktiviteetit"
+    },
+    "ActivityCard": {
+      "activitySkipped": "ohitettu",
+      "dayOff": "Vapaa päivä",
+      "description": "Kuvaus",
+      "excuseReason": "Tekosyy ⚠️",
+      "yourNotes": "Muistiinpanosi 📝",
+      "notesPlaceholder": "Esim. Selkä- ja hauishaarojen harjoitus, 3 supersarjaa",
+      "addNotes": "Lisää muistiinpanoja"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Valokuvakirjasto",
+      "takePhoto": "Ota valokuva",
+      "chooseFile": "Valitse tiedosto"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Maksimitaso saavutettu! Taso",
+      "xpLeft": "jäljellä tasoon"
+    },
+    "ShopItemCard": {
+      "unavailable": "Ei saatavilla",
+      "worth": "arvoltaan",
+      "equiped": "varustettu",
+      "shop": "Kauppa",
+      "earnedId": "Ansaitsit sen.",
+      "treat": "Nyt palkitse itsesi!",
+      "spendGems": "Käytä Gems-timanttejasi viisaasti, kuntomatkasi muuttui juuri mielenkiintoiseksi."
+    },
+    "ActivityTaskCard": {
+      "win": "Voita",
+      "acceptChallenge": "Hyväksy haaste 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "Entä yrittäisit hieman vaikeampaa tällä haasteella?",
+      "typeInput": "(Kirjoita syöttösi alle)"
+    },
+    "MacroOverview": {
+      "analysis": "Analyysi",
+      "macroAdded": "Makro lisätty",
+      "countToday": "Määrä tälle päivälle"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Suojaa streakisi, jos missaat harjoituspäivän.",
+      "owned": "OMISTETTU",
+      "manualTrigger": "MANUAALINEN KÄYNNISTYS",
+      "activated": "AKTIVOITU"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Anteeksi, tarvitsemme kameran käyttöoikeudet, jotta tämä toimii!",
+    "errorSelectingImagePicker": "Jotain meni pieleen valittaessa kuvaa. Yritä uudelleen.",
+    "errorSelectingDocumentPicker": "Jotain meni pieleen valittaessa asiakirjaa. Yritä uudelleen.",
+    "errorTakingPicture": "Jotain meni pieleen otettaessa kuvaa. Yritä uudelleen.",
+    "enableNotifications": {
+      "heading": "Ota ilmoitukset käyttöön",
+      "subHeading": "Ilmoitukset ovat tällä hetkellä pois päältä. Pysyäksesi ajan tasalla, ota ne käyttöön laitteesi asetuksissa."
+    },
+    "notesSavedSuccess": "Muistiinpanot tallennettu! 📝 Olet valmis.",
+    "enableNotificationFailed": "Push-ilmoitukset ovat pois päältä. Ota ne käyttöön asetuksista saadaksesi tärkeitä päivityksiä!",
+    "enableNotificationError": "Ilmoitusten käyttöönotossa tapahtui virhe",
+    "notificationDisabledSuccess": "Ilmoitukset poistettu käytöstä onnistuneesti.",
+    "notificationDisabledRegisterError": "Laitteen rekisteröinti ilmoituksiin epäonnistui.",
+    "notificationDisabledError": "Ilmoitusten poistamisessa käytöstä tapahtui virhe.",
+    "checkNotificationStatusError": "Virhe ilmoitustilan tarkistuksessa.",
+    "projectIdNotFound": "Ilmoitusprojektin ID:tä ei löytynyt.",
+    "imageSizeLarge": "Kuva on liian suuri! Tiedostokoko on {{fileSize}} MB, mutta raja on {{imageLimit}} MB.",
+    "videoSizeLarge": "Video on liian suuri! Tiedostokoko on {{fileSize}} MB, mutta raja on {{videoLimit}} MB.",
+    "loggedInSuccess": "Kirjautuminen onnistui",
+    "loggedOutSuccess": "Olet kirjautunut ulos onnistuneesti!",
+    "sendVerificationCodeError": "Virhe lähetettäessä vahvistuskoodia",
+    "validateAuthCodeError": "Virhe todennuskoodia vahvistaessa",
+    "anonymousSignInError": "Virhe kirjautuessa sisään anonyymisti",
+    "emailLoginError": "Virhe kirjautuessa sisään",
+    "preferredLanguageError": "Virhe päivittäessä käyttäjän ensisijaista kieltä",
+    "sharingNotAvailable": "Jakaminen ei ole tällä hetkellä saatavilla laitteessasi",
+    "sharingLinkError": "Linkin jakaminen epäonnistui.",
+    "individualPushNotificationSuccess": "Yksilölliset push-ilmoitukset lähetetty onnistuneesti!",
+    "globalPushNotificationSuccess": "Maailmanlaajuiset push-ilmoitukset lähetetty onnistuneesti! 🌍🚀",
+    "interpretationFieldsUpdateFail": "Tulkintakenttien päivitys epäonnistui! ❌",
+    "deleteScanReportFail": "Skannausraporttia ei voi poistaa. Yritä uudelleen",
+    "onboardingUnsuccessful": "Aloitus epäonnistui. Yritä uudelleen",
+    "logoutUnsuccessful": "Uloskirjautuminen epäonnistui. Yritä uudelleen",
+    "deleteScanReportQuestion": "Oletko varma, että haluat poistaa tämän raportin pysyvästi?",
+    "videoLimitExceeds": "Videosi ylittää {{videoSecondsLimit}} sekunnin rajan. Rajaa sitä ja lataa uudelleen",
+    "subscriptionActivated": "Tilauksesi on aktivoitu onnistuneesti! Nauti eksklusiivisista eduistasi!",
+    "subscriptionCancelledByUser": "Olet peruuttanut kaupan. Voit vapaasti yrittää uudelleen!",
+    "subscriptionActivationFailed": "Tilauksesi aktivointi epäonnistui. Yritä uudelleen",
+    "logoutQuestion": "Oletko varma, että haluat kirjautua ulos?",
+    "noSubscriptionToRestore": "Hups! Näyttää siltä, että sinulla ei ole aktiivista tilausta tällä hetkellä. Jatkaaksesi täyden pääsyn nauttimista, valitse jokin tilaussuunnitelmistamme.",
+    "restorationSuccessful": "Palautus onnistui! Nauti!",
+    "restorationError": "Oston palautuksessa tapahtui virhe.",
+    "medicalDisclaimerAlert": "EXFIT AI -sovellus ei tarjoa diagnooseja, hoitosuosituksia tai lääketieteellisiä neuvoja. Hae aina ohjeita pätevältä terveydenhuollon ammattilaiselta lääketieteellisiä päätöksiä varten.",
+    "scanLimitReached": "Optimoidaan skannauslaatua puolestasi! Voit skannata uudelleen noin {{hours}} tunnin ja {{minutes}} minuutin kuluttua. Onko sinulla kysyttävää mikroskooppisista aiheista? Kysy chat-avustajaltamme odottaessasi!",
+    "chatAndMediaFilesLimit": "Hyvä käyttäjä, päivitä suunnitelmasi nauttiaksesi rajoittamattomasta kalorien seurannasta, aterioiden skannauksesta, kuntovalmentamisesta ja muusta. 🔓",
+    "chatMessageNotSent": "Hups! Viestisi ei mennyt perille. Yritä uudelleen",
+    "excusesLimit": "Hups, näyttää siltä, että yrität asettaa maailmanennätyksen tekosyistä! 😅 Sallittu enintään 3 tekosyytä — valitse kolme suosikkiasi ja liikkeelle!",
+    "excuseMinimum": "Valitse vähintään yksi tekosyy tai kirjoita oma.",
+    "createActivityLogFailed": "Aktiviteettilokin luominen epäonnistui. Yritä uudelleen.",
+    "updateActivityLogFailed": "Jotain meni pieleen päivittäessä aktiviteettilokia. Yritä uudelleen.",
+    "challengeAccepted": "Haaste hyväksytty! 🔥 Mene nyt murskaamaan se ja ansaitse palkinnot!",
+    "challengeCompleted": "Haaste suoritettu! 🔥 Uusi palkkiosaldosi päivitettiin.",
+    "macroEntryRecorded": "Makrosyönnin merkintä tallennettu — jatka samaan malliin! 🥗",
+    "failedCreateMacroLog": "Hups! Makrolokia ei tallennettu. Yritä uudelleen!",
+    "deleteMacroLog": "Hups! Makrologiasi ei voitu poistaa. Yritä uudelleen!",
+    "deleteMacro": "Makro poistettu — valmis seuraavaa merkintääsi varten!",
+    "chooseSubscriptionPlan": "Valitse tilaussuunnitelma jatkaaksesi!",
+    "createPermanentAccountSuccess": "Pysyvä tilisi on luotu! Tilisi on nyt turvattu. Ai niin, sait myös",
+    "loginSuccess": "Kirjautuminen onnistui — liikkeelle!",
+    "accountDeleted": "Tilisi on poistettu onnistuneesti",
+    "purchaseFailed": "Osto epäonnistui. Yritä uudelleen.",
+    "streakRepairFailed": "Streakin korjaus epäonnistui. Yritä uudelleen.",
+    "failedSendMessage": "Viestin lähetys epäonnistui. Yritä uudelleen.",
+    "capturePictureFailed": "Jotain meni pieleen otettaessa kuvaa",
+    "multipleVideosNotAllowed": "Parempaa tarkkuutta varten lataa vain yksi video kerrallaan.",
+    "mixedMediaNotAllowed": "Latausten on sisällettävä vain kuvia tai vain videoita, ei sekoitusta molemmista.",
+    "mediaFilesUploadFiles": "Mediatiedostojesi lataamisessa tapahtui virhe. Yritä uudelleen."
+  }
+}

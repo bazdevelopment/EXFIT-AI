@@ -1,0 +1,800 @@
+{
+  "onboarding": {
+    "message": "Üdvözöljük az EXFIT AI-ban!",
+    "firstFlow": {
+      "onboardingFirstPage": {
+        "headingOne": "Fotózd le az ételed és kövesd a kalóriákat",
+        "headingTwo": "Szkennelj ételeket, beszélj az AI Edződdel, és kapj napi kihívásokat, amelyek neked készültek"
+      },
+      "onboardingSecondPage": {
+        "headingOne": "Hagyd, hogy az AI hajtsa a fitneszered",
+        "headingTwo": "Ismerd meg az EXFIT AI-t, okos társadat, aki legyőzi a kételyeidet, szikráztatja a motivációd és mozgásban tart"
+      },
+      "onboardingThirdPage": {
+        "heading": "Hagyd, hogy az AI észlelje a konditerem eszközöket, gyakorlati pózokat és technikát"
+      },
+      "onboardingFourthPage": {
+        "headingOne": "Eddz. Keress. Lépj szintet.",
+        "headingTwo": "Szerezz XP-t, gyűjts Gems-eket, tartsd életben a Streak-ed, és nyiss ki jutalmakat a részvételedért."
+      }
+    }
+  },
+  "activities": {
+    "gym": "Konditerem",
+    "yoga": "Jóga",
+    "running": "Futás",
+    "walking": "Séta",
+    "cycling": "Kerékpározás",
+    "dance": "Tánc",
+    "stretching": "Nyújtás",
+    "swimming": "Úszás",
+    "hiking": "Túrázás",
+    "pilates": "Pilates",
+    "climbing": "Mászás",
+    "skating": "Korcsolyázás"
+  },
+  "general": {
+    "back": "Vissza",
+    "welcome": "Szia",
+    "welcomeBack": "Üdv újra!",
+    "welcomeMessage": "Üdvözöljük!",
+    "goodMorning": "Jó reggelt",
+    "goodAfternoon": "Jó napot",
+    "goodEvening": "Jó estét",
+    "continue": "Folytatás",
+    "retry": "Újra",
+    "retake": "Újrafelvétel",
+    "scanNow": "Szkennelj most",
+    "scanning": "Szkennelés...",
+    "close": "Bezárás",
+    "gallery": "Galéria",
+    "files": "Fájlok",
+    "cancel": "Mégse",
+    "save": "Mentés",
+    "edit": "Szerkesztés",
+    "delete": "Törlés",
+    "attention": "Figyelem!",
+    "new": "Új",
+    "yes": "Igen",
+    "no": "Nem",
+    "or": "vagy",
+    "change": "Változtatás",
+    "typing": "Gépelés...",
+    "online": "Online",
+    "chatbotPlaceholder": "Kérdezz bármit...",
+    "openSettings": "Beállítások megnyitása",
+    "seeNotifications": "Értesítések megtekintése",
+    "viewProfile": "Profil megtekintése",
+    "upgradePlan": "Csomag frissítése",
+    "download": "Letöltés",
+    "share": "Megosztás",
+    "shareLink": "Link megosztása",
+    "skip": "Kihagyás",
+    "next": "Következő",
+    "update": "Frissítés",
+    "tryAgain": "Próbáld újra",
+    "createdAt": "Létrehozva",
+    "and": "és",
+    "saveDiscount": "MEGTAKARÍTÁS",
+    "restorePurchase": "Vásárlás visszaállítása",
+    "medicalDisclaimer": "Orvosi nyilatkozat",
+    "conversationHistory": "Beszélgetési előzmények",
+    "analyzingMediaFilesPlaceholder": "Médiafájlok elemzése...",
+    "freeTrial": "Ingyenes próba",
+    "free": "INGYENES",
+    "noPaymentNow": "Most nincs fizetés. Bármikor lemondható.",
+    "completedScans": "Befejezett szkennelések",
+    "activeSubscription": "Aktív előfizetés",
+    "askAssistant": "Kérdezd az AI asszisztenst",
+    "then": "majd",
+    "perWeek": "hetente",
+    "perYear": "évente",
+    "perMonth": "havonta",
+    "tryForFree": "Próbáld ki ingyen",
+    "unlockNow": "Nyisd ki most",
+    "attended": "Részt vett",
+    "readyToStart": "Készen áll az indításra",
+    "skipped": "Kihagyva",
+    "completed": "Befejezve",
+    "purchase": "Vásárlás",
+    "active": "aktív",
+    "dearUser": "Kedves felhasználó",
+    "ok": "Ok",
+    "activities": "Tevékenységek",
+    "seeLess": "Kevesebb mutatása",
+    "seeMore": "Több mutatása",
+    "goBack": "Visszalépés",
+    "schedule": "Menetrend",
+    "utils": "Segédeszközök",
+    "verifyEmail": "E-mail megerősítése",
+    "loading": "Betöltés...",
+    "error": "Hiba",
+    "minutes": "perc",
+    "submit": "Beküldés",
+    "copyText": {
+      "loading": "Másolás...",
+      "copied": "Másolva! 📝",
+      "copy": "Link másolása"
+    },
+    "loadingMessages": {
+      "initialAppLoad": {
+        "first": "Személyre szabott élményed betöltése...",
+        "second": "Rendszerek szinkronizálása...",
+        "third": "Adataid feldolgozása...",
+        "fourth": "Majdnem kész, csak egy pillanat..."
+      },
+      "imageScanningLoading": {
+        "first": "Képkicsinyítésed szkennelése, kérlek várj...",
+        "second": "Részletek elemzése, ez eltarthat egy ideig...",
+        "third": "Pontosság javítása a legjobb eredményekért...",
+        "fourth": "Majdnem ott vagyunk, szkennelés befejezése..."
+      },
+      "loadingChatbot": {
+        "first": "Mojo, az AI Edződ előkészül, hogy segítsen neked...",
+        "second": "Várj! Mojo előkészíti a válaszod...",
+        "third": "Gondolkodás... Mojo dolgozik rajta!"
+      }
+    }
+  },
+  "backHandler": {
+    "holdOn": "Várj!",
+    "goBackMessage": "Biztosan vissza akarsz lépni?"
+  },
+  "internet": {
+    "noConnectionTitle": "Offline vagy!",
+    "noConnectionMessage": "Kapcsold be a mobiladatokat vagy csatlakozz egy Wi-Fi-hálózathoz. Vagy csak szüntess meg egy szünetet és menj el sétálni!"
+  },
+  "uploadScan": {
+    "title": "Kép feltöltése",
+    "scanNow": "Szkennelj most"
+  },
+  "weekDays": {
+    "today": "Ma",
+    "yesterday": "Tegnap"
+  },
+  "auth": {
+    "verifyAuthCode": "Hitelesítő kód ellenőrzése",
+    "verifyAuthCodeButton": "Kód ellenőrzése",
+    "authCodeHeading": "Hitelesítő kód",
+    "loginViaEmailHeading": "Jelentkezz be. Kérlek add meg az e-mail címed a folytatáshoz.",
+    "emailAddress": "E-mail"
+  },
+  "rootLayout": {
+    "screens": {
+      "welcome": {
+        "heading": "Üdvözöljük az EXFIT AI-ban!",
+        "startButton": "Kezdjük!",
+        "accountButton": "Már van fiókom",
+        "count": "Számolás",
+        "calories": "Kalóriák",
+        "track": "Követés",
+        "activity": "Tevékenység",
+        "with": "Val"
+      },
+      "login": {
+        "agreeingMessage": "A folytatással elfogadod a",
+        "termsAndConditions": "Felhasználási feltételeket",
+        "privacyPolicy": "Adatvédelmi irányelveket",
+        "heading": "Bejelentkezés",
+        "continueName": "Folytatás becenévvel",
+        "existingAccount": "Van fiókod?",
+        "emailAddress": "E-mail cím",
+        "emailPlaceholder": "Add meg az e-mail címed",
+        "password": "Jelszó",
+        "confirmPassword": "Jelszó megerősítése",
+        "forgotPassword": "Elfelejtetted a jelszavad?",
+        "keepSigned": "Maradjak bejelentkezve",
+        "createPassword": "Jelszó létrehozása"
+      },
+      "signUp": {
+        "heading": "Regisztráció",
+        "haveAccount": "Van fiókod?",
+        "signInHere": "Jelentkezz be itt",
+        "acceptTerms": {
+          "title": "Feltételek szükségesek",
+          "subtitle": "Kérlek fogadd el a felhasználási feltételeket és az adatvédelmi irányelveket a folytatáshoz."
+        }
+      },
+      "forgotPassword": {
+        "heading": "Elfelejtett jelszó",
+        "verificationSent": "Kérlek ellenőrizd az e-mailjeidet a jelszó-visszaállító linkért. Ha nem látod a beérkezett üzeneteid között, mindenképpen nézd meg a spam vagy levélszemét mappát.",
+        "verificationHeading": "Add meg a fiókoddal regisztrált e-mail címet. Küldünk neked egy linket a jelszó visszaállításához.",
+        "rememberPassword": "Emlékszel a jelszóra?",
+        "loginAccount": "Jelentkezz be a fiókodba",
+        "alertTitle": "Jelszó-visszaállítás elküldve",
+        "alertSubtitle": "Ha létezik fiók ezzel az e-mail címmel, akkor küldtünk neked egy jelszó-visszaállító linket."
+      },
+      "upgradeAccount": {
+        "emailPasswordRequired": "Kérlek add meg az e-mailt és a jelszót is.",
+        "secureProgress": "Biztosítsd a haladásod",
+        "permanentAccount": "Hozz létre egy állandó fiókot az adataid eszközök közötti mentéséhez."
+      },
+      "verifyAuthCode": {
+        "verificationCodeHeading": "Add meg az e-mailben küldött ellenőrző kódodat. Kérlek vedd figyelembe, hogy a kód 5 perc múlva lejár.",
+        "verificationCodeSent": "Elküldtük az ellenőrző kódot ide:",
+        "verificationCodeMissing": "Nem kaptad meg a kódot?",
+        "resendCode": "Kód újraküldése",
+        "backToLogin": "Vissza a bejelentkezéshez"
+      },
+      "namePreferenceScreen": {
+        "heading": "Tegyük ezt személyessé!",
+        "preferredNameQuestion": "Hogyan szólítsunk?",
+        "placeholderPreferredName": "Pl.: Káptány Király, Méhkirálynő, vagy csak Alex!"
+      },
+      "experienceLevelScreen": {
+        "heading": "Hogyan írnád le a fitnesztapasztalatodat?"
+      },
+      "fitnessGoalScreen": {
+        "heading": "Mi a fitneszcélod?"
+      },
+      "genderSelectionScreen": {
+        "heading": "Válassz nemet a személyre szabottabb élményért"
+      },
+      "freeTrialPreview": {
+        "heading": "Élvezd az ingyenes próbaidőszakod! 🎉",
+        "subheading": "Tapasztald meg ezeket a csodálatos előnyöket az ingyenes próbaidőszakod alatt",
+        "review": "Ételszkennelés, kalóriaszámoló és fitneszkövetés egyszerű és okosan. Próbáld ki!",
+        "reviewTrust": "📈 7,512+ felhasználó bízik benne"
+      },
+      "paywallOnboarding": {
+        "freeTierOfferings": {
+          "freeTrialEnabled": "Ingyenes próba engedélyezve",
+          "heading": "Korlátlan hozzáférés",
+          "title": "Nyisd ki a prémium funkciókat ma!",
+          "firstOffering": "Tevékenységkövető és okos táplálkozási tippek",
+          "secondOffering": "Korlátlan kalória- és makrószámláló",
+          "thirdOffering": "Korlátlan ételszkennelő",
+          "fourthOffering": "AI Fitneszedződ 24/7"
+        }
+      },
+      "paywallUpgradeScreen": {
+        "heading": "Nyisd ki a prémium funkciókat ma!",
+        "secondOffering": {
+          "title": "Havi csomag",
+          "subtitle": "{{ price }}/hónap"
+        },
+        "thirdOffering": {
+          "title": "Éves csomag",
+          "subtitle": "{{ price }} évente"
+        },
+        "fourthOffering": {
+          "title": "{{trialDays}} napos próbaidő",
+          "subtitle": "{{ price }} évente",
+          "plan": "Heti csomag"
+        }
+      },
+      "newAppVersionScreen": {
+        "heading": "Az EXFIT AI új verziója elérhető",
+        "subheading": "Frissíts a legújabb verzióra, hogy továbbra is élvezd az app összes funkcióját — ez csak 5 másodpercet vesz igénybe!",
+        "action": "Szerezd meg most!"
+      },
+      "rateAppScreen": {
+        "heading": "Értékesnek és vonzónak találod az alkalmazást?",
+        "like": "Igen, tetszik!",
+        "dislike": "Nem igazán..."
+      },
+      "noInternetScreen": {
+        "heading": "Offline vagy",
+        "subheading": "A kapcsolatod instabilnak tűnik. Kérlek ellenőrizd a hálózati állapotodat és próbáld újra"
+      },
+      "notifications": {
+        "title": "Értesítések",
+        "noNotifications": "Még nincsenek értesítések",
+        "emptyNotifications": "Jelenleg nincsenek új értesítések. Nézz vissza hamarosan."
+      },
+      "termsOfService": {
+        "title": "Felhasználási feltételek"
+      },
+      "privacyPolicy": {
+        "title": "Adatvédelmi irányelvek"
+      },
+      "share": {
+        "title": "Megosztás",
+        "heading": "Oszd meg az EXFIT AI alkalmazást",
+        "subheading": "Segíts másoknak felfedezni az EXFIT AI alkalmazást",
+        "scanMessage": "Szkennelj le az alkalmazás letöltéséhez",
+        "shareMessage": "vagy oszd meg kedvenc platformodon keresztül"
+      },
+      "rate": {
+        "title": "Adj visszajelzést nekünk!"
+      },
+      "profile": {
+        "title": "Profil",
+        "edit": "Profil szerkesztése",
+        "placeholderPreferredName": "Pl.: Káptány Király, Méhkirálynő, vagy csak Alex!",
+        "subscriptions": {
+          "monthly": "Havi előfizetés",
+          "yearly": "Éves előfizetés",
+          "weekly": "Heti előfizetés"
+        },
+        "temporaryAccount": "Ideiglenes fiók",
+        "permanentAccount": "Állandó fiók"
+      },
+      "generateReportScreen": {
+        "title": "Nagyra értékeljük a türelmedet! Itt van az AI jelentésed.",
+        "userInput": "Beküldésed",
+        "medicalReport": "Fitneszjelentés",
+        "report": "AI által generált fitneszjelentés",
+        "conversationName": "Beszélgetés neve"
+      },
+      "verifyEmail": {
+        "heading": "E-mail megerősítése"
+      },
+      "filePreviewScreen": {
+        "generateReportButton": "Elemzés indítása"
+      },
+      "contactUs": {
+        "heading": "Nyugodtan küldj nekünk közvetlenül e-mailt, és csapatunk a lehető leghamarabb válaszol neked",
+        "customerSupport": "Ügyfélszolgálat",
+        "emailAddress": "E-mail cím"
+      },
+      "scan": {
+        "cameraPermission": "Kamera hozzáférési engedély szükséges a funkció használatához",
+        "requestPermission": "Kamera engedély kérése...",
+        "scanAnything": "Szkennelj bármit: Ételek, Étel, Edzőtermi felszerelés és több",
+        "askAssistant": "Kérdezd az AI Fitneszedződet"
+      },
+      "excuseBuster": {
+        "heading": "Kifogásromboló",
+        "reasons": {
+          "one": "Túl fáradt vagyok",
+          "two": "Nincs elérhető idő",
+          "three": "Túl fájdalmas edzeni",
+          "four": "A terem túlzsúfolt",
+          "five": "Nincs kedvem",
+          "six": "Rossz idő van kint",
+          "seven": "A munka hektikus",
+          "eight": "Holnap kezdem",
+          "nine": "Bizonytalan vagyok mit csináljak",
+          "ten": "Nincs elérhető felszerelés"
+        },
+        "excuseMotivation": "Erősebb vagy a kifogásodnál.",
+        "excuseQuestion": "Mi tart ma vissza?",
+        "typeExcuse": "Írd be a kifogásod ide...",
+        "crushExcuse": "Zúzd szét a kifogásomat"
+      },
+      "chat": {
+        "fitnessCoach": "Fitneszedződ",
+        "randomQuestions": {
+          "one": "'📸 Fotózd le az ételmet és becsüld meg a kalóriákat és makrókat',",
+          "two": "🥗 Elemezd ezt az ételt és mondd meg, hogyan javíthatom a célom érdekében",
+          "three": "🧠 Építs nekem személyre szabott edzést a fitneszszintem alapján",
+          "four": "🏋️ Javasolj egy edzést, amit most azonnal elvégezhetek felszerelés nélkül",
+          "five": "⏱ Készíts egy 20 perces edzést egy zsúfolt napra",
+          "six": "🔥 Javasolj egy zsírégető edzést, ami hozzám igazodik",
+          "seven": "💪 Tervezz izomépítő tervet a testem és céljaim számára",
+          "eight": "📊 Kövesd a haladásomat és mutasd meg, mit kellene fejlesztenem következőként",
+          "nine": "🍽 Mondd meg, mit egyek ma, hogy elérjem a kalória- és fehérjecéljaimat",
+          "ten": "🥚 Számold ki a napi fehérje-, szénhidrát- és zsírbevitelimet",
+          "eleven": "🛒 Készíts egy egészséges bevásárlólistát az étrendi tervem alapján",
+          "twelve": "😴 Igazítsd az edzéseimet az alvásom és regenerációm alapján",
+          "thirteen": "📅 Építs egy heti edzésütemtervet, amit be tudok tartani",
+          "fourteen": "⚡ Javasolj egy alacsony energiaigényű edzést ma",
+          "fifteen": "🤕 Módosítsd az edzésemet, ha fáj a testem vagy megsérültem"
+        }
+      },
+      "progress": {
+        "error": "Valami elromlott",
+        "heading": "Haladás irányítópult",
+        "subheading": "Folytasd a csodálatos munkát! 🚀",
+        "weeklyGoals": "Heti célok",
+        "monthlyGoal": "Havi cél",
+        "insights": "Gyors betekintések",
+        "mostActive": "Legaktívabb",
+        "peakTime": "Csúcsteljesítmény idő",
+        "favoriteActivity": "Kedvenc tevékenység",
+        "choice": "A te választásod",
+        "weeklyChange": "Heti változás",
+        "lastWeekXP": "vs múlt hét",
+        "consistency": "Konzisztencia",
+        "reliability": "megbízhatóság",
+        "overview": "Áttekintés",
+        "performance": "Teljesítmény",
+        "trends": "Trendek",
+        "lastSevenDays": "Elmúlt 7 nap",
+        "thisWeek": "Ezen a héten",
+        "activityFocus": "Tevékenységi fókusz",
+        "distribution": "Eloszlás",
+        "history": "Előzmények",
+        "activities": "Tevékenységek",
+        "consistencyJourney": "Konzisztencia utazásod",
+        "bestDay": "Legjobb nap",
+        "averageSession": "Átlagos edzés",
+        "totalHours": "Összes óra",
+        "WeeklyComparisonXp": "Heti összehasonlítás",
+        "weeksComparison": "Ez a hét vs múlt hét",
+        "thisWeeks": "Ez a hét",
+        "lastWeek": "Múlt hét",
+        "activityPattern": "Tevékenységi minta",
+        "hoursBreakdown": "24 órás lebontás",
+        "monthlyActivity": "Havi tevékenység",
+        "lastMonths": "Elmúlt 6 hónap",
+        "progression": "Fejlődés",
+        "monthlyEarned": "Havi kereset",
+        "recentActivity": "Legutóbbi tevékenység",
+        "last30Days": "Elmúlt 30 nap",
+        "outstanding": "Kiváló haladás!",
+        "activityReview": "{{totalActivities}} tevékenységet fejeztél be és {{totalXp}} XP-t kerestél összesen. Csak így tovább!",
+        "statistics": "Részletes statisztikák",
+        "longest": "Leghosszabb",
+        "totalMonthActivities": "Fizikai tevékenységek befejezve ebben a hónapban!"
+      },
+      "shoppingCart": {
+        "heading": "Birtokolt tárgyak",
+        "equipMore": "Felszerelj többet",
+        "noItems": "Még nincsenek tárgyaid!",
+        "goToShop": "Menj a boltba",
+        "buyPotions": "Menj át a boltba és gyűjts izgalmas főzeteket"
+      }
+    }
+  },
+  "deleteApp": {
+    "title": "Várj! Ne törölj ki!",
+    "subtitle": "Küldj visszajelzést előtte"
+  },
+  "home": {
+    "tab": "Kezdőlap"
+  },
+  "activity": {
+    "tab": "Tevékenység"
+  },
+  "progress": {
+    "tab": "Haladás"
+  },
+  "settings": {
+    "tab": "Beállítások",
+    "profile": "Profil",
+    "shop": "Bolt",
+    "contactUs": "Lépj kapcsolatba velünk",
+    "about": "Rólunk",
+    "app_name": "Alkalmazás neve",
+    "languages": {
+      "english": "Angol",
+      "mandarin_chinese": "Kínai",
+      "hindi": "Hindi",
+      "spanish_spain": "Spanyol (Spanyolország)",
+      "spanish_mexico": "Spanyol (Mexikó)",
+      "arabic": "Arab",
+      "french": "Francia",
+      "french_canada": "Francia (Kanada)",
+      "portuguese_brazil": "Portugál (Brazília)",
+      "portuguese_portugal": "Portugál (Portugália)",
+      "german": "Német",
+      "japanese": "Japán",
+      "russian": "Orosz",
+      "korean": "Koreai",
+      "italian": "Olasz",
+      "turkish": "Török",
+      "vietnamese": "Vietnámi",
+      "polish": "Lengyel",
+      "ukrainian": "Ukrán",
+      "romanian": "Román",
+      "dutch": "Holland",
+      "czech": "Cseh",
+      "greek": "Görög",
+      "swedish": "Svéd",
+      "hungarian": "Magyar",
+      "thai": "Thai",
+      "hebrew": "Héber",
+      "indonesian": "Indonéz",
+      "malay": "Maláj",
+      "finnish": "Finn",
+      "danish": "Dán",
+      "norwegian": "Norvég",
+      "slovak": "Szlovák",
+      "croatian": "Horvát",
+      "catalan": "Katalán"
+    },
+    "generale": "Általános",
+    "github": "Github",
+    "language": "Nyelv",
+    "links": "Linkek",
+    "logout": "Kijelentkezés",
+    "more": "Több",
+    "privacy": "Adatvédelmi irányelvek",
+    "faq": "GYIK",
+    "rate": "Adj nekünk visszajelzést",
+    "share": "Megosztás",
+    "citations": "Hivatkozások orvosi információkhoz",
+    "support": "Támogatás",
+    "support_us": "Támogass minket",
+    "terms": "Felhasználási feltételek",
+    "theme": {
+      "dark": "Sötét",
+      "light": "Világos",
+      "system": "Rendszer",
+      "title": "Téma"
+    },
+    "title": "Beállítások",
+    "version": "Verzió",
+    "website": "Weboldal",
+    "devMode": {
+      "title": "Fejlesztői mód",
+      "componentsLibrary": "UI könyvtár"
+    },
+    "deleteAccount": "Fiók törlése?",
+    "deleteAccountQuestion": "Biztosan törölni szeretnéd a fiókod? Ez a művelet nem visszavonható és véglegesen eltávolítja az összes adatodat.",
+    "deactivateAccount": "Fiók deaktiválása és törlése",
+    "permanentAccountCreate": "Állandó fiók létrehozása"
+  },
+  "components": {
+    "ReportCard": {
+      "rating": "Értékelés"
+    },
+    "ScanReportCard": {
+      "promptMessage": "Mi az oka?",
+      "unnamedConversation": "Névtelen",
+      "reportTitlePlaceholder": "Cím hozzáadása"
+    },
+    "WeekBlock": {
+      "week": "Hét"
+    },
+    "EndScrollPlaceholder": {
+      "scrollToTop": "Görgess a tetejére"
+    },
+    "FreeTierStatus": {
+      "heading": "Ingyenes szkennelések",
+      "subheading": "Nyisd ki a korlátlan szkenneléseket a csomagod frissítésével",
+      "action": "Frissítés"
+    },
+    "UploadFileOptionsModal": {
+      "heading": "Válassz képet / videót"
+    },
+    "GoalsModal": {
+      "heading": "Változtasd meg a napi beviteli célod",
+      "dailyCalories": "Napi kalóriák",
+      "saveGoals": "Célok mentése"
+    },
+    "DailyActivityModal": {
+      "streakBroken": "Streak megszakadt. Ments most.",
+      "loseStreak": "Hagyjam megszakadni",
+      "buyStreak": "Vásárolj és mentsd a Streak-et",
+      "buyRepairStreak": "Vásárolj egy Streak-javító Elixirt {{elixirPrice}} 💎-ért, hogy visszaszerezd az elvesztett streak-ed.",
+      "streakRestore": "Streak veszélyben — állítsd vissza most!",
+      "restorationStreak": "Hozd vissza életre a {{lostStreakValue}} napos streak-edet a hatásos Streak-javító Elixirrel!",
+      "applyElixir": "Elixir főzet alkalmazása"
+    },
+    "PurchaseItemModal": {
+      "purchaseComplete": "Vásárlás befejezve",
+      "inventoryAdded": "hozzáadva a leltáradhoz. Csak így tovább!",
+      "purchaseFailed": "Vásárlás sikertelen",
+      "purchaseFailedMessage": "Nem tudtuk feldolgozni a vásárlásodat. Kérlek ellenőrizd a gems egyenlegedet és próbáld újra.",
+      "gemsBalance": "Hoppá, nincs elég gems-ed"
+    },
+    "ActivityPromptBanner": {
+      "dailyCheckIn": "Napi bejelentkezés",
+      "bodyMovingQuestion": "Megmozgattad a tested ma?"
+    },
+    "TapToViewLabel": {
+      "label": "Koppints a megtekintéshez"
+    },
+    "UpgradeBanner": {
+      "heading": "Nyisd ki most!",
+      "upgradeMessage": "Nyisd ki ezt a funkciót 🔓 Élvezd az AI kalóriaszámlálást, makrókövetést és átfogó támogatást, hogy gyorsabban érd el a tevékenységi és fitneszcéljaidat 💪",
+      "upgradeTo": "Frissíts erre",
+      "moreBenefits": "AI funkciók. Minden prémium eszköz. Mind a tiéd, hogy nyomon követhesd."
+    },
+    "MotivationBanner": {
+      "title": "Nincs motiváció? Nem érzed jól magad? Verjük le azt a kifogást.",
+      "subtitle": "Válassz egy feladatot, keress XP-t és gems-eket — mozogjunk!",
+      "beatExcuse": "Verj le a kifogásod most!"
+    },
+    "AICoachBanner": {
+      "title": "Van kérdésed? Csak kérdezz.",
+      "subtitle": "Urald a fitneszed — kérdezz kalóriákról, táplálkozásról, edzőtermi gépekről, pózokról, sérülésekről, formáról, edzéstervekről",
+      "chat": "Beszélj az AI Edzővel"
+    },
+    "PromptSection": {
+      "message": "A szkennelésed kész! Most mit szeretnél megtudni?",
+      "prompts": {
+        "first": "Milyen sejttípusok vagy szerkezetek vannak jelen ezen a képen?",
+        "second": "Vannak rendellenességek vagy kórokozók ebben a mintában?",
+        "third": "Mi a valószínű eredet vagy állapot ennek a mintának?",
+        "fourth": "Milyen betekintéseket tudsz nyújtani ebből a képből?"
+      }
+    },
+    "PremiumFeaturesOverview": {
+      "first": "Azonnali AI Ételszkennelés — Kövesd a kalóriákat és makrókat másodpercek alatt",
+      "second": "24/7 AI Személyi edző — Szakmai útmutatás, bármikor, bárhol",
+      "third": "Kövesd a fitnesztevékenységeidet mint egy profi",
+      "fourth": "Teljes hozzáférés minden prémium funkcióhoz"
+    },
+    "Input": {
+      "labels": {
+        "nickname": "Becenév",
+        "email": "E-mail",
+        "emailVerification": "E-mail megerősítés"
+      }
+    },
+    "TodayMacroOverview": {
+      "heading": "Mai makrók",
+      "scanFood": "Étel szkennelése",
+      "calories": "Kalóriák",
+      "fat": "Zsír",
+      "carbs": "Szénhidrát",
+      "protein": "Fehérje",
+      "dailyIntakeGoals": "Napi beviteli célok",
+      "percentage": "% a napi makrócél eléréséből",
+      "noMeals": "Nincsenek naplózott ételek",
+      "meals": "Ételek",
+      "deleteMeal": "Étel törlése",
+      "deleteMealConfirm": "Biztosan törölni szeretnéd ezt az ételt? Ez a művelet befolyásolja a napi makrotápanyag számításaidat.",
+      "macroJournal": "Makrónapló",
+      "noActivityRecorded": "Ezen a héten nem rögzítettek tevékenységet"
+    },
+    "DailyCheckInStatus": {
+      "dailyCheckIn": "Napi bejelentkezés",
+      "attendedMessage": "Ma megjelentél, így épül a haladás. Csak így tovább!",
+      "notAttendedMessage": "Ma a kanapé nyert… de holnap visszatérsz!",
+      "unknownMessage": "Utazásod egyetlen lépéssel kezdődik. Készen állsz az indulásra?"
+    },
+    "DailyCheckInForm": {
+      "durationLonger": "A kiválasztott időtartam nem lehet hosszabb 360 percnél",
+      "activitiesLimit": "Hoppá! Titokban az olimpiára készülsz? Már elérted a napi {{MAX_DAILY_ACTIVITIES}} tevékenységlimitetedet! 🏅. Holnap újra feszítheted azokat az izmokat 💪!",
+      "addActivity": "Tevékenység hozzáadása",
+      "modalHeading": "Mi mozgatta ma meg a tested? Naplózd és tartsd fenn a lendületet"
+    },
+    "TaskListOverview": {
+      "heading": "Mai feladatok",
+      "noTasks": "Nincsenek feladatok!",
+      "enjoyFreeTime": "Élvezd a szabadidődet."
+    },
+    "ActivitySelector": {
+      "title": "Tevékenység típusa",
+      "customActivity": "Add hozzá a saját tevékenységed",
+      "customActivityLabel": "Egyéni tevékenység"
+    },
+    "DurationSelector": {
+      "heading": "Időtartam",
+      "customDuration": "Add meg az időtartamot (perc)",
+      "customDurationLabel": "Egyéni időtartam"
+    },
+    "NoActivityLogModal": {
+      "heading": "Ó, ne! Ne hagyd, hogy a kanapé nyerjen ma!",
+      "crushExcuse": "Zúzd szét a kifogásomat",
+      "skipToday": "Nem ma, talán holnap..."
+    },
+    "ActivityLogSuccessModal": {
+      "heading": "Szép munka!",
+      "unlockReward": "Megcsináltad! Egy tevékenység lezárva, és kinyitottad a jutalmadat. Tartsuk fenn a streak-et!"
+    },
+    "SkipReasonInput": {
+      "title": "Rendben van, csak ellenőrzök.",
+      "subtitle": "Szeretnéd megosztani, miért nem jött össze ma? Nincs nyomás.",
+      "skipPlaceholder": "Pl.: A macskám megette a futócipőmet",
+      "skipToday": "Hagyd ki ma"
+    },
+    "StreakWarning": {
+      "streakFreeze": "Streak fagyasztás!",
+      "streakResetNow": "A streak-edet ma visszaállították.",
+      "streakRepairUse": "Használd a Streak-javító Elixiredet, hogy életben tartsd a streak-edet",
+      "streakRepairExpired": " A 48 órás streak-javítási ablakod lejárt! De hé, új streak-ek új lehetőségeket jelentenek, hogy legyőzd a személyes rekordodat.",
+      "repairStreak": "Streak javítása",
+      "streakPotionConsumed": "Streak-fagyasztó főzet elfogyasztva!",
+      "streakFreezeApplied": " A Streak-fagyasztó főzeted bekapcsolt és megvédte a streak-edet. Még mindig lángolsz!",
+      "streakElixirApplied": "Streak-javító Elixir főzet bekapcsolt!",
+      "streakFreezePotionApplied": "Megmentetted a Streak-edet! A Streak-fagyasztó főzeted bekapcsolt és megvédte a streak-edet. Még mindig lángolsz!"
+    },
+    "ActivitiesList": {
+      "noActivityFound": "Nem található tevékenység",
+      "addFirstActivity": "Add hozzá az első tevékenységedet, hogy gems-eket és XP-t keress.",
+      "addActivity": "Tevékenység hozzáadása",
+      "todayActivities": "Mai tevékenységek"
+    },
+    "ActivityCard": {
+      "activitySkipped": "kihagyva",
+      "dayOff": "Pihenőnap",
+      "description": "Leírás",
+      "excuseReason": "Kifogás oka ⚠️",
+      "yourNotes": "Jegyzeteid 📝",
+      "notesPlaceholder": "Pl.: Hát és bicepsz edzés, 3 szuper szett",
+      "addNotes": "Jegyzetek hozzáadása"
+    },
+    "ImagePickerModal": {
+      "photoLibrary": "Fényképgaléria",
+      "takePhoto": "Fénykép készítése",
+      "chooseFile": "Fájl kiválasztása"
+    },
+    "ProgressBarLevel": {
+      "heading": "🎉 Maximális szint elérve! Szint",
+      "xpLeft": "maradt a szint eléréséhez"
+    },
+    "ShopItemCard": {
+      "unavailable": "Nem elérhető",
+      "worth": "értékű",
+      "equiped": "felszerelt",
+      "shop": "Bolt",
+      "earnedId": "Megérdemelted.",
+      "treat": "Most pazarolj magadra!",
+      "spendGems": "Költsd el bölcsen a Gems-eidet, a fitneszutad most lett érdekes."
+    },
+    "ActivityTaskCard": {
+      "win": "Nyerj",
+      "acceptChallenge": "Fogadd el a kihívást 🔥"
+    },
+    "ChatBubbleExcuse": {
+      "heading": "Mi lenne, ha kicsit megpróbálnád ezt a kihívást?",
+      "typeInput": "(Írd be a bevitedet lent)"
+    },
+    "MacroOverview": {
+      "analysis": "Elemzés",
+      "macroAdded": "Makró hozzáadva",
+      "countToday": "Ma számolva"
+    },
+    "ShoppingPurchasedCard": {
+      "heading": "Védd meg a streak-edet, ha kihagysz egy napot az edzésből.",
+      "owned": "BIROKOLVA",
+      "manualTrigger": "KÉZI INDÍTÁS",
+      "activated": "AKTÍVÁLVA"
+    }
+  },
+  "alerts": {
+    "mediaPickerPermissions": "Sajnáljuk, kamerajogosultságokra van szükségünk, hogy ez működjön!",
+    "errorSelectingImagePicker": "Valami elromlott a kép kiválasztása közben. Kérlek próbáld újra.",
+    "errorSelectingDocumentPicker": "Valami elromlott a dokumentum kiválasztása közben. Kérlek próbáld újra.",
+    "errorTakingPicture": "Valami elromlott a fénykép készítése közben. Kérlek próbáld újra.",
+    "enableNotifications": {
+      "heading": "Értesítések engedélyezése",
+      "subHeading": "Az értesítések jelenleg ki vannak kapcsolva. A naprakészség érdekében kérlek kapcsold be őket az eszközöd beállításaiban."
+    },
+    "notesSavedSuccess": "Jegyzetek elmentve! 📝 Minden kész.",
+    "enableNotificationFailed": "A push értesítések ki vannak kapcsolva. Kapcsold be őket a beállításokban, hogy fontos frissítéseket kapj!",
+    "enableNotificationError": "Hiba történt az értesítések engedélyezésekor",
+    "notificationDisabledSuccess": "Értesítések sikeresen letiltva.",
+    "notificationDisabledRegisterError": "Nem sikerült az eszköz regisztrációjának törlése az értesítésekhez.",
+    "notificationDisabledError": "Hiba történt az értesítések letiltása közben",
+    "checkNotificationStatusError": "Hiba az értesítési állapot ellenőrzésekor.",
+    "projectIdNotFound": "Értesítési projektazonosító nem található.",
+    "imageSizeLarge": "A kép túl nagy! A fájlméret {{fileSize}} MB, de a korlát {{imageLimit}} MB.",
+    "videoSizeLarge": "A videó túl nagy! A fájlméret {{fileSize}} MB, de a korlát {{videoLimit}} MB.",
+    "loggedInSuccess": "Sikeres bejelentkezés",
+    "loggedOutSuccess": "Sikeresen kijelentkeztél!",
+    "sendVerificationCodeError": "Hiba az ellenőrzőkód küldésekor",
+    "validateAuthCodeError": "Hiba a hitelesítőkód érvényesítésekor",
+    "anonymousSignInError": "Hiba a névtelen bejelentkezéskor",
+    "emailLoginError": "Hiba a bejelentkezéskor",
+    "preferredLanguageError": "Hiba a felhasználó preferált nyelvének frissítésekor",
+    "sharingNotAvailable": "A megosztás jelenleg nem elérhető az eszközödön",
+    "sharingLinkError": "Nem sikerült megosztani a linket.",
+    "individualPushNotificationSuccess": "Egyéni push értesítések sikeresen elküldve!",
+    "globalPushNotificationSuccess": "Globális push értesítések sikeresen elküldve! 🌍🚀",
+    "interpretationFieldsUpdateFail": "Nem sikerült frissíteni az értelmezési mezőket! ❌",
+    "deleteScanReportFail": "Nem lehet törölni a szkennelési jelentést. Kérlek próbáld újra",
+    "onboardingUnsuccessful": "A bevezetés sikertelen. Kérlek próbáld újra",
+    "logoutUnsuccessful": "A kijelentkezés sikertelen. Kérlek próbáld újra",
+    "deleteScanReportQuestion": "Biztosan véglegesen törölni szeretnéd ezt a jelentést?",
+    "videoLimitExceeds": "A videód meghaladja a {{videoSecondsLimit}} másodperces korlátot. Kérlek vágd meg és töltsd fel újra",
+    "subscriptionActivated": "Az előfizetésed sikeresen aktiválva! Élvezd az exkluzív előnyeidet!",
+    "subscriptionCancelledByUser": "Törölted a tranzakciót. Nyugodtan próbáld újra!",
+    "subscriptionActivationFailed": "Nem sikerült aktiválni az előfizetésedet. Kérlek próbáld újra",
+    "logoutQuestion": "Biztosan ki akarsz jelentkezni?",
+    "noSubscriptionToRestore": "Hoppá! Úgy tűnik, jelenleg nincs aktív előfizetésed. A teljes hozzáférés élvezetéhez kérlek válassz egy előfizetési csomagunkat.",
+    "restorationSuccessful": "A visszaállítás sikeres! Élvezd!",
+    "restorationError": "Hiba történt a vásárlás visszaállítása közben.",
+    "medicalDisclaimerAlert": "Az EXFIT AI alkalmazás nem nyújt diagnózist, kezelési ajánlást vagy orvosi tanácsot. Mindig keress képzett egészségügyi szakember útmutatását orvosi döntésekhez.",
+    "scanLimitReached": "Optimalizáljuk a szkennelési minőségedet! Körülbelül {{hours}} óra és {{minutes}} perc múlva újra tudsz szkennelni. Van kérdésed bármely mikroszkópiai témával kapcsolatban? Kérdezd a csevegő asszisztensünket, amíg vársz!",
+    "chatAndMediaFilesLimit": "Kedves felhasználó, frissítsd a csomagodat, hogy élvezhesd a korlátlan kalóriakövetést, ételszkennelést, fitnesz coachingot és még többet. 🔓",
+    "chatMessageNotSent": "Hoppá! Az üzeneted nem ment át. Kérlek próbáld újra",
+    "excusesLimit": "Hoppá, úgy tűnik, világrekordot próbálsz felállítani kifogásokban! 😅 Maximum 3 kifogás engedélyezett — válaszd ki a top 3-at és mozogjunk!",
+    "excuseMinimum": "Kérlek válassz legalább egy kifogást vagy írd be a sajátodat.",
+    "createActivityLogFailed": "Nem sikerült létrehozni a tevékenységnaplót. Kérlek próbáld újra.",
+    "updateActivityLogFailed": "Valami elromlott a tevékenységnapló frissítése közben. Kérlek próbáld újra.",
+    "challengeAccepted": "Kihívás elfogadva! 🔥 Most menj és zúzd szét, és szerezd meg azokat a jutalmakat!",
+    "challengeCompleted": "Kihívás teljesítve! 🔥 Az új jutalom egyenleged frissült.",
+    "macroEntryRecorded": "Makróbevitel rögzítve — csak így tovább! 🥗",
+    "failedCreateMacroLog": "Hoppá! A makrónapló nem ment el. Kérlek próbáld újra!",
+    "deleteMacroLog": "Hoppá! Nem sikerült eltávolítani a makrónaplódat. Kérlek próbáld újra!",
+    "deleteMacro": "Makró törölve — készen állsz a következő bejegyzésedre!",
+    "chooseSubscriptionPlan": "Kérlek válassz egy előfizetési csomagot a folytatáshoz!",
+    "createPermanentAccountSuccess": "Az állandó fiókod létrejött! A fiókod most biztonságos. Ó, és kaptál is",
+    "loginSuccess": "Sikeres bejelentkezés — mozogjunk!",
+    "accountDeleted": "A fiókod sikeresen törölve lett",
+    "purchaseFailed": "A vásárlás sikertelen. Kérlek próbáld újra.",
+    "streakRepairFailed": "Nem sikerült javítani a streak-et. Kérlek próbáld újra.",
+    "failedSendMessage": "Nem sikerült elküldeni az üzenetet. Kérlek próbáld újra.",
+    "capturePictureFailed": "Valami elromlott a fénykép készítése közben",
+    "multipleVideosNotAllowed": "A jobb pontosság érdekében kérlek csak egy videót tölts fel egyszerre.",
+    "mixedMediaNotAllowed": "A feltöltéseknek csak képeket vagy csak videókat kell tartalmazniuk, nem keveréket.",
+    "mediaFilesUploadFiles": "Hiba történt a médiafájljaid feltöltésekor. Kérlek próbáld újra."
+  }
+}
