@@ -19,6 +19,7 @@ const Avatar = ({
   className = '',
   style = {},
   isEditable,
+  name,
 }: IAvatar) => {
   const styles = React.useMemo(
     () => avatar({ size, shape, withBorder }),
@@ -33,6 +34,9 @@ const Avatar = ({
             className={styles.image()}
             accessibilityLabel={altText}
           />
+          <Text className="mt-2 font-bold-poppins text-lg text-white dark:text-white">
+            {name}
+          </Text>
 
           {isEditable && (
             <Icon

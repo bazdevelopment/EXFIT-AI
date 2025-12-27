@@ -71,7 +71,7 @@ const ProgressBarLevel: React.FC<{
           <View className="flex-row gap-1">
             <FlashIcon width={22} height={22} />
             <Text className="mb-2 font-medium-poppins text-white">
-              {levelInfo.xpToNextLevel}{' '}
+              {levelInfo.xpToNextLevel} XP{' '}
               {translate('components.ProgressBarLevel.xpLeft')}{' '}
               {levelInfo.nextLevel}
             </Text>

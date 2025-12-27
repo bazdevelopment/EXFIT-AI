@@ -109,13 +109,16 @@ const ProfileHeader: React.FC<{
             end={{ x: 0, y: 1 }}
             style={{ borderRadius: 100, width: '45%' }}
           >
-            <View className="flex-row items-center justify-center gap-2 rounded-full px-4 py-2">
+            <TouchableOpacity
+              className="flex-row items-center justify-center gap-2 rounded-full px-4 py-2"
+              onPress={() => router.navigate('/paywall-new')}
+            >
               <WarningIconRounded width={24} height={24} />
               {/* Keep warning icon */}
               <Text className="font-semibold-poppins text-sm text-white">
                 {translate('general.freeTrial')}
               </Text>
-            </View>
+            </TouchableOpacity>
           </LinearGradient>
         )}
       </View>

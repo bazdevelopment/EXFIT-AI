@@ -298,12 +298,17 @@ const Scan: React.FC<CameraScanScreenProps> = () => {
             />
             <FadeInView delay={100} className="flex-1">
               <Button
-                label={`${translate('general.scanNow')} ✨`}
-                className="h-[40px] flex-1 rounded-full bg-[#4E52FB] disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
-                textClassName="text-white dark:text-white disabled:text-white font-medium-poppins text-base"
+                className="h-auto flex-1 rounded-full bg-[#4E52FB] py-2 disabled:bg-[#7A7A7A] dark:bg-[#4E52FB]"
                 onPress={handleScanImage}
                 disabled={isScanning}
-              />
+              >
+                <Text
+                  className="text-center font-medium-poppins text-base text-white"
+                  numberOfLines={2}
+                >
+                  {`${translate('general.scanNow')} ✨`}
+                </Text>
+              </Button>
             </FadeInView>
           </View>
         )}

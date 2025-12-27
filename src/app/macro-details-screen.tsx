@@ -338,6 +338,7 @@ export const GoalsModal = ({
                 {translate('components.GoalsModal.dailyCalories')}
               </Text>
               <TextInput
+                maxLength={6}
                 className="rounded-xl border border-gray-200 p-4 text-base text-red-200 dark:border-gray-600 dark:bg-black dark:text-white"
                 keyboardType="number-pad"
                 value={String(editedGoals.calories)}
@@ -355,6 +356,7 @@ export const GoalsModal = ({
                 {translate('components.TodayMacroOverview.protein')} (g)
               </Text>
               <TextInput
+                maxLength={6}
                 className="rounded-xl border border-gray-600 bg-gray-50 p-4 text-base dark:border-gray-600 dark:bg-black dark:text-white"
                 keyboardType="number-pad"
                 value={String(editedGoals.protein)}
@@ -369,6 +371,7 @@ export const GoalsModal = ({
                 {translate('components.TodayMacroOverview.carbs')} (g)
               </Text>
               <TextInput
+                maxLength={6}
                 className="rounded-xl border border-gray-600 bg-gray-50 p-4 text-base dark:border-gray-600 dark:bg-black dark:text-white"
                 keyboardType="number-pad"
                 value={String(editedGoals.carbs)}
@@ -383,6 +386,7 @@ export const GoalsModal = ({
                 {translate('components.TodayMacroOverview.fat')} (g)
               </Text>
               <TextInput
+                maxLength={6}
                 className="rounded-xl border border-gray-600  bg-gray-50 p-4 text-base dark:border-gray-600 dark:bg-black dark:text-white"
                 keyboardType="number-pad"
                 value={String(editedGoals.fat)}

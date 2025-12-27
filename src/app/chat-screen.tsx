@@ -369,7 +369,7 @@ const ChatScreen = () => {
   if (isLoading && conversationMode !== 'RANDOM_CONVERSATION') {
     return (
       <View className="flex-1 items-center justify-center bg-black dark:bg-blackEerie">
-        <Branding imageClassname="" isLogoVisible invertedColors />
+        <Branding imageClassname="size-[90px]" isLogoVisible invertedColors />
         <ActivityIndicator
           size="large"
           className="my-6 items-center justify-center"
@@ -413,7 +413,7 @@ const ChatScreen = () => {
           <View className="ml-3 flex-row items-center">
             <View className="mr-3 items-center justify-center rounded-full">
               <Image
-                source={require('../components/ui/assets/images/fit-character-training.jpg')}
+                source={require('../components/ui/assets/images/fit-character-training-2.png')}
                 className="size-[40] rounded-full"
               />
             </View>
