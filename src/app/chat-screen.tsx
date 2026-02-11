@@ -111,16 +111,11 @@ const ChatScreen = () => {
   const { language: appLanguage } = useSelectedLanguage();
 
   const conversationsCount = data?.count || 0;
-  console.log('conversationsCount', conversationsCount);
+
   const {
     BLURRING_CONTENT_CONVERSATIONS_LIMIT,
     MAX_CONVERSATIONS_ALLOWED_FREE_TRIAL,
   } = useRemoteConfig();
-
-  console.log(
-    'BLURRING_CONTENT_CONVERSATIONS_LIMIT',
-    BLURRING_CONTENT_CONVERSATIONS_LIMIT
-  );
 
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
