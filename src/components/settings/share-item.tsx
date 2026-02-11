@@ -21,7 +21,7 @@ import { useShareLink } from '@/core/hooks/use-share-link';
 
 import { Item } from './item';
 
-const IconTransparent = require('assets/splash-icon.png');
+const IconTransparent = require('assets/icon-5.png');
 
 export const ShareItem = () => {
   const modal = useModal();
