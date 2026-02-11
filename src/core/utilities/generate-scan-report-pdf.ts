@@ -2,7 +2,7 @@ import { Image, Platform } from 'react-native';
 
 import { translate } from '../i18n';
 
-const IconTransparent = require('assets/splash-icon.png');
+const IconTransparent = require('assets/icon-5.png');
 
 const getAndroidReleaseImageURI = (assetName: string) =>
   `file:///android_res/drawable/${assetName}`;

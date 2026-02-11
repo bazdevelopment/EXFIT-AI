@@ -22,7 +22,7 @@ const Branding = ({
       {isLogoVisible && (
         <View className="rounded-xl bg-transparent">
           <Image
-            source={require('assets/splash-icon-2.png')}
+            source={require('assets/icon-5.png')}
             className={`size-[50px] ${imageClassname}`}
           />
         </View>
